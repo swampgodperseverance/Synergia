@@ -1,0 +1,16 @@
+{
+  "Criteria": "All",
+
+  "Conditions": {
+    "CreatesResult": {
+      "Item": "ValhallaMod/SentryPlusPotion"
+    }
+  },
+
+  "Changes": {
+    "AddIngredient": {
+      "Item": "RoA/SphereOfCondor",
+      "Count": "1"
+    }
+  }
+}

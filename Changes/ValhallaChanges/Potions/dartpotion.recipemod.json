@@ -1,0 +1,16 @@
+{
+  "Criteria": "All",
+
+  "Conditions": {
+    "CreatesResult": {
+      "Item": "ValhallaMod/DartPotion"
+    }
+  },
+
+  "Changes": {
+    "AddIngredient": {
+      "Item": "RoA/SphereOfQuake",
+      "Count": "1"
+    }
+  }
+}
