@@ -1,0 +1,18 @@
+{
+	"Result": {
+		"Item": "RoA/MercuriumNugget"
+	},
+	
+	"Ingredient": {
+		"Item": "RoA/MercuriumOre",
+		"Count": 4
+	},
+        
+	"Ingredient": {
+		"Item": "Avalon/ChunkstoneBlock",
+		"Count": 2
+
+	},
+	
+	"Tile": "Terraria/DemonAltar"
+}
