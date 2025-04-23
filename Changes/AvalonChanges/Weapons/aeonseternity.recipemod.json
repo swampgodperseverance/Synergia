@@ -1,0 +1,17 @@
+{
+  "Criteria": "All",
+
+  "Conditions": {
+    "CreatesResult": {
+      "Item": "Avalon/AeonsEternity"
+    }
+  },
+
+  "Changes": {
+    "ChangeIngredient": {
+      "Item": "Avalon/MinersSword",
+      "NewItem": "RoA/MercuriumSword",
+      "NewCount": 1
+    }
+  }
+}

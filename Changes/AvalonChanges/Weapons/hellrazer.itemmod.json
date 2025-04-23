@@ -1,0 +1,11 @@
+{
+	"Item": "Avalon/Hellrazer",
+	
+	"Changes": {
+		"Terraria": {
+		"Damage": "+59",
+		"UseTime": "-2",
+		"UseAnimation": "-2"
+		}
+	}
+}

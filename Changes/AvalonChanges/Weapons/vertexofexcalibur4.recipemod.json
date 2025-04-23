@@ -1,0 +1,15 @@
+{
+  "Criteria": "All",
+
+  "Conditions": {
+    "CreatesResult": {
+      "Item": "Avalon/VertexOfExcalibur"
+    }
+  },
+
+  "Changes": {
+    "RemoveIngredient": {
+      "Item": "Terraria/DarkShard",
+    }
+  }
+}

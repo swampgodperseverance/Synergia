@@ -1,0 +1,17 @@
+{
+  "Criteria": "All",
+
+  "Conditions": {
+    "CreatesResult": {
+      "Item": "Avalon/AeonsEternity"
+    }
+  },
+
+  "Changes": {
+    "ChangeIngredient": {
+      "Item": "Terraria/Starfury",
+      "NewItem": "RoA/StarFusion",
+      "NewCount": 1
+    }
+  }
+}

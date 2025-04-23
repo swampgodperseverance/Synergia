@@ -1,0 +1,17 @@
+{
+  "Criteria": "All",
+
+  "Conditions": {
+    "CreatesResult": {
+      "Item": "Avalon/QuantumClaymore"
+    }
+  },
+
+  "Changes": {
+    "ChangeIngredient": {
+      "Item": "Avalon/CorruptShard",
+      "NewItem": "ValhallaMod/BladeEvil",
+      "NewCount": 1
+    }
+  }	
+}

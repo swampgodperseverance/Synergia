@@ -1,0 +1,17 @@
+{
+  "Criteria": "All",
+
+  "Conditions": {
+    "CreatesResult": {
+      "Item": "Avalon/VertexOfExcalibur"
+    }
+  },
+
+  "Changes": {
+    "ChangeIngredient": {
+      "Item": "Terraria/TrueNightsEdge",
+      "NewItem": "Avalon/QuantumClaymore",
+      "NewCount": 1
+    }
+  }
+}

@@ -1,0 +1,37 @@
+{
+  "Criteria": "All",
+
+  "Conditions": {
+    "CreatesResult": {
+      "Item": "Avalon/CrystalUnity"
+    }
+  },
+
+  "Changes": {
+    "AddIngredient": {
+      "Item": "RoA/RodOfTheDragonfire",
+      "Count": 1
+ 
+    }
+  },
+
+  "Changes": {
+    "AddIngredient": {
+      "Item": "RoA/RodOfTheTerra",
+      "Count": 1
+    }
+  },
+  
+  "Changes": {
+    "ChangeIngredient": {
+      "Item": "Terraria/CrystalStorm",
+      "NewItem": "RoA/RodOfTheShock",
+    }
+  },
+  "Changes": {
+    "AddIngredient": {
+      "Item": "RoA/RodOfTheStream",
+      "Count": 1
+    }
+  },
+}

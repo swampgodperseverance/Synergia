@@ -1,0 +1,22 @@
+{
+  "Criteria": "All",
+
+  "Conditions": {
+    "CreatesResult": {
+      "Item": "Avalon/VertexOfExcalibur"
+    }
+  },
+
+  "Changes": {
+    "RemoveIngredient": {
+      "Item": "Terraria/LightShard",
+    }
+  },
+
+  "Changes": {
+      "ChangeTile": {
+      "Tile": "Terraria/AdamantiteForge",
+      "NewTile": "Terraria/MythrilAnvil"
+    }
+  }	
+}

@@ -1,0 +1,17 @@
+{
+	"Result": {
+		"Item": "Avalon/SoulEdge"
+	},
+	
+	"Ingredient": {
+		"Item": "Avalon/VertexOfExcalibur",
+		"Count": 1
+	},
+        
+	"Ingredient": {
+		"Item": "Terraria/BeetleHusk",
+		"Count": 6
+	},
+	
+	"Tile": "Terraria/MythrilAnvil"
+}

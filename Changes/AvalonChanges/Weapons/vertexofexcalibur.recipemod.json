@@ -1,0 +1,17 @@
+{
+  "Criteria": "All",
+
+  "Conditions": {
+    "CreatesResult": {
+      "Item": "Avalon/VertexOfExcalibur"
+    }
+  },
+
+  "Changes": {
+    "ChangeIngredient": {
+      "Item": "Terraria/TrueExcalibur",
+      "NewItem": "Avalon/TrueAeonsEternity",
+      "NewCount": 1
+    }
+  }
+}

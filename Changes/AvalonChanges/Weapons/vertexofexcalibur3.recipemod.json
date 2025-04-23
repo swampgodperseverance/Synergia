@@ -1,0 +1,17 @@
+{
+  "Criteria": "All",
+
+  "Conditions": {
+    "CreatesResult": {
+      "Item": "Avalon/VertexOfExcalibur"
+    }
+  },
+
+  "Changes": {
+    "ChangeIngredient": {
+      "Item": "Terraria/BeetleHusk",
+      "NewItem": "ValhallaMod/EvilIngot",
+      "NewCount": 2
+    }
+  }	
+}
