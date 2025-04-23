@@ -1,0 +1,16 @@
+{
+  "Criteria": "All",
+
+  "Conditions": {
+    "CreatesResult": {
+      "Item": "ValhallaMod/Beenigun"
+    }
+  },
+
+  "Changes": {
+    "AddIngredient": {
+      "Item": "Avalon/VenomShard",
+      "Count": 1
+    }
+  }
+}

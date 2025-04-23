@@ -1,0 +1,27 @@
+{
+	"Result": {
+		"Item": "ValhallaMod/BladeEvil"
+	},
+	
+	"Ingredient": {
+		"Item": "starforgedclassic/MeteoricEdge",
+		"Count": 1
+	},
+        
+	"Ingredient": {
+		"Item": "Avalon/SanguineKatana",
+		"Count": 1
+	},
+	
+	"Ingredient": {
+		"Item": "RoA/DiabolicDaikatana",
+		"Count": 1
+	},
+        
+	"Ingredient": {
+		"Item": "ValhallaMod/ValhalliteSword",
+		"Count": 1
+	},
+
+	"Tile": "Terraria/DemonAltar"
+}

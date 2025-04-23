@@ -1,0 +1,9 @@
+{
+	"Item": "ValhallaMod/BladeEvil",
+	
+	"Changes": {
+		"Terraria": {
+		"Damage": "-30",
+		}
+	}
+}
