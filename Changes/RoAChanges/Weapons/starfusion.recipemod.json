@@ -1,0 +1,17 @@
+{
+  "Criteria": "All",
+
+  "Conditions": {
+    "CreatesResult": {
+      "Item": "RoA/StarFusion"
+    }
+  },
+
+  "Changes": {
+    "ChangeIngredient": {
+      "Item": "Terraria/Starfury",
+      "NewItem": "starforgedclassic/AzuriteBarItem",
+      "NewCount": 8
+    }
+  }
+}
