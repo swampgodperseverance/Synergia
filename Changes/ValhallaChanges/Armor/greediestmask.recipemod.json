@@ -1,0 +1,16 @@
+{
+  "Criteria": "All",
+
+  "Conditions": {
+    "CreatesResult": {
+      "Item": "ValhallaMod/GreediestHead"
+    }
+  },
+
+  "Changes": {
+    "AddIngredient": {
+      "Item": "Consolaria/SoulofBlight",
+      "Count": 4
+    }
+  }
+}
