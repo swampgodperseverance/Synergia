@@ -1,0 +1,23 @@
+{
+  "Criteria": "All",
+
+  "Conditions": {
+    "CreatesResult": {
+      "Item": "NewHorizons/SkyCape"
+    }
+  },
+
+  "Changes": {
+    "ChangeIngredient": {
+      "Item": "Terraria/Silk",
+      "NewItem": "Avalon/BreezeShard",
+      "NewCount": 2
+    }
+  },
+
+  "Changes": {
+    "RemoveIngredient": {
+      "Item": "Terraria/ShadowScale",
+    }
+  }
+}
