@@ -1,0 +1,16 @@
+{
+  "Criteria": "All",
+
+  "Conditions": {
+    "CreatesResult": {
+      "Item": "Avalon/WisdomPotion"
+    }
+  },
+
+  "Changes": {
+    "AddIngredient": {
+      "Item": "RoA/SphereOfPyre",
+      "Count": "1"
+    }
+  }
+}
