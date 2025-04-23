@@ -1,0 +1,19 @@
+DamageClasses.ThrowingDamage.DisplayName: Throwing Damage
+
+Items: {
+	EverwoodJavelin: {
+		DisplayName: Everwood Javelin
+		Tooltip: ""
+	}
+
+	Blitzkrieg: {
+		Tooltip: ""
+		DisplayName: Blitzkrieg
+	}
+}
+
+Projectiles: {
+	EverwoodJavelinProj.DisplayName: Everwood Javelin Proj
+	BlitzkriegProj2.DisplayName: Blitzkrieg Proj2
+	BlitzkriegProj.DisplayName: Blitzkrieg Proj
+}
