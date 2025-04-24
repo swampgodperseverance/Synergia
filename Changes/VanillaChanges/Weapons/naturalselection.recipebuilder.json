@@ -1,0 +1,17 @@
+{
+	"Result": {
+		"Item": "Vanilla/NaturalSelection"
+	},
+	
+	"Ingredient": {
+		"Item": "Avalon/BacciliteBar",
+		"Count": 10
+	},
+        
+	"Ingredient": {
+		"Item": "Avalon/Booger",
+		"Count": 6
+	},
+	
+	"Tile": "Terraria/Anvils"
+}
