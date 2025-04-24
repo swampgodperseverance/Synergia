@@ -1,0 +1,22 @@
+{
+  "Criteria": "All",
+
+  "Conditions": {
+    "CreatesResult": {
+      "Item": "Avalon/GiftofStarpower"
+    }
+  },
+
+  "Changes": {
+    "RemoveIngredient": {
+      "Item": "Terraria/BandofStarpower"
+    }
+  },
+
+  "Changes": {
+    "AddIngredient": {
+      "Item": "Terraria/FragmentNebula",
+      "Count": 10
+    }
+  }
+}
