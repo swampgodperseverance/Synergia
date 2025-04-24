@@ -3,12 +3,17 @@ DamageClasses.ThrowingDamage.DisplayName: Throwing Damage
 Items: {
 	EverwoodJavelin: {
 		DisplayName: Everwood Javelin
-		Tooltip: ""
+		Tooltip: '''
+			 Each hit has a 20% chance to inflict the «{$Mods.Vanilla.Buffs.EverwoodJavelinDebuff.DisplayName}» debuff for 1.5 seconds
+			 The debuff stuns the enemy and deals 5 damage over time
+			 It doesn’t stun bosses, but its duration is increased by 3 seconds
+       'Contains a fragment of Everwood magic'
+			 '''
 	}
 
 	Selection: {
 		Tooltip: ""
-		DisplayName: Selection
+		DisplayName: Troxinium throwing blade
 	}
 
 	OculithShard: {
