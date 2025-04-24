@@ -51,7 +51,6 @@ public class EverwoodJavelinDebuffEffect : GlobalNPC
 			Vector2 position = new Vector2(npc.Center.X, npc.position.Y + npc.height - 14) - screenPos;
 
 			// Плавный переход: после 10 тиков максимальная прозрачность = 0.8f
-			//хуй
 			float alpha = MathHelper.Clamp((debuffTimer - 3) / 7f, 0f, 0.8f);
 
 			Color color = Color.White * alpha;
