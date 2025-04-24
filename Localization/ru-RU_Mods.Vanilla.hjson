@@ -29,8 +29,8 @@ Items: {
 	}
 
 	NaturalSelection: {
-		// DisplayName: Natural Selection
-		// Tooltip: ""
+		DisplayName: Естественный отбор
+		Tooltip: ""
 	}
 }
 
