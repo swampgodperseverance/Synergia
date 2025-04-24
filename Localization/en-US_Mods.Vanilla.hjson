@@ -7,7 +7,7 @@ Items: {
 			'''
 			Each hit has a 20% chance to inflict the «{$Mods.Vanilla.Buffs.EverwoodJavelinDebuff.DisplayName}» debuff for 1.5 seconds
 			The debuff stuns the enemy and deals 5 damage over time
-			It doesn’t stun bosses, but its duration is increased by 3 seconds
+			It doesn’t stun bosses, but its duration is increased by 3 seconds and deals 5 more damage
 			'Contains a fragment of Everwood magic'
 			'''
 	}

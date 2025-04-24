@@ -25,6 +25,11 @@ namespace Vanilla.Content.Buffs
 			{
 				int damage = 5;
 
+				if (npc.boss)
+				{
+					damage = 10;
+				}
+
 				npc.life -= damage;
 
 				CombatText.NewText(npc.Hitbox, CombatText.DamagedHostile, damage);

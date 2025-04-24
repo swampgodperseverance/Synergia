@@ -16,8 +16,8 @@ namespace Vanilla.Content.Items.Thrower
 			item.DamageType = DamageClass.Throwing;
 			item.width = 24;
 			item.height = 25;
-			item.useTime = 45;
-			item.useAnimation = 45;
+			item.useTime = 35;
+			item.useAnimation = 35;
 			item.knockBack = 2;
 			item.value = Item.buyPrice(silver: 50);
 			item.shootSpeed = 10f;
