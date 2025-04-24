@@ -1,0 +1,22 @@
+{
+	"Result": {
+		"Item": "Avalon/Thompson"
+	},
+	
+	"Ingredient": {
+		"Item": "RoA/Elderwood",
+		"Count": 8
+	},
+        
+	"Ingredient": {
+		"Item": "Terraria/IronBar",
+		"Count": 10
+	},
+
+	"Ingredient": {
+		"Item": "Terraria/IllegalGunParts",
+		"Count": 1
+	},
+	
+	"Tile": "Terraria/Anvils"
+}
