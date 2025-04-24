@@ -6,14 +6,35 @@ Items: {
 		Tooltip: ""
 	}
 
-	Blitzkrieg: {
+	Selection: {
 		Tooltip: ""
-		DisplayName: Blitzkrieg
+		DisplayName: Selection
+	}
+
+	OculithShard: {
+		Tooltip:
+			'''
+			Every 5 throws, releases three Ocram Skulls and an Ocram Spear
+			The skulls weakly home in, deal around 100 damage, and inflict the «{$BuffName.ShadowFlame}» debuff
+			The spear deals triple damage
+			'Its tip festers with the rotted sinew of dimensions'
+			'''
+		DisplayName: Voidpiercer
 	}
 }
 
 Projectiles: {
-	EverwoodJavelinProj.DisplayName: Everwood Javelin Proj
-	BlitzkriegProj2.DisplayName: Blitzkrieg Proj2
-	BlitzkriegProj.DisplayName: Blitzkrieg Proj
+	EverwoodJavelinProjectile.DisplayName: Everwood Javelin Projectile
+	OcramSkull.DisplayName: Ocram Skull
+	OculithSkull.DisplayName: Oculith Skull
+	OculithShardProjectile.DisplayName: Oculith Shard Projectile
+	OculithShardProjectile2.DisplayName: Oculith Shard Projectile2
+	SelectionProjectile.DisplayName: Selection Projectile
+}
+
+Buffs: {
+	EverwoodJavelinDebuff: {
+		DisplayName: Everwood Debuff
+		Description: ""
+	}
 }
