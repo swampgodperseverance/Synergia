@@ -7,7 +7,7 @@ Items: {
 			 Each hit has a 20% chance to inflict the «{$Mods.Vanilla.Buffs.EverwoodJavelinDebuff.DisplayName}» debuff for 1.5 seconds
 			 The debuff stuns the enemy and deals 5 damage over time
 			 It doesn’t stun bosses, but its duration is increased by 3 seconds
-       'Contains a fragment of Everwood magic'
+       			 'Contains a fragment of Everwood magic'
 			 '''
 	}
 
@@ -39,7 +39,7 @@ Projectiles: {
 
 Buffs: {
 	EverwoodJavelinDebuff: {
-		DisplayName: Everwood Debuff
+		DisplayName: Thicket Roots
 		Description: ""
 	}
 }
