@@ -1,0 +1,30 @@
+{
+  "Criteria": "All",
+
+  "Conditions": {
+    "CreatesResult": {
+      "Item": "Avalon/BacchusBoots"
+    }
+  },
+
+  "Changes": {
+    "AddIngredient": {
+      "Item": "ValhallaMod/NutfulNecklace"
+      "Count": 1
+    }
+  },
+
+  "Changes": {
+    "AddIngredient": {
+      "Item": "Terraria/FragmentStardust",
+      "Count": 10
+    }
+  },
+  
+  "Changes": {
+    "ChangeTile": {
+      "Tile": "Terraria/TinkerersWorkbench"
+      "NewTile": "Terraria/LunarCraftingStation"
+    }
+  }
+}
