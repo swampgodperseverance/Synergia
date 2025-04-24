@@ -15,11 +15,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\user\\Documents\\My Games\\Terraria\\tModLoader\\ModSources\\VanillaReforgedTModpack\\Vanilla.csproj",
+      "projectUniqueName": "C:\\Users\\user\\Documents\\My Games\\Terraria\\tModLoader\\ModSources\\Vanilla\\Vanilla.csproj",
       "projectName": "Vanilla",
-      "projectPath": "C:\\Users\\user\\Documents\\My Games\\Terraria\\tModLoader\\ModSources\\VanillaReforgedTModpack\\Vanilla.csproj",
+      "projectPath": "C:\\Users\\user\\Documents\\My Games\\Terraria\\tModLoader\\ModSources\\Vanilla\\Vanilla.csproj",
       "packagesPath": "C:\\Users\\user\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\user\\Documents\\My Games\\Terraria\\tModLoader\\ModSources\\VanillaReforgedTModpack\\obj\\",
+      "outputPath": "C:\\Users\\user\\Documents\\My Games\\Terraria\\tModLoader\\ModSources\\Vanilla\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\user\\AppData\\Roaming\\NuGet\\NuGet.Config"
