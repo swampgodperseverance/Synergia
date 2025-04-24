@@ -1,0 +1,44 @@
+Items: {
+	EverwoodJavelin: {
+		DisplayName: Копье из вечного дерева
+		Tooltip:
+			'''
+			Кажое попадание имеет 20% шанс наложить дебафф «{$Mods.Vanilla.Buffs.EverwoodJavelinDebuff.DisplayName}» на 1.5 секунд
+			Деббаф станит врага и наносит постепенный урон в 5 ед.
+			Боссов деббаф не станит но действует на 3 секунды дольше
+			'Содержит частичку вечнодревесной магии'
+			'''
+	}
+
+	Selection: {
+		Tooltip: ""
+		DisplayName: Троксиниумовый метательный клинок
+	}
+
+	OculithShard: {
+		Tooltip:
+			'''
+			Каждые 5 метаний выпускает три Окрамовых черепа и Окрамово копье
+			Череп слабо наводится, наносит около 100 урона и накладывает дебафф «{$BuffName.ShadowFlame}»
+			Копье наносит трёхкратный урон
+			'Наконечник соткан из распавшейся плоти измерений'
+			'''
+		DisplayName: Пронзатель Бездны
+	}
+}
+
+Projectiles: {
+	// EverwoodJavelinProjectile.DisplayName: Everwood Javelin Projectile
+	// OcramSkull.DisplayName: Ocram Skull
+	// OculithSkull.DisplayName: Oculith Skull
+	// OculithShardProjectile.DisplayName: Oculith Shard Projectile
+	// OculithShardProjectile2.DisplayName: Oculith Shard Projectile2
+	// SelectionProjectile.DisplayName: Selection Projectile
+}
+
+Buffs: {
+	EverwoodJavelinDebuff: {
+		DisplayName: Чащобные корни
+		// Description: ""
+	}
+}
