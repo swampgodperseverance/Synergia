@@ -1,0 +1,22 @@
+{
+	"Result": {
+		"Item": "Vanilla/EverwoodJavelin"
+	},
+	
+	"Ingredient": {
+		"Item": "RoA/Elderwood",
+		"Count": 20
+	},
+
+	"Ingredient": {
+		"Item": "Terraria/ShadowScale",
+		"Count": 10
+	},
+
+	"Ingredient": {
+		"Item": "RoA/NaturesHeart",
+		"Count": 1
+	},
+	
+	"Tile": "Terraria/Anvils"
+}
