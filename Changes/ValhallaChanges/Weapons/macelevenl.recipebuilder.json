@@ -1,0 +1,17 @@
+{
+	"Result": {
+		"Item": "ValhallaMod/MacEleven"
+	},
+	
+	"Ingredient": {
+		"Item": "Terraria/Uzi",
+		"Count": 1
+	},
+        
+	"Ingredient": {
+		"Item": "Terraria/PhoenixBlaster",
+		"Count": 1
+	},
+
+	"Tile": "Terraria/Hellforge"
+}

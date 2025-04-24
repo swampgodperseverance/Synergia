@@ -1,0 +1,27 @@
+{
+	"Result": {
+		"Item": "ValhallaMod/NightGlaive"
+	},
+	
+	"Ingredient": {
+		"Item": "Vanilla/NaturalSelection",
+		"Count": 1
+	},
+        
+	"Ingredient": {
+		"Item": "ValhallaMod/DungeonGlaive",
+		"Count": 1
+	},
+	
+	"Ingredient": {
+		"Item": "Terraria/ThornChakram",
+		"Count": 1
+	},
+        
+	"Ingredient": {
+		"Item": "Terraria/Flamarang",
+		"Count": 1
+	},
+
+	"Tile": "Terraria/DemonAltar"
+}

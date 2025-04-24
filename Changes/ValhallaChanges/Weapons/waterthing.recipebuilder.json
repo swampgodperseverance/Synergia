@@ -1,0 +1,22 @@
+{
+	"Result": {
+		"Item": "ValhallaMod/WaterFighter"
+	},
+	
+	"Ingredient": {
+		"Item": "RoA/MercuriumStaff",
+		"Count": 1
+	},
+        
+	"Ingredient": {
+		"Item": "ValhallaMod/WateringCan",
+		"Count": 1
+	},
+	
+	"Ingredient": {
+		"Item": "Terraria/SoulofFlight",
+		"Count": 10
+	},
+
+	"Tile": "Terraria/Anvils"
+}
