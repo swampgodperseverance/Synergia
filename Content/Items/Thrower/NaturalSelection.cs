@@ -1,7 +1,7 @@
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using Vanilla.Content.Proj;
+using Vanilla.Content.Projectiles;
 
 namespace Vanilla.Content.Thrower
 {
