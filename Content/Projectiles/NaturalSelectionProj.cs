@@ -24,8 +24,8 @@ namespace Vanilla.Content.Projectiles
         
             if (Main.rand.NextBool(5)) 
             {
-                Dust.NewDust(Projectile.position, Projectile.width, Projectile.height, ModContent.DustType<ContagionDust>(), 
-                             Projectile.velocity.X * 0.2f, Projectile.velocity.Y * 0.2f, 100, default, 1.2f);
+					Dust.NewDust(Projectile.position, Projectile.width, Projectile.height, ModContent.DustType<ContagionDust>(), 
+					Projectile.velocity.X * 0.2f, Projectile.velocity.Y * 0.2f, 100, default, 1.2f);
             }
         }
     }
