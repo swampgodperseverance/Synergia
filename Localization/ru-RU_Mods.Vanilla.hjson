@@ -1,3 +1,5 @@
+// DamageClasses.ThrowingDamage.DisplayName: Throwing Damage
+
 Items: {
 	EverwoodJavelin: {
 		DisplayName: Копье из вечного дерева
@@ -25,6 +27,11 @@ Items: {
 			'''
 		DisplayName: Пронзатель Бездны
 	}
+
+	NaturalSelection: {
+		// DisplayName: Natural Selection
+		// Tooltip: ""
+	}
 }
 
 Projectiles: {
@@ -34,6 +41,7 @@ Projectiles: {
 	// OculithShardProjectile.DisplayName: Oculith Shard Projectile
 	// OculithShardProjectile2.DisplayName: Oculith Shard Projectile2
 	// SelectionProjectile.DisplayName: Selection Projectile
+	// NaturalSelectionProj.DisplayName: Natural Selection Proj
 }
 
 Buffs: {

@@ -3,12 +3,13 @@ DamageClasses.ThrowingDamage.DisplayName: Throwing Damage
 Items: {
 	EverwoodJavelin: {
 		DisplayName: Everwood Javelin
-		Tooltip: '''
-			 Each hit has a 20% chance to inflict the «{$Mods.Vanilla.Buffs.EverwoodJavelinDebuff.DisplayName}» debuff for 1.5 seconds
-			 The debuff stuns the enemy and deals 5 damage over time
-			 It doesn’t stun bosses, but its duration is increased by 3 seconds
-       			 'Contains a fragment of Everwood magic'
-			 '''
+		Tooltip:
+			'''
+			Each hit has a 20% chance to inflict the «{$Mods.Vanilla.Buffs.EverwoodJavelinDebuff.DisplayName}» debuff for 1.5 seconds
+			The debuff stuns the enemy and deals 5 damage over time
+			It doesn’t stun bosses, but its duration is increased by 3 seconds
+			'Contains a fragment of Everwood magic'
+			'''
 	}
 
 	Selection: {
@@ -26,6 +27,11 @@ Items: {
 			'''
 		DisplayName: Voidpiercer
 	}
+
+	NaturalSelection: {
+		DisplayName: Natural Selection
+		Tooltip: ""
+	}
 }
 
 Projectiles: {
@@ -35,6 +41,7 @@ Projectiles: {
 	OculithShardProjectile.DisplayName: Oculith Shard Projectile
 	OculithShardProjectile2.DisplayName: Oculith Shard Projectile2
 	SelectionProjectile.DisplayName: Selection Projectile
+	NaturalSelectionProj.DisplayName: Natural Selection Proj
 }
 
 Buffs: {
