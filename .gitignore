@@ -1,2 +1,8 @@
 .vscode
-VanillaReforgedTModpack.sln
+*.csproj
+*.sln
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+*.obj
