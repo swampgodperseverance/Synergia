@@ -4,7 +4,7 @@ using Terraria.ModLoader;
 using Microsoft.Xna.Framework;
 using Avalon.Dusts;
 
-namespace Vanilla.Content.Proj
+namespace Vanilla.Content.Projectiles
 {
     public class NaturalSelectionProj : ModProjectile
     {
