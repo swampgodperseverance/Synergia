@@ -4,7 +4,7 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.DataStructures;
 using Vanilla.Content.Projectiles;
-using Vanilla.Common.Player;
+using Vanilla.Common.GlobalPlayer;
 
 namespace Vanilla.Content.Items.Thrower
 {
