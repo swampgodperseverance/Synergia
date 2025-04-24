@@ -30,7 +30,6 @@ namespace Vanilla.Content.Items.Thrower
 			item.autoReuse = true;
 			item.noUseGraphic = true;
 			item.noMelee = true;
-			//test
 		}
 	}
 }
