@@ -18,8 +18,8 @@ namespace Vanilla.Content.Projectiles
 			proj.aiStyle = 1;
 			proj.friendly = true;
 			proj.DamageType = DamageClass.Throwing;
-			proj.penetrate = 5; // Пробивает 1 врага
-			proj.timeLeft = 60 * 5; // Сколько тиков он существует (10 сек)
+			proj.penetrate = 5; // across 5 enemy
+			proj.timeLeft = 60 * 5; // live 5 seconds
 			proj.ignoreWater = true;
 			proj.tileCollide = true;
 
@@ -28,7 +28,7 @@ namespace Vanilla.Content.Projectiles
 
 		public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
 		{
-			// Эффект частиц при попадании
+			// On hit dusts
 			for (int i = 0; i < 8; i++)
 			{
 				Dust.NewDust(Projectile.position, Projectile.width, Projectile.height, 

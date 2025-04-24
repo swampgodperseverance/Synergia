@@ -24,11 +24,11 @@ namespace Vanilla.Content.Projectiles
 			Projectile.tileCollide = true;
 			Projectile.ignoreWater = true;
 
-			Projectile.penetrate = 1;
+			Projectile.penetrate = 1; // across 1 enemy
 
 			Projectile.light = 0.1f;
 
-			Projectile.timeLeft = 60 * 5;
+			Projectile.timeLeft = 60 * 5; // live 5 seconds
 			
 			Projectile.DamageType = DamageClass.Throwing;
 			Projectile.damage = 20;

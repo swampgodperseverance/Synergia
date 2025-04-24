@@ -45,11 +45,11 @@ namespace Vanilla.Content.Items.Thrower
 
 				for (int i = -1; i <= 1; i++)
 				{
-					// Чуть поворачиваем основной вектор (например, на ±30 градусов)
+					// rotate on 30°
 					Vector2 perturbedVelocity = velocity.RotatedBy(MathHelper.ToRadians(i * 30f)) * 0.7f;
 
-					// Немного сдвигаем позицию спавна (например, вбок)
-					Vector2 spawnOffset = new Vector2(i * 8f, 0); // по горизонтали
+					// move horizontally
+					Vector2 spawnOffset = new Vector2(i * 8f, 0);
 
 					Projectile.NewProjectile(
 						source,
@@ -74,7 +74,6 @@ namespace Vanilla.Content.Items.Thrower
 			}
 			else
 			{
-				// Обычный бросок (например, как нож или камень)
 				Projectile.NewProjectile(
 					source,
 					position,

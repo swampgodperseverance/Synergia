@@ -19,8 +19,8 @@ namespace Vanilla.Content.Projectiles
 			proj.aiStyle = 1;
 			proj.friendly = true;
 			proj.DamageType = DamageClass.Throwing;
-			proj.penetrate = 1; // Пробивает 1 врага
-			proj.timeLeft = 60 * 5; // Сколько тиков он существует (10 сек)
+			proj.penetrate = 1; // across 1 enemy
+			proj.timeLeft = 60 * 5; // live 5 seconds
 			proj.ignoreWater = true;
 			proj.tileCollide = true;
 

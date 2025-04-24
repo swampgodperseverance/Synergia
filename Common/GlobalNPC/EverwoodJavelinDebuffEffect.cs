@@ -15,15 +15,15 @@ public class EverwoodJavelinDebuffEffect : GlobalNPC
 	{
 		if (npc.HasBuff(ModContent.BuffType<EverwoodJavelinDebuff>()) && !npc.boss)
 		{
-			// Останавливаем движение
+			// stop move
 			npc.velocity = Vector2.Zero;
 			npc.position = npc.oldPosition;
 
-			// Сохраняем направление
+			// save direction
 			npc.direction = npc.oldDirection;
 			npc.spriteDirection = npc.oldDirection;
 
-			// Принудительно блокируем вращение, но мягко
+			// full stop rotation
 			if (npc.rotation != 0f)
 				npc.rotation = MathHelper.Lerp(npc.rotation, 0f, 0.25f);
 
@@ -50,7 +50,7 @@ public class EverwoodJavelinDebuffEffect : GlobalNPC
 			Texture2D texture = ModContent.Request<Texture2D>("Vanilla/Common/GlobalNPC/EverwoodJavelinDebuffEffect").Value;
 			Vector2 position = new Vector2(npc.Center.X, npc.position.Y + npc.height - 14) - screenPos;
 
-			// Плавный переход: после 10 тиков максимальная прозрачность = 0.8f
+			// 3 ticks have debuff, 7 ticks change brightness
 			float alpha = MathHelper.Clamp((debuffTimer - 3) / 7f, 0f, 0.8f);
 
 			Color color = Color.White * alpha;
