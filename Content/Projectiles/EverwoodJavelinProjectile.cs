@@ -54,7 +54,7 @@ namespace Vanilla.Content.Projectiles
 			// Эффект при уничтожении (если не попал во врага, а упал на землю)
 			for (int i = 0; i < 10; i++)
 			{
-				Dust.NewDust(Projectile.position, Projectile.width, Projectile.height, 
+				Dust.NewDust(Projectile.position, Projectile.width, Projectile.height,
 				DustID.HallowedPlants, Projectile.velocity.X * 0.5f, Projectile.velocity.Y * 0.5f);
 			}
 			PlaySound(SoundID.Dig, Projectile.position);

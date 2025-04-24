@@ -30,7 +30,19 @@ Items: {
 
 	NaturalSelection: {
 		DisplayName: Natural Selection
-		Tooltip: ""
+		Tooltip: Spawns up to 5 boomerangs
+	}
+
+	Airflow: {
+		Tooltip:
+			'''
+			Spawns up to 2 boomerangs
+			Every 1.5 seconds, it generates 4 harpy feathers
+			Each feather deals around 20 damage on contact
+			A feather disappears after 8 seconds or upon hitting an enemy
+			'You feel the magic of celestial Harpies'
+			'''
+		DisplayName: Airflow
 	}
 }
 
@@ -42,6 +54,8 @@ Projectiles: {
 	OculithShardProjectile2.DisplayName: Oculith Shard Projectile2
 	SelectionProjectile.DisplayName: Selection Projectile
 	NaturalSelectionProj.DisplayName: Natural Selection Proj
+	AirflowProjectile.DisplayName: Airflow Projectile
+	AirflowFeather.DisplayName: Airflow Feather
 }
 
 Buffs: {

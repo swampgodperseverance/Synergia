@@ -1,6 +1,7 @@
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using System.Linq;
 using Vanilla.Content.Projectiles;
 
 namespace Vanilla.Content.Items.Thrower
@@ -25,6 +26,18 @@ namespace Vanilla.Content.Items.Thrower
 			Item.autoReuse = true;
 			Item.shoot = ModContent.ProjectileType<NaturalSelectionProj>();
 			Item.shootSpeed = 12f;
+		}
+
+		public override bool CanUseItem(Player player)
+		{
+			int activeBoomerangs = Main.projectile.Count(p =>
+					p.active &&
+					p.owner == player.whoAmI &&
+					p.type == ModContent.ProjectileType<NaturalSelectionProj>() &&
+					p.aiStyle == 3 && p.timeLeft > 10);
+
+			// Max 5
+			return activeBoomerangs < 5;
 		}
 	}
 }
