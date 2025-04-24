@@ -1,0 +1,23 @@
+{
+  "Criteria": "All",
+
+  "Conditions": {
+    "CreatesResult": {
+      "Item": "NewHorizons/ClockworkShotgun"
+    }
+  },
+
+  "Changes": {
+    "AddIngredient": {
+      "Item": "Terraria/Boomstick",
+      "Count": 1
+    }
+  },
+
+  "Changes": {
+    "AddIngredient": {
+      "Item": "NewHorizons/Graverobber",
+      "Count": 1
+    }
+  }
+}
