@@ -23,7 +23,7 @@
   
   "Changes": {
     "ChangeTile": {
-      "Tile": "Terraria/TinkerersWorkbench"
+      "Tile": "Terraria/TinkerersWorkbench",
       "NewTile": "Terraria/LunarCraftingStation"
     }
   }
