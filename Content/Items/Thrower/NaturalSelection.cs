@@ -3,7 +3,7 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using Vanilla.Content.Projectiles;
 
-namespace Vanilla.Content.Thrower
+namespace Vanilla.Content.Items.Thrower
 {
     public class NaturalSelection : ModItem
     {
