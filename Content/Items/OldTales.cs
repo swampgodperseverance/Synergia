@@ -1,6 +1,7 @@
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using Vanilla.Common.ModSystems;
 
 namespace Vanilla.Content.Items
 {
