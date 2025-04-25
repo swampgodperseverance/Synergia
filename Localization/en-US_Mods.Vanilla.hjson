@@ -44,6 +44,11 @@ Items: {
 			'''
 		DisplayName: Airflow
 	}
+
+	BloodstainedGlove: {
+		Tooltip: ""
+		DisplayName: Bloodstained Glove
+	}
 }
 
 Projectiles: {

@@ -44,6 +44,11 @@ Items: {
 			'''
 		DisplayName: Аэропоток
 	}
+
+	BloodstainedGlove: {
+		// Tooltip: ""
+		DisplayName: Окровавленная перчатка
+	}
 }
 
 Projectiles: {
