@@ -1,7 +1,7 @@
 using Terraria;
 using Terraria.ModLoader;
 
-namespace Vanilla.Common.GlobalItems
+namespace Vanilla.Common.GlobalItems.Set
 {
 	public class CarrotDaggerTweaks : GlobalItem
 	{
