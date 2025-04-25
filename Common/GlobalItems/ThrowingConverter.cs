@@ -33,6 +33,12 @@ namespace Vanilla.Common.GlobalItems
 			ItemID.Anchor,
 			ItemID.Trimarang,
 			ItemID.Shroomerang,
+			ItemID.FlyingKnife,
+			ItemID.ShadowFlameKnife,
+			ItemID.CombatWrench,
+			ItemID.PaperAirplaneA,
+			ItemID.PaperAirplaneB,
+			ItemID.BouncingShield,
 
 			//Consolaria
 			ItemType<AlbinoMandible>(),
@@ -57,7 +63,11 @@ namespace Vanilla.Common.GlobalItems
 			ItemType<TrueLightDisc>(),
 			ItemType<TrueNightGlaive>(),
 			ItemType<Garlic>(),
-			ItemType<SpiderKnife>()
+			ItemType<SpiderKnife>(),
+			ItemType<CarrotDagger>(),
+			ItemType<CorrodeShuriken>(),
+			ItemType<CactusKnife>(),
+			ItemType<CactusStar>()
 		};
 
 		public override void SetDefaults(Item item)
