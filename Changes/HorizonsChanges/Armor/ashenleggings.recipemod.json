@@ -1,0 +1,31 @@
+{
+  "Criteria": "All",
+
+  "Conditions": {
+    "CreatesResult": {
+      "Item": "NewHorizons/AshenLeggins"
+    }
+  },
+
+  "Changes": {
+    "ChangeIngredient": {
+      "Item": "Terraria/HellstoneBar",
+      "NewItem": "RoA/FlamingFabric",
+      "NewCount": 6
+    }
+  },
+
+  "Changes": {
+    "AddIngredient": {
+      "Item": "Avalon/FireShard",
+      "Count": 1
+    }
+  },
+
+  "Changes": {
+    "ChangeTile": {
+      "Tile": "Terraria/Anvil",
+      "NewTile": "Terraria/Loom"
+    }
+  }
+}

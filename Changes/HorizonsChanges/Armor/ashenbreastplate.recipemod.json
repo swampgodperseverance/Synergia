@@ -1,0 +1,31 @@
+{
+  "Criteria": "All",
+
+  "Conditions": {
+    "CreatesResult": {
+      "Item": "NewHorizons/AshenBreastplate"
+    }
+  },
+
+  "Changes": {
+    "ChangeIngredient": {
+      "Item": "Terraria/HellstoneBar",
+      "NewItem": "RoA/FlamingFabric",
+      "NewCount": 4
+    }
+  },
+
+  "Changes": {
+    "AddIngredient": {
+      "Item": "Avalon/FireShard",
+      "Count": 1
+    }
+  },
+
+  "Changes": {
+    "ChangeTile": {
+      "Tile": "Terraria/Anvil",
+      "NewTile": "Terraria/Loom"
+    }
+  }
+}
