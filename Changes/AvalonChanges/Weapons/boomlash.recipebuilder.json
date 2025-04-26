@@ -1,0 +1,22 @@
+{
+	"Result": {
+		"Item": "Avalon/Boomlash"
+	},
+	
+	"Ingredient": {
+		"Item": "Avalon/CursedFlamelash",
+		"Count": 1
+	},
+        
+	"Ingredient": {
+		"Item": "ValhallaMod/JadeCloth",
+		"Count": 10
+	},
+        
+	"Ingredient": {
+		"Item": "Consolaria/SoulofBlight",
+		"Count": 10
+	},
+	
+	"Tile": "Terraria/MythrilAnvil"
+}

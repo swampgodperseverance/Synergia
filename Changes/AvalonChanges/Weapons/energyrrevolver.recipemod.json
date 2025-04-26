@@ -1,0 +1,43 @@
+{
+  "Criteria": "All",
+
+  "Conditions": {
+    "CreatesResult": {
+      "Item": "Avalon/EnergyRevolver"
+    }
+  },
+
+  "Changes": {
+    "ChangeIngredient": {
+      "Item": "Terraria/Lens",
+      "NewItem": "NewHorizons/GraniteCharger",
+      "NewCount": 1
+    }
+  },
+
+  "Changes": {
+    "RemoveIngredient": {
+      "Item": "Terraria/SoulofFright"
+    }
+  },
+
+
+  "Changes": {
+    "RemoveIngredient": {
+      "Item": "Terraria/BlackLens"
+    }
+  },
+
+  "Changes": {
+    "RemoveIngredient": {
+      "Item": "Avalon/BloodshotLens"
+    }
+  },
+
+  "Changes": {
+    "AddIngredient": {
+      "Item": "Terraria/SoulofFright",
+      "Count": 10
+    }
+  }
+}

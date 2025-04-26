@@ -1,0 +1,17 @@
+{
+	"Result": {
+		"Item": "Avalon/DroneSwarm"
+	},
+	
+	"Ingredient": {
+		"Item": "Terraria/WaspGun",
+		"Count": 1
+	},
+        
+	"Ingredient": {
+		"Item": "Terraria/FairyQueenMagicItem",
+		"Count": 1
+	},
+	
+	"Tile": "Terraria/MythrilAnvil"
+}
