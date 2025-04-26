@@ -1,39 +1,44 @@
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using Vanilla.Common.ModSystems;
+using Terraria.Audio;
+using Vanilla.Common.GlobalPlayer;
 
 namespace Vanilla.Content.Items
 {
-    public class OldTales : ModItem
-    {
-        public override void SetStaticDefaults()
-        {
-            // DisplayName.SetDefault("Old Tales");
-            // Tooltip.SetDefault("Right-click to reveal the forgotten image...");
-        }
+	public class OldTales : ModItem
+	{
+		public override void SetStaticDefaults()
+		{
+		}
 
-        public override void SetDefaults()
-        {
-            Item.width = 28;
-            Item.height = 30;
-            Item.rare = ItemRarityID.Blue;
-        }
+		public override void SetDefaults()
+		{
+			Item.width = 32;
+			Item.height = 32;
+			Item.useTime = 20;
+			Item.useAnimation = 20;
+			Item.useStyle = ItemUseStyleID.RaiseLamp;
+			Item.holdStyle = ItemHoldStyleID.HoldLamp;
+			Item.rare = ItemRarityID.Green;
+			Item.autoReuse = false;
+		}
 
-        public override bool AltFunctionUse(Player player) => true;
+		public override bool AltFunctionUse(Player player) => true;
 
-        public override bool CanUseItem(Player player)
-        {
-            if (player.altFunctionUse == 2 && Main.myPlayer == player.whoAmI)
-            {
-                if (!ModContent.GetInstance<OldTalesSystem>().UIVisible)
-                {
-                    ModContent.GetInstance<OldTalesSystem>().ShowUI();
-                }
-                return false;
-            }
+		public override bool? UseItem(Player player)
+		{
+			if (player.altFunctionUse == 2)
+			{
+				var bookPlayer = player.GetModPlayer<BookPlayer>();
+				bookPlayer.BookVisible = !bookPlayer.BookVisible;
+				
+				SoundEngine.PlaySound(bookPlayer.BookVisible ?
+						SoundID.MenuOpen : SoundID.MenuClose);
 
-            return base.CanUseItem(player);
-        }
-    }
+				SoundEngine.PlaySound(SoundID.Item1);
+			}
+			return true;
+		}
+	}
 }

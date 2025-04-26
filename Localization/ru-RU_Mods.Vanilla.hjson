@@ -49,6 +49,11 @@ Items: {
 		// Tooltip: ""
 		DisplayName: Окровавленная перчатка
 	}
+
+	OldTales: {
+		// Tooltip: ""
+		DisplayName: Древние сказания
+	}
 }
 
 Projectiles: {

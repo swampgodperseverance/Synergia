@@ -49,6 +49,11 @@ Items: {
 		Tooltip: ""
 		DisplayName: Bloodstained Glove
 	}
+
+	OldTales: {
+		Tooltip: ""
+		DisplayName: Old Tales
+	}
 }
 
 Projectiles: {
