@@ -12,6 +12,7 @@ namespace Vanilla.Common.GlobalPlayer
 	{
 		private static Mod avalon = ModLoader.GetMod("Avalon");
 		private static Mod vanilla = ModLoader.GetMod("Vanilla");
+		private static Mod consolaria = ModLoader.GetMod("Consolaria");
 		public bool BookVisible = false;
 		public float BookOpacity = 0f; // Добавляем прозрачность
 
@@ -94,6 +95,66 @@ namespace Vanilla.Common.GlobalPlayer
 				if (SlimeCrownZone.Contains(mousePos))
 				{
 					Main.HoverItem = new Item(ItemID.SlimeCrown).Clone();
+					Main.instance.MouseText(Main.HoverItem.Name, Main.HoverItem.rare, 0);
+					return;
+				}
+
+				// 6. Яйко
+				Rectangle EggZone = new Rectangle((int)(position.X - 208), (int)(position.Y - 210), 20, 25);
+
+				if (EggZone.Contains(mousePos))
+				{
+					Main.HoverItem = new Item(consolaria.Find<ModItem>("SuspiciousLookingEgg").Type).Clone();
+					Main.instance.MouseText(Main.HoverItem.Name, Main.HoverItem.rare, 0);
+					return;
+				}
+
+				// 7. История Лепуса
+				Rectangle LepusZone = new Rectangle((int)(position.X - 150), (int)(position.Y - 215), 140, 45);
+
+				if (LepusZone.Contains(mousePos))
+				{
+					Main.HoverItem = new Item(vanilla.Find<ModItem>("LepusHistory").Type).Clone();
+					Main.instance.MouseText(Main.HoverItem.Name, Main.HoverItem.rare, 0);
+					return;
+				}
+
+				// 8. Линза
+				Rectangle LensZone = new Rectangle((int)(position.X - 208), (int)(position.Y - 155), 20, 25);
+
+				if (LensZone.Contains(mousePos))
+				{
+					Main.HoverItem = new Item(ItemID.Lens).Clone();
+					Main.instance.MouseText(Main.HoverItem.Name, Main.HoverItem.rare, 0);
+					return;
+				}
+
+				// 9. Алтарь из Авалона 2
+				Rectangle IckyZone2 = new Rectangle((int)(position.X - 207), (int)(position.Y - 122), 26, 20);
+
+				if (IckyZone2.Contains(mousePos))
+				{
+					Main.HoverItem = new Item(avalon.Find<ModItem>("IckyAltar").Type).Clone();
+					Main.instance.MouseText(Main.HoverItem.Name, Main.HoverItem.rare, 0);
+					return;
+				}
+
+				// 10. Подозрительно выглядящий глаз
+				Rectangle EyeZone = new Rectangle((int)(position.X - 206), (int)(position.Y - 100), 25, 20);
+
+				if (EyeZone.Contains(mousePos))
+				{
+					Main.HoverItem = new Item(ItemID.SuspiciousLookingEye).Clone();
+					Main.instance.MouseText(Main.HoverItem.Name, Main.HoverItem.rare, 0);
+					return;
+				}
+
+				// 11. История Глаза
+				Rectangle EyeBossZone = new Rectangle((int)(position.X - 140), (int)(position.Y - 145), 115, 70);
+
+				if (EyeBossZone.Contains(mousePos))
+				{
+					Main.HoverItem = new Item(vanilla.Find<ModItem>("EyeHistory").Type).Clone();
 					Main.instance.MouseText(Main.HoverItem.Name, Main.HoverItem.rare, 0);
 					return;
 				}

@@ -80,12 +80,23 @@ Items: {
 	}
 
 	LepusHistory: {
-		Tooltip: text
+		Tooltip:
+			'''
+			This bunny was enormous.
+			Be careful this thing is dangerous.
+			'''
 		DisplayName: ""
 	}
 
 	GoblinHistory: {
-		Tooltip: text
+		Tooltip:
+			'''
+			After defeating the green thing.
+			I heard a call from the west but didn`t pay much attention to it.
+			Suddenly after a few minutes, a bunch of nasty goblins pounced.
+			And while I was hiding I heard that one of them had escaped into the caves.
+			I would have to find him.
+			'''
 		DisplayName: ""
 	}
 
@@ -95,22 +106,39 @@ Items: {
 	}
 
 	EyeHistory: {
-		Tooltip: text
+		Tooltip:
+			'''
+			He appeared suddenly - a lone eye in the sky, pulsing with malice.
+			I looked up at him and the night was no longer just a night for me.
+			'''
 		DisplayName: ""
 	}
 
 	BacteriumHistory: {
-		Tooltip: text
+		Tooltip:
+			'''
+			My friend told me that in addition to this thing, there`s a flying brain.
+			That`s disgusting.
+			'''
 		DisplayName: ""
 	}
 
 	BeakHistory: {
-		Tooltip: text
+		Tooltip:
+			'''
+			He didn`t come for revenge.
+			He come for a reminder.
+			A levitating creature.
+			'''
 		DisplayName: ""
 	}
 
 	BeeHistory: {
-		Tooltip: text
+		Tooltip:
+			'''
+			Found a giant hive in the jungle once.
+			I pierced a larva with honey, and I totally regretted it.
+			'''
 		DisplayName: ""
 	}
 
