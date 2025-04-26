@@ -10,7 +10,7 @@
   "Changes": {
     "ChangeIngredient": {
       "Item": "Terraria/MagicDagger",
-      "NewItem": "Terraria/PureGoldChunk",
+      "NewItem": "ValhallaMod/PureGoldChunk",
       "NewCount": 12
     }
   },
