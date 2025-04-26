@@ -1,0 +1,17 @@
+{
+  "Criteria": "All",
+
+  "Conditions": {
+    "CreatesResult": {
+      "Item": "ValhallaMod/HealingGreaterAuraStaff"
+    }
+  },
+
+  "Changes": {
+    "ChangeIngredient": {
+      "Item": "Terraria/LifeCrystal",
+      "NewItem": "Avalon/HeartStone",
+      "NewCount": 5
+    }
+  }
+}
