@@ -1,0 +1,27 @@
+{
+	"Result": {
+		"Item": "NewHorizons/SpaceCowboy"
+	},
+	
+	"Ingredient": {
+		"Item": "Terraria/Revolver",
+		"Count": 1
+	},
+        
+	"Ingredient": {
+		"Item": "Terraria/SpaceGun",
+		"Count": 1
+	},
+
+	"Ingredient": {
+		"Item": "Avalon/NaquadahBar",
+		"Count": 2
+	},
+
+	"Ingredient": {
+		"Item": "Terraria/CopperBar",
+		"Count": 4
+	},
+	
+	"Tile": "Terraria/MythrilAnvil"
+}

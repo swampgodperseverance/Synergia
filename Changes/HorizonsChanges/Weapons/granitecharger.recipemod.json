@@ -1,0 +1,24 @@
+{
+  "Criteria": "All",
+
+  "Conditions": {
+    "CreatesResult": {
+      "Item": "NewHorizons/GraniteCharger"
+    }
+  },
+
+  "Changes": {
+    "ChangeIngredient": {
+      "Item": "Terraria/MeteoriteBar",
+      "NewItem": "RoA/MercuriumNugget",
+      "NewCount": 10
+    }
+  },
+
+  "Changes": {
+    "ChangeTile": {
+      "Tile": "Terraria/Anvils",
+      "NewTile": "starforgedclassic/StarForgeTile"
+    }
+  }
+}
