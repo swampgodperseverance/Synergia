@@ -1,0 +1,27 @@
+{
+	"Result": {
+		"Item": "Avalon/ReflectorStaff"
+	},
+	
+	"Ingredient": {
+		"Item": "ValhallaMod/ValhalliteBar",
+		"Count": 10
+	},
+        
+	"Ingredient": {
+		"Item": "Avalon/CarbonSteel",
+		"Count": 30
+	},
+	
+	"Ingredient": {
+		"Item": "NewHorizons/BigLens",
+		"Count": 1
+	},
+        
+	"Ingredient": {
+		"Item": "Terraria/SoulofLight",
+		"Count": 6
+	},
+	
+	"Tile": "ValhallaMod/DwarvenAnvil"
+}
