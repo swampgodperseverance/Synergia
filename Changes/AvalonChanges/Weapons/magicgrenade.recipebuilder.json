@@ -1,0 +1,33 @@
+{
+  "Criteria": "All",
+
+  "Conditions": {
+    "CreatesResult": {
+      "Item": "Avalon/MagicGrenade"
+    }
+  },
+
+  "Changes": {
+    "ChangeIngredient": {
+      "Item": "Terraria/MagicDagger",
+      "NewItem": "Terraria/PureGoldChunk",
+      "NewCount": 12
+    }
+  },
+
+  "Changes": {
+    "ChangeIngredient": {
+      "Item": "Terraria/SoulofFright",
+      "NewItem": "Terraria/Grenade",
+      "NewCount": 10
+    }
+  },
+
+  "Changes": {
+    "ChangeIngredient": {
+      "Item": "Terraria/Grenade",
+      "NewItem": "Consolaria/SoulofBlight",
+      "NewCount": 15
+    }
+  }
+}

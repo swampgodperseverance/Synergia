@@ -1,0 +1,27 @@
+{
+	"Result": {
+		"Item": "Avalon/FlowerofTheJungle"
+	},
+	
+	"Ingredient": {
+		"Item": "Terraria/NaturesGift",
+		"Count": 1
+	},
+        
+	"Ingredient": {
+		"Item": "Terraria/LivingMahoganyLeafWand",
+		"Count": 1
+	},
+	
+	"Ingredient": {
+		"Item": "Avalon/EarthShard",
+		"Count": 5
+	},
+
+	"Ingredient": {
+		"Item": "RoA/NaturesHeart",
+		"Count": 1
+	},
+        
+	"Tile": "Terraria/Bottles"
+}

@@ -1,0 +1,22 @@
+{
+	"Result": {
+		"Item": "Avalon/MagicCleaver"
+	},
+	
+	"Ingredient": {
+		"Item": "ValhallaMod/PureGoldChunk",
+		"Count": 20
+	},
+        
+	"Ingredient": {
+		"Item": "Terraria/PsychoKnife",
+		"Count": 1
+	},
+	
+	"Ingredient": {
+		"Item": "Consolaria/SoulofBlight",
+		"Count": 15
+	},
+        
+	"Tile": "Terraria/MythrilAnvil"
+}
