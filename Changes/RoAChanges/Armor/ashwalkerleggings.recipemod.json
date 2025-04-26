@@ -1,0 +1,38 @@
+{
+  "Criteria": "All",
+
+  "Conditions": {
+    "CreatesResult": {
+      "Item": "RoA/AshwalkerRobe"
+    }
+  },
+
+  "Changes": {
+    "ChangeIngredient": {
+      "Item": "RoA/FlamingFabric",
+      "NewItem": "NewHorizons/AncientScrap",
+      "NewCount": 13
+    }
+  },
+
+  "Changes": {
+    "AddIngredient": {
+      "Item": "Terraria/AshBlock",
+      "Count": 5
+    }
+  },
+
+  "Changes": {
+    "AddIngredient": {
+      "Item": "RoA/FlamingFabric",
+      "Count": 7
+    }
+  },
+
+  "Changes": {
+    "AddIngredient": {
+      "Item": "Avalon/FireShard",
+      "Count": 1
+    }
+  }
+}
