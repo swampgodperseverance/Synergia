@@ -24,7 +24,7 @@
 
   "Changes": {
     "ChangeTile": {
-      "Tile": "Terraria/Anvil",
+      "Tile": "Terraria/Anvils",
       "NewTile": "Terraria/Loom"
     }
   }
