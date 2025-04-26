@@ -1,0 +1,24 @@
+{
+  "Criteria": "All",
+
+  "Conditions": {
+    "CreatesResult": {
+      "Item": "ValhallaMod/StarAuraStaff"
+    }
+  },
+
+  "Changes": {
+    "ChangeIngredient": {
+      "Item": "Terraria/FallenStar",
+      "NewItem": "starforgedclassic/AzuriteBarItem",
+      "NewCount": 8
+    }
+  },
+ 
+  "Changes": {
+    "AddIngredient": {
+      "Item": "Terraria/FallenStar",
+      "Count": 5
+    }
+  }
+}

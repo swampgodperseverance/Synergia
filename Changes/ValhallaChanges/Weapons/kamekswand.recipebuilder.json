@@ -1,0 +1,12 @@
+{
+	"Result": {
+		"Item": "ValhallaMod/MagicWand2"
+	},
+	
+	"Ingredient": {
+		"Item": "Avalon/ElementShard",
+		"Count": 10
+	},
+
+	"Tile": "Terraria/MythrilAnvil"
+}

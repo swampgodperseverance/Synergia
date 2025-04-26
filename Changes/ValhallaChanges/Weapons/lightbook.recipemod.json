@@ -1,0 +1,23 @@
+{
+  "Criteria": "All",
+
+  "Conditions": {
+    "CreatesResult": {
+      "Item": "ValhallaMod/LightBook"
+    }
+  },
+
+  "Changes": {
+    "AddIngredient": {
+      "Item": "Terraria/SoulofLight",
+      "Count": 10
+    }
+  },
+
+  "Changes": {
+    "AddIngredient": {
+      "Item": "Avalon/ElementDust",
+      "Count": 10
+    }
+  }
+}

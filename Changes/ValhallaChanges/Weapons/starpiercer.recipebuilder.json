@@ -1,0 +1,22 @@
+{
+	"Result": {
+		"Item": "ValhallaMod/Starpiercer"
+	},
+	
+	"Ingredient": {
+		"Item": "NewHorizons/StarWand",
+		"Count": 1
+	},
+        
+	"Ingredient": {
+		"Item": "Terraria/IllegalGunParts",
+		"Count": 1
+	},
+	
+	"Ingredient": {
+		"Item": "Terraria/MeteoriteBar",
+		"Count": 10
+	},
+
+	"Tile": "Terraria/Anvils"
+}

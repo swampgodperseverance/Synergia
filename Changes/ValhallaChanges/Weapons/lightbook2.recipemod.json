@@ -1,0 +1,16 @@
+{
+  "Criteria": "All",
+
+  "Conditions": {
+    "CreatesResult": {
+      "Item": "ValhallaMod/LightBook2"
+    }
+  },
+
+  "Changes": {
+    "AddIngredient": {
+      "Item": "Consolaria/SoulofBlight",
+      "Count": 10
+    }
+  }
+}
