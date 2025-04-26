@@ -54,6 +54,70 @@ Items: {
 		Tooltip: ""
 		DisplayName: Old Tales
 	}
+
+	KingSlimeHistory: {
+		Tooltip:
+			'''
+			The oldest slime in the whole world.
+			Legend says that his soul always reincarnate.
+			'''
+		DisplayName: ""
+	}
+
+	TurkorHistory: {
+		Tooltip: text
+		DisplayName: ""
+	}
+
+	SkeletHistory: {
+		Tooltip: text
+		DisplayName: ""
+	}
+
+	LuteHistory: {
+		Tooltip: text
+		DisplayName: ""
+	}
+
+	LepusHistory: {
+		Tooltip: text
+		DisplayName: ""
+	}
+
+	GoblinHistory: {
+		Tooltip: text
+		DisplayName: ""
+	}
+
+	FlashHistory: {
+		Tooltip: text
+		DisplayName: ""
+	}
+
+	EyeHistory: {
+		Tooltip: text
+		DisplayName: ""
+	}
+
+	BacteriumHistory: {
+		Tooltip: text
+		DisplayName: ""
+	}
+
+	BeakHistory: {
+		Tooltip: text
+		DisplayName: ""
+	}
+
+	BeeHistory: {
+		Tooltip: text
+		DisplayName: ""
+	}
+
+	DeerHistory: {
+		Tooltip: text
+		DisplayName: ""
+	}
 }
 
 Projectiles: {

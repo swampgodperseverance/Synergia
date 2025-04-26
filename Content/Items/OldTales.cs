@@ -2,6 +2,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.Audio;
+using Vanilla;
 using Vanilla.Common.GlobalPlayer;
 
 namespace Vanilla.Content.Items
@@ -34,9 +35,7 @@ namespace Vanilla.Content.Items
 				bookPlayer.BookVisible = !bookPlayer.BookVisible;
 				
 				SoundEngine.PlaySound(bookPlayer.BookVisible ?
-						SoundID.MenuOpen : SoundID.MenuClose);
-
-				SoundEngine.PlaySound(SoundID.Item1);
+					Sounds.BookOpenSound : Sounds.BookCloseSound);
 			}
 			return true;
 		}

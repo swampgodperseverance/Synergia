@@ -3,11 +3,15 @@ using Microsoft.Xna.Framework.Graphics;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using static Terraria.ModLoader.ModContent;
+using static Terraria.Localization.Language;
 
 namespace Vanilla.Common.GlobalPlayer
 {
 	public class BookPlayer : ModPlayer
 	{
+		private static Mod avalon = ModLoader.GetMod("Avalon");
+		private static Mod vanilla = ModLoader.GetMod("Vanilla");
 		public bool BookVisible = false;
 		public float BookOpacity = 0f; // Добавляем прозрачность
 
@@ -44,24 +48,8 @@ namespace Vanilla.Common.GlobalPlayer
 
 				Point mousePos = Main.MouseScreen.ToPoint();
 
-				// Общие настройки для иконок
-				float iconScale = 0.5f; // Масштаб иконок
-				Color iconColor = Color.White * BookOpacity * 0.9f; // Прозрачность иконок
-
 				// 1. Гель
-				Rectangle GelZone = new Rectangle((int)(position.X - 235), (int)(position.Y - 330), 40, 40);
-				Texture2D GelIcon = Terraria.GameContent.TextureAssets.Item[ItemID.Gel].Value;
-				spriteBatch.Draw(
-					GelIcon,
-					new Vector2(GelZone.X + GelZone.Width/2, GelZone.Y + GelZone.Height/2),
-					null,
-					iconColor,
-					0f,
-					new Vector2(GelIcon.Width/2, GelIcon.Height/2),
-					iconScale,
-					SpriteEffects.None,
-					0f
-				);
+				Rectangle GelZone = new Rectangle((int)(position.X - 220), (int)(position.Y - 315), 20, 20);
 
 				if (GelZone.Contains(mousePos))
 				{
@@ -71,19 +59,7 @@ namespace Vanilla.Common.GlobalPlayer
 				}
 
 				// 2. Корона
-				Rectangle CrownZone = new Rectangle((int)(position.X - 195), (int)(position.Y - 330), 40, 40);
-				Texture2D CrownIcon = Terraria.GameContent.TextureAssets.Item[ItemID.GoldCrown].Value;
-				spriteBatch.Draw(
-					CrownIcon,
-					new Vector2(CrownZone.X + CrownZone.Width/2, CrownZone.Y + CrownZone.Height/2),
-					null,
-					iconColor,
-					0f,
-					new Vector2(CrownIcon.Width/2, CrownIcon.Height/2),
-					iconScale,
-					SpriteEffects.None,
-					0f
-				);
+				Rectangle CrownZone = new Rectangle((int)(position.X - 190), (int)(position.Y - 315), 20, 20);
 
 				if (CrownZone.Contains(mousePos))
 				{
@@ -92,24 +68,32 @@ namespace Vanilla.Common.GlobalPlayer
 					return;
 				}
 
-				// 3. Зона меча (иконка)
-				Rectangle swordZone = new Rectangle((int)(position.X - 20), (int)(position.Y + 40), 40, 40);
-				Texture2D swordIcon = Terraria.GameContent.TextureAssets.Item[ItemID.IronBroadsword].Value;
-				spriteBatch.Draw(
-					swordIcon,
-					new Vector2(swordZone.X + swordZone.Width/2, swordZone.Y + swordZone.Height/2),
-					null,
-					iconColor,
-					0f,
-					new Vector2(swordIcon.Width/2, swordIcon.Height/2),
-					iconScale,
-					SpriteEffects.None,
-					0f
-				);
+				// 3. Алтарь из Авалона
+				Rectangle IckyZone = new Rectangle((int)(position.X - 207), (int)(position.Y - 288), 26, 20);
 
-				if (swordZone.Contains(mousePos))
+				if (IckyZone.Contains(mousePos))
 				{
-					Main.HoverItem = new Item(ItemID.IronBroadsword).Clone();
+					Main.HoverItem = new Item(avalon.Find<ModItem>("IckyAltar").Type).Clone();
+					Main.instance.MouseText(Main.HoverItem.Name, Main.HoverItem.rare, 0);
+					return;
+				}
+
+				// 4. История Короля Слизней
+				Rectangle KingSlimeZone = new Rectangle((int)(position.X - 150), (int)(position.Y - 300), 140, 60);
+
+				if (KingSlimeZone.Contains(mousePos))
+				{
+					Main.HoverItem = new Item(vanilla.Find<ModItem>("KingSlimeHistory").Type).Clone();
+					Main.instance.MouseText(Main.HoverItem.Name, Main.HoverItem.rare, 0);
+					return;
+				}
+
+				// 5. Корона Слизня
+				Rectangle SlimeCrownZone = new Rectangle((int)(position.X - 208), (int)(position.Y - 265), 20, 20);
+
+				if (SlimeCrownZone.Contains(mousePos))
+				{
+					Main.HoverItem = new Item(ItemID.SlimeCrown).Clone();
 					Main.instance.MouseText(Main.HoverItem.Name, Main.HoverItem.rare, 0);
 					return;
 				}

@@ -54,6 +54,70 @@ Items: {
 		// Tooltip: ""
 		DisplayName: Древние сказания
 	}
+
+	KingSlimeHistory: {
+		Tooltip:
+			'''
+			Первозданный слизень, старейший из всех.
+			Сказания утверждают, что его душа никогда не познает покоя, вечно возвращаясь в этот мир.
+			'''
+		DisplayName: ""
+	}
+
+	TurkorHistory: {
+		Tooltip: text
+		DisplayName: ""
+	}
+
+	SkeletHistory: {
+		Tooltip: text
+		DisplayName: ""
+	}
+
+	LuteHistory: {
+		Tooltip: text
+		DisplayName: ""
+	}
+
+	LepusHistory: {
+		Tooltip: text
+		DisplayName: ""
+	}
+
+	GoblinHistory: {
+		Tooltip: text
+		DisplayName: ""
+	}
+
+	FlashHistory: {
+		Tooltip: text
+		DisplayName: ""
+	}
+
+	EyeHistory: {
+		Tooltip: text
+		DisplayName: ""
+	}
+
+	BacteriumHistory: {
+		Tooltip: text
+		DisplayName: ""
+	}
+
+	BeakHistory: {
+		Tooltip: text
+		DisplayName: ""
+	}
+
+	BeeHistory: {
+		Tooltip: text
+		DisplayName: ""
+	}
+
+	DeerHistory: {
+		Tooltip: text
+		DisplayName: ""
+	}
 }
 
 Projectiles: {
