@@ -1,0 +1,22 @@
+{
+	"Result": {
+		"Item": "ValhallaMod/Tarrifier"
+	},
+	
+	"Ingredient": {
+		"Item": "Terraria/LeadBar",
+		"Count": 8
+	},
+        
+	"Ingredient": {
+		"Item": "Terraria/Wood",
+		"Count": 10
+	},
+	
+	"Ingredient": {
+		"Item": "ValhallaMod/TarBlock",
+		"Count": 10
+	},
+
+	"Tile": "Terraria/Anvils"
+}

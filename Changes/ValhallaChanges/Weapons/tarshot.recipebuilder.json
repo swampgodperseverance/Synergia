@@ -1,0 +1,22 @@
+{
+	"Result": {
+		"Item": "ValhallaMod/Tarshot"
+	},
+	
+	"Ingredient": {
+		"Item": "Terraria/FlintlockPistol",
+		"Count": 1
+	},
+        
+	"Ingredient": {
+		"Item": "Terraria/FallenStar",
+		"Count": 5
+	},
+	
+	"Ingredient": {
+		"Item": "ValhallaMod/TarBlock",
+		"Count": 15
+	},
+
+	"Tile": "Terraria/Anvils"
+}

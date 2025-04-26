@@ -1,0 +1,22 @@
+{
+	"Result": {
+		"Item": "ValhallaMod/MagicMagnum"
+	},
+	
+	"Ingredient": {
+		"Item": "ValhallaMod/Starpiercer",
+		"Count": 1
+	},
+        
+	"Ingredient": {
+		"Item": "Terraria/HallowedBar",
+		"Count": 10
+	},
+        
+	"Ingredient": {
+		"Item": "Terraria/SoulofLight",
+		"Count": 6
+        },
+
+	"Tile": "Terraria/MythrilAnvil"
+}
