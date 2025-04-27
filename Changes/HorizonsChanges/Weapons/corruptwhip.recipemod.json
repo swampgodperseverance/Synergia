@@ -1,0 +1,17 @@
+{
+  "Criteria": "All",
+
+  "Conditions": {
+    "CreatesResult": {
+      "Item": "NewHorizons/HungryWorm"
+    }
+  },
+
+  "Changes": {
+    "ChangeIngredient": {
+      "Item": "Terraria/DemoniteBar",
+      "NewItem": "Liber/HunterWhip",
+      "NewCount": 1
+    }
+  }
+}

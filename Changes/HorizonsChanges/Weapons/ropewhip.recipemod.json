@@ -1,0 +1,29 @@
+{
+  "Criteria": "All",
+
+  "Conditions": {
+    "CreatesResult": {
+      "Item": "NewHorizons/RopeWhip"
+    }
+  },
+
+  "Changes": {
+    "RemoveIngredient": {
+      "Item": "Terraria/Rope",
+    }
+  },
+ 
+  "Changes": {
+    "AddIngredient": {
+      "Item": "Terraria/Wood",
+      "Count": 12
+    }
+  },
+
+  "Changes": {
+    "AddIngredient": {
+      "Item": "Terraria/Rope",
+      "Count": 20
+    }
+  }
+}

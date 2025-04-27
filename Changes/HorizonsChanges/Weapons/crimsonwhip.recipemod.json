@@ -1,0 +1,17 @@
+{
+  "Criteria": "All",
+
+  "Conditions": {
+    "CreatesResult": {
+      "Item": "NewHorizons/CrimerasTongue"
+    }
+  },
+
+  "Changes": {
+    "ChangeIngredient": {
+      "Item": "Terraria/CrimtaneBar",
+      "NewItem": "Liber/HunterWhip",
+      "NewCount": 1
+    }
+  }
+}
