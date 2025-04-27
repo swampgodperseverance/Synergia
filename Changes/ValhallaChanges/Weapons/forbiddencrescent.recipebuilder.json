@@ -1,0 +1,17 @@
+{
+	"Result": {
+		"Item": "ValhallaMod/ForbiddenCrescent"
+	},
+	
+	"Ingredient": {
+		"Item": "Avalon/TroxiniumBar",
+		"Count": 10
+	},
+        
+	"Ingredient": {
+		"Item": "Terraria/AncientBattleArmorMaterial",
+		"Count": 1
+	},
+
+	"Tile": "Terraria/MythrilAnvil"
+}

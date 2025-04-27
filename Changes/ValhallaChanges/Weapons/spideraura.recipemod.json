@@ -1,0 +1,16 @@
+{
+  "Criteria": "All",
+
+  "Conditions": {
+    "CreatesResult": {
+      "Item": "ValhallaMod/SpiderAuraScythe"
+    }
+  },
+
+  "Changes": {
+    "AddIngredient": {
+      "Item": "Avalon/ToxinShard",
+      "Count": 5
+    }
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "Criteria": "All",
+
+  "Conditions": {
+    "CreatesResult": {
+      "Item": "ValhallaMod/SpiderSaber2"
+    }
+  },
+
+  "Changes": {
+    "AddIngredient": {
+      "Item": "Avalon/ToxinShard",
+      "Count": 5
+    }
+  }
+}

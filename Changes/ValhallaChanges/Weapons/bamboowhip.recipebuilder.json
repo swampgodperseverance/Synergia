@@ -1,0 +1,17 @@
+{
+	"Result": {
+		"Item": "ValhallaMod/BambooWhip"
+	},
+	
+	"Ingredient": {
+		"Item": "Terraria/BambooBlock",
+		"Count": 16
+	},
+
+	"Ingredient": {
+		"Item": "NewHorizons/RopeWhip",
+		"Count": 1
+	},
+
+	"Tile": "Terraria/WorkBenches"
+}
