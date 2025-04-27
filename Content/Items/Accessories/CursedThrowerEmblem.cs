@@ -6,7 +6,7 @@ using Microsoft.Xna.Framework;
 
 namespace Vanilla.Content.Items.Accessories
 {
-	public class CursedThrowEmblem : ModItem
+	public class CursedThrowerEmblem : ModItem
 	{
 		public override void SetStaticDefaults()
 		{
