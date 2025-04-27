@@ -152,7 +152,7 @@ Items: {
 		DisplayName: Duratanium Javelin
 	}
 
-	CursedThrowEmblem: {
+	CursedThrowerEmblem: {
 		DisplayName: Cursed Throw Emblem
 		Tooltip:
 			'''

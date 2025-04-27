@@ -152,7 +152,7 @@ Items: {
 		DisplayName: Дуратанивое метательное копье
 	}
 
-	CursedThrowEmblem: {
+	CursedThrowerEmblem: {
 		DisplayName: Проклятая эмблема метателя
 		Tooltip:
 			'''
