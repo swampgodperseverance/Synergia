@@ -146,6 +146,11 @@ Items: {
 		Tooltip: text
 		DisplayName: ""
 	}
+
+	DurataniumJavelin: {
+		Tooltip: ""
+		DisplayName: Duratanium Javelin
+	}
 }
 
 Projectiles: {
@@ -158,6 +163,7 @@ Projectiles: {
 	NaturalSelectionProj.DisplayName: Natural Selection Proj
 	AirflowProjectile.DisplayName: Airflow Projectile
 	AirflowFeather.DisplayName: Airflow Feather
+	DurataniumJavelinProjectile.DisplayName: Duratanium Javelin Projectile
 }
 
 Buffs: {
