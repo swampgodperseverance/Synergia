@@ -13,6 +13,7 @@ namespace Vanilla.Common.GlobalPlayer
 		private static Mod avalon = ModLoader.GetMod("Avalon");
 		private static Mod vanilla = ModLoader.GetMod("Vanilla");
 		private static Mod consolaria = ModLoader.GetMod("Consolaria");
+		private static Mod roa = ModLoader.GetMod("RoA");
 		public bool BookVisible = false;
 		public float BookOpacity = 0f; // Добавляем прозрачность
 
@@ -155,6 +156,116 @@ namespace Vanilla.Common.GlobalPlayer
 				if (EyeBossZone.Contains(mousePos))
 				{
 					Main.HoverItem = new Item(vanilla.Find<ModItem>("EyeHistory").Type).Clone();
+					Main.instance.MouseText(Main.HoverItem.Name, Main.HoverItem.rare, 0);
+					return;
+				}
+
+				// 12. Virulent Powder
+				Rectangle PowderZone = new Rectangle((int)(position.X - 220), (int)(position.Y - 65), 20, 20);
+
+				if (PowderZone.Contains(mousePos))
+				{
+					Main.HoverItem = new Item(avalon.Find<ModItem>("VirulentPowder").Type).Clone();
+					Main.instance.MouseText(Main.HoverItem.Name, Main.HoverItem.rare, 0);
+					return;
+				}
+
+				// 13. Yucky Bit
+				Rectangle BitZone = new Rectangle((int)(position.X - 190), (int)(position.Y - 65), 20, 20);
+
+				if (BitZone.Contains(mousePos))
+				{
+					Main.HoverItem = new Item(avalon.Find<ModItem>("YuckyBit").Type).Clone();
+					Main.instance.MouseText(Main.HoverItem.Name, Main.HoverItem.rare, 0);
+					return;
+				}
+
+				// 14. Алтарь из Авалона 3
+				Rectangle IckyZone3 = new Rectangle((int)(position.X - 207), (int)(position.Y - 40), 26, 20);
+
+				if (IckyZone3.Contains(mousePos))
+				{
+					Main.HoverItem = new Item(avalon.Find<ModItem>("IckyAltar").Type).Clone();
+					Main.instance.MouseText(Main.HoverItem.Name, Main.HoverItem.rare, 0);
+					return;
+				}
+
+				// 15. Infested Carcass
+				Rectangle CarcassZone = new Rectangle((int)(position.X - 208), (int)(position.Y - 10), 20, 24);
+
+				if (CarcassZone.Contains(mousePos))
+				{
+					Main.HoverItem = new Item(avalon.Find<ModItem>("InfestedCarcass").Type).Clone();
+					Main.instance.MouseText(Main.HoverItem.Name, Main.HoverItem.rare, 0);
+					return;
+				}
+
+				// 16. История Бактериума
+				Rectangle BacteriumZone = new Rectangle((int)(position.X - 135), (int)(position.Y - 55), 115, 50);
+
+				if (BacteriumZone.Contains(mousePos))
+				{
+					Main.HoverItem = new Item(vanilla.Find<ModItem>("BacteriumHistory").Type).Clone();
+					Main.instance.MouseText(Main.HoverItem.Name, Main.HoverItem.rare, 0);
+					return;
+				}
+
+				// 17. Пчелка
+				Rectangle BeeZone = new Rectangle((int)(position.X - 208), (int)(position.Y - -40), 20, 25);
+
+				if (BeeZone.Contains(mousePos))
+				{
+					Main.HoverItem = new Item(ItemID.Abeemination).Clone();
+					Main.instance.MouseText(Main.HoverItem.Name, Main.HoverItem.rare, 0);
+					return;
+				}
+
+				// 17. История пчелы
+				Rectangle BeeBossZone = new Rectangle((int)(position.X - 135), (int)(position.Y - -30), 120, 50);
+
+				if (BeeBossZone.Contains(mousePos))
+				{
+					Main.HoverItem = new Item(vanilla.Find<ModItem>("BeeHistory").Type).Clone();
+					Main.instance.MouseText(Main.HoverItem.Name, Main.HoverItem.rare, 0);
+					return;
+				}
+
+				// 18. Перо
+				Rectangle FeatherZone = new Rectangle((int)(position.X - 220), (int)(position.Y - -120), 20, 25);
+
+				if (FeatherZone.Contains(mousePos))
+				{
+					Main.HoverItem = new Item(consolaria.Find<ModItem>("TurkeyFeather").Type).Clone();
+					Main.instance.MouseText(Main.HoverItem.Name, Main.HoverItem.rare, 0);
+					return;
+				}
+
+				// 19. Начинка
+				Rectangle StuffingZone = new Rectangle((int)(position.X - 190), (int)(position.Y - -120), 20, 25);
+
+				if (StuffingZone.Contains(mousePos))
+				{
+					Main.HoverItem = new Item(consolaria.Find<ModItem>("CursedStuffing").Type).Clone();
+					Main.instance.MouseText(Main.HoverItem.Name, Main.HoverItem.rare, 0);
+					return;
+				}
+
+				// 20. История туркора
+				Rectangle TurkorZone = new Rectangle((int)(position.X - 135), (int)(position.Y - -120), 120, 30);
+
+				if (TurkorZone.Contains(mousePos))
+				{
+					Main.HoverItem = new Item(vanilla.Find<ModItem>("TurkorHistory").Type).Clone();
+					Main.instance.MouseText(Main.HoverItem.Name, Main.HoverItem.rare, 0);
+					return;
+				}
+
+				// 21. История гоблинов
+				Rectangle GoblinZone = new Rectangle((int)(position.X - 275), (int)(position.Y - -205), 215, 80);
+
+				if (GoblinZone.Contains(mousePos))
+				{
+					Main.HoverItem = new Item(vanilla.Find<ModItem>("GoblinHistory").Type).Clone();
 					Main.instance.MouseText(Main.HoverItem.Name, Main.HoverItem.rare, 0);
 					return;
 				}

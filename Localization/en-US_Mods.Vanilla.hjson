@@ -65,7 +65,12 @@ Items: {
 	}
 
 	TurkorHistory: {
-		Tooltip: text
+		Tooltip:
+			'''
+			He didn`t come for revenge.
+			He come for a reminder.
+			A levitating creature.
+			'''
 		DisplayName: ""
 	}
 
@@ -124,12 +129,7 @@ Items: {
 	}
 
 	BeakHistory: {
-		Tooltip:
-			'''
-			He didn`t come for revenge.
-			He come for a reminder.
-			A levitating creature.
-			'''
+		Tooltip: text
 		DisplayName: ""
 	}
 

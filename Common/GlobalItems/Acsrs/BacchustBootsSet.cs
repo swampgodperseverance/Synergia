@@ -19,13 +19,13 @@ namespace Vanilla.Common.GlobalItems.Acsrs
 		public override void ModifyTooltips(Item item, List<TooltipLine> tooltips)
 		{
 			// Remove old toltip
-			tooltips.RemoveAll(line => line.Text.Trim() == "8% increased summon damage");
 
-			// 10+8=18, i'm not deleted old 8% damage
-			tooltips.Add(new TooltipLine(Mod, "VanillaBuffedSummon", "18% increased summon damage")
+			if (item.type == avalon.Find<ModItem>("BacchusBoots").Type)
 			{
-				OverrideColor = Microsoft.Xna.Framework.Color.LightGoldenrodYellow
-			});
+				tooltips.RemoveAll(line => line.Text.Trim() == "8% increased summon damage");
+				tooltips.Add(new TooltipLine(Mod, "VanillaBuffedSummon", "18% increased summon damage")
+				{ OverrideColor = Microsoft.Xna.Framework.Color.LightGoldenrodYellow });
+			}
 		}
 	}
 }
