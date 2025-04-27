@@ -83,27 +83,27 @@ namespace Vanilla.Common.GlobalItems
 				return;
 			}
 
-			if (avalon != null && item.type == avalon.Find<ModItem>("TetanusChakram").Type)
+			if (item.type == avalon.Find<ModItem>("TetanusChakram").Type)
 			{
 				item.DamageType = DamageClass.Throwing;
 			}
-			if (avalon != null && item.type == avalon.Find<ModItem>("Shurikerang").Type)
+			if (item.type == avalon.Find<ModItem>("Shurikerang").Type)
 			{
 				item.DamageType = DamageClass.Throwing;
 			}
-			if (avalon != null && item.type == avalon.Find<ModItem>("EnchantedShuriken").Type)
+			if (item.type == avalon.Find<ModItem>("EnchantedShuriken").Type)
 			{
 				item.DamageType = DamageClass.Throwing;
 			}
-			if (avalon != null && item.type == avalon.Find<ModItem>("RottenApple").Type)
+			if (item.type == avalon.Find<ModItem>("RottenApple").Type)
 			{
 				item.DamageType = DamageClass.Throwing;
 			}
-			if (avalon != null && item.type == avalon.Find<ModItem>("CrystalTomahawk").Type)
+			if (item.type == avalon.Find<ModItem>("CrystalTomahawk").Type)
 			{
 				item.DamageType = DamageClass.Throwing;
 			}
-			if (avalon != null && item.type == avalon.Find<ModItem>("Icicle").Type)
+			if (item.type == avalon.Find<ModItem>("Icicle").Type)
 			{
 				item.DamageType = DamageClass.Throwing;
 			}
