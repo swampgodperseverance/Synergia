@@ -151,6 +151,15 @@ Items: {
 		Tooltip: ""
 		DisplayName: Duratanium Javelin
 	}
+
+	CursedThrowEmblem: {
+		DisplayName: Cursed Throw Emblem
+		Tooltip:
+			'''
+			25% increased throwing damage
+			Decreases аll other damage by 50%
+			'''
+	}
 }
 
 Projectiles: {
