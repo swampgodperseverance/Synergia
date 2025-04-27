@@ -41,7 +41,7 @@ namespace Vanilla.Common.GlobalItems.Set
 			{
 				player.GetAttackSpeed(DamageClass.Throwing) += 0.1f;
 			}
-			if (item.type == roa.Find<ModItem>("SentinelLeggins").Type)
+			if (item.type == roa.Find<ModItem>("SentinelLeggings").Type)
 			{
 				player.moveSpeed += 0.2f;
 			}
@@ -89,7 +89,7 @@ namespace Vanilla.Common.GlobalItems.Set
 			{
 				ReplaceTooltip(tooltips, "Tooltip0", "Throwing speed increased by 10% ");
 			}
-			if (item.type == roa.Find<ModItem>("SentinelLeggins").Type)
+			if (item.type == roa.Find<ModItem>("SentinelLeggings").Type)
 			{
 				ReplaceTooltip(tooltips, "Tooltip0", "Running speed increased by 20%");
 			}
