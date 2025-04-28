@@ -1,0 +1,16 @@
+{
+  "Criteria": "All",
+
+  "Conditions": {
+    "CreatesResult": {
+      "Item": "Avalon/FrigidShard"
+    }
+  },
+
+  "Changes": {
+    "AddIngredient": {
+      "Item": "Liber/FrostGolemCore",
+      "Count": 1
+    }
+  }
+}
