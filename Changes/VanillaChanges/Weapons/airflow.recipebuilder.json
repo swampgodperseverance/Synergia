@@ -1,0 +1,12 @@
+{
+	"Result": {
+		"Item": "Vanilla/Airflow"
+	},
+	
+	"Ingredient": {
+		"Item": "starforgedclassic/AzuriteBarItem",
+		"Count": 15
+	},
+	
+	"Tile": "Terraria/Anvils"
+}

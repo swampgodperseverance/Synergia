@@ -1,0 +1,12 @@
+{
+	"Result": {
+		"Item": "Vanilla/DurataniumJavelin"
+	},
+	
+	"Ingredient": {
+		"Item": "Avalon/DurataniumBar",
+		"Count": 12
+	},
+	
+	"Tile": "Terraria/Anvils"
+}
