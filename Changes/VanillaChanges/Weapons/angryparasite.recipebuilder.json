@@ -1,0 +1,17 @@
+{
+	"Result": {
+		"Item": "Vanilla/AngryParasite"
+	},
+	
+	"Ingredient": {
+		"Item": "Avalon/Booger",
+		"Count": 10
+	},
+
+	"Ingredient": {
+		"Item": "Liber/HunterWhip",
+		"Count": 1
+	},
+	
+	"Tile": "Terraria/Anvils"
+}

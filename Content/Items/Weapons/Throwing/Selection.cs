@@ -4,28 +4,28 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using Vanilla.Content.Projectiles;
 
-namespace Vanilla.Content.Items.Thrower
+namespace Vanilla.Content.Items.Weapons.Throwing
 {
-	public class DurataniumJavelin : ModItem
+	public class Selection : ModItem
 	{
 		public override void SetDefaults()
 		{
 			var item = Item;
 
-			item.damage = 35;
+			item.damage = 40;
 			item.DamageType = DamageClass.Throwing;
 			item.width = 24;
 			item.height = 25;
-			item.useTime = 15;
-			item.useAnimation = 15;
+			item.useTime = 10;
+			item.useAnimation = 10;
 			item.knockBack = 2;
 			item.value = Item.buyPrice(silver: 50);
 			item.shootSpeed = 14f;
 			item.maxStack = 1;
-			item.rare = ItemRarityID.LightRed;
+			item.rare = ItemRarityID.Pink;
 			item.UseSound = SoundID.Item1;
 			item.useStyle = ItemUseStyleID.Swing;
-			item.shoot = ModContent.ProjectileType<DurataniumJavelinProjectile>();
+			item.shoot = ModContent.ProjectileType<SelectionProjectile>();
 			item.consumable = false;
 			item.autoReuse = true;
 			item.noUseGraphic = true;

@@ -170,6 +170,11 @@ Items: {
 		DisplayName: Super Aura Staff
 		Tooltip: ""
 	}
+
+	AngryParasite: {
+		Tooltip: Each hit has a 50% chance to inflict the «{$BuffName.Poisoned}» debuff for 1 second
+		DisplayName: Angry Parasite
+	}
 }
 
 Projectiles: {
@@ -187,6 +192,8 @@ Projectiles: {
 	SuperAura.DisplayName: Super Aura
 	SuperAuraScytheCut.DisplayName: Super Aura Scythe Cut
 	SuperAuraSpawn.DisplayName: Super Aura Spawn
+	HungryWormProj.DisplayName: Hungry Worm Proj
+	AngryParasiteProjectile.DisplayName: Angry Parasite Projectile
 }
 
 Buffs: {

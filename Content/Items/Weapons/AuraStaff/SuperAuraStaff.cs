@@ -4,11 +4,17 @@ using Terraria.ModLoader;
 using Vanilla.Content.Projectiles.Aura;
 using static Terraria.ModLoader.ModContent;
 
-namespace Vanilla.Content.Items.AuraStaff
+namespace Vanilla.Content.Items.Weapons.AuraStaff
 {
 	[ExtendsFromMod("ValhallaMod")]
-	public class StarAuraStaff2 : ValhallaMod.Items.AI.ValhallaAuraItem
+	public class SuperAuraStaff : ValhallaMod.Items.AI.ValhallaAuraItem
 	{
+		public override void SetStaticDefaults()
+		{
+			Item.staff[Item.type] = true;
+			ValhallaMod.Values.AuraScythe[Item.type] = true;
+		}
+
 		public override void SetDefaults()
 		{
 			var item = Item;
@@ -26,8 +32,13 @@ namespace Vanilla.Content.Items.AuraStaff
 			item.rare = ItemRarityID.Orange;
 			item.mana = 20;
 			item.damage = 24;
-			item.shoot = ProjectileType<StarAura2>();
+			item.shoot = ProjectileType<SuperAura>();
 			item.shootSpeed = 1f;
+
+			// Type of scythe cut projectile
+			typeScythe = ProjectileType<SuperAuraScytheCut>();
+			// Scythe cut projectile damage Scale
+			scytheDamageScale = 0.75f;
 		}
 	}
 }

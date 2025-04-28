@@ -4,7 +4,7 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using Vanilla.Content.Projectiles;
 
-namespace Vanilla.Content.Items.Thrower
+namespace Vanilla.Content.Items.Weapons.Throwing
 {
 	public class EverwoodJavelin : ModItem
 	{

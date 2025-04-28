@@ -6,7 +6,7 @@ using Terraria.DataStructures;
 using System.Linq;
 using Vanilla.Content.Projectiles;
 
-namespace Vanilla.Content.Items.Thrower
+namespace Vanilla.Content.Items.Weapons.Throwing
 {
 	public class Airflow : ModItem
 	{

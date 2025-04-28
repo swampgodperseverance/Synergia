@@ -5,7 +5,7 @@ Items: {
 		DisplayName: Копье из вечного дерева
 		Tooltip:
 			'''
-			Каждое попадание имеет 20% шанс наложить дебафф «{$Mods.Vanilla.Buffs.EverwoodJavelinDebuff.DisplayName}» на 1.5 секунды
+			Каждое попадание по врагу имеет 20% шанс наложить дебафф «{$Mods.Vanilla.Buffs.EverwoodJavelinDebuff.DisplayName}» на 1.5 секунды
 			Деббаф обездвиживает врага и наносит постепенный урон в 5 ед.
 			Боссов деббаф не обездвиживает, но действует на 3 секунды дольше и наносит на 5 ед. урона больше
 			'Содержит частичку вечнодревесной магии'
@@ -170,6 +170,11 @@ Items: {
 		// DisplayName: Super Aura Staff
 		// Tooltip: ""
 	}
+
+	AngryParasite: {
+		Tooltip: Каждое попадание по врагу имеет 50% шанс наложить дебафф «{$BuffName.Poisoned}» на 1 секунду
+		DisplayName: Злой паразит
+	}
 }
 
 Projectiles: {
@@ -187,6 +192,8 @@ Projectiles: {
 	// SuperAura.DisplayName: Super Aura
 	// SuperAuraScytheCut.DisplayName: Super Aura Scythe Cut
 	// SuperAuraSpawn.DisplayName: Super Aura Spawn
+	// HungryWormProj.DisplayName: Hungry Worm Proj
+	// AngryParasiteProjectile.DisplayName: Angry Parasite Projectile
 }
 
 Buffs: {
