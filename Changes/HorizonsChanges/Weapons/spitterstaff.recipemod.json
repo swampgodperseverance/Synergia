@@ -1,0 +1,16 @@
+{
+  "Criteria": "All",
+
+  "Conditions": {
+    "CreatesResult": {
+      "Item": "NewHorizons/MoltenDagger"
+    }
+  },
+
+  "Changes": {
+    "AddIngredient": {
+      "Item": "Avalon/CorruptShard",
+      "Count": 5
+    }
+  }
+}
