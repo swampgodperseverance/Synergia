@@ -1,0 +1,26 @@
+{
+  "Criteria": "All",
+
+  "Conditions": {
+    "CreatesResult": {
+      "Item": "Terraria/OnyxBlaster"
+    }
+  },
+
+  "Changes": {
+    "ChangeIngredient": {
+      "Item": "Terraria/Shotgun",
+      "NewItem": "NewHorizons/ClockworkShotgun",
+      "NewCount": 1
+
+    }
+  },
+
+  "Changes": {
+    "ChangeIngredient": {
+      "Item": "Terraria/SoulofNight",
+      "NewItem": "Terraria/SoulofSight",
+      "NewCount": 10
+    }
+  }
+}
