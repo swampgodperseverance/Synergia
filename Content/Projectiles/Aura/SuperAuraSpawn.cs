@@ -1,0 +1,47 @@
+using Microsoft.Xna.Framework;
+using Terraria;
+using Terraria.ID;
+using Terraria.ModLoader;
+using ValhallaMod.Projectiles.AI;
+using static Terraria.ModLoader.ModContent;
+
+namespace Vanilla.Content.Projectiles.Aura
+{
+	[ExtendsFromMod("ValhallaMod")]
+	public class SuperAuraSpawn : AuraDamageAI
+	{
+		public override void SetDefaults()
+		{
+			AIType = 0;
+			Projectile.width = 18;
+			Projectile.height = 18;
+			Projectile.friendly = true;
+			Projectile.DamageType = DamageClass.Summon;
+			Projectile.timeLeft = 90;
+			Projectile.penetrate = -1;
+		}
+
+		//Use CustomAI instead of AI() to not override killing this projectile outside of aura's border
+		public override void CustomAI()
+		{
+			Projectile.rotation += 0.2f;
+			int dustIndex = Dust.NewDust(Projectile.position, Projectile.width, Projectile.height, DustID.Enchanted_Gold, Projectile.velocity.X * 0.1f, Projectile.velocity.Y * 0.1f, 150, default, 1.2f);
+			Main.dust[dustIndex].velocity += Projectile.velocity * 0.1f;
+			Main.dust[dustIndex].velocity *= 0.1f;
+			Main.dust[dustIndex].noLight = true;
+			Main.dust[dustIndex].noGravity = true;
+
+			Projectile.velocity = Projectile.velocity.RotatedBy(0.02f);
+		}
+
+		public override Color? GetAlpha(Color lightColor) => Color.White;
+
+		public override void OnKill(int timeLeft)
+		{
+			for (int num543 = 0; num543 < 5; ++num543)
+			{
+					Dust.NewDust(Projectile.position, Projectile.width, Projectile.height, DustID.Enchanted_Gold, Projectile.velocity.X * 0.01f, Projectile.velocity.Y * 0.01f, 150, default, 1.2f);
+			}
+		}
+	}
+}

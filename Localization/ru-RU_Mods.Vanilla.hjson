@@ -160,6 +160,16 @@ Items: {
 			Уменьшает урон других классов на 50%
 			'''
 	}
+
+	StarAuraStaff2: {
+		// DisplayName: Star Aura Staff2
+		// Tooltip: ""
+	}
+
+	SuperAuraStaff: {
+		// DisplayName: Super Aura Staff
+		// Tooltip: ""
+	}
 }
 
 Projectiles: {
@@ -173,6 +183,10 @@ Projectiles: {
 	// AirflowProjectile.DisplayName: Airflow Projectile
 	// AirflowFeather.DisplayName: Airflow Feather
 	// DurataniumJavelinProjectile.DisplayName: Duratanium Javelin Projectile
+	// StarAura2.DisplayName: Star Aura2
+	// SuperAura.DisplayName: Super Aura
+	// SuperAuraScytheCut.DisplayName: Super Aura Scythe Cut
+	// SuperAuraSpawn.DisplayName: Super Aura Spawn
 }
 
 Buffs: {
