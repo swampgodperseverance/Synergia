@@ -1,0 +1,17 @@
+{
+	"Result": {
+		"Item": "ValhallaMod/FrostDaggers"
+	},
+	
+	"Ingredient": {
+		"Item": "Avalon/TroxiniumBar",
+		"Count": 10
+	},
+        
+	"Ingredient": {
+		"Item": "Avalon/FrigidShard",
+		"Count": 1
+	},
+
+	"Tile": "Terraria/MythrilAnvil"
+}

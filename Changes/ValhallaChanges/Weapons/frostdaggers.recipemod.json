@@ -1,0 +1,17 @@
+{
+  "Criteria": "All",
+
+  "Conditions": {
+    "CreatesResult": {
+      "Item": "ValhallaMod/FrostDaggers"
+    }
+  },
+
+  "Changes": {
+    "ChangeIngredient": {
+      "Item": "Terraria/FrostCore",
+      "NewItem": "Avalon/FrigidShard",
+      "NewCount": 1
+    }
+  }
+}
