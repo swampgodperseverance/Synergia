@@ -12,11 +12,6 @@
 		"Item": "Terraria/SoulofNight",
 		"Count": 10
 	},
-	
-	"Ingredient": {
-		"Item": "Avalon/CorruptShard",
-		"Count": 6
-	},
 
 	"Tile": "Terraria/MythrilAnvil"
 }
