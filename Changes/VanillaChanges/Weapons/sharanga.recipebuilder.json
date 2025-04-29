@@ -1,0 +1,17 @@
+{
+	"Result": {
+		"Item": "Consolaria/Sharanga"
+	},
+	
+	"Ingredient": {
+		"Item": "Terraria/MoltenFury",
+		"Count": 1
+	},
+        
+	"Ingredient": {
+		"Item": "Avalon/Wheezebow",
+		"Count": 1
+	},
+	
+	"Tile": "Terraria/DemonAltar"
+}
