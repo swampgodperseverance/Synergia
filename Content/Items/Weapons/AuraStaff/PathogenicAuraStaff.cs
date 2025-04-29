@@ -7,7 +7,7 @@ using static Terraria.ModLoader.ModContent;
 namespace Vanilla.Content.Items.Weapons.AuraStaff
 {
 	[ExtendsFromMod("ValhallaMod")]
-	public class StarAuraStaff2 : ValhallaMod.Items.AI.ValhallaAuraItem
+	public class PathogenicAuraStaff : ValhallaMod.Items.AI.ValhallaAuraItem
 	{
 		public override void SetDefaults()
 		{
@@ -24,9 +24,9 @@ namespace Vanilla.Content.Items.Weapons.AuraStaff
 			item.useStyle = ItemUseStyleID.Shoot;
 			item.value = Item.sellPrice(0, 1, 0, 0);
 			item.rare = ItemRarityID.Orange;
-			item.mana = 20;
-			item.damage = 24;
-			item.shoot = ProjectileType<StarAura2>();
+			item.mana = 60;
+			item.damage = 40;
+			item.shoot = ProjectileType<PathogenicAura>();
 			item.shootSpeed = 1f;
 		}
 	}

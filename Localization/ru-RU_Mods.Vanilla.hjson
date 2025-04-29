@@ -161,11 +161,6 @@ Items: {
 			'''
 	}
 
-	StarAuraStaff2: {
-		// DisplayName: Star Aura Staff2
-		// Tooltip: ""
-	}
-
 	SuperAuraStaff: {
 		// DisplayName: Super Aura Staff
 		// Tooltip: ""
@@ -175,25 +170,29 @@ Items: {
 		Tooltip: Каждое попадание по врагу имеет 50% шанс наложить дебафф «{$BuffName.Poisoned}» на 1 секунду
 		DisplayName: Злой паразит
 	}
+
+	PathogenicAuraStaff: {
+		DisplayName: Посох патогенной ауры
+		Tooltip: ""
+	}
 }
 
 Projectiles: {
-	// EverwoodJavelinProjectile.DisplayName: Everwood Javelin Projectile
-	// OcramSkull.DisplayName: Ocram Skull
-	// OculithSkull.DisplayName: Oculith Skull
-	// OculithShardProjectile.DisplayName: Oculith Shard Projectile
-	// OculithShardProjectile2.DisplayName: Oculith Shard Projectile2
-	// SelectionProjectile.DisplayName: Selection Projectile
-	// NaturalSelectionProj.DisplayName: Natural Selection Proj
-	// AirflowProjectile.DisplayName: Airflow Projectile
 	// AirflowFeather.DisplayName: Airflow Feather
-	// DurataniumJavelinProjectile.DisplayName: Duratanium Javelin Projectile
-	// StarAura2.DisplayName: Star Aura2
+	// AirflowProjectile.DisplayName: Airflow Projectile
+	// AngryParasiteProjectile.DisplayName: Angry Parasite Projectile
+	// PathogenicAura.DisplayName: Pathogenic Aura
 	// SuperAura.DisplayName: Super Aura
 	// SuperAuraScytheCut.DisplayName: Super Aura Scythe Cut
 	// SuperAuraSpawn.DisplayName: Super Aura Spawn
-	// HungryWormProj.DisplayName: Hungry Worm Proj
-	// AngryParasiteProjectile.DisplayName: Angry Parasite Projectile
+	// DurataniumJavelinProjectile.DisplayName: Duratanium Javelin Projectile
+	// EverwoodJavelinProjectile.DisplayName: Everwood Javelin Projectile
+	// NaturalSelectionProj.DisplayName: Natural Selection Proj
+	// OculithShardProjectile.DisplayName: Oculith Shard Projectile
+	// OculithShardProjectile2.DisplayName: Oculith Shard Projectile2
+	// OculithSkull.DisplayName: Oculith Skull
+	// SelectionProjectile.DisplayName: Selection Projectile
+	// PathogenicAuraSpawn.DisplayName: Pathogenic Aura Spawn
 }
 
 Buffs: {

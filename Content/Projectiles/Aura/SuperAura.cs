@@ -54,7 +54,7 @@ namespace Vanilla.Content.Projectiles.Aura
 
 			// ProjectileID of projectile that this aura will shoot
 			//Default: 0
-			shootType = ProjectileType<SuperAuraSpawn>();
+			shootType = ProjectileType<PathogenicAuraSpawn>();
 			// The number of projectiles that this aura will shoot
 			//Default: 1
 			shootCount = 10;
