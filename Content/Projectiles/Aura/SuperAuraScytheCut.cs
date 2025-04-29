@@ -12,8 +12,8 @@ namespace Vanilla.Content.Projectiles.Aura
 		{
 			var proj = Projectile;
 
-			proj.width = 6;
-			proj.height = 6;
+			proj.width = 48;
+			proj.height = 48;
 			proj.aiStyle = 0;
 			proj.friendly = true;
 			proj.penetrate = 5;
@@ -29,21 +29,23 @@ namespace Vanilla.Content.Projectiles.Aura
 			Projectile.localAI[0]++;
 			if (Projectile.localAI[0] > 0f)
 			{
-					for (int i = 0; i < 5; i++)
-					{
-						float num93 = Projectile.velocity.X / 3f * i;
-						float num94 = Projectile.velocity.Y / 3f * i;
-						int m = 4;
-						Vector2 pos = new Vector2(Projectile.Center.X + m, Projectile.Center.Y + m);
-						int w = Projectile.width - m * 2;
-						int h = Projectile.height - m * 2;
-						int dust = Dust.NewDust(pos, w, h, DustID.BlueTorch, 0f, 0f, 100, default, 1.2f);
-						Main.dust[dust].noGravity = true;
-						Main.dust[dust].velocity *= 0f;
-						Main.dust[dust].position.X = Main.dust[dust].position.X - num93;
-						Main.dust[dust].position.Y = Main.dust[dust].position.Y - num94;
-					}
+				for (int i = 0; i < 360; i += 15)
+				{
+					float angle = MathHelper.ToRadians(i);
+					Vector2 circlePos = Projectile.Center + angle.ToRotationVector2() * 2f;
+
+					Dust cursedFire = Dust.NewDustPerfect(circlePos, DustID.CursedTorch);
+					cursedFire.velocity = Vector2.Zero;
+					cursedFire.scale = Main.rand.NextFloat(1.0f, 1.4f);
+					cursedFire.noGravity = true;
+					cursedFire.fadeIn = 1.2f;
+				}
 			}
+		}
+		
+		public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
+		{
+			target.AddBuff(BuffID.CursedInferno, 300);
 		}
 	}
 }

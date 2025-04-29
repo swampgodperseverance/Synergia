@@ -9,6 +9,12 @@ namespace Vanilla.Content.Items.Weapons.AuraStaff
 	[ExtendsFromMod("ValhallaMod")]
 	public class PathogenicAuraStaff : ValhallaMod.Items.AI.ValhallaAuraItem
 	{
+		public override void SetStaticDefaults()
+		{
+			Item.staff[Item.type] = true;
+			ValhallaMod.Values.AuraScythe[Item.type] = true;
+		}
+
 		public override void SetDefaults()
 		{
 			var item = Item;
@@ -28,6 +34,9 @@ namespace Vanilla.Content.Items.Weapons.AuraStaff
 			item.damage = 40;
 			item.shoot = ProjectileType<PathogenicAura>();
 			item.shootSpeed = 1f;
+
+			//typeScythe = ProjectileType<SuperAuraScytheCut>();
+			//scytheDamageScale = 1f;
 		}
 	}
 }
