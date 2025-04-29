@@ -1,0 +1,16 @@
+{
+  "Criteria": "All",
+
+  "Conditions": {
+    "CreatesResult": {
+      "Item": "Avalon/Moonforce"
+    }
+  },
+
+  "Changes": {
+    "AddIngredient": {
+      "Item": "Consolaria/Sharanga",
+      "Count": 1
+    }
+  },
+}
