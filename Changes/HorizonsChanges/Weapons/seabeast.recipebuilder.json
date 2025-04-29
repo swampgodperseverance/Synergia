@@ -1,0 +1,32 @@
+{
+	"Result": {
+		"Item": "NewHorizons/TheSeaBeast"
+	},
+	
+	"Ingredient": {
+		"Item": "NewHorizons/LooseCannon",
+		"Count": 1
+	},
+        
+	"Ingredient": {
+		"Item": "ValhallaMod/Splatterink",
+		"Count": 1
+	},
+
+	"Ingredient": {
+		"Item": "Terraria/SoulofMight",
+		"Count": 1
+	},
+
+	"Ingredient": {
+		"Item": "Terraria/SoulofSight",
+		"Count": 1
+	},
+
+	"Ingredient": {
+		"Item": "Terraria/SoulofFright",
+		"Count": 1
+	},
+	
+	"Tile": "Terraria/MythrilAnvil"
+}
