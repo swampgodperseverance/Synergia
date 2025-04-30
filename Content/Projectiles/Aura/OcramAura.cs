@@ -26,8 +26,8 @@ namespace Vanilla.Content.Projectiles.Aura
 			shootSpawnStyle = AuraShootStyles.Periodically;
 			shootCooldown = 120;
 			shootType = ProjectileType<OcramAuraSpawn>();
-			shootCount = 5;
-			shootSpeed = 6.5f;
+			shootCount = 4;
+			shootSpeed = 5f;
 			shootDirectionStyle = AuraShootDirection.SmartRandom;
 
 			debuffType = 70;
