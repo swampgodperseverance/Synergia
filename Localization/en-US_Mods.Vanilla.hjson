@@ -175,6 +175,11 @@ Items: {
 		DisplayName: Patoghenic Aura Staff
 		Tooltip: ""
 	}
+
+	OcramAuraStaff: {
+		Tooltip: ""
+		DisplayName: Ocram Aura Staff
+	}
 }
 
 Projectiles: {
@@ -193,6 +198,8 @@ Projectiles: {
 	OculithSkull.DisplayName: Oculith Skull
 	SelectionProjectile.DisplayName: Selection Projectile
 	PathogenicAuraSpawn.DisplayName: Pathogenic Aura Spawn
+	OcramAuraSpawn.DisplayName: Ocram Aura Spawn
+	OcramAura.DisplayName: Ocram Aura
 }
 
 Buffs: {
