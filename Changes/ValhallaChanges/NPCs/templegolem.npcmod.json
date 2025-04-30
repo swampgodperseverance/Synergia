@@ -1,0 +1,10 @@
+{
+  "NPC": "ValhallaMod/TempleGolem",
+
+  "Changes": {
+    "Terraria": {
+      "Health": "1900",
+      "Defense": "15"
+    }
+  }
+}
