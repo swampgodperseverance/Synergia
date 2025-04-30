@@ -1,0 +1,17 @@
+{
+  "Criteria": "All",
+
+  "Conditions": {
+    "CreatesResult": {
+      "Item": "Terraria/VenomBullet"
+    }
+  },
+
+  "Changes": {
+    "ChangeIngredient": {
+      "Item": "Terraria/VialofVenom",
+      "NewItem": "Avalon/VenomShard",
+      "NewCount": 1
+    }
+  }
+}
