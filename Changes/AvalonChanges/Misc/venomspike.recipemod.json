@@ -1,0 +1,17 @@
+{
+  "Criteria": "All",
+
+  "Conditions": {
+    "CreatesResult": {
+      "Item": "Avalon/VenomSpike"
+    }
+  },
+
+  "Changes": {
+    "ChangeIngredient": {
+      "Item": "Terraria/FlaskofVenom",
+      "NewItem": "Avalon/VenomShard",
+      "NewCount": 1
+    }
+  }
+}
