@@ -3,8 +3,6 @@ using Terraria.ModLoader;
 using ValhallaMod;
 using ValhallaMod.Projectiles;
 using ValhallaMod.Projectiles.AI;
-using Avalon.Buffs.Debuffs;
-using Avalon.Buffs.AdvancedBuffs;
 using static Terraria.ModLoader.ModContent;
 
 namespace Vanilla.Content.Projectiles.Aura
@@ -12,8 +10,6 @@ namespace Vanilla.Content.Projectiles.Aura
 	[ExtendsFromMod("ValhallaMod")]
 	public class OcramAura : AuraAI
 	{
-		private static Mod avalon = ModLoader.GetMod("Avalon");
-		
 		public override void SetDefaults()
 		{
 			Projectile.alpha = 255;
