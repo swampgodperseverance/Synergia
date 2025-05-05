@@ -1,0 +1,22 @@
+{
+	"Result": {
+		"Item": "Avalon/Windshield"
+	},
+	
+	"Ingredient": {
+		"Item": "ValhallaMod/GlassShield",
+		"Count": 1
+	},
+        
+	"Ingredient": {
+		"Item": "Avalon/BreezeShard",
+		"Count": 5
+	},
+	
+	"Ingredient": {
+		"Item": "Terraria/CrystalShard",
+		"Count": 10
+	},
+        
+	"Tile": "Terraria/MythrilAnvil"
+}

@@ -1,0 +1,25 @@
+{
+  "Criteria": "All",
+
+  "Conditions": {
+    "CreatesResult": {
+      "Item": "Avalon/ReflexCharm",
+    }
+  },
+
+  "Changes": {
+    "ChangeIngredient": {
+      "Item": "Terraria/SoulofSight",
+      "NewItem": "NewHorizons/BigLens",
+      "NewCount": 1
+    }
+  },
+
+  "Changes": {
+    "ChangeIngredient": {
+      "Item": "Terraria/LightShard",
+      "NewItem": "Liber/ShadowPhosphorus",
+      "NewCount": 1
+    }
+  }
+}
