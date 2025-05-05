@@ -1,0 +1,22 @@
+{
+	"Result": {
+		"Item": "ValhallaMod/HeavensSeal"
+	},
+	
+	"Ingredient": {
+		"Item": "Avalon/DurataniumBar",
+		"Count": 3
+	},
+	
+	"Ingredient": {
+		"Item": "Terraria/FallenStar",
+		"Count": 1
+	},
+	
+	"Ingredient": {
+		"Item": "Terraria/SoulofFlight",
+		"Count": 3
+	},
+
+	"Tile": "Terraria/MythrilAnvil"
+}
