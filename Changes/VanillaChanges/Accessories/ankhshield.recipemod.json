@@ -1,0 +1,17 @@
+{
+  "Criteria": "All",
+
+  "Conditions": {
+    "CreatesResult": {
+      "Item": "Terraria/AnkhShield",
+    }
+  },
+
+  "Changes": {
+    "ChangeIngredient": {
+      "Item": "Terraria/ObsidianShield",
+      "NewItem": "Liber/ShieldMammoth",
+      "NewCount": 1
+    }
+  }
+}
