@@ -1,0 +1,23 @@
+{
+  "Criteria": "All",
+
+  "Conditions": {
+    "CreatesResult": {
+      "Item": "Avalon/ReflexShield",
+    }
+  },
+
+  "Changes": {
+    "AddIngredient": {
+      "Item": "starforgedclassic/SkyShield",
+      "Count": 1
+    }
+  },
+
+  "Changes": {
+    "AddIngredient": {
+      "Item": "ValhallaMod/RiotShield",
+      "Count": 1
+    }
+  }
+}
