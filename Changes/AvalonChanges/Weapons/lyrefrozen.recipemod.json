@@ -1,0 +1,17 @@
+{
+  "Criteria": "All",
+
+  "Conditions": {
+    "CreatesResult": {
+      "Item": "Avalon/FrozenLyre"
+    }
+  },
+
+  "Changes": {
+    "ChangeIngredient": {
+      "Item": "Terraria/FallenStar",
+      "NewItem": "ValhallaMod/RopeLyre",
+      "NewCount": 1
+    }
+  },
+}

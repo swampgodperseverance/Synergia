@@ -1,0 +1,17 @@
+{
+  "Criteria": "All",
+
+  "Conditions": {
+    "CreatesResult": {
+      "Item": "Avalon/OsmiumLongbow"
+    }
+  },
+
+  "Changes": {
+    "ChangeIngredient": {
+      "Item": "Avalon/DesertFeather",
+      "NewItem": "ValhallaMod/ElasticCord",
+      "NewCount": 1
+    }
+  },
+}
