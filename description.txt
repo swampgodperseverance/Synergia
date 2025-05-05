@@ -1,1 +1,30 @@
-Modify this file with a description of your mod.
+Enhance your modded Terraria experience with Synergia!
+This powerful utility mod brings extensive cross-mod compatibility, overhauls both vanilla and modded bosses, and introduces its own custom boss checklist to help you track your progress across multiple content packs.
+
+1. A LOT of recipe changes and more than you think, all avalon alt content compatible now with mods in this modpack. And not only Avalon.
+2. A LOT of AI changes, thanks TRAE team for beautiful mod! And our own changes for some modded and vanilla bosses etc.
+3. FULL complete thrower class with weapons from modded materials and even mod sets was changed!
+4. Aura's from Valhalla Mod now in other mods too!
+5. Our own boss checklist, called "Old Tales" with unigue interface!
+6. Giant crafting trees included, and even final accessories for EACH class!
+7. Plenty item, projectiles and npc modifications!
+8. A well-balanced build in which everyone will find something for themselves!
+9. Overall we have more than 500 weapons, more than 350 new accessories, more than 120 armor sets, 12 bosses, new mechanics and tons of cool generations through the world and NPCs in
+10. MULTUIPLAYER COMPATIBLE!
+
+WARNING:
+WE'RE NOT COMPLETED DRUID CLASS FROM THE RISE OF AGES. When the devs release hm content, we will add our own too, but not now, sorry gng
+
+Whether you're playing casually or going for a full challenge run, Synergia ensures everything feels connected, smooth, and epic.
+
+Team: 
+Ropyxa - coder
+Cleo - spriter
+Swampgod - Coder, spriter, balance changer etc.
+
+
+credits: Serork, Cleo, Pegeeon, has2r, notfurryalex, blahblahbla, Xami, Mary, Ether, EnnWAY, musicman, Swampz, heartplusup, fredleon, red, charleyistired, mikumikumiku, aku, qwerty314, jbame, hina, dedmaxim, HammerHoovy, KainSett, nobisyu, Nycro
+Honourable Mention: Tamet and Gas from Valhalla Mod, they helped us a lot
+
+
+Write me in dc swampgodperseverance if i forget to add u in credits
