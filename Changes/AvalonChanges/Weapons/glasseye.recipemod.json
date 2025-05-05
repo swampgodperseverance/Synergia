@@ -1,0 +1,24 @@
+{
+  "Criteria": "All",
+
+  "Conditions": {
+    "CreatesResult": {
+      "Item": "Avalon/GlassEye"
+    }
+  },
+
+  "Changes": {
+    "ChangeIngredient": {
+      "Item": "Terraria/Lens",
+      "NewItem": "ValhallaMod/HardenedGlass",
+      "NewCount": 6
+    }
+  },
+
+  "Changes": {
+    "ChangeTile": {
+      "Tile": "Terraria/WorkBenches",
+      "NewTile": "Terraria/GlassKiln"
+    }
+  }
+}
