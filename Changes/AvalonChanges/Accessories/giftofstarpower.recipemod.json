@@ -3,13 +3,13 @@
 
   "Conditions": {
     "CreatesResult": {
-      "Item": "Avalon/GiftofStarpower"
+      "Item": "Avalon/GiftofStarpower",
     }
   },
 
   "Changes": {
     "RemoveIngredient": {
-      "Item": "Terraria/BandofStarpower"
+      "Item": "Terraria/BandofStarpower",
     }
   },
 
@@ -17,6 +17,13 @@
     "AddIngredient": {
       "Item": "Terraria/FragmentNebula",
       "Count": 10
+    }
+  },
+  
+  "Changes": {
+    "ChangeTile": {
+      "Tile": "Terraria/TinkerersWorkbench",
+      "NewTile": "Terraria/LunarCraftingStation"
     }
   }
 }

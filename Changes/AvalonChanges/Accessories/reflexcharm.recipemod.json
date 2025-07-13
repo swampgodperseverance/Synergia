@@ -13,13 +13,5 @@
       "NewItem": "NewHorizons/BigLens",
       "NewCount": 1
     }
-  },
-
-  "Changes": {
-    "ChangeIngredient": {
-      "Item": "Terraria/LightShard",
-      "NewItem": "Liber/ShadowPhosphorus",
-      "NewCount": 1
-    }
   }
 }

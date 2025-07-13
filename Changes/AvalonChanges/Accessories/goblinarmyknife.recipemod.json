@@ -1,0 +1,33 @@
+{
+  "Criteria": "All",
+
+  "Conditions": {
+    "CreatesResult": {
+      "Item": "Avalon/GoblinArmyKnife"
+    }
+  },
+
+  "Changes": {
+    "ChangeIngredient": {
+      "Item": "Terraria/TreasureMagnet",
+      "NewItem": "ValhallaMod/MagnetHorseshoe",
+      "NewCount": 1
+    }
+  },
+
+  "Changes": {
+    "ChangeIngredient": {
+      "Item": "Terraria/SpelunkerPotion",
+      "NewItem": "ValhallaMod/NecroBuckler",
+      "NewCount": 1
+    }
+  },
+
+  "Changes": {
+    "ChangeIngredient": {
+      "Item": "Terraria/HunterPotion",
+      "NewItem": "OrchidMineshaft/MiniatureTools",
+      "NewCount": 1
+    }
+  }
+}
