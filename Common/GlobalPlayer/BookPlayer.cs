@@ -15,13 +15,13 @@ namespace Vanilla.Common.GlobalPlayer
 		private static Mod consolaria = ModLoader.GetMod("Consolaria");
 		private static Mod roa = ModLoader.GetMod("RoA");
 		public bool BookVisible = false;
-		public float BookOpacity = 0f; // Р”РѕР±Р°РІР»СЏРµРј РїСЂРѕР·СЂР°С‡РЅРѕСЃС‚СЊ
+		public float BookOpacity = 0f; // Добавляем прозрачность
 
 		public override void PostUpdate()
 		{
-			// РџР»Р°РІРЅРѕРµ СѓРІРµР»РёС‡РµРЅРёРµ РёР»Рё СѓРјРµРЅСЊС€РµРЅРёРµ РїСЂРѕР·СЂР°С‡РЅРѕСЃС‚Рё
+			// Плавное увеличение или уменьшение прозрачности
 			float targetOpacity = BookVisible ? 1f : 0f;
-			float opacitySpeed = 0.1f; // СЃРєРѕСЂРѕСЃС‚СЊ РїРѕСЏРІР»РµРЅРёСЏ/РёСЃС‡РµР·РЅРѕРІРµРЅРёСЏ (РјРѕР¶РµС€СЊ РјРµРЅСЏС‚СЊ)
+			float opacitySpeed = 0.1f; // скорость появления/исчезновения (можешь менять)
 
 			BookOpacity = MathHelper.Lerp(BookOpacity, targetOpacity, opacitySpeed);
 		}
@@ -32,7 +32,7 @@ namespace Vanilla.Common.GlobalPlayer
 			{
 				Texture2D texture = ModContent.Request<Texture2D>("Vanilla/Assets/UIs/AncientBook").Value;
 
-				// Р¦РµРЅС‚СЂ СЌРєСЂР°РЅР°
+				// Центр экрана
 				Vector2 position = new Vector2(Main.screenWidth, Main.screenHeight) / 2f;
 				Vector2 origin = new Vector2(texture.Width, texture.Height) / 2f;
 
@@ -43,14 +43,14 @@ namespace Vanilla.Common.GlobalPlayer
 					Color.White * BookOpacity,
 					0f,
 					origin,
-					1f, // РњР°СЃС€С‚Р°Р± 1:1
+					1f, // Масштаб 1:1
 					SpriteEffects.None,
 					0f
 				);
 
 				Point mousePos = Main.MouseScreen.ToPoint();
 
-				// 1. Р“РµР»СЊ
+				// 1. Гель
 				Rectangle GelZone = new Rectangle((int)(position.X - 220), (int)(position.Y - 315), 20, 20);
 
 				if (GelZone.Contains(mousePos))
@@ -60,7 +60,7 @@ namespace Vanilla.Common.GlobalPlayer
 					return;
 				}
 
-				// 2. РљРѕСЂРѕРЅР°
+				// 2. Корона
 				Rectangle CrownZone = new Rectangle((int)(position.X - 190), (int)(position.Y - 315), 20, 20);
 
 				if (CrownZone.Contains(mousePos))
@@ -70,7 +70,7 @@ namespace Vanilla.Common.GlobalPlayer
 					return;
 				}
 
-				// 3. РђР»С‚Р°СЂСЊ РёР· РђРІР°Р»РѕРЅР°
+				// 3. Алтарь из Авалона
 				Rectangle IckyZone = new Rectangle((int)(position.X - 207), (int)(position.Y - 288), 26, 20);
 
 				if (IckyZone.Contains(mousePos))
@@ -80,7 +80,7 @@ namespace Vanilla.Common.GlobalPlayer
 					return;
 				}
 
-				// 4. РСЃС‚РѕСЂРёСЏ РљРѕСЂРѕР»СЏ РЎР»РёР·РЅРµР№
+				// 4. История Короля Слизней
 				Rectangle KingSlimeZone = new Rectangle((int)(position.X - 150), (int)(position.Y - 300), 140, 60);
 
 				if (KingSlimeZone.Contains(mousePos))
@@ -90,7 +90,7 @@ namespace Vanilla.Common.GlobalPlayer
 					return;
 				}
 
-				// 5. РљРѕСЂРѕРЅР° РЎР»РёР·РЅСЏ
+				// 5. Корона Слизня
 				Rectangle SlimeCrownZone = new Rectangle((int)(position.X - 208), (int)(position.Y - 265), 20, 20);
 
 				if (SlimeCrownZone.Contains(mousePos))
@@ -100,7 +100,7 @@ namespace Vanilla.Common.GlobalPlayer
 					return;
 				}
 
-				// 6. РЇР№РєРѕ
+				// 6. Яйко
 				Rectangle EggZone = new Rectangle((int)(position.X - 208), (int)(position.Y - 210), 20, 25);
 
 				if (EggZone.Contains(mousePos))
@@ -110,7 +110,7 @@ namespace Vanilla.Common.GlobalPlayer
 					return;
 				}
 
-				// 7. РСЃС‚РѕСЂРёСЏ Р›РµРїСѓСЃР°
+				// 7. История Лепуса
 				Rectangle LepusZone = new Rectangle((int)(position.X - 150), (int)(position.Y - 215), 140, 45);
 
 				if (LepusZone.Contains(mousePos))
@@ -120,7 +120,7 @@ namespace Vanilla.Common.GlobalPlayer
 					return;
 				}
 
-				// 8. Р›РёРЅР·Р°
+				// 8. Линза
 				Rectangle LensZone = new Rectangle((int)(position.X - 208), (int)(position.Y - 155), 20, 25);
 
 				if (LensZone.Contains(mousePos))
@@ -130,7 +130,7 @@ namespace Vanilla.Common.GlobalPlayer
 					return;
 				}
 
-				// 9. РђР»С‚Р°СЂСЊ РёР· РђРІР°Р»РѕРЅР° 2
+				// 9. Алтарь из Авалона 2
 				Rectangle IckyZone2 = new Rectangle((int)(position.X - 207), (int)(position.Y - 122), 26, 20);
 
 				if (IckyZone2.Contains(mousePos))
@@ -140,7 +140,7 @@ namespace Vanilla.Common.GlobalPlayer
 					return;
 				}
 
-				// 10. РџРѕРґРѕР·СЂРёС‚РµР»СЊРЅРѕ РІС‹РіР»СЏРґСЏС‰РёР№ РіР»Р°Р·
+				// 10. Подозрительно выглядящий глаз
 				Rectangle EyeZone = new Rectangle((int)(position.X - 206), (int)(position.Y - 100), 25, 20);
 
 				if (EyeZone.Contains(mousePos))
@@ -150,7 +150,7 @@ namespace Vanilla.Common.GlobalPlayer
 					return;
 				}
 
-				// 11. РСЃС‚РѕСЂРёСЏ Р“Р»Р°Р·Р°
+				// 11. История Глаза
 				Rectangle EyeBossZone = new Rectangle((int)(position.X - 140), (int)(position.Y - 145), 115, 70);
 
 				if (EyeBossZone.Contains(mousePos))
@@ -180,7 +180,7 @@ namespace Vanilla.Common.GlobalPlayer
 					return;
 				}
 
-				// 14. РђР»С‚Р°СЂСЊ РёР· РђРІР°Р»РѕРЅР° 3
+				// 14. Алтарь из Авалона 3
 				Rectangle IckyZone3 = new Rectangle((int)(position.X - 207), (int)(position.Y - 40), 26, 20);
 
 				if (IckyZone3.Contains(mousePos))
@@ -200,7 +200,7 @@ namespace Vanilla.Common.GlobalPlayer
 					return;
 				}
 
-				// 16. РСЃС‚РѕСЂРёСЏ Р‘Р°РєС‚РµСЂРёСѓРјР°
+				// 16. История Бактериума
 				Rectangle BacteriumZone = new Rectangle((int)(position.X - 135), (int)(position.Y - 55), 115, 50);
 
 				if (BacteriumZone.Contains(mousePos))
@@ -210,7 +210,7 @@ namespace Vanilla.Common.GlobalPlayer
 					return;
 				}
 
-				// 17. РџС‡РµР»РєР°
+				// 17. Пчелка
 				Rectangle BeeZone = new Rectangle((int)(position.X - 208), (int)(position.Y - -40), 20, 25);
 
 				if (BeeZone.Contains(mousePos))
@@ -220,7 +220,7 @@ namespace Vanilla.Common.GlobalPlayer
 					return;
 				}
 
-				// 17. РСЃС‚РѕСЂРёСЏ РїС‡РµР»С‹
+				// 17. История пчелы
 				Rectangle BeeBossZone = new Rectangle((int)(position.X - 135), (int)(position.Y - -30), 120, 50);
 
 				if (BeeBossZone.Contains(mousePos))
@@ -230,7 +230,7 @@ namespace Vanilla.Common.GlobalPlayer
 					return;
 				}
 
-				// 18. РџРµСЂРѕ
+				// 18. Перо
 				Rectangle FeatherZone = new Rectangle((int)(position.X - 220), (int)(position.Y - -120), 20, 25);
 
 				if (FeatherZone.Contains(mousePos))
@@ -240,7 +240,7 @@ namespace Vanilla.Common.GlobalPlayer
 					return;
 				}
 
-				// 19. РќР°С‡РёРЅРєР°
+				// 19. Начинка
 				Rectangle StuffingZone = new Rectangle((int)(position.X - 190), (int)(position.Y - -120), 20, 25);
 
 				if (StuffingZone.Contains(mousePos))
@@ -250,7 +250,7 @@ namespace Vanilla.Common.GlobalPlayer
 					return;
 				}
 
-				// 20. РСЃС‚РѕСЂРёСЏ С‚СѓСЂРєРѕСЂР°
+				// 20. История туркора
 				Rectangle TurkorZone = new Rectangle((int)(position.X - 135), (int)(position.Y - -120), 120, 30);
 
 				if (TurkorZone.Contains(mousePos))
@@ -260,7 +260,7 @@ namespace Vanilla.Common.GlobalPlayer
 					return;
 				}
 
-				// 21. РСЃС‚РѕСЂРёСЏ РіРѕР±Р»РёРЅРѕРІ
+				// 21. История гоблинов
 				Rectangle GoblinZone = new Rectangle((int)(position.X - 275), (int)(position.Y - -205), 215, 80);
 
 				if (GoblinZone.Contains(mousePos))
