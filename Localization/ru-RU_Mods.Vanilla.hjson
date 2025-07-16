@@ -46,12 +46,17 @@ Items: {
 	}
 
 	BloodstainedGlove: {
-		// Tooltip: ""
+		/* Tooltip:
+			'''
+			Increases melee damage, attack speed, and armor penetration
+			Grants increased knockback and applies the Lacerated debuff on melee hits
+			Also enables automatic reuse and melee attack scaling
+			''' */
 		DisplayName: Окровавленная перчатка
 	}
 
 	OldTales: {
-		// Tooltip: ""
+		// Tooltip: Tales of travelers dying in this world.
 		DisplayName: Древние сказания
 	}
 
@@ -176,9 +181,114 @@ Items: {
 		Tooltip: ""
 	}
 
-	OcramAuraStaff: {
+	NaquadahJavelin: {
+		// DisplayName: Naquadah Javelin
 		// Tooltip: ""
-		DisplayName: Сияние Плейоны
+	}
+
+	MercuriumAuraScythe: {
+		/* Tooltip:
+			'''
+			Summons an aura that deals damage to enemies
+			Minion damage increases aura's range
+			Grants 'Regeneration' and 'Mana Regeneration' buffs
+			''' */
+		// DisplayName: Mercurium Aura Scythe
+	}
+
+	InfamousFlame: {
+		/* Tooltip:
+			'''
+			This flame isn't famous, right?
+			Throwing axe that deal fire damage
+			''' */
+		// DisplayName: Infamous Flame
+	}
+
+	VerdurousStaff: {
+		/* Tooltip:
+			'''
+			Summons an aura that deals damage to enemies
+			Minion damage increases aura's range
+			Inside the aura players get 'Regeneration', 'Mana Regeneration' and 'Moon's Resilence'
+			Personification of nature
+			''' */
+		// DisplayName: Verdurous Staff
+	}
+
+	AllotropicAuraStaff: {
+		// DisplayName: Allotropic Aura Staff
+		/* Tooltip:
+			'''
+			Summons an aura that deals damage to enemies
+			Minion damage increases aura's range
+			Versatile aura that cycles between three modes:
+			Attack Mode – Damages nearby enemies and occasionally fires homing and chaotic energy orbs.
+			Support Mode – Grants nearby players regeneration, mana regen, mining and bonus health.
+			Debuff Mode – Inflicts Broken Armor, Weak, and Poisoned on nearby enemies.
+			Press [Selected Button] to switch aura modes.
+			''' */
+	}
+
+	SandAlbinoAuraStaff: {
+		// DisplayName: Sand Albino Aura Staff
+		/* Tooltip:
+			'''
+			Summons an aura that deals damage to enemies
+			Minion damage increases aura's range
+			Inside the aura players get 6 Defense and damage increasing
+			Slows enemies down
+			''' */
+	}
+
+	AuraSummonBoostAccessory: {
+		// Tooltip: ""
+		// DisplayName: Aura Summon Boost Accessory
+	}
+
+	BrokenDice: {
+		/* Tooltip:
+			'''
+			Roll the dice and regret it twice..
+			When you go into aura, grants a random buff or debuff
+			5 buffs and 5 debuffs, will it bless you... or ruin you?
+			''' */
+		// DisplayName: Broken Dice
+	}
+
+	UnderwaterAuraScythe: {
+		// Tooltip: ""
+		// DisplayName: Underwater Aura Scythe
+	}
+
+	UnderwaterAuraScytheItem_Attack: {
+		// Tooltip: ""
+		// DisplayName: Underwater Aura Scythe Item_ Attack
+	}
+
+	EnchantedRing: {
+		/* Tooltip:
+			'''
+			Aura radius increased by 17%
+			Players buffs remains 5 seconds after leaving the aura
+			''' */
+		// DisplayName: Enchanted Ring
+	}
+
+	BloodyNecklace: {
+		/* Tooltip:
+			'''
+			Blood for blood.
+			While inside the aura player gets a 15% chance to dodge
+			an attack and return 5x damage to the enemy
+			Successful dodge inflicts Bleeding
+			''' */
+		// DisplayName: Bloody Necklace
+	}
+
+	MirrorOfTheLost: {
+		// DisplayName: Mirror Of The Lost
+		// Tooltip: ""
 	}
 }
 
@@ -198,8 +308,23 @@ Projectiles: {
 	// OculithSkull.DisplayName: Oculith Skull
 	// SelectionProjectile.DisplayName: Selection Projectile
 	// PathogenicAuraSpawn.DisplayName: Pathogenic Aura Spawn
-	// OcramAuraSpawn.DisplayName: Ocram Aura Spawn
-	// OcramAura.DisplayName: Ocram Aura
+	// NaquadahProjectile.DisplayName: Naquadah Projectile
+	// StoneMark.DisplayName: Stone Mark
+	// WavyStinger.DisplayName: Wavy Stinger
+	// PoisonDnaSeed.DisplayName: Poison Dna Seed
+	// PlanteraFlower.DisplayName: Plantera Flower
+	// MercuriumAuraScytheCut.DisplayName: Mercurium Aura Scythe Cut
+	// MercuriumAura.DisplayName: Mercurium Aura
+	// InfamousFlameProjectile.DisplayName: Infamous Flame Projectile
+	// VeldorousStaffProj.DisplayName: Veldorous Staff Proj
+	// AllotropicAuraProjectile.DisplayName: Allotropic Aura Projectile
+	// AllotropicAuraOrb.DisplayName: Allotropic Aura Orb
+	// SandAlbinoAuraProjectile.DisplayName: Sand Albino Aura Projectile
+	// SandAlbinoOrb.DisplayName: Sand Albino Orb
+	// UnderwaterAuraScytheProjectile.DisplayName: Underwater Aura Scythe Projectile
+	// UnderwaterAuraScytheCut.DisplayName: Underwater Aura Scythe Cut
+	// UnderwaterAuraScytheSupport.DisplayName: Underwater Aura Scythe Support
+	// UnderwaterAuraScytheAttack.DisplayName: Underwater Aura Scythe Attack
 }
 
 Buffs: {
@@ -207,4 +332,11 @@ Buffs: {
 		DisplayName: Чащобные корни
 		// Description: ""
 	}
+
+	BloodDodge: {
+		// Description: Blood for blood
+		// DisplayName: Blood Dodge
+	}
 }
+
+// "Keybinds.Toggle Aura Mode.DisplayName": Toggle  Aura  Mode
