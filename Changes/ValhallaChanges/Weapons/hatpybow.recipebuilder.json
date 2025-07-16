@@ -1,0 +1,17 @@
+{
+	"Result": {
+		"Item": "ValhallaMod/HarpyBow"
+	},
+	
+	"Ingredient": {
+		"Item": "Avalon/BismuthBow",
+		"Count": 1
+	},
+        
+	"Ingredient": {
+		"Item": "Terraria/Feather",
+		"Count": 10
+	},
+
+	"Tile": "Terraria/Anvils"
+}

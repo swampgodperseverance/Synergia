@@ -1,0 +1,22 @@
+{
+	"Result": {
+		"Item": "ValhallaMod/AcornCannon"
+	},
+	
+	"GroupIngredient": {
+		"Group": "DemoniteBar",
+		"Count": 5
+	},
+        
+	"Ingredient": {
+		"Item": "Terraria/Acorn",
+		"Count": 10
+	},
+	
+	"Ingredient": {
+		"Item": "ValhallaMod/LegalParts",
+		"Count": 1
+	},
+
+	"Tile": "Terraria/Anvils"
+}

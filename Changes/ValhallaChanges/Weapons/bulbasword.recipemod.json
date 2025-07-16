@@ -3,14 +3,14 @@
 
   "Conditions": {
     "CreatesResult": {
-      "Item": "ValhallaMod/SnowPeashooterSentryStaff"
+      "Item": "ValhallaMod/Bulbasword"
     }
   },
 
   "Changes": {
     "AddIngredient": {
-      "Item": "Avalon/FrostShard",
-      "Count": 5
+      "Item": "Avalon/ToxinShard",
+      "Count": 1
     }
   }
 }

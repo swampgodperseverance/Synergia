@@ -1,0 +1,25 @@
+{
+  "Criteria": "All",
+
+  "Conditions": {
+    "CreatesResult": {
+      "Item": "ValhallaMod/ExplosiveCharge"
+    }
+  },
+
+  "Changes": {
+    "ChangeIngredient": {
+      "Item": "Terraria/Grenade",
+      "NewItem": "Terraria/Dynamite",
+      "NewCount": 3
+    }
+  },
+
+  "Changes": {
+    "ChangeIngredient": {
+      "Item": "Terraria/ExplosivePowder",
+      "NewItem": "Avalon/FireShard",
+      "NewCount": 1
+    }
+  }
+}

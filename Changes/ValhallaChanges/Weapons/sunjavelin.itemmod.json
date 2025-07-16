@@ -1,0 +1,11 @@
+{
+	"Item": "ValhallaMod/SunJavelin",
+	
+	"Changes": {
+		"Terraria": {
+		"Damage": "+16",
+		"UseTime": "-3",
+		"ShootSpeed": "+6"
+		}
+	}
+}

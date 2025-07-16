@@ -1,0 +1,9 @@
+{
+	"Item": "ValhallaMod/FlameTurretTool",
+	
+	"Changes": {
+		"Terraria": {
+		"Damage": "-12",
+		}
+	}
+}

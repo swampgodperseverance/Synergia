@@ -3,15 +3,7 @@
 
   "Conditions": {
     "CreatesResult": {
-      "Item": "ValhallaMod/Beezon"
-    }
-  },
-
-  "Changes": {
-    "ChangeIngredient": {
-      "Item": "Terraria/Uzi",
-      "NewItem": "Avalon/Thompson",
-      "NewCount": 1
+      "Item": "ValhallaMod/ChlorophyleGlaive"
     }
   },
 

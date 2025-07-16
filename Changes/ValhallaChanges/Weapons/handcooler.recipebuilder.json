@@ -1,0 +1,27 @@
+{
+	"Result": {
+		"Item": "ValhallaMod/HandCooler"
+	},
+	
+	"Ingredient": {
+		"Item": "Terraria/HallowedBar",
+		"Count": 10
+	},
+        
+	"Ingredient": {
+		"Item": "ValhallaMod/JadeCloth",
+		"Count": 8
+	},
+	
+	"Ingredient": {
+		"Item": "Avalon/FrigidShard",
+		"Count": 5
+	},
+
+	"Ingredient": {
+		"Item": "Avalon/SoulofIce",
+		"Count": 5
+	},
+
+	"Tile": "Terraria/MythrilAnvil"
+}

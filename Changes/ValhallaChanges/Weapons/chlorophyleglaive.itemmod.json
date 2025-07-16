@@ -1,0 +1,10 @@
+{
+	"Item": "ValhallaMod/ChlorophyleGlaive",
+	
+	"Changes": {
+		"Terraria": {
+		"Damage": "+6",
+		"ShootSpeed": "+9"
+		}
+	}
+}

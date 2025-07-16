@@ -1,0 +1,22 @@
+{
+	"Result": {
+		"Item": "ValhallaMod/ReptileRavager"
+	},
+	
+	"Ingredient": {
+		"Item": "Avalon/WoodenClub",
+		"Count": 1
+	},
+	
+	"Ingredient": {
+		"Item": "Avalon/UrchinMace",
+		"Count": 1
+	},
+
+	"Ingredient": {
+		"Item": "NewHorizons/AncientScrap",
+		"Count": 10
+	},
+
+	"Tile": "Terraria/Anvils"
+}

@@ -1,0 +1,10 @@
+{
+	"Item": "ValhallaMod/TerraGlaive",
+	
+	"Changes": {
+		"Terraria": {
+		"Damage": "+26",
+		"ShootSpeed": "+2"
+		}
+	}
+}
