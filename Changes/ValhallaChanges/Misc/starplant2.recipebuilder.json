@@ -1,0 +1,22 @@
+{
+	"Result": {
+		"Item": "ValhallaMod/StarPlantPot"
+	},
+	
+	"Ingredient": {
+		"Item": "Avalon/DuskplateBlock",
+		"Count": 10
+	},
+	
+	"Ingredient": {
+		"Item": "Terraria/FallenStar",
+		"Count": 1
+	},
+	
+	"Ingredient": {
+		"Item": "starforgedclassic/AzuriteBarItem",
+		"Count": 5
+	},
+
+	"Tile": "Terraria/Anvils"
+}

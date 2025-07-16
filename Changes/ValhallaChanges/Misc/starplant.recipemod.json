@@ -1,0 +1,17 @@
+{
+  "Criteria": "All",
+
+  "Conditions": {
+    "CreatesResult": {
+      "Item": "ValhallaMod/StarPlantPot"
+    }
+  },
+
+  "Changes": {
+    "ChangeIngredient": {
+      "Item": "Terraria/DirtBlock",
+      "NewItem": "starforgedclassic/AzuriteBarItem",
+      "NewCount": 5
+    }
+  }
+}

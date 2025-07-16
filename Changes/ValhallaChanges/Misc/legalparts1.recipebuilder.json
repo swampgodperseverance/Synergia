@@ -1,0 +1,17 @@
+{
+	"Result": {
+		"Item": "ValhallaMod/LegalParts"
+	},
+	
+	"GroupIngredient": {
+		"Group": "IronBar",
+		"Count": 6
+	},
+	
+	"GroupIngredient": {
+		"Group": "Wood",
+		"Count": 3
+	},
+
+	"Tile": "Terraria/HeavyWorkBench"
+}
