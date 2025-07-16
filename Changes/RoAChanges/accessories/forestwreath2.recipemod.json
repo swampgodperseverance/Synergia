@@ -1,0 +1,16 @@
+{
+  "Criteria": "All",
+
+  "Conditions": {
+    "CreatesResult": {
+      "Item": "RoA/ForestWreath2",
+    }
+  },
+
+  "Changes": {
+    "AddIngredient": {
+      "Item": "Avalon/EarthShard",
+      "Count": 3
+    }
+  }
+}

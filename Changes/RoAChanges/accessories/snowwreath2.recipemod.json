@@ -1,0 +1,16 @@
+{
+  "Criteria": "All",
+
+  "Conditions": {
+    "CreatesResult": {
+      "Item": "RoA/SnowWreath2",
+    }
+  },
+
+  "Changes": {
+    "AddIngredient": {
+      "Item": "Avalon/FrostShard",
+      "Count": 3
+    }
+  }
+}

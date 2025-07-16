@@ -1,0 +1,16 @@
+{
+  "Criteria": "All",
+
+  "Conditions": {
+    "CreatesResult": {
+      "Item": "RoA/BeachWreath2",
+    }
+  },
+
+  "Changes": {
+    "AddIngredient": {
+      "Item": "Avalon/WaterShard",
+      "Count": 3
+    }
+  }
+}
