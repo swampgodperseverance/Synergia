@@ -1,0 +1,10 @@
+{
+  "NPC": "Consolaria/Ocram",
+
+  "Changes": {
+    "Terraria": {
+      "Health": "+63000",
+      "Defense": "+7"
+    }
+  }
+}

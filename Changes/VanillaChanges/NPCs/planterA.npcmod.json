@@ -1,0 +1,10 @@
+{
+  "NPC": "Terraria/Plantera",
+
+  "Changes": {
+    "Terraria": {
+      "Health": "+28000",
+      "Defense": "+15"
+    }
+  }
+}

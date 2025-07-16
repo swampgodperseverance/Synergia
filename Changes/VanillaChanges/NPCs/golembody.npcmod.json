@@ -1,0 +1,10 @@
+{
+  "NPC": "Terraria/Golem",
+
+  "Changes": {
+    "Terraria": {
+      "Health": "+26000",
+      "Defense": "+15"
+    }
+  }
+}
