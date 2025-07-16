@@ -1,0 +1,22 @@
+{
+	"Result": {
+		"Item": "NewHorizons/SkyHood"
+	},
+	
+	"Ingredient": {
+		"Item": "Terraria/Feather",
+		"Count": 6
+	},
+        
+	"Ingredient": {
+		"Item": "Avalon/DuskplateBlock",
+		"Count": 2
+	},
+
+	"Ingredient": {
+		"Item": "Avalon/BreezeShard",
+		"Count": 1
+	},
+	
+	"Tile": "Terraria/SkyMill"
+}
