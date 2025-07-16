@@ -1,0 +1,18 @@
+{
+	"Result": {
+		"Item": "Terraria/Apple",
+                "Count": 3
+	},
+	
+	"Ingredient": {
+		"Item": "Avalon/RottenApple",
+		"Count": 30
+	},
+	
+	"Ingredient": {
+		"Item": "RoA/NaturesHeart",
+		"Count": 1
+	},
+
+	"Tile": "Terraria/CookingPots"
+}

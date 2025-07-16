@@ -1,0 +1,10 @@
+{
+	"Item": "Vanilla/OculithShard",
+	
+	"Changes": {
+		"Terraria": {
+		"Damage": "+24",
+		"UseTime": "-2"
+		}
+	}
+}

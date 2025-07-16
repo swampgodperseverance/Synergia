@@ -1,0 +1,17 @@
+{
+  "Criteria": "All",
+
+  "Conditions": {
+    "CreatesResult": {
+      "Item": "Terraria/OpticStaff"
+    }
+  },
+
+  "Changes": {
+    "ChangeIngredient": {
+      "Item": "Terraria/Lens",
+      "NewItem": "NewHorizons/EyeOnStick",
+      "NewCount": 1
+    }
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "Criteria": "All",
+
+  "Conditions": {
+    "CreatesResult": {
+      "Item": "Consolaria/Tonbogiri"
+    }
+  },
+
+  "Changes": {
+    "ChangeIngredient": {
+      "Item": "Terraria/Gungnir",
+      "NewItem": "ValhallaMod/TerraSpear",
+      "NewCount": 1
+    }
+  }
+}

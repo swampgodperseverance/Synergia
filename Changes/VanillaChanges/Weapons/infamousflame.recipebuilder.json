@@ -1,0 +1,17 @@
+{
+	"Result": {
+		"Item": "Vanilla/InfamousFlame"
+	},
+	
+	"Ingredient": {
+		"Item": "Terraria/AcornAxe",
+		"Count": 1
+	},
+        
+	"Ingredient": {
+		"Item": "RoA/FlamingFabric",
+		"Count": 6
+	},
+	
+	"Tile": "Terraria/Hellforge"
+}

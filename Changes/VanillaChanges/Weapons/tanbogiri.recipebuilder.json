@@ -1,0 +1,22 @@
+{
+	"Result": {
+		"Item": "Consolaria/Tonbogiri"
+	},
+	
+	"Ingredient": {
+		"Item": "Avalon/TroxiniumBar",
+		"Count": 10
+	},
+	
+	"Ingredient": {
+		"Item": "Consolaria/SoulofBlight",
+		"Count": 15
+	},
+
+	"Ingredient": {
+		"Item": "ValhallaMod/TerraSpear",
+		"Count": 1
+	},
+
+	"Tile": "Terraria/MythrilAnvil"
+}

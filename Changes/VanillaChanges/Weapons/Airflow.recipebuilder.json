@@ -1,0 +1,22 @@
+{
+	"Result": {
+		"Item": "Vanilla/Airflow"
+	},
+	
+	"Ingredient": {
+		"Item": "starforgedclassic/Solarang",
+		"Count": 1
+	},
+        
+	"Ingredient": {
+		"Item": "Terraria/Feather",
+		"Count": 4
+	},
+
+	"Ingredient": {
+		"Item": "Avalon/DesertFeather",
+		"Count": 2
+	},
+	
+	"Tile": "starforgedclassic/StarForgeTile"
+}
