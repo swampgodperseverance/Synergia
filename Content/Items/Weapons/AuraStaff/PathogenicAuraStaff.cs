@@ -12,6 +12,7 @@ namespace Vanilla.Content.Items.Weapons.AuraStaff
 		public override void SetStaticDefaults()
 		{
 			Item.staff[Item.type] = true;
+			ValhallaMod.Values.AuraScythe[Item.type] = true;
 		}
 
 		public override void SetDefaults()
