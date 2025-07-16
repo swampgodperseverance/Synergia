@@ -7,7 +7,7 @@ using static Terraria.Audio.SoundEngine;
 
 namespace Vanilla.Content.Projectiles
 {
-	public class DurataniumJavelinProjectile : ModProjectile
+	public class NaquadahProjectile : ModProjectile
 	{
 		public override void SetDefaults()
 		{
@@ -18,7 +18,7 @@ namespace Vanilla.Content.Projectiles
 			proj.aiStyle = 1;
 			proj.friendly = true;
 			proj.DamageType = DamageClass.Throwing;
-			proj.penetrate = 3; // across 3 enemy
+			proj.penetrate = 1; 
 			proj.timeLeft = 60 * 5; // live 5 seconds
 			proj.ignoreWater = true;
 			proj.tileCollide = true;

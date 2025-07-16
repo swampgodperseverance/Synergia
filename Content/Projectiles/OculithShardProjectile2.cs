@@ -24,6 +24,9 @@ namespace Vanilla.Content.Projectiles
 			proj.tileCollide = true;
 
 			AIType = ProjectileID.BoneJavelin;
+
+			ProjectileID.Sets.TrailCacheLength[Projectile.type] = 10; // количество кадров трейла
+			ProjectileID.Sets.TrailingMode[Projectile.type] = 0;      // тип трейла (0 = обычный)
 		}
 
 		public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
@@ -39,7 +42,7 @@ namespace Vanilla.Content.Projectiles
 			PlaySound(SoundID.Dig, Projectile.position);
 		}
 
-		public override void Kill(int timeLeft)
+		public override void OnKill(int timeLeft)
 		{
 			Dust.NewDustPerfect(
 					Projectile.Center,

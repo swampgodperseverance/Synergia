@@ -1,13 +1,14 @@
-﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.Audio;
+using Vanilla.Content.Buffs;
 using static Terraria.Audio.SoundEngine;
 
 namespace Vanilla.Content.Projectiles
 {
-	public class DurataniumJavelinProjectile : ModProjectile
+	public class EverwoodJavelinProjectile : ModProjectile
 	{
 		public override void SetDefaults()
 		{
@@ -18,7 +19,7 @@ namespace Vanilla.Content.Projectiles
 			proj.aiStyle = 1;
 			proj.friendly = true;
 			proj.DamageType = DamageClass.Throwing;
-			proj.penetrate = 3; // across 3 enemy
+			proj.penetrate = 1; // across 1 enemy
 			proj.timeLeft = 60 * 5; // live 5 seconds
 			proj.ignoreWater = true;
 			proj.tileCollide = true;
@@ -28,33 +29,40 @@ namespace Vanilla.Content.Projectiles
 
 		public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
 		{
-			// On hit dusts
-			for (int i = 0; i < 4; i++)
+			// Эффект частиц при попадании
+			for (int i = 0; i < 8; i++)
 			{
 				Dust.NewDust(Projectile.position, Projectile.width, Projectile.height, 
-				DustID.GemAmethyst, Projectile.velocity.X * 0.2f, Projectile.velocity.Y * 0.2f, 
+				DustID.HallowedPlants, Projectile.velocity.X * 0.2f, Projectile.velocity.Y * 0.2f, 
 				100, default, 1.2f);
+			}
+
+			if (Main.rand.NextFloat() < 0.2f)
+			{
+				if (target.boss)
+				{
+					target.AddBuff(ModContent.BuffType<EverwoodJavelinDebuff>(), 270);
+				}
+				target.AddBuff(ModContent.BuffType<EverwoodJavelinDebuff>(), 90);
 			}
 
 			PlaySound(SoundID.Dig, Projectile.position);
 		}
 
-		public override void OnKill(int timeLeft)
+		public override void Kill(int timeLeft)
 		{
-			for (int i = 0; i < 6; i++)
+			// Эффект при уничтожении (если не попал во врага, а упал на землю)
+			for (int i = 0; i < 10; i++)
 			{
 				Dust.NewDust(Projectile.position, Projectile.width, Projectile.height, 
-				DustID.GemAmethyst, Projectile.velocity.X * 0.5f, Projectile.velocity.Y * 0.5f);
+				DustID.HallowedPlants, Projectile.velocity.X * 0.5f, Projectile.velocity.Y * 0.5f);
 			}
 			PlaySound(SoundID.Dig, Projectile.position);
 		}
 
 		public override void AI()
 		{
-			Projectile.velocity *= 1.01f;
-
-			if (Projectile.velocity.Length() > 20f)
-				Projectile.velocity = Vector2.Normalize(Projectile.velocity) * 20f;
+			Lighting.AddLight(Projectile.Center + new Vector2(0, -10f), 0.05f, 0.1f, 0.9f);
 		}
 	}
 }

@@ -10,7 +10,7 @@ namespace Vanilla.Content.Projectiles
     {
         public override void SetStaticDefaults()
         {
-            // DisplayName.SetDefault("Plantera Flower");
+            DisplayName.SetDefault("Plantera Flower");
             Main.projFrames[Projectile.type] = 5;
         }
 
@@ -39,31 +39,9 @@ namespace Vanilla.Content.Projectiles
                 Projectile.frame = (Projectile.frame + 1) % Main.projFrames[Projectile.type];
             }
 
-            // Медленное движение к ближайшему игроку
-            Player target = Main.player[Player.FindClosest(Projectile.Center, Projectile.width, Projectile.height)];
-            float speed = 1.0f; // скорость движения
-
-            if (target != null && target.active && !target.dead)
-            {
-                Vector2 direction = target.Center - Projectile.Center;
-                float distance = direction.Length();
-
-                if (distance > 10f) // не приближаться слишком близко
-                {
-                    direction.Normalize();
-                    Projectile.velocity = Vector2.Lerp(Projectile.velocity, direction * speed, 0.05f); // плавное движение
-                }
-                else
-                {
-                    Projectile.velocity *= 0.9f; // замедляемся возле игрока
-                }
-            }
-
-            Projectile.position += Projectile.velocity;
-
-            // Спавн волн каждые 50 тиков
+            // Спавн волн каждые 30 тиков
             timer++;
-            if (timer % 50 == 0 && Main.netMode != NetmodeID.MultiplayerClient)
+            if (timer % 30 == 0 && Main.netMode != NetmodeID.MultiplayerClient)
             {
                 Vector2 spawnPos = Projectile.Center;
 

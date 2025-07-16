@@ -7,7 +7,7 @@ using static Terraria.Audio.SoundEngine;
 
 namespace Vanilla.Content.Projectiles
 {
-	public class DurataniumJavelinProjectile : ModProjectile
+	public class OculithShardProjectile : ModProjectile
 	{
 		public override void SetDefaults()
 		{
@@ -18,7 +18,7 @@ namespace Vanilla.Content.Projectiles
 			proj.aiStyle = 1;
 			proj.friendly = true;
 			proj.DamageType = DamageClass.Throwing;
-			proj.penetrate = 3; // across 3 enemy
+			proj.penetrate = 2; // across 2 enemy
 			proj.timeLeft = 60 * 5; // live 5 seconds
 			proj.ignoreWater = true;
 			proj.tileCollide = true;
@@ -29,23 +29,25 @@ namespace Vanilla.Content.Projectiles
 		public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
 		{
 			// On hit dusts
-			for (int i = 0; i < 4; i++)
+			for (int i = 0; i < 8; i++)
 			{
 				Dust.NewDust(Projectile.position, Projectile.width, Projectile.height, 
-				DustID.GemAmethyst, Projectile.velocity.X * 0.2f, Projectile.velocity.Y * 0.2f, 
+				DustID.Shadowflame, Projectile.velocity.X * 0.2f, Projectile.velocity.Y * 0.2f, 
 				100, default, 1.2f);
 			}
 
 			PlaySound(SoundID.Dig, Projectile.position);
 		}
 
-		public override void OnKill(int timeLeft)
+		public override void Kill(int timeLeft)
 		{
-			for (int i = 0; i < 6; i++)
-			{
-				Dust.NewDust(Projectile.position, Projectile.width, Projectile.height, 
-				DustID.GemAmethyst, Projectile.velocity.X * 0.5f, Projectile.velocity.Y * 0.5f);
-			}
+			Dust.NewDustPerfect(
+					Projectile.Center,
+					DustID.Shadowflame,
+					Main.rand.NextVector2Circular(7f, 7f),
+					100, default, 2.5f
+				);
+
 			PlaySound(SoundID.Dig, Projectile.position);
 		}
 
