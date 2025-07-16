@@ -1,0 +1,18 @@
+{
+	"Result": {
+		"Item": "Avalon/RhodiumOre",
+		"Count": 40
+	},
+	
+	"Ingredient": {
+		"Item": "Avalon/IridiumOre",
+		"Count": 40
+	},
+	
+	"Ingredient": {
+		"Item": "Avalon/Sulphur",
+		"Count": 1
+	},
+
+	"Tile": "Avalon/Catalyzer"
+}

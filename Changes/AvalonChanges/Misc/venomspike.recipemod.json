@@ -10,8 +10,8 @@
   "Changes": {
     "ChangeIngredient": {
       "Item": "Terraria/FlaskofVenom",
-      "NewItem": "Avalon/VenomShard",
-      "NewCount": 1
+      "NewItem": "Terraria/VialofVenom",
+      "NewCount": 5
     }
   }
 }
