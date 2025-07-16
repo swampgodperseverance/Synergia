@@ -1,0 +1,48 @@
+{
+  "Criteria": "All",
+
+  "Conditions": {
+    "CreatesResult": {
+      "Item": "Avalon/AFlowerlessPlant"
+    }
+  },
+
+  "Changes": {
+    "RemoveIngredient": {
+      "Item": "Terraria/FallenStar",
+    }
+  },
+
+  "Changes": {
+    "RemoveRecipeGroup": {
+      "Group": "IronBar",
+    }
+  },
+
+  "Changes": {
+    "RemoveRecipeGroup": {
+      "Group": "Wood",
+    }
+  },
+
+  "Changes": {
+    "AddIngredient": {
+      "Item": "ValhallaMod/DamagedBook",
+      "Count": 1
+    }
+  },
+  
+  "Changes": {
+    "AddIngredient": {
+      "Item": "Consolaria/WhiteThread",
+      "Count": 10
+    }
+  },
+  
+  "Changes": {
+    "AddIngredient": {
+      "Item": "Terraria/FallenStar",
+      "Count": 6
+    }
+  }
+}

@@ -1,0 +1,30 @@
+{
+  "Criteria": "All",
+
+  "Conditions": {
+    "CreatesResult": {
+      "Item": "Avalon/HadesCross"
+    }
+  },
+
+  "Changes": {
+    "RemoveIngredient": {
+      "Item": "Terraria/SoulofFright",
+    }
+  },
+
+  "Changes": {
+    "ChangeIngredient": {
+      "Item": "Terraria/LavaBucket",
+      "NewItem": "ValhallaMod/Sinstone",
+      "NewCount": 10
+    }
+  },
+
+  "Changes": {
+    "AddIngredient": {
+      "Item": "Terraria/SoulofFright",
+      "Count": 6
+    }
+  }
+}

@@ -1,0 +1,74 @@
+{
+  "Criteria": "All",
+
+  "Conditions": {
+    "CreatesResult": {
+      "Item": "Avalon/AlchemicalSkull"
+    }
+  },
+
+  "Changes": {
+    "RemoveIngredient": {
+      "Item": "Terraria/ObsidianShield",
+ 
+    }
+  },
+
+  "Changes": {
+    "RemoveIngredient": {
+      "Item": "Terraria/IronskinPotion",
+    }
+  },
+
+  "Changes": {
+    "RemoveIngredient": {
+      "Item": "Terraria/BattlePotion",
+    }
+  },
+
+  "Changes": {
+    "RemoveIngredient": {
+      "Item": "Terraria/ThornsPotion",
+    }
+  },
+
+  "Changes": {
+    "RemoveIngredient": {
+      "Item": "Terraria/WaterWalkingPotion",
+    }
+  },
+
+  "Changes": {
+    "RemoveIngredient": {
+      "Item": "Terraria/Bone",
+    }
+  },
+  
+  "Changes": {
+    "AddIngredient": {
+      "Item": "RoA/AlchemicalSkull",
+      "Count": 1
+    }
+  },
+  
+  "Changes": {
+    "AddIngredient": {
+      "Item": "ValhallaMod/NecroBuckler",
+      "Count": 1
+    }
+  },
+  
+  "Changes": {
+    "AddIngredient": {
+      "Item": "ValhallaMod/Sinstone",
+      "Count": 10
+    }
+  },
+  
+  "Changes": {
+    "AddIngredient": {
+      "Item": "Avalon/MysticalClaw",
+      "Count": 1
+    }
+  }
+}

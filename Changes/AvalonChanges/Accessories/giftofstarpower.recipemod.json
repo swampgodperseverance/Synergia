@@ -14,6 +14,14 @@
   },
 
   "Changes": {
+    "ChangeIngredient": {
+      "Item": "Terraria/ManaFlower",
+      "NewItem": "ValhallaMod/CondensedKnowledge",
+      "NewCount": 1
+    }
+  },
+
+  "Changes": {
     "AddIngredient": {
       "Item": "Terraria/FragmentNebula",
       "Count": 10

@@ -1,0 +1,31 @@
+{
+  "Criteria": "All",
+
+  "Conditions": {
+    "CreatesResult": {
+      "Item": "Avalon/CloakofAssists"
+    }
+  },
+
+  "Changes": {
+    "ChangeIngredient": {
+      "Item": "Terraria/PanicNecklace",
+      "NewItem": "ValhallaMod/BeeNecklace",
+      "NewCount": 1
+    }
+  },
+
+  "Changes": {
+    "ChangeIngredient": {
+      "Item": "Terraria/SweetheartNecklace",
+      "NewItem": "ValhallaMod/BeeNecklace",
+      "NewCount": 1
+    }
+  },
+
+  "Changes": {
+    "RemoveIngredient": {
+      "Item": "Terraria/HoneyComb",
+    }
+  }
+}

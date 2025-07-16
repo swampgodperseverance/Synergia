@@ -1,0 +1,37 @@
+{
+  "Criteria": "All",
+
+  "Conditions": {
+    "CreatesResult": {
+      "Item": "Avalon/DullingTotem"
+    }
+  },
+
+  "Changes": {
+    "RemoveIngredient": {
+      "Item": "Terraria/BandofRegeneration",
+    }
+  },
+
+  "Changes": {
+    "ChangeIngredient": {
+      "Item": "Terraria/Shackle",
+      "NewItem": "ValhallaMod/NecroBuckler",
+      "NewCount": 1
+    }
+  },
+
+  "Changes": {
+    "AddIngredient": {
+      "Item": "Avalon/DiamondAmulet",
+      "Count": 1
+    }
+  },
+
+  "Changes": {
+    "AddIngredient": {
+      "Item": "Terraria/BandofRegeneration",
+      "Count": 1
+    }
+  }
+}
