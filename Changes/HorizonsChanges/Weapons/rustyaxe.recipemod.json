@@ -1,0 +1,23 @@
+{
+  "Criteria": "All",
+
+  "Conditions": {
+    "CreatesResult": {
+      "Item": "NewHorizons/RustyAxe"
+    }
+  },
+
+  "Changes": {
+    "RemoveIngredient": {
+      "Item": "Terraria/Wood"
+    }
+  },
+
+  "Changes": {
+    "ChangeIngredient": {
+      "Item": "NewHorizons/AncientScrap",
+      "NewItem": "NewHorizons/AncientScrap",
+      "NewCount": 1
+    }
+  }
+}

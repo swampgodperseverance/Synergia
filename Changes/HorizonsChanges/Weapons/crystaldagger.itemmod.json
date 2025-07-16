@@ -1,0 +1,11 @@
+{
+	"Item": "NewHorizons/CrystalDagger",
+	
+	"Changes": {
+		"Terraria": {
+		"Damage": "+2",
+		"UseTime": "-2",
+		"ShootSpeed": "+5"
+		}
+	}
+}

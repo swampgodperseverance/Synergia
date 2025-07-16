@@ -1,0 +1,18 @@
+{
+	"Result": {
+		"Item": "NewHorizons/RustyAxe",
+                "Count": 80
+	},
+	
+	"GroupIngredient": {
+		"Group": "Wood",
+		"Count": 2
+	},
+        
+	"Ingredient": {
+		"Item": "NewHorizons/AncientScrap",
+		"Count": 4
+	},
+
+	"Tile": "Terraria/Anvils"
+}

@@ -1,0 +1,17 @@
+{
+	"Result": {
+		"Item": "NewHorizons/WandOfMana"
+	},
+	
+	"Ingredient": {
+		"Item": "Avalon/MoonplateBlock",
+		"Count": 14
+	},
+        
+	"Ingredient": {
+		"Item": "Terraria/ManaCrystal",
+		"Count": 1
+	},
+	
+	"Tile": "Terraria/Anvils"
+}

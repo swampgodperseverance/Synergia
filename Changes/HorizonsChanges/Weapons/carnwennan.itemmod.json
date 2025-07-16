@@ -1,0 +1,11 @@
+{
+	"Item": "NewHorizons/Carnwennan",
+	
+	"Changes": {
+		"Terraria": {
+		"Damage": "+16",
+		"UseTime": "-3",
+		"ShootSpeed": "+6"
+		}
+	}
+}

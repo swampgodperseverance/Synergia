@@ -22,8 +22,8 @@
 
   "Changes": {
     "AddIngredient": {
-      "Item": "Terraria/Rope",
-      "Count": 20
+      "Item": "ValhallaMod/ElasticCord",
+      "Count": 1
     }
   }
 }

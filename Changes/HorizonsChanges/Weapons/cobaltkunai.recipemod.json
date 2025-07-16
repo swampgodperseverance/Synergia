@@ -1,0 +1,24 @@
+{
+  "Criteria": "All",
+
+  "Conditions": {
+    "CreatesResult": {
+      "Item": "NewHorizons/CobaltKunai"
+    }
+  },
+
+  "Changes": {
+    "ChangeIngredient": {
+      "Item": "Terraria/CobaltBar",
+      "NewItem": "Terraria/CobaltOre",
+      "NewCount": 2
+    }
+  },
+
+  "Changes": {
+    "AddRecipeGroup": {
+      "Group": "IronBar",
+      "Count": 1
+    }
+  }
+}

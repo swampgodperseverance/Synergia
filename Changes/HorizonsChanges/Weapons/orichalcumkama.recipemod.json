@@ -1,0 +1,24 @@
+{
+  "Criteria": "All",
+
+  "Conditions": {
+    "CreatesResult": {
+      "Item": "NewHorizons/OrichalcumKama"
+    }
+  },
+
+  "Changes": {
+    "ChangeIngredient": {
+      "Item": "Terraria/OrichalcumBar",
+      "NewItem": "Terraria/OrichalcumOre",
+      "NewCount": 2
+    }
+  },
+
+  "Changes": {
+    "AddRecipeGroup": {
+      "Group": "IronBar",
+      "Count": 1
+    }
+  }
+}

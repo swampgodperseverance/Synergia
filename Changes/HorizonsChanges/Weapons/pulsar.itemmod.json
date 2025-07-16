@@ -1,0 +1,11 @@
+{
+	"Item": "NewHorizons/Pulsar",
+	
+	"Changes": {
+		"Terraria": {
+		"Damage": "+16",
+		"UseTime": "-5",
+		"ShootSpeed": "+6"
+		}
+	}
+}

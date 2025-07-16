@@ -1,0 +1,10 @@
+{
+	"Item": "NewHorizons/Kunai",
+	
+	"Changes": {
+		"Terraria": {
+		"Damage": "+12",
+ 		"UseTime": "-3"
+		}
+	}
+}

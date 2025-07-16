@@ -1,0 +1,17 @@
+{
+  "Criteria": "All",
+
+  "Conditions": {
+    "CreatesResult": {
+      "Item": "NewHorizons/Carnwennan"
+    }
+  },
+
+  "Changes": {
+    "ChangeIngredient": {
+      "Item": "Terraria/SoulofLight",
+      "NewItem": "ValhallaMod/PureGoldChunk",
+      "NewCount": 5
+    }
+  }
+}

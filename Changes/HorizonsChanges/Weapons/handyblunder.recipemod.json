@@ -3,14 +3,14 @@
 
   "Conditions": {
     "CreatesResult": {
-      "Item": "NewHorizons/HungryWorm"
+      "Item": "NewHorizons/HandicraftedBlunderbuss"
     }
   },
 
   "Changes": {
     "ChangeIngredient": {
-      "Item": "Terraria/DemoniteBar",
-      "NewItem": "ValhallaMod/BambooWhip",
+      "Item": "Terraria/IllegalGunParts",
+      "NewItem": "ValhallaMod/LegalParts",
       "NewCount": 1
     }
   }

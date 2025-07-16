@@ -14,6 +14,11 @@
 	},
 
 	"Ingredient": {
+		"Item": "Terraria/OnyxBlaster",
+		"Count": 1
+	},
+
+	"Ingredient": {
 		"Item": "Terraria/SoulofMight",
 		"Count": 1
 	},
