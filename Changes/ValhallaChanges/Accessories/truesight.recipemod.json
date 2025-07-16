@@ -1,0 +1,31 @@
+{
+  "Criteria": "All",
+
+  "Conditions": {
+    "CreatesResult": {
+      "Item": "ValhallaMod/TrueSight"
+    }
+  },
+
+  "Changes": {
+    "AddIngredient": {
+      "Item": "Avalon/Tourmaline",
+      "Count": 1
+ 
+    }
+  },
+
+  "Changes": {
+    "AddIngredient": {
+      "Item": "Avalon/Peridot",
+      "Count": 1
+    }
+  },
+  
+  "Changes": {
+    "AddIngredient": {
+      "Item": "Avalon/Zircon",
+      "Count": 1
+    }
+  }
+}

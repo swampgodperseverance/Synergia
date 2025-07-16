@@ -1,0 +1,17 @@
+{
+  "Criteria": "All",
+
+  "Conditions": {
+    "CreatesResult": {
+      "Item": "ValhallaMod/SquareRoot"
+    }
+  },
+
+  "Changes": {
+    "ChangeIngredient": {
+      "Item": "Terraria/GrassSeeds",
+      "NewItem": "Avalon/EarthShard",
+      "NewCount": 3
+    }
+  }
+}

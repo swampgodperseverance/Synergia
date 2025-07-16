@@ -1,0 +1,25 @@
+{
+  "Criteria": "All",
+
+  "Conditions": {
+    "CreatesResult": {
+      "Item": "ValhallaMod/MagnetHorseshoe"
+    }
+  },
+
+  "Changes": {
+    "ChangeIngredient": {
+      "Item": "Terraria/ManaCrystal",
+      "NewItem": "Avalon/Starstone",
+      "NewCount": 3
+    }
+  },
+
+  "Changes": {
+    "ChangeIngredient": {
+      "Item": "Terraria/LifeCrystal",
+      "NewItem": "Avalon/Heartstone",
+      "NewCount": 3
+    }
+  }
+}

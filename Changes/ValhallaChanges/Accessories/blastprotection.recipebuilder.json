@@ -1,0 +1,18 @@
+{
+	"Result": {
+		"Item": "ValhallaMod/BlastProtectionVest",
+		"Count": 1
+	},
+	
+	"Ingredient": {
+		"Item": "Terraria/StoneBlock",
+		"Count": 40
+	},
+	
+	"Ingredient": {
+		"Item": "NewHorizons/AncientScrap",
+		"Count": 1
+	},
+
+	"Tile": "Terraria/Anvils"
+}

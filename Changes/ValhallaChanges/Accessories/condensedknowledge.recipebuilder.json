@@ -1,0 +1,23 @@
+{
+	"Result": {
+		"Item": "ValhallaMod/CondensedKnowledge",
+		"Count": 1
+	},
+	
+	"Ingredient": {
+		"Item": "Terraria/Book",
+		"Count": 3
+	},
+	
+	"Ingredient": {
+		"Item": "Terraria/ManaCrystal",
+		"Count": 1
+	},
+
+	"Ingredient": {
+		"Item": "Terraria/ManaFlower",
+		"Count": 1
+	},
+
+	"Tile": "Terraria/Bookcases"
+}

@@ -1,0 +1,18 @@
+{
+	"Result": {
+		"Item": "ValhallaMod/RocketPack",
+		"Count": 1
+	},
+	
+	"Ingredient": {
+		"Item": "Terraria/StoneBlock",
+		"Count": 20
+	},
+	
+	"Ingredient": {
+		"Item": "Avalon/BloodshotLens",
+		"Count": 1
+	},
+
+	"Tile": "Terraria/Anvils"
+}
