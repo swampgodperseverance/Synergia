@@ -13,5 +13,13 @@
       "NewItem": "Avalon/TrueAeonsEternity",
       "NewCount": 1
     }
+  },
+
+  "Changes": {
+    "ChangeIngredient": {
+      "Item": "ValhallaMod/EvilIngot",
+      "NewItem": "ValhallaMod/BladeEvil",
+      "NewCount": 1
+    }
   }
 }

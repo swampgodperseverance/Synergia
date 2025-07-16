@@ -1,0 +1,17 @@
+{
+	"Result": {
+		"Item": "Avalon/TetanusChakram"
+	},
+	
+	"Ingredient": {
+		"Item": "RoA/Elderwood",
+		"Count": 10
+	},
+        
+	"Ingredient": {
+		"Item": "NewHorizons/AncientScrap",
+		"Count": 6
+	},
+	
+	"Tile": "Terraria/Anvils"
+}

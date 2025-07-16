@@ -1,0 +1,17 @@
+{
+	"Result": {
+		"Item": "Avalon/Blunderblight"
+	},
+	
+	"Ingredient": {
+		"Item": "Terraria/Musket",
+		"Count": 1
+	},
+        
+	"Ingredient": {
+		"Item": "Terraria/IllegalGunParts",
+		"Count": 1
+	},
+
+	"Tile": "Terraria/Anvils"
+}

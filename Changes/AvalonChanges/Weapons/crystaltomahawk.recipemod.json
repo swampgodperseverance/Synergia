@@ -1,0 +1,32 @@
+{
+  "Criteria": "All",
+
+  "Conditions": {
+    "CreatesResult": {
+      "Item": "Avalon/CrystalTomahawk"
+    }
+  },
+
+  "Changes": {
+    "ChangeIngredient": {
+      "Item": "Terraria/CrystalShard",
+      "NewItem": "NewHorizons/RustyAxe",
+      "NewCount": 55
+    }
+  },
+
+  "Changes": {
+    "ChangeIngredient": {
+      "Item": "Terraria/SoulofLight",
+      "NewItem": "Terraria/CrystalShard",
+      "NewCount": 10
+    }
+  },
+
+  "Changes": {
+    "AddIngredient": {
+      "Item": "Terraria/SoulofLight",
+      "Count": 5
+    }
+  },
+}

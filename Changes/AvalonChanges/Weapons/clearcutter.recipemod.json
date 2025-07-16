@@ -1,0 +1,44 @@
+{
+  "Criteria": "All",
+
+  "Conditions": {
+    "CreatesResult": {
+      "Item": "Avalon/ClearCutter"
+    }
+  },
+
+  "Changes": {
+    "ChangeIngredient": {
+      "Item": "Terraria/CrystalShard",
+      "NewItem": "ValhallaMod/DiamondSword",
+      "NewCount": 1
+    }
+  },
+
+  "Changes": {
+    "ChangeIngredient": {
+      "Item": "Terraria/SoulofLight",
+      "NewItem": "Avalon/Starstorm",
+      "NewCount": 1
+    }
+  },
+
+  "Changes": {
+    "AddIngredient": {
+      "Item": "Terraria/CrystalShard",
+      "Count": 10
+    }
+  },
+
+  "Changes": {
+    "AddIngredient": {
+      "Item": "Terraria/SoulofSight",
+      "Count": 10
+    }
+  },
+  "Changes": {
+    "RemoveIngredient": {
+      "Item": "Terraria/PearlstoneBlock",
+    }
+  }	
+}

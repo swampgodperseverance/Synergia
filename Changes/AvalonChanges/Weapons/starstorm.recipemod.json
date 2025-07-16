@@ -1,0 +1,21 @@
+{
+  "Criteria": "All",
+
+  "Conditions": {
+    "CreatesResult": {
+      "Item": "Avalon/Starstorm"
+    }
+  },
+
+  "Changes": {
+    "RemoveIngredient": {
+      "Item": "Terraria/SoulofSight",
+    }
+  },
+
+  "Changes": {
+    "RemoveIngredient": {
+      "Item": "Terraria/SoulofLight",
+    }
+  },
+}
