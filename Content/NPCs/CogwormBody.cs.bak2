@@ -1,0 +1,57 @@
+﻿using Terraria;
+using Terraria.ID;
+using Terraria.ModLoader;
+using Vanilla.Content.NPCs;
+using Microsoft.Xna.Framework;
+
+namespace Vanilla.Content.NPCs
+{
+    public class CogwormBody : ModNPC
+    {
+        private int fireCooldown = Main.rand.Next(100, 200);
+
+        public override void SetStaticDefaults()
+        {
+            DisplayName.SetDefault("Cogworm Body");
+        }
+
+        public override void SetDefaults()
+        {
+            NPC.width = 32;
+            NPC.height = 32;
+            NPC.damage = 25;
+            NPC.defense = 8;
+            NPC.lifeMax = 2500;
+            NPC.knockBackResist = 0f;
+            NPC.noGravity = true;
+            NPC.noTileCollide = true;
+        }
+
+        public override void AI()
+        {
+            NPC.realLife = (int)NPC.ai[3];
+            int prevSegment = (int)NPC.ai[1];
+            if (prevSegment >= 0 && Main.npc[prevSegment].active)
+            {
+                Vector2 dir = Main.npc[prevSegment].Center - NPC.Center;
+                dir.Normalize();
+                dir *= 10f;
+                NPC.velocity = dir;
+            }
+
+            fireCooldown--;
+            if (fireCooldown <= 0)
+            {
+                fireCooldown = Main.rand.Next(120, 180);
+                if (Main.netMode != NetmodeID.MultiplayerClient)
+                {
+                    Vector2 left = new Vector2(-1, 0) * 6f;
+                    Vector2 right = new Vector2(1, 0) * 6f;
+                    Projectile.NewProjectile(NPC.GetSource_FromAI(), NPC.Center, left, ProjectileID.Fireball, 20, 1f, Main.myPlayer);
+                    Projectile.NewProjectile(NPC.GetSource_FromAI(), NPC.Center, right, ProjectileID.Fireball, 20, 1f, Main.myPlayer);
+                }
+            }
+        }
+    }
+}
+

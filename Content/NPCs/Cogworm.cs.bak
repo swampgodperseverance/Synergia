@@ -1,0 +1,61 @@
+﻿using Terraria;
+using Terraria.ID;
+using Terraria.ModLoader;
+using Vanilla.Content.NPCs;
+
+namespace Vanilla.Content.NPCs
+{
+    public class Cogworm : ModNPC
+    {
+        private bool initialized = false;
+
+        public override void SetStaticDefaults()
+        {
+            DisplayName.SetDefault("Cogworm Head");
+            Main.npcFrameCount[NPC.type] = Main.npcFrameCount[NPCID.WyvernHead];
+        }
+
+        public override void SetDefaults()
+        {
+            NPC.width = 40;
+            NPC.height = 40;
+            NPC.damage = 40;
+            NPC.defense = 10;
+            NPC.lifeMax = 5000;
+            NPC.knockBackResist = 0f;
+            NPC.noGravity = true;
+            NPC.noTileCollide = true;
+            NPC.boss = true;
+            NPC.netAlways = true;
+            NPC.aiStyle = 6; // Worm-like movement
+            AIType = NPCID.Destroyer;
+            AnimationType = NPCID.WyvernHead;
+        }
+
+        public override void AI()
+        {
+            // Выполняем один раз: создание тела и хвоста
+            if (!initialized && Main.netMode != NetmodeID.MultiplayerClient)
+            {
+                initialized = true;
+
+                int latestNPC = NPC.whoAmI;
+                int bodyCount = 10;
+
+                for (int i = 0; i < bodyCount; i++)
+                {
+                    int body = NPC.NewNPC(NPC.GetSource_FromAI(), (int)NPC.Center.X, (int)NPC.Center.Y, ModContent.NPCType<CogwormBody>(), NPC.whoAmI, latestNPC);
+                    Main.npc[body].realLife = NPC.whoAmI;
+                    Main.npc[body].ai[3] = NPC.whoAmI;
+                    Main.npc[body].ai[1] = latestNPC;
+                    latestNPC = body;
+                }
+
+                int tail = NPC.NewNPC(NPC.GetSource_FromAI(), (int)NPC.Center.X, (int)NPC.Center.Y, ModContent.NPCType<CogwormTail>(), NPC.whoAmI, latestNPC);
+                Main.npc[tail].realLife = NPC.whoAmI;
+                Main.npc[tail].ai[3] = NPC.whoAmI;
+                Main.npc[tail].ai[1] = latestNPC;
+            }
+        }
+    }
+}

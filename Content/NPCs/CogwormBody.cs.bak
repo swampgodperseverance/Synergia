@@ -1,0 +1,31 @@
+﻿using Terraria;
+using Terraria.ID;
+using Terraria.ModLoader;
+using Vanilla.Content.NPCs;
+
+namespace Vanilla.Content.NPCs
+{
+    public class CogwormBody : ModNPC
+    {
+        public override void SetStaticDefaults()
+        {
+            DisplayName.SetDefault("Cogworm Body");
+            Main.npcFrameCount[NPC.type] = Main.npcFrameCount[NPCID.WyvernBody];
+        }
+
+        public override void SetDefaults()
+        {
+            NPC.width = 30;
+            NPC.height = 30;
+            NPC.damage = 30;
+            NPC.defense = 10;
+            NPC.lifeMax = 2000;
+            NPC.knockBackResist = 0f;
+            NPC.noGravity = true;
+            NPC.noTileCollide = true;
+            NPC.aiStyle = 6;
+            AIType = NPCID.WyvernBody;
+            AnimationType = NPCID.WyvernBody;
+        }
+    }
+}
