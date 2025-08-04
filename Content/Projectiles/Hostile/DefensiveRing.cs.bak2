@@ -1,0 +1,67 @@
+﻿using Terraria;
+using Terraria.ID;
+using Terraria.ModLoader;
+using Microsoft.Xna.Framework;
+
+namespace Vanilla.Content.Projectiles
+{
+    public class DefensiveRing : ModProjectile
+    {
+        private float ScaleFactor => Projectile.timeLeft / 600f;
+        private float Alpha => 1f - (Projectile.timeLeft / 600f);
+
+        public override void SetStaticDefaults()
+        {
+            DisplayName.SetDefault("Кровавое Кольцо");
+            Main.projFrames[Projectile.type] = 8;
+        }
+
+        public override void SetDefaults()
+        {
+            Projectile.width = 296;
+            Projectile.height = 296;
+            Projectile.friendly = false;
+            Projectile.hostile = true;
+            Projectile.penetrate = -1;
+            Projectile.timeLeft = 600;
+            Projectile.tileCollide = false;
+            Projectile.ignoreWater = true;
+            Projectile.scale = 0.1f;
+            Projectile.Opacity = 0f;
+        }
+
+        public override void AI()
+        {
+            // Привязка к боссу
+            if (Projectile.ai[0] is int bossID && Main.npc[bossID].active)
+            {
+                NPC boss = Main.npc[bossID];
+                Projectile.Center = boss.Center + new Vector2(0, -100); // Позиция над боссом
+        
+                // Плавное следование
+                Projectile.velocity = (boss.Center - Projectile.Center) * 0.05f;
+            }
+            else
+            {
+                Projectile.Kill(); // Уничтожить если босс мёртв
+                return;
+            }
+
+            // Ускоренное вращение
+            Projectile.rotation += 0.05f;
+
+            // Интенсивные частицы
+            if (Main.rand.NextBool(3))
+            {
+                Dust.NewDustPerfect(
+                    Projectile.Center + Main.rand.NextVector2Circular(200, 200),
+                    DustID.LifeDrain,
+                    Vector2.Zero,
+                    0,
+                    Color.DarkRed,
+                    2f
+                ).noGravity = true;
+            }
+        }
+    }
+}
