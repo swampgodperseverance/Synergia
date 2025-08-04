@@ -1,0 +1,116 @@
+﻿using Microsoft.Xna.Framework;
+using System;
+using Terraria;
+using Terraria.ModLoader;
+using Terraria.ID;
+
+namespace Vanilla.Content.Projectiles
+{
+    public sealed class MagicStalactite : ModProjectile
+    {
+        public override void SetStaticDefaults()
+        {
+            DisplayName.SetDefault("Magic Stalactite");
+        }
+
+        public override void SetDefaults()
+        {
+            Projectile.width = 10;
+            Projectile.height = 20;
+
+            Projectile.friendly = true;
+            Projectile.DamageType = DamageClass.Magic;
+            Projectile.penetrate = 1;
+            Projectile.timeLeft = 180;
+
+            Projectile.alpha = 255;
+            Projectile.tileCollide = false;
+
+            Projectile.aiStyle = -1; // Custom AI
+        }
+
+        public override void AI()
+        {
+            // Плавное проявление (fade-in)
+            Projectile.alpha = Math.Max(Projectile.alpha - 22, 0);
+
+            // Включить столкновение с тайлами через 1 секунду
+            if (Projectile.timeLeft == 60)
+                Projectile.tileCollide = true;
+
+            // Направление осцилляции (сохраняется один раз)
+            if (Projectile.localAI[0] == 0f)
+            {
+                Player player = Main.player[Projectile.owner];
+                Projectile.localAI[0] = -player.direction;
+            }
+
+            int direction = (int)Projectile.localAI[0];
+
+            // Поворот снаряда по направлению движения
+            Projectile.rotation = Projectile.velocity.ToRotation() + MathHelper.PiOver2;
+
+            // Осцилляция по горизонтали (нарастает)
+            Projectile.ai[0] += 1 * direction;
+            float waveStrength = Projectile.ai[0] / 8f;
+
+            // Используем синус для плавных колебаний
+            float angle = MathHelper.ToRadians(60); // 60 градусов
+            Projectile.velocity.X = (float)(Math.Cos(angle) * waveStrength) * 1.2f;
+
+            // Замедление падения
+            Projectile.velocity.Y *= 0.98f;
+
+            // Пыль: лавовая
+            if (Math.Abs(Projectile.ai[0]) % 8 == 0 && Projectile.velocity.Length() > 6f)
+            {
+                bool intense = Main.rand.NextBool(3);
+                int dustID = DustID.Torch; // Лавовая пыль
+
+                int dust = Dust.NewDust(
+                    Projectile.position,
+                    Projectile.width,
+                    Projectile.height,
+                    dustID,
+                    Projectile.velocity.X * 0.3f,
+                    Projectile.velocity.Y * 0.3f,
+                    100,
+                    default,
+                    intense ? 1.5f : 1.0f
+                );
+
+                Main.dust[dust].noGravity = true;
+                Main.dust[dust].velocity *= 0.75f;
+            }
+        }
+
+        public override bool TileCollideStyle(ref int width, ref int height, ref bool fallThrough, ref Vector2 hitboxCenterFrac)
+        {
+            width = height = 10;
+            return Projectile.timeLeft <= 60;
+        }
+
+        public override void OnKill(int timeLeft)
+        {
+            for (int i = 0; i < 5; i++)
+            {
+                int dustID = DustID.Torch; // Лавовая пыль
+
+                int dust = Dust.NewDust(
+                    Projectile.position,
+                    Projectile.width,
+                    Projectile.height,
+                    dustID,
+                    Main.rand.NextFloat(-1f, 1f),
+                    Main.rand.NextFloat(-1f, 1f),
+                    100,
+                    default,
+                    Main.rand.NextFloat(1.2f, 1.8f)
+                );
+
+                Main.dust[dust].noGravity = true;
+                Main.dust[dust].fadeIn = 1f;
+            }
+        }
+    }
+}
