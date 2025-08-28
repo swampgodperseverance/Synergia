@@ -3,7 +3,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Vanilla.Content.Projectiles.Hostile
+namespace Synergia.Content.Projectiles.Hostile
 {
     public class PlanteraFlower : ModProjectile
     {

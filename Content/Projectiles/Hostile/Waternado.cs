@@ -8,25 +8,22 @@ using Terraria.ModLoader;
 
 namespace Synergia.Content.Projectiles.Hostile
 {
-    public class GiantSandstorm : ModProjectile
+    public class Waternado : ModProjectile
     {
-        private const float MaxScale = 2.0f;
+        private const float MaxScale = 1.0f;
         private const float GrowthRate = 0.01f;
-        private const int FeatherShootInterval = 60;
-        private const float FeatherSpread = 0.3f;
 
         private float currentScale = 0.1f;
-        private int featherTimer = 0;
-        private int direction = 1;
 
         public override void SetDefaults()
         {
-            Projectile.width = 120;
-            Projectile.height = 600;
+            Projectile.width = 60;
+            Projectile.height = 300;
             Projectile.aiStyle = -1;
             Projectile.tileCollide = false;
+            Projectile.hostile = true; 
             Projectile.friendly = false;
-            Projectile.hostile = true;
+            Projectile.damage = 100;
             Projectile.timeLeft = 540;
             Projectile.penetrate = -1;
             Projectile.ignoreWater = true;
@@ -56,48 +53,16 @@ namespace Synergia.Content.Projectiles.Hostile
             Projectile.rotation += 0.1f;
             Projectile.ai[0]++;
 
-            featherTimer++;
-            if (featherTimer >= FeatherShootInterval && currentScale >= MaxScale * 0.5f)
+            if (Main.rand.NextBool(4))
             {
-                ShootFeathers();
-                featherTimer = 0;
-                direction *= -1;
-            }
-        }
-
-        private void ShootFeathers()
-        {
-            if (Main.netMode == NetmodeID.MultiplayerClient)
-                return;
-
-            Vector2 shootDirection = new Vector2(direction, -0.5f).RotatedByRandom(FeatherSpread);
-            shootDirection.Normalize();
-
-            int featherType = ModContent.ProjectileType<Avalon.Projectiles.Hostile.DesertBeak.ShrapnelEgg>();
-            float speed = Main.rand.NextFloat(8f, 12f);
-            int damage = Projectile.damage / 2;
-
-            Projectile.NewProjectile(
-                Projectile.GetSource_FromThis(),
-                Projectile.Center,
-                shootDirection * speed,
-                featherType,
-                damage,
-                1f,
-                Main.myPlayer
-            );
-
-            for (int i = 0; i < 10; i++)
-            {
-                Dust dust = Dust.NewDustPerfect(
-                    Projectile.Center,
-                    DustID.Sand,
-                    shootDirection.RotatedByRandom(0.4f) * Main.rand.NextFloat(2f, 5f),
+                Dust.NewDustPerfect(
+                    Projectile.Center + Main.rand.NextVector2Circular(Projectile.width / 2, Projectile.height / 2),
+                    DustID.Water,
+                    Main.rand.NextVector2Circular(2f, 4f),
                     100,
-                    default,
+                    Color.LightBlue,
                     1.5f
-                );
-                dust.noGravity = true;
+                ).noGravity = true;
             }
         }
 
@@ -114,13 +79,14 @@ namespace Synergia.Content.Projectiles.Hostile
 
                 for (int i = 0; i < (int)(Math.Floor(Projectile.height / heightDivision)); i++)
                 {
-                    Vector2 drawPos = Projectile.Bottom - Main.screenPosition + new Vector2(j * 4).RotatedBy(i * MathHelper.PiOver2 + Main.timeForVisualEffects * 0.1f);
+                    Vector2 drawPos = Projectile.Bottom - Main.screenPosition + new Vector2(j * 4)
+                        .RotatedBy(i * MathHelper.PiOver2 + Main.timeForVisualEffects * 0.1f);
                     opacity = MathHelper.Clamp(opacity + 0.01f, 0, 1);
                     scale = MathHelper.Clamp(scale + 0.03f, 0, 1.1f * currentScale);
 
                     Color color = j == 0 ?
-                        Color.Goldenrod * opacity * Projectile.Opacity :
-                        new Color(255, 255, 255, 128) * opacity * 0.8f * Projectile.Opacity;
+                        Color.LightBlue * opacity * Projectile.Opacity :
+                        new Color(200, 230, 255, 128) * opacity * 0.8f * Projectile.Opacity;
 
                     Main.EntitySpriteDraw(
                         texture,

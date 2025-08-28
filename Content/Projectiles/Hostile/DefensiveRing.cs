@@ -1,10 +1,10 @@
 ﻿using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using Vanilla.Content.Dusts;
+using Synergia.Content.Dusts;
 using Microsoft.Xna.Framework;
 
-namespace Vanilla.Content.Projectiles.Hostile
+namespace Synergia.Content.Projectiles.Hostile
 {
     public class DefensiveRing : ModProjectile
     {

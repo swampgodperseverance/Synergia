@@ -5,7 +5,7 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using System;
 
-namespace Vanilla.Content.Projectiles.Hostile
+namespace Synergia.Content.Projectiles.Hostile
 {
     public class PoisonDnaSeed : ModProjectile
     {

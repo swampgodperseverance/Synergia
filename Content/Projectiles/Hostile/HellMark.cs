@@ -5,7 +5,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Terraria.ID;
 using System;
 
-namespace Vanilla.Content.Projectiles.Hostile
+namespace Synergia.Content.Projectiles.Hostile
 {
     public class HellMark : ModProjectile
     {

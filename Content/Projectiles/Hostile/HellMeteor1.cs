@@ -3,7 +3,7 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using Microsoft.Xna.Framework;
 
-namespace Vanilla.Content.Projectiles.Hostile
+namespace Synergia.Content.Projectiles.Hostile
 {
     public class HellMeteor1 : ModProjectile
     {

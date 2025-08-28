@@ -1,12 +1,12 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using Vanilla.Content.Dusts;
+using Synergia.Content.Dusts;
 using System;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Vanilla.Content.Projectiles.Hostile;
+namespace Synergia.Content.Projectiles.Hostile;
 //roa
 public sealed class PrimordialBlood : ModProjectile 
 {
