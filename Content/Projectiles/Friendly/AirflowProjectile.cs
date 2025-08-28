@@ -2,9 +2,9 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Microsoft.Xna.Framework;
-using Vanilla.Content.Projectiles.Friendly;
+using Synergia.Content.Projectiles.Friendly;
 
-namespace Vanilla.Content.Projectiles.Friendly
+namespace Synergia.Content.Projectiles.Friendly
 {
 	public class AirflowProjectile : ModProjectile
 	{

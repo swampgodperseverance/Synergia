@@ -6,7 +6,7 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using System;
 
-namespace Vanilla.Content.Projectiles.Friendly
+namespace Synergia.Content.Projectiles.Friendly
 {
     public class FireballProjectile : ModProjectile
     {

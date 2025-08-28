@@ -6,7 +6,7 @@ using Terraria.GameContent;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Vanilla.Content.Projectiles.Friendly
+namespace Synergia.Content.Projectiles.Friendly
 {
 	public class AngryParasiteProjectile : ModProjectile
 	{

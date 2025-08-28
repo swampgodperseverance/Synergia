@@ -4,7 +4,7 @@ using Terraria.ModLoader;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
-namespace Vanilla.Content.Projectiles.Friendly
+namespace Synergia.Content.Projectiles.Friendly
 {
 	public class AirflowFeather : ModProjectile
 	{

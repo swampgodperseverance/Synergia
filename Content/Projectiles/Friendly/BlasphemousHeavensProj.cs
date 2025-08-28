@@ -6,7 +6,7 @@ using Terraria.Audio;
 using ValhallaMod.Projectiles.AI;
 using System;
 
-namespace Vanilla.Content.Projectiles.Friendly
+namespace Synergia.Content.Projectiles.Friendly
 {
     public class BlasphemousHeavensProj : ValhallaGlaive
     {
@@ -20,7 +20,7 @@ namespace Vanilla.Content.Projectiles.Friendly
             Projectile.height = 30;
             DrawOriginOffsetY = -0;
             Projectile.friendly = true;
-            Projectile.DamageType = DamageClass.Melee;
+            Projectile.DamageType = DamageClass.Throwing;
             Projectile.alpha = 0;
             Projectile.penetrate = 106;
             Projectile.scale = 0.9f;

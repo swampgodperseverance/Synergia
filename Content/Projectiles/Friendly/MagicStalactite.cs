@@ -6,7 +6,7 @@ using Terraria.Audio;
 using System;
 using Terraria.ModLoader;
 
-namespace Vanilla.Content.Projectiles.Friendly
+namespace Synergia.Content.Projectiles.Friendly
 {
     public sealed class MagicStalactite : ModProjectile //Roa inspired
     {
@@ -40,7 +40,6 @@ namespace Vanilla.Content.Projectiles.Friendly
         {
             Projectile.alpha = Math.Max(Projectile.alpha - (255 / FadeInDuration), 0);
 
-            // Включить столкновение с тайлами через 1 секунду
             if (Projectile.timeLeft <= 180 - FadeInDuration)
                 Projectile.tileCollide = true;
 

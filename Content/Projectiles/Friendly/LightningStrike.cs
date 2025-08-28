@@ -4,7 +4,7 @@ using Microsoft.Xna.Framework;
 using Terraria.ID;
 using Terraria.Audio;
 
-namespace Vanilla.Content.Projectiles.Friendly
+namespace Synergia.Content.Projectiles.Friendly
 {
     public class LightningStrike : ModProjectile
     {

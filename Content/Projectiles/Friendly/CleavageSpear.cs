@@ -6,7 +6,7 @@ using Terraria.Audio;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Vanilla.Content.Projectiles.Friendly
+namespace Synergia.Content.Projectiles.Friendly
 {
     public class CleavageSpear : ModProjectile 
     {
@@ -204,39 +204,37 @@ namespace Vanilla.Content.Projectiles.Friendly
         {
             Player player = Main.player[Projectile.owner];
             SpriteBatch spriteBatch = Main.spriteBatch;
-            
+
             Texture2D texture = ModContent.Request<Texture2D>(Texture).Value;
             Vector2 origin = new Vector2(
                 (Projectile.spriteDirection == 1) ? (texture.Width + 8f) : (-8f),
                 (player.gravDir == 1f) ? (-8f) : (texture.Height + 8f));
-                
+
             Vector2 position = Projectile.Center - Main.screenPosition + new Vector2(0, Projectile.gfxOffY);
             float rotation = Projectile.rotation;
-            
+
             SpriteEffects effects = player.direction > 0 ? SpriteEffects.None : SpriteEffects.FlipHorizontally;
             if (player.gravDir == -1f) 
             {
                 effects |= SpriteEffects.FlipVertically;
                 rotation += (float)Math.PI / 2f * Projectile.spriteDirection;
             }
-            
-            Texture2D trailTexture = ModContent.Request<Texture2D>("Vanilla/Assets/Textures/LightTrail_1").Value; //asset from consolaria
+
+            Texture2D trailTexture = ModContent.Request<Texture2D>("Synergia/Assets/Textures/LightTrail_1").Value; //asset from consolaria
             Vector2 trailOrigin = trailTexture.Size() / 2f;
             glowRotation += 0.1f;
-            
-            for (int k = 0; k < Projectile.oldPos.Length; k++) 
+
+            for (int k = 0; k < Projectile.oldPos.Length - 1; k++) 
             {
-                if (k >= Projectile.oldPos.Length - 1) continue;
-                
                 float progress = 1f - k / (float)Projectile.oldPos.Length;
                 Vector2 trailPos = Projectile.oldPos[k] + Projectile.Size / 2f - Main.screenPosition;
                 float trailRot = (float)Math.Atan2(Projectile.oldPos[k].Y - Projectile.oldPos[k + 1].Y, 
                                               Projectile.oldPos[k].X - Projectile.oldPos[k + 1].X);
-                
+
                 Color trailColor = empowered ? 
                     new Color(255, 150 + k * 10, 0, (int)(100 * progress)) : 
                     new Color(255, 100 + k * 20, 0, (int)(100 * progress));
-                
+
                 spriteBatch.Draw(
                     trailTexture,
                     trailPos,
@@ -248,7 +246,7 @@ namespace Vanilla.Content.Projectiles.Friendly
                     effects,
                     0f);
             }
-            
+
             spriteBatch.Draw(
                 texture,
                 position,
@@ -259,7 +257,7 @@ namespace Vanilla.Content.Projectiles.Friendly
                 Projectile.scale,
                 effects,
                 0f);
-                
+
             if (empowered)
             {
                 Color glowColor = new Color(255, 200, 50, 100);
@@ -274,8 +272,19 @@ namespace Vanilla.Content.Projectiles.Friendly
                     effects,
                     0f);
             }
-            
+
             return false;
         }
+
+        public override void ModifyHitNPC(NPC target, ref NPC.HitModifiers modifiers)
+        {
+            Player player = Main.player[Projectile.owner];
+            if (player.HasBuff(ModContent.BuffType<Buffs.Hellborn>()))
+            {
+                modifiers.SourceDamage *= 1.13f;
+            }
+        }
+
+       
     }
 }

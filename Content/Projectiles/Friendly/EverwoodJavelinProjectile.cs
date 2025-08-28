@@ -3,10 +3,10 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.Audio;
-using Vanilla.Content.Buffs;
+using Synergia.Content.Buffs;
 using static Terraria.Audio.SoundEngine;
 
-namespace Vanilla.Content.Projectiles.Friendly
+namespace Synergia.Content.Projectiles.Friendly
 {
 	public class EverwoodJavelinProjectile : ModProjectile
 	{

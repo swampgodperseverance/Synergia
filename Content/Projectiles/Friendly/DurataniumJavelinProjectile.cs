@@ -5,7 +5,7 @@ using Terraria.ModLoader;
 using Terraria.Audio;
 using static Terraria.Audio.SoundEngine;
 
-namespace Vanilla.Content.Projectiles.Friendly
+namespace Synergia.Content.Projectiles.Friendly
 {
 	public class DurataniumJavelinProjectile : ModProjectile
 	{
