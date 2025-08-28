@@ -1,7 +1,7 @@
 using Terraria;
 using Terraria.ModLoader;
 
-namespace Vanilla.Content.Buffs
+namespace Synergia.Content.Buffs
 {
     public class BloodDodge : ModBuff
     {

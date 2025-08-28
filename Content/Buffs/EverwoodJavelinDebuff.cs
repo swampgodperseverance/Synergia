@@ -6,7 +6,7 @@ using Terraria.ModLoader;
 using Terraria.Audio;
 using static Terraria.Main;
 
-namespace Vanilla.Content.Buffs
+namespace Synergia.Content.Buffs
 {
 	public class EverwoodJavelinDebuff : ModBuff
 	{
