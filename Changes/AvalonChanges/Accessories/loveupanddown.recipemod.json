@@ -1,0 +1,47 @@
+{
+  "Criteria": "All",
+
+  "Conditions": {
+    "CreatesResult": {
+      "Item": "Avalon/LoveUpandDown"
+    }
+  },
+
+  "Changes": {
+    "RemoveIngredient": {
+      "Item": "Avalon/Sandstone",
+    }
+  },
+
+  "Changes": {
+    "RemoveIngredient": {
+      "Item": "Avalon/FineLumber",
+    }
+  },
+
+  "Changes": {
+    "RemoveIngredient": {
+      "Item": "Avalon/Gravel",
+    }
+  },
+
+  "Changes": {
+    "RemoveIngredient": {
+      "Item": "Avalon/CarbonSteel",
+    }
+  },
+
+  "Changes": {
+    "AddIngredient": {
+      "Item": "RoA/NaturesHeart",
+      "Count": 1
+    }
+  },
+  
+  "Changes": {
+    "AddIngredient": {
+      "Item": "Consolaria/SoulofBlight",
+      "Count": 10
+    }
+  }
+}

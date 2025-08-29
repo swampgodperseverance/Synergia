@@ -1,0 +1,17 @@
+{
+  "Criteria": "All",
+
+  "Conditions": {
+    "CreatesResult": {
+      "Item": "Avalon/UnderestimatedResolve"
+    }
+  },
+
+  "Changes": {
+    "ChangeIngredient": {
+      "Item": "Avalon/Sandstone",
+      "NewItem": "RoA/MiracleMint",
+      "NewCount": 1
+    }
+  }
+}

@@ -19,5 +19,12 @@
       "Item": "ValhallaMod/RiotShield",
       "Count": 1
     }
+  },
+
+  "Changes": {
+    "AddIngredient": {
+      "Item": "Terraria/LunarBar",
+      "Count": 10
+    }
   }
 }

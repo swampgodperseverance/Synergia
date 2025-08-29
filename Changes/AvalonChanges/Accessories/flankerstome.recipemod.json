@@ -1,0 +1,17 @@
+{
+  "Criteria": "All",
+
+  "Conditions": {
+    "CreatesResult": {
+      "Item": "Avalon/FlankersTome"
+    }
+  },
+
+  "Changes": {
+    "ChangeIngredient": {
+      "Item": "Avalon/FineLumber",
+      "NewItem": "ValhallaMod/HardenedGlass",
+      "NewCount": 10
+    }
+  }
+}

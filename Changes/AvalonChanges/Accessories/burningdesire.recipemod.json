@@ -1,0 +1,17 @@
+{
+  "Criteria": "All",
+
+  "Conditions": {
+    "CreatesResult": {
+      "Item": "Avalon/BurningDesire"
+    }
+  },
+
+  "Changes": {
+    "ChangeIngredient": {
+      "Item": "Terraria/LifeCrystal",
+      "NewItem": "RoA/FlamingFabric",
+      "NewCount": 3
+    }
+  }
+}

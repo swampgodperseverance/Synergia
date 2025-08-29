@@ -17,6 +17,13 @@
 
   "Changes": {
     "AddIngredient": {
+      "Item": "NewHorizons/LeatherQuiver",
+      "Count": 1
+    }
+  },
+  
+  "Changes": {
+    "AddIngredient": {
       "Item": "Terraria/FragmentVortex",
       "Count": 10
     }

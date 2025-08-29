@@ -1,0 +1,22 @@
+{
+  "Criteria": "All",
+
+  "Conditions": {
+    "CreatesResult": {
+      "Item": "Avalon/SoutheasternPeacock"
+    }
+  },
+
+  "Changes": {
+    "RemoveIngredient": {
+      "Item": "Avalon/MysticalTomePage",
+    }
+  },
+
+  "Changes": {
+    "AddIngredient": {
+      "Item": "ValhallaMod/DamagedBook",
+      "Count": 1
+    }
+  }
+}

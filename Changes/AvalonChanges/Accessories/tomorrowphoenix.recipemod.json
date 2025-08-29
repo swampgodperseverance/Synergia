@@ -1,0 +1,25 @@
+{
+  "Criteria": "All",
+
+  "Conditions": {
+    "CreatesResult": {
+      "Item": "Avalon/TomorrowsPhoenix"
+    }
+  },
+
+  "Changes": {
+    "ChangeIngredient": {
+      "Item": "Terraria/FallenStar",
+      "NewItem": "RoA/Galipot",
+      "NewCount": 1
+    }
+  },
+
+  "Changes": {
+    "ChangeIngredient": {
+      "Item": "Terraria/Gel",
+      "NewItem": "ValhallaMod/Sap",
+      "NewCount": 5
+    }
+  }
+}

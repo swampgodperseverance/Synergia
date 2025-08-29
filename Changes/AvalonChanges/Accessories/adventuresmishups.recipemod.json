@@ -1,0 +1,17 @@
+{
+  "Criteria": "All",
+
+  "Conditions": {
+    "CreatesResult": {
+      "Item": "Avalon/AdventuresandMishaps"
+    }
+  },
+
+  "Changes": {
+    "ChangeIngredient": {
+      "Item": "Terraria/LifeCrystal",
+      "NewItem": "RoA/AnimalLeather",
+      "NewCount": 1
+    }
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "Criteria": "All",
+
+  "Conditions": {
+    "CreatesResult": {
+      "Item": "Avalon/MediationsFlame"
+    }
+  },
+
+  "Changes": {
+    "ChangeIngredient": {
+      "Item": "Terraria/FallenStar",
+      "NewItem": "ValhallaMod/Beetroot",
+      "NewCount": 3
+    }
+  }
+}

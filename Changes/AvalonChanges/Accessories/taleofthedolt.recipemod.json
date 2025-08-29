@@ -1,0 +1,16 @@
+{
+  "Criteria": "All",
+
+  "Conditions": {
+    "CreatesResult": {
+      "Item": "Avalon/TaleoftheDolt"
+    }
+  },
+
+  "Changes": {
+    "AddIngredient": {
+      "Item": "ValhallaMod/DamagedBook",
+      "Count": 1
+    }
+  }
+}

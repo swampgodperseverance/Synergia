@@ -1,0 +1,17 @@
+{
+  "Criteria": "All",
+
+  "Conditions": {
+    "CreatesResult": {
+      "Item": "Avalon/DionysusAmulet"
+    }
+  },
+
+  "Changes": {
+    "ChangeIngredient": {
+      "Item": "Terraria/HallowedBar",
+      "NewItem": "Consolaria/SoulofBlight",
+      "NewCount": 5
+    }
+  }
+}
