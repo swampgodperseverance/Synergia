@@ -1,0 +1,27 @@
+{
+	"Result": {
+		"Item": "Consolaria/AncientDragonGreaves"
+	},
+	
+	"Ingredient": {
+		"Item": "Terraria/AncientHallowedGreaves",
+		"Count": 1
+	},
+        
+	"Ingredient": {
+		"Item": "Avalon/TroxiniumBar",
+		"Count": 10
+	},
+
+	"Ingredient": {
+		"Item": "Terraria/SoulofMight",
+		"Count": 10
+	},
+
+	"Ingredient": {
+		"Item": "Consolaria/SoulofBlight",
+		"Count": 10
+	},
+	
+	"Tile": "Terraria/DemonAltar"
+}

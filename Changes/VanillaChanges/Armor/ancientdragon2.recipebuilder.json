@@ -1,0 +1,27 @@
+{
+	"Result": {
+		"Item": "Consolaria/AncientDragonBreastplate"
+	},
+	
+	"Ingredient": {
+		"Item": "Terraria/AncientHallowedPlateMail",
+		"Count": 1
+	},
+        
+	"Ingredient": {
+		"Item": "Avalon/TroxiniumBar",
+		"Count": 12
+	},
+
+	"Ingredient": {
+		"Item": "Terraria/SoulofMight",
+		"Count": 15
+	},
+
+	"Ingredient": {
+		"Item": "Consolaria/SoulofBlight",
+		"Count": 15
+	},
+	
+	"Tile": "Terraria/DemonAltar"
+}

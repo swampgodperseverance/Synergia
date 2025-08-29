@@ -1,0 +1,27 @@
+{
+	"Result": {
+		"Item": "Consolaria/WarlockLeggings"
+	},
+	
+	"Ingredient": {
+		"Item": "Terraria/HallowedGreaves",
+		"Count": 1
+	},
+        
+	"Ingredient": {
+		"Item": "Avalon/TroxiniumBar",
+		"Count": 10
+	},
+
+	"Ingredient": {
+		"Item": "Terraria/SoulofNight",
+		"Count": 10
+	},
+
+	"Ingredient": {
+		"Item": "Consolaria/SoulofBlight",
+		"Count": 10
+	},
+	
+	"Tile": "Synergia/CaesiumHeavyAnvilTile"
+}
