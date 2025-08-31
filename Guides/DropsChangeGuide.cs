@@ -13,9 +13,9 @@ using static Terraria.Localization.Language;
 namespace Synergia.Common.GlobalNPCs.Drops
 {
     public class MiscDrops : GlobalNPC
-    {	private static Mod avalon = ModLoader.GetMod("Avalon");//mods for npcs
-	    private static Mod horizons = ModLoader.GetMod("NewHorizons");//mods for npcs
-        private static Mod valhalla = ModLoader.GetMod("ValhallaMod");//mods for npcs
+    {	private static Mod avalon = ModLoader.GetMod("Avalon");//mods for npcs and drops
+	    private static Mod horizons = ModLoader.GetMod("NewHorizons");//mods for npcs and drops
+        private static Mod valhalla = ModLoader.GetMod("ValhallaMod");//mods for npcs and drops
          public override void ModifyNPCLoot(NPC npc, NPCLoot npcLoot)
         {
             if (npc.TypeName == GetTextValue("Mods.RoA.NPCs.Ent.DisplayName") || // here you should write down npc internal name which loot u wanna modificate
