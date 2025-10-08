@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Vanilla.Common
+namespace Synergia.Common
 {
     public static class TimerSystem
     {

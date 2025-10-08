@@ -6,13 +6,13 @@ using Terraria.DataStructures;
 using Terraria.GameContent;
 using Terraria.ModLoader;
 
-namespace Vanilla.Common
+namespace Synergia.Common
 {
     public class CogwormBossBar : ModBossBar
     {
         public override Asset<Texture2D> GetIconTexture(ref Rectangle? iconFrame)
         {
-            return ModContent.Request<Texture2D>("Vanilla/Content/NPCs/CogwormHeadBoss");
+            return ModContent.Request<Texture2D>("Synergia/Content/NPCs/Cogworm_Head_Boss");
         }
 
         public override bool PreDraw(SpriteBatch spriteBatch, NPC npc, ref BossBarDrawParams drawParams)
