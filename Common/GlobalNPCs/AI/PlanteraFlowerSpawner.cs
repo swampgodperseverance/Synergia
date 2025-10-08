@@ -2,9 +2,9 @@ using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using Vanilla.Content.Projectiles.Hostile;
+using Synergia.Content.Projectiles.Hostile;
 
-namespace Vanilla.Common.GlobalNPCs.AI
+namespace Synergia.Common.GlobalNPCs.AI
 {
     public class PlanteraFlowerSpawner : GlobalNPC
     {
