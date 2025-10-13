@@ -14,6 +14,7 @@ namespace Synergia.Content.Projectiles.Friendly
     {
         private bool hasDashed = false;
         private NPC target = null;
+        public static readonly SoundStyle Impulse = new("Synergia/Assets/Sounds/Impulse");
 
         public override void SetStaticDefaults()
         {
@@ -43,7 +44,7 @@ namespace Synergia.Content.Projectiles.Friendly
             if (owner.whoAmI == Main.myPlayer && Main.mouseRight && Projectile.timeLeft > 10)
             {
                 CreateExplosionDust();
-                SoundEngine.PlaySound(Sounds.Type("Impulse"), Projectile.Center);
+                SoundEngine.PlaySound(Impulse, Projectile.Center);
 
                 var s = Projectile.GetSource_FromThis();
                 Projectile.NewProjectile(
