@@ -3,8 +3,8 @@ using Terraria.ModLoader;
 using Terraria.ID;
 using Avalon.Buffs.Debuffs;
 
-namespace Vanilla.Content.Items.Accessories
-{
+namespace Synergia.Content.Items.Accessories
+{[AutoloadEquip(EquipType.HandsOn, EquipType.HandsOff)]
 	public class BloodstainedGlove : ModItem
 	{
 		public override void SetStaticDefaults()

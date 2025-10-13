@@ -1,0 +1,17 @@
+{
+  "Criteria": "All",
+
+  "Conditions": {
+    "CreatesResult": {
+      "Item": "RoA/BrightstonePotion",
+    }
+  },
+
+  "Changes": {
+    "ChangeIngredient": {
+      "Item": "RoA/Bonerose",
+      "NewItem": "Avalon/ChaosDust",
+      "NewCount": "1"
+    }
+  }
+}

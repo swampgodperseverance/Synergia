@@ -1,0 +1,23 @@
+{
+	"Result": {
+		"Item": "Synergia/UnderwaterAuraScythe",
+		"Count": 1
+	},
+	
+	"Ingredient": {
+		"Item": "Synergia/UnderwaterAuraStaff",
+		"Count": 1
+	},
+
+	"Ingredient": {
+		"Item": "Avalon/TorrentShard",
+		"Count": 8
+	},
+
+	"Ingredient": {
+		"Item": "Avalon/LifeDew",
+		"Count": 5
+	},
+
+	"Tile": "Terraria/MythrilAnvil"
+}

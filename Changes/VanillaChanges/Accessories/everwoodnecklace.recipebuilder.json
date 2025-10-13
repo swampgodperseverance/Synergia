@@ -1,0 +1,13 @@
+{
+	"Result": {
+		"Item": "Synergia/EverwoodNecklace",
+		"Count": 1
+	},
+	
+	"Ingredient": {
+		"Item": "RoA/Elderwood",
+		"Count": 20
+	},
+
+	"Tile": "Terraria/LivingLoom"
+}

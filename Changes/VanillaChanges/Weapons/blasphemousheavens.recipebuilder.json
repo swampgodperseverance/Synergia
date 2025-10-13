@@ -1,0 +1,17 @@
+{
+	"Result": {
+		"Item": "Synergia/BlasphemousHeavens"
+	},
+	
+	"Ingredient": {
+		"Item": "Synergia/Airflow",
+		"Count": 1
+	},
+        
+	"Ingredient": {
+		"Item": "ValhallaMod/BrokenGlaive",
+		"Count": 1
+	},
+	
+	"Tile": "Terraria/MythrilAnvil"
+}

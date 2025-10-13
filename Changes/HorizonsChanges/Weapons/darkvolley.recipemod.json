@@ -1,0 +1,24 @@
+{
+  "Criteria": "All",
+
+  "Conditions": {
+    "CreatesResult": {
+      "Item": "NewHorizons/DarkVolley"
+    }
+  },
+
+  "Changes": {
+    "ChangeIngredient": {
+      "Item": "Terraria/SoulofNight",
+      "NewItem": "ValhallaMod/EvilIngot",
+      "NewCount": 1
+    }
+  },
+
+  "Changes": {
+    "AddIngredient": {
+      "Item": "Avalon/WickedShard",
+      "Count": 4
+    }
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "Criteria": "All",
+
+  "Conditions": {
+    "CreatesResult": {
+      "Item": "RoA/DeathWardPotion",
+    }
+  },
+
+  "Changes": {
+    "ChangeIngredient": {
+      "Item": "Terraria/Worm",
+      "NewItem": "Avalon/DragonOrb",
+      "NewCount": "1"
+    }
+  },
+
+  "Changes": {
+    "AddIngredient": {
+      "Item": "Consolaria/SoulofBlight",
+      "Count": "1"
+    }
+  }
+}

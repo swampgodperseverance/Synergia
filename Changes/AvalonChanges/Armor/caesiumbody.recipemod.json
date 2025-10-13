@@ -1,0 +1,24 @@
+{
+  "Criteria": "All",
+
+  "Conditions": {
+    "CreatesResult": {
+      "Item": "Avalon/CaesiumPlateMail"
+    }
+  },
+
+  "Changes": {
+    "ChangeIngredient": {
+      "Item": "Avalon/CaesiumBar",
+      "NewItem": "Avalon/CaesiumBar",
+      "NewCount": 15
+    }
+  },
+
+  "Changes": {
+    "ChangeTile": {
+      "Tile": "Terraria/MythrilAnvil",
+      "NewTile": "Synergia/CaesiumHeavyAnvilTile"
+    }
+  }
+}

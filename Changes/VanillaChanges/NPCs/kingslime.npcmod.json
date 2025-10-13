@@ -1,0 +1,10 @@
+{
+  "NPC": "Terraria/KingSlime",
+
+  "Changes": {
+    "Terraria": {
+      "Health": "+750",
+      "Defense": "+2"
+    }
+  }
+}

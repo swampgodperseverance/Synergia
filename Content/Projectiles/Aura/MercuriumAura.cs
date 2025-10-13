@@ -3,10 +3,10 @@ using Terraria.ID;
 using Terraria;
 using Terraria.ModLoader;
 using ValhallaMod.Projectiles.AI;
-using Vanilla.Content.Dusts;
+using Synergia.Content.Dusts;
 using static Terraria.ModLoader.ModContent;
 
-namespace Vanilla.Content.Projectiles.Aura
+namespace Synergia.Content.Projectiles.Aura
 {
     [ExtendsFromMod("ValhallaMod")]
     public class MercuriumAura : AuraAI

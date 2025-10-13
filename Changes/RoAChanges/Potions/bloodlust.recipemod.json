@@ -1,0 +1,17 @@
+{
+  "Criteria": "All",
+
+  "Conditions": {
+    "CreatesResult": {
+      "Item": "RoA/BloodlustPotion",
+    }
+  },
+
+  "Changes": {
+    "ChangeIngredient": {
+      "Item": "Terraria/BottledWater",
+      "NewItem": "Avalon/BottledLava",
+      "NewCount": "1"
+    }
+  }
+}

@@ -1,0 +1,22 @@
+{
+	"Result": {
+		"Item": "RoA/RodOfTheCondor"
+	},
+	
+	"Ingredient": {
+		"Item": "RoA/MercuriumNugget",
+		"Count": 15
+	},
+        
+	"Ingredient": {
+		"Item": "Avalon/BismuthBar",
+		"Count": 10
+	},
+	
+	"Ingredient": {
+		"Item": "RoA/SphereOfCondor",
+		"Count": 1
+	},
+        
+	"Tile": "Terraria/Anvils"
+}

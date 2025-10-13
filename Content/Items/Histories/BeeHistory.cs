@@ -3,7 +3,7 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using System.Collections.Generic;
 
-namespace Vanilla.Content.Items.Histories
+namespace Synergia.Content.Items.Histories
 {
 	public class BeeHistory : ModItem
 	{

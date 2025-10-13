@@ -1,0 +1,10 @@
+	{
+  "NPC": "Terraria/SkeletronPrime",
+
+  "Changes": {
+    "Terraria": {
+      "Health": "+12000",
+      "Defense": "+2"
+    }
+  }
+}

@@ -1,9 +1,9 @@
 ﻿using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using Vanilla.Common.GlobalPlayer;
+using Synergia.Common.GlobalPlayer;
 
-namespace Vanilla.Content.Items.Accessories
+namespace Synergia.Content.Items.Accessories
 {
     public class MirrorOfTheLost : ModItem
     {

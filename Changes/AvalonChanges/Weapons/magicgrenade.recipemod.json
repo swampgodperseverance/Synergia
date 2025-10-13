@@ -29,5 +29,12 @@
       "NewItem": "Consolaria/SoulofBlight",
       "NewCount": 15
     }
+  },
+
+  "Changes": {
+    "ChangeTile": {
+      "Tile": "Terraria/MythrilAnvil",
+      "NewTile": "Synergia/CaesiumHeavyAnvilTile"
+    }
   }
 }

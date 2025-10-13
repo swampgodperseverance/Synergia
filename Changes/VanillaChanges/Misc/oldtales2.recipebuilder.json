@@ -1,0 +1,17 @@
+{
+	"Result": {
+		"Item": "Synergia/OldTales2"
+	},
+	
+	"Ingredient": {
+		"Item": "Synergia/OldTales",
+		"Count": 1
+	},
+
+	"Ingredient": {
+		"Item": "Avalon/FleshyTendril",
+		"Count": 1
+	},
+
+	"Tile": "Terraria/Bookcases"
+}

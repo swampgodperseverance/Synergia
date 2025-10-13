@@ -1,0 +1,10 @@
+{
+  "NPC": "ValhallaMod/ColdFather",
+
+  "Changes": {
+    "Terraria": {
+      "Health": "8500",
+      "Defense": "5"
+    }
+  }
+}

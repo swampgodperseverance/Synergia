@@ -1,0 +1,17 @@
+{
+  "Criteria": "All",
+
+  "Conditions": {
+    "CreatesResult": {
+      "Item": "Avalon/CloverPotion"
+    }
+  },
+
+  "Changes": {
+    "ChangeIngredient": {
+      "Item": "Terraria/Fireblossom",
+      "NewItem": "RoA/MiracleMint",
+      "NewCount": "1"
+    }
+  }
+}

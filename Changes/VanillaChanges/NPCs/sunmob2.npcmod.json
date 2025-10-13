@@ -1,0 +1,10 @@
+{
+  "NPC": "Terraria/SolarDrakomireRider",
+
+  "Changes": {
+    "Terraria": {
+      "Health": "+1300",
+      "Defense": "+2"
+    }
+  }
+}

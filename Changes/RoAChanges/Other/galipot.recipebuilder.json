@@ -1,0 +1,18 @@
+{
+	"Result": {
+		"Item": "RoA/Galipot"
+	},
+	
+	"Ingredient": {
+		"Item": "Terraria/Bottle",
+		"Count": 1
+	},
+        
+	"Ingredient": {
+		"Item": "ValhallaMod/Sap",
+		"Count": 1
+
+	},
+	
+	"Tile": "Terraria/Bottles"
+}

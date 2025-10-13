@@ -1,0 +1,17 @@
+{
+  "Criteria": "All",
+
+  "Conditions": {
+    "CreatesResult": {
+      "Item": "Avalon/FortunePotion"
+    }
+  },
+
+  "Changes": {
+    "ChangeIngredient": {
+      "Item": "Avalon/Sulphur",
+      "NewItem": "RoA/MiracleMint",
+      "NewCount": "2"
+    }
+  }
+}

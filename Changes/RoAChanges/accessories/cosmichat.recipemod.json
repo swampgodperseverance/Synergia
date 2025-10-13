@@ -1,0 +1,17 @@
+{
+  "Criteria": "All",
+
+  "Conditions": {
+    "CreatesResult": {
+      "Item": "RoA/CosmicHat",
+    }
+  },
+
+  "Changes": {
+    "ChangeIngredient": {
+      "Item": "Terraria/ManaCrystal",
+      "NewItem": "Avalon/Starstone",
+      "NewCount": 3
+    }
+  }
+}

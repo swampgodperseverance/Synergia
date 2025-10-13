@@ -1,0 +1,17 @@
+{
+  "Criteria": "All",
+
+  "Conditions": {
+    "CreatesResult": {
+      "Item": "RoA/WeightPotion",
+    }
+  },
+
+  "Changes": {
+    "ChangeIngredient": {
+      "Item": "Terraria/SiltBlock",
+      "NewItem": "StramsSurvival/AluminumBar",
+      "NewCount": "1"
+    }
+  }
+}

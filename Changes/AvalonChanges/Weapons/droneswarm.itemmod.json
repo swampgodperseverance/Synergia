@@ -4,6 +4,7 @@
 	"Changes": {
 		"Terraria": {
 		"Damage": "-7",
+		"UseTime": "+7",
 		}
 	}
 }

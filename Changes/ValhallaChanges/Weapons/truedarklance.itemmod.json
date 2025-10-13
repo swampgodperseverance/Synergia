@@ -1,0 +1,11 @@
+{
+	"Item": "ValhallaMod/TrueDarkLance",
+	
+	"Changes": {
+		"Terraria": {
+		"UseTime": "+20",
+		"Damage": "-10",
+		"ShootSpeed": "-3"
+		}
+	}
+}

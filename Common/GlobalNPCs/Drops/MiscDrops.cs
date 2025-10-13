@@ -4,12 +4,13 @@ using Terraria.ModLoader;
 using Terraria.GameContent.ItemDropRules;
 using Terraria.Localization;
 using Avalon.Items.Material.Shards;
-using Vanilla.Content.Items.Weapons.AuraStaff;
-using Vanilla.Content.Items.Accessories;
+using Synergia.Content.Items.Weapons.Throwing;
+using Synergia.Content.Items.Weapons.AuraStaff;
+using Synergia.Content.Items.Accessories;
 using static Terraria.ModLoader.ModContent;
 using static Terraria.Localization.Language;
 
-namespace Vanilla.Common.GlobalNPCs.Drops
+namespace Synergia.Common.GlobalNPCs.Drops
 {
     public class MiscDrops : GlobalNPC
     {	private static Mod avalon = ModLoader.GetMod("Avalon");
@@ -97,6 +98,16 @@ namespace Vanilla.Common.GlobalNPCs.Drops
                 npcLoot.Add(ItemDropRule.Common(
                     horizons.Find<ModItem>("AncientScrap").Type,
                     chanceDenominator: 7,
+                    minimumDropped: 1,
+                    maximumDropped: 1
+                ));
+            }
+            if (npc.TypeName == GetTextValue("Mods.Avalon.NPCs.Blaze.DisplayName") ||
+                npc.FullName == GetTextValue("Mods.Avalon.NPCs.Blaze.DisplayName"))
+            {
+                npcLoot.Add(ItemDropRule.Common(
+                    ModContent.ItemType<Blazes>(),
+                    chanceDenominator: 4,
                     minimumDropped: 1,
                     maximumDropped: 1
                 ));

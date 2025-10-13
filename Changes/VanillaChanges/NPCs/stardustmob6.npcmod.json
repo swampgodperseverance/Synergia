@@ -1,0 +1,10 @@
+{
+  "NPC": "Terraria/StardustSpiderSmall",
+
+  "Changes": {
+    "Terraria": {
+      "Health": "+700",
+      "Defense": "+2"
+    }
+  }
+}

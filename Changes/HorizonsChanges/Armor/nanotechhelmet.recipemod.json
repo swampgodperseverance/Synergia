@@ -1,0 +1,17 @@
+{
+  "Criteria": "All",
+
+  "Conditions": {
+    "CreatesResult": {
+      "Item": "NewHorizons/NanotechHelmet"
+    }
+  },
+
+  "Changes": {
+    "ChangeIngredient": {
+      "Item": "Terraria/ChlorophyteBar",
+      "NewItem": "StramsSurvival/AluminumBar",
+      "NewCount": 10
+    }
+  }
+}

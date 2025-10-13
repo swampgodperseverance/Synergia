@@ -7,16 +7,11 @@
 		"Item": "ValhallaMod/FreezeSpreader",
 		"Count": 1
 	},
-        
-	"Ingredient": {
-		"Item": "Terraria/LunarBar",
-		"Count": 10
-	},
 	
 	"Ingredient": {
 		"Item": "Avalon/FrigidShard",
 		"Count": 5
 	},
 
-	"Tile": "Terraria/LunarCraftingStation"
+	"Tile": "Synergia/CaesiumHeavyAnvilTile"
 }

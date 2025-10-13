@@ -2,10 +2,10 @@
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using Vanilla.Content.Projectiles;
+using Synergia.Content.Projectiles.Friendly;
 using static Terraria.ModLoader.ModContent;
 
-namespace Vanilla.Content.Items.Weapons.Summon
+namespace Synergia.Content.Items.Weapons.Summon
 {
 	public class AngryParasite : ModItem
 	{

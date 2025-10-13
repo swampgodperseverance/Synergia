@@ -1,0 +1,17 @@
+{
+  "Criteria": "All",
+
+  "Conditions": {
+    "CreatesResult": {
+      "Item": "RoA/PrismaticPotion",
+    }
+  },
+
+  "Changes": {
+    "ChangeIngredient": {
+      "Item": "Terraria/ButterflyDust",
+      "NewItem": "Avalon/ElementDiamond",
+      "NewCount": "1"
+    }
+  }
+}

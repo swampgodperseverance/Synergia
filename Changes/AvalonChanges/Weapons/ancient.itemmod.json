@@ -1,0 +1,10 @@
+{
+	"Item": "Avalon/Ancient",
+	
+	"Changes": {
+		"Terraria": {
+		"Damage": "-10",
+		"UseTime": "+8",
+		}
+	}
+}

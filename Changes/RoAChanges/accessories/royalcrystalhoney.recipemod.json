@@ -1,0 +1,17 @@
+{
+  "Criteria": "All",
+
+  "Conditions": {
+    "CreatesResult": {
+      "Item": "RoA/RoyalQualityHoney",
+    }
+  },
+
+  "Changes": {
+    "ChangeIngredient": {
+      "Item": "Terraria/LifeCrystal",
+      "NewItem": "Avalon/Heartstone",
+      "NewCount": 3
+    }
+  }
+}

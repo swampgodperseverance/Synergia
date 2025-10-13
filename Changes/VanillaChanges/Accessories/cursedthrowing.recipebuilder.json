@@ -1,0 +1,24 @@
+{
+	"Result": {
+		"Item": "Synergia/CursedThrowerEmblem",
+		"Count": 1
+	},
+
+	"Ingredient": {
+		"Item": "NewHorizons/NinjaEmblem",
+		"Count": 1
+	},
+	
+	"Ingredient": {
+		"Item": "Terraria/DestroyerEmblem",
+		"Count": 1
+	},
+
+	"Ingredient": {
+		"Item": "ValhallaMod/JadeCloth",
+		"Count": 10
+	},
+
+
+	"Tile": "Synergia/CaesiumHeavyAnvilTile"
+}

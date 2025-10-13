@@ -9,7 +9,7 @@ This powerful utility mod brings extensive cross-mod compatibility, overhauls bo
 6. Giant crafting trees included, and even final accessories for EACH class!
 7. Plenty item, projectiles and npc modifications!
 8. A well-balanced build in which everyone will find something for themselves!
-9. Overall with all mods that we have, in modpack more than 500 weapons, more than 350 new accessories, more than 120 armor sets, 12 bosses, new mechanics and tons of cool generations through the world and NPCs in 
+9. Overall with all mods that we have, in modpack more than 500 weapons, more than 350 new accessories, more than 80 armor sets, 12 bosses, new mechanics and tons of cool generations through the world and NPCs in 
 10. MULTUIPLAYER COMPATIBLE!
 
 WARNING:
@@ -19,12 +19,11 @@ WE'RE NOT TRYING TO EARN MONEY, if you want mods updates you better donate to ot
 Whether you're playing casually or going for a full challenge run, Synergia ensures everything feels connected, smooth, and epic.
 
 Team: 
-Ropyxa - coder
 Cleo - spriter
 Swampgod - Coder, spriter, balance changer etc.
 
 
-credits: Serork, Cleo, Pegeeon, heretic926 has2r, notfurryalex, blahblahbla, Xami, Mary, Ether, EnnWAY, musicman, Swampz, heartplusup, fredleon, red, charleyistired, mikumikumiku, aku, qwerty314, jbame, hina, dedmaxim, HammerHoovy, KainSett, nobisyu, Nycro
+credits: Ropyxa, Serork, Cleo, Pegeeon, heretic926 has2r, notfurryalex, blahblahbla, Xami, Mary, Ether, EnnWAY, musicman, Swampz, heartplusup, fredleon, red, charleyistired, mikumikumiku, aku, qwerty314, jbame, hina, dedmaxim, HammerHoovy, KainSett, nobisyu, Nycro
 Honourable Mention: Tamet and Gas from Valhalla Mod, they helped us a lot
 
 

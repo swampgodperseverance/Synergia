@@ -1,0 +1,10 @@
+{
+  "NPC": "Terraria/QueenBee",
+
+  "Changes": {
+    "Terraria": {
+      "Health": "+500",
+      "Defense": "+5"
+    }
+  }
+}

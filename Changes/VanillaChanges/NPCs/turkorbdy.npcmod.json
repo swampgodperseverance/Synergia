@@ -1,0 +1,10 @@
+{
+  "NPC": "Consolaria/TurkortheUngrateful",
+
+  "Changes": {
+    "Terraria": {
+      "Health": "-800",
+      "Defense": "+3"
+    }
+  }
+}

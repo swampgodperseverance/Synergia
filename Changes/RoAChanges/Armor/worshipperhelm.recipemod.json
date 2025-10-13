@@ -1,0 +1,17 @@
+{
+  "Criteria": "All",
+
+  "Conditions": {
+    "CreatesResult": {
+      "Item": "RoA/WorshipperBonehelm"
+    }
+  },
+
+  "Changes": {
+    "ChangeIngredient": {
+      "Item": "Terraria/Leather",
+      "NewItem": "NewHorizons/AncientScrap",
+      "NewCount": 5
+    }
+  }
+}

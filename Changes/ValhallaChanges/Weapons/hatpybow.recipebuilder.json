@@ -13,5 +13,10 @@
 		"Count": 10
 	},
 
+	"Ingredient": {
+      		"Item": "Avalon/BreezeShard",
+      		"Count": 3
+	},
+
 	"Tile": "Terraria/Anvils"
 }

@@ -1,0 +1,15 @@
+{
+  "Criteria": "All",
+
+  "Conditions": {
+    "CreatesResult": {
+      "Item": "NewHorizons/NightMagePants"
+    }
+  },
+  "Changes": {
+    "DisableRecipe": {
+      "Disabled": "True"
+
+    }
+  }
+}

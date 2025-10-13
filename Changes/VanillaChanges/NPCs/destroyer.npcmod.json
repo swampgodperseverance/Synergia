@@ -1,0 +1,10 @@
+{
+  "NPC": "Terraria/TheDestroyer",
+
+  "Changes": {
+    "Terraria": {
+      "Health": "+25000",
+      "Defense": "+15"
+    }
+  }
+}

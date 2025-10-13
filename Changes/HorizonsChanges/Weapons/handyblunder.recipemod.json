@@ -10,7 +10,7 @@
   "Changes": {
     "ChangeIngredient": {
       "Item": "Terraria/IllegalGunParts",
-      "NewItem": "ValhallaMod/LegalParts",
+      "NewItem": "ValhallaMod/LegalGunParts",
       "NewCount": 1
     }
   }

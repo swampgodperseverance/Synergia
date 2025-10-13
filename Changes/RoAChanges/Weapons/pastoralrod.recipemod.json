@@ -1,0 +1,17 @@
+{
+  "Criteria": "All",
+
+  "Conditions": {
+    "CreatesResult": {
+      "Item": "RoA/PastoralRod"
+    }
+  },
+
+  "Changes": {
+    "ChangeIngredient": {
+      "Item": "Terraria/Rope",
+      "NewItem": "ValhallaMod/ElasticCord",
+      "NewCount": 1
+    }
+  }
+}

@@ -1,0 +1,14 @@
+{
+	"Result": {
+		"Item": "Synergia/EnchantedRing",
+		"Count": 1
+	},
+	
+	"Ingredient": {
+		"Item": "Avalon/EnchantedBar",
+		"Count": 10
+	},
+
+
+	"Tile": "Terraria/Anvils"
+}

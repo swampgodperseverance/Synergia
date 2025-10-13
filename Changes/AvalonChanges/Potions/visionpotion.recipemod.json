@@ -1,0 +1,17 @@
+{
+  "Criteria": "All",
+
+  "Conditions": {
+    "CreatesResult": {
+      "Item": "Avalon/VisionPotion"
+    }
+  },
+
+  "Changes": {
+    "ChangeIngredient": {
+      "Item": "Terraria/Moonglow",
+      "NewItem": "RoA/MiracleMint",
+      "NewCount": "1"
+    }
+  }
+}

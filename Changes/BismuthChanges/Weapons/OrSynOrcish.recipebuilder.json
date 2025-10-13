@@ -1,0 +1,12 @@
+{
+	"Result": {
+		"Item": "Synergia/OrcishSword"
+	},
+	
+	"Ingredient": {
+		"Item": "Bismuth/OrcishBar",
+		"Count": 12
+	},
+
+	"Tile": "Terraria/Anvils"
+}

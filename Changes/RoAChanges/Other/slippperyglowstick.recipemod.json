@@ -1,0 +1,17 @@
+{
+  "Criteria": "All",
+
+  "Conditions": {
+    "CreatesResult": {
+      "Item": "RoA/SlipperyGlowstick",
+    }
+  },
+
+  "Changes": {
+    "ChangeIngredient": {
+      "Item": "RoA/Galipot",
+      "NewItem": "ValhallaMod/Sap",
+      "NewCount": "1"
+    }
+  }
+}

@@ -1,9 +1,9 @@
 ﻿using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using Vanilla.Content.Items;
+using Synergia.Content.Items;
 
-namespace Vanilla.Content.Items
+namespace Synergia.Content.Items
 {
 	public class CogwormTrophy : ModItem
 	{

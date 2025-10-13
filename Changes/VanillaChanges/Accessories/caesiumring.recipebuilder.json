@@ -1,0 +1,13 @@
+{
+	"Result": {
+		"Item": "Synergia/CaesiumRing",
+		"Count": 1
+	},
+	
+	"Ingredient": {
+		"Item": "Avalon/CaesiumBar",
+		"Count": 8
+	},
+
+	"Tile": "Synergia/CaesiumHeavyAnvilTile"
+}

@@ -1,20 +1,19 @@
-using Terraria;
-using Terraria.ModLoader;
-using Terraria.ID;
-using System.Collections.Generic;
-using Terraria.Localization;
-using static Terraria.ModLoader.ModContent;
-using static Terraria.Localization.Language;
-
 using Consolaria.Content.Items.Weapons.Melee;
 using Consolaria.Content.Items.Weapons.Ranged;
 using Starforgedclassic.Content.Weapons.Solarang;
-using ValhallaMod.Items.Weapons.Thrown;
+using System.Collections.Generic;
+using Terraria;
+using Terraria.ID;
+using Terraria.ModLoader;
+using TRAEBossRework.NewContent.Items.DreadItems.ShellSpinner;
+using ValhallaMod.Items.Garden;
+using ValhallaMod.Items.Weapons.Boomerang;
 using ValhallaMod.Items.Weapons.Glaive;
 using ValhallaMod.Items.Weapons.Javelin;
-using ValhallaMod.Items.Garden;
+using ValhallaMod.Items.Weapons.Thrown;
+using static Terraria.ModLoader.ModContent;
 
-namespace Vanilla.Common.GlobalItems
+namespace Synergia.Common.GlobalItems
 {
 	public class VanillaThrowingConverter : GlobalItem
 	{
@@ -52,6 +51,7 @@ namespace Vanilla.Common.GlobalItems
 
 			//ValhallaMod
 			ItemType<OmegaDisc>(),
+			ItemType<SnowGlaive>(),
 			ItemType<TerraGlaive>(),
 			ItemType<DungeonGlaive>(),
 			ItemType<SunJavelin>(),
@@ -59,6 +59,7 @@ namespace Vanilla.Common.GlobalItems
 			ItemType<ExplosiveCharge>(),
 			ItemType<BigBeeNade>(),
 			ItemType<CursedCoctail>(),
+			ItemType<StalloyScrew>(),
 			ItemType<ChlorophyleGlaive>(),
 			ItemType<NightGlaive>(),
 			ItemType<CrimiteGlaive>(),
@@ -70,10 +71,14 @@ namespace Vanilla.Common.GlobalItems
 			ItemType<CarrotDagger>(),
 			ItemType<CorrodeShuriken>(),
 			ItemType<CactusKnife>(),
-			ItemType<CactusStar>()
+			ItemType<CactusStar>(),
+
+			//TRAE
+			ItemType<ShellSpinner>(),
 		};
 
 		private static Mod avalon = ModLoader.GetMod("Avalon");
+		private static Mod bismuth = ModLoader.GetMod("Bismuth");
 
 		public override void SetDefaults(Item item)
 		{
@@ -83,30 +88,39 @@ namespace Vanilla.Common.GlobalItems
 				return;
 			}
 
-			if (item.type == avalon.Find<ModItem>("TetanusChakram").Type)
+			if (avalon != null && item.type == avalon.Find<ModItem>("TetanusChakram").Type)
 			{
 				item.DamageType = DamageClass.Throwing;
 			}
-			if (item.type == avalon.Find<ModItem>("Shurikerang").Type)
+			if (avalon != null && item.type == avalon.Find<ModItem>("Shurikerang").Type)
 			{
 				item.DamageType = DamageClass.Throwing;
 			}
-			if (item.type == avalon.Find<ModItem>("EnchantedShuriken").Type)
+			if (avalon != null && item.type == avalon.Find<ModItem>("EnchantedShuriken").Type)
 			{
 				item.DamageType = DamageClass.Throwing;
 			}
-			if (item.type == avalon.Find<ModItem>("RottenApple").Type)
+			if (avalon != null && item.type == avalon.Find<ModItem>("RottenApple").Type)
 			{
 				item.DamageType = DamageClass.Throwing;
 			}
-			if (item.type == avalon.Find<ModItem>("CrystalTomahawk").Type)
+			if (avalon != null && item.type == avalon.Find<ModItem>("CrystalTomahawk").Type)
 			{
 				item.DamageType = DamageClass.Throwing;
 			}
-			if (item.type == avalon.Find<ModItem>("Icicle").Type)
+			if (avalon != null && item.type == avalon.Find<ModItem>("Icicle").Type)
 			{
 				item.DamageType = DamageClass.Throwing;
 			}
+			if (avalon != null && item.type == avalon.Find<ModItem>("VirulentScythe").Type)
+			{
+				item.DamageType = DamageClass.Throwing;
+			}
+			if (bismuth != null && item.type == bismuth.Find<ModItem>("Prominence").Type)
+			{
+				item.DamageType = DamageClass.Summon;
+			}
+
 		}
 	}
 }

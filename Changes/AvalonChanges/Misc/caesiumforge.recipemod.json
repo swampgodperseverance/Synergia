@@ -1,0 +1,17 @@
+{
+  "Criteria": "All",
+
+  "Conditions": {
+    "CreatesResult": {
+      "Item": "Avalon/CaesiumForge"
+    }
+  },
+
+  "Changes": {
+    "ChangeIngredient": {
+      "Item": "Avalon/CaesiumOre",
+      "NewItem": "Avalon/CaesiumChunk",
+      "NewCount": 30
+    }
+  }
+}

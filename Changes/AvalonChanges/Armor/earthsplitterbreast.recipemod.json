@@ -1,0 +1,23 @@
+{
+  "Criteria": "All",
+
+  "Conditions": {
+    "CreatesResult": {
+      "Item": "Avalon/EarthsplitterChestpiece"
+    }
+  },
+
+  "Changes": {
+    "AddIngredient": {
+      "Item": "ValhallaMod/CorrodeBar",
+      "Count": 10
+    }
+  },
+
+  "Changes": {
+    "ChangeTile": {
+      "Tile": "Terraria/Anvils",
+      "NewTile": "Synergia/CaesiumHeavyAnvilTile"
+    }
+  }
+}

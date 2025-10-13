@@ -1,0 +1,17 @@
+{
+  "Criteria": "All",
+
+  "Conditions": {
+    "CreatesResult": {
+      "Item": "Avalon/GreaterStaminaPotion"
+    }
+  },
+
+  "Changes": {
+    "ChangeIngredient": {
+      "Item": "Terraria/Feather",
+      "NewItem": "NewHorizons/WyvernFur",
+      "NewCount": "1"
+    }
+  }
+}

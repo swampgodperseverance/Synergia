@@ -1,0 +1,16 @@
+{
+  "Criteria": "All",
+
+  "Conditions": {
+    "CreatesResult": {
+      "Item": "Avalon/ShockwavePotion"
+    }
+  },
+
+  "Changes": {
+    "AddIngredient": {
+      "Item": "RoA/Bonerose",
+      "Count": "1"
+    }
+  }
+}

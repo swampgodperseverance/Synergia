@@ -1,0 +1,12 @@
+{
+	"Result": {
+		"Item": "Synergia/MercuriumAuraScythe"
+	},
+	
+	"Ingredient": {
+		"Item": "RoA/MercuriumNugget",
+		"Count": 10
+	},
+	
+	"Tile": "Terraria/Anvils"
+}

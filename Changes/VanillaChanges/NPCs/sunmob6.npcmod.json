@@ -1,0 +1,10 @@
+{
+  "NPC": "Terraria/SolarSolenian",
+
+  "Changes": {
+    "Terraria": {
+      "Health": "+1400",
+      "Defense": "+10"
+    }
+  }
+}

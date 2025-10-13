@@ -1,10 +1,10 @@
 ﻿using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ModLoader;
-using Vanilla.Content.Projectiles.Hostile;
+using Synergia.Content.Projectiles.Hostile;
 using Terraria.ID;
 
-namespace Vanilla.Common.GlobalNPCs.AI
+namespace Synergia.Common.GlobalNPCs.AI
 {
     public class LothorAttackSystem : GlobalNPC
     {

@@ -1,1 +1,71 @@
-This description will show up on the steam page, check out https://steamcommunity.com/comment/Guide/formattinghelp.
+PLEASE, USE OLD TALES INSTEAD OF BOSS CHECKLIST TO CHECK PROGRESSION
+PROGRESSION WAS CHANGED
+
+[h1]Main information[/h1]
+
+Synergia focuses on extremely expanding the possibilities of Terraria and existing mods.
+This mod features tons of compatibility changes through unique mods and own unique content, such as weapons, accessories etc..
+Synergia is designed for people who likes terraria small mods, but always put them off until later.
+
+Perfect for people who want to refresh their old playthroughs.
+
+This "Beta" version features a new boss, 1100 compatibility changes, 16 AI of bosses&minibosses improvements and a variety of interesting content such as aura subclass expansion, thrower class and even weapons rework. 
+
+[h1]Content in this beta[/h1]
+[list]
+[*] [b]Sinlord Wyrm.[/b] Deep in the Underworld, there is a post-plantera boss with unique AI, sounds, music etc..  
+[*] [b]Old Tales.[/b] System that works for showing correct boss progression because it was changed. Ocram now is a pre-cultist final boss for example.
+[*] [b]Thrower.[/b] Just basically thrower with around of 100 weapons combined and balanced from other mods, and personally added by Synergia. Accessories and armor included
+[*] [b]Aura subclass expansion.[/b] Aura it's a new system added by Valhalla Mod. Summoner-Subclass and synergia adds good amount of content to play
+[*] [b]New bosses attacks.[/b] All modded bosses except lepus have at least 1 new attack. Vanilla bosses got changes too.
+[*] [b]Challenge AIs.[/b] 2 Challenge AI bosses for people who like hard fights. You can enable it in mod config
+[*] [b]Compatibility changes.[/b] Around of 400 recipe changes, around of 200 item modifications, around of 300 drop condition changes, 30+ armor pieces changes, accessories changes, giant crafting trees and weapons rework. 
+[*] [b]And much more![/b]
+[/list]
+
+[h1]How much content this modpack have with all mods included?[/h1]
+[list]
+[*] [b]540 weapons[/b] 
+[*] [b]10 Bosses[/b]
+[*] [b]+-80 Armor sets[/b]
+[*] [b]New mechanics[/b]
+[*] [b]New NPCs[/b]
+[*] [b]New generations[/b] 
+[*] [b]Tons of bosses were changed[/b] 
+[*] [b]And much more![/b]
+[/list]
+
+[h1]What will be in the "Release" version?[/h1]
+[list]
+[*] [b]Druid[/b] 
+[*] [b]More compatibility[/b]
+[*] [b]Active accessories[/b]
+[*] [b]And...[/b]
+[/list]
+
+[b]Does the mod work in multiplayer?[/b]
+Should be
+
+Whether you're playing casually or going for a full challenge run, Synergia ensures everything feels connected, smooth, and epic.
+
+Created by Swampgod and cleo.
+
+We also had Ropyxa in our team. But he quit Terraria modding, thanks a lot!
+
+Thank you, gasstein and Tamet for helping me with code and assets.
+
+Thanks @ddg.Of.mind for beautiful poster, he can do smth like this for you also.
+
+Thank you, Unholy, talex and Gergeroth for trailer.
+
+Credits: Serork, peege_on, Heretic, has2r, N.F.A., KondiU, Sparcdoctor, Croul, A44, blahblahbla, Xami, Mary, Ether, EnnWAY, musicman, Swampz, heartplusup, fredleon, red, charleyistired, mikumikumiku, aku, qwerty314, jbame, hina, dedmaxim, Jona, z.e.n HammerHoovy, KainSett, nobisyu, Nycro, kaliphobia and shekel.
+Write me in discord if I forget you as one of the mod devs.
+
+
+I DONT KNOW WHEN WILL BE NEXT BIG UPDATE. After this beta i take a hiatus for an indefinite period, but may be i will update the mod. Will be seen
+
+[h1]Links[/h1]
+
+[url=https://discord.gg/wp6vvbv2wA]Discord[/url]
+[url=https://github.com/swampgodperseverance/Synergia]GitHub[/url]
+  

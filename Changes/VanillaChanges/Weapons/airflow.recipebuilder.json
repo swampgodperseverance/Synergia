@@ -1,12 +1,22 @@
 {
 	"Result": {
-		"Item": "Vanilla/Airflow"
+		"Item": "Synergia/Airflow"
 	},
 	
 	"Ingredient": {
-		"Item": "starforgedclassic/AzuriteBarItem",
-		"Count": 15
+		"Item": "starforgedclassic/Solarang",
+		"Count": 1
+	},
+        
+	"Ingredient": {
+		"Item": "Terraria/Feather",
+		"Count": 4
+	},
+
+	"Ingredient": {
+		"Item": "Avalon/DesertFeather",
+		"Count": 2
 	},
 	
-	"Tile": "Terraria/Anvils"
+	"Tile": "starforgedclassic/StarForgeTile"
 }

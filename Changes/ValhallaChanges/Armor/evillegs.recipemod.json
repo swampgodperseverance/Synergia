@@ -1,0 +1,31 @@
+{
+  "Criteria": "All",
+
+  "Conditions": {
+    "CreatesResult": {
+      "Item": "ValhallaMod/EvilLegs"
+    }
+  },
+
+  "Changes": {
+    "ChangeIngredient": {
+      "Item": "ValhallaMod/EvilIngot",
+      "NewItem": "Avalon/CaesiumBar",
+      "NewCount": 8
+    }
+  },
+
+  "Changes": {
+    "AddIngredient": {
+      "Item": "ValhallaMod/EvilIngot",
+      "Count": 1
+    }
+  },
+
+  "Changes": {
+    "ChangeTile": {
+      "Tile": "Terraria/MythrilAnvil",
+      "NewTile": "Synergia/CaesiumHeavyAnvilTile"
+    }
+  }
+}

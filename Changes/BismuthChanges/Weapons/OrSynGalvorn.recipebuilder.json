@@ -1,0 +1,12 @@
+{
+	"Result": {
+		"Item": "Synergia/GalvornBlade"
+	},
+	
+	"Ingredient": {
+		"Item": "Bismuth/GalvornBar",
+		"Count": 15
+	},
+
+	"Tile": "Terraria/Anvils"
+}

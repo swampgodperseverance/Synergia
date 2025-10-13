@@ -1,0 +1,10 @@
+{
+  "NPC": "ValhallaMod/PirateSquid",
+
+  "Changes": {
+    "Terraria": {
+      "Health": "+8000",
+      "Defense": "5"
+    }
+  }
+}

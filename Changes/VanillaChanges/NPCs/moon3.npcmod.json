@@ -1,0 +1,10 @@
+	{
+  "NPC": "Terraria/MoonLordCore",
+
+  "Changes": {
+    "Terraria": {
+      "Health": "+30000",
+      "Defense": "+2"
+    }
+  }
+}

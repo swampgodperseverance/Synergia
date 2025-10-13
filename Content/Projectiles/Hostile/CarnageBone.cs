@@ -104,7 +104,7 @@ namespace Synergia.Content.Projectiles.Hostile
             {
                 SplitIntoParts();
                 currentState = BoneState.Splitting;
-                SoundEngine.PlaySound(new SoundStyle("Synergia/Assets/Sounds/BrokenBone"), Projectile.Center);
+                SoundEngine.PlaySound(Sounds.Type("BrokenBone"), Projectile.Center);
                 timer = 0;
             }
         }

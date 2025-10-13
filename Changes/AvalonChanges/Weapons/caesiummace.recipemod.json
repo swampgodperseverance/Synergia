@@ -1,0 +1,24 @@
+{
+  "Criteria": "All",
+
+  "Conditions": {
+    "CreatesResult": {
+      "Item": "Avalon/CaesiumMace"
+    }
+  },
+
+  "Changes": {
+    "ChangeIngredient": {
+      "Item": "Avalon/CaesiumBar",
+      "NewItem": "Avalon/CaesiumBar",
+      "NewCount": 10
+    }
+  },
+
+  "Changes": {
+    "ChangeTile": {
+      "Tile": "Terraria/MythrilAnvil",
+      "NewTile": "Synergia/CaesiumHeavyAnvilTile"
+    }
+  }
+}

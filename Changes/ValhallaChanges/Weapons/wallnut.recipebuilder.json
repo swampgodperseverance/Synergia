@@ -1,0 +1,17 @@
+{
+	"Result": {
+		"Item": "ValhallaMod/GiantWallNutBowler"
+	},
+	
+	"Ingredient": {
+		"Item": "ValhallaMod/WallNutBowler",
+		"Count": 1
+	},
+	
+	"Ingredient": {
+		"Item": "Avalon/DurataniumBar",
+		"Count": 5
+	},
+
+	"Tile": "Terraria/Anvils"
+}

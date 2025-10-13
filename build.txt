@@ -1,4 +1,4 @@
-displayName = Refined Vanilla
-author = pers3v3rance, ropyxa
-version = 1.0
-modReferences = Consolaria, RoA, ValhallaMod, Liber, StramsSurvival, StramsLib, starforgedclassic, TRAEUnderworld, OrchidMineshaft, PackBuilder, NewHorizons, AccessoryPrefixesPlus, BossCursor, Avalon, VervCaves, MoreCritters
+displayName = Synergia
+author = Swamp
+version = 0.218
+modReferences = starforgedclassic, RoA, Consolaria, StramsSurvival, ValhallaMod, TRAEBossRework, PackBuilder, NewHorizons, Avalon, Bismuth,

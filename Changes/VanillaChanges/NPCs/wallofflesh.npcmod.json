@@ -1,0 +1,10 @@
+{
+  "NPC": "Terraria/WallofFlesh",
+
+  "Changes": {
+    "Terraria": {
+      "Health": "+1520",
+      "Defense": "+2"
+    }
+  }
+}

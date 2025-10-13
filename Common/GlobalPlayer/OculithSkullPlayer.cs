@@ -1,6 +1,6 @@
 using Terraria.ModLoader;
 
-namespace Vanilla.Common.GlobalPlayer
+namespace Synergia.Common.GlobalPlayer
 {
 	public class OculithSkullPlayer : ModPlayer
 	{

@@ -1,0 +1,26 @@
+{
+	"Result": {
+		"Item": "Synergia/SinstoneLyre"
+	},
+
+	"Ingredient": {
+		"Item": "Avalon/FrozenLyre",
+		"Count": 1
+	},	
+	"Ingredient": {
+		"Item": "ValhallaMod/Sinstone",
+		"Count": 15
+	},
+
+	"Ingredient": {
+		"Item": "Avalon/FireShard",
+		"Count": 5
+	},
+
+	"Ingredient": {
+		"Item": "Avalon/LifeDew",
+		"Count": 1
+	},
+	
+	"Tile": "Terraria/Hellforge"
+}

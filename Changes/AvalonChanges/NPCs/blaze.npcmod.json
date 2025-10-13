@@ -1,0 +1,10 @@
+{
+  "NPC": "Avalon/Blaze",
+
+  "Changes": {
+    "Terraria": {
+      "Health": "+8050",
+      "Defense": "+5"
+    }
+  }
+}

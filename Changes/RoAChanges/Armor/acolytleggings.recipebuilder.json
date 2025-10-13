@@ -1,0 +1,17 @@
+{
+	"Result": {
+		"Item": "RoA/CopperAcolyteLeggings"
+	},
+	
+	"Ingredient": {
+		"Item": "Avalon/BronzeBar",
+		"Count": 6
+	},
+        
+	"Ingredient": {
+		"Item": "Terraria/Leather",
+		"Count": 5
+	},
+	
+	"Tile": "Terraria/Anvils"
+}

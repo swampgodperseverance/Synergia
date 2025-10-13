@@ -3,7 +3,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Vanilla.Content.Projectiles.Aura
+namespace Synergia.Content.Projectiles.Aura
 {
     [ExtendsFromMod("ValhallaMod")]
     public class UnderwaterAuraScytheCut : ModProjectile
@@ -32,7 +32,7 @@ namespace Vanilla.Content.Projectiles.Aura
                     float angle = MathHelper.ToRadians(i);
                     Vector2 pos = Projectile.Center + angle.ToRotationVector2() * 2f;
 
-                    int dustType = DustID.Water; // Или кастомный OceanBubbleDust
+                    int dustType = DustID.Water; 
                     Dust d = Dust.NewDustPerfect(pos, dustType);
                     d.velocity = Vector2.Zero;
                     d.scale = Main.rand.NextFloat(1f, 1.4f);
@@ -44,7 +44,7 @@ namespace Vanilla.Content.Projectiles.Aura
 
         public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
         {
-            target.AddBuff(BuffID.Suffocation, 300); // На 5 секунд
+            target.AddBuff(BuffID.Suffocation, 300); 
         }
     }
 }

@@ -1,0 +1,22 @@
+{
+	"Result": {
+		"Item": "ValhallaMod/SniperBody"
+	},
+
+	"Ingredient": {
+		"Item": "StramsSurvival/AluminumBar",
+		"Count": 15
+	},
+
+	"Ingredient": {
+		"Item": "Terraria/Ectoplasm",
+		"Count": 10
+	},
+        
+	"Ingredient": {
+		"Item": "NewHorizons/AncientScrap",
+		"Count": 30
+	},
+
+	"Tile": "Synergia/CaesiumHeavyAnvilTile"
+}

@@ -1,0 +1,22 @@
+{
+	"Result": {
+		"Item": "NewHorizons/BeastBreastplate"
+	},
+	
+	"Ingredient": {
+		"Item": "Avalon/ZincBar",
+		"Count": 18
+	},
+        
+	"Ingredient": {
+		"Item": "Terraria/Vertebrae",
+		"Count": 16
+	},
+
+	"Ingredient": {
+		"Item": "Avalon/CorruptShard",
+		"Count": 6
+	},
+	
+	"Tile": "Terraria/Anvils"
+}

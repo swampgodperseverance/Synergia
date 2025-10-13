@@ -1,0 +1,10 @@
+{
+	"Item": "ValhallaMod/PaintRoller",
+	
+	"Changes": {
+		"Terraria": {
+		"Damage": "-4",
+		"UseTime": "+3"
+		}
+	}
+}

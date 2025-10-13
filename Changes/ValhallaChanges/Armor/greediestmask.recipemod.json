@@ -11,6 +11,14 @@
     "AddIngredient": {
       "Item": "Consolaria/SoulofBlight",
       "Count": 4
+
+    }
+  },
+
+  "Changes": {
+    "ChangeTile": {
+      "Tile": "Terraria/MythrilAnvil",
+      "NewTile": "Synergia/CaesiumHeavyAnvilTile"
     }
   }
 }

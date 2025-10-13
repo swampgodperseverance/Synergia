@@ -1,0 +1,10 @@
+{
+  "NPC": "ValhallaMod/Ifrit",
+
+  "Changes": {
+    "Terraria": {
+      "Health": "3100",
+      "Defense": "5"
+    }
+  }
+}

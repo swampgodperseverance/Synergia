@@ -1,0 +1,10 @@
+{
+  "NPC": "Terraria/TheHungry",
+
+  "Changes": {
+    "Terraria": {
+      "Health": "+120",
+      "Defense": "+2"
+    }
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "NPC": "Terraria/NebulaBrain",
+
+  "Changes": {
+    "Terraria": {
+      "Health": "+1200",
+      "Defense": "+2"
+    }
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "Criteria": "All",
+
+  "Conditions": {
+    "CreatesResult": {
+      "Item": "Avalon/GPSPotion"
+    }
+  },
+
+  "Changes": {
+    "ChangeIngredient": {
+      "Item": "Terraria/Blinkroot",
+      "NewItem": "RoA/Bonerose",
+      "NewCount": "1"
+    }
+  }
+}

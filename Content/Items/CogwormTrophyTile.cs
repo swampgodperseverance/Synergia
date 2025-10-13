@@ -5,7 +5,7 @@ using Terraria.Localization;
 using Terraria.ModLoader;
 using Terraria.ObjectData;
 
-namespace Vanilla.Content.Items
+namespace Synergia.Content.Items
 {
 	// Simple 3x3 tile that can be placed on a wall
 	public class CogwormTrophyTile : ModTile

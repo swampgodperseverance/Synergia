@@ -1,0 +1,22 @@
+{
+	"Result": {
+		"Item": "ValhallaMod/HarbingerOfDawn"
+	},
+	
+	"Ingredient": {
+		"Item": "Avalon/Moonforce",
+		"Count": 1
+	},
+        
+	"Ingredient": {
+		"Item": "Terraria/LunarTabletFragment",
+		"Count": 5
+	},
+	
+	"Ingredient": {
+		"Item": "Terraria/FallenStar",
+		"Count": 10
+	},
+
+	"Tile": "Synergia/CaesiumHeavyAnvilTile"
+}

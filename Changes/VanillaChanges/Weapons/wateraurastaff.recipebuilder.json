@@ -1,0 +1,18 @@
+{
+	"Result": {
+		"Item": "Synergia/UnderwaterAuraStaff",
+		"Count": 1
+	},
+	
+	"Ingredient": {
+		"Item": "Avalon/WaterShard",
+		"Count": 8
+	},
+
+	"Ingredient": {
+		"Item": "Terraria/SharkFin",
+		"Count": 1
+	},
+
+	"Tile": "Terraria/Anvils"
+}

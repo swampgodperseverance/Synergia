@@ -1,0 +1,22 @@
+{
+	"Result": {
+		"Item": "NewHorizons/WyvernHunterBreastplate"
+	},
+	
+	"Ingredient": {
+		"Item": "Avalon/TroxiniumBar",
+		"Count": 15
+	},
+        
+	"Ingredient": {
+		"Item": "NewHorizons/WyvernFur",
+		"Count": 2
+	},
+
+	"Ingredient": {
+		"Item": "Terraria/SoulofFlight",
+		"Count": 10
+	},
+	
+	"Tile": "Terraria/MythrilAnvil"
+}

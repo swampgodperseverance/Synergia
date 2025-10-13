@@ -1,0 +1,10 @@
+{
+  "NPC": "Terraria/VortexLarva",
+
+  "Changes": {
+    "Terraria": {
+      "Health": "+780",
+      "Defense": "+2"
+    }
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "NPC": "Terraria/SkeletronHand",
+
+  "Changes": {
+    "Terraria": {
+      "Health": "+400",
+      "Defense": "+5"
+    }
+  }
+}

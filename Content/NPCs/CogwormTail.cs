@@ -4,12 +4,12 @@ using Terraria.Audio;
 using Terraria.ModLoader;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using Vanilla.Content.Projectiles.Hostile;
-using Vanilla.Content.NPCs;
-using Vanilla;
-using Vanilla.Common.GlobalPlayer;
+using Synergia.Content.Projectiles.Hostile;
+using Synergia.Content.NPCs;
+using Synergia;
+using Synergia.Common.GlobalPlayer;
 
-namespace Vanilla.Content.NPCs
+namespace Synergia.Content.NPCs
 {
     public class CogwormTail : ModNPC
     {
@@ -51,11 +51,11 @@ namespace Vanilla.Content.NPCs
         {
             if (Main.rand.NextBool())
             {
-                SoundEngine.PlaySound(Sounds.CragwormHit with { Volume = 0.8f, Pitch = -0.1f }, NPC.Center);
+                SoundEngine.PlaySound(Sounds.Type("CragwormHit") with { Volume = 0.8f, Pitch = -0.1f }, NPC.Center);
             }
             else
             {
-                SoundEngine.PlaySound(Sounds.CragwormHit2 with { Volume = 0.8f, Pitch = -0.1f }, NPC.Center);
+                SoundEngine.PlaySound(Sounds.Type("CragwormHit2") with { Volume = 0.8f, Pitch = -0.1f }, NPC.Center);
             }
         }
 

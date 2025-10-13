@@ -15,7 +15,7 @@ namespace Synergia.Content.Projectiles.Reworks
         private float orbitAngle = 0f;
         private bool disappearing = false;
         private bool bloodExplosionDone = false;
-        private float appearProgress = 0f; // Новый параметр для прогресса появления (0-1)
+        private float appearProgress = 0f;
 
         public override void SetStaticDefaults()
         {
@@ -32,27 +32,25 @@ namespace Synergia.Content.Projectiles.Reworks
             Projectile.DamageType = DamageClass.Melee;
             Projectile.tileCollide = false;
             Projectile.timeLeft = 300;
-            Projectile.alpha = 255; // Начинаем полностью прозрачным
-            Projectile.scale = 0.1f; // Начинаем с маленького размера
+            Projectile.alpha = 255; 
+            Projectile.scale = 0.1f; 
         }
 
         public override void AI()
         {
             Player player = Main.player[Projectile.owner];
             
-            // Плавное появление в первые 20 тиков
             if (appearProgress < 1f)
             {
                 appearProgress += 0.05f;
                 if (appearProgress > 1f) appearProgress = 1f;
                 
-                Projectile.alpha = (int)(255 * (1 - appearProgress)); // Плавное появление
-                Projectile.scale = 0.1f + 0.9f * appearProgress; // Плавное увеличение размера
+                Projectile.alpha = (int)(255 * (1 - appearProgress)); 
+                Projectile.scale = 0.1f + 0.9f * appearProgress; 
             }
 
             if (!isLaunched)
             {
-                // === Вращение над головой игрока ===
                 orbitAngle += 0.1f;
                 if (orbitAngle > MathHelper.TwoPi)
                     orbitAngle -= MathHelper.TwoPi;
@@ -69,7 +67,6 @@ namespace Synergia.Content.Projectiles.Reworks
 
                 if (Projectile.ai[0] >= 120)
                 {
-                    // === Запуск к цели ===
                     isLaunched = true;
                     Projectile.ai[0] = 0;
                     float minDistance = 1000f;
@@ -87,13 +84,12 @@ namespace Synergia.Content.Projectiles.Reworks
 
                     if (targetPosition != Vector2.Zero)
                     {
-                        // === Разгон при старте движения к цели ===
                         Vector2 startDir = Vector2.Normalize(targetPosition - Projectile.Center);
-                        Projectile.velocity = startDir * 2f; // стартовая небольшая скорость
+                        Projectile.velocity = startDir * 2f; 
                     }
                     else
                     {
-                        disappearing = true; // если врагов нет, сразу начинаем исчезать
+                        disappearing = true; 
                     }
                 }
                 Projectile.ai[0]++;
@@ -102,7 +98,6 @@ namespace Synergia.Content.Projectiles.Reworks
             {
                 if (!disappearing)
                 {
-                    // === Движение к цели ===
                     bool targetAlive = false;
                     float closestDist = 1000f;
                     for (int i = 0; i < Main.maxNPCs; i++)
@@ -122,7 +117,7 @@ namespace Synergia.Content.Projectiles.Reworks
 
                     if (targetAlive)
                     {
-                        // === Разгон и плавная корректировка скорости ===
+
                         Vector2 desiredVelocity = Vector2.Normalize(targetPosition - Projectile.Center) * 12f;
                         Projectile.velocity = Vector2.Lerp(Projectile.velocity, desiredVelocity, 0.1f);
                     }
@@ -133,7 +128,6 @@ namespace Synergia.Content.Projectiles.Reworks
 
                     Projectile.rotation = Projectile.velocity.ToRotation() + MathHelper.PiOver2;
 
-                    // === Хвост и частицы крови ===
                     if (Main.rand.NextBool(2))
                     {
                         Dust dust = Dust.NewDustDirect(Projectile.position, Projectile.width, Projectile.height, DustID.Blood, 
@@ -143,7 +137,6 @@ namespace Synergia.Content.Projectiles.Reworks
                 }
                 else
                 {
-                    // === Исчезновение ===
                     Projectile.velocity *= 0.95f;
                     Projectile.alpha += 10;
 
@@ -173,7 +166,6 @@ namespace Synergia.Content.Projectiles.Reworks
             Texture2D texture = ModContent.Request<Texture2D>(Texture).Value;
             Vector2 origin = texture.Size() / 2f;
 
-            // Рисуем хвост
             for (int k = 0; k < Projectile.oldPos.Length; k++)
             {
                 Vector2 drawPos = Projectile.oldPos[k] + new Vector2(Projectile.width / 2, Projectile.height / 2) - Main.screenPosition;
@@ -182,7 +174,6 @@ namespace Synergia.Content.Projectiles.Reworks
                 spriteBatch.Draw(texture, drawPos, null, color, Projectile.rotation, origin, scale, SpriteEffects.None, 0f);
             }
 
-            // Рисуем сам снаряд с учетом плавного появления
             Color drawColor = Color.Red * (1f - Projectile.alpha / 255f);
             spriteBatch.Draw(texture, Projectile.Center - Main.screenPosition, null, drawColor, Projectile.rotation, origin, Projectile.scale, SpriteEffects.None, 0f);
 

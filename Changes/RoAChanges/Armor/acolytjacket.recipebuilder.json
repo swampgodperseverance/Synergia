@@ -1,0 +1,17 @@
+{
+	"Result": {
+		"Item": "RoA/CopperAcolyteJacket"
+	},
+	
+	"Ingredient": {
+		"Item": "Avalon/BronzeBar",
+		"Count": 10
+	},
+        
+	"Ingredient": {
+		"Item": "Terraria/Leather",
+		"Count": 8
+	},
+	
+	"Tile": "Terraria/Anvils"
+}

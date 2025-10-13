@@ -4,7 +4,7 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using ValhallaMod.Projectiles.AI;
 
-namespace Vanilla.Content.Projectiles.Aura
+namespace Synergia.Content.Projectiles.Aura
 {
     [ExtendsFromMod("ValhallaMod")]
     public class SandAlbinoOrb : AuraDamageAI

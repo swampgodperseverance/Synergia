@@ -1,0 +1,16 @@
+{
+  "Criteria": "All",
+
+  "Conditions": {
+    "CreatesResult": {
+      "Item": "Avalon/StrengthPotion"
+    }
+  },
+
+  "Changes": {
+    "AddIngredient": {
+      "Item": "NewHorizons/WyvernFur",
+      "Count": "1"
+    }
+  }
+}

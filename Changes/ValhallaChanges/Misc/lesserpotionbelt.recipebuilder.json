@@ -1,0 +1,17 @@
+{
+	"Result": {
+		"Item": "ValhallaMod/LesserPotionBelt"
+	},
+	
+	"Ingredient": {
+		"Item": "Avalon/BronzeBar",
+		"Count": 5
+	},
+	
+	"Ingredient": {
+		"Item": "Terraria/LesserHealingPotion",
+		"Count": 20
+	},
+	
+	"Tile": "Terraria/Bottles"
+}

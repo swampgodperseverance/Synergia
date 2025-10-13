@@ -1,0 +1,24 @@
+{
+	"Result": {
+		"Item": "Synergia/EarthCollapse",
+		"Count": 1
+	},
+
+	"Ingredient": {
+		"Item": "Synergia/EnchantedRing",
+		"Count": 1
+	},
+	
+	"Ingredient": {
+		"Item": "Avalon/CoreShard",
+		"Count": 10
+	},
+
+	"Ingredient": {
+		"Item": "RoA/NaturesHeart",
+		"Count": 1
+	},
+
+
+	"Tile": "Terraria/MythrilAnvil"
+}

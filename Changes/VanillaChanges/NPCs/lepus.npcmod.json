@@ -1,0 +1,10 @@
+{
+  "NPC": "Consolaria/Lepus",
+
+  "Changes": {
+    "Terraria": {
+      "Health": "+600",
+      "Defense": "+2"
+    }
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "Criteria": "All",
+
+  "Conditions": {
+    "CreatesResult": {
+      "Item": "ValhallaMod/AuraPlusPotion"
+    }
+  },
+
+  "Changes": {
+    "ChangeIngredient": {
+      "Item": "Terraria/Shiverthorn",
+      "NewItem": "Avalon/DewofHerbs",
+      "NewCount": "1"
+    }
+  }
+}

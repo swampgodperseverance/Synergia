@@ -4,7 +4,7 @@ using Terraria.ID;
 using Terraria.DataStructures;
 using Microsoft.Xna.Framework;
 
-namespace Vanilla.Content.Items.Accessories
+namespace Synergia.Content.Items.Accessories
 {
 	public class CursedThrowerEmblem : ModItem
 	{

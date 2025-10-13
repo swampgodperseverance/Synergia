@@ -1,0 +1,10 @@
+{
+  "NPC": "Terraria/VortexRifleman",
+
+  "Changes": {
+    "Terraria": {
+      "Health": "+1800",
+      "Defense": "+2"
+    }
+  }
+}

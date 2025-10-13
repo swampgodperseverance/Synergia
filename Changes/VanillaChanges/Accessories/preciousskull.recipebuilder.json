@@ -1,0 +1,32 @@
+{
+	"Result": {
+		"Item": "Synergia/PreciousSkull",
+		"Count": 1
+	},
+	
+	"Ingredient": {
+		"Item": "Synergia/StonedSkull",
+		"Count": 1
+	},
+
+	"Ingredient": {
+		"Item": "Synergia/EverwoodNecklace",
+		"Count": 1
+	},
+
+	"Ingredient": {
+		"Item": "Terraria/Bone",
+		"Count": 10
+	},
+	"Ingredient": {
+		"Item": "Avalon/Tourmaline",
+		"Count": 1
+	},
+
+	"Ingredient": {
+		"Item": "Avalon/Zircon",
+		"Count": 1
+	},
+
+	"Tile": "Terraria/Anvils"
+}

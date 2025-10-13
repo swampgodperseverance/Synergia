@@ -1,0 +1,17 @@
+{
+  "Criteria": "All",
+
+  "Conditions": {
+    "CreatesResult": {
+      "Item": "Avalon/AeroforceGuardia"
+    }
+  },
+
+  "Changes": {
+    "ChangeIngredient": {
+      "Item": "Avalon/CaesiumBar",
+      "NewItem": "Terraria/Nanites",
+      "NewCount": 10
+    }
+  }
+}

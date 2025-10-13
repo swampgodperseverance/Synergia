@@ -1,0 +1,10 @@
+{
+  "NPC": "ValhallaMod/Emperor",
+
+  "Changes": {
+    "Terraria": {
+      "Health": "+8000",
+      "Defense": "15"
+    }
+  }
+}

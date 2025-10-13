@@ -1,23 +1,28 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna;
 using System;
 using Terraria;
 using Terraria.Audio;
 using Terraria.ID;
 using Terraria.ModLoader;
-using Vanilla.Content.Projectiles.Hostile;
+using Synergia.Content.Projectiles.Hostile;
 
-namespace Vanilla.Common.GlobalNPCs.AI
+namespace Synergia.Common.GlobalNPCs.AI
 {
     public class DesertBeakIntegration : GlobalNPC
     {
         public override bool InstancePerEntity => true;
 
-        private int attackCounter = 0;
         private int sandstormCooldown = 0;
         private bool isPreparingSandstorm = false;
-        private float originalScale = 1f;
-        private Vector2 originalSize;
+
+        // Feather Volley
+        private bool isPreparingFeatherVolley = false;
+        private int featherVolleyTimer = 0;
+        private int featherVolleySide = 0;
+        private Vector2 featherVolleyDir;
+        private Vector2 featherSpawnPos;
 
         public override void AI(NPC npc)
         {
@@ -29,41 +34,43 @@ namespace Vanilla.Common.GlobalNPCs.AI
 
             if (sandstormCooldown > 0) sandstormCooldown--;
 
-            if (npc.life < npc.lifeMax * 0.4f && sandstormCooldown <= 0 && !isPreparingSandstorm)
+            if (npc.life < npc.lifeMax * 0.4f && sandstormCooldown <= 0 && !isPreparingSandstorm && !isPreparingFeatherVolley)
             {
                 StartSandstormPreparation(npc);
             }
 
             if (isPreparingSandstorm)
-            {
                 ExecuteSandstormAttack(npc, target);
+
+            if (!isPreparingSandstorm && !isPreparingFeatherVolley && Main.rand.NextBool(600))
+            {
+                StartFeatherVolley(npc, target);
             }
+
+            if (isPreparingFeatherVolley)
+                ExecuteFeatherVolley(npc, target);
         }
+
+        //Sandstorm
 
         private void StartSandstormPreparation(NPC npc)
         {
             isPreparingSandstorm = true;
-            originalScale = npc.scale;
-            originalSize = npc.Size;
-
             npc.velocity *= 0.5f;
         }
 
         private void ExecuteSandstormAttack(NPC npc, Player target)
         {
+            npc.ai[3]++;
             float riseSpeed = MathHelper.Lerp(0.5f, 2f, npc.ai[3] / 120f);
             npc.velocity.Y = -riseSpeed;
-            npc.ai[3]++; 
-
-            npc.scale = originalScale * (1 + npc.ai[3] / 240f);
 
             if (npc.ai[3] >= 120)
             {
                 SpawnGiantSandstorm(npc, target);
                 isPreparingSandstorm = false;
                 npc.ai[3] = 0;
-                npc.scale = originalScale;
-                sandstormCooldown = 1600; 
+                sandstormCooldown = 1600;
             }
         }
 
@@ -73,7 +80,7 @@ namespace Vanilla.Common.GlobalNPCs.AI
 
             Vector2 spawnPosition = npc.Center + new Vector2(0, -100);
 
-            int proj = Projectile.NewProjectile(
+            Projectile.NewProjectile(
                 npc.GetSource_FromAI(),
                 spawnPosition,
                 Vector2.Zero,
@@ -97,6 +104,76 @@ namespace Vanilla.Common.GlobalNPCs.AI
                 ).noGravity = true;
             }
         }
+
+   
+
+       
+        private void StartFeatherVolley(NPC npc, Player target)
+        {
+            isPreparingFeatherVolley = true;
+            featherVolleyTimer = 0;
+            featherVolleySide = Main.rand.NextBool() ? -1 : 1;
+
+            featherSpawnPos = target.Center + new Vector2(
+                featherVolleySide * 800f, 
+                100f 
+            );
+        }
+
+        private void ExecuteFeatherVolley(NPC npc, Player target)
+        {
+            featherVolleyTimer++;
+
+            int interval = 10;
+            int shotIndex = (featherVolleyTimer - 1) / interval;
+
+            if (shotIndex < 3 && (featherVolleyTimer - 1) % interval == 0)
+            {
+                float angleOffset = -10f + shotIndex * 10f;
+
+                Vector2 direction = target.Center - featherSpawnPos;
+                direction.Normalize();
+
+                Vector2 velocity = direction * 8f;
+                velocity = velocity.RotatedBy(MathHelper.ToRadians(angleOffset));
+
+                // Добавляем случайное вертикальное смещение к позиции появления
+                Vector2 spawnPosWithOffset = featherSpawnPos + new Vector2(0, Main.rand.NextFloat(-30f, 30f));
+
+                if (Main.netMode != NetmodeID.MultiplayerClient)
+                {
+                    Projectile.NewProjectile(
+                        npc.GetSource_FromAI(),
+                        spawnPosWithOffset,
+                        velocity,
+                        ModContent.ProjectileType<DesertBeakFeather>(),
+                        Math.Max(npc.damage - 50, 1),
+                        2f,
+                        Main.myPlayer,
+                        0f,
+                        0f
+                    );
+                }
+
+                if (Main.netMode != NetmodeID.Server)
+                {
+                    SoundEngine.PlaySound(
+                        new SoundStyle("Synergia/Assets/Sounds/FeatherFlow") 
+                        { 
+                            Volume = 0.8f,
+                            Pitch = Main.rand.NextFloat(-0.2f, 0.2f)
+                        }, 
+                        spawnPosWithOffset
+                    );
+                }
+            }
+
+            if (featherVolleyTimer >= 30) 
+            {
+                isPreparingFeatherVolley = false;
+            }
+        }
+
 
         public override void PostDraw(NPC npc, SpriteBatch spriteBatch, Vector2 screenPos, Color drawColor)
         {

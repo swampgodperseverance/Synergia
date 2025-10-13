@@ -1,0 +1,10 @@
+{
+	"Item": "RoA/OvergrownSpear",
+	
+	"Changes": {
+		"Terraria": {
+		"Damage": "+5",
+		"UseTime": "-1"
+		}
+	}
+}

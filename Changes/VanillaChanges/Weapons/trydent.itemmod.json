@@ -1,0 +1,10 @@
+{
+	"Item": "Terraria/Trident",
+	
+	"Changes": {
+		"Terraria": {
+		"Damage": "-6",
+		"UseTime": "+3"
+		}
+	}
+}

@@ -4,7 +4,7 @@ using Terraria.ID;
 using Microsoft.Xna.Framework;
 using Terraria.Audio;
 
-namespace Vanilla.Common.GlobalNPCs
+namespace Synergia.Common.GlobalNPCs
 {
     public class TurkorFeatherAI : GlobalNPC
     {

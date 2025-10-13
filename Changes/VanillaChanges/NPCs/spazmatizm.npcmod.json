@@ -1,0 +1,10 @@
+{
+  "NPC": "Terraria/Spazmatism",
+
+  "Changes": {
+    "Terraria": {
+      "Health": "+5500",
+      "Defense": "+2"
+    }
+  }
+}

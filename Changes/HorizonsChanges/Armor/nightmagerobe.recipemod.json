@@ -1,0 +1,15 @@
+{
+  "Criteria": "All",
+
+  "Conditions": {
+    "CreatesResult": {
+      "Item": "NewHorizons/NightMageCape"
+    }
+  },
+  "Changes": {
+    "DisableRecipe": {
+      "Disabled": "True"
+
+    }
+  }
+}

@@ -1,20 +1,20 @@
 ﻿using Microsoft.Xna.Framework;
-
-using Vanilla.Common.GlowMasks;
-using Vanilla.Content.Projectiles.Friendly;
-
 using Terraria;
 using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
+using Synergia.Common;
+using Synergia.Common.GlowMasks;
+using Synergia.Content.Buffs;
+using Synergia.Content.Projectiles.Friendly;
 
-namespace Vanilla.Content.Items.Weapons.Cogworm;
+namespace Synergia.Content.Items.Weapons.Cogworm;
 
-[AutoloadGlowMask]//Code from rise of ages ravens eye
+[AutoloadGlowMask] // Code from Rise of Ages: Raven's Eye
 sealed class Menace : ModItem {
     public override void SetStaticDefaults() {
-        // DisplayName.SetDefault("Raven's Eye");
-        // Tooltip.SetDefault("");
+        // DisplayName.SetDefault("Menace");
+        // Tooltip.SetDefault("Fires magical shards from above");
 
         Item.ResearchUnlockCount = 1;
     }
@@ -37,7 +37,8 @@ sealed class Menace : ModItem {
         Item.channel = true;
         Item.mana = 10;
 
-        Item.rare = ItemRarityID.Orange;
+        Item.rare = ModContent.RarityType<LavaGradientRarity>();
+
         Item.UseSound = SoundID.Item105;
 
         Item.shoot = ModContent.ProjectileType<MagicStalactite>();
@@ -47,7 +48,7 @@ sealed class Menace : ModItem {
     }
 
     public override void ModifyShootStats(Player player, ref Vector2 position, ref Vector2 velocity, ref int type, ref int damage, ref float knockback) {
-        Vector2 newVelocity = new Vector2(velocity.X, velocity.Y).SafeNormalize(Vector2.Zero);
+        Vector2 newVelocity = velocity.SafeNormalize(Vector2.Zero);
         position += newVelocity * 40;
         position += new Vector2(-newVelocity.Y, newVelocity.X) * (-10f * player.direction);
     }
@@ -64,7 +65,8 @@ sealed class Menace : ModItem {
             }
         }
 
-        int count = Main.rand.Next(2, 5);
+        int count = player.HasBuff(ModContent.BuffType<Hellborn>()) ? 4 : Main.rand.Next(2, 5);
+
         for (int i = 0; i < count; i++) {
             Vector2 spawnPos = new Vector2(
                 player.Center.X + Main.rand.NextFloat(-60f, 60f),
@@ -84,5 +86,4 @@ sealed class Menace : ModItem {
 
         return false;
     }
-
 }

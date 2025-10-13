@@ -1,0 +1,10 @@
+{
+  "NPC": "Terraria/SolarSroller",
+
+  "Changes": {
+    "Terraria": {
+      "Health": "+1200",
+      "Defense": "+18"
+    }
+  }
+}

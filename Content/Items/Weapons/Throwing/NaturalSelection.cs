@@ -1,9 +1,9 @@
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using Vanilla.Content.Projectiles;
+using Synergia.Content.Projectiles.Friendly;
 
-namespace Vanilla.Content.Items.Weapons.Throwing
+namespace Synergia.Content.Items.Weapons.Throwing
 {
     public class NaturalSelection : ModItem
     {

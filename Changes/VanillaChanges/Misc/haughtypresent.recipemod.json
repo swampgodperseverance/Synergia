@@ -1,0 +1,17 @@
+{
+  "Criteria": "All",
+
+  "Conditions": {
+    "CreatesResult": {
+      "Item": "Terraria/NaughtyPresent"
+    }
+  },
+
+  "Changes": {
+    "ChangeIngredient": {
+      "Item": "Terraria/SoulofFright",
+      "NewItem": "Avalon/SoulofIce",
+      "NewCount": 5
+    }
+  }
+}

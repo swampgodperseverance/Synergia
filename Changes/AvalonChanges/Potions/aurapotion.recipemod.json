@@ -1,0 +1,16 @@
+{
+  "Criteria": "All",
+
+  "Conditions": {
+    "CreatesResult": {
+      "Item": "Avalon/AuraPotion"
+    }
+  },
+
+  "Changes": {
+    "AddIngredient": {
+      "Item": "RoA/FlamingFabric",
+      "Count": "1"
+    }
+  }
+}

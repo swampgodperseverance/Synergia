@@ -1,0 +1,10 @@
+{
+  "NPC": "ValhallaMod/JadeOrb",
+
+  "Changes": {
+    "Terraria": {
+      "Health": "+7000",
+      "Defense": "15"
+    }
+  }
+}

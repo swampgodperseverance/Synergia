@@ -1,13 +1,13 @@
-using Vanilla.Content.Projectiles.Friendly;
+using Synergia.Content.Projectiles.Friendly;
 //consolaria
 using Microsoft.Xna.Framework;
-
+using Synergia.Common;
 using Terraria;
 using Terraria.Audio;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Vanilla.Content.Items.Weapons.Cogworm {
+namespace Synergia.Content.Items.Weapons.Cogworm {
     public class Cleavage : ModItem {
         public override void SetStaticDefaults() {
             ItemID.Sets.SkipsInitialUseSound[Item.type] = true;
@@ -34,7 +34,8 @@ namespace Vanilla.Content.Items.Weapons.Cogworm {
             Item.crit = 10;
 
             Item.value = Item.buyPrice(gold: 5, silver: 30);
-            Item.rare = ItemRarityID.Orange;
+            Item.rare = ModContent.RarityType<LavaGradientRarity>();
+
 
             Item.UseSound = SoundID.DD2_GhastlyGlaivePierce;
 
