@@ -1,0 +1,23 @@
+{
+	"Result": {
+		"Item": "Synergia/DecayedScythe",
+		"Count": 1
+	},
+	
+	"Ingredient": {
+		"Item": "Avalon/CaesiumBar",
+		"Count": 5
+	},
+
+	"Ingredient": {
+		"Item": "Terraria/SoulofNight",
+		"Count": 8
+	},
+
+	"Ingredient": {
+		"Item": "Terraria/CursedFlame",
+		"Count": 10
+	},
+
+	"Tile": "Synergia/CaesiumHeavyAnvilTile"
+}

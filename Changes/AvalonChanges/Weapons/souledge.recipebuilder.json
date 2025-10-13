@@ -9,9 +9,9 @@
 	},
         
 	"Ingredient": {
-		"Item": "Terraria/BeetleHusk",
-		"Count": 6
+		"Item": "RoA/SphereOfShock",
+		"Count": 1
 	},
 	
-	"Tile": "Terraria/MythrilAnvil"
+	"Tile": "Synergia/CaesiumHeavyAnvilTile"
 }

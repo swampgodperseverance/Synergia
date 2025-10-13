@@ -1,0 +1,9 @@
+{
+	"Projectile": "Avalon/PoisonGasTrap",
+	
+	"Changes": {
+		"Terraria": {
+		"Damage": "+10",
+		}
+	}
+}

@@ -1,0 +1,22 @@
+{
+	"Result": {
+		"Item": "Synergia/HellwormScale"
+	},
+	
+	"Ingredient": {
+		"Item": "ValhallaMod/Sinstone",
+		"Count": 15
+	},
+
+	"Ingredient": {
+		"Item": "Avalon/BottledLava",
+		"Count": 3
+	},
+
+	"Ingredient": {
+		"Item": "Avalon/LifeDew",
+		"Count": 1
+	},
+	
+	"Tile": "Terraria/Hellforge"
+}

@@ -5,7 +5,7 @@ using Terraria.ModLoader;
 using ValhallaMod.Projectiles.AI;
 using static Terraria.ModLoader.ModContent;
 
-namespace Vanilla.Content.Projectiles.Aura
+namespace Synergia.Content.Projectiles.Aura
 {
     [ExtendsFromMod("ValhallaMod")]
     public class UnderwaterAura : AuraAI
@@ -68,7 +68,6 @@ namespace Vanilla.Content.Projectiles.Aura
                 if (!Projectile.WithinRange(npc.Center, radius))
                     continue;
 
-                // Если на NPC висит кастомный дебафф — эффект пузырьков
                 if (npc.HasBuff(ModContent.BuffType<Buffs.DeepPressureDebuff>()))
                 {
                     for (int i = 0; i < 3; i++)

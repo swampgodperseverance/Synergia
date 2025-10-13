@@ -6,7 +6,7 @@ using Avalon.Items.Weapons.Ranged.Hardmode;// если предмет выпадает модовый
 using static Terraria.ModLoader.ModContent;
 using static Terraria.Localization.Language;
 
-namespace Vanilla.Common.GlobalNPCs.Drops
+namespace Synergia.Common.GlobalNPCs.Drops
 {
 public class MiniGolemDrops : GlobalNPC
 {

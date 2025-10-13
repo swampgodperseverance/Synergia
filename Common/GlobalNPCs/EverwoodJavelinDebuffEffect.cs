@@ -3,7 +3,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Terraria;
 using Terraria.ModLoader;
 using Terraria.ID;
-using Vanilla.Content.Buffs;
+using Synergia.Content.Buffs;
 
 public class EverwoodJavelinDebuffEffect : GlobalNPC
 {
@@ -11,25 +11,21 @@ public class EverwoodJavelinDebuffEffect : GlobalNPC
 
     private int debuffTimer = 0;
 
-    // Параметры анимации
     private int frameCounter = 0;
     private int currentFrame = 0;
-    private const int MaxFrames = 4;    // количество кадров в текстуре
-    private const int FrameSpeed = 18;   // смена кадра каждые 6 тиков
+    private const int MaxFrames = 4; 
+    private const int FrameSpeed = 18;   
 
     public override void AI(NPC npc)
     {
         if (npc.HasBuff(ModContent.BuffType<EverwoodJavelinDebuff>()) && !npc.boss)
         {
-            // остановка движения
             npc.velocity = Vector2.Zero;
             npc.position = npc.oldPosition;
 
-            // сохранение направления
             npc.direction = npc.oldDirection;
             npc.spriteDirection = npc.oldDirection;
 
-            // постепенная остановка вращения
             if (npc.rotation != 0f)
                 npc.rotation = MathHelper.Lerp(npc.rotation, 0f, 0.25f);
 
@@ -53,7 +49,6 @@ public class EverwoodJavelinDebuffEffect : GlobalNPC
         {
             debuffTimer++;
 
-            // обновление анимации
             frameCounter++;
             if (frameCounter >= FrameSpeed)
             {
@@ -67,8 +62,7 @@ public class EverwoodJavelinDebuffEffect : GlobalNPC
     {
         if (npc.HasBuff(ModContent.BuffType<EverwoodJavelinDebuff>()) && debuffTimer >= 1 && !npc.boss)
         {
-            // загрузка текстуры с анимацией
-            Texture2D texture = ModContent.Request<Texture2D>("Vanilla/Common/GlobalNPCs/EverwoodJavelinDebuffEffect").Value;
+            Texture2D texture = ModContent.Request<Texture2D>("Synergia/Common/GlobalNPCs/EverwoodJavelinDebuffEffect").Value;
             int frameHeight = texture.Height / MaxFrames;
             Rectangle sourceRect = new Rectangle(0, frameHeight * currentFrame, texture.Width, frameHeight);
 

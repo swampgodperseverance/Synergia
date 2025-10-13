@@ -10,7 +10,7 @@
   "Changes": {
     "ChangeIngredient": {
       "Item": "Avalon/BottledLava",
-      "NewItem": "RoA/SphereOfShock",
+      "NewItem": "RoA/MiracleMint",
       "NewCount": "1"
     }
   },
@@ -18,6 +18,14 @@
   "Changes": {
     "RemoveIngredient": {
       "Item": "Terraria/Cobweb",
+    }
+  },
+
+  "Changes": {
+    "ChangeIngredient": {
+      "Item": "Avalon/LifeDew",
+      "NewItem": "Consolaria/SoulofBlight",
+      "NewCount": "1"
     }
   }
 }

@@ -34,4 +34,17 @@
       "Count": 1
     }
   },
+
+  "Changes": {
+    "RemoveIngredient": {
+      "Item": "Avalon/ElementDiamond",  
+    }
+  },
+  "Changes": {
+    "ChangeTile": {
+      "Tile": "Terraria/MythrilAnvil",
+      "NewTile": "Synergia/CaesiumHeavyAnvilTile"
+
+    }
+  }
 }

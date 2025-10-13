@@ -6,7 +6,7 @@ using Avalon.Buffs.Debuffs;
 using Avalon.Buffs.AdvancedBuffs;
 using static Terraria.ModLoader.ModContent;
 
-namespace Vanilla.Content.Projectiles.Aura
+namespace Synergia.Content.Projectiles.Aura
 {
     [ExtendsFromMod("ValhallaMod")]
     public class PathogenicAura : AuraAI

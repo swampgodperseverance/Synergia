@@ -9,8 +9,16 @@
 
   "Changes": {
     "AddIngredient": {
-      "Item": "RoA/SphereOfPyre",
+      "Item": "RoA/Bonerose",
       "Count": "1"
+    }
+  },
+
+  "Changes": {
+    "ChangeIngredient": {
+      "Item": "Terraria/FallenStar",
+      "NewItem": "Consolaria/SoulofBlight",
+      "NewCount": "5"
     }
   }
 }

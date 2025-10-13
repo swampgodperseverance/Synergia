@@ -2,10 +2,10 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.Audio;
-using Vanilla;
-using Vanilla.Common.GlobalPlayer;
+using Synergia;
+using Synergia.Common.GlobalPlayer;
 
-namespace Vanilla.Content.Items
+namespace Synergia.Content.Items
 {
 	public class OldTales : ModItem
 	{
@@ -35,7 +35,7 @@ namespace Vanilla.Content.Items
 				bookPlayer.BookVisible = !bookPlayer.BookVisible;
 				
 				SoundEngine.PlaySound(bookPlayer.BookVisible ?
-					Sounds.BookOpenSound : Sounds.BookCloseSound);
+					Sounds.Type("BookOpen") : Sounds.Type("BookClose"));
 			}
 			return true;
 		}

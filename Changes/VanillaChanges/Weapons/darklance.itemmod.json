@@ -1,0 +1,10 @@
+{
+	"Item": "Terraria/DarkLance",
+	
+	"Changes": {
+		"Terraria": {
+		"Damage": "-10",
+		"UseTime": "+3"
+		}
+	}
+}

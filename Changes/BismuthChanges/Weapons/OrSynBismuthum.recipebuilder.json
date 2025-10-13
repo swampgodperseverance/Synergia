@@ -1,0 +1,12 @@
+{
+	"Result": {
+		"Item": "Synergia/BismuthumSword"
+	},
+	
+	"Ingredient": {
+		"Item": "Bismuth/BismuthumBar",
+		"Count": 15
+	},
+
+	"Tile": "Synergia/CaesiumHeavyAnvilTile"
+}

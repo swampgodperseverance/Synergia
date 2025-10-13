@@ -13,5 +13,10 @@
 		"Count": 1
 	},
 
+	"Ingredient": {
+		"Item": "Terraria/Ectoplasm",
+		"Count": 5
+	},
+
 	"Tile": "Terraria/MythrilAnvil"
 }

@@ -1,0 +1,10 @@
+{
+	"Item": "ValhallaMod/LampSpear",
+	
+	"Changes": {
+		"Terraria": {
+		"Damage": "-3",
+		"UseTime": "+3"
+		}
+	}
+}

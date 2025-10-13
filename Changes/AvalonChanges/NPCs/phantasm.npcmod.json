@@ -1,0 +1,10 @@
+{
+  "NPC": "Avalon/Phantasm",
+
+  "Changes": {
+    "Terraria": {
+      "Health": "+180000",
+      "Defense": "+18"
+    }
+  }
+}

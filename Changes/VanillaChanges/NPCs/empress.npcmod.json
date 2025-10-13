@@ -1,0 +1,10 @@
+	{
+  "NPC": "Terraria/HallowBoss",
+
+  "Changes": {
+    "Terraria": {
+      "Health": "+20000",
+      "Defense": "+2"
+    }
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "Criteria": "All",
+
+  "Conditions": {
+    "CreatesResult": {
+      "Item": "ValhallaMod/NanoDart"
+    }
+  },
+
+  "Changes": {
+    "AddIngredient": {
+      "Item": "StramsSurvival/AluminumBar",
+      "Count": 1
+    }
+  }
+}

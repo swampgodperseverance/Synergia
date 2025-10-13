@@ -1,0 +1,19 @@
+{
+	"Result": {
+		"Item": "Synergia/MirrorOfTheLost",
+		"Count": 1
+	},
+
+	"Ingredient": {
+		"Item": "Terraria/MagicMirror",
+		"Count": 1
+	},
+	
+	"Ingredient": {
+		"Item": "Consolaria/SoulofBlight",
+		"Count": 8
+	},
+
+
+	"Tile": "Synergia/CaesiumHeavyAnvilTile"
+}

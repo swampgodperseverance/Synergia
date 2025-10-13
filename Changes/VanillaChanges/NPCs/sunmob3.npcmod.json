@@ -1,0 +1,10 @@
+{
+  "NPC": "Terraria/SolarCrawltipedeHead",
+
+  "Changes": {
+    "Terraria": {
+      "Health": "+3000",
+      "Defense": "+2"
+    }
+  }
+}

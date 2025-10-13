@@ -1,0 +1,22 @@
+{
+	"Result": {
+		"Item": "NewHorizons/BeastHelmet"
+	},
+	
+	"Ingredient": {
+		"Item": "Avalon/ZincBar",
+		"Count": 10
+	},
+        
+	"Ingredient": {
+		"Item": "Terraria/Vertebrae",
+		"Count": 12
+	},
+
+	"Ingredient": {
+		"Item": "Avalon/CorruptShard",
+		"Count": 4
+	},
+	
+	"Tile": "Terraria/Anvils"
+}

@@ -1,0 +1,17 @@
+{
+	"Result": {
+		"Item": "Avalon/Ancient"
+	},
+	
+	"Ingredient": {
+		"Item": "Terraria/AncientBattleArmorMaterial",
+		"Count": 3
+	},
+        
+	"Ingredient": {
+		"Item": "ValhallaMod/DamagedBook",
+		"Count": 1
+	},
+	
+	"Tile": "Synergia/CaesiumHeavyAnvilTile"
+}

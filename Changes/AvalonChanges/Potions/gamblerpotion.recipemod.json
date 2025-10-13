@@ -1,0 +1,17 @@
+{
+  "Criteria": "All",
+
+  "Conditions": {
+    "CreatesResult": {
+      "Item": "Avalon/GamblerPotion"
+    }
+  },
+
+  "Changes": {
+    "ChangeIngredient": {
+      "Item": "Terraria/SilverCoin",
+      "NewItem": "Consolaria/SoulofBlight",
+      "NewCount": "1"
+    }
+  }
+} 

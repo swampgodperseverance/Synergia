@@ -1,10 +1,10 @@
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using Vanilla.Content.Projectiles.Aura;
+using Synergia.Content.Projectiles.Aura;
 using static Terraria.ModLoader.ModContent;
 
-namespace Vanilla.Content.Items.Weapons.AuraStaff
+namespace Synergia.Content.Items.Weapons.AuraStaff
 {
     [ExtendsFromMod("ValhallaMod")]
     public class SandAlbinoAuraStaff : ValhallaMod.Items.AI.ValhallaAuraItem

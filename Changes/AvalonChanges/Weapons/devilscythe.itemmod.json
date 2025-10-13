@@ -1,0 +1,10 @@
+{
+	"Item": "Avalon/DevilsScythe",
+	
+	"Changes": {
+		"Terraria": {
+		"Damage": "-50",
+		"UseAnimation": "-2"
+		}
+	}
+}

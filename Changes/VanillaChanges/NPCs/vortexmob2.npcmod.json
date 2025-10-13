@@ -1,0 +1,10 @@
+{
+  "NPC": "Terraria/VortexHornetQueen",
+
+  "Changes": {
+    "Terraria": {
+      "Health": "+2800",
+      "Defense": "+2"
+    }
+  }
+}

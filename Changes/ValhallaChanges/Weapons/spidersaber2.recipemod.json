@@ -3,13 +3,13 @@
 
   "Conditions": {
     "CreatesResult": {
-      "Item": "ValhallaMod/SpiderSaber2"
+      "Item": "ValhallaMod/SpiderSabre"
     }
   },
 
   "Changes": {
     "AddIngredient": {
-      "Item": "Avalon/ToxinShard",
+      "Item": "Avalon/VenomShard",
       "Count": 5
     }
   }

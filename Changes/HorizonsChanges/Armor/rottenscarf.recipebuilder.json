@@ -1,0 +1,17 @@
+{
+	"Result": {
+		"Item": "NewHorizons/RottenScarf"
+	},
+	
+	"Ingredient": {
+		"Item": "Avalon/ZincBar",
+		"Count": 4
+	},
+        
+	"Ingredient": {
+		"Item": "Terraria/ShadowScale",
+		"Count": 12
+	},
+	
+	"Tile": "Terraria/Anvils"
+}

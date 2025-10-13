@@ -1,0 +1,17 @@
+{
+  "Criteria": "All",
+
+  "Conditions": {
+    "CreatesResult": {
+      "Item": "Avalon/LesserStaminaPotion"
+    }
+  },
+
+  "Changes": {
+    "ChangeIngredient": {
+      "Item": "Terraria/Cactus",
+      "NewItem": "StramsSurvival/SugarCane",
+      "NewCount": "1"
+    }
+  }
+}

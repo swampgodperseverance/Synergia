@@ -7,7 +7,7 @@ using Avalon.Items.Material.Shards;//if mod item
 using static Terraria.ModLoader.ModContent;
 using static Terraria.Localization.Language;
 
-namespace Vanilla.Common.GlobalNPCs.Drops
+namespace Synergia.Common.GlobalNPCs.Drops
 {
 public class AvalonAccessories : GlobalNPC
 {	private static Mod avalon = ModLoader.GetMod("Avalon");

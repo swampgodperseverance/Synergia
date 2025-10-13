@@ -1,0 +1,37 @@
+﻿using Terraria;
+using Terraria.ModLoader;
+
+namespace Synergia.Content.Buffs
+{
+    public class BansheeCurse : ModBuff
+    {
+        public override void SetStaticDefaults()
+        {
+            DisplayName.SetDefault("Проклятие Банши");
+            Description.SetDefault("Вы стали уязвимы для призрачной силы... Враги наносят в 2 раза больше урона");
+            Main.debuff[Type] = true;
+            Main.buffNoSave[Type] = false;
+            Main.buffNoTimeDisplay[Type] = false;
+            BuffID.Sets.NurseCannotRemoveDebuff[Type] = true; 
+        }
+    }
+
+    public class BansheeCursePlayer : ModPlayer
+    {
+        public override void ModifyHitByNPC(NPC npc, ref Player.HurtModifiers modifiers)
+        {
+            if (Player.HasBuff(ModContent.BuffType<BansheeCurse>()))
+            {
+                modifiers.FinalDamage *= 2f;
+            }
+        }
+
+        public override void ModifyHitByProjectile(Projectile proj, ref Player.HurtModifiers modifiers)
+        {
+            if (Player.HasBuff(ModContent.BuffType<BansheeCurse>()))
+            {
+                modifiers.FinalDamage *= 2f;
+            }
+        }
+    }
+}

@@ -1,0 +1,22 @@
+{
+	"Result": {
+		"Item": "Consolaria/VolcanicRepeater"
+	},
+	
+	"Ingredient": {
+		"Item": "Terraria/HallowedRepeater",
+		"Count": 1
+	},
+        
+	"Ingredient": {
+		"Item": "Avalon/TroxiniumBar",
+		"Count": 10
+	},
+
+	"Ingredient": {
+		"Item": "Consolaria/SoulofBlight",
+		"Count": 15
+	},
+	
+	"Tile": "Synergia/CaesiumHeavyAnvilTile"
+}

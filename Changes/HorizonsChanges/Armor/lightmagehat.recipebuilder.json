@@ -1,0 +1,22 @@
+{
+	"Result": {
+		"Item": "NewHorizons/LightMageHat"
+	},
+	
+	"Ingredient": {
+		"Item": "Avalon/DurataniumBar",
+		"Count": 4
+	},
+        
+	"Ingredient": {
+		"Item": "Terraria/SoulofLight",
+		"Count": 10
+	},
+
+	"Ingredient": {
+		"Item": "Avalon/ArcaneShard",
+		"Count": 8
+	},
+	
+	"Tile": "Terraria/Anvils"
+}

@@ -1,0 +1,10 @@
+{
+  "NPC": "Terraria/Retinazer",
+
+  "Changes": {
+    "Terraria": {
+      "Health": "+5500",
+      "Defense": "+2"
+    }
+  }
+}

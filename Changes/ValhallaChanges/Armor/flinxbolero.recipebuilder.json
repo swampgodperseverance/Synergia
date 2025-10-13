@@ -1,0 +1,22 @@
+{
+	"Result": {
+		"Item": "ValhallaMod/FlinxFurBolero"
+	},
+	
+	"Ingredient": {
+		"Item": "Terraria/Silk",
+		"Count": 10
+	},
+
+	"Ingredient": {
+		"Item": "Terraria/FlinxFur",
+		"Count": 4
+	},
+		
+	"Ingredient": {
+		"Item": "Avalon/BismuthBar",
+		"Count": 4
+	},
+        
+	"Tile": "Terraria/Loom"
+}

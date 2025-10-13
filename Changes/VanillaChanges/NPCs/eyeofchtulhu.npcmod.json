@@ -1,0 +1,10 @@
+{
+  "NPC": "Terraria/EyeofCthulhu",
+
+  "Changes": {
+    "Terraria": {
+      "Health": "+900",
+      "Defense": "+2"
+    }
+  }
+}

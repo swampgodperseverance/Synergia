@@ -1,0 +1,10 @@
+{
+	"Item": "ValhallaMod/ValhalliteSpear",
+	
+	"Changes": {
+		"Terraria": {
+		"Damage": "-7",
+		"UseTime": "+3"
+		}
+	}
+}

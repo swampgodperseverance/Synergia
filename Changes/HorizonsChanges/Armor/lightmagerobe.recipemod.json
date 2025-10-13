@@ -1,0 +1,17 @@
+{
+  "Criteria": "All",
+
+  "Conditions": {
+    "CreatesResult": {
+      "Item": "NewHorizons/LightMageRobe"
+    }
+  },
+
+  "Changes": {
+    "ChangeIngredient": {
+      "Item": "Terraria/Silk",
+      "NewItem": "Avalon/ArcaneShard",
+      "NewCount": 10
+    }
+  }
+}

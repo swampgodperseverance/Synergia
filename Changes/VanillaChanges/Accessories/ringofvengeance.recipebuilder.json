@@ -1,0 +1,19 @@
+{
+	"Result": {
+		"Item": "Synergia/RingofVengeanceseeker",
+		"Count": 1
+	},
+	
+	"Ingredient": {
+		"Item": "ValhallaMod/JadeFragment",
+		"Count": 10
+	},
+        
+	"Ingredient": {
+		"Item": "ValhallaMod/JadeCloth",
+		"Count": 10
+	},
+
+
+	"Tile": "Terraria/MythrilAnvil"
+}

@@ -1,0 +1,11 @@
+{
+	"Item": "ValhallaMod/TrueGungnir",
+	
+	"Changes": {
+		"Terraria": {
+		"UseTime": "+20",
+		"Damage": "-15",
+		"ShootSpeed": "-12"
+		}
+	}
+}

@@ -1,0 +1,10 @@
+{
+  "NPC": "Terraria/SolarCorite",
+
+  "Changes": {
+    "Terraria": {
+      "Health": "+1000",
+      "Defense": "+10"
+    }
+  }
+}

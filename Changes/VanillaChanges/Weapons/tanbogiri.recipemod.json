@@ -13,5 +13,12 @@
       "NewItem": "ValhallaMod/TerraSpear",
       "NewCount": 1
     }
+  },
+
+  "Changes": {
+    "ChangeTile": {
+      "Tile": "Terraria/MythrilAnvil",
+      "NewTile": "Synergia/CaesiumHeavyAnvilTile"
+    }
   }
 }

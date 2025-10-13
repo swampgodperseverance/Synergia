@@ -5,7 +5,7 @@ using Terraria.ModLoader;
 using ValhallaMod.Projectiles.AI;
 using static Terraria.ModLoader.ModContent;
 
-namespace Vanilla.Content.Projectiles.Aura
+namespace Synergia.Content.Projectiles.Aura
 {
 	[ExtendsFromMod("ValhallaMod")]
 	public class PathogenicAuraSpawn : AuraDamageAI

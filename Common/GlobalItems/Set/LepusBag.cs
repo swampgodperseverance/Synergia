@@ -4,7 +4,7 @@ using Terraria.GameContent.ItemDropRules;
 using ValhallaMod.Items.Weapons.Javelin;
 using static Terraria.ModLoader.ModContent;
 
-namespace Vanilla.Common.GlobalItems
+namespace Synergia.Common.GlobalItems
 {
 	public class LepusBag : GlobalItem
 	{

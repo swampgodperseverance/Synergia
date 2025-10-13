@@ -3,7 +3,7 @@ using Terraria.ModLoader;
 using ValhallaMod.Projectiles.AI;
 using Microsoft.Xna.Framework;
 
-namespace Vanilla.Common.GlobalPlayer
+namespace Synergia.Common.GlobalPlayer
 {
     public class MirrorOfTheLostPlayer : ModPlayer
     {
@@ -19,12 +19,14 @@ namespace Vanilla.Common.GlobalPlayer
             if (!mirrorEquipped)
                 return;
 
-            bool isInAura = IsInValhallaAura(Player);
-
-            if (isInAura)
-                damage += 0.20f; // +20
+            if (IsInValhallaAura(Player))
+            {
+                damage += 0.20f; // +20% damage inside aura
+            }
             else
-                damage -= 0.25f; // -25% 
+            {
+                damage -= 0.25f; // -25% damage outside aura
+            }
         }
 
         private bool IsInValhallaAura(Player player)

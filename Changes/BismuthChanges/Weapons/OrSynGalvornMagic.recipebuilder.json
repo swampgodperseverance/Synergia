@@ -1,0 +1,17 @@
+{
+	"Result": {
+		"Item": "Synergia/GalvornAuraStaff"
+	},
+	
+	"Ingredient": {
+		"Item": "Bismuth/GalvornBar",
+		"Count": 12
+	},
+
+	"Ingredient": {
+		"Item": "Bismuth/EarthEssence",
+		"Count": 3
+	},
+
+	"Tile": "Terraria/Anvils"
+}

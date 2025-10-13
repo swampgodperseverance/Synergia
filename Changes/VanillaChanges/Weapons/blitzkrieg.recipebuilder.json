@@ -1,0 +1,22 @@
+{
+	"Result": {
+		"Item": "Synergia/OculithShard"
+	},
+	
+	"Ingredient": {
+		"Item": "Synergia/EverwoodJavelin",
+		"Count": 1
+	},
+        
+	"Ingredient": {
+		"Item": "ValhallaMod/EvilIngot",
+		"Count": 1
+	},
+
+	"Ingredient": {
+		"Item": "Consolaria/SoulofBlight",
+		"Count": 15
+	},
+	
+	"Tile": "Synergia/CaesiumHeavyAnvilTile"
+}

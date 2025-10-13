@@ -1,0 +1,24 @@
+{
+	"Result": {
+		"Item": "Synergia/CorrodeCrossShield",
+		"Count": 1
+	},
+	
+	"Ingredient": {
+		"Item": "Avalon/CobaltOmegaShield",
+		"Count": 1
+	},
+
+	"Ingredient": {
+		"Item": "ValhallaMod/CorrodeBar",
+		"Count": 10
+	},
+
+	"Ingredient": {
+		"Item": "Avalon/LifeDew",
+		"Count": 5
+	},
+
+
+	"Tile": "Terraria/MythrilAnvil"
+}

@@ -2,9 +2,9 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Microsoft.Xna.Framework;
-using Vanilla.Content.Projectiles.Hostile;
+using Synergia.Content.Projectiles.Hostile;
 
-namespace Vanilla.Common.GlobalNPCs
+namespace Synergia.Common.GlobalNPCs
 {
     public class GolemHead : GlobalNPC
     {

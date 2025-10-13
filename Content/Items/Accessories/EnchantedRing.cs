@@ -3,7 +3,7 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using ValhallaMod;
 
-namespace Vanilla.Content.Items.Accessories
+namespace Synergia.Content.Items.Accessories
 {
     public class EnchantedRing : ModItem
     {
@@ -19,13 +19,15 @@ namespace Vanilla.Content.Items.Accessories
             Item.height = 24;
             Item.accessory = true;
             Item.rare = ItemRarityID.Blue;
-            Item.value = Item.sellPrice(silver: 50);
         }
-
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            player.GetModPlayer<AuraPlayer>().auraBuffTime5 = true;
-            player.GetModPlayer<AuraPlayer>().auraRadius += 0.17f;
+            var auraPlayer = player.GetModPlayer<AuraPlayer>();
+
+            // Increase aura radius by 10%
+            auraPlayer.bonusAuraRadius += 0.10f; // Green: +10% aura radius
+
+            auraPlayer.auraBuffTime += 180; // Green: +3 seconds to aura buff time
         }
     }
 }

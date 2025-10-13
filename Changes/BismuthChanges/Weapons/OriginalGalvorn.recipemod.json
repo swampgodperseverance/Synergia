@@ -1,0 +1,15 @@
+{
+  "Criteria": "All",
+
+  "Conditions": {
+    "CreatesResult": {
+      "Item": "Bismuth/GalvornBlade"
+    }
+  },
+  "Changes": {
+    "DisableRecipe": {
+      "Disabled": "True"
+
+    }
+  }
+}

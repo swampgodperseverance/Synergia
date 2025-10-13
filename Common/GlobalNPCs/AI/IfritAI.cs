@@ -4,9 +4,12 @@ using Microsoft.Xna.Framework;
 using System;    
 using Terraria.ID;
 using Terraria.Audio;
-using Vanilla.Content.Projectiles.Hostile;
+using Terraria.DataStructures; 
+using Synergia.Content.Projectiles.Hostile;
+using Terraria.GameContent.ItemDropRules;
+using System.Collections.Generic;
 
-namespace Vanilla.Common.GlobalNPCs.AI
+namespace Synergia.Common.GlobalNPCs.AI
 {
     public class IfritGlobalNPC : GlobalNPC
     {
@@ -19,13 +22,11 @@ namespace Vanilla.Common.GlobalNPCs.AI
 
         public override void AI(NPC npc)
         {
-            // Check if this is the correct Ifrit from ValhallaMod
             if (npc.ModNPC == null || npc.ModNPC.Mod.Name != "ValhallaMod" || npc.ModNPC.Name != "Ifrit")
                 return;
 
             target = Main.player[npc.target];
 
-            // Trigger new attack phase randomly (~once every 13 seconds)
             if (!isTeleporting && Main.rand.NextBool(800))
             {
                 isTeleporting = true;
@@ -37,12 +38,14 @@ namespace Vanilla.Common.GlobalNPCs.AI
             if (isTeleporting)
             {
                 teleportTimer++;
-                if (teleportTimer >= 90) // 1.5 seconds between teleports
+
+                int teleportInterval = NPC.downedGolemBoss ? 60 : 90;
+
+                if (teleportTimer >= teleportInterval)
                 {
                     teleportTimer = 0;
                     teleportCount++;
 
-                    // Lava dust before teleport
                     for (int i = 0; i < 30; i++)
                     {
                         Dust.NewDust(npc.position, npc.width, npc.height, DustID.Lava,
@@ -50,17 +53,14 @@ namespace Vanilla.Common.GlobalNPCs.AI
                             100, default, 1.5f);
                     }
 
-                    // Teleport sound
                     SoundEngine.PlaySound(SoundID.DD2_BetsySummon, npc.Center);
 
-                    // Teleport to random point at fixed distance from player
                     float angle = Main.rand.NextFloat(0f, MathHelper.TwoPi);
-                    float distance = 500f; // Distance from player
+                    float distance = 500f;
                     Vector2 offset = new Vector2((float)Math.Cos(angle), (float)Math.Sin(angle)) * distance;
                     Vector2 newPos = target.Center + offset;
                     npc.Center = newPos;
 
-                    // Lava dust after teleport
                     for (int i = 0; i < 30; i++)
                     {
                         Dust.NewDust(npc.position, npc.width, npc.height, DustID.Lava,
@@ -68,33 +68,66 @@ namespace Vanilla.Common.GlobalNPCs.AI
                             100, default, 1.5f);
                     }
 
-                    // Shoot three IfritScythes in a spread pattern, slowly at first
                     if (Main.netMode != NetmodeID.MultiplayerClient)
                     {
                         Vector2 baseDirection = target.Center - npc.Center;
                         baseDirection.Normalize();
 
                         float speed = 4f;
-                        float spread = 15f * (MathHelper.Pi / 180f); // 15 degrees
+                        float spread = 15f * (MathHelper.Pi / 180f); 
 
-                        for (int i = -1; i <= 1; i++)
+                        int projectileCount = NPC.downedGolemBoss ? 5 : 3;
+                        int start = -(projectileCount / 2);
+
+                        for (int i = start; i < start + projectileCount; i++)
                         {
                             Vector2 perturbedDirection = baseDirection.RotatedBy(i * spread) * speed;
 
                             int proj = Projectile.NewProjectile(npc.GetSource_FromAI(), npc.Center, perturbedDirection,
                                 ModContent.ProjectileType<IfritScythe>(), 40, 1f, Main.myPlayer);
 
-                            Main.projectile[proj].extraUpdates = 1; // Smooth motion, can help simulate acceleration
+                            Main.projectile[proj].extraUpdates = 1;
                         }
                     }
 
-                    // End attack after 3 teleports
                     if (teleportCount >= 3)
                     {
                         isTeleporting = false;
                     }
 
                     npc.netUpdate = true;
+                }
+            }
+        }
+
+        public override void OnSpawn(NPC npc, IEntitySource source)
+        {
+            if (npc.ModNPC == null || npc.ModNPC.Mod.Name != "ValhallaMod" || npc.ModNPC.Name != "Ifrit")
+                return;
+
+            if (NPC.downedGolemBoss)
+            {
+                npc.lifeMax += 25000;
+                npc.life = npc.lifeMax;
+            }
+        }
+
+        public override void EditSpawnPool(IDictionary<int, float> pool, NPCSpawnInfo spawnInfo)
+        {
+            int ifritType = ModContent.NPCType<ValhallaMod.NPCs.Underworld.Ifrit>();
+            if (pool.ContainsKey(ifritType))
+            {
+                pool[ifritType] *= 1.18f;
+            }
+        }
+
+        public override void ModifyNPCLoot(NPC npc, NPCLoot npcLoot)
+        {
+            if (npc.ModNPC != null && npc.ModNPC.Mod.Name == "ValhallaMod" && npc.ModNPC.Name == "Ifrit")
+            {
+                if (NPC.downedGolemBoss)
+                {
+                    npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<ValhallaMod.Items.Material.EvilIngot>(), 1, 1, 1));
                 }
             }
         }

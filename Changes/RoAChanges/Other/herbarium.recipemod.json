@@ -1,0 +1,39 @@
+{
+  "Criteria": "All",
+
+  "Conditions": {
+    "CreatesResult": {
+      "Item": "RoA/Herbarium"
+    }
+  },
+
+  "Changes": {
+    "AddIngredient": {
+      "Item": "Avalon/Sweetstem",
+      "Count": 1
+    }
+  },
+
+  "Changes": {
+    "AddIngredient": {
+      "Item": "Avalon/Holybird",
+      "Count": 1
+
+    }
+  },
+
+  "Changes": {
+    "AddIngredient": {
+      "Item": "Avalon/Bloodberry",
+      "Count": 1
+
+    }
+  },
+
+  "Changes": {
+    "AddIngredient": {
+      "Item": "Avalon/Barfbush",
+      "Count": 1
+    }
+  }
+}

@@ -4,14 +4,19 @@
 	},
 	
 	"Ingredient": {
+		"Item": "Avalon/TroxiniumBar",
+		"Count": 20
+	},
+
+	"Ingredient": {
+		"Item": "Avalon/CaesiumBar",
+		"Count": 10
+	},
+                
+	"Ingredient": {
 		"Item": "ValhallaMod/EvilIngot",
 		"Count": 1
 	},
-        
-	"Ingredient": {
-		"Item": "Avalon/TroxiniumBar",
-		"Count": 11
-	},
 
-	"Tile": "Terraria/MythrilAnvil"
+	"Tile": "Synergia/CaesiumHeavyAnvilTile"
 }

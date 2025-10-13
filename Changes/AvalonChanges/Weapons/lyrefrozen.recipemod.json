@@ -9,6 +9,14 @@
 
   "Changes": {
     "ChangeIngredient": {
+      "Item": "Avalon/Icicle",
+      "NewItem": "Bismuth/IceCrystal",
+      "NewCount": 10
+    }
+  },
+
+  "Changes": {
+    "ChangeIngredient": {
       "Item": "Terraria/FallenStar",
       "NewItem": "ValhallaMod/RopeLyre",
       "NewCount": 1

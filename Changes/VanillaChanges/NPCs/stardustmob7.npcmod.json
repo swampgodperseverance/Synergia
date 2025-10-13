@@ -1,0 +1,10 @@
+{
+  "NPC": "Terraria/StardustSoldier",
+
+  "Changes": {
+    "Terraria": {
+      "Health": "+1200",
+      "Defense": "+2"
+    }
+  }
+}

@@ -4,9 +4,9 @@ using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
 using ValhallaMod.Projectiles.AI;
-using Vanilla.Content.Buffs;
+using Synergia.Content.Buffs;
 
-namespace Vanilla.Common.GlobalPlayer
+namespace Synergia.Common.GlobalPlayer
 {
     public class BloodyNecklacePlayer : ModPlayer
     {
@@ -27,12 +27,10 @@ namespace Vanilla.Common.GlobalPlayer
 
             if (isInAura)
             {
-                // Бесконечно продлеваем бафф, пока в ауре
-                Player.AddBuff(ModContent.BuffType<BloodDodge>(), 2); // 2 тика (обновляется каждый кадр)
+                Player.AddBuff(ModContent.BuffType<BloodDodge>(), 2);
             }
-            else if (wasInAura) // Если только что вышел из ауры
+            else if (wasInAura)
             {
-                // Убираем бафф при выходе
                 Player.ClearBuff(ModContent.BuffType<BloodDodge>());
             }
 
@@ -56,21 +54,19 @@ namespace Vanilla.Common.GlobalPlayer
 
         public override void OnHurt(Player.HurtInfo info)
         {
-            if (Player.HasBuff(ModContent.BuffType<BloodDodge>()))
+            if (!Player.HasBuff(ModContent.BuffType<BloodDodge>()))
+                return;
+
+            if (Main.rand.NextFloat() <= 0.10f) 
             {
-                if (Main.rand.NextFloat() <= 0.10f) // 10% шанс контрудара
+                if (info.DamageSource.TryGetCausingEntity(out Entity attacker) && attacker is NPC npc)
                 {
-                    if (info.DamageSource.TryGetCausingEntity(out Entity attacker) && attacker is NPC npc)
-                    {
-                        int damageToReturn = info.Damage * 5;
-                        npc.SimpleStrikeNPC(damageToReturn, 0);
+                    int damageToReturn = info.Damage * 5;
+                    npc.SimpleStrikeNPC(damageToReturn, 0);
 
-                        // Кровотечение только после контрудара (на 5 секунд)
-                        Player.AddBuff(BuffID.Bleeding, 300); // 300 тиков = 5 секунд
+                    Player.AddBuff(BuffID.Bleeding, 300);
 
-                        // Сообщение при срабатывании
-                        CombatText.NewText(Player.getRect(), Color.Red, "Blood Pact!");
-                    }
+                    CombatText.NewText(Player.getRect(), Color.Red, "Blood Pact!");
                 }
             }
         }

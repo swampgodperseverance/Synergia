@@ -35,7 +35,7 @@ public class ColdFatherSnowballAttack : GlobalNPC
                             npc.GetSource_FromAI(),
                             warningPos,
                             Vector2.Zero,
-                            ModContent.ProjectileType<Vanilla.Content.Projectiles.Hostile.StoneMark>(), 
+                            ModContent.ProjectileType<Synergia.Content.Projectiles.Hostile.StoneMark>(), 
                             0,
                             0f,
                             Main.myPlayer

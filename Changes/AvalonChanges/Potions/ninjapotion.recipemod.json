@@ -1,0 +1,17 @@
+{
+  "Criteria": "All",
+
+  "Conditions": {
+    "CreatesResult": {
+      "Item": "Avalon/NinjaPotion"
+    }
+  },
+
+  "Changes": {
+    "ChangeIngredient": {
+      "Item": "Terraria/Blinkroot",
+      "NewItem": "Terraria/BlackPearl",
+      "NewCount": "1"
+    }
+  }
+}

@@ -1,0 +1,24 @@
+{
+	"Result": {
+		"Item": "Synergia/BloodstainedGlove",
+		"Count": 1
+	},
+
+	"Ingredient": {
+		"Item": "Avalon/FrostGauntlet",
+		"Count": 1
+	},
+	
+	"Ingredient": {
+		"Item": "Avalon/SlitthroatNecklace",
+		"Count": 1
+	},
+
+	"Ingredient": {
+		"Item": "Terraria/FragmentSolar",
+		"Count": 10
+	},
+
+
+	"Tile": "Terraria/LunarCraftingStation"
+}

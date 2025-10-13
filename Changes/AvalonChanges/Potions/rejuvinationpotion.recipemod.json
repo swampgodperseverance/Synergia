@@ -1,0 +1,17 @@
+{
+  "Criteria": "All",
+
+  "Conditions": {
+    "CreatesResult": {
+      "Item": "Avalon/RejuvenationPotion"
+    }
+  },
+
+  "Changes": {
+    "ChangeIngredient": {
+      "Item": "Avalon/Sweetstem",
+      "NewItem": "ValhallaMod/Beetroot",
+      "NewCount": "1"
+    }
+  }
+}

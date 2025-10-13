@@ -1,0 +1,18 @@
+{
+	"Result": {
+		"Item": "Synergia/StonedSkull",
+		"Count": 1
+	},
+	
+	"Ingredient": {
+		"Item": "Terraria/StoneBlock",
+		"Count": 20
+	},
+
+	"Ingredient": {
+		"Item": "Avalon/Peridot",
+		"Count": 2
+	},
+
+	"Tile": "Terraria/Anvils"
+}

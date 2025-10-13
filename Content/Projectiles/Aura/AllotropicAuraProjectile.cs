@@ -4,9 +4,9 @@ using Terraria.ModLoader;
 using Terraria.ID;
 using static Terraria.ModLoader.ModContent;
 using ValhallaMod.Projectiles.AI;
-using Vanilla.Common.ModSystems;
+using Synergia.Common.ModSystems;
 
-namespace Vanilla.Content.Projectiles.Aura
+namespace Synergia.Content.Projectiles.Aura
 {
     [ExtendsFromMod("ValhallaMod")]
     public class AllotropicAuraProjectile : AuraAI

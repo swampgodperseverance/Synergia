@@ -2,7 +2,7 @@ using Terraria;
 using Terraria.ModLoader;
 using ValhallaMod.Items.Weapons.Javelin;
 
-namespace Vanilla.Common.ModSystems
+namespace Synergia.Common.ModSystems
 {
 	public class CarrotDaggerRecipe : ModSystem
 	{
@@ -16,6 +16,7 @@ namespace Vanilla.Common.ModSystems
 				{
 					recipe.DisableRecipe();
 				}
+
 			}
 		}
 	}

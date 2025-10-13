@@ -133,20 +133,25 @@ namespace Synergia.Content.Projectiles.Reworks
                     Projectile sphere = Main.projectile[i];
                     if (sphere.active && sphere.type == overgrownSphereType && projHitbox.Intersects(sphere.Hitbox))
                     {
-                        // Направление выстрела — в сторону движения копья
-                        Vector2 direction = Projectile.velocity.SafeNormalize(Vector2.UnitX);
+                        if (Projectile.localAI[1] == 0f) // ещё не стрелял
+                        {
+                            Projectile.localAI[1] = 1f;
 
-                        Projectile.NewProjectile(
-                            sphere.GetSource_FromThis(),
-                            sphere.Center,
-                            direction * 10f,
-                            overgrownBoltType,
-                            20,     
-                            3f, 
-                            Projectile.owner
-                        );
+                            Vector2 direction = Projectile.velocity.SafeNormalize(Vector2.UnitX);
+
+                            Projectile.NewProjectile(
+                                sphere.GetSource_FromThis(),
+                                sphere.Center,
+                                direction * 10f,
+                                overgrownBoltType,
+                                20,
+                                3f,
+                                Projectile.owner
+                            );
+                        }
                     }
                 }
+
             }
 
             return false;

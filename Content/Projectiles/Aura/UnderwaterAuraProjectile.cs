@@ -4,7 +4,7 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using ValhallaMod.Projectiles.AI;
 
-namespace Vanilla.Content.Projectiles.Aura
+namespace Synergia.Content.Projectiles.Aura
 {
     [ExtendsFromMod("ValhallaMod")]
     public class UnderwaterAuraProjectile : AuraAI
@@ -22,7 +22,7 @@ namespace Vanilla.Content.Projectiles.Aura
             Projectile.damage = 0;
             buffTypes[AuraEffectTarget.Team].Add(BuffID.WaterWalking);
 
-            auraColor = new Color(100, 200, 255, 160); // голубая аура
+            auraColor = new Color(100, 200, 255, 160); 
             auraColor2 = new Color(80, 180, 230, 120);
 
             distanceMax = 160f;
@@ -39,13 +39,11 @@ namespace Vanilla.Content.Projectiles.Aura
         {
             float radius = distanceMax;
 
-            // Увеличиваем радиус на 16% в воде
             if (Collision.DrownCollision(Projectile.Center, Projectile.width, Projectile.height))
             {
                 radius *= 1.16f;
             }
 
-            // Пузырьки вокруг — визуальный эффект
             for (int i = 0; i < 3; i++)
             {
                 Dust.NewDustPerfect(
@@ -58,24 +56,23 @@ namespace Vanilla.Content.Projectiles.Aura
                 ).noGravity = true;
             }
 
-            // Эффекты на игроков (постоянные)
+
             foreach (Player player in Main.player)
             {
                 if (player.active && !player.dead && Vector2.Distance(player.Center, Projectile.Center) < radius)
                 {
                     player.statDefense += 6;
-                    player.accFlipper = true; // Подвижность в воде
-                    player.fishingSkill += 20; // Рыбалка
+                    player.accFlipper = true; 
+                    player.fishingSkill += 20; 
                 }
             }
 
-            // Урон наносится только по таймеру
+
             damageTimer++;
             if (damageTimer >= DamageInterval)
             {
                 damageTimer = 0;
-                
-                // Эффекты на врагов (только когда таймер срабатывает)
+
                 foreach (NPC npc in Main.npc)
                 {
                     if (npc.active && !npc.friendly && Vector2.Distance(npc.Center, Projectile.Center) < radius)

@@ -1,0 +1,17 @@
+{
+  "Criteria": "All",
+
+  "Conditions": {
+    "CreatesResult": {
+      "Item": "Avalon/MagnetPotion"
+    }
+  },
+
+  "Changes": {
+    "ChangeIngredient": {
+      "Item": "Terraria/Blinkroot",
+      "NewItem": "RoA/MiracleMint",
+      "NewCount": "1"
+    }
+  }
+}

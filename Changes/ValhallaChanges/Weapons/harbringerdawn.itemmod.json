@@ -1,0 +1,11 @@
+{
+	"Item": "ValhallaMod/HarbingerOfDawn",
+	
+	"Changes": {
+		"Terraria": {
+		"Damage": "+96",
+		"UseTime": "-6",
+		"ShootSpeed": "+5"
+		}
+	}
+}

@@ -1,0 +1,13 @@
+{
+	"Result": {
+		"Item": "Synergia/ValhalliteJavelin",
+		"Count": 40
+	},
+	
+	"Ingredient": {
+		"Item": "ValhallaMod/ValhalliteBar",
+		"Count": 1
+	},
+
+	"Tile": "ValhallaMod/DwarvenAnvil"
+}

@@ -1,0 +1,22 @@
+{
+	"Result": {
+		"Item": "RoA/RodOfTheShock"
+	},
+	
+	"Ingredient": {
+		"Item": "RoA/MercuriumNugget",
+		"Count": 15
+	},
+        
+	"Ingredient": {
+		"Item": "Avalon/BismuthBar",
+		"Count": 10
+	},
+	
+	"Ingredient": {
+		"Item": "RoA/SphereOfShock",
+		"Count": 1
+	},
+        
+	"Tile": "Terraria/Anvils"
+}

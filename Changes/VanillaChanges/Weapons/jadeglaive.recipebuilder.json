@@ -1,0 +1,17 @@
+{
+	"Result": {
+		"Item": "Synergia/JadeGlaive"
+	},
+	
+	"Ingredient": {
+		"Item": "ValhallaMod/JadeFragment",
+		"Count": 10
+	},
+        
+	"Ingredient": {
+		"Item": "ValhallaMod/JadeCloth",
+		"Count": 4
+	},
+	
+	"Tile": "Terraria/MythrilAnvil"
+}

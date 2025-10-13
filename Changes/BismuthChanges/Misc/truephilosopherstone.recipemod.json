@@ -1,0 +1,30 @@
+{
+  "Criteria": "All",
+
+  "Conditions": {
+    "CreatesResult": {
+      "Item": "Bismuth/TruePhilosopherStone"
+    }
+  },
+
+  "Changes": {
+    "AddIngredient": {
+      "Item": "Avalon/ZincOre",
+      "Count": 30
+    }
+  },
+
+  "Changes": {
+    "AddIngredient": {
+      "Item": "Avalon/BronzeOre",
+      "Count": 30
+    }
+  },
+
+  "Changes": {
+    "AddIngredient": {
+      "Item": "Avalon/NickelOre",
+      "Count": 30
+    }
+  }
+}

@@ -1,0 +1,22 @@
+{
+	"Result": {
+		"Item": "ValhallaMod/LittleFriend"
+	},
+	
+	"Ingredient": {
+		"Item": "Terraria/Minishark",
+		"Count": 1
+	},
+        
+	"Ingredient": {
+		"Item": "Terraria/FlintlockPistol",
+		"Count": 1
+	},
+	
+	"Ingredient": {
+		"Item": "NewHorizons/BigLens",
+		"Count": 1
+	},
+
+	"Tile": "Terraria/Anvils"
+}

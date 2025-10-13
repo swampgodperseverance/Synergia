@@ -1,0 +1,17 @@
+{
+  "Criteria": "All",
+
+  "Conditions": {
+    "CreatesResult": {
+      "Item": "NewHorizons/NanotechBreastplate"
+    }
+  },
+
+  "Changes": {
+    "ChangeIngredient": {
+      "Item": "Terraria/ChlorophyteBar",
+      "NewItem": "StramsSurvival/AluminumBar",
+      "NewCount": 15
+    }
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "NPC": "Avalon/DesertBeak",
+
+  "Changes": {
+    "Terraria": {
+      "Health": "+950",
+      "Defense": "+5"
+    }
+  }
+}

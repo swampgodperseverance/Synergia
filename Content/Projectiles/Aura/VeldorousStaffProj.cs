@@ -6,7 +6,7 @@ using Terraria.ID;
 using ValhallaMod.Projectiles.AI;
 using static Terraria.ModLoader.ModContent;
 
-namespace Vanilla.Content.Projectiles.Aura
+namespace Synergia.Content.Projectiles.Aura
 {
     [ExtendsFromMod("ValhallaMod")]
     public class VeldorousStaffProj : AuraAI
@@ -62,14 +62,12 @@ namespace Vanilla.Content.Projectiles.Aura
         {
             base.AI();
             
-            // Обрабатываем логику духов только если PlayerLinked установлен
             if (PlayerLinked != 0)
             {
                 HandleSpiritsLogic();
             }
             else
             {
-                // Уничтожаем всех духов, если PlayerLinked не установлен
                 CleanupSpirits();
             }
         }
@@ -88,7 +86,6 @@ namespace Vanilla.Content.Projectiles.Aura
 
         private void HandleSpiritsLogic()
         {
-            // Спавн духов
             for (int i = 0; i < 2; i++)
             {
                 if (spiritIDs[i] == -1 && respawnTimer <= 0)
@@ -97,7 +94,6 @@ namespace Vanilla.Content.Projectiles.Aura
                 }
             }
 
-            // Обновление духов
             for (int i = 0; i < 2; i++)
             {
                 if (spiritIDs[i] != -1)

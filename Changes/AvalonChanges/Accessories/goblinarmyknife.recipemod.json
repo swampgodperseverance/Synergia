@@ -24,10 +24,8 @@
   },
 
   "Changes": {
-    "ChangeIngredient": {
+    "RemoveIngredient": {
       "Item": "Terraria/HunterPotion",
-      "NewItem": "OrchidMineshaft/MiniatureTools",
-      "NewCount": 1
     }
   }
 }

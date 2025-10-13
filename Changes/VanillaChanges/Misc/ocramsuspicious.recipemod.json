@@ -1,0 +1,45 @@
+{
+  "Criteria": "All",
+
+  "Conditions": {
+    "CreatesResult": {
+      "Item": "Consolaria/SuspiciousLookingSkull"
+    }
+  },
+
+  "Changes": {
+    "ChangeIngredient": {
+      "Item": "Terraria/Ectoplasm",
+      "NewItem": "Terraria/LunarTabletFragment",
+      "NewCount": 6
+    }
+  },
+
+  "Changes": {
+    "ChangeIngredient": {
+      "Item": "Terraria/SoulofMight",
+      "NewItem": "NewHorizons/AncientScrap",
+      "NewCount": 10
+    }
+  },
+
+  "Changes": {
+    "RemoveIngredient": {
+      "Item": "Terraria/SoulofFright",
+    }
+  },
+
+  "Changes": {
+    "RemoveIngredient": {
+      "Item": "Terraria/SoulofSight",
+    }
+  },
+
+  "Changes": {
+    "ChangeTile": {
+      "Tile": "Terraria/DemonAltar",
+      "NewTile": "Synergia/CaesiumHeavyAnvilTile"
+
+    }
+  }
+}

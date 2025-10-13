@@ -1,0 +1,17 @@
+{
+	"Result": {
+		"Item": "ValhallaMod/GlassCannon"
+	},
+	
+	"Ingredient": {
+		"Item": "ValhallaMod/HardenedGlass",
+		"Count": 15
+	},
+	
+	"Ingredient": {
+		"Item": "Avalon/NaquadahBar",
+		"Count": 8
+	},
+
+	"Tile": "Terraria/MythrilAnvil"
+}

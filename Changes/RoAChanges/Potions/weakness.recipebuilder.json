@@ -1,0 +1,28 @@
+{
+	"Result": {
+		"Item": "RoA/WeaknessPotion",
+		"Count": 3
+	},
+	
+	"Ingredient": {
+		"Item": "Terraria/BottledWater",
+		"Count": 3
+	},
+        
+	"Ingredient": {
+		"Item": "RoA/Bonerose",
+		"Count": 1
+	},
+
+	"Ingredient": {
+		"Item": "RoA/MiracleMint",
+		"Count": 1
+	},
+
+	"Ingredient": {
+		"Item": "Avalon/YuckyBit",
+		"Count": 1
+	},
+	
+	"Tile": "Terraria/Bottles"
+}

@@ -1,0 +1,10 @@
+{
+  "NPC": "Terraria/SolarSpearman",
+
+  "Changes": {
+    "Terraria": {
+      "Health": "+1400",
+      "Defense": "+10"
+    }
+  }
+}

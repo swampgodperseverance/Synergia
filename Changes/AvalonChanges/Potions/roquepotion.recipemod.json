@@ -1,0 +1,17 @@
+{
+  "Criteria": "All",
+
+  "Conditions": {
+    "CreatesResult": {
+      "Item": "Avalon/RoguePotion"
+    }
+  },
+
+  "Changes": {
+    "ChangeIngredient": {
+      "Item": "Terraria/Blinkroot",
+      "NewItem": "Terraria/BloodOrange",
+      "NewCount": "1"
+    }
+  }
+}

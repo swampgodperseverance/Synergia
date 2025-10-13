@@ -3,9 +3,9 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 using ValhallaMod.Projectiles.AI;
-using Vanilla.Content.Dusts;
+using Synergia.Content.Dusts;
 
-namespace Vanilla.Content.Projectiles.Aura
+namespace Synergia.Content.Projectiles.Aura
 {
     [ExtendsFromMod("ValhallaMod")]
     public class AllotropicAuraOrb : AuraDamageAI

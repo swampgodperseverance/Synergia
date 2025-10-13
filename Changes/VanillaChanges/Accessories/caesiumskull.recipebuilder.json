@@ -1,0 +1,24 @@
+{
+	"Result": {
+		"Item": "Synergia/CaesiumSkull",
+		"Count": 1
+	},
+	
+	"Ingredient": {
+		"Item": "Synergia/CaesiumRing",
+		"Count": 1
+	},
+
+	"Ingredient": {
+		"Item": "Synergia/PreciousSkull",
+		"Count": 1
+	},
+
+	"Ingredient": {
+		"Item": "Consolaria/SoulofBlight",
+		"Count": 10
+	},
+
+
+	"Tile": "Synergia/CaesiumHeavyAnvilTile"
+}

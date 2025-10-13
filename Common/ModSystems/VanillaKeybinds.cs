@@ -2,7 +2,7 @@ using Terraria.ModLoader;
 using Terraria;
 using Microsoft.Xna.Framework.Input;
 
-namespace Vanilla.Common.ModSystems
+namespace Synergia.Common.ModSystems
 {
     public class VanillaKeybinds : ModSystem
     {

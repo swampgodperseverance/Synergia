@@ -1,7 +1,7 @@
 ﻿using Terraria;
 using Terraria.ModLoader;
 
-namespace Vanilla.Common.GlobalNPCs
+namespace Synergia.Common.GlobalNPCs
 {
     public class UnderwaterAuraGlobalNPC : GlobalNPC
     {

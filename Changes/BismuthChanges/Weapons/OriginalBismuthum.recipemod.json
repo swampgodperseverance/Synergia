@@ -1,0 +1,15 @@
+{
+  "Criteria": "All",
+
+  "Conditions": {
+    "CreatesResult": {
+      "Item": "Bismuth/BismuthumSword"
+    }
+  },
+  "Changes": {
+    "DisableRecipe": {
+      "Disabled": "True"
+
+    }
+  }
+}

@@ -1,10 +1,10 @@
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using Vanilla.Content.Projectiles.Aura;
+using Synergia.Content.Projectiles.Aura;
 using static Terraria.ModLoader.ModContent;
 
-namespace Vanilla.Content.Items.Weapons.AuraStaff
+namespace Synergia.Content.Items.Weapons.AuraStaff
 {
 	[ExtendsFromMod("ValhallaMod")]
 	public class PathogenicAuraStaff : ValhallaMod.Items.AI.ValhallaAuraItem
@@ -12,7 +12,6 @@ namespace Vanilla.Content.Items.Weapons.AuraStaff
 		public override void SetStaticDefaults()
 		{
 			Item.staff[Item.type] = true;
-			ValhallaMod.Values.AuraScythe[Item.type] = true;
 		}
 
 		public override void SetDefaults()

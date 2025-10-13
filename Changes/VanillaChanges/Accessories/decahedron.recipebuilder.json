@@ -1,0 +1,29 @@
+{
+	"Result": {
+		"Item": "Synergia/DecahedronOfTheUnfortunate",
+		"Count": 1
+	},
+
+	"Ingredient": {
+		"Item": "Synergia/BrokenDice",
+		"Count": 1
+	},
+	
+	"Ingredient": {
+		"Item": "Synergia/SuspiciousBag",
+		"Count": 1
+	},
+
+	"Ingredient": {
+		"Item": "Synergia/EarthCollapse",
+		"Count": 1
+	},
+
+	"Ingredient": {
+		"Item": "Terraria/FragmentStardust",
+		"Count": 10
+	},
+
+
+	"Tile": "Terraria/LunarCraftingStation"
+}

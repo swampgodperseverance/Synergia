@@ -1,0 +1,22 @@
+{
+	"Result": {
+		"Item": "Synergia/AllotropicAuraStaff"
+	},
+	
+	"Ingredient": {
+		"Item": "Avalon/RhodiumBar",
+		"Count": 4
+	},
+
+	"Ingredient": {
+		"Item": "Avalon/OsmiumBar",
+		"Count": 4
+	},
+
+	"Ingredient": {
+		"Item": "Avalon/IridiumBar",
+		"Count": 4
+	},
+	
+	"Tile": "Terraria/Anvils"
+}

@@ -1,0 +1,12 @@
+{
+	"Result": {
+		"Item": "Avalon/CaesiumPike"
+	},
+	
+	"Ingredient": {
+		"Item": "Avalon/CaesiumBar",
+		"Count": 10
+	},
+
+	"Tile": "Synergia/CaesiumHeavyAnvilTile"
+}

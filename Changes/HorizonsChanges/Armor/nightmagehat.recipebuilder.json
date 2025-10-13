@@ -1,0 +1,22 @@
+{
+	"Result": {
+		"Item": "NewHorizons/NightMageHat"
+	},
+	
+	"Ingredient": {
+		"Item": "NewHorizons/LightMageHat",
+		"Count": 1
+	},
+        
+	"Ingredient": {
+		"Item": "Avalon/CaesiumBar",
+		"Count": 5
+	},
+
+	"Ingredient": {
+		"Item": "ValhallaMod/EvilIngot",
+		"Count": 1
+	},
+	
+	"Tile": "Synergia/CaesiumHeavyAnvilTile"
+}

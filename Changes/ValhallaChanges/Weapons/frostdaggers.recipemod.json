@@ -8,10 +8,9 @@
   },
 
   "Changes": {
-    "ChangeIngredient": {
-      "Item": "Terraria/FrostCore",
-      "NewItem": "Avalon/FrigidShard",
-      "NewCount": 1
+    "AddIngredient": {
+      "Item": "Avalon/FrigidShard",
+      "Count": 1
     }
   }
 }

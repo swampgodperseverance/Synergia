@@ -41,18 +41,15 @@ namespace Synergia.Content.Projectiles.Reworks
                 return;
             }
 
-            // Индекс и базовая позиция
             int index = GetProjectileIndex();
-            float offsetY = 24f + index * 28f; // ближе друг к другу
+            float offsetY = 24f + index * 28f;
 
             Vector2 idlePos = player.Center + new Vector2(0, offsetY);
             float lerpSpeed = isDashing ? 0.02f : 0.12f;
             Projectile.Center = Vector2.Lerp(Projectile.Center, idlePos, lerpSpeed);
 
-            // Вращение
             Projectile.rotation += isDashing ? 0.4f : 0.05f;
 
-            // Эффекты свечения
             Lighting.AddLight(Projectile.Center, 1.4f, 1.2f, 0.3f);
             if (Main.rand.NextBool(10))
             {
@@ -60,16 +57,15 @@ namespace Synergia.Content.Projectiles.Reworks
                 Main.dust[dust].noGravity = true;
             }
 
-            // Ищем ближайшего врага — теперь дальше!
             NPC target = FindClosestNPC(600f);
             if (target != null && !isDashing)
             {
-                // Рывок издалека
+                
                 isDashing = true;
                 dashTimer = 0;
 
                 Vector2 dir = (target.Center - Projectile.Center).SafeNormalize(Vector2.Zero);
-                Projectile.velocity = dir * 22f; // чуть длиннее и быстрее
+                Projectile.velocity = dir * 22f; 
             }
 
             if (isDashing)
@@ -77,7 +73,6 @@ namespace Synergia.Content.Projectiles.Reworks
                 dashTimer++;
                 CreateTrailEffect();
 
-                // Задержка окончания рывка
                 if (dashTimer > 30)
                 {
                     isDashing = false;
@@ -139,7 +134,7 @@ namespace Synergia.Content.Projectiles.Reworks
 
         public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
         {
-            // Вспышка при ударе
+
             for (int i = 0; i < 25; i++)
             {
                 int dust = Dust.NewDust(target.position, target.width, target.height, DustID.GoldFlame,

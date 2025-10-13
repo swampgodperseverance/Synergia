@@ -7,7 +7,12 @@
 		"Item": "Avalon/TroxiniumBar",
 		"Count": 10
 	},
-        
+
+  	"Ingredient": {
+		"Item": "Terraria/FrostCore",
+		"Count": 1
+	},      
+
 	"Ingredient": {
 		"Item": "Avalon/FrigidShard",
 		"Count": 1

@@ -1,9 +1,9 @@
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using Vanilla.Content.Projectiles;
+using Synergia.Content.Projectiles.Friendly;
 
-namespace Vanilla.Content.Items.Weapons.Throwing
+namespace Synergia.Content.Items.Weapons.Throwing
 {
     public class InfamousFlame : ModItem
     {
@@ -20,15 +20,14 @@ namespace Vanilla.Content.Items.Weapons.Throwing
             Item.value = Item.sellPrice(gold: 8);
             Item.rare = ItemRarityID.Red;
             Item.UseSound = SoundID.Item1;
-            Item.noUseGraphic = true; // не отображаем оружие при использовании
-            Item.noMelee = true; // урон только от снаряда
+            Item.noUseGraphic = true; 
+            Item.noMelee = true; 
             Item.shoot = ModContent.ProjectileType<InfamousFlameProjectile>();
             Item.shootSpeed = 12f;
         }
 
         public override bool CanUseItem(Player player)
         {
-            // Блокировка повторного броска, пока предыдущий не вернулся
             return player.ownedProjectileCounts[Item.shoot] < 1;
         }
     }

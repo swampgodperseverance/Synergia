@@ -1,0 +1,10 @@
+{
+  "NPC": "Terraria/Deerclops",
+
+  "Changes": {
+    "Terraria": {
+      "Health": "+1500",
+      "Defense": "+2"
+    }
+  }
+}

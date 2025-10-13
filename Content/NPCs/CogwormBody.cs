@@ -4,7 +4,7 @@ using Terraria.ModLoader;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
-namespace Vanilla.Content.NPCs
+namespace Synergia.Content.NPCs
 {
     public class CogwormBody : ModNPC
     {

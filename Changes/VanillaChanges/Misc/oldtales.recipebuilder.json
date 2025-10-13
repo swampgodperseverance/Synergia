@@ -1,0 +1,12 @@
+{
+	"Result": {
+		"Item": "Synergia/OldTales"
+	},
+	
+	"Ingredient": {
+		"Item": "ValhallaMod/DamagedBook",
+		"Count": 1
+	},
+	
+	"Tile": "Terraria/Bookcases"
+}
