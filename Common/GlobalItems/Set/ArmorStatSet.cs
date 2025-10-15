@@ -17,6 +17,7 @@ namespace Synergia.Common.GlobalItems.Set
 		private static Mod horizons = ModLoader.GetMod("NewHorizons");
 		private static Mod valhalla = ModLoader.GetMod("ValhallaMod");
 		private static Mod avalon = ModLoader.GetMod("Avalon");
+		private static Mod bismuth = ModLoader.GetMod("Bismuth");
 
 		public override void UpdateEquip(Item item, Player player)
 		{
@@ -110,9 +111,21 @@ namespace Synergia.Common.GlobalItems.Set
 				}
 				if (item.type == valhalla.Find<ModItem>("SniperBody").Type)
 				{
-					player.GetDamage(DamageClass.Ranged) += 0.05f;
+					player.GetDamage(DamageClass.Ranged) += 0.11f;
 					player.GetCritChance(DamageClass.Ranged) += 20;
 				}
+				if (item.type == valhalla.Find<ModItem>("SniperHead").Type)
+				{
+					player.GetDamage(DamageClass.Ranged) += 0.06f;
+					player.GetCritChance(DamageClass.Generic) += 0.06f;
+				}
+				if (item.type == valhalla.Find<ModItem>("SniperLegs").Type)
+				{
+					player.GetDamage(DamageClass.Ranged) += 0.05f;
+					player.GetAttackSpeed(DamageClass.Ranged) += 0.10f;
+					player.GetDamage(DamageClass.Melee) -= 0.11f;
+				}
+				
 			}
 
 			// Avalon
@@ -141,7 +154,7 @@ namespace Synergia.Common.GlobalItems.Set
 					auraPlayer.buffTypes[AuraEffectTarget.Team].Add(ModContent.BuffType<Heartsick>());
 				}
 				if (item.type == avalon.Find<ModItem>("FleshPants").Type)
-				{
+						{
 					auraPlayer.bonusPlayerLinkedAuraRadius += 0.15f;
 					auraPlayer.maxAuras = 1;
 				}
@@ -186,6 +199,24 @@ namespace Synergia.Common.GlobalItems.Set
 					player.GetDamage(DamageClass.Magic) += 0.03f;
 				}
 			}
+			
+			//Bismuth
+			if (bismuth != null) 
+			{
+				if (item.type == bismuth.Find<ModItem>("BismuthumBreastplate").Type)
+				{
+					player.GetDamage(DamageClass.Generic) -= 0.10f;
+				}
+				if (item.type == bismuth.Find<ModItem>("BismuthumLeggings").Type)
+				{
+					player.moveSpeed -= 0.1f;
+				}
+				if (item.type == bismuth.Find<ModItem>("BismuthumHeadgear").Type)
+				{
+					player.GetDamage(DamageClass.Generic) -= 0.10f;
+				}
+
+			}
 		}
 
 		public override void ModifyTooltips(Item item, List<TooltipLine> tooltips)
@@ -216,6 +247,8 @@ namespace Synergia.Common.GlobalItems.Set
 			Add("ValhallaMod", "GreediestLegs", "Items.GreediestLegs.Tooltip");
 			Add("ValhallaMod", "EvilHead", "Items.EvilHead.Tooltip");
 			Add("ValhallaMod", "SniperBody", "Items.SniperBody.Tooltip");
+			Add("ValhallaMod", "SniperHead", "Items.SniperHead.Tooltip");
+			Add("ValhallaMod", "SniperLegs", "Items.SniperLegs.Tooltip");
 
 			Add("Avalon", "EarthsplitterChestpiece", "Items.EarthsplitterChestpiece.Tooltip");
 			Add("Avalon", "EarthsplitterHelm", "Items.EarthsplitterHelm.Tooltip");
@@ -231,6 +264,9 @@ namespace Synergia.Common.GlobalItems.Set
 			Add("NewHorizons", "NightMageHat", "Items.NightMageHat.Tooltip");
 			Add("NewHorizons", "NightMageCape", "Items.NightMageCape.Tooltip");
 			Add("NewHorizons", "NightMagePants", "Items.NightMagePants.Tooltip");
+
+			Add("Bismuth", "BismuthumLeggings", "Items.BismuthumLeggings.Tooltip");
+			Add("Bismuth", "BismuthumBreastplate", "Items.BismuthumBreastplate.Tooltip");
 		}
 
 		private void ReplaceTooltip(List<TooltipLine> tooltips, string tooltipName, string newText)
