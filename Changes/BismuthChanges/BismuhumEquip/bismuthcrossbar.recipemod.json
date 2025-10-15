@@ -1,0 +1,16 @@
+{
+  "Criteria": "All",
+
+  "Conditions": {
+    "CreatesResult": {
+      "Item": "Bismuth/BismuthumBar"
+    }
+  },
+
+  "Changes": {
+    "ChangeTile": {
+      "Tile": "Terraria/Hellforge",
+      "NewTile": "Avalon/CaesiumForge"
+    }
+  }
+}
