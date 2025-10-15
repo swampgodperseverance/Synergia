@@ -50,6 +50,12 @@ Items: {
 		Increases your ranged crit chance and penetration by 20%
 		+5% ranged damage
 		'''
+	SniperHead.Tooltip: 26% increased ranged damage and 20% increased critical strike chance
+	SniperLegs.Tooltip:
+		'''
+		Increases your ranged damage by 5%
+		+15% ranged crit chance
+		'''
 	EarthsplitterChestpiece.Tooltip:
 		'''
 		16% More throwing damage and 15% throwing crit chance 
@@ -106,6 +112,8 @@ Items: {
 		+10% Critical chance
 		'''
 	NightMagePants.Tooltip: +8% Magic damage
+	BismuthumBreastplate.Tooltip: Damage is increased by 5%
+	BismuthumLeggings.Tooltip: Movement speed is increased by 25%
 
 	EverwoodJavelin: {
 		DisplayName: Everwood Javelin
@@ -501,8 +509,8 @@ Items: {
 		Tooltip:
 			'''
 			Hell wraith.
-			If 5x hits successful
-			Becomes empowered
+			Every hit have chance to summon powerful spear
+			The wrath of Hell falls from the sky
 			'''
 		DisplayName: Cleavage
 	}
@@ -1030,6 +1038,8 @@ Projectiles: {
 	RuneMinion.DisplayName: Rune Minion
 	GalvornAura.DisplayName: Galvorn Aura
 	JadeShardFriendly.DisplayName: Jade Shard Friendly
+	SpinCleava.DisplayName: Spin Cleava
+	SpinBone.DisplayName: Spin Bone
 }
 
 Buffs: {
