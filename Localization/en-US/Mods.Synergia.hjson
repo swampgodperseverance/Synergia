@@ -873,6 +873,11 @@ Items: {
 		DisplayName: Galvorn Aura Staff
 		Tooltip: ""
 	}
+
+	OrcishSwungo: {
+		Tooltip: ""
+		DisplayName: Orcish Swungo
+	}
 }
 
 Projectiles: {
@@ -1040,6 +1045,13 @@ Projectiles: {
 	JadeShardFriendly.DisplayName: Jade Shard Friendly
 	SpinCleava.DisplayName: Spin Cleava
 	SpinBone.DisplayName: Spin Bone
+	BismuthumShrapnel.DisplayName: Bismuthum Shrapnel
+	NarsilEvil.DisplayName: Narsil Evil
+	SeabornSlash.DisplayName: Seaborn Slash
+	SeabornWave.DisplayName: Seaborn Wave
+	NarsilAlt.DisplayName: Narsil Alt
+	OrcishSwungo.DisplayName: Orcish Swungo
+	OrcishSwungoP.DisplayName: Orcish Swungo P
 }
 
 Buffs: {
