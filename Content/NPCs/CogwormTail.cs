@@ -51,11 +51,11 @@ namespace Synergia.Content.NPCs
         {
             if (Main.rand.NextBool())
             {
-                SoundEngine.PlaySound(Sounds.Type("CragwormHit") with { Volume = 0.8f, Pitch = -0.1f }, NPC.Center);
+                SoundEngine.PlaySound(Sounds.CragwormHit with { Volume = 0.8f, Pitch = -0.1f }, NPC.Center);
             }
             else
             {
-                SoundEngine.PlaySound(Sounds.Type("CragwormHit2") with { Volume = 0.8f, Pitch = -0.1f }, NPC.Center);
+                SoundEngine.PlaySound(Sounds.CragwormHit2 with { Volume = 0.8f, Pitch = -0.1f }, NPC.Center);
             }
         }
 

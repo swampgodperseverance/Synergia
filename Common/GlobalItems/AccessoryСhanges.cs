@@ -23,6 +23,17 @@ namespace Synergia.Common.GlobalItems
                     }
                 }
             }
+            if (item.type == Accessory2)
+            {
+                for (int i = 3; i < 8 + player.extraAccessorySlots; i++)
+                {
+                    Item equippedItem = player.armor[i];
+                    if (equippedItem != null && equippedItem.type == Accessory)
+                    {
+                        return false;
+                    }
+                }
+            }
             return true;
         }
     }

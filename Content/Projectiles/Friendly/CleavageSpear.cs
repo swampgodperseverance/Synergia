@@ -8,19 +8,22 @@ using Terraria.ModLoader;
 
 namespace Synergia.Content.Projectiles.Friendly
 {
-    public class CleavageSpear : ModProjectile 
+    public class CleavageSpear : ModProjectile
     {
         private float glowRotation;
         private int comboCounter;
         private bool empowered;
-        
-        public override void SetStaticDefaults() 
+
+        private const float minReach = 40f;
+        private const float maxReach = 140f;
+
+        public override void SetStaticDefaults()
         {
-            ProjectileID.Sets.TrailCacheLength[Projectile.type] = 10; 
+            ProjectileID.Sets.TrailCacheLength[Projectile.type] = 10;
             ProjectileID.Sets.TrailingMode[Projectile.type] = 2;
         }
 
-        public override void SetDefaults() 
+        public override void SetDefaults()
         {
             Projectile.width = Projectile.height = 22;
             Projectile.DamageType = DamageClass.Melee;
@@ -37,54 +40,65 @@ namespace Synergia.Content.Projectiles.Friendly
             Projectile.netImportant = true;
         }
 
-        public override void AI() 
+        public override void AI()
         {
             Player player = Main.player[Projectile.owner];
-            Vector2 center = player.RotatedRelativePoint(player.MountedCenter);
-            
+            Vector2 origin = player.RotatedRelativePoint(player.MountedCenter);
             Projectile.direction = player.direction;
             player.heldProj = Projectile.whoAmI;
-            Projectile.Center = center;
-            
-            if (player.dead) 
+            Projectile.Center = origin;
+
+            if (Projectile.ai[0] == 1)
+            {
+                SoundEngine.PlaySound(SoundID.Item45 with { Volume = 0.9f, PitchVariance = 0.15f }, Projectile.Center);
+            }
+
+            if (player.dead)
             {
                 Projectile.Kill();
                 return;
             }
-            
+
             Projectile.ai[0]++;
-            
-            if (!player.frozen) 
+
+            if (!player.frozen)
             {
                 Projectile.spriteDirection = Projectile.direction = player.direction;
                 Projectile.alpha = Math.Max(0, Projectile.alpha - 127);
                 Projectile.localAI[0] = Math.Max(0, Projectile.localAI[0] - 1f);
 
-                float animationProgress = player.itemAnimation / (float)player.itemAnimationMax;
-                float reverseProgress = 1f - animationProgress;
-                float rotation = Projectile.velocity.ToRotation();
-                float length = Projectile.velocity.Length();
-                
+                float animProgress = player.itemAnimation / (float)player.itemAnimationMax;
+                float reverseProgress = 1f - animProgress;
+                float reach = MathHelper.Lerp(minReach, maxReach, (float)Math.Sin(animProgress * Math.PI));
 
-                Vector2 spinningOffset = new Vector2(1.5f, 0f).RotatedBy((float)Math.PI + reverseProgress * ((float)Math.PI * 3f)) * new Vector2(length, Projectile.ai[0]);
-                Projectile.position += spinningOffset.RotatedBy(rotation) + new Vector2(length + 84f, 0f).RotatedBy(rotation);
-                
-                Vector2 targetPos = center + spinningOffset.RotatedBy(rotation) + new Vector2(length + 124f, 0f).RotatedBy(rotation);
-                Projectile.rotation = center.AngleTo(targetPos) + (float)Math.PI / 4f * player.direction;
-                
+                float velRot = Projectile.velocity.ToRotation();
+                float velLen = Projectile.velocity.Length();
+
+                Vector2 spinningpoint = new Vector2(1.5f, 0f)
+                    .RotatedBy(Math.PI + reverseProgress * (Math.PI * 3f))
+                    * new Vector2(velLen, Projectile.ai[0]);
+
+                Projectile.position += spinningpoint.RotatedBy(velRot)
+                                     + new Vector2(velLen + reach, 0f).RotatedBy(velRot);
+
+                Vector2 target = origin + spinningpoint.RotatedBy(velRot)
+                               + new Vector2(velLen + reach + 40f, 0f).RotatedBy(velRot);
+
+                Projectile.rotation = origin.AngleTo(target) + (float)Math.PI / 4f * player.direction;
                 if (Projectile.spriteDirection == -1)
                     Projectile.rotation += (float)Math.PI;
 
- 
-                if (Main.netMode != NetmodeID.Server) 
+                if (Main.netMode != NetmodeID.Server)
                 {
                     Vector2 direction = Projectile.velocity.SafeNormalize(Vector2.UnitY);
 
+                    // Улучшенные частицы как во втором копье
                     int dustType = empowered 
                         ? DustID.LavaMoss 
                         : (Main.rand.NextBool(3) ? DustID.Torch : DustID.Lava);
 
-                    for (int i = 0; i < 3; i++) {
+                    for (int i = 0; i < 3; i++)
+                    {
                         Dust dust = Dust.NewDustPerfect(
                             Projectile.Center + direction.RotatedBy(
                                 reverseProgress * MathHelper.TwoPi * 2f + i / 3f * MathHelper.TwoPi * 8f),
@@ -94,17 +108,18 @@ namespace Synergia.Content.Projectiles.Friendly
                             default,
                             Main.rand.NextFloat(0.8f, 1.4f));
         
-                        dust.velocity = center.DirectionTo(dust.position) * 2f + direction * 3f;
+                        dust.velocity = origin.DirectionTo(dust.position) * 2f + direction * 3f;
                         dust.noGravity = true;
                         dust.noLight = false;
 
-                        if (empowered) {
+                        if (empowered)
+                        {
                             dust.velocity *= 1.5f;
                             dust.scale *= 1.3f;
                         }
                     }
                     
-                    // attempt to create smth like overheating
+                    // Эффект перегрева при комбо
                     if (comboCounter >= 3 && Main.rand.NextBool(5))
                     {
                         Dust.NewDustPerfect(
@@ -115,22 +130,23 @@ namespace Synergia.Content.Projectiles.Friendly
                             new Color(255, 200, 50),
                             1.2f);
                     }
+
+                    Lighting.AddLight(Projectile.Center, 1.2f, 0.4f, 0.05f);
                 }
-                
-                Projectile.netUpdate = true;
             }
-            
-            if (player.itemAnimation == 2) 
+
+            if (player.itemAnimation == 2)
             {
                 Projectile.Kill();
                 player.reuseDelay = 2;
                 
+                // Сброс комбо при медленной анимации
                 if (player.itemAnimationMax > 20)
                     comboCounter = 0;
             }
         }
 
-        public override bool? Colliding(Rectangle projHitbox, Rectangle targetHitbox) 
+        public override bool? Colliding(Rectangle projHitbox, Rectangle targetHitbox)
         {
             float rotation = Projectile.rotation - (float)Math.PI / 4f * Math.Sign(Projectile.velocity.X) + 
                            ((Projectile.spriteDirection == -1) ? (float)Math.PI : 0f);
@@ -147,10 +163,11 @@ namespace Synergia.Content.Projectiles.Friendly
                 ref collisionPoint);
         }
 
-        public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone) 
+        public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
         {
-            Projectile.direction = (Main.player[Projectile.owner].Center.X < target.Center.X) ? 1 : -1;
-            
+            Player player = Main.player[Projectile.owner];
+
+            // Система комбо как во втором копье
             comboCounter++;
             if (comboCounter >= 3)
             {
@@ -158,9 +175,10 @@ namespace Synergia.Content.Projectiles.Friendly
                 SoundEngine.PlaySound(SoundID.Item45 with { Pitch = 0.5f }, Projectile.position);
             }
             
+            // Улучшенные эффекты попадания
             if (empowered)
             {
-                target.AddBuff(BuffID.OnFire3, 300); 
+                target.AddBuff(BuffID.OnFire3, 300);
                 
                 if (hit.Crit)
                 {
@@ -178,20 +196,70 @@ namespace Synergia.Content.Projectiles.Friendly
             {
                 target.AddBuff(BuffID.OnFire, 180);
             }
-            
-            for (int i = 0; i < 5; i++)
+
+            for (int i = 0; i < 20; i++)
             {
-                Dust.NewDustPerfect(
-                    target.Center + Main.rand.NextVector2Circular(target.width, target.height) * 0.5f,
-                    DustID.Torch,
-                    Main.rand.NextVector2Circular(3, 3),
-                    100,
-                    default,
-                    1.5f);
+                Dust d = Dust.NewDustDirect(target.position, target.width, target.height, 
+                    empowered ? DustID.SolarFlare : DustID.Lava,
+                    Main.rand.NextFloat(-4f, 4f), Main.rand.NextFloat(-4f, 4f), 120, default, 
+                    Main.rand.NextFloat(1.2f, 1.8f));
+                d.noGravity = true;
+                d.velocity *= 0.7f;
+                
+                if (empowered)
+                {
+                    d.scale *= 1.3f;
+                    d.velocity *= 1.2f;
+                }
+            }
+
+            Lighting.AddLight(target.Center, empowered ? 1.8f : 1.4f, empowered ? 0.8f : 0.6f, empowered ? 0.2f : 0.1f);
+
+            // Оригинальная механика с SpinCleava
+            if (Main.player[Projectile.owner] == Main.LocalPlayer) 
+            {
+                int hitCounter = (int)(Main.GameUpdateCount % 10);
+                hitCounter++;
+        
+                if (hitCounter >= 10)
+                {
+                    Vector2 spawnPos = player.Center + new Vector2(0f, -60f);
+                    Vector2 initialVelocity = new Vector2(0f, -5f);
+
+                    if (Main.myPlayer == player.whoAmI)
+                    {
+                        int p = Projectile.NewProjectile(
+                            Projectile.GetSource_FromThis(),
+                            spawnPos,
+                            initialVelocity,
+                            ModContent.ProjectileType<SpinCleava>(),
+                            Projectile.damage * 2,
+                            4f,
+                            Projectile.owner
+                        );
+
+                        if (p >= 0)
+                        {
+                            Main.projectile[p].timeLeft = 300;
+                            Main.projectile[p].netUpdate = true;
+                            SoundEngine.PlaySound(SoundID.Item74 with { Volume = 1f, Pitch = -0.3f }, spawnPos);
+
+                            for (int i = 0; i < 30; i++)
+                            {
+                                Dust lava = Dust.NewDustDirect(spawnPos - new Vector2(10, 10), 20, 20, 
+                                    empowered ? DustID.SolarFlare : DustID.Lava,
+                                    Main.rand.NextFloat(-3f, 3f), Main.rand.NextFloat(-3f, 3f), 120, default, 
+                                    Main.rand.NextFloat(1.2f, 2.0f));
+                                lava.noGravity = true;
+                                lava.velocity *= 0.6f;
+                            }
+                        }
+                    }
+                }
             }
         }
 
-        public override void OnHitPlayer(Player target, Player.HurtInfo info) 
+        public override void OnHitPlayer(Player target, Player.HurtInfo info)
         {
             if (info.PvP)
             {
@@ -200,31 +268,31 @@ namespace Synergia.Content.Projectiles.Friendly
             }
         }
 
-        public override bool PreDraw(ref Color lightColor) 
+        public override bool PreDraw(ref Color lightColor)
         {
             Player player = Main.player[Projectile.owner];
             SpriteBatch spriteBatch = Main.spriteBatch;
-
-            Texture2D texture = ModContent.Request<Texture2D>(Texture).Value;
-            Vector2 origin = new Vector2(
+            Texture2D texture = (Texture2D)ModContent.Request<Texture2D>(Texture);
+            Vector2 drawOrigin = new Vector2(
                 (Projectile.spriteDirection == 1) ? (texture.Width + 8f) : (-8f),
-                (player.gravDir == 1f) ? (-8f) : (texture.Height + 8f));
-
-            Vector2 position = Projectile.Center - Main.screenPosition + new Vector2(0, Projectile.gfxOffY);
+                (player.gravDir == 1f) ? (-8f) : (texture.Height + 8f)
+            );
+            Vector2 position = Projectile.position + new Vector2(Projectile.width, Projectile.height) / 2f
+                             + Vector2.UnitY * Projectile.gfxOffY - Main.screenPosition;
             float rotation = Projectile.rotation;
-
-            SpriteEffects effects = player.direction > 0 ? SpriteEffects.None : SpriteEffects.FlipHorizontally;
-            if (player.gravDir == -1f) 
+            var spriteEffects = player.direction > 0 ? SpriteEffects.None : SpriteEffects.FlipHorizontally;
+            if (player.gravDir == -1f)
             {
-                effects |= SpriteEffects.FlipVertically;
+                spriteEffects = SpriteEffects.FlipVertically;
                 rotation += (float)Math.PI / 2f * Projectile.spriteDirection;
             }
 
-            Texture2D trailTexture = ModContent.Request<Texture2D>("Synergia/Assets/Textures/LightTrail_1").Value; //asset from consolaria
-            Vector2 trailOrigin = trailTexture.Size() / 2f;
+            // Улучшенный трейл как во втором копье
+            Texture2D trail = (Texture2D)ModContent.Request<Texture2D>("Synergia/Assets/Textures/LightTrail_1").Value;
+            Vector2 trailOrigin = new Vector2(trail.Width / 2, trail.Height / 2);
             glowRotation += 0.1f;
 
-            for (int k = 0; k < Projectile.oldPos.Length - 1; k++) 
+            for (int k = 0; k < Projectile.oldPos.Length - 1; k++)
             {
                 float progress = 1f - k / (float)Projectile.oldPos.Length;
                 Vector2 trailPos = Projectile.oldPos[k] + Projectile.Size / 2f - Main.screenPosition;
@@ -236,28 +304,21 @@ namespace Synergia.Content.Projectiles.Friendly
                     new Color(255, 100 + k * 20, 0, (int)(100 * progress));
 
                 spriteBatch.Draw(
-                    trailTexture,
+                    trail,
                     trailPos,
                     null,
                     trailColor,
                     trailRot,
                     trailOrigin,
                     Projectile.scale * progress,
-                    effects,
+                    spriteEffects,
                     0f);
             }
 
-            spriteBatch.Draw(
-                texture,
-                position,
-                null,
-                lightColor,
-                rotation,
-                origin,
-                Projectile.scale,
-                effects,
-                0f);
+            // Основная текстура
+            spriteBatch.Draw(texture, position, null, lightColor, rotation, drawOrigin, Projectile.scale, spriteEffects, 0f);
 
+            // Эффект свечения при усилении
             if (empowered)
             {
                 Color glowColor = new Color(255, 200, 50, 100);
@@ -267,9 +328,9 @@ namespace Synergia.Content.Projectiles.Friendly
                     null,
                     glowColor,
                     rotation,
-                    origin,
+                    drawOrigin,
                     Projectile.scale * 1.1f,
-                    effects,
+                    spriteEffects,
                     0f);
             }
 
@@ -283,8 +344,11 @@ namespace Synergia.Content.Projectiles.Friendly
             {
                 modifiers.SourceDamage *= 1.13f;
             }
+            
+            if (empowered)
+            {
+                modifiers.SourceDamage *= 1.2f;
+            }
         }
-
-       
     }
 }

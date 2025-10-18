@@ -14,7 +14,7 @@ namespace Synergia.Content.Projectiles.Aura
     {
         private static int mode = 0; // 0 - Support, 1 - Attack
         private static int modeSwitchCooldown = 0;
-        private int attackCooldown = 0;
+        //private int attackCooldown = 0;
 
         public override void SetDefaults()
         {

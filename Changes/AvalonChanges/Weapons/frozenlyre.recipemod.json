@@ -1,0 +1,23 @@
+{
+  "Criteria": "All",
+
+  "Conditions": {
+    "CreatesResult": {
+      "Item": "Avalon/FeroziumIceSword"
+    }
+  },
+
+  "Changes": {
+    "AddIngredient": {
+      "Item": "Consolaria/SoulofBlight",
+      "Count": 10
+    }
+  },
+
+  "Changes": {
+    "ChangeTile": {
+      "Tile": "Terraria/MythrilAnvil",
+      "NewTile": "Synergia/CaesiumHeavyAnvilTile"
+    }
+  }
+}

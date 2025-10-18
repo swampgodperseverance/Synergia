@@ -50,6 +50,12 @@ Items: {
 		Increases your ranged crit chance and penetration by 20%
 		+5% ranged damage
 		'''
+	SniperHead.Tooltip: 26% increased ranged damage and 20% increased critical strike chance
+	SniperLegs.Tooltip:
+		'''
+		Increases your ranged damage by 5%
+		+15% ranged crit chance
+		'''
 	EarthsplitterChestpiece.Tooltip:
 		'''
 		16% More throwing damage and 15% throwing crit chance 
@@ -106,6 +112,8 @@ Items: {
 		+10% Critical chance
 		'''
 	NightMagePants.Tooltip: +8% Magic damage
+	BismuthumBreastplate.Tooltip: Damage is increased by 5%
+	BismuthumLeggings.Tooltip: Movement speed is increased by 25%
 
 	EverwoodJavelin: {
 		DisplayName: Everwood Javelin
@@ -501,8 +509,8 @@ Items: {
 		Tooltip:
 			'''
 			Hell wraith.
-			If 5x hits successful
-			Becomes empowered
+			Every hit have chance to summon powerful spear
+			The wrath of Hell falls from the sky
 			'''
 		DisplayName: Cleavage
 	}
@@ -865,6 +873,11 @@ Items: {
 		DisplayName: Galvorn Aura Staff
 		Tooltip: ""
 	}
+
+	OrcishSwungo: {
+		Tooltip: ""
+		DisplayName: Orcish Swungo
+	}
 }
 
 Projectiles: {
@@ -1030,6 +1043,15 @@ Projectiles: {
 	RuneMinion.DisplayName: Rune Minion
 	GalvornAura.DisplayName: Galvorn Aura
 	JadeShardFriendly.DisplayName: Jade Shard Friendly
+	SpinCleava.DisplayName: Spin Cleava
+	SpinBone.DisplayName: Spin Bone
+	BismuthumShrapnel.DisplayName: Bismuthum Shrapnel
+	NarsilEvil.DisplayName: Narsil Evil
+	SeabornSlash.DisplayName: Seaborn Slash
+	SeabornWave.DisplayName: Seaborn Wave
+	NarsilAlt.DisplayName: Narsil Alt
+	OrcishSwungo.DisplayName: Orcish Swungo
+	OrcishSwungoP.DisplayName: Orcish Swungo P
 }
 
 Buffs: {
@@ -1105,34 +1127,21 @@ NPCs: {
 	WaterElementalEnemy.DisplayName: Water Elemental Enemy
 }
 
-Configs: {
-	OcramConfig: {
-		DisplayName: Ocram Config
-
-		HardModeEnabled: {
-			Label: Enable Hard Mode AI
-			Tooltip: Makes Ocram's AI more challenging
-		}
-	}
-
-	BossConfig: {
-		HardModeEnabled: {
-			Tooltip: Makes Ocram's AI more challenging
-			Label: Enable Hard Mode AI
-		}
-
-		DisplayName: Boss Config
-
-		BacteriumPrimeBuffEnabled: {
-			Tooltip: Makes Bacterium Prime completely broken. Default Bacterium Prime without ai get 3 more new attacks. Why do you need that?
-			Label: Enable Bacterium Prime hard AI
-		}
-
-		PapuanWizardHardAIEnabled: {
-			Tooltip: Makes Papuan Wizard significantly stronger with teleport and projectile attacks.
-			Label: Enable Papuan Wizard Hard AI
-		}
-	}
+Config: {
+	OcramHardModeAI: Enable Ocram Hard Mode AI
+	MakesOcramAI: Makes Ocram's AI more challenging
+	OcramWildAI: Enable Ocram Wild AI
+	MakesOcramAI2: Makes Bacterium Prime completely broken. Default Bacterium Prime without ai get 3 more new attacks. Why do you need that?
+	PapuanHardAI: Enable Papuan Wizard Hard AI
+	MakesPapuanAI: Makes Papuan Wizard significantly stronger with teleport and projectile attacks.
 }
 
 SinlordSummon: Use Hellworm scale in the underworld
+Configs.BossConfig.DisplayName: Boss Config
+
+WorldGenString: {
+	Vilage: Creating a village in the tundra
+	Vilage2: ""
+}
+
+Tiles.RiseOfTheOldGod.MapEntry: Rise Of The Old God

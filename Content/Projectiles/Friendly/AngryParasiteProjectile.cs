@@ -39,7 +39,7 @@ namespace Synergia.Content.Projectiles.Friendly
 			Projectile.FillWhipControlPoints(Projectile, segments);
 			int segmentHeight = 30; 
 			int headHeight = 18;    
-			int totalSegments = 5;   
+			//int totalSegments = 5;   
 			for (int i = 0; i < segments.Count - 1; i++)
 			{
 				Vector2 segmentStart = segments[i];

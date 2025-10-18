@@ -4,7 +4,7 @@ using Terraria;
 
 namespace Synergia.Common.GlobalPlayer
 {
-	public class BookPlayer : BaseBookPlayer
+    public class BookPlayer : BaseBookPlayer
     {
         public bool BookVisible = false;
         public float BookOpacity = 0f;

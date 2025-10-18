@@ -1,7 +1,6 @@
-﻿using Terraria.ModLoader;
-using Terraria.ModLoader.Config;
+﻿using Synergia.Common.GlobalNPCs.AI;
 using System.ComponentModel;
-using Synergia.Common.GlobalNPCs.AI;
+using Terraria.ModLoader.Config;
 
 namespace Synergia.Common.ModConfigs
 {
@@ -9,19 +8,19 @@ namespace Synergia.Common.ModConfigs
     {
         public override ConfigScope Mode => ConfigScope.ServerSide;
 
-        [Label("Enable Ocram Hard Mode AI")]
-        [Tooltip("Makes Ocram's AI more challenging")]
+        [LabelKey("$Mods.Synergia.Config.OcramHardModeAI")]
+        [TooltipKey("$Mods.Synergia.Config.MakesOcramAI")]
         [DefaultValue(false)]
         public bool HardModeEnabled;
 
-        [Label("Enable Ocram Wild AI")]
-        [Tooltip("Makes Bacterium Prime completely broken. Default Bacterium Prime without ai get 3 more new attacks. Why do you need that?")]
+        [LabelKey("$Mods.Synergia.Config.OcramWildAI")]
+        [TooltipKey("$Mods.Synergia.Config.MakesOcramAI2")]
         [DefaultValue(false)]
         public bool BacteriumPrimeBuffEnabled;
 
 
-        [Label("Enable Papuan Wizard Hard AI")]
-        [Tooltip("Makes Papuan Wizard significantly stronger with teleport and projectile attacks.")]
+        [LabelKey("$Mods.Synergia.Config.PapuanHardAI")]
+        [TooltipKey("$Mods.Synergia.Config.MakesPapuanAI")]
         [DefaultValue(true)]
         public bool PapuanWizardHardAIEnabled;
 

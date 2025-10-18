@@ -47,7 +47,6 @@ namespace Synergia.Helpers
         // Делегат для универсального вызова
         public delegate float Easing(float t);
 
-        // Словарь для быстрого доступа к функциям по имени
         public static readonly System.Collections.Generic.Dictionary<string, Easing> Functions =
             new()
             {

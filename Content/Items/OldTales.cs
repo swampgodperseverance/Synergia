@@ -35,7 +35,7 @@ namespace Synergia.Content.Items
 				bookPlayer.BookVisible = !bookPlayer.BookVisible;
 				
 				SoundEngine.PlaySound(bookPlayer.BookVisible ?
-					Sounds.Type("BookOpen") : Sounds.Type("BookClose"));
+					Sounds.BookOpenSound : Sounds.BookCloseSound);
 			}
 			return true;
 		}

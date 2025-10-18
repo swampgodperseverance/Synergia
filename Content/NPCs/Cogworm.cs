@@ -1,18 +1,23 @@
-﻿using Microsoft.Xna.Framework;
+﻿using Terraria;
+using Terraria.ID;
+using Terraria.ModLoader;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using Synergia.Common;
+using System;
+using Terraria.Audio;
+using Synergia.Content.Projectiles.Hostile;
 using Synergia.Common.GlobalPlayer;
+using Synergia.Common;
 using Synergia.Content.Items;
 using Synergia.Content.Items.Misc;
 using Synergia.Content.Items.Weapons.Cogworm;
-using Synergia.Content.Projectiles.Hostile;
-using System;
-using Terraria;
-using Terraria.Audio;
-using Terraria.GameContent.ItemDropRules;
-using Terraria.ID;
-using Terraria.ModLoader;
 using ValhallaMod.Items.Placeable.Blocks;
+using Terraria.GameContent.ItemDropRules;
+using Terraria.GameContent;
+using Terraria.GameContent.Bestiary;
+using Terraria.DataStructures;
+using Terraria.GameContent.UI;
+using Terraria.UI;
 
 namespace Synergia.Content.NPCs
 {
@@ -830,11 +835,11 @@ namespace Synergia.Content.NPCs
         
             if (Main.rand.NextBool())
             {
-                SoundEngine.PlaySound(Sounds.Type("CragwormHit") with { Volume = 0.8f, Pitch = -0.1f }, NPC.Center);
+                SoundEngine.PlaySound(Sounds.CragwormHit with { Volume = 0.8f, Pitch = -0.1f }, NPC.Center);
             }
             else
             {
-                SoundEngine.PlaySound(Sounds.Type("CragwormHit2") with { Volume = 0.8f, Pitch = -0.1f }, NPC.Center);
+                SoundEngine.PlaySound(Sounds.CragwormHit2 with { Volume = 0.8f, Pitch = -0.1f }, NPC.Center);
             }
         }
 
@@ -879,7 +884,7 @@ namespace Synergia.Content.NPCs
                     }
                 }
 
-                SoundEngine.PlaySound(Sounds.Type("WormBoom"), NPC.Center);
+                SoundEngine.PlaySound(new SoundStyle("Synergia/Assets/Sounds/WormBoom"), NPC.Center);
 
                 for (int i = 0; i < Main.maxPlayers; i++)
                 {

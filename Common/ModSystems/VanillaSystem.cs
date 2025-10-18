@@ -11,6 +11,7 @@ namespace Synergia.Common.ModSystems
 		{
 			Main.LocalPlayer?.GetModPlayer<BookPlayer>()?.DrawBook(spriteBatch);
 			Main.LocalPlayer?.GetModPlayer<BookPlayerHardMode>()?.DrawBook(spriteBatch);
-        }
+		}
+
 	}
 }

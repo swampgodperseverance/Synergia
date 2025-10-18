@@ -7,5 +7,9 @@ namespace Synergia.Helpers
     {
         public int SwingChange = 0;
         public bool SwingChangeBool = false;
+
+
+
+
     }
 }
