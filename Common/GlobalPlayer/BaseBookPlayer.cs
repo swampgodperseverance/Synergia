@@ -33,7 +33,7 @@ namespace Synergia.Common.GlobalPlayer
         {
             Rectangle nextPageButton;
             Vector2 position = new Vector2(Main.screenWidth, Main.screenHeight) / 2f;
-            Texture2D buttonTex = Request<Texture2D>($"Synergia/Assets/UIs/{TextureName}").Value;
+            Texture2D buttonTex = Request<Texture2D>(Right ? $"Synergia/Assets/UIs/{TextureName}" : $"Synergia/Assets/UIs/{TextureName}" + "_Alt").Value;
 
             nextPageButton = BookRectangle(Right ? position.X + 365 : position.X - 415, position.Y - -285, 40, 40);
 

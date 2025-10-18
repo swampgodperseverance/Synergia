@@ -12,7 +12,8 @@ namespace Synergia.Content.Items
 		public override void SetStaticDefaults()
 		{
 		}
-        public override void SetDefaults()
+
+		public override void SetDefaults()
 		{
 			Item.width = 32;
 			Item.height = 32;
@@ -34,7 +35,7 @@ namespace Synergia.Content.Items
 				bookPlayer.BookVisible = !bookPlayer.BookVisible;
 				
 				SoundEngine.PlaySound(bookPlayer.BookVisible ?
-					Sounds.Type("BookOpen") : Sounds.Type("BookClose"));
+					Sounds.BookOpenSound : Sounds.BookCloseSound);
 			}
 			return true;
 		}

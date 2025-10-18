@@ -1,7 +1,10 @@
-﻿using Synergia.Content.Projectiles.Aura;
-using Terraria;
+﻿using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using Microsoft.Xna.Framework;
+using Terraria.DataStructures;
+using Synergia.Content.Projectiles.Aura;
+using Synergia.Content.Buffs;
 
 namespace Synergia.Common.GlobalItems
 {

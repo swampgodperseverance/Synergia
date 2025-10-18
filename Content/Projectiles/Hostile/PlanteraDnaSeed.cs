@@ -30,10 +30,10 @@ namespace Synergia.Content.Projectiles.Hostile
         }
 
         private Vector2 baseVelocity;
-        private float speed = 20f;
+        //private float speed = 20f;
         private float frequency = 0.30f;
         private float waveMagnitude = 120f;
-        private float phase;
+        //private float phase;
 
          public override void AI()
         {

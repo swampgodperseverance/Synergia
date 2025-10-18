@@ -12,13 +12,10 @@ namespace Synergia.Common.GlobalItems
         {
             #region SummonerAccessory
             if (!DesiredType(item, player, ItemID.SummonerEmblem, ModContent.ItemType<SummonerScroll>())) return false;
-            if (!DesiredType(item, player, ModContent.ItemType<SummonerScroll>(), ItemID.SummonerEmblem)) return false;
-            if (!DesiredType(item, player, ModContent.ItemType<SummonerScroll>(), ItemID.PapyrusScarab)) return false;
             if (!DesiredType(item, player, ItemID.PapyrusScarab, ModContent.ItemType<SummonerScroll>())) return false;
             #endregion
             #region PygmyAccessory
             if (!DesiredType(item, player, ItemID.PygmyNecklace, ModContent.ItemType<PygmyShield>())) return false;
-            if (!DesiredType(item, player, ModContent.ItemType<PygmyShield>(), ItemID.PygmyNecklace)) return false;
             #endregion
             return true; 
         }

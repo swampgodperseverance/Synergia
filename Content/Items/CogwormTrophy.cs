@@ -1,7 +1,7 @@
 ﻿using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using Synergia.Content.Items;
+using Synergia.Content.Tiles.Trophy;
 
 namespace Synergia.Content.Items
 {

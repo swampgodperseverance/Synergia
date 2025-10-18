@@ -11,7 +11,7 @@ namespace Synergia.Content.Projectiles.Friendly
 {
     public class JadeShardFriendly : ModProjectile
     {
-        private int accelerationDelay = 30;
+        //private int accelerationDelay = 30;
         private float accelerationAmount = 0.08f;
         private float maxSpeed = 12f;
         private int appearTime = 20;

@@ -142,16 +142,22 @@ namespace Synergia.Content.Projectiles.Friendly
             Projectile.Kill();
             var s = Projectile.GetSource_FromThis();
 
-            for (int i = 0; i < 16; i++)
+            // 20% шанс на спавн орбов
+            if (Main.rand.NextFloat() <= 0.2f)
             {
-                double angle = i * (Math.PI / 8);
-                Vector2 velocity = new Vector2((float)Math.Cos(angle), (float)Math.Sin(angle)) * (5f + (i % 2 == 0 ? 1.5f : -1f));
-                Projectile.NewProjectile(s, Projectile.Center, velocity, ProjectileID.ChlorophyteOrb, Projectile.damage / 2, 1f, Projectile.owner);
+                for (int i = 0; i < 16; i++)
+                {
+                    double angle = i * (Math.PI / 8);
+                    Vector2 velocity = new Vector2((float)Math.Cos(angle), (float)Math.Sin(angle)) 
+                                       * (5f + (i % 2 == 0 ? 1.5f : -1f));
+                    Projectile.NewProjectile(s, Projectile.Center, velocity, ProjectileID.ChlorophyteOrb, Projectile.damage / 2, 1f, Projectile.owner);
+                }
             }
 
             CreateExplosionDust();
             SoundEngine.PlaySound(SoundID.Item29 with { Volume = 1.2f, Pitch = 0.4f }, Projectile.Center);
         }
+
 
         public override bool OnTileCollide(Vector2 oldVelocity)
         {

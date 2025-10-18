@@ -45,7 +45,7 @@ namespace Synergia.Content.Items.Misc
                 int type = ModContent.NPCType<Cogworm>();
 
  
-                SoundEngine.PlaySound(Sounds.Type("WormRoar"), player.Center);
+                SoundEngine.PlaySound(new SoundStyle("Synergia/Assets/Sounds/WormRoar"), player.Center);
 
                 if (Main.netMode != NetmodeID.MultiplayerClient)
                 {

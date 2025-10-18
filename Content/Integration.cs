@@ -1,29 +1,13 @@
-﻿using Terraria;
-using Terraria.ID;
-using Terraria.ModLoader;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-
+using Synergia.Common.ModSystems;
+using Synergia.Content.Items;
+using Synergia.Content.Items.Misc;
+using Synergia.Content.NPCs;
 using System;
 using System.Collections.Generic; // ✅ нужно для List и Dictionary
-using Terraria.Audio;
-using Synergia.Content.Projectiles.Hostile;
-using Synergia.Common.GlobalPlayer;
-using Synergia.Common.ModSystems;
-using Synergia.Common;
-using Synergia.Content.Items;
-using Synergia.Content.NPCs;
-using Synergia.Content.Items.Misc;
-using Synergia.Content.Items.Weapons.Cogworm;
-using ValhallaMod.Items.Placeable.Blocks;
-using Terraria;
-using Terraria.Achievements;
-using Terraria.Audio;
-using Terraria.GameContent;
-using Terraria.ID;
 using Terraria.Localization;
 using Terraria.ModLoader;
-using Terraria.UI;
 
 namespace Synergia.Content
 {

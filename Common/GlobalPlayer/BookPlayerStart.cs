@@ -10,6 +10,6 @@ namespace Synergia.Common.GlobalPlayer
         public override IEnumerable<Item> AddStartingItems(bool mediumCoreDeath)
         {
             if (!mediumCoreDeath) yield return new Item(ModContent.ItemType<OldTales>());
-        }      
+        }
     }
 }

@@ -3,7 +3,7 @@ using Terraria.ModLoader;
 using Bismuth.Utilities;
 using Synergia.Content.Buffs;
 
-namespace Synergia.Common.GlobalPlayer
+namespace Synergia.Common
 {
     public class BansheeHeadSynergyPlayer : ModPlayer
     {
