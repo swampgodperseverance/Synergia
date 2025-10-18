@@ -3,13 +3,13 @@
 
   "Conditions": {
     "CreatesResult": {
-      "Item": "Bismuth/FrozenWarderersBreastplate"
+      "Item": "Bismuth/WatersHelmet"
     }
   },
 
   "Changes": {
     "AddIngredient": {
-      "Item": "Avalon/FrostShard",
+      "Item": "Avalon/WaterShard",
       "Count": 4
     }
   }
