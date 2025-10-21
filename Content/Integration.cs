@@ -34,16 +34,16 @@ namespace Synergia.Content
             int spawnItem = ModContent.ItemType<Content.Items.Misc.HellwormScale>();
             int bossType = ModContent.NPCType<Cogworm>();
 
-            List<int> collectibles = new List<int>()
-            {
+            List<int> collectibles =
+            [
                 ModContent.ItemType<CogwormRelicItem>(),
                 ModContent.ItemType<CogwormTrophy>()
-            };
+            ];
 
             var customPortrait = (SpriteBatch sb, Rectangle rect, Color color) =>
             {
                 Texture2D texture = ModContent.Request<Texture2D>("Synergia/Content/NPCs/CogwormDash").Value;
-                Vector2 centered = new Vector2(
+                Vector2 centered = new(
                     rect.X + (rect.Width / 2) - (texture.Width / 2),
                     rect.Y + (rect.Height / 2) - (texture.Height / 2)
                 );

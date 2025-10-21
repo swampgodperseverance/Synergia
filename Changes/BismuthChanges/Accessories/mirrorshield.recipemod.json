@@ -1,0 +1,25 @@
+{
+  "Criteria": "All",
+
+  "Conditions": {
+    "CreatesResult": {
+      "Item": "Bismuth/MirrorShield"
+    }
+  },
+
+  "Changes": {
+    "ChangeIngredient": {
+      "Item": "Bismuth/AluminiumBar",
+      "NewItem": "Terraria/HallowedBar",
+      "NewCount": 10
+    }
+  },
+
+  "Changes": {
+    "ChangeIngredient": {
+      "Item": "Terraria/Glass",
+      "NewItem": "ValhallaMod/HardenedGlass",
+      "NewCount": 10
+    }
+  }
+}

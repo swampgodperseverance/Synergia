@@ -1,23 +1,17 @@
-﻿using Terraria;
-using Terraria.ID;
-using Terraria.ModLoader;
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
-using System;
-using Terraria.Audio;
-using Synergia.Content.Projectiles.Hostile;
-using Synergia.Common.GlobalPlayer;
+﻿using Microsoft.Xna.Framework;
 using Synergia.Common;
+using Synergia.Common.GlobalPlayer;
 using Synergia.Content.Items;
 using Synergia.Content.Items.Misc;
 using Synergia.Content.Items.Weapons.Cogworm;
-using ValhallaMod.Items.Placeable.Blocks;
+using Synergia.Content.Projectiles.Hostile;
+using System;
+using Terraria;
+using Terraria.Audio;
 using Terraria.GameContent.ItemDropRules;
-using Terraria.GameContent;
-using Terraria.GameContent.Bestiary;
-using Terraria.DataStructures;
-using Terraria.GameContent.UI;
-using Terraria.UI;
+using Terraria.ID;
+using Terraria.ModLoader;
+using ValhallaMod.Items.Placeable.Blocks;
 
 namespace Synergia.Content.NPCs
 {
@@ -36,9 +30,8 @@ namespace Synergia.Content.NPCs
         private bool stalactitePhaseActive = false;
         private int stalactiteSpawnIndex = 0;
         private Vector2[] stalactitePositions = new Vector2[20];
-        private Texture2D defaultTexture;
-        private Texture2D dashTexture;
         private bool isDashing = false;
+        private int postDashingTime;
         private int dashSpriteTimer = 0;
         private const int DashSpriteDuration = 30;
         private float dashScale = 1f;
@@ -52,10 +45,12 @@ namespace Synergia.Content.NPCs
         private bool hasDoneHalfHealthDash = false;
         private int halfHealthDashTimer = 0;
         private const int HalfHealthDashDuration = 120;
+		
+		public override void Load() =>  MusicLoader.AddMusic(Mod, "Assets/Sounds/HellExecution");
 
         public override void SetStaticDefaults()
         {
-            Main.npcFrameCount[NPC.type] = Main.npcFrameCount[NPCID.WyvernHead];
+            Main.npcFrameCount[Type] = 2;
             NPCID.Sets.BossBestiaryPriority.Add(Type);
             NPCID.Sets.MPAllowedEnemies[Type] = true;
             NPCID.Sets.ShouldBeCountedAsBoss[Type] = true;
@@ -67,7 +62,24 @@ namespace Synergia.Content.NPCs
                 PortraitPositionYOverride = 12f
             });
         }
+        public override void FindFrame(int frameHeight)
+        {
+            NPC.spriteDirection = NPC.direction;
 
+            NPC.frameCounter++;
+
+            if (NPC.frameCounter >= 8 && (isDashing || postDashingTime > 0))
+            {
+                if(postDashingTime < 0) NPC.frameCounter = 0;
+
+                NPC.frame.Y += frameHeight;
+
+                if (NPC.frame.Y >= frameHeight * Main.npcFrameCount[NPC.type])
+                {
+                    NPC.frame.Y = 0;
+                }
+            }
+        }
         public override void SetDefaults()
         {
             NPC.width = 42;
@@ -313,16 +325,17 @@ namespace Synergia.Content.NPCs
                 NPC.netUpdate = true;
             }
 
-            isDashing = (attackPhase == 1) || 
-                  (phaseTwoStarted && attackTimer % (260 + 40) >= 260 && attackTimer % (260 + 40) < 260 + 40);
-
+            isDashing = (attackPhase == 1) || (phaseTwoStarted && attackTimer % (260 + 40) >= 260 && attackTimer % (260 + 40) < 260 + 40);
+            
             if (isDashing)
             {
                 dashScale = MathHelper.Lerp(dashScale, 1.3f, 0.1f);
+                postDashingTime = 45;
             }
             else
             {
                 dashScale = MathHelper.Lerp(dashScale, 1f, 0.05f);
+                postDashingTime--;
             }
 
             if (phaseTwoStarted)
@@ -714,41 +727,6 @@ namespace Synergia.Content.NPCs
                     break;
             }
         }
-
-
-
-        public override bool PreDraw(SpriteBatch spriteBatch, Vector2 screenPos, Color drawColor)
-        {
-            Texture2D texture;
-            if (dashSpriteTimer > 0 && dashTexture != null)
-            {
-                float alpha = 1f;
-                if (dashSpriteTimer < 10)
-                    alpha = dashSpriteTimer / 10f; 
-        
-                texture = dashTexture;
-                drawColor *= alpha;
-            }
-            else
-            {
-                texture = defaultTexture;
-            }
-    
-            if (texture == null || texture.IsDisposed)
-                texture = ModContent.Request<Texture2D>(Texture).Value;
-    
-            if (texture == null || texture.IsDisposed)
-                return false;
-    
-            Vector2 origin = new Vector2(texture.Width / 2, texture.Height / 2);
-            SpriteEffects effects = NPC.spriteDirection == -1 ? SpriteEffects.FlipHorizontally : SpriteEffects.None;
-
-            spriteBatch.Draw(texture, NPC.Center - screenPos, null, drawColor, NPC.rotation, origin, NPC.scale * dashScale, effects, 0f);
-    
-            return false;
-        }
-
-
         public override void ModifyNPCLoot(NPCLoot npcLoot)
         {
             npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<CogwormTrophy>(), 10));
@@ -756,30 +734,13 @@ namespace Synergia.Content.NPCs
             npcLoot.Add(ItemDropRule.Common(ItemID.GreaterHealingPotion, 1, 10, 18));
 
             LeadingConditionRule notExpertRule = new(new Conditions.NotExpert());
-            notExpertRule.OnSuccess(ItemDropRule.OneFromOptions(1,
-                                                                ModContent.ItemType<Cleavage>(),
-                                                                ModContent.ItemType<Menace>(),
-                                                                ModContent.ItemType<Pyroclast>(),
-                                                                ModContent.ItemType<HellgateAuraScythe>(),
-                                                                ModContent.ItemType<Impact>()));
+            notExpertRule.OnSuccess(ItemDropRule.OneFromOptions(1, ModContent.ItemType<Cleavage>(), ModContent.ItemType<Menace>(), ModContent.ItemType<Pyroclast>(), ModContent.ItemType<HellgateAuraScythe>(), ModContent.ItemType<Impact>()));                                             
             npcLoot.Add(notExpertRule);
 
             npcLoot.Add(ItemDropRule.BossBag(ModContent.ItemType<CogwormBag>()));
 
             npcLoot.Add(ItemDropRule.MasterModeCommonDrop(ModContent.ItemType<CogwormRelicItem>()));
         }
-
-        public override void Load()
-        {
-            if (!Main.dedServ)
-            {
-                defaultTexture = ModContent.Request<Texture2D>(Texture).Value;
-                dashTexture = ModContent.Request<Texture2D>("Synergia/Content/NPCs/CogwormDash").Value;
-            }
-
-            MusicLoader.AddMusic(Mod, "Assets/Sounds/HellExecution");
-        }
-
         private void FireGroupedStalactites(Player player)
         {
             Vector2 spawnBase = player.Center + new Vector2(0f, 300f);

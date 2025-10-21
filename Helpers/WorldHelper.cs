@@ -28,8 +28,16 @@ namespace Synergia.Helpers
             }
         }
         /// <summary> Если нужно добавить один предмет</summary>
-        public static void LootInContainers(Item[] ChestInventory, ref int Index, int Item) { ChestInventory[Index++].SetDefaults(Item); }
-        /// <summary>Если нужно добавить один случаеный предмет из списка ну например zenith, wood</summary>
-        public static void RandomLootInCoutainer(Item[] ChestInventory, ref int Index, params int[] Items) { ChestInventory[Index++].SetDefaults(Utils.SelectRandom(WorldGen.genRand, Items)); }
+        public static void LootInContainers(Item[] ChestInventory, ref int Index, int Item, int Min = 1, int Max = 1) 
+        {
+            ChestInventory[Index].SetDefaults(Item); Random(ChestInventory, ref Index, Min, Max); Index++;
+        }
+        /// <summary> Если нужно добавить один случаеный предмет из списка ну например zenith, wood</summary>
+        public static void RandomLootInCoutainer(Item[] ChestInventory, ref int Index, int Min = 1, int Max = 1, params int[] Items)
+        { 
+            ChestInventory[Index].SetDefaults(Utils.SelectRandom(WorldGen.genRand, Items));
+            Random(ChestInventory, ref Index, Min, Max); Index++;
+        }
+        static void Random(Item[] ChestInventory, ref int Index, int Min, int Max) => ChestInventory[Index].stack = Main.rand.Next(Min, Max);
     }
 }
