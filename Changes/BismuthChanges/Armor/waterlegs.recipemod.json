@@ -1,0 +1,16 @@
+{
+  "Criteria": "All",
+
+  "Conditions": {
+    "CreatesResult": {
+      "Item": "Bismuth/WatersLeggings"
+    }
+  },
+
+  "Changes": {
+    "AddIngredient": {
+      "Item": "Avalon/WaterShard",
+      "Count": 4
+    }
+  }
+}

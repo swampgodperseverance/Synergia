@@ -1,13 +1,9 @@
-﻿using Terraria;
-using Terraria.ID;
-using Terraria.Audio;
-using Terraria.ModLoader;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using Synergia.Content.Projectiles.Hostile;
-using Synergia.Content.NPCs;
-using Synergia;
-using Synergia.Common.GlobalPlayer;
+using Terraria;
+using Terraria.Audio;
+using Terraria.ID;
+using Terraria.ModLoader;
 
 namespace Synergia.Content.NPCs
 {

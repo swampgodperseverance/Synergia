@@ -7,6 +7,7 @@ using Consolaria.Content.Tiles;
 using Microsoft.Xna.Framework;
 using StramsSurvival.Tiles.Furniture;
 using Synergia.Helpers;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using Terraria;
@@ -21,6 +22,7 @@ using ValhallaMod.NPCs.TownNPCs;
 using ValhallaMod.Tiles.Blocks;
 using ValhallaMod.Tiles.Furnitures;
 using static Synergia.Content.Tiles.WorldGen.SynergiaEditTiles;
+using Chest = ValhallaMod.Tiles.Furnitures.Chest;
 
 namespace Synergia.Common.WorldGenSystem
 {
@@ -164,7 +166,9 @@ namespace Synergia.Common.WorldGenSystem
                 progress.Message = Language.GetTextValue("Mods.Synergia.WorldGenString.Vilage");
                 progress.Set(0.33f);
             }
+
             List<Point> list = [];
+
             foreach (int k in SnowVilageGenTiles)
             {
                 for (int i = Main.maxTilesX / 5; i < Main.maxTilesX / 5 * 4; i++)
@@ -183,6 +187,7 @@ namespace Synergia.Common.WorldGenSystem
                     goto GenerateBuild;
                 }
             }
+
             return false;
 
         GenerateBuild:
@@ -191,6 +196,9 @@ namespace Synergia.Common.WorldGenSystem
             int width = SnowVilageTiles.GetLength(1);
             int height = SnowVilageTiles.GetLength(0);
 
+            WorldHelper.Cleaning(SnowVilagePositionX + 3,  SnowVilagePositionY - 11,  SnowVilagePositionX + 100, SnowVilagePositionY - 0,  TileID.SnowBlock, TileID.IceBlock, TileID.Grass, TileID.Dirt);
+
+            WorldHelper.Cleaning(SnowVilagePositionX + 34, SnowVilagePositionY - 11, SnowVilagePositionX + 35, SnowVilagePositionY - 10, TileID.SnowBlock, TileID.IceBlock, TileID.Trees, TileID.Grass, TileID.Dirt);
             WorldHelper.Cleaning(SnowVilagePositionX + 7,  SnowVilagePositionY - 18, SnowVilagePositionX + 56, SnowVilagePositionY - 11, TileID.SnowBlock, TileID.IceBlock, TileID.Trees, TileID.Grass, TileID.Dirt); // - первый 2 домика
             WorldHelper.Cleaning(SnowVilagePositionX + 57, SnowVilagePositionY - 30, SnowVilagePositionX + 77, SnowVilagePositionY - 10, TileID.SnowBlock, TileID.IceBlock, TileID.Grass, TileID.Dirt); // - двор
             WorldHelper.Cleaning(SnowVilagePositionX + 78, SnowVilagePositionY - 20, SnowVilagePositionX + 97, SnowVilagePositionY - 9,  TileID.SnowBlock, TileID.IceBlock, TileID.Trees, TileID.Grass, TileID.Dirt); // - последний дом
@@ -294,7 +302,7 @@ namespace Synergia.Common.WorldGenSystem
             WorldGen.PlaceObject(SnowVilagePositionX + 22, SnowVilagePositionY - 12, TileID.ClosedDoor, mute: false, 44);
             WorldGen.PlaceObject(SnowVilagePositionX + 6,  SnowVilagePositionY - 12, TileID.ClosedDoor, mute: false, 30);
             WorldGen.PlaceObject(SnowVilagePositionX + 10, SnowVilagePositionY - 18, TileID.Furnaces);
-            WorldGen.PlaceObject(SnowVilagePositionX + 9, SnowVilagePositionY - 16, TileID.Banners, false, 2);
+            WorldGen.PlaceObject(SnowVilagePositionX + 9,  SnowVilagePositionY - 16, TileID.Banners, false, 2);
             WorldGen.PlaceObject(SnowVilagePositionX + 12, SnowVilagePositionY - 16, TileID.Banners, false, 2);
             WorldGen.PlaceObject(SnowVilagePositionX + 89, SnowVilagePositionY - 12, TileID.LightningBuginaBottle);
 
@@ -335,13 +343,19 @@ namespace Synergia.Common.WorldGenSystem
             WorldGen.PlaceOnTable1x1(SnowVilagePositionX + 19, SnowVilagePositionY - 12, TileID.Candles, 0);
             WorldGen.PlaceOnTable1x1(SnowVilagePositionX + 10, SnowVilagePositionY - 13, TileID.Bottles, 4);
 
-            int BarrelIndex = WorldGen.PlaceChest(SnowVilagePositionX + 33, SnowVilagePositionY - 9, TileID.Containers, false, 5);
+            int BarrelIndex = WorldGen.PlaceChest(SnowVilagePositionX + 33, SnowVilagePositionY - 9, (ushort)ModContent.TileType<Chest>(), false, 2);
             if (BarrelIndex != -1) { GenerateBarrelLoot(Main.chest[BarrelIndex].item, 0); }
 
             return true;
         }
         static void GenerateBarrelLoot(Item[] ChestInventory, int BarrelIndex)
         {
+            /* Use Where 1 is Item
+            * WorldHelper.LootInContainers(ChestInventory, ref BarrelIndex, 1);
+            * WorldHelper.RandomLootInCoutainer(ChestInventory, ref BarrelIndex, 1, 2, 3, 4);
+            */
+            WorldHelper.LootInContainers(ChestInventory, ref BarrelIndex, ItemID.Wood, 10, 100);
+            WorldHelper.LootInContainers(ChestInventory, ref BarrelIndex, ItemID.Wood, 10, 100);
         }
     }
 }

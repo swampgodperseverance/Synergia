@@ -45,6 +45,8 @@ namespace Synergia.Content.NPCs
         private bool hasDoneHalfHealthDash = false;
         private int halfHealthDashTimer = 0;
         private const int HalfHealthDashDuration = 120;
+		
+		public override void Load() =>  MusicLoader.AddMusic(Mod, "Assets/Sounds/HellExecution");
 
         public override void SetStaticDefaults()
         {
