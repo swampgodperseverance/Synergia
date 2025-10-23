@@ -1054,6 +1054,14 @@ Projectiles: {
 	OrcishSwungoP.DisplayName: Orcish Swungo P
 	BookProj.DisplayName: Book Proj
 	PostTransformProj.DisplayName: Post Transform Proj
+	SeabornAttack2.DisplayName: Seaborn Attack2
+	SeabornSword.DisplayName: Seaborn Sword
+	SeabornSword2.DisplayName: Seaborn Sword2
+	PyroclastShoot.DisplayName: Pyroclast Shoot
+	NecroFire.DisplayName: Necro Fire
+	NecroKnife.DisplayName: Necro Knife
+	NecroSkull.DisplayName: Necro Skull
+	NecroSphere.DisplayName: Necro Sphere
 }
 
 Buffs: {
@@ -1115,6 +1123,11 @@ Buffs: {
 	BansheeCurse: {
 		Description: Mods.Synergia.Buffs.BansheeCurse.Description
 		DisplayName: Banshee Curse
+	}
+
+	SnowVillageBuff: {
+		Description: Prevents enemies from entering villages
+		DisplayName: Aura of a gnome
 	}
 }
 
@@ -1180,3 +1193,10 @@ Achieve: {
 }
 
 Tiles.RiseOfTheOldGod.MapEntry: Rise Of The Old God
+
+Biomes: {
+	SnowVillage: {
+		DisplayName: Snow Village
+		TownNPCDialogueName: the Snow Village
+	}
+}

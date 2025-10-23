@@ -7,7 +7,6 @@ using Consolaria.Content.Tiles;
 using Microsoft.Xna.Framework;
 using StramsSurvival.Tiles.Furniture;
 using Synergia.Helpers;
-using System;
 using System.Collections.Generic;
 using System.IO;
 using Terraria;
@@ -21,18 +20,18 @@ using Terraria.WorldBuilding;
 using ValhallaMod.NPCs.TownNPCs;
 using ValhallaMod.Tiles.Blocks;
 using ValhallaMod.Tiles.Furnitures;
-using static AssGen.Assets;
 using static Synergia.Content.Tiles.WorldGen.SynergiaEditTiles;
 using Chest = ValhallaMod.Tiles.Furnitures.Chest;
 
 namespace Synergia.Common.WorldGenSystem
 {
-    public class SynergiaGenerationWorld : ModSystem
+    public class GenerationSnowVillage : ModSystem
     {
         //x = 103, y = 25
         static readonly int[] SnowVilageGenTiles = [147, 161, 163, 200];
-        int SnowVilagePositionX = 0;
-        int SnowVilagePositionY = 0;
+        public static int SnowVilagePositionX = 0;
+        public static int SnowVilagePositionY = 0;
+        public static List<Vector2> VilageTiles = [];
         bool GenerateSnowVilage = false;
 
         const byte a = 10, b = 11, c = 12, d = 13, e = 14, f = 15, g = 16, h = 17, i = 18, j = 19, k = 20, l = 21;
@@ -42,14 +41,7 @@ namespace Synergia.Common.WorldGenSystem
 
         #region Info
         // В RoA все классы select. из-за этого через Mod.Find<T>(String class name);
-        // В Valhala гавно код поетому используем из Avalon
-        // Вместо LaminatedTable и LaminatedBed из Valhala мой блоки от Avalon
         // с левого угла идет + X с верху масива - Y
-        // не работает как нужно: FermentingBarrel, Oven
-        // не может быть сгенерировано на
-        // 001200 где 0 пустота 1 конец 1 стола 2 начала 2 стола
-        // ↓ код с верху в низ по этому начало блок потом на блок
-        // После 9 идут конст байт так удобней смотреть на масив чем если было бы двузначное число
         #endregion
 
         static readonly byte[,] SnowVilageTiles =
@@ -140,11 +132,47 @@ namespace Synergia.Common.WorldGenSystem
             {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0 }, // 25
         };
 
-        public override void OnWorldLoad() => GenerateSnowVilage = false;
-        public override void SaveWorldData(TagCompound tag) { var Generated = new BitsByte(); Generated[0] = GenerateSnowVilage; }
-        public override void LoadWorldData(TagCompound tag) { var Generated = (BitsByte)tag.GetByte("Generated"); GenerateSnowVilage = Generated[0]; }
-        public override void NetSend(BinaryWriter writer) { BitsByte Flags = new(); Flags[0] = GenerateSnowVilage; }
-        public override void NetReceive(BinaryReader reader) { BitsByte Flags = reader.ReadByte(); GenerateSnowVilage = Flags[0]; }
+        public override void OnWorldLoad() 
+        { 
+            GenerateSnowVilage = false; 
+            SnowVilagePositionX = 0; 
+            SnowVilagePositionY = 0;
+            VilageTiles = [];
+        }
+        public override void SaveWorldData(TagCompound tag)
+        { 
+            var Generated = new BitsByte(); 
+            Generated[0] = GenerateSnowVilage; 
+            tag["SnowVilagePositionX"] = SnowVilagePositionX; 
+            tag["SnowVilagePositionY"] = SnowVilagePositionY;
+            tag["VilageTiles"] = VilageTiles;
+        }
+        public override void LoadWorldData(TagCompound tag) 
+        { 
+            var Generated = (BitsByte)tag.GetByte("Generated"); 
+            GenerateSnowVilage = Generated[0]; 
+            SnowVilagePositionX = tag.GetInt("SnowVilagePositionX"); 
+            SnowVilagePositionY = tag.GetInt("SnowVilagePositionY");
+            VilageTiles = tag.Get<List<Vector2>>("VilageTiles");
+        }
+        public override void NetSend(BinaryWriter writer) 
+        { 
+            BitsByte Flags = new(); Flags[0] = GenerateSnowVilage; 
+            writer.Write(SnowVilagePositionX); 
+            writer.Write(SnowVilagePositionY);
+            writer.Write(VilageTiles.Count);
+            foreach (var v in VilageTiles) writer.WriteVector2(v);
+        }
+        public override void NetReceive(BinaryReader reader) 
+        { 
+            BitsByte Flags = reader.ReadByte(); 
+            GenerateSnowVilage = Flags[0]; 
+            SnowVilagePositionX = reader.ReadInt32(); 
+            SnowVilagePositionY = reader.ReadInt32();
+            int count = reader.ReadInt32();
+            VilageTiles = [];
+            for (int i = 0; i < count; i++) VilageTiles.Add(reader.ReadVector2());
+        }
 
         public override void ModifyWorldGenTasks(List<GenPass> tasks, ref double totalWeight)
         {
@@ -268,6 +296,10 @@ namespace Synergia.Common.WorldGenSystem
                         case 3: tile.Slope = SlopeType.SlopeUpLeft; break;
                         case 4: tile.Slope = SlopeType.SlopeUpRight; break;
                         case 5: tile.Slope = SlopeType.SlopeDownLeft; break;
+                    }
+                    if (SnowVilageTiles[Y, X] != 0)
+                    {
+                        VilageTiles.Add(new Vector2(SnowVilagePositionX + X, SnowVilagePositionY - Y));
                     }
                 }
             }
