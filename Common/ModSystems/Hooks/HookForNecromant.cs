@@ -35,6 +35,7 @@ namespace Synergia.Common.ModSystems.Hooks
         {
             newAiForNecromant?.Dispose();
             newAiForNecromant = null;
+            currentPhaseField = null;
         }
 
         private delegate void Orig_SetAI(EvilNecromancer npc);
@@ -44,6 +45,8 @@ namespace Synergia.Common.ModSystems.Hooks
         {
             orig(npc);
 
+            if (!npc.NPC.active) return;
+               
             int currentphase = (int)currentPhaseField.GetValue(npc);
 
             if (currentphase == 2)
