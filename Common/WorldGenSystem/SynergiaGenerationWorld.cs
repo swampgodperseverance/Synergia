@@ -21,6 +21,7 @@ using Terraria.WorldBuilding;
 using ValhallaMod.NPCs.TownNPCs;
 using ValhallaMod.Tiles.Blocks;
 using ValhallaMod.Tiles.Furnitures;
+using static AssGen.Assets;
 using static Synergia.Content.Tiles.WorldGen.SynergiaEditTiles;
 using Chest = ValhallaMod.Tiles.Furnitures.Chest;
 
@@ -350,12 +351,14 @@ namespace Synergia.Common.WorldGenSystem
         }
         static void GenerateBarrelLoot(Item[] ChestInventory, int BarrelIndex)
         {
-            /* Use Where 1 is Item
-            * WorldHelper.LootInContainers(ChestInventory, ref BarrelIndex, 1);
-            * WorldHelper.RandomLootInCoutainer(ChestInventory, ref BarrelIndex, 1, 2, 3, 4);
-            */
-            WorldHelper.LootInContainers(ChestInventory, ref BarrelIndex, ItemID.Wood, 10, 100);
-            WorldHelper.LootInContainers(ChestInventory, ref BarrelIndex, ItemID.Wood, 10, 100);
+            WorldHelper.RandomLootInCoutainer(ChestInventory, ref BarrelIndex, 1, 1, ItemID.IceBlade, ItemID.IceBoomerang, ItemID.Snowball);
+            WorldHelper.RandomLootInCoutainer(ChestInventory, ref BarrelIndex, 1, 1, ItemID.BlizzardinaBottle, ItemID.FlurryBoots, ItemID.IceSkates);
+            WorldHelper.LootInContainers(ChestInventory, ref BarrelIndex, ItemID.Fish, 1, 1);
+            WorldHelper.RandomLootInCoutainer(ChestInventory, ref BarrelIndex, 3, 7, ItemID.Topaz, ItemID.Amethyst, ItemID.Sapphire, ItemID.Amber, ItemID.Emerald, ItemID.Ruby, ItemID.Diamond, ModContent.ItemType<Avalon.Items.Material.Ores.Tourmaline>(), ModContent.ItemType<Avalon.Items.Material.Ores.Zircon>());
+            WorldHelper.IfOreTireLoot(ChestInventory, ref BarrelIndex, 4, ItemID.GoldBar, ItemID.PlatinumBar, 5, 15);
+            WorldHelper.LootInContainers(ChestInventory, ref BarrelIndex, ItemID.FlinxFur, 5, 10);
+            WorldHelper.LootInContainers(ChestInventory, ref BarrelIndex, ItemID.HealingPotion, 3, 5);
+            WorldHelper.LootInContainers(ChestInventory, ref BarrelIndex, ItemID.GoldCoin, 1, 3);
         }
     }
 }

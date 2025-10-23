@@ -10,15 +10,21 @@ namespace Synergia.Common
     {
         public class QuestDrawSystem : GlobalNPC
         {
-            public static void DrawQuestIcon(NPC npc, SpriteBatch spriteBatch, string name)
+            /// <summary> обязательно нужно указать npcType </summary>
+            /// <param name="npcType"> Кому рисовать </param>
+            /// <param name="name">Ключь квеста</param>
+            public static void DrawQuestIcon(NPC npc, SpriteBatch spriteBatch, int npcType, string name)
             {
                 Player player = Main.LocalPlayer;
                 IEnumerable<IQuest> quests = QuestRegistry.GetAvailableQuests(player, name);
                 foreach (var quest in quests)
                 {
-                    bool showAvailable = quest.IsAvailable(player) && !quest.IsActive(player);
-                    bool showActive = quest.IsActive(player);
-                    quest?.IsActiveQuestUIIcon(showAvailable, showActive, spriteBatch, npc, player);
+                    if (npc.type == npcType)
+                    {
+                        bool showAvailable = quest.IsAvailable(player) && !quest.IsActive(player);
+                        bool showActive = quest.IsActive(player);
+                        quest?.IsActiveQuestUIIcon(showAvailable, showActive, spriteBatch, npc, player);
+                    }
                 }
             }
         }

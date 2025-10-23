@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Terraria;
+using Terraria.ID;
 
 namespace Synergia.Helpers
 {
@@ -38,6 +39,26 @@ namespace Synergia.Helpers
             ChestInventory[Index].SetDefaults(Utils.SelectRandom(WorldGen.genRand, Items));
             Random(ChestInventory, ref Index, Min, Max); Index++;
         }
-        static void Random(Item[] ChestInventory, ref int Index, int Min, int Max) => ChestInventory[Index].stack = Main.rand.Next(Min, Max);
+        /// <summary>  </summary>
+        /// <param name="Tire">1:Copper, 2:Iron, 3:Silver, 4:Gold, 5: Copper </param>
+        public static void IfOreTireLoot(Item[] ChestInventory, ref int Index, int Tire, int IfTrue, int Else, int Min = 1, int Max = 1)
+        {
+            bool ThisWoroldHasOre = Tire switch
+            {
+                1 => WorldGen.SavedOreTiers.Copper == TileID.Copper,
+                2 => WorldGen.SavedOreTiers.Iron == TileID.Iron,
+                3 => WorldGen.SavedOreTiers.Silver == TileID.Silver,
+                4 => WorldGen.SavedOreTiers.Gold == TileID.Gold,
+                _ => WorldGen.SavedOreTiers.Copper == TileID.Copper,
+            };
+
+            int itemToGive;
+
+            if (ThisWoroldHasOre) itemToGive = IfTrue;
+            else itemToGive = Else;
+
+            ChestInventory[Index].SetDefaults(itemToGive); Random(ChestInventory, ref Index, Min, Max); Index++;
+        }
+        static void Random(Item[] ChestInventory, ref int Index, int Min, int Max) => ChestInventory[Index].stack = Main.rand.Next(Min, Max + 1);
     }
 }
