@@ -113,6 +113,7 @@ namespace Synergia
         public static readonly SoundStyle PowerSword = new("Synergia/Assets/Sounds/PowerSword");
         public static readonly SoundStyle SandSphere = new("Synergia/Assets/Sounds/SandSphere");
         public static readonly SoundStyle Impulse = new("Synergia/Assets/Sounds/Impulse");
+        public static readonly SoundStyle Watersound = new("Synergia/Assets/Sounds/Watersound");
     }
 
     public class SynergiaSystems : ModSystem

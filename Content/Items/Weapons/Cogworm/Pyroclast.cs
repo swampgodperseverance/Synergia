@@ -1,10 +1,8 @@
 ﻿using Microsoft.Xna.Framework;
 using Terraria;
-using Terraria.Audio;
 using Terraria.DataStructures;
 using Terraria.ID;
-using Synergia.Common;
-using Terraria.ModLoader;
+using Terraria.ModLoader; using Synergia.Common;
 using Synergia.Content.Projectiles.Friendly;
 using Synergia.Content.Buffs; 
 
@@ -20,87 +18,56 @@ namespace Synergia.Content.Items.Weapons.Cogworm
 
         public override void SetDefaults()
         {
-            Item.width = 30;
-            Item.height = 56;
-            Item.damage = 110;
-            Item.knockBack = 4f;
+            Item.damage = 22;
+            Item.width = 50;
+            Item.height = 50;
             Item.useStyle = ItemUseStyleID.Shoot;
-            Item.useTime = 30;
-            Item.useAnimation = 30;
+            Item.knockBack = 4;
+            Item.value = Item.sellPrice(0, 1, 1, 29);
             Item.rare = ModContent.RarityType<LavaGradientRarity>();
 
-            Item.value = Item.sellPrice(0, 5, 0, 0);
-            Item.UseSound = SoundID.Item20;
+            Item.shootSpeed = 17;
             Item.autoReuse = true;
             Item.DamageType = DamageClass.Ranged;
-            Item.shoot = ModContent.ProjectileType<FireballProjectile>();
-            Item.shootSpeed = 10f;
+            Item.shoot = ProjectileID.PurificationPowder;
+            Item.shootSpeed = 16f;
+            Item.useAmmo = AmmoID.Arrow;
+            Item.UseSound = SoundID.Item5;
+            Item.useAnimation = 20;
+            Item.useTime = 4; // one third of useAnimation
+            Item.reuseDelay = 70;
+            Item.consumeAmmoOnLastShotOnly = true;
             Item.noMelee = true;
         }
 
         public override Vector2? HoldoutOffset()
         {
-            return new Vector2(-4f, 0f); 
-        }
-
-        public override void HoldItem(Player player)
-        {
-            player.AddBuff(BuffID.OnFire, 30);
+            return new Vector2(-2f, 0f);
         }
 
         public override void ModifyShootStats(Player player, ref Vector2 position, ref Vector2 velocity, ref int type, ref int damage, ref float knockback)
         {
-            velocity *= 1.2f;
-            position += new Vector2(-2f, 0f);
-
-            if (player.HasBuff(ModContent.BuffType<Hellborn>()))
+            // Заменяем деревянные стрелы на кастомные
+            if (type == ProjectileID.WoodenArrowFriendly)
             {
-                damage = (int)(damage * 1.2f); 
-                knockback += 1f;
+                type = ModContent.ProjectileType<PyroclastShoot>();
             }
         }
 
         public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
         {
-            bool hellborn = player.HasBuff(ModContent.BuffType<Hellborn>());
-            int fireballCount = hellborn ? 5 : 3;
-            float spread = hellborn ? 0.45f : 0.3f;
-
-            for (int i = 0; i < fireballCount; i++)
+            int numProjectiles = Main.rand.Next(1, 6);
+            for (int p = 0; p < numProjectiles; p++)
             {
-                Vector2 newVelocity = velocity.RotatedByRandom(spread);
-                newVelocity *= 1f - Main.rand.NextFloat(0.1f);
-
-                Projectile.NewProjectile(
-                    source,
-                    position,
-                    newVelocity,
-                    type,
-                    damage,
-                    knockback,
-                    player.whoAmI);
-            }
-
-            for (int i = 0; i < 5; i++)
-            {
-                Vector2 dustVel = velocity.RotatedByRandom(0.4f) * Main.rand.NextFloat(0.5f, 1.5f);
-                Dust.NewDustPerfect(position, DustID.Torch, dustVel, 100, default, 1.5f).noGravity = true;
-            }
-
-            if (hellborn)
-            {
-                for (int i = 0; i < 10; i++)
-                {
-                    Vector2 sparkVel = Main.rand.NextVector2Circular(3f, 3f);
-                    int spark = Dust.NewDust(position, 0, 0, DustID.Flare, sparkVel.X, sparkVel.Y, 150, default, 1.3f);
-                    Main.dust[spark].noGravity = true;
-                }
-
-                SoundEngine.PlaySound(SoundID.Item74, position); 
+                // Rotate the velocity randomly by 30 degrees at max.
+                Vector2 newVelocity = velocity.RotatedByRandom(MathHelper.ToRadians(10));
+                newVelocity *= 1f - Main.rand.NextFloat(0.3f);
+                
+                // Создаем снаряд с правильным типом
+                Projectile.NewProjectileDirect(source, position, newVelocity, type, damage, knockback, player.whoAmI);
             }
 
             return false;
         }
-
     }
 }
