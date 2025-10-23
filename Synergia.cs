@@ -1,25 +1,16 @@
-using Terraria;
-using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework;
-using ReLogic.Content;
-using Terraria.ID;
-using Terraria.Audio;
-using Synergia.Content.Quests;
-using Terraria.Graphics.Shaders;
-using Terraria.ModLoader;
-using System;
-using MonoMod.RuntimeDetour;
-using Mono.Cecil.Cil;
-using MonoMod.RuntimeDetour.HookGen;
-using MonoMod.Utils;
-using MonoMod.Cil;
-using System.Linq;
-using System.Reflection;
 using Bismuth.Utilities.ModSupport;
-using Bismuth.Utilities.Global;
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
+using Mono.Cecil.Cil;
+using MonoMod.Cil;
+using MonoMod.RuntimeDetour;
 using Synergia.Common;
-using System.Collections.Generic;
-using static Terraria.ModLoader.ModContent;
+using Synergia.Content.Quests;
+using System;
+using System.Reflection;
+using Terraria;
+using Terraria.Audio;
+using Terraria.ModLoader;
 
 namespace Synergia
 {

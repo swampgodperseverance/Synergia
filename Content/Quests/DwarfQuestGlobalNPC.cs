@@ -31,7 +31,7 @@ namespace Synergia.Content.Quests
                 }
             }
         }
-        public override void PostDraw(NPC npc, SpriteBatch spriteBatch, Vector2 screenPos, Color drawColor) => DrawQuestIcon(npc, spriteBatch, DWARF);
+        public override void PostDraw(NPC npc, SpriteBatch spriteBatch, Vector2 screenPos, Color drawColor) => DrawQuestIcon(npc, spriteBatch, ModContent.NPCType<Dwarf>(), DWARF);
     }
     public class DwarfQuestSystem : HookForQuest
     {
@@ -40,7 +40,7 @@ namespace Synergia.Content.Quests
         public override void NewSetChatButtons(Orig_SetChatButtons orig, Dwarf npc, ref string button, ref string button2)
         {
             orig(npc, ref button, ref button2);
-            if (button2 == "Help")
+            if (button2 != "")
             {
                 Player player = Main.LocalPlayer;
                 var quest = QuestRegistry.GetAvailableQuests(player, DWARF).FirstOrDefault();
