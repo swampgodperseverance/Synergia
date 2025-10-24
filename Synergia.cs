@@ -22,6 +22,7 @@ namespace Synergia
         public override void Load()
         {
             QuestRegistry.Register(new DwarfQuest());
+            QuestRegistry.Register(new TaxCollectorQuest());
             instruktion = this;
             LoadRoAHook();
         }

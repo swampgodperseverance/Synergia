@@ -1,70 +1,14 @@
 ﻿using Bismuth.Utilities.ModSupport;
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
-using Synergia.Common.ModSystems.Hooks;
-using System;
-using System.Linq;
 using Terraria;
-using Terraria.ID;
 using Terraria.Localization;
 using Terraria.ModLoader;
+using ValhallaMod.Items.Material.Bar;
 using ValhallaMod.Items.Placeable;
-using ValhallaMod.NPCs.TownNPCs;
 using static Synergia.Common.QuestSystem;
 using static Synergia.Common.QuestSystem.QuestConst;
-using static Synergia.Common.QuestSystem.QuestDrawSystem;
 
 namespace Synergia.Content.Quests
 {
-    public class DwarfQuestGlobalNPC : GlobalNPC
-    {
-        public override void OnChatButtonClicked(NPC npc, bool firstButton)
-        {
-            if (npc.type == ModContent.NPCType<Dwarf>())
-            {
-                if (firstButton) { }
-                else
-                {
-                    Player player = Main.LocalPlayer;
-                    var quest = QuestRegistry.GetAvailableQuests(player, DWARF).FirstOrDefault();
-                    quest?.OnChatButtonClicked(player);
-                }
-            }
-        }
-        public override void PostDraw(NPC npc, SpriteBatch spriteBatch, Vector2 screenPos, Color drawColor) => DrawQuestIcon(npc, spriteBatch, ModContent.NPCType<Dwarf>(), DWARF);
-    }
-    public class DwarfQuestSystem : HookForQuest
-    {
-        public override Type CompileTime() => typeof(Dwarf);
-
-        public override void NewSetChatButtons(Orig_SetChatButtons orig, Dwarf npc, ref string button, ref string button2)
-        {
-            orig(npc, ref button, ref button2);
-            if (button2 != "")
-            {
-                Player player = Main.LocalPlayer;
-                var quest = QuestRegistry.GetAvailableQuests(player, DWARF).FirstOrDefault();
-                if (quest != null)
-                {
-                    button2 = quest.GetButtonText(player);
-                }
-            }
-        }
-        public override string NewGetChat(Orig_GetChat orig, Dwarf npc)
-        {
-            string originalResult = orig(npc);
-            Player player = Main.LocalPlayer;
-            var quest = QuestRegistry.GetAvailableQuests(player, DWARF).FirstOrDefault();
-            foreach (NPC nPC in Main.npc)
-            {
-                if (quest != null)
-                {
-                    return quest.GetChat(nPC, player, quest.CornerItem);
-                }
-            }
-            return originalResult;
-        }
-    }
     public class DwarfQuest : BaseQuest
     {
         public override string DisplayName => Language.GetTextValue("Mods.Synergia.Quest.Dwarf.QuestName"); // Название в книге 
@@ -77,10 +21,9 @@ namespace Synergia.Content.Quests
         public override QuestPhase Phase => QuestPhase.PreSkeletron;
         public override int CornerItem => ModContent.ItemType<DwarvenAnvil>();
         public override PostBossQuest PostBossRequirement => PostBossQuest.Null;
-        public override string GetChat(NPC npc, Player player, int corneritem)
+        public override string GetChat(NPC npc, Player player)
         {
-            corneritem = CornerItem;
-            Main.npcChatCornerItem = corneritem;
+            Main.npcChatCornerItem = CornerItem;
             var q = player.GetModPlayer<QuestPlayer>();
             bool defeated = HasDefeated(PostBossRequirement);
             if (q.CompletedQuests.Contains(UniqueKey) && defeated)
@@ -120,7 +63,7 @@ namespace Synergia.Content.Quests
                 ModContent.ItemType<DwarvenAnvil>(), 1, 1, // Нужный предмет, количество и сколько npc заберет
                 Language.GetTextValue("Mods.Synergia.Quest.Dwarf.QuestCompleted"), // Локализация если квест завершен
                 Language.GetTextValue("Mods.Synergia.Quest.Dwarf.QuestCompletedFalse"), // И если не завершен
-                ItemID.ZapinatorGray, 10); // Награда, количество
+                ModContent.ItemType<ValhalliteBar>(), Main.rand.Next(10, 21)); // Награда, количество
                 /* а также есть доп параметры
                 * IsNotification = true;
                 * IsQuestcompleted = true;

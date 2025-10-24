@@ -1,5 +1,7 @@
-﻿using System;
+﻿using Synergia.Common.WorldGenSystem;
+using System;
 using System.Collections.Generic;
+using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 
@@ -27,6 +29,22 @@ namespace Synergia.Helpers
                     }
                 }
             }
+        }
+        /// <summary> Проверяет, находится ли игрок внутри прямоугольной области. Если находится — опционально добавляет бафф.</summary>
+        public static bool CheakBiome(Player player, int width, int height, int left, int top, int buff = 1)
+        {
+            Point pos = player.Center.ToTileCoordinates();
+
+            int right = left + width;
+            int bottom = top + height;
+
+            if (pos.X >= left && pos.X < right && pos.Y >= top && pos.Y < bottom)
+            {
+                if (buff != 1) player.AddBuff(buff, 3);
+                return true;
+            }
+
+            return false;
         }
         /// <summary> Если нужно добавить один предмет</summary>
         public static void LootInContainers(Item[] ChestInventory, ref int Index, int Item, int Min = 1, int Max = 1) 

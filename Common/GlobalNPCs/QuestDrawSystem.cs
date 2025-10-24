@@ -1,8 +1,12 @@
 ﻿using Bismuth.Utilities.ModSupport;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System.Collections.Generic;
 using Terraria;
+using Terraria.ID;
 using Terraria.ModLoader;
+using ValhallaMod.NPCs.TownNPCs;
+using static Synergia.Common.QuestSystem.QuestConst;
 
 namespace Synergia.Common
 {
@@ -26,6 +30,11 @@ namespace Synergia.Common
                         quest?.IsActiveQuestUIIcon(showAvailable, showActive, spriteBatch, npc, player);
                     }
                 }
+            }
+            public override void PostDraw(NPC npc, SpriteBatch spriteBatch, Vector2 screenPos, Color drawColor)
+            {
+                DrawQuestIcon(npc, spriteBatch, ModContent.NPCType<Dwarf>(), DWARF);
+                DrawQuestIcon(npc, spriteBatch, NPCID.TaxCollector, TAXC);
             }
         }
     }
