@@ -1178,6 +1178,7 @@ Quest: {
 	}
 
 	Dwarf2.QuestName: ""
+	BaseButton: Quest
 }
 
 Achieve: {
