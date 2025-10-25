@@ -3,14 +3,15 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using static Synergia.Common.SUtils.LocUtil;
 
 namespace Synergia.Content.NPCs
 {
     public class CogwormBody : ModNPC
     {
+        public override string LocalizationCategory => Category(CategoryName.NPC);
         private int segmentIndex = 0;
         private Vector2[] oldPositions = new Vector2[5];
-
         public override void SetStaticDefaults()
         {
             // DisplayName.SetDefault("Cogworm Body");
