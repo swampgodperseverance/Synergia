@@ -1,0 +1,21 @@
+Dwarf: {
+	QuestName: Dwarven Anvil
+	QuestDescription: Somewhere deep within the winter biome lies an ancient Dwarven Anvil.
+	QuestStage: Collect Anvil
+	QuestProgress0: Thanks for the Anvil!
+	QuestProgress1:
+		'''
+		Previously, the dwarves were digging in the mines in 
+		search of precious Valhallite ore. They were constantly 
+		dragging giant anvils that stayed there forever, 
+		could you bring me one? And I'll give you some ore
+		'''
+	QuestProgress2: Have you gathered an Anvil yet?
+	QuestButton: Accept
+	QuestButtonGive: Give away
+	QuestCompleted: Quest completed! Thanks for the Dwarven Anvil!
+	QuestCompletedFalse: You don't have an anvil yet.
+}
+
+Dwarf2.QuestName: ""
+BaseButton: Quest

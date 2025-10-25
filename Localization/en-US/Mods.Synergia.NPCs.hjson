@@ -1,0 +1,11 @@
+Cogworm.DisplayName: Sinlord Wyrm
+CogwormBody.DisplayName: Sinlord Body
+CogwormTail.DisplayName: Sinlord Tail
+CogwormGhost.DisplayName: Sinlord Ghost
+
+Dialog: {
+	FrostDwarf: Once upon a time, there were more of us in this village. A whole kind of dwarves, but after the snowman attack, we were doomed, one of us wanders around the world, the other is in the central city, I sit here and live life alone
+	FrostDwarf2: I wonder how the {0} lives there, in warm, pleasant conditions
+	CityDwarf: Have you heard that there is a ruined village with a lonely dwarf in the ice biome? This was a long story
+	CityDwarf2: I wonder how the {0} lives there, in cold, unpleasant conditions
+}

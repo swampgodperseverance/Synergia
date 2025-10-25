@@ -14,10 +14,10 @@ namespace Synergia.Common.GlobalPlayer
             public override void OnEnterWorld()
             {
                 if (!HookForQuest.NpcQuestKeys.ContainsKey(ModContent.NPCType<Dwarf>())) {
-                    HookForQuest.NpcQuestKeys[ModContent.NPCType<Dwarf>()] = new QuestData(DwafPositionX, DWARF, 0, 1);
+                    HookForQuest.NpcQuestKeys[ModContent.NPCType<Dwarf>()] = new QuestData(DwafPositionX, DWARF, 0, 1, true);
                 }
                 if (!HookForQuest.NpcQuestKeys.ContainsKey(NPCID.TaxCollector)) {
-                    HookForQuest.NpcQuestKeys[NPCID.TaxCollector] = new QuestData(BasePositionX, TAXC, 0, 1);
+                    HookForQuest.NpcQuestKeys[NPCID.TaxCollector] = new QuestData(BasePositionX, TAXC, 0, 1, true);
                 }
             }
         }

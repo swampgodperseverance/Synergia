@@ -1133,15 +1133,6 @@ Buffs: {
 
 "Keybinds.Toggle Aura Mode.DisplayName": Toggle  Aura  Mode
 
-NPCs: {
-	Cogworm.DisplayName: Sinlord Wyrm
-	CogwormBody.DisplayName: Sinlord Body
-	CogwormTail.DisplayName: Sinlord Tail
-	CogwormGhost.DisplayName: Sinlord Ghost
-	AirElementalEnemy.DisplayName: Air Elemental Enemy
-	WaterElementalEnemy.DisplayName: Water Elemental Enemy
-}
-
 Config: {
 	OcramHardModeAI: Enable Ocram Hard Mode AI
 	MakesOcramAI: Makes Ocram's AI more challenging
@@ -1162,23 +1153,6 @@ WorldGenString: {
 Book: {
 	Button2: Previous page
 	Button: Next page
-}
-
-Quest: {
-	Dwarf: {
-		QuestName: Dwarven Anvil
-		QuestDescription: Somewhere deep within the winter biome lies an ancient Dwarven Anvil.
-		QuestStage: Collect Anvil
-		QuestProgress0: Thanks for the Anvil!
-		QuestProgress1: Please bring me an Anvil.
-		QuestProgress2: Have you gathered an Anvil yet?
-		QuestButton: Accept
-		QuestCompleted: Quest completed! Thanks for the Dwarven Anvil!
-		QuestCompletedFalse: You don't have an anvil yet.
-	}
-
-	Dwarf2.QuestName: ""
-	BaseButton: Quest
 }
 
 Achieve: {

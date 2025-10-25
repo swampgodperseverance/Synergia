@@ -1,19 +1,19 @@
 ﻿using Bismuth.Utilities.ModSupport;
 using Terraria;
-using Terraria.Localization;
 using Terraria.ModLoader;
 using ValhallaMod.Items.Material.Bar;
 using ValhallaMod.Items.Placeable;
 using static Synergia.Common.QuestSystem;
 using static Synergia.Common.QuestSystem.QuestConst;
+using static Synergia.Common.SUtils.LocUtil;
 
 namespace Synergia.Content.Quests
 {
     public class DwarfQuest : BaseQuest
     {
-        public override string DisplayName => Language.GetTextValue("Mods.Synergia.Quest.Dwarf.QuestName"); // Название в книге 
-        public override string DisplayDescription => Language.GetTextValue("Mods.Synergia.Quest.Dwarf.QuestDescription"); // Описание в книге
-        public override string DisplayStage => Language.GetTextValue("Mods.Synergia.Quest.Dwarf.QuestStage"); // Этап в книге
+        public override string DisplayName => LocKey("Dwarf", "QuestName"); // Название в книге 
+        public override string DisplayDescription => LocKey("Dwarf", "QuestDescription"); // Описание в книге
+        public override string DisplayStage => LocKey("Dwarf", "QuestStage"); // Этап в книге
         public override string UniqueKey => "PreSkeletronAnvilQuest";
         public override string NpcKey => DWARF;
         public override int Priority => 10;
@@ -29,22 +29,25 @@ namespace Synergia.Content.Quests
             if (q.CompletedQuests.Contains(UniqueKey) && defeated)
             {
                 Progress = 0;
-                return Language.GetTextValue("Mods.Synergia.Quest.Dwarf.QuestProgress0");
+                return LocKey("Dwarf", "QuestProgress0");
             }
             if (q.ActiveQuests.Contains(UniqueKey) && defeated)
             {
                 Progress = 2;
-                return Language.GetTextValue("Mods.Synergia.Quest.Dwarf.QuestProgress2"); // Текст, когда квест активен
+                return LocKey("Dwarf", "QuestProgress2"); // Текст, когда квест активен
             }
             Progress = 1;
-            return Language.GetTextValue("Mods.Synergia.Quest.Dwarf.QuestProgress1");
+            return LocKey("Dwarf", "QuestProgress1"); ;
         }
-        public override string GetButtonText(Player player)
+        public override string GetButtonText(Player player, ref bool Isfristclicked)
         {
             bool defeated = HasDefeated(PostBossRequirement);
             var q = player.GetModPlayer<QuestPlayer>();
             if (q.CompletedQuests.Contains(UniqueKey) && defeated) return "";
-            return Language.GetTextValue("Mods.Synergia.Quest.Dwarf.QuestButton");
+            if (Isfristclicked) {
+                return LocKey("Dwarf", "QuestButton");
+            }
+            else return LocKey("Dwarf", "QuestButtonGive");
         }
         public override bool IsCompleted(Player player)
         {
@@ -61,8 +64,8 @@ namespace Synergia.Content.Quests
                 player, // Необходимый параметр
                 ref player.GetModPlayer<QuestBoolean>().DwarfQuest, // Особый флаг
                 ModContent.ItemType<DwarvenAnvil>(), 1, 1, // Нужный предмет, количество и сколько npc заберет
-                Language.GetTextValue("Mods.Synergia.Quest.Dwarf.QuestCompleted"), // Локализация если квест завершен
-                Language.GetTextValue("Mods.Synergia.Quest.Dwarf.QuestCompletedFalse"), // И если не завершен
+                LocKey("Dwarf", "QuestCompleted"), // Локализация если квест завершен
+                LocKey("Dwarf", "QuestCompletedFalse"), // И если не завершен
                 ModContent.ItemType<ValhalliteBar>(), Main.rand.Next(10, 21)); // Награда, количество
                 /* а также есть доп параметры
                 * IsNotification = true;

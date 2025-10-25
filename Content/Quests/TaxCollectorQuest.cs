@@ -38,12 +38,15 @@ namespace Synergia.Content.Quests
             Progress = 1;
             return Language.GetTextValue("Mods.Synergia.Quest.Dwarf.QuestProgress1");
         }
-        public override string GetButtonText(Player player)
+        public override string GetButtonText(Player player, ref bool Isfristclicked)
         {
             bool defeated = HasDefeated(PostBossRequirement);
             var q = player.GetModPlayer<QuestPlayer>();
             if (q.CompletedQuests.Contains(UniqueKey) && defeated) return "";
-            return Language.GetTextValue("Mods.Synergia.Quest.Dwarf.QuestButton");
+            if (Isfristclicked) {
+                return Language.GetTextValue("Mods.Synergia.Quest.Dwarf.QuestButton");
+            }
+            else return Language.GetTextValue("Mods.Synergia.Quest.Dwarf.QuestButtonGive");
         }
         public override bool IsCompleted(Player player)
         {
