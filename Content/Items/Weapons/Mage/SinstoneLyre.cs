@@ -38,10 +38,9 @@ namespace Synergia.Content.Items.Weapons.Mage
             if (noteCooldown > 0)
                 noteCooldown--;
 
-            // Раз в 2 секунды → HeatNote на курсоре
             if (noteCooldown <= 0 && Main.myPlayer == player.whoAmI)
             {
-                if (Main.mouseLeft) // только если зажата ЛКМ
+                if (Main.mouseLeft) 
                 {
                     Vector2 spawnPos = Main.MouseWorld;
 
@@ -62,7 +61,7 @@ namespace Synergia.Content.Items.Weapons.Mage
                         Pitch = 0f
                     }, spawnPos);
 
-                    noteCooldown = 120; // 2 секунды (60 тиков * 2)
+                    noteCooldown = 120; 
                 }
             }
         }
