@@ -4,11 +4,13 @@ using Terraria;
 using Terraria.Audio;
 using Terraria.ID;
 using Terraria.ModLoader;
+using static Synergia.Common.SUtils.LocUtil;
 
 namespace Synergia.Content.NPCs
 {
     public class CogwormTail : ModNPC
     {
+        public override string LocalizationCategory => Category(CategoryName.NPC);
         private Vector2[] oldPositions = new Vector2[5];
 
         public override void SetStaticDefaults()

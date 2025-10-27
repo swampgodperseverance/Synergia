@@ -12,12 +12,15 @@ using Terraria.GameContent.ItemDropRules;
 using Terraria.ID;
 using Terraria.ModLoader;
 using ValhallaMod.Items.Placeable.Blocks;
+using static Synergia.Common.SUtils.LocUtil;
 
 namespace Synergia.Content.NPCs
 {
     [AutoloadBossHead]
     public class Cogworm : ModNPC
     {
+        public override string LocalizationCategory => Category(CategoryName.NPC);
+
         private bool spawned = false;
         private int attackTimer = 0;
         internal int attackPhase = 0;

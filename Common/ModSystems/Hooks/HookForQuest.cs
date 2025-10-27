@@ -21,6 +21,8 @@ namespace Synergia.Common.ModSystems.Hooks
     {
         private Hook hook;
         private static bool npcChatFocusCustom;
+        private static bool npcNewTextButton;
+        private int lastTalkNPC = -1;
 
         public static readonly Dictionary<int, QuestData> NpcQuestKeys = [];
 
@@ -44,19 +46,31 @@ namespace Synergia.Common.ModSystems.Hooks
             Player player = Main.LocalPlayer;
             NPC npc = Main.npc[player.talkNPC];
 
-            if (npc == null || !npc.active) return;
-
-            if (!NpcQuestKeys.TryGetValue(npc.type, out var questData))
+            if (!NpcQuestKeys.TryGetValue(npc.type, out var questData)) { 
                 return;
+            }
+                
+            if (npc == null || !npc.active) { 
+                return;
+            }
 
             var quest = QuestRegistry.GetAvailableQuests(player, questData.QuestKey).FirstOrDefault();
-            if (quest == null) { questData.Progres = 0; return; }
+
+            if (quest == null) { 
+                return; 
+            }
 
             float y = 130 + numLines * 30;
             int num = 180 + (Main.screenWidth - questData.X) / 2;
             string text = "DEBAG";
-            if (questData.Progres < questData.MaxProgres) text = Language.GetTextValue("Mods.Synergia.Quest.BaseButton");
-            else if (questData.Progres == questData.MaxProgres) text = quest?.GetButtonText(player);
+
+            if (npcNewTextButton == false) {
+                text = Language.GetTextValue($"Mods.Synergia.Quests.BaseButton");
+            }
+            if (npcNewTextButton) {
+                text = quest?.GetButtonText(player, ref questData.IsFristClicked);
+            }
+
             Vector2 vector3 = new(0.9f);
             Vector2 pos = new(num - 90, y);
             DynamicSpriteFont font = FontAssets.MouseText.Value;
@@ -92,14 +106,33 @@ namespace Synergia.Common.ModSystems.Hooks
                     Main.npcChatText = quest?.GetChat(npc, player) ?? "";
                     questData.Progres++;
                     NpcQuestKeys[npc.type] = questData;
+                    npcNewTextButton = true;
                 }
                 else if (questData.Progres == questData.MaxProgres)
                 {
+                    questData.IsFristClicked = false;
+                    NpcQuestKeys[npc.type] = questData;
                     quest?.OnChatButtonClicked(player);
                 }
 
                 SoundEngine.PlaySound(SoundID.MenuTick, npc.position);
             }
+        }
+        public override void PostUpdatePlayers()
+        {
+            Player player = Main.LocalPlayer;
+
+            if (lastTalkNPC != -1 && player.talkNPC == -1)
+            {
+                if (Main.npc.IndexInRange(lastTalkNPC) && NpcQuestKeys.TryGetValue(Main.npc[lastTalkNPC].type, out var questData))
+                {
+                    questData.Progres = 0;
+                    NpcQuestKeys[Main.npc[lastTalkNPC].type] = questData;
+                    npcNewTextButton = false;
+                }
+            }
+
+            lastTalkNPC = player.talkNPC;
         }
     }
 }
