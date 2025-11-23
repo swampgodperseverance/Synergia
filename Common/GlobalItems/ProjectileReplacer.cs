@@ -68,6 +68,18 @@ namespace Synergia.Common.GlobalItems
                         case "WoodenClub":
                             item.shoot = ModContent.ProjectileType<Content.Projectiles.Reworks.WoodenClubRework>();
                             break;
+                        case "FlamingBlade":
+                            item.shoot = ModContent.ProjectileType<Content.Projectiles.Reworks.FlamingBladeRework>();
+                            break;
+                         case "NebulaRod":
+                            item.shoot = ModContent.ProjectileType<Content.Projectiles.Reworks.NebulaPikeSpawner>();
+                            break;      
+                         case "MagicClaw":
+                            item.shoot = ModContent.ProjectileType<Content.Projectiles.Friendly.MagicClawRework>();
+                            break; 
+                         case "SunJavelin":
+                            item.shoot = ModContent.ProjectileType<Content.Projectiles.Reworks.Reworks2.SunJavelinRework>();
+                            break;  
                     }
                 }
             
@@ -88,6 +100,12 @@ namespace Synergia.Common.GlobalItems
                     {
                         case "Typhoon":
                             item.shoot = ModContent.ProjectileType<Content.Projectiles.Reworks.TyphoonRework>();
+                            break;
+                    }
+                    switch (item.ModItem.Name)
+                    {
+                        case "FuryOfWaters":
+                            item.shoot = ModContent.ProjectileType<Content.Projectiles.Reworks.Reworks2.FuryOfWatersRework>();
                             break;
                     }
                     switch (item.ModItem.Name)
