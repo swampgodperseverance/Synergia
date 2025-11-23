@@ -1271,6 +1271,15 @@ Configs: {
 	}
 }
 
+Config: {
+	OcramHardModeAI: Hard Mode Enabled
+	MakesOcramAI: ""
+	OcramWildAI: Bacterium Prime Buff Enabled
+	MakesOcramAI2: ""
+	PapuanHardAI: Papuan Wizard Hard A I Enabled
+	MakesPapuanAI: ""
+}
+
 SinlordSummon: Use Hellworm scale in the underworld
 Tiles.RiseOfTheOldGod.MapEntry: Rise Of The Old God
 

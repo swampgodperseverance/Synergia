@@ -1,3 +1,5 @@
+using Bismuth.Content.Items.Weapons.Throwing;
+using Bismuth.Content.Projectiles;
 using Bismuth.Utilities.ModSupport;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -10,6 +12,7 @@ using System;
 using System.Reflection;
 using Terraria;
 using Terraria.Audio;
+using Terraria.GameContent;
 using Terraria.ModLoader;
 using Terraria.UI;
 
@@ -21,6 +24,7 @@ namespace Synergia
         public const string ModName = "SynergiaModName";
         private Synergia instruktion;
         private ILHook ExtraMountCavesGeneratorILHook;
+        static readonly Mod bismuth = ModLoader.GetMod("Bismuth");
 
         public override void Load()
         {
@@ -40,21 +44,13 @@ namespace Synergia
         {
             base.PostSetupContent();
 
-
             if (!Main.dedServ && bismuth != null)
             {
-                if (bismuth.TryFind<ModItem>("OrcishJavelin", out ModItem javelin))
-                {
-                    TextureAssets.Item[javelin.Type] = ModContent.Request<Texture2D>("Synergia/Assets/Resprites/OrcishJavelinResprite");
-                }
-
-                if (bismuth.TryFind<ModProjectile>("OrcishJavelinP", out ModProjectile javelinProj))
-                {
-                    TextureAssets.Projectile[javelinProj.Type] = ModContent.Request<Texture2D>("Synergia/Assets/Resprites/OrcishJavelinResprite2");
-                }
+                TextureAssets.Item[ModContent.ItemType<OrcishJavelin>()] = ModContent.Request<Texture2D>("Synergia/Assets/Resprites/OrcishJavelinResprite");
+                TextureAssets.Projectile[ModContent.ProjectileType<OrcishJavelinP>()] = ModContent.Request<Texture2D>("Synergia/Assets/Resprites/OrcishJavelinResprite2");
             }
         }
-        public static string GetUIElementName(string element) => $"Synergia/Assets/{element}";
+        public static string GetUIElementName(string element) => $"Synergia/Assets/UIs/{element}";
         public void LoadRoAHook()
         {
             if (ModLoader.TryGetMod("RoA", out Mod RoAMod))

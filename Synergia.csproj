@@ -7,10 +7,45 @@
     <PropertyGroup>
 
     </PropertyGroup>
+    <ItemGroup>
+      <Reference Include="Avalon">
+        <HintPath>..\..\ModReader\Avalon\Avalon.dll</HintPath>
+      </Reference>
+      <Reference Include="Bismuth">
+        <HintPath>..\..\ModReader\Bismuth\Bismuth.dll</HintPath>
+      </Reference>
+      <Reference Include="Consolaria">
+        <HintPath>..\..\ModReader\Consolaria\Consolaria.dll</HintPath>
+      </Reference>
+      <Reference Include="ModLiquidLib">
+        <HintPath>..\..\ModReader\ModLiquidLib\ModLiquidLib.dll</HintPath>
+      </Reference>
+      <Reference Include="NewHorizons">
+        <HintPath>..\..\ModReader\NewHorizons.dll</HintPath>
+      </Reference>
+      <Reference Include="RoA">
+        <HintPath>..\..\ModReader\RoA.dll</HintPath>
+      </Reference>
+      <Reference Include="starforgedclassic">
+        <HintPath>..\..\ModReader\starforgedclassic\starforgedclassic.dll</HintPath>
+      </Reference>
+      <Reference Include="StramsLib">
+        <HintPath>..\..\ModReader\StramsLib\StramsLib.dll</HintPath>
+      </Reference>
+      <Reference Include="StramsSurvival">
+        <HintPath>..\..\ModReader\StramsSurvival\StramsSurvival.dll</HintPath>
+      </Reference>
+      <Reference Include="TRAEBossRework">
+        <HintPath>..\..\ModReader\TRAEBossRework\TRAEBossRework.dll</HintPath>
+      </Reference>
+      <Reference Include="ValhallaMod">
+        <HintPath>..\..\ModReader\ValhallaMod.dll</HintPath>
+      </Reference>
+      <Reference Include="VervCaves">
+        <HintPath>..\..\ModReader\VervCaves\VervCaves.dll</HintPath>
+      </Reference>
+    </ItemGroup>
 
     <!-- References -->
-    <ItemGroup>
-
-    </ItemGroup>
 
 </Project>
