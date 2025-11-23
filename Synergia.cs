@@ -1,37 +1,56 @@
-using Bismuth.Utilities.ModSupport;
+﻿using Terraria;
+using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework;
+using ReLogic.Content;
+using Terraria.ID;
+using Terraria.Audio;
+using Synergia.Content.Quests;
+using Terraria.Graphics.Shaders;
+using Terraria.ModLoader;
+using System;
+using Terraria;
+using Terraria.GameContent;
+using MonoMod.RuntimeDetour;
+using Mono.Cecil.Cil;  
+using MonoMod.RuntimeDetour.HookGen;  
+using MonoMod.Utils;   
+using MonoMod.Cil; 
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using Mono.Cecil.Cil;
-using MonoMod.Cil;
-using MonoMod.RuntimeDetour;
-using Synergia.Common;
-using Synergia.Content.Quests;
-using System;
+using System.Linq;
 using System.Reflection;
-using Terraria;
-using Terraria.Audio;
-using Terraria.ModLoader;
+using Bismuth.Utilities.ModSupport;
+using Bismuth.Utilities.Global;
+using Bismuth.Content.Items.Weapons.Throwing;
+using Bismuth.Content.Projectiles;
+using Synergia.Common;
+using System.Collections.Generic;
+using static Terraria.ModLoader.ModContent;
 
 namespace Synergia
 {
     public class Synergia : Mod
     {
-        private Synergia instruktion;
-        private ILHook ExtraMountCavesGeneratorILHook;
-
+        private Synergia instruktion; 
+        private ILHook ExtraMountCavesGeneratorILHook;  
+        static readonly Mod bismuth = ModLoader.GetMod("Bismuth");
         public override void Load()
         {
             QuestRegistry.Register(new DwarfQuest());
-            QuestRegistry.Register(new TaxCollectorQuest());
             instruktion = this;
             LoadRoAHook();
+
+            
+
+
         }
+
 
         public override void Unload()
         {
             UnloadRoAHook();
         }
-
+        
         public void LoadRoAHook()
         {
             if (ModLoader.TryGetMod("RoA", out Mod RoAMod))
@@ -49,6 +68,24 @@ namespace Synergia
             {
                 ExtraMountCavesGeneratorILHook.Dispose();
                 ExtraMountCavesGeneratorILHook = null;
+            }
+        }
+        public override void PostSetupContent()
+        {
+            base.PostSetupContent();
+
+
+            if (!Main.dedServ && bismuth != null)
+            {
+                if (bismuth.TryFind<ModItem>("OrcishJavelin", out ModItem javelin))
+                {
+                    TextureAssets.Item[javelin.Type] = ModContent.Request<Texture2D>("Synergia/Assets/Resprites/OrcishJavelinResprite");
+                }
+
+                if (bismuth.TryFind<ModProjectile>("OrcishJavelinP", out ModProjectile javelinProj))
+                {
+                    TextureAssets.Projectile[javelinProj.Type] = ModContent.Request<Texture2D>("Synergia/Assets/Resprites/OrcishJavelinResprite2");
+                }
             }
         }
 
@@ -74,29 +111,27 @@ namespace Synergia
             }
         }
     }
-    public class MUtils : ModSystem
-    {
-        public static void DrawSimpleAfterImage(Color lightColor, Projectile projectile, Texture2D projectileTexture, float colorReduct = 1f, float scaleMult = 1f, float scaleReduct = 0.25f, float velOffset = 0f, float? yScaleDif = null, float extraRotate = 0f)
-        {
-            Vector2 toCenterTexture = new Vector2(projectileTexture.Width, projectileTexture.Height / Main.projFrames[projectile.type]) / 2f;
-            SpriteEffects spriteEffects = SpriteEffects.None;
-            if (projectile.spriteDirection == -1) spriteEffects = SpriteEffects.FlipHorizontally;
-            Rectangle source = new Rectangle(0, projectileTexture.Height / Main.projFrames[projectile.type] * projectile.frame, projectileTexture.Width, projectileTexture.Height / Main.projFrames[projectile.type]);
-            for (byte k = 0; k < (byte)projectile.oldPos.Length; k++)
-            {
-                Vector2 drawPos = projectile.oldPos[k] - Main.screenPosition + new Vector2(projectile.width, projectile.height) / 2f;
-                Color color = projectile.GetAlpha(lightColor) * ((float)(projectile.oldPos.Length - k) * (float)(1f / (projectile.oldPos.Length * colorReduct)));
-                //Vector2 oldVel = (projectile.oldVelocity).SafeNormalize(Vector2.Zero) * velOffset;
-                Vector2 oldVel = (k == 0 ? projectile.oldPos[0] - projectile.position : projectile.oldPos[k] - projectile.oldPos[k - 1]).SafeNormalize(Vector2.Zero) * -velOffset;
+    //martains order (allowed)
+    public class MUtils : ModSystem { 
+        public static void DrawSimpleAfterImage(Color lightColor, Projectile projectile, Texture2D projectileTexture, float colorReduct = 1f, float scaleMult = 1f, float scaleReduct = 0.25f, float velOffset = 0f, float? yScaleDif = null, float extraRotate = 0f) {
+			Vector2 toCenterTexture = new Vector2(projectileTexture.Width, projectileTexture.Height/Main.projFrames[projectile.type]) / 2f;
+			SpriteEffects spriteEffects = SpriteEffects.None;
+			if (projectile.spriteDirection == -1) spriteEffects = SpriteEffects.FlipHorizontally;
+			Rectangle source = new Rectangle(0, projectileTexture.Height / Main.projFrames[projectile.type] * projectile.frame, projectileTexture.Width, projectileTexture.Height / Main.projFrames[projectile.type]);
+			for (byte k = 0; k < (byte)projectile.oldPos.Length; k++) {
+				Vector2 drawPos = projectile.oldPos[k] - Main.screenPosition + new Vector2(projectile.width, projectile.height)/2f;
+				Color color = projectile.GetAlpha(lightColor) * ((float)(projectile.oldPos.Length - k) * (float)(1f / (projectile.oldPos.Length * colorReduct)));
+				//Vector2 oldVel = (projectile.oldVelocity).SafeNormalize(Vector2.Zero) * velOffset;
+				Vector2 oldVel = (k == 0 ? projectile.oldPos[0] - projectile.position : projectile.oldPos[k] - projectile.oldPos[k - 1]).SafeNormalize(Vector2.Zero) * -velOffset;
 
-                Vector2 scaling = new Vector2(projectile.scale * scaleMult - k / (float)projectile.oldPos.Length * scaleReduct);
-                if (yScaleDif != null) scaling.Y *= (float)yScaleDif;
+				Vector2 scaling = new Vector2(projectile.scale * scaleMult - k / (float)projectile.oldPos.Length * scaleReduct);
+				if(yScaleDif != null) scaling.Y *= (float)yScaleDif;
                 float rotation = projectile.oldRot[k] * (1 + extraRotate);//*16f
-                if (extraRotate == -69.1f) rotation = Main.GlobalTimeWrappedHourly * 16f * projectile.direction;
-                if (extraRotate == -69.2f) rotation = Main.GlobalTimeWrappedHourly * 20f * projectile.direction;
+				if(extraRotate == -69.1f) rotation = Main.GlobalTimeWrappedHourly*16f*projectile.direction;
+				if(extraRotate == -69.2f) rotation = Main.GlobalTimeWrappedHourly*20f*projectile.direction;
                 Main.spriteBatch.Draw(projectileTexture, drawPos - oldVel * k, new Rectangle?(source), color, rotation, toCenterTexture, scaling, spriteEffects, 0f);
-            }
-        }
+			}
+		}
     }
     public class Sounds : ModSystem
     {
@@ -107,16 +142,20 @@ namespace Synergia
         public static readonly SoundStyle WormRoar = new("Synergia/Assets/Sounds/WormRoar");
         public static readonly SoundStyle BrokenBone = new("Synergia/Assets/Sounds/BrokenBone");
         public static readonly SoundStyle SpearSound = new("Synergia/Assets/Sounds/SpearSound");
+        public static readonly SoundStyle DirtSound = new("Synergia/Assets/Sounds/DirtSound");
         public static readonly SoundStyle WormBoom = new("Synergia/Assets/Sounds/WormBoom");
         public static readonly SoundStyle LavaBone = new("Synergia/Assets/Sounds/LavaBone");
         public static readonly SoundStyle FeatherFlow = new("Synergia/Assets/Sounds/FeatherFlow");
         public static readonly SoundStyle WeakSword = new("Synergia/Assets/Sounds/WeakSword");
         public static readonly SoundStyle PowerSword = new("Synergia/Assets/Sounds/PowerSword");
         public static readonly SoundStyle SandSphere = new("Synergia/Assets/Sounds/SandSphere");
+        public static readonly SoundStyle swordSound = new("Synergia/Assets/Sounds/swordSound");
         public static readonly SoundStyle Impulse = new("Synergia/Assets/Sounds/Impulse");
+        public static readonly SoundStyle NecroSword = new("Synergia/Assets/Sounds/NecroSword");
         public static readonly SoundStyle Watersound = new("Synergia/Assets/Sounds/Watersound");
         public static readonly SoundStyle Lasershot = new("Synergia/Assets/Sounds/Lasershot");
         public static readonly SoundStyle Shotgun = new("Synergia/Assets/Sounds/Shotgun");
+        public static readonly SoundStyle SwordSoundSwing = new("Synergia/Assets/Sounds/SwordSoundSwing");
     }
 
     public class SynergiaSystems : ModSystem
