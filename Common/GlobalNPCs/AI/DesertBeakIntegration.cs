@@ -21,7 +21,7 @@ namespace Synergia.Common.GlobalNPCs.AI
         private bool isPreparingFeatherVolley = false;
         private int featherVolleyTimer = 0;
         private int featherVolleySide = 0;
-        //private Vector2 featherVolleyDir;
+        private Vector2 featherVolleyDir;
         private Vector2 featherSpawnPos;
 
         public override void AI(NPC npc)
