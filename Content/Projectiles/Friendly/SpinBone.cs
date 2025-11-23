@@ -18,6 +18,7 @@ namespace Synergia.Content.Projectiles.Friendly
             Projectile.friendly = false;
             Projectile.hostile = false;
             Projectile.tileCollide = true;
+            Projectile.damage = 52;
             Projectile.timeLeft = 300;
             Projectile.penetrate = 1;
             Projectile.ignoreWater = true;
