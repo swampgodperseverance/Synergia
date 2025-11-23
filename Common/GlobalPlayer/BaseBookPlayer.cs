@@ -9,7 +9,6 @@ using Synergia.Content.Items.Histories;
 using Synergia.Content.Items.Misc;
 using Terraria;
 using Terraria.Audio;
-using Terraria.Localization;
 using Terraria.ModLoader;
 using ValhallaMod.Items.Consumable;
 using static Terraria.ID.ItemID;
@@ -19,8 +18,8 @@ namespace Synergia.Common.GlobalPlayer
 {
     public class BaseBookPlayer : ModPlayer
     {
-        static readonly int IckyAltar = ItemType<IckyAltar>();
-        static readonly int NaquadahAnvil = ItemType<NaquadahAnvil>();
+        public static readonly int IckyAltar = ItemType<IckyAltar>();
+        public static readonly int NaquadahAnvil = ItemType<NaquadahAnvil>();
 
         public static Rectangle BookRectangle(float X, float Y, int Widht, int Height) { return _ = new Rectangle((int)(X), (int)(Y), Widht, Height); }
         public static void BaseDrawBook(SpriteBatch spriteBatch, string name, float BookOpacity)
@@ -30,16 +29,13 @@ namespace Synergia.Common.GlobalPlayer
             Vector2 origin = new Vector2(texture.Width, texture.Height) / 2f;
             spriteBatch.Draw(texture, position, null, Color.White * BookOpacity, 0f, origin, 1f, SpriteEffects.None, 0f);
         }
-        public static bool DrawBookButtons(SpriteBatch spriteBatch, bool Right, string TextureName = "Mana2")
+        public static bool DrawBookButtons(SpriteBatch spriteBatch, bool Right, string TextureName = "Mana2", string NameRightButton = "Next Button Right", string NameAltButton = "Next Button")
         {
-            string NameRightButton = Language.GetTextValue("Mods.Synergia.Book.Button");
-            string NameAltButton = Language.GetTextValue("Mods.Synergia.Book.Button2");
-
             Rectangle nextPageButton;
             Vector2 position = new Vector2(Main.screenWidth, Main.screenHeight) / 2f;
-            Texture2D buttonTex = Request<Texture2D>(Right ? $"Synergia/Assets/UIs/{TextureName}" + "_Alt" : $"Synergia/Assets/UIs/{TextureName}").Value;
+            Texture2D buttonTex = Request<Texture2D>(Right ? $"Synergia/Assets/UIs/{TextureName}" : $"Synergia/Assets/UIs/{TextureName}" + "_Alt").Value;
 
-            nextPageButton = BookRectangle(Right ? position.X + 375 : position.X - 405, position.Y - -285, 25, 25);
+            nextPageButton = BookRectangle(Right ? position.X + 365 : position.X - 415, position.Y - -285, 40, 40);
 
             bool hovering = nextPageButton.Contains(Main.MouseScreen.ToPoint());
 
