@@ -84,6 +84,11 @@ Items: {
 		+15% Aura radius when linked on the player
 		+2 Minion slot
 		'''
+	ValhalliteHead.Tooltip:
+		'''
+		When full armor equipped, player can summon Valhallite Knight every 30 seconds
+		Press [Armor Set Keybind] to summon
+		'''
 	AeroforceGuardia.Tooltip:
 		'''
 		+25% Aura radius and +16% summon damage
@@ -114,6 +119,7 @@ Items: {
 	NightMagePants.Tooltip: +8% Magic damage
 	BismuthumBreastplate.Tooltip: Damage is increased by 5%
 	BismuthumLeggings.Tooltip: Movement speed is increased by 25%
+	BerserksRing.Tooltip: Item use speed inreased by 30%, but damage decreased by 20%
 
 	EverwoodJavelin: {
 		DisplayName: Everwood Javelin
@@ -845,7 +851,7 @@ Items: {
 	}
 
 	Seaborn: {
-		DisplayName: Seaborn
+		DisplayName: Tidebreaker
 		Tooltip: ""
 	}
 
@@ -877,6 +883,38 @@ Items: {
 	OrcishSwungo: {
 		Tooltip: ""
 		DisplayName: Orcish Swungo
+	}
+
+	CursedMirror: {
+		Passive: Mods.Synergia.Items.CursedMirror.Passive
+		Active: Mods.Synergia.Items.CursedMirror.Active
+		DisplayName: Cursed Mirror
+		Tooltip: ""
+	}
+
+	Enfer: {
+		DisplayName: Enfer
+		Tooltip: ""
+	}
+
+	ScorcherRequiem: {
+		DisplayName: Scorcher Requiem
+		Tooltip: ""
+	}
+
+	PhoenixDownfall: {
+		DisplayName: Phoenix Downfall
+		Tooltip: ""
+	}
+
+	CoreburnedPickaxe: {
+		DisplayName: Coreburned Pickaxe
+		Tooltip: ""
+	}
+
+	EverIce: {
+		DisplayName: Ever Ice
+		Tooltip: ""
 	}
 }
 
@@ -1052,16 +1090,64 @@ Projectiles: {
 	NarsilAlt.DisplayName: Narsil Alt
 	OrcishSwungo.DisplayName: Orcish Swungo
 	OrcishSwungoP.DisplayName: Orcish Swungo P
-	BookProj.DisplayName: Book Proj
-	PostTransformProj.DisplayName: Post Transform Proj
-	SeabornAttack2.DisplayName: Seaborn Attack2
-	SeabornSword.DisplayName: Seaborn Sword
-	SeabornSword2.DisplayName: Seaborn Sword2
 	PyroclastShoot.DisplayName: Pyroclast Shoot
-	NecroFire.DisplayName: Necro Fire
-	NecroKnife.DisplayName: Necro Knife
+	OceanSlash.DisplayName: Ocean Slash
+	SeabornKnife.DisplayName: Seaborn Knife
+	SeabornSword.DisplayName: Seaborn Sword
+	SeabornAttack2.DisplayName: Seaborn Attack2
+	SeabornSword2.DisplayName: Seaborn Sword2
+	PostTransformProj.DisplayName: Post Transform Proj
+	BookProj.DisplayName: Book Proj
 	NecroSkull.DisplayName: Necro Skull
+	NecroKnife.DisplayName: Necro Knife
+	MagicStalactiteSpawn.DisplayName: Magic Stalactite Spawn
+	NecroFire.DisplayName: Necro Fire
 	NecroSphere.DisplayName: Necro Sphere
+	NecroMirror.DisplayName: Necro Mirror
+	NecroKnifeFriendly.DisplayName: Necro Knife Friendly
+	SeabornSlash2.DisplayName: Seaborn Slash2
+	EnferArrow.DisplayName: Enfer Arrow
+	EnferFlames.DisplayName: Enfer Flames
+	ScorcherLaser.DisplayName: Scorcher Laser
+	ScorcherLaserSpawner.DisplayName: Scorcher Laser Spawner
+	PhoenixProj.DisplayName: Phoenix Proj
+	FlamingBladeRework.DisplayName: Flaming Blade Rework
+	SunballProj.DisplayName: Sunball Proj
+	NebulaPike.DisplayName: Nebula Pike
+	NebulaPikeSpawner.DisplayName: Nebula Pike Spawner
+	BatbowProjectile.DisplayName: Batbow Projectile
+	ValhalliteKnight.DisplayName: Valhallite Knight
+	WaternadoFriendly.DisplayName: Waternado Friendly
+	MagicClawRework.DisplayName: Magic Claw Rework
+	GloomRing.DisplayName: Gloom Ring
+	GloomRingAttack.DisplayName: Gloom Ring Attack
+	GloomR.DisplayName: Gloom R
+	GloomProj1.DisplayName: Gloom Proj1
+	GloomProj2.DisplayName: Gloom Proj2
+	GloomProjOrbit.DisplayName: Gloom Proj Orbit
+	GloomScepeterHelper.DisplayName: Gloom Scepeter Helper
+	TarSpike2.DisplayName: Tar Spike2
+	TarSpike1.DisplayName: Tar Spike1
+	TarSpike.DisplayName: Tar Spike
+	ScissorsRework2.DisplayName: Scissors Rework2
+	ScissorsRework.DisplayName: Scissors Rework
+	DerpYoyoP.DisplayName: Derp Yoyo P
+	EyeP.DisplayName: Eye P
+	FuryOfWatersRework.DisplayName: Fury Of Waters Rework
+	BlueP.DisplayName: Blue P
+	GreenP.DisplayName: Green P
+	PurpleP.DisplayName: Purple P
+	RedP.DisplayName: Red P
+	YellowP.DisplayName: Yellow P
+	SunJavelinRework.DisplayName: Sun Javelin Rework
+	ThrowerInterface1.DisplayName: Thrower Interface1
+	StalloyMegascrew.DisplayName: Stalloy Megascrew
+	SnowballMega.DisplayName: Snowball Mega
+	EverIceSlash.DisplayName: Ever Ice Slash
+	SmallIceSword.DisplayName: Small Ice Sword
+	SnowCrystal.DisplayName: Snow Crystal
+	GiantSnow.DisplayName: Giant Snow
+	FeroziumBladeRework.DisplayName: Ferozium Blade Rework
 }
 
 Buffs: {
@@ -1126,52 +1212,71 @@ Buffs: {
 	}
 
 	SnowVillageBuff: {
-		Description: Prevents enemies from entering villages
-		DisplayName: Aura of a gnome
+		DisplayName: Snow Village Buff
+		Description: Mods.Synergia.Buffs.SnowVillageBuff.Description
+	}
+
+	GloomBuff: {
+		Description: Mods.Synergia.Buffs.GloomBuff.Description
+		DisplayName: Gloom Buff
+	}
+
+	GloomDebuff: {
+		DisplayName: Gloom Debuff
+		Description: Mods.Synergia.Buffs.GloomDebuff.Description
 	}
 }
 
-"Keybinds.Toggle Aura Mode.DisplayName": Toggle  Aura  Mode
+Keybinds: {
+	"Toggle Aura Mode.DisplayName": Toggle  Aura  Mode
+	"Armor Set Bonus Activate.DisplayName": Armor  Set  Bonus  Activate
+}
 
-Config: {
-	OcramHardModeAI: Enable Ocram Hard Mode AI
-	MakesOcramAI: Makes Ocram's AI more challenging
-	OcramWildAI: Enable Ocram Wild AI
-	MakesOcramAI2: Makes Bacterium Prime completely broken. Default Bacterium Prime without ai get 3 more new attacks. Why do you need that?
-	PapuanHardAI: Enable Papuan Wizard Hard AI
-	MakesPapuanAI: Makes Papuan Wizard significantly stronger with teleport and projectile attacks.
+NPCs: {
+	Cogworm.DisplayName: Sinlord Wyrm
+	CogwormBody.DisplayName: Sinlord Body
+	CogwormTail.DisplayName: Sinlord Tail
+	CogwormGhost.DisplayName: Sinlord Ghost
+	AirElementalEnemy.DisplayName: Air Elemental Enemy
+	WaterElementalEnemy.DisplayName: Water Elemental Enemy
+}
+
+Configs: {
+	OcramConfig: {
+		DisplayName: Ocram Config
+
+		HardModeEnabled: {
+			Label: Enable Hard Mode AI
+			Tooltip: Makes Ocram's AI more challenging
+		}
+	}
+
+	BossConfig: {
+		HardModeEnabled: {
+			Tooltip: Makes Ocram's AI more challenging
+			Label: Enable Hard Mode AI
+		}
+
+		DisplayName: Boss Config
+
+		BacteriumPrimeBuffEnabled: {
+			Tooltip: Makes Bacterium Prime completely broken. Default Bacterium Prime without ai get 3 more new attacks. Why do you need that?
+			Label: Enable Bacterium Prime hard AI
+		}
+
+		PapuanWizardHardAIEnabled: {
+			Tooltip: Makes Papuan Wizard significantly stronger with teleport and projectile attacks.
+			Label: Enable Papuan Wizard Hard AI
+		}
+	}
 }
 
 SinlordSummon: Use Hellworm scale in the underworld
-Configs.BossConfig.DisplayName: Boss Config
-
-WorldGenString: {
-	Vilage: Creating a village in the tundra
-	Vilage2: ""
-}
-
-Book: {
-	Button2: Previous page
-	Button: Next page
-}
-
-Achieve: {
-	Name: {
-		Cogworm: Cogworm
-		Cogworm2: Cogworm
-	}
-
-	Description: {
-		Cogworm: Downed Cogworm
-		Cogworm2: ""
-	}
-}
-
 Tiles.RiseOfTheOldGod.MapEntry: Rise Of The Old God
 
 Biomes: {
 	SnowVillage: {
-		DisplayName: Snow Village
 		TownNPCDialogueName: the Snow Village
+		DisplayName: Snow Village
 	}
 }
