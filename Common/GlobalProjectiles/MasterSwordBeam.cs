@@ -1,7 +1,7 @@
-﻿using Terraria;
-using Terraria.ID;
-using Terraria.ModLoader;
+﻿using Avalon.Items.Weapons.Melee.Hardmode.MasterSword;
 using Microsoft.Xna.Framework;
+using Terraria;
+using Terraria.ModLoader;
 
 namespace Synergia.Common
 {
@@ -9,7 +9,7 @@ namespace Synergia.Common
     {
         public override void PostAI(Projectile projectile)
         {
-            if (projectile.type == ModContent.ProjectileType<Avalon.Projectiles.Melee.MasterSwordBeam>())
+            if (projectile.type == ModContent.ProjectileType<MasterSwordBeam>())
             {
                 float homingRange = 400f; 
                 float lerpStrength = 0.1f;
@@ -30,7 +30,6 @@ namespace Synergia.Common
                         }
                     }
                 }
-
                 if (target != null)
                 {
                     Vector2 desiredVelocity = (target.Center - projectile.Center).SafeNormalize(Vector2.Zero) * projectile.velocity.Length();
