@@ -11,27 +11,32 @@ using System.Reflection;
 using Terraria;
 using Terraria.Audio;
 using Terraria.ModLoader;
+using Terraria.UI;
 
 namespace Synergia
 {
     public class Synergia : Mod
     {
+        internal UserInterface DwarfUserInterface;
+        public const string ModName = "SynergiaModName";
         private Synergia instruktion;
         private ILHook ExtraMountCavesGeneratorILHook;
 
         public override void Load()
         {
+            #region UI
+            DwarfUserInterface = new UserInterface();
+            #endregion
             QuestRegistry.Register(new DwarfQuest());
             QuestRegistry.Register(new TaxCollectorQuest());
             instruktion = this;
             LoadRoAHook();
         }
-
         public override void Unload()
         {
             UnloadRoAHook();
         }
-
+        public static string GetUIElementName(string element) => $"Synergia/Assets/{element}";
         public void LoadRoAHook()
         {
             if (ModLoader.TryGetMod("RoA", out Mod RoAMod))

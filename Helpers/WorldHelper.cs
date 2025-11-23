@@ -25,6 +25,7 @@ namespace Synergia.Helpers
                     if (WorldGen.InWorld(x, y, 10) && Main.tile[x, y].HasTile && tileTypesToDestroy.Contains(Main.tile[x, y].TileType))
                     {
                         Tile tile = Main.tile[x, y];
+                        tile.WallType = WallID.None;
                         tile.HasTile = false;
                     }
                 }

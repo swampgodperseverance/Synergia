@@ -12,18 +12,18 @@ namespace Synergia.Common.GlobalItems
         /// <returns></returns>
         public static bool DesiredType(Item item, Player player, int Accessory, int Accessory2)
         {
-            if (item.type == Accessory)
+            if (item.type == Accessory) // <-- Проверка 
             {
                 for (int i = 3; i < 8 + player.extraAccessorySlots; i++)
                 {
                     Item equippedItem = player.armor[i];
-                    if (equippedItem != null && equippedItem.type == Accessory2)
+                    if (equippedItem != null && equippedItem.type == Accessory2) // <-- Если надет несовместимый
                     {
-                        return false;
+                        return false; // <-- Не позволяем надеть
                     }
                 }
             }
-            if (item.type == Accessory2)
+            if (item.type == Accessory2) // <-- что бы не минять мистами Accessory и Accessory2
             {
                 for (int i = 3; i < 8 + player.extraAccessorySlots; i++)
                 {
