@@ -5,11 +5,11 @@ using Microsoft.Xna.Framework;
 
 namespace Synergia.Common
 {
-    public class GlobalProjectiles : GlobalProjectile
+    public class MasterSwordGlobalProjectiles : GlobalProjectile
     {
         public override void PostAI(Projectile projectile)
         {
-            if (projectile.type == ModContent.ProjectileType<Avalon.Projectiles.Melee.MasterSwordBeam>())
+            if (projectile.type == ModContent.ProjectileType<Avalon.Items.Weapons.Melee.Hardmode.MasterSword.MasterSwordBeam>())
             {
                 float homingRange = 400f; 
                 float lerpStrength = 0.1f;
