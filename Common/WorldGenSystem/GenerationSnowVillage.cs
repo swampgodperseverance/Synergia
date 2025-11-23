@@ -205,8 +205,18 @@ namespace Synergia.Common.WorldGenSystem
                     int y = 200;
                     while (!WorldGen.SolidOrSlopedTile(i, y + 1)) y++;
                     bool canBeGenerated = true;
-                    for (int j = 0; j < 33; j++) { if (!WorldGen.SolidOrSlopedTile(i + j, y + 1) || Main.tile[i + j, y + 1].TileType != k) { canBeGenerated = false; } }
-                    if (canBeGenerated) { for (int a = 0; a < 17; a++) { if (WorldGen.SolidOrSlopedTile(i - 1, y - a) || WorldGen.SolidOrSlopedTile(i + 33, y - a)) { canBeGenerated = false; } } }
+                    for (int j = 0; j < 33; j++) { 
+                        if (!WorldGen.SolidOrSlopedTile(i + j, y + 1) || Main.tile[i + j, y + 1].TileType != k) { 
+                            canBeGenerated = false; 
+                        } 
+                    }
+                    if (canBeGenerated) { 
+                        for (int a = 0; a < 17; a++) { 
+                            if (WorldGen.SolidOrSlopedTile(i - 1, y - a) || WorldGen.SolidOrSlopedTile(i + 33, y - a)) { 
+                                canBeGenerated = false; 
+                            } 
+                        } 
+                    }
                     if (canBeGenerated) list.Add(new Point(i, y));
                 }
                 if (list.Count > 0)
