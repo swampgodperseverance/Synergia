@@ -36,6 +36,24 @@ namespace Synergia
         {
             UnloadRoAHook();
         }
+        public override void PostSetupContent()
+        {
+            base.PostSetupContent();
+
+
+            if (!Main.dedServ && bismuth != null)
+            {
+                if (bismuth.TryFind<ModItem>("OrcishJavelin", out ModItem javelin))
+                {
+                    TextureAssets.Item[javelin.Type] = ModContent.Request<Texture2D>("Synergia/Assets/Resprites/OrcishJavelinResprite");
+                }
+
+                if (bismuth.TryFind<ModProjectile>("OrcishJavelinP", out ModProjectile javelinProj))
+                {
+                    TextureAssets.Projectile[javelinProj.Type] = ModContent.Request<Texture2D>("Synergia/Assets/Resprites/OrcishJavelinResprite2");
+                }
+            }
+        }
         public static string GetUIElementName(string element) => $"Synergia/Assets/{element}";
         public void LoadRoAHook()
         {

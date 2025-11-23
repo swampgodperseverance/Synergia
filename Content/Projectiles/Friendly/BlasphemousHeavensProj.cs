@@ -105,7 +105,7 @@ namespace Synergia.Content.Projectiles.Friendly
             SoundEngine.PlaySound(SoundID.Item122 with { Pitch = -0.2f }, target.Center);
         }
 
-        public override void OnKill(int timeLeft)
+        public override void Kill(int timeLeft)
         {
             for (int i = 0; i < 25; i++)
             {

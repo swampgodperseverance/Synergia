@@ -1,10 +1,10 @@
-﻿using System;
+﻿
+using System;
 
 namespace Synergia.Helpers
 {
     public static class EaseFunctions
     {
-        // Базовые функции easing
         public static float EaseIn(float t) => t * t;
         public static float EaseOutQuad(float t) => 1 - (1 - t) * (1 - t);
         public static float EaseInOutQuad(float t) => t < 0.5f ? 2 * t * t : 1 - (float)Math.Pow(-2 * t + 2, 2) / 2;
@@ -44,7 +44,6 @@ namespace Synergia.Helpers
                 : (float)(Math.Pow(2 * t - 2, 2) * ((c2 + 1) * (t * 2 - 2) + c2) + 2) / 2;
         }
 
-        // Делегат для универсального вызова
         public delegate float Easing(float t);
 
         public static readonly System.Collections.Generic.Dictionary<string, Easing> Functions =

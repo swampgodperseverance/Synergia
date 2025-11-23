@@ -1,11 +1,11 @@
-﻿using Avalon.Items.Weapons.Melee.Hardmode.MasterSword;
+using Avalon.Items.Weapons.Melee.Hardmode.MasterSword;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ModLoader;
 
 namespace Synergia.Common
 {
-    public class GlobalProjectiles : GlobalProjectile
+    public class MasterSwordGlobalProjectiles : GlobalProjectile
     {
         public override void PostAI(Projectile projectile)
         {

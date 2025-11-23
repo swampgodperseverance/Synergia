@@ -6,7 +6,7 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.Audio;
 using System;
-using Synergia.Helpers; // Для использования EaseFunctions
+using Synergia.Helpers; 
 
 namespace Synergia.Content.Projectiles.Hostile.Bosses
 {
@@ -14,11 +14,11 @@ namespace Synergia.Content.Projectiles.Hostile.Bosses
     {
         private float appearProgress = 0f;
         private bool hasAppeared = false;
-        private const int appearDuration = 20; // Плавное появление в течение 20 тиков
+        private const int appearDuration = 20; 
         private const int fadeOutDuration = 30;
         private int timer = 0;
 
-        public static readonly SoundStyle NecroSword = new("Synergia/Assets/Sounds/NecroSword"); // Звук появления
+        public static readonly SoundStyle NecroSword = new("Synergia/Assets/Sounds/NecroSword");
 
         public override void SetStaticDefaults()
         {
@@ -52,8 +52,6 @@ namespace Synergia.Content.Projectiles.Hostile.Bosses
             {
                 appearProgress = MathHelper.Clamp(timer / (float)appearDuration, 0f, 1f);
                 Projectile.alpha = (int)(255 * (1f - appearProgress));
-
-                // Эффект появления с пыльцой
                 if (Main.rand.NextBool(5))
                 {
                     int dust = Dust.NewDust(Projectile.Center - new Vector2(8), 16, 16,
@@ -63,21 +61,20 @@ namespace Synergia.Content.Projectiles.Hostile.Bosses
                     Main.dust[dust].noGravity = true;
                 }
 
-                // Когда полностью появляется, начинаем взлёт
                 if (appearProgress >= 1f)
                 {
                     hasAppeared = true;
-                    SoundEngine.PlaySound(NecroSword, Projectile.Center); // Новый звук
+                    SoundEngine.PlaySound(NecroSword, Projectile.Center); 
                 }
             }
             else
             {
-                // 🚀 Применяем более резкое ускорение с EaseOutQuint
-                float t = (timer / (float)(Projectile.timeLeft - fadeOutDuration)); // Прогресс от начала до фейда
-                float easedT = EaseFunctions.EaseOutQuint(t); // Применяем более агрессивное ускорение
-                Projectile.velocity.Y = -22f * easedT; // Применяем ускорение вверх
+               
+                float t = (timer / (float)(Projectile.timeLeft - fadeOutDuration)); 
+                float easedT = EaseFunctions.EaseOutQuint(t); 
+                Projectile.velocity.Y = -22f * easedT; 
 
-                Projectile.rotation = -MathHelper.PiOver2; // Поворачиваем нож
+                Projectile.rotation = -MathHelper.PiOver2; 
 
                 Lighting.AddLight(Projectile.Center, new Vector3(0.6f, 0.2f, 0.8f));
 
@@ -89,7 +86,6 @@ namespace Synergia.Content.Projectiles.Hostile.Bosses
                     Main.dust[dust].noGravity = true;
                 }
 
-                // 💫 Fade-out под конец
                 if (Projectile.timeLeft < fadeOutDuration)
                 {
                     float fade = Projectile.timeLeft / (float)fadeOutDuration;
@@ -104,7 +100,6 @@ namespace Synergia.Content.Projectiles.Hostile.Bosses
             Vector2 origin = texture.Size() * 0.5f;
             Color drawColor = Projectile.GetAlpha(lightColor);
 
-            // Трейл (следы)
             for (int i = 0; i < Projectile.oldPos.Length; i++)
             {
                 float t = (Projectile.oldPos.Length - i) / (float)Projectile.oldPos.Length;
@@ -120,7 +115,6 @@ namespace Synergia.Content.Projectiles.Hostile.Bosses
                     0);
             }
 
-            // Основная отрисовка
             Main.EntitySpriteDraw(
                 texture,
                 Projectile.Center - Main.screenPosition,

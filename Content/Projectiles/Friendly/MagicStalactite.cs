@@ -8,12 +8,13 @@ using Terraria.ModLoader;
 
 namespace Synergia.Content.Projectiles.Friendly
 {
-    public sealed class MagicStalactite : ModProjectile //Roa inspired
+    public sealed class MagicStalactite : ModProjectile // Roa inspired
     {
-        private const int TrailLength = 10;
-        private const int FadeInDuration = 60; 
-        private const int DustSpawnRate = 4;
-        
+        private const int TrailLength = 5;
+        private const int FadeInDuration = 60;
+        private const int DustSpawnRate = 16;
+        private bool initialized;
+
         public override void SetStaticDefaults()
         {
             ProjectileID.Sets.TrailCacheLength[Projectile.type] = TrailLength;
@@ -29,7 +30,7 @@ namespace Synergia.Content.Projectiles.Friendly
             Projectile.DamageType = DamageClass.Magic;
             Projectile.penetrate = 1;
             Projectile.timeLeft = 180;
-            Projectile.alpha = 255; 
+            Projectile.alpha = 0; // теперь непрозрачный
             Projectile.tileCollide = false;
             Projectile.aiStyle = -1;
             Projectile.usesLocalNPCImmunity = true;
@@ -38,42 +39,50 @@ namespace Synergia.Content.Projectiles.Friendly
 
         public override void AI()
         {
-            Projectile.alpha = Math.Max(Projectile.alpha - (255 / FadeInDuration), 0);
+            Player player = Main.player[Projectile.owner];
 
-            if (Projectile.timeLeft <= 180 - FadeInDuration)
-                Projectile.tileCollide = true;
-
-            Projectile.rotation = Projectile.velocity.ToRotation() + MathHelper.PiOver2;
-
-            if (Main.rand.NextBool(DustSpawnRate))
+            // Один раз задаём направление при спавне
+            if (!initialized)
             {
-                SpawnTravelDust();
+                initialized = true;
+                if (player.whoAmI == Main.myPlayer)
+                {
+                    Vector2 direction = Main.MouseWorld - player.Center;
+                    direction.Normalize();
+                    direction *= 14f; // скорость
+                    Projectile.velocity = direction;
+                    Projectile.netUpdate = true;
+                }
             }
+
+            // Постепенно ускоряемся
+            Projectile.velocity *= 1.02f;
+
+            // Поворачиваем по направлению движения
+            if (Projectile.velocity.Length() > 0.1f)
+                Projectile.rotation = Projectile.velocity.ToRotation() + MathHelper.PiOver2;
+
+            // Немного лавовых частиц при полёте
+            if (Main.rand.NextBool(DustSpawnRate))
+                SpawnTravelDust();
         }
 
         private void SpawnTravelDust()
         {
-            int dustType = DustID.Torch;
+            int dustType = DustID.Lava;
             float scale = Main.rand.NextFloat(1.0f, 1.4f);
-            
+
             Dust dust = Dust.NewDustPerfect(
-                Projectile.Center + Main.rand.NextVector2Circular(Projectile.width/2, Projectile.height/2),
+                Projectile.Center + Main.rand.NextVector2Circular(Projectile.width / 2, Projectile.height / 2),
                 dustType,
-                Projectile.velocity * 0.1f + Main.rand.NextVector2Circular(0.3f, 0.3f),
+                Projectile.velocity * 0.2f + Main.rand.NextVector2Circular(0.5f, 0.5f),
                 100,
-                default,
+                Color.OrangeRed,
                 scale
             );
-            
-            dust.noGravity = true;
-            dust.fadeIn = 0.5f;
-        }
 
-        public override bool TileCollideStyle(ref int width, ref int height, ref bool fallThrough, ref Vector2 hitboxCenterFrac)
-        {
-            width = height = 10;
-            fallThrough = false;
-            return Projectile.tileCollide;
+            dust.noGravity = true;
+            dust.fadeIn = 0.6f;
         }
 
         public override void OnKill(int timeLeft)
@@ -87,7 +96,7 @@ namespace Synergia.Content.Projectiles.Friendly
                     DustID.Torch,
                     Main.rand.NextVector2Circular(3f, 3f),
                     100,
-                    default,
+                    Color.OrangeRed,
                     Main.rand.NextFloat(1.2f, 1.8f)
                 );
                 dust.noGravity = true;
@@ -101,7 +110,7 @@ namespace Synergia.Content.Projectiles.Friendly
                     DustID.Firework_Red,
                     Main.rand.NextVector2Circular(2f, 2f),
                     0,
-                    default,
+                    Color.OrangeRed,
                     Main.rand.NextFloat(0.8f, 1.2f)
                 );
                 dust.noGravity = true;
@@ -114,13 +123,14 @@ namespace Synergia.Content.Projectiles.Friendly
             Texture2D texture = Terraria.GameContent.TextureAssets.Projectile[Projectile.type].Value;
             Vector2 origin = texture.Size() * 0.5f;
 
+            // Лавовый след
             for (int i = 0; i < Projectile.oldPos.Length; i++)
             {
                 if (Projectile.oldPos[i] == Vector2.Zero) continue;
 
                 float progress = 1f - (i / (float)Projectile.oldPos.Length);
                 Vector2 drawPos = Projectile.oldPos[i] + Projectile.Size * 0.5f - Main.screenPosition;
-                Color trailColor = new Color(255, 160, 60, 0) * progress * 0.7f;
+                Color trailColor = new Color(255, 100, 30, 0) * progress * 0.8f;
                 float scale = Projectile.scale * (0.8f + progress * 0.2f);
 
                 Main.EntitySpriteDraw(
@@ -136,11 +146,12 @@ namespace Synergia.Content.Projectiles.Friendly
                 );
             }
 
+            // Основное тело
             Main.EntitySpriteDraw(
                 texture,
                 Projectile.Center - Main.screenPosition,
                 null,
-                Projectile.GetAlpha(lightColor) * 1.2f,
+                Color.White,
                 Projectile.rotation,
                 origin,
                 Projectile.scale,

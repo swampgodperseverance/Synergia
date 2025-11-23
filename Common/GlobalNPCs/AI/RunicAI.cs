@@ -14,7 +14,7 @@ namespace Synergia.Common.GlobalNPCs
         private int dustTimer = 0;
         private int projectileTimer = 0;
 
-        //private bool initialized = false;
+        private bool initialized = false;
 
         private const string TARGET_NAME = "RunicElemental";
 
@@ -44,7 +44,7 @@ namespace Synergia.Common.GlobalNPCs
 
             if (npc.aiStyle == -1 && !npc.friendly)
             {
-                //float baseSpeed = 1.8f;
+                float baseSpeed = 1.8f;
                 npc.velocity *= 1.22f; 
             }
 

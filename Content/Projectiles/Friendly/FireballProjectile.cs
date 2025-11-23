@@ -1,8 +1,10 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Graphics;
 using Terraria;
-using Terraria.Audio;
 using Terraria.ID;
+using Terraria.Audio;
+using Terraria.GameContent;
 using Terraria.ModLoader;
 using System;
 
@@ -15,8 +17,8 @@ namespace Synergia.Content.Projectiles.Friendly
 
         public override void SetStaticDefaults()
         {
-            // DisplayName.SetDefault("Firestorm");
-            // Main.projFrames[Projectile.type] = 4;
+            ProjectileID.Sets.TrailCacheLength[Type] = 6;
+            ProjectileID.Sets.TrailingMode[Type] = 2;
         }
 
         public override void SetDefaults()
@@ -113,6 +115,25 @@ namespace Synergia.Content.Projectiles.Friendly
         public override Color? GetAlpha(Color lightColor)
         {
             return new Color(255, 200, 100, 150); 
+        }
+         public override bool PreDraw(ref Color lightColor)
+        {
+            Texture2D texture = TextureAssets.Projectile[Type].Value;
+            SpriteEffects spriteEffects = Projectile.spriteDirection == -1 ? SpriteEffects.None : SpriteEffects.FlipHorizontally;
+            Vector2 drawOrigin = new(Projectile.spriteDirection == 1 ? texture.Width : 0f, texture.Height);
+            Color drawColor = Color.White * Projectile.Opacity;
+            Color trailColor = drawColor with { A = 0 };
+            Color trailColor2 = Color.Red with { A = 0 } * Projectile.Opacity;
+
+            for (int i = 0; i < Projectile.oldPos.Length; i++)
+            {
+                trailColor *= 0.91f;
+                trailColor2 *= 0.91f;
+                Main.spriteBatch.Draw(texture, Projectile.oldPos[i] + Projectile.Size / 2 - Main.screenPosition, null, trailColor * 0.5f, Projectile.oldRot[i], drawOrigin, Projectile.scale, spriteEffects, 0f);
+            }
+
+            Main.spriteBatch.Draw(texture, Projectile.Center - Main.screenPosition, null, drawColor, Projectile.rotation, drawOrigin, Projectile.scale, spriteEffects, 0f);
+            return false;
         }
     }
 }

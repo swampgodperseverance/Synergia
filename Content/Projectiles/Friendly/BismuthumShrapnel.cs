@@ -1,4 +1,4 @@
-using Microsoft.Xna.Framework;
+п»їusing Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;
 using System;
@@ -18,14 +18,14 @@ namespace Synergia.Content.Projectiles.Friendly
         {
             Projectile.width = 10;
             Projectile.height = 10;
-            Projectile.aiStyle = 0;
+            Projectile.aiStyle = 0; 
             Projectile.friendly = true;
             Projectile.DamageType = DamageClass.Ranged;
             Projectile.penetrate = 1;
-            Projectile.timeLeft = 150;
+            Projectile.timeLeft = 150; 
             Projectile.tileCollide = true;
             Projectile.ignoreWater = true;
-            Projectile.extraUpdates = 0;
+            Projectile.extraUpdates = 0; 
             ProjectileID.Sets.TrailCacheLength[Projectile.type] = 8;
             ProjectileID.Sets.TrailingMode[Projectile.type] = 0;
         }
@@ -47,14 +47,14 @@ namespace Synergia.Content.Projectiles.Friendly
             if (!isLooping)
             {
                 Vector2 vel = Projectile.velocity;
-                Projectile.velocity = vel.RotatedBy(Main.rand.Next(-1, 2) * (Math.PI / 50)); // поворачивает слабее
+                Projectile.velocity = vel.RotatedBy(Main.rand.Next(-1, 2) * (Math.PI / 50)); // РїРѕРІРѕСЂР°С‡РёРІР°РµС‚ СЃР»Р°Р±РµРµ
             }
 
             if (Main.rand.NextBool(120) && !isLooping)
             {
                 loopTick = 0;
                 isLooping = true;
-                loopLength = Main.rand.Next(18, 26);
+                loopLength = Main.rand.Next(18, 26); 
             }
 
             if (isLooping)
