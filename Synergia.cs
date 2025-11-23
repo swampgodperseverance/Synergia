@@ -44,14 +44,17 @@ namespace Synergia
         {
             base.PostSetupContent();
 
-            if (!Main.dedServ && bismuth != null)
+            if (!Main.dedServ)
             {
-                TextureAssets.Item[ModContent.ItemType<OrcishJavelin>()] = ModContent.Request<Texture2D>("Synergia/Assets/Resprites/OrcishJavelinResprite");
-                TextureAssets.Projectile[ModContent.ProjectileType<OrcishJavelinP>()] = ModContent.Request<Texture2D>("Synergia/Assets/Resprites/OrcishJavelinResprite2");
+                // лучше сделать так, если будут еше респрайты для других предметов не только из бисмута.
+                if (bismuth != null) {
+                    TextureAssets.Item[ModContent.ItemType<OrcishJavelin>()] = ModContent.Request<Texture2D>("Synergia/Assets/Resprites/OrcishJavelinResprite");
+                    TextureAssets.Projectile[ModContent.ProjectileType<OrcishJavelinP>()] = ModContent.Request<Texture2D>("Synergia/Assets/Resprites/OrcishJavelinResprite2");
+                }
             }
         }
         public static string GetUIElementName(string element) => $"Synergia/Assets/UIs/{element}";
-        public void LoadRoAHook()
+        void LoadRoAHook()
         {
             if (ModLoader.TryGetMod("RoA", out Mod RoAMod))
             {
@@ -61,8 +64,7 @@ namespace Synergia
                 ExtraMountCavesGeneratorILHook = new ILHook(ExtraMountCavesGeneratorInfo, ILExtraMountCavesGenerator);
             }
         }
-
-        public void UnloadRoAHook()
+        void UnloadRoAHook()
         {
             if (ExtraMountCavesGeneratorILHook != null)
             {
@@ -70,8 +72,7 @@ namespace Synergia
                 ExtraMountCavesGeneratorILHook = null;
             }
         }
-
-        private void ILExtraMountCavesGenerator(ILContext il)
+        void ILExtraMountCavesGenerator(ILContext il)
         {
             try
             {

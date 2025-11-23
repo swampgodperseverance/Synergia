@@ -11,9 +11,9 @@ namespace Synergia.Content.Quests
 {
     public class DwarfQuest : BaseQuest
     {
-        public override string DisplayName => LocKey("Dwarf", "QuestName"); // Название в книге 
-        public override string DisplayDescription => LocKey("Dwarf", "QuestDescription"); // Описание в книге
-        public override string DisplayStage => LocKey("Dwarf", "QuestStage"); // Этап в книге
+        public override string DisplayName => LocQuestKey("Dwarf", "QuestName"); // Название в книге 
+        public override string DisplayDescription => LocQuestKey("Dwarf", "QuestDescription"); // Описание в книге
+        public override string DisplayStage => LocQuestKey("Dwarf", "QuestStage"); // Этап в книге
         public override string UniqueKey => "PreSkeletronAnvilQuest";
         public override string NpcKey => DWARF;
         public override int Priority => 10;
@@ -29,15 +29,15 @@ namespace Synergia.Content.Quests
             if (q.CompletedQuests.Contains(UniqueKey) && defeated)
             {
                 Progress = 0;
-                return LocKey("Dwarf", "QuestProgress0");
+                return LocQuestKey("Dwarf", "QuestProgress0");
             }
             if (q.ActiveQuests.Contains(UniqueKey) && defeated)
             {
                 Progress = 2;
-                return LocKey("Dwarf", "QuestProgress2"); // Текст, когда квест активен
+                return LocQuestKey("Dwarf", "QuestProgress2"); // Текст, когда квест активен
             }
             Progress = 1;
-            return LocKey("Dwarf", "QuestProgress1"); ;
+            return LocQuestKey("Dwarf", "QuestProgress1"); ;
         }
         public override string GetButtonText(Player player, ref bool Isfristclicked)
         {
@@ -45,9 +45,9 @@ namespace Synergia.Content.Quests
             var q = player.GetModPlayer<QuestPlayer>();
             if (q.CompletedQuests.Contains(UniqueKey) && defeated) return "";
             if (Isfristclicked) {
-                return LocKey("Dwarf", "QuestButton");
+                return LocQuestKey("Dwarf", "QuestButton");
             }
-            else return LocKey("Dwarf", "QuestButtonGive");
+            else return LocQuestKey("Dwarf", "QuestButtonGive");
         }
         public override bool IsCompleted(Player player)
         {
@@ -64,8 +64,8 @@ namespace Synergia.Content.Quests
                 player, // Необходимый параметр
                 ref player.GetModPlayer<QuestBoolean>().DwarfQuest, // Особый флаг
                 ModContent.ItemType<DwarvenAnvil>(), 1, 1, // Нужный предмет, количество и сколько npc заберет
-                LocKey("Dwarf", "QuestCompleted"), // Локализация если квест завершен
-                LocKey("Dwarf", "QuestCompletedFalse"), // И если не завершен
+                LocQuestKey("Dwarf", "QuestCompleted"), // Локализация если квест завершен
+                LocQuestKey("Dwarf", "QuestCompletedFalse"), // И если не завершен
                 ModContent.ItemType<ValhalliteBar>(), Main.rand.Next(10, 21)); // Награда, количество
                 /* а также есть доп параметры
                 * IsNotification = true;
