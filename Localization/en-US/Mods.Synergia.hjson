@@ -1278,6 +1278,8 @@ Config: {
 	MakesOcramAI2: ""
 	PapuanHardAI: Papuan Wizard Hard A I Enabled
 	MakesPapuanAI: ""
+	NewUI: Active New Progres bar for events
+	NewUITooltip: Activates new UI for events
 }
 
 SinlordSummon: Use Hellworm scale in the underworld
