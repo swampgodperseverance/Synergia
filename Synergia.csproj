@@ -38,6 +38,9 @@
       <Reference Include="TRAEBossRework">
         <HintPath>..\..\ModReader\TRAEBossRework\TRAEBossRework.dll</HintPath>
       </Reference>
+      <Reference Include="TRAEProject">
+        <HintPath>..\..\ModReader\TRAEProject\TRAEProject.dll</HintPath>
+      </Reference>
       <Reference Include="ValhallaMod">
         <HintPath>..\..\ModReader\ValhallaMod.dll</HintPath>
       </Reference>

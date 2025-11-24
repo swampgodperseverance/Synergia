@@ -35,6 +35,7 @@ namespace Synergia
             QuestRegistry.Register(new TaxCollectorQuest());
             instruktion = this;
             LoadRoAHook();
+            ModList.LoadMod();
         }
         public override void Unload()
         {
