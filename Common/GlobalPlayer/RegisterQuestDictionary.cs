@@ -1,5 +1,5 @@
-﻿using Synergia.Common.ModSystems;
-using Synergia.Common.ModSystems.Hooks;
+﻿using Synergia.Common.ModSystems.Hooks;
+using Synergia.Dataset;
 using Terraria.ID;
 using Terraria.ModLoader;
 using ValhallaMod.NPCs.TownNPCs;

@@ -1,4 +1,5 @@
 ﻿using Synergia.Common.GlobalNPCs.AI;
+using Synergia.Common.ModSystems.Hooks;
 using System.ComponentModel;
 using Terraria.ModLoader.Config;
 
@@ -24,11 +25,17 @@ namespace Synergia.Common.ModConfigs
         [DefaultValue(true)]
         public bool PapuanWizardHardAIEnabled;
 
+        [LabelKey("$Mods.Synergia.Config.NewUI")]
+        [TooltipKey("$Mods.Synergia.Config.NewUITooltip")]
+        [DefaultValue(true)]
+        public bool ActiveNewUI;
+
         public override void OnChanged()
         {
             OcramUpgrades.HardModeEnabled = HardModeEnabled;
             BacteriumPrimeBuff.Enabled = BacteriumPrimeBuffEnabled;
             PapuanWizardUpgrades.HardAIEnabled = PapuanWizardHardAIEnabled;
+            NewProgressBar.NewUI = ActiveNewUI;
         }
     }
 }

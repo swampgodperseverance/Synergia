@@ -1,12 +1,16 @@
 ﻿using System.Collections.Generic;
+using Terraria;
+using Terraria.GameInput;
 using Terraria.ID;
 
 namespace Synergia.Helpers {
     public class UIHelper {
+        const int nexItemDelay = 60;
+        static int nexItemTime = 0;
+        static int currentItemIndex = 0;
+
+        public static bool MousePositionInUI(int startX, int endX, int statrtY, int endY) => Main.mouseX > startX && Main.mouseX < endX && Main.mouseY > statrtY && Main.mouseY < endY && !PlayerInput.IgnoreMouseInterface;
         public static int GetNextItemType(List<int> itemList) {
-            const int nexItemDelay = 60;
-            int nexItemTime = 0;
-            int currentItemIndex = 0;
             if (itemList == null || itemList.Count == 0) {
                 return ItemID.None;
             }

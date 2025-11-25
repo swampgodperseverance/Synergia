@@ -1,0 +1,11 @@
+DwarfUI: {
+	IsGood: �����
+	IsNotGood: ������� ��������!
+	Info:
+		'''
+		place weapons in 1 slot, 
+		put Magma Sinstone in slot 2
+		'''
+	WepponSlotInfo: "1"
+	PraceSlotInfo: "2"
+}

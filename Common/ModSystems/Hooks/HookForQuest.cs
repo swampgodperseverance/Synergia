@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework;
 using MonoMod.RuntimeDetour;
 using ReLogic.Graphics;
+using Synergia.Dataset;
 using System;
 using System.Collections.Generic;
 using System.Linq;

@@ -1,3 +1,5 @@
+using Bismuth.Content.Items.Weapons.Throwing;
+using Bismuth.Content.Projectiles;
 using Bismuth.Utilities.ModSupport;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -10,6 +12,7 @@ using System;
 using System.Reflection;
 using Terraria;
 using Terraria.Audio;
+using Terraria.GameContent;
 using Terraria.ModLoader;
 using Terraria.UI;
 
@@ -21,6 +24,7 @@ namespace Synergia
         public const string ModName = "SynergiaModName";
         private Synergia instruktion;
         private ILHook ExtraMountCavesGeneratorILHook;
+        static readonly Mod bismuth = ModLoader.GetMod("Bismuth");
 
         public override void Load()
         {
@@ -31,6 +35,7 @@ namespace Synergia
             QuestRegistry.Register(new TaxCollectorQuest());
             instruktion = this;
             LoadRoAHook();
+            ModList.LoadMod();
         }
         public override void Unload()
         {
@@ -40,22 +45,17 @@ namespace Synergia
         {
             base.PostSetupContent();
 
-
-            if (!Main.dedServ && bismuth != null)
+            if (!Main.dedServ)
             {
-                if (bismuth.TryFind<ModItem>("OrcishJavelin", out ModItem javelin))
-                {
-                    TextureAssets.Item[javelin.Type] = ModContent.Request<Texture2D>("Synergia/Assets/Resprites/OrcishJavelinResprite");
-                }
-
-                if (bismuth.TryFind<ModProjectile>("OrcishJavelinP", out ModProjectile javelinProj))
-                {
-                    TextureAssets.Projectile[javelinProj.Type] = ModContent.Request<Texture2D>("Synergia/Assets/Resprites/OrcishJavelinResprite2");
+                // лучше сделать так, если будут еше респрайты для других предметов не только из бисмута.
+                if (bismuth != null) {
+                    TextureAssets.Item[ModContent.ItemType<OrcishJavelin>()] = ModContent.Request<Texture2D>("Synergia/Assets/Resprites/OrcishJavelinResprite");
+                    TextureAssets.Projectile[ModContent.ProjectileType<OrcishJavelinP>()] = ModContent.Request<Texture2D>("Synergia/Assets/Resprites/OrcishJavelinResprite2");
                 }
             }
         }
-        public static string GetUIElementName(string element) => $"Synergia/Assets/{element}";
-        public void LoadRoAHook()
+        public static string GetUIElementName(string element) => $"Synergia/Assets/UIs/{element}";
+        void LoadRoAHook()
         {
             if (ModLoader.TryGetMod("RoA", out Mod RoAMod))
             {
@@ -65,8 +65,7 @@ namespace Synergia
                 ExtraMountCavesGeneratorILHook = new ILHook(ExtraMountCavesGeneratorInfo, ILExtraMountCavesGenerator);
             }
         }
-
-        public void UnloadRoAHook()
+        void UnloadRoAHook()
         {
             if (ExtraMountCavesGeneratorILHook != null)
             {
@@ -74,8 +73,7 @@ namespace Synergia
                 ExtraMountCavesGeneratorILHook = null;
             }
         }
-
-        private void ILExtraMountCavesGenerator(ILContext il)
+        void ILExtraMountCavesGenerator(ILContext il)
         {
             try
             {

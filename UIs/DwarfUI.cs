@@ -1,20 +1,21 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Graphics;
+using Synergia.Common.GlobalPlayer;
+using Synergia.Dataset;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.Audio;
-using Terraria.DataStructures;
 using Terraria.GameContent;
-using Terraria.GameInput;
 using Terraria.ID;
 using Terraria.Localization;
 using Terraria.ModLoader;
-using Terraria.ModLoader.IO;
 using Terraria.UI;
 using Terraria.UI.Chat;
 using ValhallaMod.Items.Placeable.Blocks;
+using static Synergia.Helpers.UIHelper;
 using static Terraria.ModLoader.ModContent;
+using static Synergia.Common.SUtils.LocUtil;
 
 namespace Synergia.UIs;
 // Some of the code is taken from EAMod
@@ -22,7 +23,7 @@ internal class DwarfUI : UIState {
 
     VanillaItemSlotWrapper itemSlotWeppon;
     VanillaItemSlotWrapper itemSlotPrace;
-    readonly DwarfPlayer dwarfPlayer = Main.LocalPlayer.GetModPlayer<DwarfPlayer>();
+    readonly SaveItemPlayer saveItem = Main.LocalPlayer.GetModPlayer<SaveItemPlayer>();
     Texture2D anvil;
     Texture2D hellsmithBgTexture;
     Texture2D magmaSinstoneTexture;
@@ -56,17 +57,17 @@ internal class DwarfUI : UIState {
     #endregion
 
     public override void OnInitialize() {
-        if (dwarfPlayer == null) {
+        if (saveItem == null) {
             return;
         }
         itemSlotWeppon = new VanillaItemSlotWrapper(ItemSlot.Context.BankItem, 0.85f) {
-            Item = dwarfPlayer.weaponSlotItem,
+            Item = saveItem.weaponSlotItem,
             Left = { Pixels = 50 },
             Top = { Pixels = 335 },
             ValidItemFunc = item => item.IsAir || !item.IsAir && GetItem().Contains(item.type),
         };
         itemSlotPrace = new VanillaItemSlotWrapper(ItemSlot.Context.BankItem, 0.85f) {
-            Item = dwarfPlayer.praceSlotItem,
+            Item = saveItem.praceSlotItem,
             Left = { Pixels = 100 },
             Top = { Pixels = 335 },
             ValidItemFunc = item => item.IsAir || !item.IsAir && item.type == ItemType<SinstoneMagma>()
@@ -100,29 +101,28 @@ internal class DwarfUI : UIState {
         reforgeButtonTexture_glow = Request<Texture2D>(Synergia.GetUIElementName("NakovalnyaBoga_glow")).Value;
         hellsmithBgTexture = Request<Texture2D>(Synergia.GetUIElementName("HellsmithBg")).Value;
         hellsmithBarTexture = Request<Texture2D>(Synergia.GetUIElementName("HellsmithBar")).Value;
-        VanillaItemTexture = Request<Texture2D>($"Terraria/Images/Item_{Helpers.UIHelper.GetNextItemType(GetItem())}").Value;
+        VanillaItemTexture = Request<Texture2D>($"Terraria/Images/Item_{GetNextItemType(GetItem())}").Value;
         magmaSinstoneTexture = Request<Texture2D>("ValhallaMod/Items/Placeable/Blocks/SinstoneMagma").Value;
 
         itemSlotWeppon.ItemTypeTextyre = VanillaItemTexture;
         itemSlotPrace.ItemTypeTextyre = magmaSinstoneTexture;
     }
-    static bool MousePositionInUI(int startX, int endX, int statrtY, int endY) => Main.mouseX > startX && Main.mouseX < endX && Main.mouseY > statrtY && Main.mouseY < endY && !PlayerInput.IgnoreMouseInterface;
     #endregion
     #region SaveItem
     void CloseUI_SaveOnly() {
-        dwarfPlayer.weaponSlotItem = itemSlotWeppon.Item.Clone(); 
-        dwarfPlayer.praceSlotItem = itemSlotPrace.Item.Clone();
+        saveItem.weaponSlotItem = itemSlotWeppon.Item.Clone(); 
+        saveItem.praceSlotItem = itemSlotPrace.Item.Clone();
     }
     void CloseUI_DropItems() {
         if (!itemSlotWeppon.Item.IsAir) {
             Main.LocalPlayer.QuickSpawnItem(Main.LocalPlayer.GetSource_FromThis(), itemSlotWeppon.Item, itemSlotWeppon.Item.stack);
             itemSlotWeppon.Item.TurnToAir();
-            dwarfPlayer.weaponSlotItem.TurnToAir();
+            saveItem.weaponSlotItem.TurnToAir();
         }
         if (!itemSlotPrace.Item.IsAir) {
             Main.LocalPlayer.QuickSpawnItem(Main.LocalPlayer.GetSource_FromThis(), itemSlotPrace.Item, itemSlotPrace.Item.stack);
             itemSlotPrace.Item.TurnToAir();
-            dwarfPlayer.praceSlotItem.TurnToAir();
+            saveItem.praceSlotItem.TurnToAir();
         }
     }
     #endregion
@@ -249,7 +249,7 @@ internal class DwarfUI : UIState {
                             itemSlotWeppon.Item.position = Main.LocalPlayer.Center - new Vector2(itemSlotWeppon.Item.width / 2f, itemSlotWeppon.Item.height / 2f);
 
                             SoundEngine.PlaySound(SoundID.Item4);
-                            CombatText.NewText(Main.LocalPlayer.getRect(), Color.Lime, "Успех!");
+                            CombatText.NewText(Main.LocalPlayer.getRect(), Color.Lime, LocUIKey("DwarfUI", "IsGood"));
                             PopupText.NewText(PopupTextContext.RegularItemPickup, itemSlotWeppon.Item, itemSlotWeppon.Item.stack, noStack: true);
                             Main.LocalPlayer.mouseInterface = false;
 
@@ -264,7 +264,7 @@ internal class DwarfUI : UIState {
                                 itemSlotWeppon.Item.TurnToAir();
 
                                 SoundEngine.PlaySound(SoundID.Item14);
-                                CombatText.NewText(Main.LocalPlayer.getRect(), Color.Red, "Предмет разрушен!");
+                                CombatText.NewText(Main.LocalPlayer.getRect(), Color.Red, LocUIKey("DwarfUI", "IsNotGood"));
                                 Main.LocalPlayer.mouseInterface = false;
 
                                 isStartForgoten = true;
@@ -274,87 +274,13 @@ internal class DwarfUI : UIState {
                 }
             }
         }
-        string message;
-        if (Language.ActiveCulture.Name == "ru-RU") {
-            message = $"Вставте оружие в 1 слот \nВставте Magma Sinstone \nв слот 2";
-        }
-        else if (Language.ActiveCulture.Name == "en-US") {
-            message = $"place weapons in 1 slot, \nput Magma Sinstone in slot 2";
-        }
-        else {
-            // Localizatin key
-            message = $"place weapons in 1 slot, \nput Magma Sinstone in slot 2";
-        }
+        string message = LocUIKey("DwarfUI", "Info");
         ChatManager.DrawColorCodedStringWithShadow(Main.spriteBatch, curfont, message, new Vector2(slotX, slotY), new Color(Main.mouseTextColor, Main.mouseTextColor, Main.mouseTextColor, Main.mouseTextColor), 0f, Vector2.Zero, Vector2.One, -1f, 2f);
         if (mouseInWepponSlot) {
-            Main.hoverItemName = "вфывфывфывывфы";
+            Main.hoverItemName = LocUIKey("DwarfUI", "WepponSlotInfo");
         }
         if (mouseInPraceSlot) {
-            Main.hoverItemName = "dasdads";
+            Main.hoverItemName = LocUIKey("DwarfUI", "PraceSlotInfo");
         }
-    }
-}
-class DwarfPlayer : ModPlayer {
-    public Item weaponSlotItem = new();
-    public Item praceSlotItem = new();
-
-    public override void Initialize() {
-        weaponSlotItem = new Item();
-        praceSlotItem = new Item();
-        weaponSlotItem.TurnToAir();
-        praceSlotItem.TurnToAir();
-    }
-    public override void SaveData(TagCompound tag) {
-        // public const string ModName = "BaseModModName";
-        if (weaponSlotItem is not null) {
-            tag.Add(Synergia.ModName + "WeaponSlotItem" + nameof(weaponSlotItem), ItemIO.Save(weaponSlotItem));
-        }
-        if (weaponSlotItem is not null) {
-            tag.Add(Synergia.ModName + "PraceSlotItem" + nameof(praceSlotItem), ItemIO.Save(praceSlotItem));
-        }
-    }
-    public override void LoadData(TagCompound tag) {
-        if (tag.TryGet(Synergia.ModName + "WeaponSlotItem" + nameof(weaponSlotItem), out TagCompound dye1)) {
-            weaponSlotItem = ItemIO.Load(dye1);
-        }
-        if (tag.TryGet(Synergia.ModName + "PraceSlotItem" + nameof(praceSlotItem), out TagCompound dye2)) {
-            praceSlotItem = ItemIO.Load(dye2);
-        }
-    }
-}
-struct AnimationDate {
-    public SpriteFrame Frame;
-    public bool StartAnimation;
-    public int FrameTimer;
-    public SpriteEffects Effects;
-    public const int FrameDuration = 7;
-
-    public void Init(byte columns, byte rows) {
-        if (Frame.ColumnCount == 0 || Frame.RowCount == 0) {
-            Frame = new SpriteFrame(columns, rows) {
-                CurrentColumn = 0,
-                CurrentRow = 0
-            };
-        }
-    }
-    public Rectangle GetSource(Texture2D texture) => Frame.GetSourceRectangle(texture);
-    public void Update() {
-        if (StartAnimation) {
-            FrameTimer++;
-            if (FrameTimer >= FrameDuration) {
-                FrameTimer = 0;
-                Frame.CurrentRow = (byte)((Frame.CurrentRow + 1) % Frame.RowCount);
-                if (Frame.CurrentRow == Frame.RowCount - 1) {
-                    StartAnimation = false;
-                    Frame.CurrentRow = 0;
-                }
-            }
-        }
-    }
-    public void Reset() {
-        StartAnimation = false;
-        Frame.CurrentRow = 0;
-        Frame.CurrentColumn = 0;
-        FrameTimer = 0;
     }
 }

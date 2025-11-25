@@ -14,7 +14,6 @@ namespace Synergia.Common.GlobalItems
         {
             return entity.ModItem?.GetType().FullName == "Bismuth.Content.Items.Weapons.Assassin.Prominence";
         }
-
         public override void SetDefaults(Item item)
         {
             item.DamageType = DamageClass.Summon;
@@ -24,20 +23,10 @@ namespace Synergia.Common.GlobalItems
             item.buffType = ModContent.BuffType<ProminenceBlessing>();
             item.shoot = ModContent.ProjectileType<ProminenceProjectile>();
         }
-
         public override bool Shoot(Item item, Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
         {
             player.AddBuff(ModContent.BuffType<ProminenceBlessing>(), 1);
-
-            Projectile.NewProjectile(
-                source,
-                position,
-                Vector2.Zero,
-                ModContent.ProjectileType<ProminenceProjectile>(),
-                damage,
-                knockback,
-                player.whoAmI);
-
+            Projectile.NewProjectile(source, position, Vector2.Zero, ModContent.ProjectileType<ProminenceProjectile>(), damage, knockback, player.whoAmI);
             return false; 
         }
     }
