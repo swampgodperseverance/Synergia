@@ -25,7 +25,7 @@ namespace Synergia.Dataset {
                 if (FrameTimer >= FrameDuration) {
                     FrameTimer = 0;
                     Frame.CurrentRow = (byte)((Frame.CurrentRow + 1) % Frame.RowCount);
-                    if (Frame.CurrentRow == Frame.RowCount - 1) {
+                    if (Frame.CurrentRow == Frame.RowCount) {
                         StartAnimation = false;
                         Frame.CurrentRow = 0;
                     }
