@@ -47,7 +47,7 @@ namespace Synergia
 
             if (!Main.dedServ)
             {
-                // лучше сделать так, если будут еше респрайты для других предметов не только из бисмута.
+                // Р»СѓС‡С€Рµ СЃРґРµР»Р°С‚СЊ С‚Р°Рє, РµСЃР»Рё Р±СѓРґСѓС‚ РµС€Рµ СЂРµСЃРїСЂР°Р№С‚С‹ РґР»СЏ РґСЂСѓРіРёС… РїСЂРµРґРјРµС‚РѕРІ РЅРµ С‚РѕР»СЊРєРѕ РёР· Р±РёСЃРјСѓС‚Р°.
                 if (bismuth != null) {
                     TextureAssets.Item[ModContent.ItemType<OrcishJavelin>()] = ModContent.Request<Texture2D>("Synergia/Assets/Resprites/OrcishJavelinResprite");
                     TextureAssets.Projectile[ModContent.ProjectileType<OrcishJavelinP>()] = ModContent.Request<Texture2D>("Synergia/Assets/Resprites/OrcishJavelinResprite2");
