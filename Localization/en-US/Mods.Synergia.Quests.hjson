@@ -10,11 +10,80 @@ Dwarf: {
 		dragging giant anvils that stayed there forever, 
 		could you bring me one? And I'll give you some ore
 		'''
-	QuestProgress2: Have you gathered an Anvil yet?
+	QuestProgress2: I know it's kinda hard to find but if you do I would be incredibly gratefu
 	QuestButton: Accept
 	QuestButtonGive: Give away
-	QuestCompleted: Quest completed! Thanks for the Dwarven Anvil!
+	QuestCompleted:
+		'''
+		I can't believe that i see it again.. My father used it last 
+		time when he was alive.. Nevermind, there's reward
+		'''
 	QuestCompletedFalse: You don't have an anvil yet.
+}
+
+Hunter: {
+	QuestName: Whisperig Reed
+	QuestDescription: Can be caught in a Backwoods.
+	QuestStage: Collect Whisperig Reed
+	QuestProgress0: Thanks for the Whisperig Reed!
+	QuestProgress1: I heard stories about Backwoods waters. They say something down there sings when the moon is high Bring me a Whispering Reed, if you dare.
+	QuestProgress2: Still searching, huh? The Backwoods don't give up their secrets easily. Listen for the hum thats how you'll know you're close.
+	QuestButton: Accept
+	QuestButtonGive: Give fish
+	QuestCompleted: So you found it's The Whispering Reed. You can almost hear their voices, can't you? Keep it close - it remembers those who listen.
+	QuestCompletedFalse: You don't have an Whisperig Reed.
+}
+
+Artist: {
+	QuestName: Red Husk.
+	QuestDescription: Can be caught in a Caven.
+	QuestStage: Collect Red Husk.
+	QuestProgress0: Thanks for the Red Husk!
+	QuestProgress1: Have you ever seen the color that bleeds between dusk and fire? They call it Red Husk. I need it - no, I ache for it. Bring me that hue from the deep caves.
+	QuestProgress2: The canvas waits… empty. The color haunts my dreams. Did you find it? The Red Husk? Faster
+	QuestButton: Accept
+	QuestButtonGive: Give husk
+	QuestCompleted: Look at it - that living crimson! With this, my painting will finally breathe. You've given me more than pigment… you've given me a heartbeat.
+	QuestCompletedFalse: You don't have an Red Husk.
+}
+
+Ninja: {
+	QuestName: Carrot
+	QuestDescription: Can be caught in a Forest.
+	QuestStage: Collect Carrot.
+	QuestProgress0: Thanks for the Carrot!
+	QuestProgress1: After long durance i need… a carrot. Sounds stupid? Maybe. But that holds power for my arms- and I want it.
+	QuestProgress2: Still empty-handed? Hmph. The bunny's tricks are slippery, but not as slippery as excuses.
+	QuestButton: Accept
+	QuestButtonGive: Give Carrot
+	QuestCompleted: Power hidden in a vegetable - perfect disguise. You did well, shadow friend.
+	QuestCompletedFalse: You don't have an Carrot.
+}
+
+Farmer: {
+	QuestName: Food
+	QuestDescription: Collect Food.
+	QuestStage: Collect Food.
+	QuestProgress0: Thanks for the Carrot!
+	QuestProgress1: I'm hungry after hard day. Can you bring me some food please?
+	QuestProgress2: Still don't have it?
+	QuestButton: Accept
+	QuestButtonGive: Give Food
+	QuestCompleted: Thanks! I've been dreaming about this for two days. Here - take your reward.
+	QuestCompletedFalse: You don't have an Food.
+}
+
+Librarian: {
+	QuestName: Tom
+	QuestDescription: Collect Tom.
+	QuestStage: Collect Tom.
+	QuestProgress0: Thanks for the Tom!
+	QuestProgress1: My first quest for you will be damaged tome. I wanna try my skills on it. Who knows, what can i create
+	QuestProgress2: Why are you staring at me? Run and find the book and you'll get a bonus.
+	QuestButton: Accept
+	QuestButtonGive: Give Tom
+	QuestCompleted: Oh yeah, that's it. Finally my plans become true. Here is small trinket for you.
+	QuestCompletedFalse: You don't have an Tom.
 }
 
 Dwarf2.QuestName: ""

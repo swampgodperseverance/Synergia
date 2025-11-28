@@ -1,12 +1,17 @@
-﻿using Bismuth.Utilities.ModSupport;
+﻿using Avalon.NPCs.TownNPCs;
+using Bismuth.Utilities.ModSupport;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using NewHorizons.Content.NPCs.Town;
+using StramsSurvival.NPCs;
+using Synergia.Content.Quests;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 using ValhallaMod.NPCs.TownNPCs;
 using static Synergia.Common.QuestSystem.QuestConst;
+using static Synergia.ModList;
 
 namespace Synergia.Common
 {
@@ -16,12 +21,12 @@ namespace Synergia.Common
         {
             /// <summary> обязательно нужно указать npcType </summary>
             /// <param name="npcType"> Кому рисовать </param>
-            /// <param name="name">Ключь квеста</param>
+            /// <param name="name">Ключ квеста</param>
             public static void DrawQuestIcon(NPC npc, SpriteBatch spriteBatch, int npcType, string name)
             {
                 Player player = Main.LocalPlayer;
                 IEnumerable<IQuest> quests = QuestRegistry.GetAvailableQuests(player, name);
-                foreach (var quest in quests)
+                foreach (IQuest quest in quests)
                 {
                     if (npc.type == npcType)
                     {
@@ -35,6 +40,11 @@ namespace Synergia.Common
             {
                 DrawQuestIcon(npc, spriteBatch, ModContent.NPCType<Dwarf>(), DWARF);
                 DrawQuestIcon(npc, spriteBatch, NPCID.TaxCollector, TAXC);
+                DrawQuestIcon(npc, spriteBatch, Roa.Find<ModNPC>("Hunter").Type, HUNTER);
+                DrawQuestIcon(npc, spriteBatch, ModContent.NPCType<Artist>(), ARTIST);
+                DrawQuestIcon(npc, spriteBatch, ModContent.NPCType<Ninja>(), NINJA);
+                DrawQuestIcon(npc, spriteBatch, ModContent.NPCType<Farmer>(), FARMER);
+                DrawQuestIcon(npc, spriteBatch, ModContent.NPCType<Librarian>(), LIBRARIAN);
             }
         }
     }

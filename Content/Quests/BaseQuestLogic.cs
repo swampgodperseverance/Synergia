@@ -1,0 +1,67 @@
+﻿using Bismuth.Utilities.ModSupport;
+using Synergia.Helpers;
+using Terraria;
+using static Synergia.Common.SUtils.LocUtil;
+
+namespace Synergia.Content.Quests;
+
+public abstract class BaseQuestLogic : BaseQuest {
+
+    readonly UIHelper helper = new();
+    public abstract string Key { get; }
+    public sealed override string UniqueKey => Key;
+    public string BaseGetChat(Player player, string npcName, string npcKey, string npcKey2, string npcKey3) {
+        Main.npcChatCornerItem = CornerItem;
+        QuestPlayer q = player.GetModPlayer<QuestPlayer>();
+        bool defeated = HasDefeated(PostBossRequirement);
+        if (q.CompletedQuests.Contains(UniqueKey) && defeated) {
+            Progress = 0;
+            return LocQuestKey(npcName, npcKey);
+        }
+        if (q.ActiveQuests.Contains(UniqueKey) && defeated) {
+            Progress = 2;
+            return LocQuestKey(npcName, npcKey2);
+        }
+        Progress = 1;
+        return LocQuestKey(npcName, npcKey3);
+    }
+    public string BaseGetButtonText(Player player, ref bool Isfristclicked, string npcName, string npcKey, string npcKey2) {
+        bool defeated = HasDefeated(PostBossRequirement);
+        QuestPlayer q = player.GetModPlayer<QuestPlayer>();
+        if (q.CompletedQuests.Contains(UniqueKey) && defeated) return "";
+        if (Isfristclicked) {
+            return LocQuestKey(npcName, npcKey);
+        }
+        else return LocQuestKey(npcName, npcKey2);
+    }
+    public bool BaseIsCompleted(Player player) {
+        QuestPlayer q = player.GetModPlayer<QuestPlayer>();
+        return q.CompletedQuests.Contains(UniqueKey);
+    }
+    public void BaseOnChatButtonClicked(Player player) {
+        QuestPlayer q = player.GetModPlayer<QuestPlayer>();
+
+        if (q.CompletedQuests.Contains(UniqueKey)) return;
+
+        if (!q.ActiveQuests.Contains(UniqueKey)) {
+            Notification(player, false, true);
+            q.ActiveQuests.Add(UniqueKey);
+            Progress = 2;
+        }
+    }
+    public bool BaseIsAvailable(Player player) {
+        QuestPlayer q = player.GetModPlayer<QuestPlayer>();
+        bool isAvailable = !q.CompletedQuests.Contains(UniqueKey);
+        bool isDefeated = HasDefeated(PostBossRequirement);
+        if (isAvailable && isDefeated) Progress = 1;
+        else Progress = 0;
+        if (isDefeated) { return isAvailable; }
+        else { return isDefeated; }
+    }
+    public bool BaseIsActive(Player player) {
+        QuestPlayer q = player.GetModPlayer<QuestPlayer>();
+        bool isActive = q.ActiveQuests.Contains(UniqueKey);
+        if (isActive) Progress = 2;
+        return isActive;
+    }
+}
