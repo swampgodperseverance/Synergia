@@ -1,20 +1,21 @@
 using Bismuth.Content.Items.Weapons.Throwing;
 using Bismuth.Content.Projectiles;
-using Bismuth.Utilities.ModSupport;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Mono.Cecil.Cil;
 using MonoMod.Cil;
 using MonoMod.RuntimeDetour;
 using Synergia.Common;
-using Synergia.Content.Quests;
 using System;
 using System.Reflection;
 using Terraria;
 using Terraria.Audio;
 using Terraria.GameContent;
+using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.UI;
+using static Synergia.Common.QuestSystem.SynergiaQuestRegistry;
+using static Synergia.ModList;
 
 namespace Synergia
 {
@@ -22,20 +23,17 @@ namespace Synergia
     {
         internal UserInterface DwarfUserInterface;
         public const string ModName = "SynergiaModName";
-        private Synergia instruktion;
-        private ILHook ExtraMountCavesGeneratorILHook;
-        static readonly Mod bismuth = ModLoader.GetMod("Bismuth");
-
+        Synergia instruktion;
+        ILHook ExtraMountCavesGeneratorILHook;
         public override void Load()
         {
             #region UI
             DwarfUserInterface = new UserInterface();
             #endregion
-            QuestRegistry.Register(new DwarfQuest());
-            QuestRegistry.Register(new TaxCollectorQuest());
             instruktion = this;
             LoadRoAHook();
-            ModList.LoadMod();
+            LoadMod();
+            RegisterQuests();
         }
         public override void Unload()
         {
@@ -45,10 +43,8 @@ namespace Synergia
         {
             base.PostSetupContent();
 
-            if (!Main.dedServ)
-            {
-                // лучше сделать так, если будут еше респрайты для других предметов не только из бисмута.
-                if (bismuth != null) {
+            if (!Main.dedServ) {
+                if (Bis != null) {
                     TextureAssets.Item[ModContent.ItemType<OrcishJavelin>()] = ModContent.Request<Texture2D>("Synergia/Assets/Resprites/OrcishJavelinResprite");
                     TextureAssets.Projectile[ModContent.ProjectileType<OrcishJavelinP>()] = ModContent.Request<Texture2D>("Synergia/Assets/Resprites/OrcishJavelinResprite2");
                 }
