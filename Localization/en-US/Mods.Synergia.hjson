@@ -1241,43 +1241,15 @@ NPCs: {
 	WaterElementalEnemy.DisplayName: Water Elemental Enemy
 }
 
-Configs: {
-	OcramConfig: {
-		DisplayName: Ocram Config
-
-		HardModeEnabled: {
-			Label: Enable Hard Mode AI
-			Tooltip: Makes Ocram's AI more challenging
-		}
-	}
-
-	BossConfig: {
-		HardModeEnabled: {
-			Tooltip: Makes Ocram's AI more challenging
-			Label: Enable Hard Mode AI
-		}
-
-		DisplayName: Boss Config
-
-		BacteriumPrimeBuffEnabled: {
-			Tooltip: Makes Bacterium Prime completely broken. Default Bacterium Prime without ai get 3 more new attacks. Why do you need that?
-			Label: Enable Bacterium Prime hard AI
-		}
-
-		PapuanWizardHardAIEnabled: {
-			Tooltip: Makes Papuan Wizard significantly stronger with teleport and projectile attacks.
-			Label: Enable Papuan Wizard Hard AI
-		}
-	}
-}
+Configs.BossConfig.DisplayName: Boss Config
 
 Config: {
-	OcramHardModeAI: Hard Mode Enabled
-	MakesOcramAI: ""
-	OcramWildAI: Bacterium Prime Buff Enabled
-	MakesOcramAI2: ""
-	PapuanHardAI: Papuan Wizard Hard A I Enabled
-	MakesPapuanAI: ""
+	OcramHardModeAI: Enable Hard Mode AI
+	MakesOcramAI: Makes Ocram's AI more challenging
+	OcramWildAI: Enable Bacterium Prime hard AI
+	MakesOcramAI2: Makes Bacterium Prime completely broken. Default Bacterium Prime without ai get 3 more new attacks. Why do you need that?
+	PapuanHardAI: Enable Papuan Wizard Hard AI
+	MakesPapuanAI: Makes Papuan Wizard significantly stronger with teleport and projectile attacks.
 	NewUI: Active New Progres bar for events
 	NewUITooltip: Activates new UI for events
 }

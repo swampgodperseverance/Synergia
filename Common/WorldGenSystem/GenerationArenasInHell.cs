@@ -1,6 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
 using Synergia.Helpers;
-using System;
 using System.Collections.Generic;
 using System.IO;
 using Terraria;
@@ -10,27 +9,26 @@ using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
 using Terraria.WorldBuilding;
 using ValhallaMod.Tiles.Blocks;
+using static Synergia.ModList;
 
 namespace Synergia.Common.WorldGenSystem;
 
 public class GenerationArenasInHell : ModSystem {
-    #pragma warning disable CA2211
-    public static int HellArenaPositionX;
-    public static int HellArenaPositionY;
-    public static List<Vector2> ArenaTiles = [];
-    public static int BasePositionArena;
+    public static int HellArenaPositionX { get; private set; }
+    public static int HellArenaPositionY { get; private set; }
+    public static List<Vector2> ArenaTiles { get; private set; } = [];
+    public static int BasePositionArena { get; private set; }
     bool GenerateHellArena = false;
     const byte a = 10, b = 11, c = 12, d = 13;
-    static readonly Mod RoA = ModLoader.GetMod("RoA");
 
     // X = 199 Y = 119
     static readonly byte[,] HellArenaTiles =
     {
         // 0 - Empty 1 - Sinstone, 2 - Blasted Stone, 3 - Iridescent Brick, 4 - Resistant Wood, 5 - Magma Sinstone, 6 - Ash block, 7 - HellStone, 8 - BackwoodsStoneBrick, 9 - Resistant Wood + IsActuated, 10 : a - Magma Sinstone + IsActuated, 11 : b - AshGrass 12 : c - AshVines, 13 : d - AshGrass
         {1,1,1,1,0,0,0,0,1,1,1,1,1,1,1,0,0,0,2,2,2,2,2,2,2,1,1,1,1,1,1,1,1,1,1,0,0,0,1,2,2,2,2,2,2,2,2,2,2,2,2,2,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,2,2,2,2,2,2,2,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,1,2,2,2,2,2,2,2,2,2,2,1,1,1,1,1,1,1,1,1,1,2,2,2,2,2,2,2,1,1,1,1,1,1,1,1,1,1,1,1}, // 1 - Start
-        {1,1,1,1,1,0,0,0,1,1,1,1,1,1,1,0,0,3,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,3,3,3,3,3,3,3,3,3,3,3}, // 2
-        {1,1,1,0,1,1,0,0,1,1,1,1,1,1,1,1,1,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,3,3,3,3,3,3,3,3,3,3}, // 3
-        {1,1,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,8,8,0,2,2,2,2,2,8,8,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,3,3,3,3,3,3,3,3,3}, // 4
+        {1,1,1,1,1,0,0,0,1,1,1,1,1,1,1,0,0,3,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,1,1,1,1,1,1,1,1,1,1,1}, // 2
+        {1,1,1,0,1,1,0,0,1,1,1,1,1,1,1,1,1,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,1,1,1,1,1,1,1,1,1,1}, // 3
+        {1,1,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,8,8,0,2,2,2,2,2,8,8,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,1,1,1,1,1,1,1,1,1}, // 4
         {1,1,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,0,2,2,2,2,2,2,2,2,2,2,2,2,2,2,8,8,0,2,2,2,2,2,8,8,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,4,2,2,2,2,2,2,2,2,2,2,2,2,5,5,5,5,5,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,8,8,0,0,0,0,0,0,8,8,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,1,1,1,1,1,1,1,1,1}, // 5
         {1,1,1,0,0,0,0,0,1,1,1,1,1,1,1,1,1,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,8,8,0,0,0,0,0,0,8,8,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,4,2,2,2,2,2,4,2,2,2,2,2,2,2,2,2,2,5,5,5,5,5,5,5,5,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,0,0,0,0,0,0,8,8,0,0,0,0,0,0,8,8,0,0,0,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,1,1,1,1,1,1,1,1}, // 6
         {1,1,1,0,0,0,0,0,0,0,1,1,1,1,1,1,1,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,8,8,0,0,0,0,0,0,8,8,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,2,2,2,2,2,2,2,2,2,2,4,4,2,2,2,2,4,2,2,2,4,2,2,2,5,5,5,5,5,5,5,5,5,2,2,2,2,2,2,2,2,2,2,2,2,0,0,0,0,0,0,0,0,0,0,0,0,8,8,0,0,0,0,0,0,8,8,0,0,0,0,0,0,0,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,1,1,1,1,1,1,1,1}, // 7
@@ -600,44 +598,25 @@ public class GenerationArenasInHell : ModSystem {
 
                 ModLoader.TryGetMod("Avalon", out Mod Avalon);
 
-                if (Avalon != null) {
-                    switch (HellArenaTiles[y, x]) {
-                        case 2: tile.TileType = Avalon.Find<ModTile>("BlastedStone").Type; tile.HasTile = true; break; // BlastedStone
-                        case 3: tile.TileType = Avalon.Find<ModTile>("BlastedStone").Type; tile.HasTile = true; break; // BlastedStone
-                        case 4: tile.TileType = Avalon.Find<ModTile>("ResistantWood").Type; tile.HasTile = true; break;
-                        case 9: tile.TileType = Avalon.Find<ModTile>("ResistantWood").Type; tile.HasTile = true; tile.IsActuated = true; break; // ResistantWood
-                    }
-                    switch (HellArenaWalls[y, x]) {
-                        case 1: tile.WallType = Avalon.Find<ModWall>("BlastedStoneWall").Type; break;
-                    }
-
-                    WorldGen.PlaceObject(HellArenaPositionX - 198 + 105, HellArenaPositionY - 11, Avalon.Find<ModTile>("ResistantWoodLamp").Type);
-                    WorldGen.PlaceObject(HellArenaPositionX - 198 + 112, HellArenaPositionY - 11, Avalon.Find<ModTile>("ResistantWoodLamp").Type);
-
-                }
-                else {
-                    switch (HellArenaTiles[y, x]) {
-                        case 2: tile.TileType = 1; tile.HasTile = true; break; // BlastedStone
-                        case 3: tile.TileType = 2; tile.HasTile = true; break; // BlastedStone
-                        case 4: tile.TileType = 3; tile.HasTile = true; break;
-                        case 9: tile.TileType = 4; tile.HasTile = true; tile.IsActuated = true; break; // ResistantWood
-                    }
-                    switch (HellArenaWalls[y, x]) {
-                        case 1: tile.WallType = 1; break;
-                    }
-                }
-
                 switch (HellArenaTiles[y, x]) {
                     case 0: break;
                     case 1: tile.TileType = (ushort)ModContent.TileType<Sinstone>(); tile.HasTile = true; break;
+                    case 2: tile.TileType = Avalon.Find<ModTile>("BlastedStone").Type; tile.HasTile = true; break;
+                    case 3: tile.TileType = Avalon.Find<ModTile>("BlastedStone").Type; tile.HasTile = true; break;
+                    case 4: tile.TileType = Avalon.Find<ModTile>("ResistantWood").Type; tile.HasTile = true; break;
                     case 5: tile.TileType = (ushort)ModContent.TileType<SinstoneMagma>(); tile.HasTile = true; break;
                     case 6: tile.TileType = TileID.Ash; tile.HasTile = true; break;
                     case 7: tile.TileType = TileID.Hellstone; tile.HasTile = true; break;
-                    case 8: tile.TileType = RoA.Find<ModTile>("BackwoodsStoneBrick").Type; tile.HasTile = true; tile.IsActuated = true; break;
+                    case 8: tile.TileType = Roa.Find<ModTile>("BackwoodsStoneBrick").Type; tile.HasTile = true; tile.IsActuated = true; break;
+                    case 9: tile.TileType = Avalon.Find<ModTile>("ResistantWood").Type; tile.HasTile = true; tile.IsActuated = true; break;
                     case a: tile.TileType = (ushort)ModContent.TileType<SinstoneMagma>(); tile.HasTile = true; tile.IsActuated = true; break;
                     case b: tile.TileType = TileID.AshGrass; tile.HasTile = true; break;
                     case c: tile.TileType = TileID.AshVines; tile.HasTile = true; break;
                     case d: tile.TileType = TileID.AshPlants; tile.HasTile = true; break;
+                }
+                switch (HellArenaWalls[y, x]) {
+                    case 0: tile.WallType = WallID.None; break;
+                    case 1: tile.WallType = Avalon.Find<ModWall>("BlastedStoneWall").Type; break;
                 }
                 switch (HellArenaSlopes[y, x]) {
                     case 0: break;
@@ -647,15 +626,21 @@ public class GenerationArenasInHell : ModSystem {
                     case 4: tile.Slope = SlopeType.SlopeUpRight; break;
                     case 5: tile.Slope = SlopeType.SlopeDownLeft; break;
                 }
-                switch (HellArenaWalls[y, x]) {
-                    case 0: tile.WallType = WallID.None; break;
-                }
                 switch (HellArenaLiquid[y, x]) {
                     case 0: tile.LiquidAmount = 0; break;
                     case 1: tile.LiquidType = LiquidID.Lava; tile.LiquidAmount = 255; break;
                 }
+                if (HellArenaTiles[y, x] != 0) {
+                    ArenaTiles.Add(new Vector2(HellArenaPositionX - 198 + x, HellArenaPositionY - y));
+                }
             }
         }
+
+        int pos = HellArenaPositionX - 198;
+
+        WorldGen.PlaceObject(pos + 105, HellArenaPositionY - 11, Ava.Find<ModTile>("ResistantWoodLamp").Type);
+        WorldGen.PlaceObject(pos + 112, HellArenaPositionY - 11, Ava.Find<ModTile>("ResistantWoodLamp").Type);
+
         return true;
     }
 }

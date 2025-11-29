@@ -9,3 +9,8 @@ DwarfUI: {
 	WepponSlotInfo: "1"
 	PraceSlotInfo: "2"
 }
+
+BooK: {
+	Button: Nex Page
+	Button2: Nex Page
+}
