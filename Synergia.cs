@@ -11,7 +11,6 @@ using System.Reflection;
 using Terraria;
 using Terraria.Audio;
 using Terraria.GameContent;
-using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.UI;
 using static Synergia.Common.QuestSystem.SynergiaQuestRegistry;
@@ -21,16 +20,17 @@ namespace Synergia
 {
     public class Synergia : Mod
     {
-        internal UserInterface DwarfUserInterface;
-        public const string ModName = "SynergiaModName";
-        Synergia instruktion;
+        public UserInterface DwarfUserInterface;
+        public const string ModName = nameof(Synergia);
+        public Synergia Instance { get; private set; }
         ILHook ExtraMountCavesGeneratorILHook;
+
         public override void Load()
         {
             #region UI
             DwarfUserInterface = new UserInterface();
             #endregion
-            instruktion = this;
+            Instance = this;
             LoadRoAHook();
             LoadMod();
             RegisterQuests();

@@ -9,10 +9,12 @@ using Synergia.Content.Items.Histories;
 using Synergia.Content.Items.Misc;
 using Terraria;
 using Terraria.Audio;
+using Terraria.Localization;
 using Terraria.ModLoader;
 using ValhallaMod.Items.Consumable;
 using static Terraria.ID.ItemID;
 using static Terraria.ModLoader.ModContent;
+using static Synergia.Common.SUtils.LocUtil;
 
 namespace Synergia.Common.GlobalPlayer
 {
@@ -29,22 +31,18 @@ namespace Synergia.Common.GlobalPlayer
             Vector2 origin = new Vector2(texture.Width, texture.Height) / 2f;
             spriteBatch.Draw(texture, position, null, Color.White * BookOpacity, 0f, origin, 1f, SpriteEffects.None, 0f);
         }
-        public static bool DrawBookButtons(SpriteBatch spriteBatch, bool Right, string TextureName = "Mana2", string NameRightButton = "Next Button Right", string NameAltButton = "Next Button")
-        {
+        public static bool DrawBookButtons(SpriteBatch spriteBatch, bool Right, string TextureName = "Mana2") {
+            string NameRightButton = Language.GetTextValue(LocUIKey("BooK", "Button"));
+            string NameAltButton = Language.GetTextValue("BooK", "Button2");
+
             Rectangle nextPageButton;
             Vector2 position = new Vector2(Main.screenWidth, Main.screenHeight) / 2f;
-            Texture2D buttonTex = Request<Texture2D>(Right ? $"Synergia/Assets/UIs/{TextureName}" : $"Synergia/Assets/UIs/{TextureName}" + "_Alt").Value;
-
-            nextPageButton = BookRectangle(Right ? position.X + 365 : position.X - 415, position.Y - -285, 40, 40);
-
+            Texture2D buttonTex = Request<Texture2D>(Right ? $"Synergia/Assets/UIs/{TextureName}" + "_Alt" : $"Synergia/Assets/UIs/{TextureName}").Value;
+            nextPageButton = BookRectangle(Right ? position.X + 375 : position.X - 405, position.Y - -285, 25, 25);
             bool hovering = nextPageButton.Contains(Main.MouseScreen.ToPoint());
-
             spriteBatch.Draw(buttonTex, nextPageButton, hovering ? Color.White : Color.Gray);
-
-            if(hovering) Main.instance.MouseText(Right ? NameRightButton : NameAltButton);
-
-            if (hovering && Main.mouseLeft && Main.mouseLeftRelease)
-            {
+            if (hovering) Main.instance.MouseText(Right ? NameRightButton : NameAltButton);
+            if (hovering && Main.mouseLeft && Main.mouseLeftRelease) {
                 SoundEngine.PlaySound(Terraria.ID.SoundID.MenuTick);
                 return true;
             }

@@ -29,9 +29,9 @@ namespace Synergia.Common.WorldGenSystem
     {
         //x = 103, y = 25
         static readonly int[] SnowVilageGenTiles = [147, 161, 163, 200];
-        public static int SnowVilagePositionX = 0;
-        public static int SnowVilagePositionY = 0;
-        public static List<Vector2> VilageTiles = [];
+        public static int SnowVilagePositionX { get; private set; }
+        public static int SnowVilagePositionY { get; private set; }
+        public static List<Vector2> VilageTiles { get; private set; } = [];
         bool GenerateSnowVilage = false;
 
         const byte a = 10, b = 11, c = 12, d = 13, e = 14, f = 15, g = 16, h = 17, i = 18, j = 19, k = 20, l = 21;
@@ -253,6 +253,7 @@ namespace Synergia.Common.WorldGenSystem
                         continue;
 
                     Tile tile = Framing.GetTileSafely(SnowVilagePositionX + X, SnowVilagePositionY - Y);
+                    tile.ClearEverything();
 
                     switch (SnowVilageTiles[Y, X])
                     {

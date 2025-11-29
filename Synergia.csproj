@@ -35,6 +35,9 @@
       <Reference Include="StramsSurvival">
         <HintPath>..\..\ModReader\StramsSurvival\StramsSurvival.dll</HintPath>
       </Reference>
+      <Reference Include="StructureHelper">
+        <HintPath>..\..\ModReader\StructureHelper\StructureHelper.dll</HintPath>
+      </Reference>
       <Reference Include="TRAEBossRework">
         <HintPath>..\..\ModReader\TRAEBossRework\TRAEBossRework.dll</HintPath>
       </Reference>
