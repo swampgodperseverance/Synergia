@@ -916,6 +916,11 @@ Items: {
 		DisplayName: Ever Ice
 		Tooltip: ""
 	}
+
+	Starcaller: {
+		Tooltip: ""
+		DisplayName: Starcaller
+	}
 }
 
 Projectiles: {
@@ -1148,6 +1153,7 @@ Projectiles: {
 	SnowCrystal.DisplayName: Snow Crystal
 	GiantSnow.DisplayName: Giant Snow
 	FeroziumBladeRework.DisplayName: Ferozium Blade Rework
+	FriendlyStar.DisplayName: Friendly Star
 }
 
 Buffs: {
@@ -1224,6 +1230,11 @@ Buffs: {
 	GloomDebuff: {
 		DisplayName: Gloom Debuff
 		Description: Mods.Synergia.Buffs.GloomDebuff.Description
+	}
+
+	Starlord: {
+		Description: Mods.Synergia.Buffs.Starlord.Description
+		DisplayName: Starlord
 	}
 }
 

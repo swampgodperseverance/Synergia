@@ -1,32 +1,20 @@
 ﻿using Microsoft.Xna.Framework;
 using Synergia.Helpers;
 using Synergia.UIs;
-using System.Collections.Generic;
-using System.IO;
 using Terraria;
 using Terraria.DataStructures;
-using Terraria.GameContent.Generation;
 using Terraria.ID;
 using Terraria.ModLoader;
-using Terraria.ModLoader.IO;
 using Terraria.WorldBuilding;
-using ValhallaMod.Items.Placeable;
-using ValhallaMod.NPCs.TownNPCs;
 using ValhallaMod.Tiles.Blocks;
 using ValhallaMod.Walls;
 using static Synergia.ModList;
 
-namespace Synergia.Common.WorldGenSystem;
+namespace Synergia.Common.ModSystems.WorldGens;
 
-public class GenerationVillageInHell : ModSystem {
-    public static int hellVillageX;
-    public static int hellVillageY;
-    public static List<Vector2> hellVillageTilesVector = [];
+public class GenerationVillageInHell : BaseWorldGens {
     bool GenerateHellVillage = false;
-    const byte a = 10, b = 11, c = 12, d = 13, e = 14, f = 15, g = 16, h = 17, i = 18, j = 19;
-    const byte E = 20;
-
-    // x = 281; y =~ 102
+    // x = 281; y = 100
     static readonly byte[,] hellVillageTiles =
     {
         // 0 - empty, 1 - Sin stone, 2 - Ash, 3 - Hell stone, 4 - BackwoodsStone 5 - BlastedStone, 6 - Sin stone Magma, 7 - Caesium Ore, 8 - BackwoodsStoneBrick, 9 - 76, 10 : a - ImperviousBrick, 11:b - TarBrick 12:c -SinstoneBrick, 13:d - AshWood, 14:e - ResistantWood, 15:f - Platform, 16:g - HellstoneRoof
@@ -97,7 +85,7 @@ public class GenerationVillageInHell : ModSystem {
         {2,2,2,4,4,4,4,4,4,4,4,4,4,4,4,4,4,7,7,7,7,7,7,7,7,4,4,4,4,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,4,4,4,4,5,5,5,5,5,5,5,5,5,4,4,4,4,4,4,4,4,6,6,6,6,9,9,9,9,9,9,6,9,9,9,0,a,9,9,a,a,a,0,a,a,7,7,7,7,7,a,a,b,b,b,a,0,a,b,a,a,b,a,0,b,b,4,4,4,6,6,6,6,6,6,2,2,2,2,2,2,2,2,2,2,4,4,4,4,4,4,4,4,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,5,5,5,5,5,5,5,5,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,7,7,7,7,7,7,7,7,7,2,2,2,2,2,2,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,c,c,8,8,8,4,4,4,4,4,4,8,4,4,8,4,6,6,4,6,4,6,4,6,4,4,6,4,4,6,6,6,4,8,8,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,5,5,5,5,5,5,0,0,0,0,0,0,0,0}, // 65
         {2,2,2,4,4,4,4,4,4,4,4,4,4,4,4,4,7,7,7,7,7,7,7,7,7,4,4,4,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,6,6,6,6,9,9,9,9,9,9,9,9,9,9,a,9,9,9,9,9,a,a,a,7,7,7,7,7,a,a,a,a,b,a,b,b,b,b,b,b,b,b,b,b,4,4,4,6,6,6,6,6,6,6,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,7,7,7,7,7,7,7,2,0,0,0,0,0,0,0,0,4,4,4,4,4,4,4,4,4,4,4,4,8,8,c,c,8,8,8,c,c,4,8,c,8,8,a,8,8,8,4,6,4,4,4,4,6,4,6,4,4,4,4,4,4,4,6,4,4,8,4,4,4,4,c,4,8,8,4,c,c,8,4,4,4,4,5,5,5,0,0,0,0,0,0,0,0,0,0}, // 66
         {2,2,4,4,4,4,4,4,4,4,4,4,4,4,4,4,7,7,7,7,7,7,7,7,4,4,4,4,5,5,5,5,5,5,5,5,5,5,5,5,5,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,0,6,6,6,6,9,9,9,9,6,9,9,a,a,a,9,9,9,9,a,9,7,7,7,7,a,b,b,a,a,b,b,b,b,b,a,a,b,b,b,b,b,4,4,4,6,6,6,6,6,6,6,6,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,0,7,7,7,7,7,7,7,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,8,8,8,c,8,8,8,8,c,c,8,8,d,8,8,c,c,8,4,4,4,6,4,4,4,4,4,6,4,6,6,4,4,4,4,6,4,8,4,4,4,c,c,c,8,8,8,8,c,c,8,4,4,4,4,0,0,0,0,0,0,0,0,0,0,0,0,0}, // 67
-        {2,2,4,4,4,4,4,4,4,4,4,4,4,4,4,7,7,7,7,7,7,7,7,7,4,4,4,5,5,5,5,5,5,5,5,5,5,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,7,7,7,7,0,0,0,0,0,0,0,0,0,0,0,0,0,0,E,0,0,0,0,0,0,0,0,6,6,6,6,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,4,2,2,8,2,2,2,2,2,b,2,2,2,2,2,b,2,2,2,b,2,2,2,2,2,2,2,2,2,6,6,2,2,2,2,2,6,6,2,2,2,2,2,2,2,0,7,7,7,7,7,7,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,8,8,8,0,0,0,0,0,0,0,0,8,d,8,8,c,8,8,0,0,6,6,6,6,0,6,6,6,0,6,0,6,0,6,0,6,8,c,8,8,8,c,8,0,0,0,0,0,0,8,c,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}, // 68
+        {2,2,4,4,4,4,4,4,4,4,4,4,4,4,4,7,7,7,7,7,7,7,7,7,4,4,4,5,5,5,5,5,5,5,5,5,5,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,7,7,7,7,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,6,6,6,6,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,4,2,2,8,2,2,2,2,2,b,2,2,2,2,2,b,2,2,2,b,2,2,2,2,2,2,2,2,2,6,6,2,2,2,2,2,6,6,2,2,2,2,2,2,2,0,7,7,7,7,7,7,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,8,8,8,0,0,0,0,0,0,0,0,8,d,8,8,c,8,8,0,0,6,6,6,6,0,6,6,6,0,6,0,6,0,6,0,6,8,c,8,8,8,c,8,0,0,0,0,0,0,8,c,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}, // 68
         {2,2,4,4,4,4,4,4,4,4,4,4,4,4,7,7,7,7,7,7,7,7,7,7,4,4,4,5,5,5,5,5,5,5,5,5,5,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,7,7,7,7,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,6,6,0,2,2,2,2,2,2,2,2,2,2,2,2,2,2,4,2,2,8,2,2,2,2,2,c,c,2,2,2,2,8,2,2,2,b,b,2,2,2,2,2,2,2,2,6,6,6,6,6,6,6,6,2,2,2,2,2,2,0,0,0,7,7,7,7,7,7,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,c,8,0,0,0,0,0,0,0,0,0,8,d,8,8,c,8,8,0,0,6,6,0,6,0,0,0,0,0,0,0,0,6,0,0,6,c,d,d,8,0,0,0,0,0,0,0,0,0,8,d,8,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}, // 69
         {2,2,4,4,4,4,4,4,4,4,4,4,4,4,7,7,7,7,7,7,7,7,7,4,4,4,5,5,5,5,5,5,5,5,5,5,5,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,7,7,7,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,2,2,2,2,2,2,2,b,b,b,b,8,8,8,8,8,b,b,2,2,c,2,2,8,8,8,2,8,8,8,c,c,c,c,2,2,2,2,2,2,6,6,6,6,6,6,6,6,0,0,0,0,0,0,0,0,0,7,7,7,7,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,c,d,0,0,0,0,0,0,0,0,0,d,d,0,8,c,d,8,6,0,6,6,0,0,0,0,0,0,0,0,0,0,6,0,6,6,c,d,8,8,8,0,0,0,0,0,0,0,0,8,d,d,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}, // 70
         {2,2,4,4,4,4,4,4,4,4,4,4,4,7,7,7,7,7,7,7,7,4,4,4,4,4,5,5,5,5,5,5,5,5,5,5,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,b,b,0,0,0,0,7,7,0,0,0,0,0,0,0,0,0,0,0,0,0,0,c,c,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,2,2,2,c,c,c,c,c,b,b,b,c,c,b,b,c,c,8,8,b,b,b,b,b,b,b,b,b,b,2,2,2,2,2,2,6,6,6,0,0,0,0,0,0,0,0,0,0,0,0,0,0,7,7,7,7,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,8,d,0,0,0,0,0,0,0,0,0,d,8,0,8,c,d,8,6,0,6,6,0,0,0,0,0,0,0,0,0,0,6,0,0,c,d,c,d,8,8,0,0,0,0,0,0,0,0,0,c,c,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}, // 71
@@ -468,53 +456,9 @@ public class GenerationVillageInHell : ModSystem {
         {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
     };
 
-    public override void OnWorldLoad() {
-        hellVillageX = 0;
-        hellVillageY = 0;
-        hellVillageTilesVector.Clear();
-        GenerateHellVillage = false;
-    }
-    public override void SaveWorldData(TagCompound tag) {
-        tag["hellVillageX"] = hellVillageX;
-        tag["hellVillageY"] = hellVillageY;
-        tag["hellVillageTilesVector"] = hellVillageTilesVector;
-        var Generated2 = new BitsByte();
-        Generated2[0] = GenerateHellVillage;
-    }
-    public override void LoadWorldData(TagCompound tag) {
-        hellVillageX = tag.GetInt("hellVillageX");
-        hellVillageY = tag.GetInt("hellVillageY");
-        hellVillageTilesVector = tag.Get<List<Vector2>>("hellVillageTilesVector");
-        var Generated2 = (BitsByte)tag.GetByte("Generated2");
-        GenerateHellVillage = Generated2[0];
-    }
-    public override void NetSend(BinaryWriter writer) {
-        writer.Write(hellVillageX);
-        writer.Write(hellVillageY);
-        writer.Write(hellVillageTilesVector.Count);
-        foreach (var v in hellVillageTilesVector) writer.WriteVector2(v);
-        BitsByte Flags = new(); Flags[0] = GenerateHellVillage;
-    }
-    public override void NetReceive(BinaryReader reader) {
-        hellVillageX = reader.ReadInt32();
-        hellVillageY = reader.ReadInt32();
-        int count = reader.ReadInt32();
-        hellVillageTilesVector.Clear();
-        for (int i = 0; i < count; i++) hellVillageTilesVector.Add(reader.ReadVector2());
-        BitsByte Flags = reader.ReadByte();
-        GenerateHellVillage = Flags[0];
-    }
-    public override void ModifyWorldGenTasks(List<GenPass> tasks, ref double totalWeight) {
-        if (tasks.FindIndex(x => x.Name == "Final Cleanup") != -1) {
-            tasks.Add(new PassLegacy("[Synergia] Hell Village", (progress, config) => AddHellVillage(progress))); 
-        } 
-    }
-    void AddHellVillage(GenerationProgress progress = null) { 
-        if (GenerateHellVillage) return; 
-        bool Success = Do_MakeHellVillage(progress); 
-        if (Success) GenerateHellVillage = true;  
-    }
-    static bool Do_MakeHellVillage(GenerationProgress progress) {
+    public override bool GensBool { get => GenerateHellVillage; set => GenerateHellVillage = value; }
+    public override string NameGen => "[Synergia] Hell Village";
+    public override bool Do_MakeGen(GenerationProgress progress) {
         if (progress != null) {
             progress.Message = "";
             progress.Set(0.66f);
@@ -523,11 +467,11 @@ public class GenerationVillageInHell : ModSystem {
         int startX = Main.maxTilesX - 822; // <--- До какой точки X будет очистка
         int startY = Main.maxTilesY - 44; // <--- Самая нижния правая точка в аду по Y. Нет на самом деле это - 45. 1244 - самый нижний блок в мире после идет исключение.
 
-        int EndX = GenerationArenasInHell.HellArenaPositionX - 199; // <--- Точка в аду где находится арена по X с которой начнётся очистка
+        int EndX = HellArenaPositionX - 199; // <--- Точка в аду где находится арена по X с которой начнётся очистка
         int EndY = Main.maxTilesY - 162; // <--- До какой точки Y будет очистка
 
-        hellVillageX = EndX;
-        hellVillageY = startY;
+        HellVillageX = EndX;
+        HellVillageY = startY;
 
         int width = hellVillageTiles.GetLength(1);
         int height = hellVillageTiles.GetLength(0);
@@ -535,8 +479,8 @@ public class GenerationVillageInHell : ModSystem {
         WorldHelper.Cleaning(EndX, startY, startX, EndY, TileID.Ash, TileID.Hellstone, ModContent.TileType<Sinstone>(), TileID.AshGrass, TileID.Stone, 82, 637, 185, 634, 28);
         for (int y = 0; y < height; y++) {
             for (int x = 0; x < width; x++) {
-                int worldX = hellVillageX - 280 + x;
-                int worldY = hellVillageY - y;
+                int worldX = HellVillageX - 280 + x;
+                int worldY = HellVillageY - y;
 
                 if (!WorldGen.InWorld(worldX, worldY, 10)) {
                     continue;
@@ -561,7 +505,7 @@ public class GenerationVillageInHell : ModSystem {
                     case c: tile.TileType = (ushort)ModContent.TileType<SinstoneBrick>(); tile.HasTile = true; break;
                     case d: tile.TileType = TileID.AshWood; tile.HasTile = true; break;
                     case e: tile.TileType = Ava.Find<ModTile>("ResistantWood").Type; tile.HasTile = true; break;
-                    case f: WorldGen.PlaceTile(hellVillageX - 280 + x, hellVillageY - y, 19); break;
+                    case f: WorldGen.PlaceTile(HellVillageX - 280 + x, HellVillageY - y, 19); break;
                     case g: tile.TileType = (ushort)ModContent.TileType<HellstoneRoof>(); tile.HasTile = true; break;
                 }
                 switch (hellVillageaWalls[y, x]) {
@@ -579,7 +523,7 @@ public class GenerationVillageInHell : ModSystem {
                     case b: tile.WallType = WallID.Lava3Echo; break;
                     case c: tile.WallType = WallID.StoneSlab; break;
                     case e: tile.WallType = Ava.Find<ModWall>("ResistantWoodWall").Type; break;
-                    case f: tile.WallType = WallID.AshWood; break; 
+                    case f: tile.WallType = WallID.AshWood; break;
                     case g: tile.WallType = WallID.Stone; break;
                     case h: tile.WallType = WallID.MetalFence; break;
                     case i: tile.WallType = WallID.Rocks2Echo; break;
@@ -598,12 +542,12 @@ public class GenerationVillageInHell : ModSystem {
                     case 1: tile.LiquidType = LiquidID.Lava; tile.LiquidAmount = 255; break;
                 }
                 if (hellVillageTiles[y, x] != 0) {
-                    hellVillageTilesVector.Add(new Vector2(hellVillageX - 280 + x, hellVillageY - y));
+                    HellVillageTilesVector.Add(new Vector2(HellVillageX - 280 + x, HellVillageY - y));
                 }
             }
         }
 
-        int pos = hellVillageX - 280;
+        int pos = HellVillageX - 280;
 
         ushort lamp = Ava.Find<ModTile>("ResistantWoodLamp").Type;
         ushort book = Ava.Find<ModTile>("ResistantWoodBookcase").Type;
@@ -611,29 +555,29 @@ public class GenerationVillageInHell : ModSystem {
         ushort Lamp = Ava.Find<ModTile>("ResistantWoodLantern").Type;
         ushort candle = Ava.Find<ModTile>("ResistantWoodCandelabra").Type;
 
-        NPC.NewNPC(new EntitySource_WorldGen(), (pos + 149) * 16, (hellVillageY - 72) * 16, ModContent.NPCType<Alchemist>(), 0, 0f, 0f, 0f, 0f, 255);
+        NPC.NewNPC(new EntitySource_WorldGen(), (pos + 149) * 16, (HellVillageY - 72) * 16, ModContent.NPCType<Alchemist>(), 0, 0f, 0f, 0f, 0f, 255);
 
-        WorldGen.PlaceObject(pos + 112, hellVillageY - 67, TileID.ClosedDoor,    false, 44);
-        WorldGen.PlaceObject(pos + 139, hellVillageY - 71, TileID.ClosedDoor,    false, 48);
-        WorldGen.PlaceObject(pos + 162, hellVillageY - 72, TileID.ClosedDoor,    false, 48);
-        WorldGen.PlaceObject(pos + 95,  hellVillageY - 74, TileID.Bookcases,     false, 4 );
-        WorldGen.PlaceObject(pos + 141, hellVillageY - 71, TileID.Bookcases,     false, 4 );
-        WorldGen.PlaceObject(pos + 136, hellVillageY - 71, TileID.PottedPlants2, false, 7 );
-        WorldGen.PlaceObject(pos + 144, hellVillageY - 71, TileID.Benches,       false, 10);
-        WorldGen.PlaceObject(pos + 146, hellVillageY - 72, lamp,                 false, 0 );
-        WorldGen.PlaceObject(pos + 149, hellVillageY - 72, TileID.Tables,        false, 13);
-        WorldGen.PlaceObject(pos + 152, hellVillageY - 72, book,                 false, 0 );
-        WorldGen.PlaceObject(pos + 155, hellVillageY - 72, Anvil,                false, 0 );
-        WorldGen.PlaceObject(pos + 152, hellVillageY - 76, candle,               false, 0 );
-        WorldGen.PlaceObject(pos + 161, hellVillageY - 76, Lamp,                 false, 0 );
-        WorldGen.PlaceObject(pos + 163, hellVillageY - 76, Lamp,                 false, 0 );
+        WorldGen.PlaceObject(pos + 112, HellVillageY - 67, TileID.ClosedDoor,       false, 44);
+        WorldGen.PlaceObject(pos + 139, HellVillageY - 71, TileID.ClosedDoor,       false, 48);
+        WorldGen.PlaceObject(pos + 162, HellVillageY - 72, TileID.ClosedDoor,       false, 48);
+        WorldGen.PlaceObject(pos + 95, HellVillageY - 74, TileID.Bookcases,         false, 4 );
+        WorldGen.PlaceObject(pos + 141, HellVillageY - 71, TileID.Bookcases,        false, 4 );
+        WorldGen.PlaceObject(pos + 136, HellVillageY - 71, TileID.PottedPlants2,    false, 7 );
+        WorldGen.PlaceObject(pos + 144, HellVillageY - 71, TileID.Benches,          false, 10);
+        WorldGen.PlaceObject(pos + 146, HellVillageY - 72, lamp,                    false, 0 );
+        WorldGen.PlaceObject(pos + 149, HellVillageY - 72, TileID.Tables,           false, 13);
+        WorldGen.PlaceObject(pos + 152, HellVillageY - 72, book,                    false, 0 );
+        WorldGen.PlaceObject(pos + 155, HellVillageY - 72, Anvil,                   false, 0 );
+        WorldGen.PlaceObject(pos + 152, HellVillageY - 76, candle,                  false, 0 );
+        WorldGen.PlaceObject(pos + 161, HellVillageY - 76, Lamp,                    false, 0 );
+        WorldGen.PlaceObject(pos + 163, HellVillageY - 76, Lamp,                    false, 0 );
 
-        WorldGen.Place3x3Wall(pos + 107, hellVillageY - 69, TileID.Painting3X3,         16);
-        WorldGen.Place3x3Wall(pos + 159, hellVillageY - 75, TileID.Painting3X3,         45);
+        WorldGen.Place3x3Wall(pos + 107, HellVillageY - 69, TileID.Painting3X3, 16);
+        WorldGen.Place3x3Wall(pos + 159, HellVillageY - 75, TileID.Painting3X3, 45);
 
-        WorldGen.PlaceOnTable1x1(pos + 150, hellVillageY - 74, TileID.Bottles,          5 );
+        WorldGen.PlaceOnTable1x1(pos + 150, HellVillageY - 74, TileID.Bottles, 5);
 
-        WorldGen.Place2x2(pos + 149, hellVillageY - 74, TileID.LavafishBowl,            0 );
+        WorldGen.Place2x2(pos + 149, HellVillageY - 74, TileID.LavafishBowl, 0);
 
         return true;
     }

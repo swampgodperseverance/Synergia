@@ -1,25 +1,19 @@
 ﻿using Microsoft.Xna.Framework;
 using Synergia.Helpers;
 using System.Collections.Generic;
-using System.IO;
 using Terraria;
 using Terraria.GameContent.Generation;
 using Terraria.ID;
 using Terraria.ModLoader;
-using Terraria.ModLoader.IO;
 using Terraria.WorldBuilding;
 using ValhallaMod.Tiles.Blocks;
 using static Synergia.ModList;
 
-namespace Synergia.Common.WorldGenSystem;
+namespace Synergia.Common.ModSystems.WorldGens;
 
-public class GenerationArenasInHell : ModSystem {
-    public static int HellArenaPositionX { get; private set; }
-    public static int HellArenaPositionY { get; private set; }
-    public static List<Vector2> ArenaTiles { get; private set; } = [];
-    public static int BasePositionArena { get; private set; }
+public class GenerationArenasInHell : BaseWorldGens {
+
     bool GenerateHellArena = false;
-    const byte a = 10, b = 11, c = 12, d = 13;
 
     // X = 199 Y = 119
     static readonly byte[,] HellArenaTiles =
@@ -514,57 +508,9 @@ public class GenerationArenasInHell : ModSystem {
         {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}, // 118
         {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}, // 119
     };
-
-    public override void OnWorldLoad() {
-        HellArenaPositionX = 0;
-        HellArenaPositionY = 0;
-        ArenaTiles.Clear();
-        GenerateHellArena = false;
-    }
-    public override void SaveWorldData(TagCompound tag) {
-        tag["HellArenaPositionX"] = HellArenaPositionX;
-        tag["HellArenaPositionY"] = HellArenaPositionY;
-        tag["ArenaTiles"] = ArenaTiles;
-        var Generated2 = new BitsByte();
-        Generated2[0] = GenerateHellArena;
-    }
-    public override void LoadWorldData(TagCompound tag) {
-        HellArenaPositionX = tag.GetInt("HellArenaPositionX");
-        HellArenaPositionY = tag.GetInt("HellArenaPositionY");
-        ArenaTiles = tag.Get<List<Vector2>>("ArenaTiles");
-        var Generated2 = (BitsByte)tag.GetByte("Generated2");
-        GenerateHellArena = Generated2[0];
-    }
-    public override void NetSend(BinaryWriter writer) {
-        writer.Write(HellArenaPositionX);
-        writer.Write(HellArenaPositionY);
-        writer.Write(ArenaTiles.Count);
-        foreach (var v in ArenaTiles) writer.WriteVector2(v);
-        BitsByte Flags = new(); Flags[0] = GenerateHellArena;
-    }
-    public override void NetReceive(BinaryReader reader) {
-        HellArenaPositionX = reader.ReadInt32();
-        HellArenaPositionY = reader.ReadInt32();
-        int count = reader.ReadInt32();
-        ArenaTiles.Clear();
-        for (int i = 0; i < count; i++) ArenaTiles.Add(reader.ReadVector2());
-        BitsByte Flags = reader.ReadByte();
-        GenerateHellArena = Flags[0];
-    }
-
-    public override void ModifyWorldGenTasks(List<GenPass> tasks, ref double totalWeight) {
-        int index = tasks.FindIndex(x => x.Name == "Final Cleanup");
-        if (index != -1) {
-            tasks.Add(new PassLegacy("[Synergia] Hell Arena", (progress, config) => AddHellArena(progress)));
-        }
-    }
-    void AddHellArena(GenerationProgress progress = null) {
-        if (GenerateHellArena) return;
-        bool Success = Do_MakeHellArena(progress);
-        if (Success) GenerateHellArena = true;
-    }
-    private static bool Do_MakeHellArena(GenerationProgress progress)
-    {
+    public override bool GensBool { get => GenerateHellArena; set => GenerateHellArena = value; }
+    public override string NameGen => "[Synergia] Arenas in hell";
+    public override bool Do_MakeGen(GenerationProgress progress) {
         if (progress != null) {
             progress.Message = "";
             progress.Set(0.33f);

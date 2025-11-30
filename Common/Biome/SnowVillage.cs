@@ -1,4 +1,4 @@
-﻿using Synergia.Common.WorldGenSystem;
+﻿using Synergia.Common.ModSystems.WorldGens;
 using Synergia.Content.Buffs;
 using Synergia.Helpers;
 using Terraria;

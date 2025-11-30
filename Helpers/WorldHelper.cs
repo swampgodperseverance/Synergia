@@ -1,7 +1,6 @@
-﻿using Synergia.Common.WorldGenSystem;
+﻿using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
-using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 
@@ -47,21 +46,66 @@ namespace Synergia.Helpers
 
             return false;
         }
+        /// <param name="style">Посмотри на вики. Начало идет айди а затем стиль</param> <param name="chance">Базово 5</param> <param name="item">ну тут и так логично</param>
+        public static void AddContainersLoot(int style, int chance, int item, int min = 0, int max = 0) {
+            for (int chestIndex = 0; chestIndex < 1000; chestIndex++) {
+                Chest chest = Main.chest[chestIndex];
+                if (chest != null && Main.tile[chest.x, chest.y].TileType == TileID.Containers && Main.tile[chest.x, chest.y].TileFrameX == style * 36) {
+                    if (Main.rand.NextBool(chance)) {
+                        for (int inventoryIndex = 0; inventoryIndex < 40; inventoryIndex++) {
+                            if (chest.item[inventoryIndex].type == ItemID.None) {
+                                chest.item[inventoryIndex].SetDefaults(item);
+                                Random(chest.item, ref inventoryIndex, min, max);
+                                break;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        public static void AddContainersLoot(int style, int chance, List<int> itemTypeToEditors, int item, int min = 0, int max = 0) {
+            for (int chestIndex = 0; chestIndex < 1000; chestIndex++) {
+                Chest chest = Main.chest[chestIndex];
+                if (chest != null && Main.tile[chest.x, chest.y].TileType == TileID.Containers && Main.tile[chest.x, chest.y].TileFrameX == style * 36) {
+                    if (Main.rand.NextBool(chance)) {
+                        for (int inventoryIndex = 0; inventoryIndex < 40; inventoryIndex++) {
+                            foreach (int type in itemTypeToEditors) {
+                                if (chest.item[inventoryIndex].type == type) {
+                                    chest.item[inventoryIndex].SetDefaults(item);
+                                    Random(chest.item, ref inventoryIndex, min, max);
+                                    break;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        public static void DestroyerContainersLoot(int style, int itemTypeToEditors) {
+            for (int chestIndex = 0; chestIndex < 1000; chestIndex++) {
+                Chest chest = Main.chest[chestIndex];
+                if (chest != null && Main.tile[chest.x, chest.y].TileType == TileID.Containers && Main.tile[chest.x, chest.y].TileFrameX == style * 36) {
+                    for (int inventoryIndex = 0; inventoryIndex < 40; inventoryIndex++) {
+                        if (chest.item[inventoryIndex].type == itemTypeToEditors) {
+                            chest.item[inventoryIndex].SetDefaults();
+                            break;
+                        }
+                    }
+                }
+            }
+        }
         /// <summary> Если нужно добавить один предмет</summary>
-        public static void LootInContainers(Item[] ChestInventory, ref int Index, int Item, int Min = 1, int Max = 1) 
-        {
+        public static void LootInContainers(Item[] ChestInventory, ref int Index, int Item, int Min = 1, int Max = 1) {
             ChestInventory[Index].SetDefaults(Item); Random(ChestInventory, ref Index, Min, Max); Index++;
         }
         /// <summary> Если нужно добавить один случаеный предмет из списка ну например zenith, wood</summary>
-        public static void RandomLootInCoutainer(Item[] ChestInventory, ref int Index, int Min = 1, int Max = 1, params int[] Items)
-        { 
+        public static void RandomLootInCoutainer(Item[] ChestInventory, ref int Index, int Min = 1, int Max = 1, params int[] Items) { 
             ChestInventory[Index].SetDefaults(Utils.SelectRandom(WorldGen.genRand, Items));
             Random(ChestInventory, ref Index, Min, Max); Index++;
         }
         /// <summary>  </summary>
         /// <param name="Tire">1:Copper, 2:Iron, 3:Silver, 4:Gold, 5: Copper </param>
-        public static void IfOreTireLoot(Item[] ChestInventory, ref int Index, int Tire, int IfTrue, int Else, int Min = 1, int Max = 1)
-        {
+        public static void IfOreTireLoot(Item[] ChestInventory, ref int Index, int Tire, int IfTrue, int Else, int Min = 1, int Max = 1) {
             bool ThisWoroldHasOre = Tire switch
             {
                 1 => WorldGen.SavedOreTiers.Copper == TileID.Copper,
@@ -78,6 +122,11 @@ namespace Synergia.Helpers
 
             ChestInventory[Index].SetDefaults(itemToGive); Random(ChestInventory, ref Index, Min, Max); Index++;
         }
-        static void Random(Item[] ChestInventory, ref int Index, int Min, int Max) => ChestInventory[Index].stack = Main.rand.Next(Min, Max + 1);
+        static void Random(Item[] ChestInventory, ref int Index, int Min, int Max) {
+            int a;
+            if (Max != 0) { a = 1; }
+            else { a = 0; }
+            ChestInventory[Index].stack = Main.rand.Next(Min, Max + a);
+        }
     }
 }

@@ -11,7 +11,7 @@ namespace Synergia.Common.GlobalPlayer {
         Step_By_StepAnimationData throwAnimation;
         Vector2 shake = Vector2.Zero;
         Vector2 velocity = Vector2.Zero;
-        public void DrawThrowingUI(SpriteBatch spriteBatch) {
+        public void DrawThrowingUI() {
             ThrowingPlayer throwing = Player.GetModPlayer<ThrowingPlayer>();
             if (throwing.ActiveUI) {
                 if (throwing.comboCount == 5) {
