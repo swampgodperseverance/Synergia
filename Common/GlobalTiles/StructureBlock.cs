@@ -1,6 +1,6 @@
 ﻿using Bismuth.Content.Items.Other;
 using Microsoft.Xna.Framework;
-using Synergia.Common.WorldGenSystem;
+using Synergia.Common.ModSystems.WorldGens;
 using Terraria;
 using Terraria.ModLoader;
 
@@ -20,9 +20,9 @@ public class StructureBlock : GlobalTile {
         }
     }
     static bool EnableVector(int i, int j) {
-        bool snowVilage = GenerationSnowVillage.VilageTiles.Contains(new Vector2(i, j));
-        bool arena = GenerationArenasInHell.ArenaTiles.Contains(new Vector2(i, j));
-        bool hellVilage = GenerationVillageInHell.hellVillageTilesVector.Contains(new Vector2(i, j));
+        bool snowVilage = BaseWorldGens.VilageTiles.Contains(new Vector2(i, j));
+        bool arena = BaseWorldGens.ArenaTiles.Contains(new Vector2(i, j));
+        bool hellVilage = BaseWorldGens.HellVillageTilesVector.Contains(new Vector2(i, j));
         if (snowVilage || arena || hellVilage) {
             return true;
         }

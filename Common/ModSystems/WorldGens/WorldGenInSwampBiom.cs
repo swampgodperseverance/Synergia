@@ -9,7 +9,7 @@ using Terraria.ModLoader.IO;
 using Terraria.WorldBuilding;
 using static Bismuth.Utilities.BismuthWorld;
 
-namespace Synergia.Common.WorldGenSystem;
+namespace Synergia.Common.ModSystems.WorldGens;
 
 public class WorldGenInSwampBiom : ModSystem {
 

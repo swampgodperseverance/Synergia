@@ -1,13 +1,11 @@
 using Terraria.ModLoader;
-using Terraria;
-using Microsoft.Xna.Framework.Input;
 
 namespace Synergia.Common.ModSystems
 {
     public class VanillaKeybinds : ModSystem
     {
-        public static ModKeybind ToggleAuraModeKeybind;
-        public static ModKeybind ArmorSetBonusActivation;
+        public static ModKeybind ToggleAuraModeKeybind { get; private set; }
+        public static ModKeybind ArmorSetBonusActivation { get; private set; }
 
         public override void Load()
         {

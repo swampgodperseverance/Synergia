@@ -5,7 +5,6 @@ using Terraria;
 using Terraria.Audio;
 using Terraria.ID;
 using Terraria.ModLoader;
-using Terraria.DataStructures;
 using ValhallaMod.Projectiles.Summoner;
 
 namespace Synergia.Content.Projectiles.Armor
@@ -145,7 +144,7 @@ namespace Synergia.Content.Projectiles.Armor
             return false;
         }
 
-        public override void Kill(int timeLeft)
+        public override void OnKill(int timeLeft)
         {
             // Морозные частицы при исчезновении
             for (int i = 0; i < 15; i++)
