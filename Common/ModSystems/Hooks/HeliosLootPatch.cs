@@ -1,13 +1,11 @@
 ﻿using Bismuth.Utilities.Global;
-using Bismuth.Utilities;
 using MonoMod.RuntimeDetour;
+using Synergia.Content.Items.Misc;
 using System.Reflection;
 using Terraria;
-using Terraria.ID;
 using Terraria.ModLoader;
-using Synergia.Content.Items.Misc;
 
-namespace Synergia.Common.ModSystems
+namespace Synergia.Common.ModSystems.Hooks
 {
     public class HeliosLootPatch : ModSystem
     {

@@ -1,10 +1,9 @@
-﻿using Terraria;
+﻿using Microsoft.Xna.Framework;
+using Terraria;
+using Terraria.Audio;
 using Terraria.ID;
 using Terraria.ModLoader;
-using Microsoft.Xna.Framework;
-using Synergia.Content.Projectiles.Hostile;
 using ValhallaMod.Projectiles.Spawn;
-using Terraria.Audio;
 
 namespace Synergia.Content.GlobalProjectiles
 {

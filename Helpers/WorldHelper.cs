@@ -63,13 +63,13 @@ namespace Synergia.Helpers
                 }
             }
         }
-        public static void AddContainersLoot(int style, int chance, List<int> itemTypeToEditors, int item, int min = 0, int max = 0) {
+        public static void AddContainersLoot(int style, int chance, List<int> itemTypeFoEditing, int item, int min = 0, int max = 0) {
             for (int chestIndex = 0; chestIndex < 1000; chestIndex++) {
                 Chest chest = Main.chest[chestIndex];
                 if (chest != null && Main.tile[chest.x, chest.y].TileType == TileID.Containers && Main.tile[chest.x, chest.y].TileFrameX == style * 36) {
                     if (Main.rand.NextBool(chance)) {
                         for (int inventoryIndex = 0; inventoryIndex < 40; inventoryIndex++) {
-                            foreach (int type in itemTypeToEditors) {
+                            foreach (int type in itemTypeFoEditing) {
                                 if (chest.item[inventoryIndex].type == type) {
                                     chest.item[inventoryIndex].SetDefaults(item);
                                     Random(chest.item, ref inventoryIndex, min, max);
@@ -81,12 +81,12 @@ namespace Synergia.Helpers
                 }
             }
         }
-        public static void DestroyerContainersLoot(int style, int itemTypeToEditors) {
+        public static void DestroyerContainersLoot(int style, int itemTypeFoEditing) {
             for (int chestIndex = 0; chestIndex < 1000; chestIndex++) {
                 Chest chest = Main.chest[chestIndex];
                 if (chest != null && Main.tile[chest.x, chest.y].TileType == TileID.Containers && Main.tile[chest.x, chest.y].TileFrameX == style * 36) {
                     for (int inventoryIndex = 0; inventoryIndex < 40; inventoryIndex++) {
-                        if (chest.item[inventoryIndex].type == itemTypeToEditors) {
+                        if (chest.item[inventoryIndex].type == itemTypeFoEditing) {
                             chest.item[inventoryIndex].SetDefaults();
                             break;
                         }

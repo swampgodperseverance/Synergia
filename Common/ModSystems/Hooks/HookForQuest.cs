@@ -7,7 +7,6 @@ using Synergia.Dataset;
 using Synergia.Helpers;
 using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Linq;
 using System.Reflection;
 using Terraria;
@@ -19,8 +18,6 @@ using Terraria.ID;
 using Terraria.Localization;
 using Terraria.ModLoader;
 using Terraria.UI.Chat;
-using static Synergia.Common.QuestSystem;
-using Carrot = StramsSurvival.Items.Foods.Carrot;
 
 namespace Synergia.Common.ModSystems.Hooks
 {
