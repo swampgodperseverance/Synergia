@@ -1,4 +1,6 @@
 using Bismuth.Content.Items.Weapons.Throwing;
+using ValhallaMod.Items.Weapons.Aura;
+using Avalon.Items.Weapons.Magic.Hardmode.Sunstorm;
 using Bismuth.Content.Projectiles;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -11,6 +13,7 @@ using System.Reflection;
 using Terraria;
 using Terraria.Audio;
 using Terraria.GameContent;
+using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.UI;
 using static Synergia.Common.QuestSystem.SynergiaQuestRegistry;
@@ -20,17 +23,16 @@ namespace Synergia
 {
     public class Synergia : Mod
     {
-        public UserInterface DwarfUserInterface;
-        public const string ModName = nameof(Synergia);
-        public Synergia Instance { get; private set; }
+        internal UserInterface DwarfUserInterface;
+        public const string ModName = "SynergiaModName";
+        Synergia instruktion;
         ILHook ExtraMountCavesGeneratorILHook;
-
         public override void Load()
         {
             #region UI
             DwarfUserInterface = new UserInterface();
             #endregion
-            Instance = this;
+            instruktion = this;
             LoadRoAHook();
             LoadMod();
             RegisterQuests();
@@ -46,6 +48,8 @@ namespace Synergia
             if (!Main.dedServ) {
                 if (Bis != null) {
                     TextureAssets.Item[ModContent.ItemType<OrcishJavelin>()] = ModContent.Request<Texture2D>("Synergia/Assets/Resprites/OrcishJavelinResprite");
+                    TextureAssets.Item[ModContent.ItemType<Sunstorm>()] = ModContent.Request<Texture2D>("Synergia/Assets/Resprites/SunstormResprite");
+                    TextureAssets.Item[ModContent.ItemType<StarAuraStaff>()] = ModContent.Request<Texture2D>("Synergia/Assets/Resprites/StarAuraRework");
                     TextureAssets.Projectile[ModContent.ProjectileType<OrcishJavelinP>()] = ModContent.Request<Texture2D>("Synergia/Assets/Resprites/OrcishJavelinResprite2");
                 }
             }
