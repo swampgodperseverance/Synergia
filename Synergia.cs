@@ -48,6 +48,8 @@ namespace Synergia
             if (!Main.dedServ) {
                 if (Bis != null) {
                     TextureAssets.Item[ModContent.ItemType<OrcishJavelin>()] = ModContent.Request<Texture2D>("Synergia/Assets/Resprites/OrcishJavelinResprite");
+                    TextureAssets.Item[ModContent.ItemType<Sunstorm>()] = ModContent.Request<Texture2D>("Synergia/Assets/Resprites/SunstormResprite");
+                    TextureAssets.Item[ModContent.ItemType<StarAuraStaff>()] = ModContent.Request<Texture2D>("Synergia/Assets/Resprites/StarAuraRework");
                     TextureAssets.Projectile[ModContent.ProjectileType<OrcishJavelinP>()] = ModContent.Request<Texture2D>("Synergia/Assets/Resprites/OrcishJavelinResprite2");
                 }
             }
@@ -143,4 +145,5 @@ namespace Synergia
             TimerSystem.Update();
         }
     }
+
 }
