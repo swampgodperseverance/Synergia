@@ -8,7 +8,7 @@ using System.Reflection;
 using Terraria;
 using Terraria.ModLoader;
 
-namespace Synergia.Common.ModSystems.Hooks
+namespace Synergia.Common.ModSystems.Hooks.Ons
 {
     public class HookForNecromant : ModSystem
     {

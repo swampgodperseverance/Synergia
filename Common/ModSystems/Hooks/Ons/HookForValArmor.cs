@@ -4,7 +4,7 @@ using Microsoft.Xna.Framework;
 using Synergia.Content.Projectiles.Armor;
 using Synergia.Common.ModSystems;
 
-namespace Synergia.Common.ModHooks
+namespace Synergia.Common.ModSystems.Hooks.Ons
 {
     public class ArmorSetKeybindHook : ModSystem
     {

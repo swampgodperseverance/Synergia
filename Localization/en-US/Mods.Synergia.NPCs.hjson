@@ -5,4 +5,17 @@ Dialog: {
 	CityDwarf2: I wonder how the {0} lives there, in cold, unpleasant conditions
 }
 
-Alchemist.DisplayName: Alchemist
+Alchemist: {
+	DisplayName: Alchemist
+
+	TownNPCMood: {
+		Princess_LovesNPC: Мне нравится {NPCName}.
+		LikeNPC_Princess: Мне нравится {NPCName}.
+		HateCrowded: Я ненавижу то, как здесь людно.
+		DislikeCrowded: Мне не нравится то, как здесь людно.
+		LoveSpace: Я люблю, когда так много пространства.
+		FarFromHome: Я слишком далеко от дома.
+		NoHome: Терпеть не могу, когда у меня нет дома.
+		Content: Я довольный.
+	}
+}

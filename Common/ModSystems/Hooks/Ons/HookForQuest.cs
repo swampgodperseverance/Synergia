@@ -19,7 +19,7 @@ using Terraria.Localization;
 using Terraria.ModLoader;
 using Terraria.UI.Chat;
 
-namespace Synergia.Common.ModSystems.Hooks
+namespace Synergia.Common.ModSystems.Hooks.Ons
 {
     public class HookForQuest : ModSystem {
         static bool npcChatFocusCustom;

@@ -15,6 +15,7 @@ using Terraria.ModLoader;
 using Terraria.UI;
 using static Synergia.Common.QuestSystem.SynergiaQuestRegistry;
 using static Synergia.ModList;
+using static Synergia.GraphicsSetting.SynegiyGraphics;
 
 namespace Synergia
 {
@@ -22,7 +23,7 @@ namespace Synergia
     {
         public UserInterface DwarfUserInterface;
         public const string ModName = nameof(Synergia);
-        public Synergia Instance { get; private set; }
+        public static Synergia Instance { get; private set; }
         ILHook ExtraMountCavesGeneratorILHook;
 
         public override void Load()
@@ -34,6 +35,7 @@ namespace Synergia
             LoadRoAHook();
             LoadMod();
             RegisterQuests();
+            Init(Assets);
         }
         public override void Unload()
         {

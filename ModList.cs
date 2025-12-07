@@ -16,6 +16,7 @@ public static class ModList {
     public static Mod Survival { get; private set; }
     public static Mod Valhalla { get; private set; }
     public static Mod TRAEProjectLoaded { get; private set; }
+    public static Mod TRAEProjectRework { get; private set; }
 
     public static void LoadMod() {
         Ava = ModLoader.GetMod("Avalon");
@@ -26,6 +27,7 @@ public static class ModList {
         StarforgedClassic = ModLoader.GetMod("starforgedclassic");
         Survival = ModLoader.GetMod("StramsSurvival");
         Valhalla = ModLoader.GetMod("ValhallaMod");
+        TRAEProjectRework = ModLoader.GetMod("TRAEBossRework");
         ModLoader.TryGetMod("TRAEProject", out Mod TRAEProject);
         if (TRAEProject != null) {
             TRAEProjectLoaded = TRAEProject;

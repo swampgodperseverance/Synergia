@@ -8,9 +8,9 @@ using ValhallaMod.Items.Weapons.Aura;
 using ValhallaMod.Items.Weapons.Dart;
 using ValhallaMod.NPCs.TownNPCs;
 
-namespace Synergia.Common.ModSystems.Hooks
+namespace Synergia.Common.ModSystems.Hooks.Ons
 {
-    public class DwarfShopChanges : ModSystem
+    public class HookForDwarfShopChanges : ModSystem
     {
         private Hook _GetSetShoop;
 

@@ -1,0 +1,14 @@
+Accessories: {
+	BacchusBoots: +18% increased summon damage
+	BerserksRing: Item use speed inreased by 30%, but damage decreased by 20%
+}
+
+Armor: {
+	Test: Test Accessory Tooltip
+	Test1: Test Accessory Tooltip
+}
+
+Weapons: {
+	Test: Test Accessory Tooltip
+	Test1: Test Accessory Tooltip
+}

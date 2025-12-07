@@ -160,6 +160,8 @@ internal class DwarfUI : UIState {
         mouseInWepponSlot = MousePositionInUI(slotX, slotX + 40, slotY + 60, slotY + 110);
         mouseInPraceSlot = MousePositionInUI(slotX + 50, slotX + 90, slotY + 60, slotY + 110);
         reforgeButtonAnim.Init(1, 4);
+        reforgeButtonAnim.RowCount = 1;
+        hellsmithBarTextureAnim.RowCount = 1;
         reforgeButtonAnim.Update();
         hellsmithBarTextureAnim.Init(1, 25);
         spriteBatch.Draw(hellsmithBgTexture, new Vector2(slotX - 28, slotY - 17), Color.White);

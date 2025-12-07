@@ -1,14 +1,12 @@
-﻿using System.Collections.Generic;
-using Terraria;
+﻿using Terraria;
 using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
 using ValhallaMod.Items.Weapons.Spear;
-using static Synergia.ModList;
+using static Synergia.Lists.Items;
 
-namespace Synergia.Common.ModSystems.Hooks {
-    public class NewLootInShadowOrbs : ModSystem {
-        readonly static List<int> CorruptionItem = [ItemID.Musket, ItemID.BandofStarpower, ItemID.ShadowOrb, ItemID.BallOHurt, Roa.Find<ModItem>("PlanetomaStaff").Type, Roa.Find<ModItem>("Bookworms").Type, Roa.Find<ModItem>("Vilethorn").Type];
+namespace Synergia.Common.ModSystems.Hooks.Ons {
+    public class HookForNewLootInShadowOrbs : ModSystem {
         static bool _droppingOrbItem;
 
         public override void Load() {
@@ -28,14 +26,16 @@ namespace Synergia.Common.ModSystems.Hooks {
             if (!_droppingOrbItem || !CorruptionItem.Contains(Type)) {
                 return index;
             }
-            if (Main.rand.NextBool(4)) {
-                if (index >= 0 && index < Main.maxItems) {
+            else {
+                if (Main.rand.NextBool(2)) {
+                    if (Type == ItemID.MusketBall) {
+                        Main.item[Type].TurnToAir();
+                    }
                     Main.item[index].TurnToAir();
-                    return Item.NewItem(source, X, Y, Width, Height, ModContent.ItemType<ScaleBreaker>());
+                    return orig(source, X, Y, Width, Height, itemToClone, ModContent.ItemType<ScaleBreaker>(), Stack, noBroadcast, pfix, noGrabDelay, reverseLookup);
                 }
-                return index;
+                else { return index; }
             }
-            return index;
         }
     }
 }

@@ -1,24 +1,18 @@
 ﻿using Avalon.NPCs.TownNPCs;
 using NewHorizons.Content.NPCs.Town;
 using StramsSurvival.NPCs;
-using Synergia.Common.ModSystems.Hooks;
+using Synergia.Common.ModSystems.Hooks.Ons;
 using Synergia.Dataset;
-using System.Collections.Generic;
 using Terraria.ID;
 using Terraria.ModLoader;
 using ValhallaMod.NPCs.TownNPCs;
 using static Synergia.Common.QuestSystem.QuestConst;
+using static Synergia.Lists.Items;
 using static Synergia.ModList;
-using Carrot = StramsSurvival.Items.Foods.Carrot;
-using Carrot1 = NewHorizons.Content.Items.Materials.Carrot;
-
 namespace Synergia.Common;
 
 public partial class QuestSystem {
     public class RegisterQuestDictionary : ModPlayer {
-        public static List<int> CarrotID { get; private set; } = [ModContent.ItemType<Carrot>(), ModContent.ItemType<Carrot1>()];
-        public static List<int> FoodID { get; private set; } = [];
-
         public override void OnEnterWorld() {
             if (!HookForQuest.NpcQuestKeys.ContainsKey(ModContent.NPCType<Dwarf>())) {
                 HookForQuest.NpcQuestKeys[ModContent.NPCType<Dwarf>()] = new QuestData(DWARF, 0, 1, true);
