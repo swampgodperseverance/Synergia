@@ -2,6 +2,7 @@
 using Terraria;
 using Terraria.GameInput;
 using Terraria.ID;
+using Terraria.UI;
 
 namespace Synergia.Helpers {
     public class UIHelper {
@@ -35,6 +36,11 @@ namespace Synergia.Helpers {
                 currentItemIndex2 = (currentItemIndex2 + 1) % itemList.Count;
             }
             return itemList[currentItemIndex2];
+        }
+        public static void AddLayer(List<GameInterfaceLayer> layers, int layerIndex, string name, GameInterfaceDrawMethod drawMethod, InterfaceScaleType scaleType = InterfaceScaleType.UI) {
+            if (layerIndex != -1) {
+                layers.Insert(layerIndex, new LegacyGameInterfaceLayer(name, drawMethod, scaleType));
+            }
         }
     }
 }

@@ -1,6 +1,4 @@
 using Bismuth.Content.Items.Weapons.Throwing;
-using ValhallaMod.Items.Weapons.Aura;
-using Avalon.Items.Weapons.Magic.Hardmode.Sunstorm;
 using Bismuth.Content.Projectiles;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -13,29 +11,31 @@ using System.Reflection;
 using Terraria;
 using Terraria.Audio;
 using Terraria.GameContent;
-using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.UI;
 using static Synergia.Common.QuestSystem.SynergiaQuestRegistry;
 using static Synergia.ModList;
+using static Synergia.GraphicsSetting.SynegiyGraphics;
 
 namespace Synergia
 {
     public class Synergia : Mod
     {
-        internal UserInterface DwarfUserInterface;
-        public const string ModName = "SynergiaModName";
-        Synergia instruktion;
+        public UserInterface DwarfUserInterface;
+        public const string ModName = nameof(Synergia);
+        public static Synergia Instance { get; private set; }
         ILHook ExtraMountCavesGeneratorILHook;
+
         public override void Load()
         {
             #region UI
             DwarfUserInterface = new UserInterface();
             #endregion
-            instruktion = this;
+            Instance = this;
             LoadRoAHook();
             LoadMod();
             RegisterQuests();
+            Init(Assets);
         }
         public override void Unload()
         {
@@ -145,4 +145,5 @@ namespace Synergia
             TimerSystem.Update();
         }
     }
+
 }

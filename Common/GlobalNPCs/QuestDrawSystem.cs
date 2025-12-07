@@ -4,7 +4,6 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using NewHorizons.Content.NPCs.Town;
 using StramsSurvival.NPCs;
-using Synergia.Content.Quests;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.ID;

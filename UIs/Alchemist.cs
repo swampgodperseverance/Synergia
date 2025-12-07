@@ -2,6 +2,8 @@
 using Terraria.ID;
 using Terraria.Localization;
 using Terraria.ModLoader;
+using static Terraria.GameContent.Shaders.WaterShaderData;
+using static Terraria.Graphics.Shaders.ShaderData;
 
 namespace Synergia.UIs {
     [AutoloadHead]

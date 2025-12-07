@@ -5,9 +5,9 @@ using System.Reflection;
 using Terraria;
 using Terraria.ModLoader;
 
-namespace Synergia.Common.ModSystems.Hooks
+namespace Synergia.Common.ModSystems.Hooks.Ons
 {
-    public class HeliosLootPatch : ModSystem
+    public class HookForHeliosLootPatch : ModSystem
     {
         Hook NewItemHook;
         public override void Load()

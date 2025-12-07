@@ -9,8 +9,8 @@ using Terraria.Localization;
 using Terraria.ModLoader;
 using static Terraria.Main;
 
-namespace Synergia.Common.ModSystems.Hooks {
-    public class NewProgressBar : ModSystem {
+namespace Synergia.Common.ModSystems.Hooks.Ons {
+    public class HookForNewProgressBar : ModSystem {
         Hook NewInvasionProgressStyle;
 
         delegate void Orig_DrawInvasionProgress();

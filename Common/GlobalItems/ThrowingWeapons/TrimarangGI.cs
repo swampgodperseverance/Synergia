@@ -1,6 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
 using Synergia.Common.GlobalItems.ThrowingWeapons;
-using Synergia.Common.GlobalPlayer.ThrowingWeapons;
 using Terraria;
 using Terraria.DataStructures;
 using Terraria.ID;
@@ -10,18 +9,14 @@ namespace Synergia.Common.GlobalItems
     public class TrimarangGlobalItem : ThrowingGI {
         public override int ItemType => ItemID.Trimarang;
         public override bool NewBehavior(Item item, Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback) {
-            ThrowingPlayer modPlayer = Get(player);
+            velocity *= 1.5f;
+            damage = (int)(damage * 1.2f);
+            knockback *= 1.2f;
 
-            if (modPlayer.doubleMode) {
-                velocity *= 1.5f;
-                damage = (int)(damage * 1.2f);
-                knockback *= 1.2f;
+            Projectile.NewProjectile(source, position, velocity.RotatedBy(MathHelper.ToRadians(10f)), type, damage, knockback, player.whoAmI);
+            Projectile.NewProjectile(source, position, velocity.RotatedBy(MathHelper.ToRadians(-10f)), type, damage, knockback, player.whoAmI);
 
-                Projectile.NewProjectile(source, position, velocity.RotatedBy(MathHelper.ToRadians(10f)), type, damage, knockback, player.whoAmI);
-                Projectile.NewProjectile(source, position, velocity.RotatedBy(MathHelper.ToRadians(-10f)), type, damage, knockback, player.whoAmI);
-                return false;
-            }
-            return true;
+            return false;
         }
     }
 }

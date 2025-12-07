@@ -6,8 +6,8 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using static Synergia.Common.QuestSystem;
 using static Synergia.Common.QuestSystem.QuestConst;
-using static Synergia.Common.QuestSystem.RegisterQuestDictionary;
 using static Synergia.Common.SUtils.LocUtil;
+using static Synergia.Lists.Items;
 
 namespace Synergia.Content.Quests {
     public class NinjaQuest : BaseQuestLogic {

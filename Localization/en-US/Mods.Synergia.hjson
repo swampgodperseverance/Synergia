@@ -921,6 +921,11 @@ Items: {
 		Tooltip: ""
 		DisplayName: Starcaller
 	}
+
+	WhisperigReed: {
+		Tooltip: ""
+		DisplayName: Whisperig Reed
+	}
 }
 
 Projectiles: {
@@ -1266,7 +1271,11 @@ Config: {
 }
 
 SinlordSummon: Use Hellworm scale in the underworld
-Tiles.RiseOfTheOldGod.MapEntry: Rise Of The Old God
+
+Tiles: {
+	RiseOfTheOldGod.MapEntry: Rise Of The Old God
+	Reed3.MapEntry: Reed3
+}
 
 Biomes: {
 	SnowVillage: {
