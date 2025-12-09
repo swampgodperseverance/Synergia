@@ -1,4 +1,4 @@
 displayName = Synergia
 author = Swamp
-version = 0.219
+version = 0.220
 modReferences = starforgedclassic, RoA, Consolaria, StramsSurvival, ValhallaMod, TRAEBossRework, PackBuilder, NewHorizons, Avalon, Bismuth,

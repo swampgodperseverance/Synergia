@@ -926,6 +926,36 @@ Items: {
 		Tooltip: ""
 		DisplayName: Whisperig Reed
 	}
+
+	Tribow: {
+		Tooltip: ""
+		DisplayName: Tribow
+	}
+
+	Blunderbussin: {
+		Tooltip: ""
+		DisplayName: Blunderbussin
+	}
+
+	ShardflingPotion: {
+		Tooltip: ""
+		DisplayName: Shardfling Potion
+	}
+
+	BronzeAcolyteLeggings: {
+		Tooltip: ""
+		DisplayName: Bronze Acolyte Leggings
+	}
+
+	BronzeAcolyteJacket: {
+		Tooltip: ""
+		DisplayName: Bronze Acolyte Jacket
+	}
+
+	BronzeAcolyteHat: {
+		Tooltip: ""
+		DisplayName: Bronze Acolyte Hat
+	}
 }
 
 Projectiles: {
@@ -1159,6 +1189,10 @@ Projectiles: {
 	GiantSnow.DisplayName: Giant Snow
 	FeroziumBladeRework.DisplayName: Ferozium Blade Rework
 	FriendlyStar.DisplayName: Friendly Star
+	WaterGunBubble2.DisplayName: Water Gun Bubble2
+	WaterGunBubble.DisplayName: Water Gun Bubble
+	SunRework.DisplayName: Sun Rework
+	TriArrow.DisplayName: Tri Arrow
 }
 
 Buffs: {
@@ -1241,6 +1275,11 @@ Buffs: {
 		Description: Mods.Synergia.Buffs.Starlord.Description
 		DisplayName: Starlord
 	}
+
+	ShardflingPotionBuff: {
+		Description: Mods.Synergia.Buffs.ShardflingPotionBuff.Description
+		DisplayName: Shardfling Potion Buff
+	}
 }
 
 Keybinds: {
@@ -1268,6 +1307,13 @@ Config: {
 	MakesPapuanAI: Makes Papuan Wizard significantly stronger with teleport and projectile attacks.
 	NewUI: Active New Progres bar for events
 	NewUITooltip: Activates new UI for events
+	ResetUITooltip: Resets the ui position
+	ResetUI: Reset UI
+	HoverUITooltip: Allows you to modify position user interface elements.
+	HoverUI: Modify position UI
+	ActiveSummonUITooltip: If it bothers you, you can enable it by default value enabled
+	ActiveSummonUI: Active Summon UI
+	SummonUI: Summon UI
 }
 
 SinlordSummon: Use Hellworm scale in the underworld

@@ -1,3 +1,4 @@
+using Avalon.Items.Weapons.Magic.Hardmode.Sunstorm;
 using Bismuth.Content.Items.Weapons.Throwing;
 using Bismuth.Content.Projectiles;
 using Microsoft.Xna.Framework;
@@ -13,9 +14,10 @@ using Terraria.Audio;
 using Terraria.GameContent;
 using Terraria.ModLoader;
 using Terraria.UI;
+using ValhallaMod.Items.Weapons.Aura;
 using static Synergia.Common.QuestSystem.SynergiaQuestRegistry;
-using static Synergia.ModList;
 using static Synergia.GraphicsSetting.SynegiyGraphics;
+using static Synergia.ModList;
 
 namespace Synergia
 {
@@ -46,12 +48,11 @@ namespace Synergia
             base.PostSetupContent();
 
             if (!Main.dedServ) {
-                if (Bis != null) {
-                    TextureAssets.Item[ModContent.ItemType<OrcishJavelin>()] = ModContent.Request<Texture2D>("Synergia/Assets/Resprites/OrcishJavelinResprite");
-                    TextureAssets.Item[ModContent.ItemType<Sunstorm>()] = ModContent.Request<Texture2D>("Synergia/Assets/Resprites/SunstormResprite");
-                    TextureAssets.Item[ModContent.ItemType<StarAuraStaff>()] = ModContent.Request<Texture2D>("Synergia/Assets/Resprites/StarAuraRework");
-                    TextureAssets.Projectile[ModContent.ProjectileType<OrcishJavelinP>()] = ModContent.Request<Texture2D>("Synergia/Assets/Resprites/OrcishJavelinResprite2");
-                }
+                // Нету смыслу проверки есть ли мод!!!!!!!!!!!!
+                TextureAssets.Item[ModContent.ItemType<OrcishJavelin>()] = ModContent.Request<Texture2D>("Synergia/Assets/Resprites/OrcishJavelinResprite");
+                TextureAssets.Item[ModContent.ItemType<Sunstorm>()] = ModContent.Request<Texture2D>("Synergia/Assets/Resprites/SunstormResprite");
+                TextureAssets.Item[ModContent.ItemType<StarAuraStaff>()] = ModContent.Request<Texture2D>("Synergia/Assets/Resprites/StarAuraRework");
+                TextureAssets.Projectile[ModContent.ProjectileType<OrcishJavelinP>()] = ModContent.Request<Texture2D>("Synergia/Assets/Resprites/OrcishJavelinResprite2");
             }
         }
         public static string GetUIElementName(string element) => $"Synergia/Assets/UIs/{element}";

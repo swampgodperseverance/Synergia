@@ -2,12 +2,6 @@
 
     <!-- Import tModLoader mod properties -->
     <Import Project="..\tModLoader.targets" />
-    <ItemGroup>
-      <AdditionalFiles Remove="Localization\en-US\Mods.Synergia.Tooltips.hjson" />
-    </ItemGroup>
-    <ItemGroup>
-      <Compile Include="Localization\en-US\Mods.Synergia.Tooltips.hjson" />
-    </ItemGroup>
 
     <!-- General -->
     <ItemGroup>

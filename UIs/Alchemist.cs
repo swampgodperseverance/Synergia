@@ -1,9 +1,9 @@
-﻿using Terraria;
+﻿using Synergia.GraphicsSetting;
+using Terraria;
+using Terraria.Graphics.Effects;
 using Terraria.ID;
 using Terraria.Localization;
 using Terraria.ModLoader;
-using static Terraria.GameContent.Shaders.WaterShaderData;
-using static Terraria.Graphics.Shaders.ShaderData;
 
 namespace Synergia.UIs {
     [AutoloadHead]
@@ -52,8 +52,10 @@ namespace Synergia.UIs {
         {
             return false;
         }
-        public override void AI()
-        {               
+        public override void AI() {
+            //string name = SynegiyGraphics.ARMORRADAR;
+
+            //Filters.Scene[ARMORRADAR].Activate(NPC.position);
             if (NPC.homeTileX == -1 || NPC.homeTileY == -1)
             {
                 NPC.homeTileX = NPC.Center.ToTileCoordinates().X;
@@ -72,7 +74,6 @@ namespace Synergia.UIs {
                 {
                     UpdatePosition();
                 }
-                
             }
         }
     }
