@@ -1,4 +1,4 @@
-﻿using Synergia.Common;
+﻿using Synergia.Common.Rarities;
 using Terraria;
 using Terraria.Audio;
 using Terraria.ID;

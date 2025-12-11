@@ -1,8 +1,10 @@
 ﻿using Avalon.Items.Accessories.Hardmode;
 using Bismuth.Content.Items.Accessories;
 using Terraria;
+using System.Linq;
 using Terraria.ModLoader;
 using ValhallaMod.Items.Weapons.Javelin;
+using static Synergia.Lists.Items;
 
 namespace Synergia.Common.GlobalItems.Set {
     public class EditItem : GlobalItem {

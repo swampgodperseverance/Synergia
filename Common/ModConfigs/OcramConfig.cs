@@ -1,4 +1,5 @@
 ﻿using Synergia.Common.GlobalNPCs.AI;
+using Synergia.Common.GlobalPlayer;
 using Synergia.Common.ModSystems.Hooks.Ons;
 using System.ComponentModel;
 using Terraria.ModLoader.Config;
@@ -28,11 +29,37 @@ namespace Synergia.Common.ModConfigs
         [TooltipKey("$Mods.Synergia.Config.NewUITooltip")]
         [DefaultValue(true)]
         public bool ActiveNewUI { get; set; }
+
+        [Header("$Mods.Synergia.Config.SummonUI")]
+        [LabelKey("$Mods.Synergia.Config.ActiveSummonUI")]
+        [TooltipKey("$Mods.Synergia.Config.ActiveSummonUITooltip")]
+        [DefaultValue(true)]
+        public bool ActiveSummonUI { get; set; }
+
+        [LabelKey("$Mods.Synergia.Config.HoverUI")]
+        [TooltipKey("$Mods.Synergia.Config.HoverUITooltip")]
+        [DefaultValue(true)]
+        public bool HoverUI { get; set; }
+
+        [LabelKey("$Mods.Synergia.Config.ResetUI")]
+        [TooltipKey("$Mods.Synergia.Config.ResetUITooltip")]
+        [DefaultValue(true)]
+        public bool ResetUI { get; set; }
+
+        [ReloadRequiredAttribute()]
+        [LabelKey("$Mods.Synergia.Config.NewRecipe")]
+        [TooltipKey("$Mods.Synergia.Config.NewRecipeTooltip")]
+        [DefaultValue(true)]
+        public bool NewRecipe { get; set; }
+
         public override void OnLoaded() {
             OcramUpgrades.HardModeEnabled = HardModeEnabled;
             BacteriumPrimeBuff.Enabled = BacteriumPrimeBuffEnabled;
             PapuanWizardUpgrades.HardAIEnabled = PapuanWizardHardAIEnabled;
             HookForNewProgressBar.NewUI = ActiveNewUI;
+            SummonUI.IsActiveSummonUI = ActiveSummonUI;
+            SummonUI.HoverUIElement = HoverUI;
+            SummonUI.ResetUIPositions = ResetUI;
         }
         public override void OnChanged()
         {
@@ -40,6 +67,9 @@ namespace Synergia.Common.ModConfigs
             BacteriumPrimeBuff.Enabled = BacteriumPrimeBuffEnabled;
             PapuanWizardUpgrades.HardAIEnabled = PapuanWizardHardAIEnabled;
             HookForNewProgressBar.NewUI = ActiveNewUI;
+            SummonUI.IsActiveSummonUI = ActiveSummonUI;
+            SummonUI.HoverUIElement = HoverUI;
+            SummonUI.ResetUIPositions = ResetUI;
         }
     }
 }

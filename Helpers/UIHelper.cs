@@ -10,7 +10,6 @@ namespace Synergia.Helpers {
         static int nexItemTime = 0;
         static int currentItemIndex = 0;
 
-        const int nexItemDelay2 = 60;
         static int nexItemTime2 = 0;
         static int currentItemIndex2 = 0;
 
@@ -26,7 +25,7 @@ namespace Synergia.Helpers {
             }
             return itemList[currentItemIndex];
         }
-        public int NoStaticGetNextItemType(List<int> itemList) {
+        public int NoStaticGetNextItemType(List<int> itemList, int nexItemDelay2 = 60) {
             if (itemList == null || itemList.Count == 0) {
                 return ItemID.None;
             }
@@ -37,6 +36,16 @@ namespace Synergia.Helpers {
             }
             return itemList[currentItemIndex2];
         }
+        public int GetAnimatedItemType(List<int> list, int delay = 60) {
+            if (list == null || list.Count == 0)
+                return ItemID.None;
+
+            long t = Main.GameUpdateCount / delay;
+            int index = (int)(t % list.Count);
+
+            return list[index];
+        }
+
         public static void AddLayer(List<GameInterfaceLayer> layers, int layerIndex, string name, GameInterfaceDrawMethod drawMethod, InterfaceScaleType scaleType = InterfaceScaleType.UI) {
             if (layerIndex != -1) {
                 layers.Insert(layerIndex, new LegacyGameInterfaceLayer(name, drawMethod, scaleType));
