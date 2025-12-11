@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using Bismuth.Content.Tiles;
+using System.Collections.Generic;
 using Terraria;
 using Terraria.GameContent.ItemDropRules;
 using Terraria.ModLoader;
@@ -9,6 +10,11 @@ namespace Synergia.Helpers {
         public static void BaseAccTooltips(Item item, List<TooltipLine> tooltips, int type, byte line, string key) {
             if (item.type == type) {
                 tooltips[line].Text = ItemTooltip(ACC, key);
+            }
+        }
+        public static void DeleteLine(Item item, List<TooltipLine> tooltips, int type, byte line) {
+            if (item.type == type) {
+                tooltips[line].Text = string.Empty;
             }
         }
         public static void AddLoot(Item item, ItemLoot itemLoot, int type, int drop, byte chance, byte min = 1, byte max = 1) {

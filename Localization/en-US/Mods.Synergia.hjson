@@ -956,6 +956,36 @@ Items: {
 		Tooltip: ""
 		DisplayName: Bronze Acolyte Hat
 	}
+
+	FragmentSolar: {
+		Tooltip: ""
+		DisplayName: Fragment
+	}
+
+	FragmentStardust: {
+		DisplayName: Fragment
+		Tooltip: ""
+	}
+
+	HardModeAnvil: {
+		Tooltip: ""
+		DisplayName: Hard Mode Anvil
+	}
+
+	HardModeForge: {
+		DisplayName: Hard Mode Forge
+		Tooltip: ""
+	}
+
+	AlchemicFlower: {
+		DisplayName: Alchemic Flower
+		Tooltip: ""
+	}
+
+	AlchemicOre: {
+		DisplayName: Alchemic Ore
+		Tooltip: ""
+	}
 }
 
 Projectiles: {
@@ -1314,6 +1344,8 @@ Config: {
 	ActiveSummonUITooltip: If it bothers you, you can enable it by default value enabled
 	ActiveSummonUI: Active Summon UI
 	SummonUI: Summon UI
+	NewRecipe: Includes new recipes
+	NewRecipeTooltip: Synergia uses a complex recipe system. The tPackBuilder mod also changes them, but they will be simpler. Therefore, use only this mod or uncheck the box and use tPackBuilder.
 }
 
 SinlordSummon: Use Hellworm scale in the underworld

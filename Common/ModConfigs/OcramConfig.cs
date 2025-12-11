@@ -46,6 +46,11 @@ namespace Synergia.Common.ModConfigs
         [DefaultValue(true)]
         public bool ResetUI { get; set; }
 
+        [ReloadRequiredAttribute()]
+        [LabelKey("$Mods.Synergia.Config.NewRecipe")]
+        [TooltipKey("$Mods.Synergia.Config.NewRecipeTooltip")]
+        [DefaultValue(true)]
+        public bool NewRecipe { get; set; }
 
         public override void OnLoaded() {
             OcramUpgrades.HardModeEnabled = HardModeEnabled;

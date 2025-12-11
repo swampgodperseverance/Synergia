@@ -14,3 +14,8 @@ BooK: {
 	Button: Nex Page
 	Button2: Nex Page
 }
+
+ChatsMsg: {
+	tPacer: You have {0}, pls disable mod or disable in config <{1}>
+	Test: ""
+}

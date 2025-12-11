@@ -3,7 +3,7 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using Microsoft.Xna.Framework;
 using Synergia.Content.Projectiles.Friendly;
-using Synergia.Common;
+using Synergia.Common.Rarities;
 
 namespace Synergia.Content.Items.Weapons.Cogworm
 {

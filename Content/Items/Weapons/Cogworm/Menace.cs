@@ -3,10 +3,10 @@ using Terraria;
 using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
-using Synergia.Common;
 using Synergia.Common.GlowMasks;
 using Synergia.Content.Buffs;
 using Synergia.Content.Projectiles.Friendly;
+using Synergia.Common.Rarities;
 
 namespace Synergia.Content.Items.Weapons.Cogworm;
 

@@ -35,5 +35,9 @@ namespace Synergia.Helpers
             }
             else return false;
         }
+        public static Item GetLocalItem(Player player) {
+            Item held = player.HeldItem;
+            return held;
+        }
     }
 }

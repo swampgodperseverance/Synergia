@@ -1,11 +1,11 @@
 using Synergia.Content.Projectiles.Friendly;
 //consolaria
 using Microsoft.Xna.Framework;
-using Synergia.Common;
 using Terraria;
 using Terraria.Audio;
 using Terraria.ID;
 using Terraria.ModLoader;
+using Synergia.Common.Rarities;
 
 namespace Synergia.Content.Items.Weapons.Cogworm {
     public class Cleavage : ModItem {

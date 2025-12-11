@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using Terraria;
 using Terraria.ModLoader;
 using static Synergia.Helpers.ItemHelper;
+using static Synergia.Lists.Items;
 
 namespace Synergia.Common.GlobalItems.Set {
     public class EditTooltips : GlobalItem {
@@ -13,6 +14,12 @@ namespace Synergia.Common.GlobalItems.Set {
             BaseAccTooltips(item, tooltips, ModContent.ItemType<BerserksRing>(), 2, "BerserksRing");
             if (item.type == ModContent.ItemType<CarbonSteel>()) {
                 tooltips.RemoveAll(line => line.Mod == "Terraria" && line.Name == "Tooltip0");
+            }
+            foreach (int type in SixToolTipsLin) {
+                DeleteLine(item, tooltips, type, 6);
+            }
+            foreach (int type in SevenToolTipsLin) {
+                DeleteLine(item, tooltips, type, 7);
             }
         }
     }

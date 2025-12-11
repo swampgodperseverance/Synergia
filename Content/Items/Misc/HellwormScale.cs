@@ -1,11 +1,11 @@
 ﻿using Terraria;
-using Synergia.Common;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Synergia.Content.NPCs;
 using Terraria.Localization;
 using Microsoft.Xna.Framework;
 using Terraria.Audio;
+using Synergia.Common.Rarities;
 
 namespace Synergia.Content.Items.Misc
 {

@@ -25,6 +25,7 @@ namespace Synergia
     {
         public UserInterface DwarfUserInterface;
         public const string ModName = nameof(Synergia);
+        public const string Blank = "Synergia/Assets/Textures/Blank";
         public static Synergia Instance { get; private set; }
         ILHook ExtraMountCavesGeneratorILHook;
 

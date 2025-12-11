@@ -4,6 +4,11 @@ namespace Synergia.Common.SUtils;
 
 // Localization Util
 public static class LocUtil {
+    public const string ACC = "Accessories";
+    public const string ARM = "Armors";
+    public const string WEP = "Weapons";
+    public const string CHATMSG = "ChatsMsg";
+
     public enum CategoryName {
         NPC, Quest
     }
@@ -21,9 +26,6 @@ public static class LocUtil {
             _ => "Quest",
         };
     }
-    public const string ACC = "Accessories";
-    public const string ARM = "Armors";
-    public const string WEP = "Weapons";
     public static string LocQuestKey(string npcName, string nameKey) => Language.GetTextValue($"Mods.Synergia.Quests.{npcName}.{nameKey}");
     public static string LocUIKey(string nameCategory, string nameKey) => Language.GetTextValue($"Mods.Synergia.UI.{nameCategory}.{nameKey}");
     public static string ItemTooltip(string category, string tooltipKey) => Language.GetTextValue($"Mods.Synergia.Tooltips.{category}.{tooltipKey}");

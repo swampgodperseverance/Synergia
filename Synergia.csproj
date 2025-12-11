@@ -14,11 +14,26 @@
       <Reference Include="Consolaria">
         <HintPath>..\..\ModReader\Consolaria\Consolaria.dll</HintPath>
       </Reference>
+      <Reference Include="Luminance">
+        <HintPath>lib\Luminance.dll</HintPath>
+      </Reference>
+      <Reference Include="miningcracks_take_on_luiafk">
+        <HintPath>lib\miningcracks_take_on_luiafk.dll</HintPath>
+      </Reference>
       <Reference Include="ModLiquidLib">
         <HintPath>..\..\ModReader\ModLiquidLib\ModLiquidLib.dll</HintPath>
       </Reference>
       <Reference Include="NewHorizons">
         <HintPath>..\..\ModReader\NewHorizons.dll</HintPath>
+      </Reference>
+      <Reference Include="PackBuilder">
+        <HintPath>lib\PackBuilder.dll</HintPath>
+      </Reference>
+      <Reference Include="ParticleLibrary">
+        <HintPath>lib\ParticleLibrary.dll</HintPath>
+      </Reference>
+      <Reference Include="RecipeBrowser">
+        <HintPath>lib\RecipeBrowser.dll</HintPath>
       </Reference>
       <Reference Include="RoA">
         <HintPath>..\..\ModReader\RoA.dll</HintPath>
@@ -47,9 +62,6 @@
       <Reference Include="VervCaves">
         <HintPath>..\..\ModReader\VervCaves\VervCaves.dll</HintPath>
       </Reference>
-    </ItemGroup>
-    <ItemGroup>
-      <Folder Include="Common\ModSystems\Hooks\Ils\" />
     </ItemGroup>
 
     <!-- References -->
