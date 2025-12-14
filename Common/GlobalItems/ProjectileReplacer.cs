@@ -80,6 +80,9 @@ namespace Synergia.Common.GlobalItems
                          case "SunJavelin":
                             item.shoot = ModContent.ProjectileType<Content.Projectiles.Reworks.Reworks2.SunJavelinRework>();
                             break;  
+                         case "JadeSpear":
+                            item.shoot = ModContent.ProjectileType<Content.Projectiles.Reworks.Reworks2.JadeSpearRework>();
+                            break;  
                     }
                 }
             
@@ -125,6 +128,16 @@ namespace Synergia.Common.GlobalItems
                     {
                         case "WaveOfForce":
                             item.shoot = ModContent.ProjectileType<Content.Projectiles.Reworks.PurpleCog>();
+                            break;
+                    }
+                }
+               if (item.ModItem != null &&
+                    item.ModItem.Mod.Name == "NewHorizons")
+                {
+                    switch (item.ModItem.Name)
+                    {
+                        case "SpaceCowboy":
+                            item.shoot = ModContent.ProjectileType<Content.Projectiles.Reworks.Reworks2.SpaceCowboyRework>();
                             break;
                     }
                 }
