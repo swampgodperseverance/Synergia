@@ -1,5 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Terraria;
+using Terraria.ModLoader;
+using ValhallaMod.Items.Tools;
 
 namespace Synergia.Helpers
 {
@@ -34,6 +36,14 @@ namespace Synergia.Helpers
                 return true;
             }
             else return false;
+        }
+        public static bool CheckItem(Player player, int itemType) {
+            for (int k = 0; k < player.inventory.Length; k++) {
+                if (player.inventory[k].type == itemType) {
+                    return true;
+                }
+            }
+            return false;
         }
         public static Item GetLocalItem(Player player) {
             Item held = player.HeldItem;

@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework;
 using Synergia.Helpers;
 using Synergia.Lists;
+using System.Collections.Generic;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -9,16 +10,14 @@ using ValhallaMod.Items.Tools;
 
 namespace Synergia.Common.GlobalTiles {
     public class EditingAdamantAndTitanOre : GlobalTile {
-        int hitToDestroy = 0;
-        // TODO: Mr Swamp pls fix bug one value for all tile!
-        // Dictionary<Tile, int> hitToDestroy = [];
+        readonly Dictionary<Point, int> hitToDestroy = [];
 
         public override void Load() {
             // Vanilla code
             On_WorldGen.KillTile_DropItems += (orig, x, y, tileCache, includeLargeObjectDrops, includeAllModdedLargeObjectDrops) => {
                 orig(x, y, tileCache, includeLargeObjectDrops, includeAllModdedLargeObjectDrops);
                 if (Tiles.VanillaTile.Contains(tileCache.TileType)) {
-                    hitToDestroy = 0;
+                    hitToDestroy.Remove(new Point(x, y));
                 }
             };
             On_Player.PickTile += (orig, player, x, y, pickPower) => {
@@ -29,25 +28,25 @@ namespace Synergia.Common.GlobalTiles {
                     if (id >= 0) {
                         // smart cursor fix :) 
                         TileID.Sets.SmartCursorPickaxePriorityOverride[tile.TileType] = 1;
-                        hitToDestroy++;
+                        Point key = new(x, y);
+                        if (!hitToDestroy.TryGetValue(key, out int cnt)) {
+                            cnt = 0;
+                        }
+                        hitToDestroy[key] = cnt + 1;
                     }
                 }
             };
         }
         public override bool CanKillTile(int i, int j, int type, ref bool blockDamaged) {
-            Main.NewText(hitToDestroy);
+            hitToDestroy.TryGetValue(new Point(i, j), out int currentHits);
+            Main.NewText(currentHits);
             Player player = Main.player[Player.FindClosest(new Vector2(i * 16, j * 16), 16, 16)]; // ?? Maine.LocalPlayer 
-            if (type == ModContent.TileType<TroxiniumOre>()) {
-                if (PlayerHelpers.GetLocalItem(player).type == ModContent.ItemType<JadePickaxe>()) {
+            if (PlayerHelpers.GetLocalItem(player).type == ModContent.ItemType<JadePickaxe>()) {
+                if (type == ModContent.TileType<TroxiniumOre>()) {
                     return true;
                 }
-                else {
-                    return false;
-                }
-            }
-            if (Tiles.VanillaTile.Contains(type)) {
-                if (PlayerHelpers.GetLocalItem(player).type == ModContent.ItemType<JadePickaxe>()) {
-                    if (hitToDestroy == 3) {
+                if (Tiles.VanillaTile.Contains(type)) {
+                    if (currentHits >= 3) {
                         WorldGen.KillTile(i, j);
                         return true;
                     }
@@ -56,8 +55,11 @@ namespace Synergia.Common.GlobalTiles {
                     }
                 }
                 else {
-                    return false;
+                    return true;
                 }
+            }
+            else if (type == ModContent.TileType<TroxiniumOre>() || Tiles.VanillaTile.Contains(type)) {
+                return false;
             }
             else {
                 return base.CanKillTile(i, j, type, ref blockDamaged);
@@ -65,21 +67,8 @@ namespace Synergia.Common.GlobalTiles {
         }
         public override bool CanReplace(int i, int j, int type, int tileTypeBeingPlaced) {
             Player player = Main.player[Player.FindClosest(new Vector2(i * 16, j * 16), 16, 16)];
-            if (type == ModContent.TileType<TroxiniumOre>()) {
-                if (PlayerHelpers.GetLocalItem(player).type == ModContent.ItemType<JadePickaxe>()) {
-                    return true;
-                }
-                else {
-                    return false;
-                }
-            }
-            if (Tiles.VanillaTile.Contains(type)) {
-                if (PlayerHelpers.GetLocalItem(player).type == ModContent.ItemType<JadePickaxe>()) {
-                    return true;
-                }
-                else {
-                    return false;
-                }
+            if (type == ModContent.TileType<TroxiniumOre>() || Tiles.VanillaTile.Contains(type)) {
+                return PlayerHelpers.CheckItem(player, ModContent.ItemType<JadePickaxe>());
             }
             else {
                 return base.CanReplace(i, j, type, tileTypeBeingPlaced);
