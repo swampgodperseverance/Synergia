@@ -986,6 +986,16 @@ Items: {
 		DisplayName: Alchemic Ore
 		Tooltip: ""
 	}
+
+	Triwhip: {
+		Tooltip: ""
+		DisplayName: Triwhip
+	}
+
+	OssuaryStaff: {
+		Tooltip: ""
+		DisplayName: Ossuary Staff
+	}
 }
 
 Projectiles: {
@@ -1223,6 +1233,14 @@ Projectiles: {
 	WaterGunBubble.DisplayName: Water Gun Bubble
 	SunRework.DisplayName: Sun Rework
 	TriArrow.DisplayName: Tri Arrow
+	TriwhipProjTriple.DisplayName: Triwhip Proj Triple
+	OssuaryStaffProj.DisplayName: Ossuary Staff Proj
+	SpaceCowboyRework.DisplayName: Space Cowboy Rework
+	QueenBeeProj.DisplayName: Queen Bee Proj
+	JadeSpearRework.DisplayName: Jade Spear Rework
+	JadeShardBig.DisplayName: Jade Shard Big
+	JadeShard.DisplayName: Jade Shard
+	JadeGreatJavelin.DisplayName: Jade Great Javelin
 }
 
 Buffs: {
@@ -1310,6 +1328,11 @@ Buffs: {
 		Description: Mods.Synergia.Buffs.ShardflingPotionBuff.Description
 		DisplayName: Shardfling Potion Buff
 	}
+
+	OssuaryBuff: {
+		Description: Mods.Synergia.Buffs.OssuaryBuff.Description
+		DisplayName: Ossuary Buff
+	}
 }
 
 Keybinds: {
@@ -1324,6 +1347,7 @@ NPCs: {
 	CogwormGhost.DisplayName: Sinlord Ghost
 	AirElementalEnemy.DisplayName: Air Elemental Enemy
 	WaterElementalEnemy.DisplayName: Water Elemental Enemy
+	HellheartMonolith.DisplayName: Hellheart Monolith
 }
 
 Configs.BossConfig.DisplayName: Boss Config

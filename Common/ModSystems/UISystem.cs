@@ -21,6 +21,7 @@ public class UISystem : ModSystem {
         AddLayer(layers, inventoryIndex, "Synergia: Dwarf UI", () => { mod.DwarfUserInterface.Draw(Main.spriteBatch, new GameTime()); return true; });
         AddLayer(layers, resourceBarsIndex, "Synergia: Throwing UI", () => { if (Main.myPlayer >= 0) { Main.LocalPlayer.GetModPlayer<ThrowingUI>().DrawThrowingUI(); } return true; });
         AddLayer(layers, inventoryIndex, "Synergia: Summon UI", () => { if (Main.myPlayer >= 0) { Main.LocalPlayer.GetModPlayer<SummonUI>().DrawSummonUI(spriteBatch); } return true; });
+        AddLayer(layers, inventoryIndex, "Synergia: Blood UI", () => { if (Main.myPlayer >= 0) { Main.LocalPlayer.GetModPlayer<BloodUI>().DrawBloodUI(spriteBatch); } return true; });
     }
     public override void UpdateUI(GameTime gameTime) {
         mod.DwarfUserInterface?.Update(gameTime);

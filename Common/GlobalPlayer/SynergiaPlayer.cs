@@ -8,7 +8,7 @@ using Terraria.ModLoader;
 namespace Synergia.Common.GlobalPlayer {
     public class SynergiaPlayer : ModPlayer {
         bool giveMsg = false;
-
+        
         public override void PostUpdateBuffs() {
             // нету смысла проверять, если мод не загружен 
             // наш мод и не может быть загружен если нет StramsSurvival

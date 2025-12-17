@@ -1,5 +1,4 @@
 ﻿using Microsoft.Xna.Framework.Graphics;
-using Synergia.Common.GlobalPlayer.ThrowingWeapons;
 using Synergia.Dataset;
 using System;
 using Microsoft.Xna.Framework;

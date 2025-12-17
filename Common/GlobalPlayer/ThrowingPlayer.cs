@@ -5,7 +5,7 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using ValhallaMod.Items.Weapons.Thrown;
 
-namespace Synergia.Common.GlobalPlayer.ThrowingWeapons {
+namespace Synergia.Common.GlobalPlayer {
     public class ThrowingPlayer : ModPlayer {
         public byte comboCount;
         public byte comboTimer;

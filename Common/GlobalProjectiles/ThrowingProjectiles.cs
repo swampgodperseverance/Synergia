@@ -1,4 +1,4 @@
-﻿using Synergia.Common.GlobalPlayer.ThrowingWeapons;
+﻿using Synergia.Common.GlobalPlayer;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.ID;
