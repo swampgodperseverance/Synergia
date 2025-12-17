@@ -1,72 +1,72 @@
-﻿//using System;
-//using Microsoft.Xna.Framework;
-//using Terraria;
-//using Terraria.ID;
-//using Terraria.ModLoader;
-//using Terraria.DataStructures;
-//using Synergia.Content.Projectiles.Reworks;
+﻿using System;
+using Microsoft.Xna.Framework;
+using Terraria;
+using Terraria.ID;
+using Terraria.ModLoader;
+using Terraria.DataStructures;
+using Synergia.Content.Projectiles.Reworks;
 
-//namespace Synergia.Content.Global
-//{
-//    public class HellfireGlobal : GlobalItem
-//    {
-//        public override bool InstancePerEntity => true;
+namespace Synergia.Content.Global
+{
+    public class HellfireGlobal : GlobalItem
+    {
+        public override bool InstancePerEntity => true;
 
-//        public override bool AppliesToEntity(Item entity, bool lateInstantiation)
-//        {
-//            if (entity.ModItem == null)
-//                return false;
+        public override bool AppliesToEntity(Item entity, bool lateInstantiation)
+        {
+            if (entity.ModItem == null)
+                return false;
 
-//            var modName = entity.ModItem.Mod?.Name;
-//            var itemName = entity.ModItem?.Name;
+            var modName = entity.ModItem.Mod?.Name;
+            var itemName = entity.ModItem?.Name;
 
-//            return string.Equals(modName, "Avalon", StringComparison.OrdinalIgnoreCase)
-//                && string.Equals(itemName, "Hellrazer", StringComparison.OrdinalIgnoreCase);
-//        }
+            return string.Equals(modName, "Avalon", StringComparison.OrdinalIgnoreCase)
+                && string.Equals(itemName, "Hellrazer", StringComparison.OrdinalIgnoreCase);
+        }
 
-//        public override void SetDefaults(Item entity)
-//        {
-//            if (AppliesToEntity(entity, false))
-//            {
-//                entity.useTime /= 2;
-//                entity.useAnimation /= 2;
+        public override void SetDefaults(Item entity)
+        {
+            if (AppliesToEntity(entity, false))
+            {
+                entity.useTime /= 2;
+                entity.useAnimation /= 2;
 
-//                if (entity.useTime < 2)
-//                    entity.useTime = 2;
+                if (entity.useTime < 2)
+                    entity.useTime = 2;
 
-//                if (entity.useAnimation < 2)
-//                    entity.useAnimation = 2;
-//            }
-//        }
+                if (entity.useAnimation < 2)
+                    entity.useAnimation = 2;
+            }
+        }
 
-//        public override bool Shoot(
-//            Item item,
-//            Player player,
-//            EntitySource_ItemUse_WithAmmo source,
-//            Vector2 position,
-//            Vector2 velocity,
-//            int type,
-//            int damage,
-//            float knockback)
-//        {
-//            if (item.useAmmo == AmmoID.Bullet)
-//            {
-//                Vector2 playerPos = player.Center;
+        public override bool Shoot(
+            Item item,
+            Player player,
+            EntitySource_ItemUse_WithAmmo source,
+            Vector2 position,
+            Vector2 velocity,
+            int type,
+            int damage,
+            float knockback)
+        {
+            if (item.useAmmo == AmmoID.Bullet)
+            {
+                Vector2 playerPos = player.Center;
 
-//                Projectile.NewProjectile(
-//                    source,
-//                    playerPos,
-//                    velocity,
-//                    ModContent.ProjectileType<Hellbullet>(), 
-//                    damage,
-//                    knockback,
-//                    player.whoAmI
-//                );
+                Projectile.NewProjectile(
+                    source,
+                    playerPos,
+                    velocity,
+                    ModContent.ProjectileType<Hellbullet>(),
+                    damage,
+                    knockback,
+                    player.whoAmI
+                );
 
-//                return false;
-//            }
+                return false;
+            }
 
-//            return true;
-//        }
-//    }
-//}
+            return true;
+        }
+    }
+}
