@@ -10,10 +10,8 @@ namespace Synergia.Common.GlobalPlayer {
         public bool activeBloodBuff = false;
 
         public int currentHit = 0;
-        public int timeForBuff = 60; // если какое либо баф или акс должен увеличвать время
         public int timeLastHit = 0;
 
-        int timeForResetBuff = 0;
 
         public override void Initialize() {
             activeBloodUI = false;
@@ -28,26 +26,12 @@ namespace Synergia.Common.GlobalPlayer {
                 activeBloodUI = false;
             }
             if (currentHit >= hitForActiveBloodBuff) {
-                if (timeForResetBuff <= 0) {
-                    activeBloodBuff = true;
-                }
-            }
-            if (activeBloodBuff) {
-                timeForResetBuff++;
-                if (timeForResetBuff >= timeForBuff) {
-                    activeBloodBuff = false;
-                    currentHit = 0;
-                }
-            }
-            if (!activeBloodBuff && timeForResetBuff >= 0) {
-                timeForResetBuff = 0;
+                activeBloodBuff = true;
             }
             if (currentHit >= 1) {
-                if (!activeBloodBuff) {
-                    timeLastHit++;
-                    if (timeLastHit >= timeForResetHit) {
-                        currentHit = 0;
-                    }
+                timeLastHit++;
+                if (timeLastHit >= timeForResetHit) {
+                    currentHit = 0;
                 }
             }
         }

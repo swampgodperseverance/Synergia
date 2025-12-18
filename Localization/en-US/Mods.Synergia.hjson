@@ -996,6 +996,11 @@ Items: {
 		Tooltip: ""
 		DisplayName: Ossuary Staff
 	}
+
+	CorrodeVisage: {
+		DisplayName: Corrode Visage
+		Tooltip: ""
+	}
 }
 
 Projectiles: {
@@ -1241,6 +1246,8 @@ Projectiles: {
 	JadeShardBig.DisplayName: Jade Shard Big
 	JadeShard.DisplayName: Jade Shard
 	JadeGreatJavelin.DisplayName: Jade Great Javelin
+	Hellbullet.DisplayName: Hellbullet
+	JadeDart.DisplayName: Jade Dart
 }
 
 Buffs: {

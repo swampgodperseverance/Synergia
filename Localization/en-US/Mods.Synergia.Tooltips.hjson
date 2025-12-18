@@ -11,4 +11,5 @@ Armor: {
 Weapons: {
 	GroupsItem: Any item from this list
 	Inf: Although the item has a recipe, it is not possible to create it. This is done to clarify which item is needed for crafting.
+	BloodTooltips: Bloodthirsty Weapon
 }
