@@ -1,23 +1,71 @@
 ﻿using StramsSurvival.Buffs;
 using Synergia.Common.ModConfigs;
 using Synergia.Content.Buffs.Debuff;
+using Synergia.Helpers;
 using Terraria;
 using Terraria.Localization;
-using Terraria.ModLoader;
+using Terraria.ModLoader.IO;
 
 namespace Synergia.Common.GlobalPlayer {
     public class SynergiaPlayer : ModPlayer {
+        #region Flag
         bool giveMsg = false;
-        
-        public override void PostUpdateBuffs() {
-            // нету смысла проверять, если мод не загружен 
-            // наш мод и не может быть загружен если нет StramsSurvival
-            int dehydrated = ModContent.BuffType<Dehydrated>();
-            int starving = ModContent.BuffType<Starving>();
 
-            ReplaceBuff(dehydrated, ModContent.BuffType<SynergiaDehydrated>());
-            ReplaceBuff(starving, ModContent.BuffType<SynergiaStarving>());
+        public int useSulfuricAcid;
+        public bool equipBronzeSet;
+        #endregion;
+        #region Save
+        public override void Initialize() {
+            equipBronzeSet = false;
         }
+        public override void ResetEffects() {
+            equipBronzeSet = false;
+        }
+        public override void SaveData(TagCompound tag) {
+            tag["useSulfuricAcid"] = useSulfuricAcid;
+        }
+        public override void LoadData(TagCompound tag) {
+            useSulfuricAcid = tag.GetInt("useSulfuricAcid");
+        }
+        #endregion;
+        #region Vanilla
+        public override void PostUpdateBuffs() {
+            ReplaceBuff(BuffType<Dehydrated>(), BuffType<SynergiaDehydrated>());
+            ReplaceBuff(BuffType<Starving>(), BuffType<SynergiaStarving>());
+        }
+        public override void UpdateBadLifeRegen() {
+            if (Player.HasBuff(BuffType<SynergiaDehydrated>())) {
+                Player.lifeRegen = 0;
+                Player.lifeRegenTime = 0;
+            }
+        }
+        public override void ModifyWeaponDamage(Item item, ref StatModifier damage) {
+            if (Player.HasBuff(BuffType<SynergiaStarving>())) {
+                damage *= 0.8f;
+            }
+        }
+        public override void OnEnterWorld() {
+            if (!giveMsg) {
+                if (ModList.PackBuilderLoaded != null) {
+                    if (GetInstance<BossConfig>().NewRecipe) {
+                        Main.NewText(string.Format(SUtils.LocUtil.LocUIKey(SUtils.LocUtil.CHATMSG, "tPacer"), ModList.PackBuilderLoaded.DisplayName, Language.GetTextValue("Mods.Synergia.Config.NewRecipe")), Microsoft.Xna.Framework.Color.DarkRed);
+                        giveMsg = true;
+                    }
+                }
+            }
+        }
+        public override void ModifyHitNPCWithProj(Projectile proj, NPC target, ref NPC.HitModifiers modifiers) {
+            Item item = PlayerHelpers.GetLocalItem(Player);
+            if (equipBronzeSet) {
+                if (proj.DamageType == DamageClass.Throwing || item.DamageType == DamageClass.Throwing) {
+                    if (Main.rand.NextBool(2)) {
+                        target.AddBuff(BuffType<SulphurVenom>(), 60);
+                    }
+                }
+            }
+        }
+        #endregion;
+        #region NewNethod
         void ReplaceBuff(int originalBuffType, int newBuffType) {
             if (Player.HasBuff(originalBuffType)) {
                 int buffIndex = Player.FindBuffIndex(originalBuffType);
@@ -28,27 +76,6 @@ namespace Synergia.Common.GlobalPlayer {
                 }
             }
         }
-        public override void UpdateBadLifeRegen() {
-            if (Player.HasBuff(ModContent.BuffType<SynergiaDehydrated>())) {
-                Player.lifeRegen = 0;
-                Player.lifeRegenTime = 0;
-            }
-        }
-        public override void ModifyWeaponDamage(Item item, ref StatModifier damage) {
-            if (Player.HasBuff(ModContent.BuffType<SynergiaStarving>())) {
-                damage *= 0.8f;
-            }
-        }
-        public override void OnEnterWorld() {
-            if (!giveMsg) {
-                if (ModList.PackBuilderLoaded != null) {
-                    if (ModContent.GetInstance<BossConfig>().NewRecipe) {
-                        // MR Swamp pls No USE THIS MOD;
-                        Main.NewText(string.Format(SUtils.LocUtil.LocUIKey(SUtils.LocUtil.CHATMSG, "tPacer"), ModList.PackBuilderLoaded.DisplayName, Language.GetTextValue("Mods.Synergia.Config.NewRecipe")), Microsoft.Xna.Framework.Color.DarkRed);
-                        giveMsg = true;
-                    }
-                }
-            }
-        }
+        #endregion;
     }
 }

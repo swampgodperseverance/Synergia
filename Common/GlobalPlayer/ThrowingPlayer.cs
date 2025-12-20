@@ -1,11 +1,12 @@
-﻿using System.Collections.Generic;
+﻿using NewHorizons.Content.Items.Weapons.Throwing;
+using NewHorizons.Content.Projectiles.Throwing;
+using System.Collections.Generic;
 using Terraria;
 using Terraria.Audio;
 using Terraria.ID;
 using Terraria.ModLoader;
-using ValhallaMod.Items.Weapons.Thrown;
 using ValhallaMod.Items.Weapons.Boomerang;
-using NewHorizons.Content.Items.Weapons.Throwing;
+using ValhallaMod.Items.Weapons.Thrown;
 
 namespace Synergia.Common.GlobalPlayer {
     public class ThrowingPlayer : ModPlayer {
@@ -17,6 +18,7 @@ namespace Synergia.Common.GlobalPlayer {
         bool wasHoldingScrew;
 
         public List<int> IsComboWeapons = [ItemID.Trimarang,ItemID.WoodenBoomerang, ItemID.Snowball, ModContent.ItemType<StalloyScrew>(), ModContent.ItemType<Rock>(), ModContent.ItemType<TeethBreaker>()];
+        List<int> ProjType = [ProjectileType<RockProj>(), ProjectileType<ValhallaMod.Projectiles.Boomerang.TeethBreaker>()];
 
         public override void Initialize() {
             comboCount = 0;
@@ -42,6 +44,11 @@ namespace Synergia.Common.GlobalPlayer {
             }
             else {
                 ActiveUI = false;
+            }
+        }
+        public override void OnHitNPCWithProj(Projectile proj, NPC target, NPC.HitInfo hit, int damageDone) {
+            if (ProjType.Contains(proj.type)) {
+                AddCombo();
             }
         }
         public void AddCombo() {

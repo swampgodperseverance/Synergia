@@ -1,9 +1,10 @@
 ﻿using Terraria;
 using Terraria.ModLoader;
+using ValhallaMod.Items.Tools;
 
 namespace Synergia.Common.GlobalPlayer {
     public class BloodPlayer : ModPlayer {
-        public const int hitForActiveBloodBuff = 10;
+        public const int hitForActiveBloodBuff = 15;
         public const int timeForResetHit = 120;
 
         public bool activeBloodUI = false;
@@ -11,7 +12,6 @@ namespace Synergia.Common.GlobalPlayer {
 
         public int currentHit = 0;
         public int timeLastHit = 0;
-
 
         public override void Initialize() {
             activeBloodUI = false;
@@ -29,10 +29,16 @@ namespace Synergia.Common.GlobalPlayer {
                 activeBloodBuff = true;
             }
             if (currentHit >= 1) {
-                timeLastHit++;
-                if (timeLastHit >= timeForResetHit) {
-                    currentHit = 0;
+                if (!activeBloodBuff) {
+                    timeLastHit++;
+                    if (timeLastHit >= timeForResetHit) {
+                        currentHit = 0;
+                    }
                 }
+            }
+            if (!activeBloodUI) {
+                activeBloodBuff = false;
+                currentHit = 0;
             }
         }
         public override void PostUpdateBuffs() {

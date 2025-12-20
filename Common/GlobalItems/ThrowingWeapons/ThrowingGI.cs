@@ -1,7 +1,6 @@
-﻿using Terraria;
-using Terraria.ModLoader;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Synergia.Common.GlobalPlayer;
+using Terraria;
 
 namespace Synergia.Common.GlobalItems.ThrowingWeapons {
     public abstract class ThrowingGI : GlobalItem {

@@ -1,3 +1,5 @@
+global using static Terraria.ModLoader.ModContent;
+global using Terraria.ModLoader;
 using Avalon.Items.Weapons.Magic.Hardmode.Sunstorm;
 using Bismuth.Content.Items.Weapons.Throwing;
 using Bismuth.Content.Projectiles;
@@ -12,7 +14,6 @@ using System.Reflection;
 using Terraria;
 using Terraria.Audio;
 using Terraria.GameContent;
-using Terraria.ModLoader;
 using Terraria.UI;
 using ValhallaMod.Items.Weapons.Aura;
 using static Synergia.Common.QuestSystem.SynergiaQuestRegistry;

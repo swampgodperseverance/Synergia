@@ -9,7 +9,7 @@ using ValhallaMod.Items.Weapons.Boomerang;
 namespace Synergia.Common.GlobalItems
 {
     public class TeethBreakerGlobalItem : ThrowingGI {
-        public override int ItemType => ModContent.ItemType<TeethBreaker>(); 
+        public override int ItemType => ModContent.ItemType<TeethBreaker>();
         public override bool NewBehavior(Item item, Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback) {
             int newType = ModContent.ProjectileType<TeethBreakerMega>();
             velocity *= 1.5f;

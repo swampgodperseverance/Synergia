@@ -4,7 +4,6 @@ using Synergia.Content.Projectiles.Thrower;
 using Terraria;
 using Terraria.DataStructures;
 using Terraria.ID;
-using Terraria.ModLoader;
 
 namespace Synergia.Common.GlobalItems
 {

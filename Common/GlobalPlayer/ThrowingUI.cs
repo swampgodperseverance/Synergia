@@ -24,13 +24,12 @@ namespace Synergia.Common.GlobalPlayer {
                 throwAnimation.Init(1, 6); // <- 6 сколько фреймов, 1 колонок
                 throwAnimation.Update(throwing.comboCount); // <- тут меняем фрейм от количества чего то там я не помну. И только Byte 
                 throwAnimation.GetSource(texture); // <- сама текстура
-                int drawX = (int)(Player.position.X + Player.width / 2f - Main.screenPosition.X - 40);
+                int drawX = (int)(Player.position.X - Main.screenPosition.X - 110);
                 int drawY = (int)(Player.position.Y + Player.height / 2f + 89 - Main.screenPosition.Y - 45);
                 Vector2 drawPos = new(drawX, drawY);
                 drawPos += shake;
                 drawPos += velocity;
-                Color color = Lighting.GetColor((int)(Player.Center.X / 16), (int)(Player.Center.Y / 16)) * 1;
-                Main.spriteBatch.Draw(texture, drawPos, throwAnimation.GetSource(texture), color, 0f, Vector2.Zero, 0.95f, SpriteEffects.None, 0);
+                Main.spriteBatch.Draw(texture, drawPos, throwAnimation.GetSource(texture), Color.White, 0f, Vector2.Zero, 0.95f, SpriteEffects.None, 0);
             }
         }
     }

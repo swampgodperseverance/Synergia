@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using Terraria;
 using Terraria.GameContent.ItemDropRules;
-using Terraria.ModLoader;
 using static Synergia.Common.SUtils.LocUtil;
 
 namespace Synergia.Helpers {
@@ -47,6 +46,13 @@ namespace Synergia.Helpers {
         public static void AddLoot(Item item, ItemLoot itemLoot, int type, int drop, byte chance, byte min = 1, byte max = 1) {
             if (item.type == type) {
                 itemLoot.Add(ItemDropRule.Common(drop, chance, min, max));
+            }
+        }
+        public static void EditTooltips(Item item, List<TooltipLine> tooltips, int type, string oldToolTip, string newTooltips) {
+            if (item.type == type) {
+                foreach (TooltipLine line in tooltips) {
+                    line.Text = line.Text.Replace(oldToolTip, newTooltips);
+                }
             }
         }
     }

@@ -1,7 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
 using Terraria;
-using Terraria.ModLoader;
-using ValhallaMod.Items.Tools;
 
 namespace Synergia.Helpers
 {

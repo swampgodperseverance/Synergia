@@ -1001,6 +1001,26 @@ Items: {
 		DisplayName: Corrode Visage
 		Tooltip: ""
 	}
+
+	SulfuricAcid: {
+		Tooltip: ""
+		DisplayName: Sulfuric Acid
+	}
+
+	ThunderBody: {
+		DisplayName: Thunder Body
+		Tooltip: ""
+	}
+
+	ThunderHead: {
+		DisplayName: Thunder Head
+		Tooltip: ""
+	}
+
+	ThunderLegs: {
+		DisplayName: Thunder Legs
+		Tooltip: ""
+	}
 }
 
 Projectiles: {
@@ -1248,6 +1268,8 @@ Projectiles: {
 	JadeGreatJavelin.DisplayName: Jade Great Javelin
 	Hellbullet.DisplayName: Hellbullet
 	JadeDart.DisplayName: Jade Dart
+	HeavyStone.DisplayName: Heavy Stone
+	TeethBreakerMega.DisplayName: Teeth Breaker Mega
 }
 
 Buffs: {
@@ -1339,6 +1361,16 @@ Buffs: {
 	OssuaryBuff: {
 		Description: Mods.Synergia.Buffs.OssuaryBuff.Description
 		DisplayName: Ossuary Buff
+	}
+
+	Bloodbound: {
+		DisplayName: Bloodbound
+		Description: Mods.Synergia.Buffs.Bloodbound.Description
+	}
+
+	SulphurVenom: {
+		DisplayName: Sulphur Venom
+		Description: Mods.Synergia.Buffs.SulphurVenom.Description
 	}
 }
 
