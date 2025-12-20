@@ -4,6 +4,8 @@ using Terraria.Audio;
 using Terraria.ID;
 using Terraria.ModLoader;
 using ValhallaMod.Items.Weapons.Thrown;
+using ValhallaMod.Items.Weapons.Boomerang;
+using NewHorizons.Content.Items.Weapons.Throwing;
 
 namespace Synergia.Common.GlobalPlayer {
     public class ThrowingPlayer : ModPlayer {
@@ -14,7 +16,7 @@ namespace Synergia.Common.GlobalPlayer {
         public bool doubleMode;
         bool wasHoldingScrew;
 
-        public List<int> IsComboWeapons = [ItemID.Trimarang, ItemID.Snowball, ModContent.ItemType<StalloyScrew>()];
+        public List<int> IsComboWeapons = [ItemID.Trimarang,ItemID.WoodenBoomerang, ItemID.Snowball, ModContent.ItemType<StalloyScrew>(), ModContent.ItemType<Rock>(), ModContent.ItemType<TeethBreaker>()];
 
         public override void Initialize() {
             comboCount = 0;
