@@ -7,13 +7,12 @@ using System;
 
 namespace Synergia.Content.Projectiles.Friendly
 {
-    public sealed class ThunderSpike : ModProjectile 
+    public sealed class ThunderSigilProj1 : ModProjectile 
     {
         public override void SetStaticDefaults() 
         {
-            ProjectileID.Sets.TrailCacheLength[Projectile.type] = 12;
+            ProjectileID.Sets.TrailCacheLength[Projectile.type] = 7;
             ProjectileID.Sets.TrailingMode[Projectile.type] = 2;
-            Main.projFrames[Projectile.type] = 5;
         }
 
         public override Color? GetAlpha(Color lightColor) => Color.White;
@@ -60,7 +59,9 @@ namespace Synergia.Content.Projectiles.Friendly
         {
             Projectile.friendly = true;   
             Projectile.hostile = false; 
-            Projectile.width = Projectile.height = 14;
+            Projectile.width = 28;
+            Projectile.height = 10;
+            Projectile.damage = 76;
             Projectile.aiStyle = 0;
             Projectile.tileCollide = false;
             Projectile.extraUpdates = 1;
@@ -69,7 +70,7 @@ namespace Synergia.Content.Projectiles.Friendly
 
         public override void AI()
         {
-            // Легкая самонаводка на ближайшего NPC
+   
             float maxDetectRadius = 300f;
             NPC target = null;
             float closestDistance = maxDetectRadius;
@@ -91,7 +92,7 @@ namespace Synergia.Content.Projectiles.Friendly
             if (target != null)
             {
                 Vector2 direction = (target.Center - Projectile.Center).SafeNormalize(Vector2.Zero);
-                float homingSpeed = 0.15f; // сила самонаводки
+                float homingSpeed = 0.15f; 
                 Projectile.velocity = Vector2.Lerp(Projectile.velocity, direction * Projectile.velocity.Length(), homingSpeed);
             }
 
