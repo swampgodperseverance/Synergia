@@ -1006,6 +1006,7 @@ Items: {
 		Tooltip: ""
 		DisplayName: Sulfuric Acid
 	}
+
 	ThunderBody: {
 		DisplayName: Thunder Body
 		Tooltip: ""

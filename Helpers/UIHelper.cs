@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using Microsoft.Xna.Framework;
+using System.Collections.Generic;
 using Terraria;
 using Terraria.GameInput;
 using Terraria.ID;
@@ -50,6 +51,11 @@ namespace Synergia.Helpers {
             if (layerIndex != -1) {
                 layers.Insert(layerIndex, new LegacyGameInterfaceLayer(name, drawMethod, scaleType));
             }
+        }
+        public static Vector2 PlayerPos(float x = 0, float y = 0) {
+            Vector2 screenCenter = new(Main.screenWidth / 2f, Main.screenHeight / 2f);
+            Vector2 drawPos = screenCenter + new Vector2(x, y);
+            return drawPos;
         }
     }
 }

@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using Terraria;
 using Terraria.Audio;
 using Terraria.ID;
-using Terraria.ModLoader;
 using ValhallaMod.Items.Weapons.Boomerang;
 using ValhallaMod.Items.Weapons.Thrown;
 

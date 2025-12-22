@@ -1,9 +1,9 @@
-﻿using Microsoft.Xna.Framework.Graphics;
+﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using Synergia.Dataset;
+using Synergia.Helpers;
 using System;
-using Microsoft.Xna.Framework;
 using Terraria;
-using Terraria.ModLoader;
 
 namespace Synergia.Common.GlobalPlayer {
     public class ThrowingUI : ModPlayer {
@@ -20,13 +20,11 @@ namespace Synergia.Common.GlobalPlayer {
                     float velocityY = (float)Math.Sin(Main.GameUpdateCount * 0.08f) * 3f;
                     velocity = new Vector2(0, velocityY);
                 }
-                Texture2D texture = ModContent.Request<Texture2D>("Synergia/Content/Projectiles/Thrower/ThrowerInterface1").Value;
+                Texture2D texture = Request<Texture2D>("Synergia/Content/Projectiles/Thrower/ThrowerInterface1").Value;
                 throwAnimation.Init(1, 6); // <- 6 сколько фреймов, 1 колонок
                 throwAnimation.Update(throwing.comboCount); // <- тут меняем фрейм от количества чего то там я не помну. И только Byte 
                 throwAnimation.GetSource(texture); // <- сама текстура
-                int drawX = (int)(Player.position.X - Main.screenPosition.X - 110);
-                int drawY = (int)(Player.position.Y + Player.height / 2f + 89 - Main.screenPosition.Y - 45);
-                Vector2 drawPos = new(drawX, drawY);
+                Vector2 drawPos = UIHelper.PlayerPos(-40, 89);
                 drawPos += shake;
                 drawPos += velocity;
                 Main.spriteBatch.Draw(texture, drawPos, throwAnimation.GetSource(texture), Color.White, 0f, Vector2.Zero, 0.95f, SpriteEffects.None, 0);

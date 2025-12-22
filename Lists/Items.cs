@@ -1,11 +1,8 @@
 ﻿using Avalon.Items.Tools.Hardmode;
-using Bismuth.Content.Items.Armor;
+using Synergia.Content.Items.Weapons.Throwing;
 using System.Collections.Generic;
-using Terraria.ModLoader;
-using Synergia.Content.Items.Weapons.Throwing;  
 using static Synergia.ModList;
 using static Terraria.ID.ItemID;
-using static Terraria.ModLoader.ModContent;
 using Carrot = StramsSurvival.Items.Foods.Carrot;
 using Carrot1 = NewHorizons.Content.Items.Materials.Carrot;
 
