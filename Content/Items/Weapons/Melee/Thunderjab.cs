@@ -17,7 +17,7 @@ namespace Synergia.Content.Items.Weapons.Melee
 			base.Item.width = 60;
 			base.Item.height = 60;
 			base.Item.value = Item.sellPrice(0, 2, 50, 0);
-			base.Item.rare = 5;
+			base.Item.rare = 8;
 			base.Item.useTime = 40;
 			base.Item.useAnimation = 40;
 			base.Item.useStyle = 5;
