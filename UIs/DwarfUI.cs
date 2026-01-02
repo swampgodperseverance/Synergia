@@ -2,6 +2,8 @@
 using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Graphics;
 using Synergia.Common.GlobalPlayer;
+using Synergia.Content.Items.Tools;
+using Synergia.Content.Items.Weapons.Ranged;
 using Synergia.Dataset;
 using System.Collections.Generic;
 using Terraria;
@@ -9,13 +11,11 @@ using Terraria.Audio;
 using Terraria.GameContent;
 using Terraria.ID;
 using Terraria.Localization;
-using Terraria.ModLoader;
 using Terraria.UI;
 using Terraria.UI.Chat;
 using ValhallaMod.Items.Placeable.Blocks;
-using static Synergia.Helpers.UIHelper;
-using static Terraria.ModLoader.ModContent;
 using static Synergia.Common.SUtils.LocUtil;
+using static Synergia.Helpers.UIHelper;
 
 namespace Synergia.UIs;
 // Some of the code is taken from EAMod
@@ -23,6 +23,12 @@ internal class DwarfUI : UIState {
 
     VanillaItemSlotWrapper itemSlotWeppon;
     VanillaItemSlotWrapper itemSlotPrace;
+    Dictionary<int, int> Items = new(){
+        {ItemID.MoltenPickaxe, ItemType<CoreburnedPickaxe>()},
+        {ItemID.PhoenixBlaster, ItemType<PhoenixDownfall>() },
+        //{ItemID.Scorcher, ItemType<ScorcherRequiem>() },
+        {120, ItemType<Enfer>() },
+    };
     readonly SaveItemPlayer saveItem = Main.LocalPlayer.GetModPlayer<SaveItemPlayer>();
     Texture2D anvil;
     Texture2D hellsmithBgTexture;
@@ -96,11 +102,11 @@ internal class DwarfUI : UIState {
         needResetForging = false;
     }
     void Textures() {
-        anvil = Request<Texture2D>(Synergia.GetUIElementName("Anvil")).Value;
-        reforgeButtonTexture = Request<Texture2D>(Synergia.GetUIElementName("NakovalnyaBoga")).Value;
-        reforgeButtonTexture_glow = Request<Texture2D>(Synergia.GetUIElementName("NakovalnyaBoga_glow")).Value;
-        hellsmithBgTexture = Request<Texture2D>(Synergia.GetUIElementName("HellsmithBg")).Value;
-        hellsmithBarTexture = Request<Texture2D>(Synergia.GetUIElementName("HellsmithBar")).Value;
+        anvil = Request<Texture2D>(Reassures.Reassures.GetUIElementName("Anvil")).Value;
+        reforgeButtonTexture = Request<Texture2D>(Reassures.Reassures.GetUIElementName("NakovalnyaBoga")).Value;
+        reforgeButtonTexture_glow = Request<Texture2D>(Reassures.Reassures.GetUIElementName("NakovalnyaBoga_glow")).Value;
+        hellsmithBgTexture = Request<Texture2D>(Reassures.Reassures.GetUIElementName("HellsmithBg")).Value;
+        hellsmithBarTexture = Request<Texture2D>(Reassures.Reassures.GetUIElementName("HellsmithBar")).Value;
         VanillaItemTexture = Request<Texture2D>($"Terraria/Images/Item_{GetNextItemType(GetItem())}").Value;
         magmaSinstoneTexture = Request<Texture2D>("ValhallaMod/Items/Placeable/Blocks/SinstoneMagma").Value;
 
@@ -166,7 +172,8 @@ internal class DwarfUI : UIState {
         hellsmithBarTextureAnim.Init(1, 25);
         spriteBatch.Draw(hellsmithBgTexture, new Vector2(slotX - 28, slotY - 17), Color.White);
         spriteBatch.Draw(anvil, new Vector2(reforgeX - 50, reforgeY + 70), Color.White);
-        if (!itemSlotWeppon.Item.IsAir && (!itemSlotPrace.Item.IsAir && itemSlotPrace.Item.stack >= 10)) {
+        bool canReforge = Items.ContainsKey(itemSlotWeppon.Item.type) && !itemSlotPrace.Item.IsAir && itemSlotPrace.Item.stack >= 10;
+        if (!itemSlotWeppon.Item.IsAir && canReforge) {
             Vector2 reforgeButtonOrigin = reforgeButtonAnim.GetSource(reforgeButtonTexture).Size() / 2f;
             spriteBatch.Draw(reforgeButtonTexture, new Vector2(reforgeX + 75, reforgeY + 85), reforgeButtonAnim.GetSource(reforgeButtonTexture), Color.White, 0f, reforgeButtonOrigin, 1f, reforgeButtonAnim.Effects, 0f); // layer: 0 -> 1;
             Vector2 barOrigin = hellsmithBarTextureAnim.GetSource(hellsmithBarTexture).Size() / 2f;
@@ -191,9 +198,7 @@ internal class DwarfUI : UIState {
 
                     ItemLoader.PreReforge(itemSlotPrace.Item);
                     bool valueFavorited = itemSlotPrace.Item.favorited;
-                    int valueStack, a;
-                    if (isStartForgoten == false) { a = 10; }
-                    else { a = 0; }
+                    int valueStack, a = isStartForgoten ? 10 : 0;
                     valueStack = itemSlotPrace.Item.stack - a;
 
                     itemSlotPrace.Item.favorited = valueFavorited;
@@ -230,48 +235,50 @@ internal class DwarfUI : UIState {
                 if (hoveringOverReforgeButton) {
                     if (Main.mouseLeft && Main.mouseLeftRelease) {
                         int currentFrame = hellsmithBarTextureAnim.Frame.CurrentRow;
-                        if (currentFrame >= 14 && currentFrame <= 16) {
-                            Main.LocalPlayer.mouseInterface = false;
-                            forgingSuccess = true;
-                            forgingEnded = true;
-
-                            int itemType = GetItem().IndexOf(itemSlotWeppon.Item.type);
-                            int counterPart = GetItem()[itemType + ((GetItem().IndexOf(itemSlotWeppon.Item.type) + 1) % 2 == 0 ? -1 : 1)];
-
-                            ItemLoader.PreReforge(itemSlotWeppon.Item);
-                            bool favorited = itemSlotWeppon.Item.favorited;
-                            int stack = itemSlotWeppon.Item.stack;
-
-                            Item reforgeItem = new();
-                            reforgeItem.SetDefaults(counterPart);
-
-                            itemSlotWeppon.Item = reforgeItem.Clone();
-                            itemSlotWeppon.Item.favorited = favorited;
-                            itemSlotWeppon.Item.stack = stack;
-                            itemSlotWeppon.Item.position = Main.LocalPlayer.Center - new Vector2(itemSlotWeppon.Item.width / 2f, itemSlotWeppon.Item.height / 2f);
-
-                            SoundEngine.PlaySound(SoundID.Item4);
-                            CombatText.NewText(Main.LocalPlayer.getRect(), Color.Lime, LocUIKey("DwarfUI", "IsGood"));
-                            PopupText.NewText(PopupTextContext.RegularItemPickup, itemSlotWeppon.Item, itemSlotWeppon.Item.stack, noStack: true);
-                            Main.LocalPlayer.mouseInterface = false;
-
-                            isStartForgoten = false;
-                        }
-                        else {
-                            forgingFails++;
-                            forgingSpeed += 2;
-                            SoundEngine.PlaySound(SoundID.DD2_BetsyFireballShot);
-                            if (forgingFails >= 3) {
+                        if (Items.TryGetValue(itemSlotWeppon.Item.type, out int item)) {
+                            if (currentFrame >= 14 && currentFrame <= 16) {
+                                Main.LocalPlayer.mouseInterface = false;
+                                forgingSuccess = true;
                                 forgingEnded = true;
-                                itemSlotWeppon.Item.TurnToAir();
 
-                                SoundEngine.PlaySound(SoundID.Item14);
-                                CombatText.NewText(Main.LocalPlayer.getRect(), Color.Red, LocUIKey("DwarfUI", "IsNotGood"));
+                                ItemLoader.PreReforge(itemSlotWeppon.Item);
+                                bool favorited = itemSlotWeppon.Item.favorited;
+                                int stack = itemSlotWeppon.Item.stack;
+
+                                Item reforgeItem = new();
+                                reforgeItem.SetDefaults(item);
+
+                                itemSlotWeppon.Item = reforgeItem.Clone();
+                                itemSlotWeppon.Item.favorited = favorited;
+                                itemSlotWeppon.Item.stack = stack;
+                                itemSlotWeppon.Item.position = Main.LocalPlayer.Center - new Vector2(itemSlotWeppon.Item.width / 2f, itemSlotWeppon.Item.height / 2f);
+
+                                SoundEngine.PlaySound(SoundID.Item4);
+                                CombatText.NewText(Main.LocalPlayer.getRect(), Color.Lime, LocUIKey("DwarfUI", "IsGood"));
+                                PopupText.NewText(PopupTextContext.RegularItemPickup, itemSlotWeppon.Item, itemSlotWeppon.Item.stack, noStack: true);
                                 Main.LocalPlayer.mouseInterface = false;
 
-                                isStartForgoten = true;
+                                isStartForgoten = false;
+                            }
+                            else {
+                                forgingFails++;
+                                forgingSpeed += 2;
+                                SoundEngine.PlaySound(SoundID.DD2_BetsyFireballShot);
+                                if (forgingFails >= 3) {
+                                    forgingEnded = true;
+                                    itemSlotWeppon.Item.TurnToAir();
+
+                                    SoundEngine.PlaySound(SoundID.Item14);
+                                    CombatText.NewText(Main.LocalPlayer.getRect(), Color.Red, LocUIKey("DwarfUI", "IsNotGood"));
+                                    Main.LocalPlayer.mouseInterface = false;
+
+                                    isStartForgoten = true;
+                                }
                             }
                         }
+                        else {
+                            return;
+                        }         
                     }
                 }
             }

@@ -1,7 +1,6 @@
 ﻿using StramsSurvival.Buffs;
 using Synergia.Common.ModConfigs;
 using Synergia.Content.Buffs.Debuff;
-using Synergia.Helpers;
 using Terraria;
 using Terraria.Localization;
 using Terraria.ModLoader.IO;
@@ -12,15 +11,8 @@ namespace Synergia.Common.GlobalPlayer {
         bool giveMsg = false;
 
         public int useSulfuricAcid;
-        public bool equipBronzeSet;
         #endregion;
         #region Save
-        public override void Initialize() {
-            equipBronzeSet = false;
-        }
-        public override void ResetEffects() {
-            equipBronzeSet = false;
-        }
         public override void SaveData(TagCompound tag) {
             tag["useSulfuricAcid"] = useSulfuricAcid;
         }
@@ -50,16 +42,6 @@ namespace Synergia.Common.GlobalPlayer {
                     if (GetInstance<BossConfig>().NewRecipe) {
                         Main.NewText(string.Format(SUtils.LocUtil.LocUIKey(SUtils.LocUtil.CHATMSG, "tPacer"), ModList.PackBuilderLoaded.DisplayName, Language.GetTextValue("Mods.Synergia.Config.NewRecipe")), Microsoft.Xna.Framework.Color.DarkRed);
                         giveMsg = true;
-                    }
-                }
-            }
-        }
-        public override void ModifyHitNPCWithProj(Projectile proj, NPC target, ref NPC.HitModifiers modifiers) {
-            Item item = PlayerHelpers.GetLocalItem(Player);
-            if (equipBronzeSet) {
-                if (proj.DamageType == DamageClass.Throwing || item.DamageType == DamageClass.Throwing) {
-                    if (Main.rand.NextBool(2)) {
-                        target.AddBuff(BuffType<SulphurVenom>(), 60);
                     }
                 }
             }

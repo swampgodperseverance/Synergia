@@ -51,12 +51,12 @@ namespace Synergia.Common.ModSystems.Hooks.Ons {
                 if (invasionProgressIcon == 1) {
                     value = TextureAssets.Extra[ExtrasID.EventIconFrostMoon].Value;
                     text = Lang.inter[83].Value;
-                    colorBar = ModContent.Request<Texture2D>(Synergia.GetUIElementName("IceMoonBar")).Value;
+                    colorBar = ModContent.Request<Texture2D>(Reassures.Reassures.GetUIElementName("IceMoonBar")).Value;
                 }
                 else if (invasionProgressIcon == 2) {
                     value = TextureAssets.Extra[ExtrasID.EventIconPumpkinMoon].Value;
                     text = Lang.inter[84].Value;
-                    colorBar = ModContent.Request<Texture2D>(Synergia.GetUIElementName("PumpkinMoonBar")).Value;
+                    colorBar = ModContent.Request<Texture2D>(Reassures.Reassures.GetUIElementName("PumpkinMoonBar")).Value;
                 }
                 else if (invasionProgressIcon == 3) {
                     value = TextureAssets.Extra[ExtrasID.EventIconOldOnesArmy].Value;
@@ -66,22 +66,22 @@ namespace Synergia.Common.ModSystems.Hooks.Ons {
                 else if (invasionProgressIcon == 7) {
                     value = TextureAssets.Extra[ExtrasID.EventIconMartianMadness].Value;
                     text = Lang.inter[85].Value;
-                    colorBar = ModContent.Request<Texture2D>(Synergia.GetUIElementName("MartianBar")).Value;
+                    colorBar = ModContent.Request<Texture2D>(Reassures.Reassures.GetUIElementName("MartianBar")).Value;
                 }
                 else if (invasionProgressIcon == 6) {
                     value = TextureAssets.Extra[ExtrasID.EventIconPirateInvasion].Value;
                     text = Lang.inter[86].Value;
-                    colorBar = ModContent.Request<Texture2D>(Synergia.GetUIElementName("PiraticBar")).Value;
+                    colorBar = ModContent.Request<Texture2D>(Reassures.Reassures.GetUIElementName("PiraticBar")).Value;
                 }
                 else if (invasionProgressIcon == 5) {
                     value = TextureAssets.Extra[ExtrasID.EventIconSnowLegion].Value;
                     text = Lang.inter[87].Value;
-                    colorBar = ModContent.Request<Texture2D>(Synergia.GetUIElementName("FrostBar")).Value;
+                    colorBar = ModContent.Request<Texture2D>(Reassures.Reassures.GetUIElementName("FrostBar")).Value;
                 }
                 else if (invasionProgressIcon == 4) {
                     value = TextureAssets.Extra[ExtrasID.EventIconGoblinArmy].Value;
                     text = Lang.inter[88].Value;
-                    colorBar = ModContent.Request<Texture2D>(Synergia.GetUIElementName("GoblinBar")).Value;
+                    colorBar = ModContent.Request<Texture2D>(Reassures.Reassures.GetUIElementName("GoblinBar")).Value;
                 }
 
                 Texture2D emptyBar = ModContent.Request<Texture2D>("Bismuth/UI/OrcishInvasionEmptyBar").Value;

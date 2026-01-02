@@ -1,9 +1,8 @@
-using Terraria;
-using Terraria.ID;
-using Terraria.ModLoader;
-using Terraria.Audio;
-using Synergia;
 using Synergia.Common.GlobalPlayer;
+using Terraria;
+using Terraria.Audio;
+using Terraria.ID;
+using static Synergia.Reassures.Reassures;
 
 namespace Synergia.Content.Items
 {
@@ -34,8 +33,7 @@ namespace Synergia.Content.Items
 				var bookPlayer = player.GetModPlayer<BookPlayerHardMode>();
 				bookPlayer.BookVisible = !bookPlayer.BookVisible;
 				
-				SoundEngine.PlaySound(bookPlayer.BookVisible ?
-					Sounds.BookOpenSound : Sounds.BookCloseSound);
+				SoundEngine.PlaySound(bookPlayer.BookVisible ? GetSongByName("BookOpen") : GetSongByName("BookClose"));
 			}
 			return true;
 		}

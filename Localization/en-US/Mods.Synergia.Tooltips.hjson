@@ -7,6 +7,13 @@ Armors: {
 	Test: Test Accessory Tooltip
 	Test1: Test Accessory Tooltip
 	BronzeSetBonus: The thrower's weapon is poisoned with bronze venom
+	CorrodeSetBonus: Your attacks inflict enemies with corrosion decreasing their defense
+	ThunderSetBonus:
+		'''
+		Melee attacks release lightning on hit
+		You leave a trail of energy around your body
+		Taking damage grants additional 0.5s immunity
+		'''
 }
 
 Weapons: {
@@ -14,4 +21,6 @@ Weapons: {
 	Inf: Although the item has a recipe, it is not possible to create it. This is done to clarify which item is needed for crafting.
 	BloodTooltips: Bloodthirsty Weapon
 	Cleaned: Cleaned
+	Info: This Weapons has combo ability
+	BaseText: My developer forgot to add text. Pls say this info Swampgod
 }

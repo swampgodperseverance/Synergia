@@ -1,5 +1,6 @@
 ﻿using Avalon.Tiles.Ores;
 using Microsoft.Xna.Framework;
+using Synergia.Common.GlobalPlayer;
 using Synergia.Helpers;
 using Synergia.Lists;
 using System.Collections.Generic;
@@ -39,27 +40,31 @@ namespace Synergia.Common.GlobalTiles {
         }
         public override bool CanKillTile(int i, int j, int type, ref bool blockDamaged) {
             hitToDestroy.TryGetValue(new Point(i, j), out int currentHits);
-            Main.NewText(currentHits);
-            Player player = Main.player[Player.FindClosest(new Vector2(i * 16, j * 16), 16, 16)]; // ?? Maine.LocalPlayer 
-            if (PlayerHelpers.GetLocalItem(player).type == ModContent.ItemType<JadePickaxe>()) {
-                if (type == ModContent.TileType<TroxiniumOre>()) {
-                    return true;
-                }
-                if (Tiles.VanillaTile.Contains(type)) {
-                    if (currentHits >= 3) {
-                        WorldGen.KillTile(i, j);
+            bool fixGen = !WorldGen.gen && !Main.dedServ && Main.netMode != NetmodeID.Server;
+            if (fixGen) {
+                Player player = Main.player[Player.FindClosest(new Vector2(i * 16, j * 16), 16, 16)]; // ?? Maine.LocalPlayer 
+                DebugPlayer.DebugText(currentHits);
+                if (PlayerHelpers.GetLocalItem(player).type == ModContent.ItemType<JadePickaxe>()) {
+                    if (type == ModContent.TileType<TroxiniumOre>()) {
                         return true;
                     }
                     else {
-                        return false;
+                        if (Tiles.VanillaTile.Contains(type)) {
+                            if (currentHits >= 3) {
+                                WorldGen.KillTile(i, j);
+                                return true;
+                            }
+                            return false;
+                        }
+                        return true;
                     }
                 }
-                else {
-                    return true;
+                else if (type == ModContent.TileType<TroxiniumOre>() || Tiles.VanillaTile.Contains(type)) {
+                    return false;
                 }
-            }
-            else if (type == ModContent.TileType<TroxiniumOre>() || Tiles.VanillaTile.Contains(type)) {
-                return false;
+                else {
+                    return base.CanKillTile(i, j, type, ref blockDamaged);
+                }
             }
             else {
                 return base.CanKillTile(i, j, type, ref blockDamaged);

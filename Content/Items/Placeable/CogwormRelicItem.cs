@@ -1,7 +1,7 @@
 ﻿using Synergia.Content.Tiles.Relic;
 using Terraria.ModLoader;
 
-namespace Synergia.Content.Items.Misc
+namespace Synergia.Content.Items.Placeable
 {
 	public class CogwormRelicItem : BaseRelicItem
     {

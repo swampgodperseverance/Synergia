@@ -19,3 +19,19 @@ Alchemist: {
 		Content: Я довольный.
 	}
 }
+
+Cogworm: {
+	DisplayName: Sinlord Wyrm
+
+	BossChecklistIntegration: {
+		EntryName: Sinlord Wyrm
+		SpawnInfo: Use [i:Synergia/HellwormScale] in the underworld
+	}
+}
+
+CogwormBody.DisplayName: Sinlord Body
+CogwormTail.DisplayName: Sinlord Tail
+HellheartMonolith.DisplayName: Hellheart Monolith
+CogwormGhost.DisplayName: Sinlord Ghost
+AirElementalEnemy.DisplayName: Air Elemental Enemy
+WaterElementalEnemy.DisplayName: Water Elemental Enemy

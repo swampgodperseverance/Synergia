@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.IO;
 using Terraria;
 using Terraria.GameContent.Generation;
-using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
 using Terraria.WorldBuilding;
 
@@ -19,6 +18,9 @@ namespace Synergia.Common.ModSystems.WorldGens {
         public static int HellVillageX { get; protected set; }
         public static int HellVillageY { get; protected set; }
         public static List<Vector2> HellVillageTilesVector { get; protected set; } = [];
+        public static int HellLakeX { get; protected set; }
+        public static int HellLakeY { get; protected set; }
+        public static List<Vector2> HellLakeTilesVector { get; protected set; } = [];
 
         public const byte a = 10, b = 11, c = 12, d = 13, e = 14, f = 15, g = 16, h = 17, i = 18, j = 19, k = 20, l = 21;
 
@@ -46,6 +48,9 @@ namespace Synergia.Common.ModSystems.WorldGens {
             SnowVilagePositionY = 0;
             HellVillageX = 0;
             HellVillageY = 0;
+            HellLakeX = 0;
+            HellLakeY = 0;
+            HellLakeTilesVector.Clear();
             VilageTiles.Clear();
             ArenaTiles.Clear();
             HellVillageTilesVector.Clear();
@@ -61,6 +66,9 @@ namespace Synergia.Common.ModSystems.WorldGens {
             tag["hellVillageX"] = HellVillageX;
             tag["hellVillageY"] = HellVillageY;
             tag["hellVillageTilesVector"] = HellVillageTilesVector;
+            tag["HellLakeX"] = HellLakeX;
+            tag["HellLakeY"] = HellLakeY;
+            tag["HellLakeTilesVector"] = HellLakeTilesVector;
             BitsByte Generated2 = new();
             Generated2[0] = GensBool;
         }
@@ -75,6 +83,9 @@ namespace Synergia.Common.ModSystems.WorldGens {
             HellVillageX = tag.GetInt("hellVillageX");
             HellVillageY = tag.GetInt("hellVillageY");
             HellVillageTilesVector = tag.Get<List<Vector2>>("hellVillageTilesVector");
+            HellLakeX = tag.GetInt("HellLakeX");
+            HellLakeY = tag.GetInt("HellLakeY");
+            HellLakeTilesVector = tag.Get<List<Vector2>>("HellLakeTilesVector");
             GensBool = Generated2[0];
         }
         sealed public override void NetSend(BinaryWriter writer) {
@@ -87,9 +98,13 @@ namespace Synergia.Common.ModSystems.WorldGens {
             writer.Write(HellVillageX);
             writer.Write(HellVillageY);
             writer.Write(HellVillageTilesVector.Count);
-            foreach (var v in ArenaTiles) writer.WriteVector2(v);
-            foreach (var v in VilageTiles) writer.WriteVector2(v);
-            foreach (var v in HellVillageTilesVector) writer.WriteVector2(v);
+            writer.Write(HellLakeX);
+            writer.Write(HellLakeY);
+            writer.Write(HellLakeTilesVector.Count);
+            foreach (Vector2 v in ArenaTiles) writer.WriteVector2(v);
+            foreach (Vector2 v in VilageTiles) writer.WriteVector2(v);
+            foreach (Vector2 v in HellVillageTilesVector) writer.WriteVector2(v);
+            foreach (Vector2 v in HellLakeTilesVector) writer.WriteVector2(v);
             BitsByte Flags = new(); Flags[0] = GensBool;
         }
         sealed public override void NetReceive(BinaryReader reader) {
@@ -99,14 +114,18 @@ namespace Synergia.Common.ModSystems.WorldGens {
             SnowVilagePositionY = reader.ReadInt32();
             HellVillageX = reader.ReadInt32();
             HellVillageY = reader.ReadInt32();
+            HellLakeX = reader.ReadInt32();
+            HellLakeY = reader.ReadInt32();
             ArenaTiles.Clear();
             VilageTiles.Clear();
             HellVillageTilesVector.Clear();
+            HellLakeTilesVector.Clear();
             int count = reader.ReadInt32();
             for (int i = 0; i < count; i++) {
                 ArenaTiles.Add(reader.ReadVector2());
                 VilageTiles.Add(reader.ReadVector2());
                 HellVillageTilesVector.Add(reader.ReadVector2());
+                HellLakeTilesVector.Add(reader.ReadVector2());
             }
             BitsByte Flags = reader.ReadByte();
             GensBool = Flags[0];

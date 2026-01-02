@@ -16,7 +16,7 @@ namespace Synergia.Common.GlobalPlayer {
         public bool doubleMode;
         bool wasHoldingScrew;
 
-        public List<int> IsComboWeapons = [ItemID.Trimarang,ItemID.WoodenBoomerang, ItemID.Snowball, ModContent.ItemType<StalloyScrew>(), ModContent.ItemType<Rock>(), ModContent.ItemType<TeethBreaker>()];
+        public List<int> IsComboWeapons = [ItemID.Trimarang,ItemID.WoodenBoomerang, ItemID.Snowball, ItemType<StalloyScrew>(), ItemType<Rock>(), ItemType<TeethBreaker>()];
         List<int> ProjType = [ProjectileType<RockProj>(), ProjectileType<ValhallaMod.Projectiles.Boomerang.TeethBreaker>()];
 
         public override void Initialize() {
@@ -47,17 +47,20 @@ namespace Synergia.Common.GlobalPlayer {
         }
         public override void OnHitNPCWithProj(Projectile proj, NPC target, NPC.HitInfo hit, int damageDone) {
             if (ProjType.Contains(proj.type)) {
-                AddCombo();
+                if (comboCount <= 5) {
+                    AddCombo();
+                }
             }
         }
         public void AddCombo() {
-            comboTimer = 0;
-            comboCount++;
-            if (comboCount >= 5) {
-                comboCount = 5;
-                doubleMode = true;
+            if (comboCount < 5) {
                 comboTimer = 0;
-                SoundEngine.PlaySound(SoundID.MaxMana, Player.Center);
+                comboCount++;
+
+                if (comboCount == 5) {
+                    doubleMode = true;
+                    SoundEngine.PlaySound(SoundID.MaxMana, Player.Center);
+                }
             }
         }
         public void ResetCombo() {

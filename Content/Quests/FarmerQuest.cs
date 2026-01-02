@@ -1,7 +1,6 @@
 ﻿using Bismuth.Utilities.ModSupport;
 using StramsSurvival.Items.Placeable.Furniture;
 using Terraria;
-using Terraria.ModLoader;
 using static Synergia.Common.QuestSystem;
 using static Synergia.Common.QuestSystem.QuestConst;
 using static Synergia.Common.SUtils.LocUtil;
@@ -24,7 +23,7 @@ namespace Synergia.Content.Quests {
         public override void OnChatButtonClicked(Player player) {
             BaseOnChatButtonClicked(player);
             foreach (int itemId in FoodID) {
-                CheckItem(player, ref player.GetModPlayer<QuestBoolean>().FarmerQuest, itemId, 1, 1, LocQuestKey("Farmer", "QuestCompleted"), LocQuestKey("Farmer", "QuestCompletedFalse"), ModContent.ItemType<Oven>());
+                CheckItem(player, ref player.GetModPlayer<QuestBoolean>().FarmerQuest, itemId, 1, 1, LocQuestKey("Farmer", "QuestCompleted"), LocQuestKey("Farmer", "QuestCompletedFalse"), ItemType<Oven>());
                 if (player.GetModPlayer<QuestBoolean>().FarmerQuest) {
                     break;
                 }

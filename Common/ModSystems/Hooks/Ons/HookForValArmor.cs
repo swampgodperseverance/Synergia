@@ -1,50 +1,26 @@
-﻿using Terraria;
-using Terraria.ModLoader;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Synergia.Content.Projectiles.Armor;
-using Synergia.Common.ModSystems;
+using System;
+using Terraria;
+using ValhallaMod.Items.Armor;
 
 namespace Synergia.Common.ModSystems.Hooks.Ons
 {
-    public class ArmorSetKeybindHook : ModSystem
+    public class ArmorSetKeybindHook : HookForArmorSetBonus
     {
-        private int cooldownTimer = 0; 
+        int cooldownTimer = 1800;
 
-        public override void PostUpdatePlayers()
-        {
+        public override Type Armor => typeof(ValhalliteHead);
+        public override int ArmorType => ItemType<ValhalliteHead>();
+        public override void NewLogicForSetBonus(Orig_SetBonus orig, ModItem item, Player player) {
+            orig(item, player);
             cooldownTimer++;
-            if (cooldownTimer > 1800) 
-                cooldownTimer = 1800; 
-
-            foreach (Player player in Main.player)
-            {
-                if (!player.active || player.dead)
-                    continue;
-
-                bool hasHelmet = player.armor[0].type == ModContent.ItemType<ValhallaMod.Items.Armor.ValhalliteHead>();
-                bool hasChest = player.armor[1].type == ModContent.ItemType<ValhallaMod.Items.Armor.ValhalliteBody>();
-                bool hasLegs = player.armor[2].type == ModContent.ItemType<ValhallaMod.Items.Armor.ValhalliteLegs>();
-
-                if (hasHelmet && hasChest && hasLegs)
-                {
-                    if (VanillaKeybinds.ArmorSetBonusActivation.JustPressed && cooldownTimer >= 1800)
-                    {
-                        if (Main.myPlayer == player.whoAmI)
-                        {
-                            Projectile.NewProjectile(
-                                player.GetSource_Misc("ArmorSetBonus"),
-                                player.Center,
-                                Vector2.Zero,
-                                ModContent.ProjectileType<ValhalliteKnight>(),
-                                20,
-                                0f,
-                                player.whoAmI
-                            );
-
-                            cooldownTimer = 0; 
-                        }
-                    }
-                }
+            if (cooldownTimer > 1800) {
+                cooldownTimer = 1800;
+            }
+            if (VanillaKeybinds.ArmorSetBonusActivation.JustPressed && cooldownTimer >= 1800) {
+                Projectile.NewProjectile(player.GetSource_Misc("ArmorSetBonus"), player.Center, Vector2.Zero, ProjectileType<ValhalliteKnight>(), 20, 0f, player.whoAmI);
+                cooldownTimer = 0;
             }
         }
     }

@@ -62,7 +62,11 @@
       <Reference Include="VervCaves">
         <HintPath>..\..\ModReader\VervCaves\VervCaves.dll</HintPath>
       </Reference>
+      <Reference Include="VitalityMod">
+        <HintPath>lib\VitalityMod.dll</HintPath>
+      </Reference>
     </ItemGroup>
+    <ProjectExtensions><VisualStudio><UserProperties /></VisualStudio></ProjectExtensions>
 
     <!-- References -->
 

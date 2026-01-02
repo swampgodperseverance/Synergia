@@ -1,5 +1,4 @@
-﻿
-using System;
+﻿using System;
 
 namespace Synergia.Helpers
 {
@@ -46,24 +45,22 @@ namespace Synergia.Helpers
 
         public delegate float Easing(float t);
 
-        public static readonly System.Collections.Generic.Dictionary<string, Easing> Functions =
-            new()
-            {
-                ["EaseIn"] = EaseIn,
-                ["EaseOutQuad"] = EaseOutQuad,
-                ["EaseInOutQuad"] = EaseInOutQuad,
-                ["EaseInCubic"] = EaseInCubic,
-                ["EaseOutCubic"] = EaseOutCubic,
-                ["EaseInOutCubic"] = EaseInOutCubic,
-                ["EaseInQuint"] = EaseInQuint,
-                ["EaseOutQuint"] = EaseOutQuint,
-                ["EaseInOutQuint"] = EaseInOutQuint,
-                ["EaseInSine"] = EaseInSine,
-                ["EaseOutSine"] = EaseOutSine,
-                ["EaseInOutSine"] = EaseInOutSine,
-                ["EaseInBack"] = EaseInBack,
-                ["EaseOutBack"] = EaseOutBack,
-                ["EaseInOutBack"] = EaseInOutBack
-            };
+        public static readonly System.Collections.Generic.Dictionary<string, Easing> Functions = new() {
+            ["EaseIn"] = EaseIn,
+            ["EaseOutQuad"] = EaseOutQuad,
+            ["EaseInOutQuad"] = EaseInOutQuad,
+            ["EaseInCubic"] = EaseInCubic,
+            ["EaseOutCubic"] = EaseOutCubic,
+            ["EaseInOutCubic"] = EaseInOutCubic,
+            ["EaseInQuint"] = EaseInQuint,
+            ["EaseOutQuint"] = EaseOutQuint,
+            ["EaseInOutQuint"] = EaseInOutQuint,
+            ["EaseInSine"] = EaseInSine,
+            ["EaseOutSine"] = EaseOutSine,
+            ["EaseInOutSine"] = EaseInOutSine,
+            ["EaseInBack"] = EaseInBack,
+            ["EaseOutBack"] = EaseOutBack,
+            ["EaseInOutBack"] = EaseInOutBack
+        };
     }
 }

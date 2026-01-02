@@ -1021,6 +1021,31 @@ Items: {
 		DisplayName: Thunder Legs
 		Tooltip: ""
 	}
+
+	Thunderjab: {
+		DisplayName: Thunderjab
+		Tooltip: ""
+	}
+
+	ThunderChakram: {
+		Tooltip: ""
+		DisplayName: Thunder Chakram
+	}
+
+	ThunderBow: {
+		Tooltip: ""
+		DisplayName: Thunder Bow
+	}
+
+	ThunderSigil: {
+		Tooltip: ""
+		DisplayName: Thunder Sigil
+	}
+
+	PostMechWings: {
+		DisplayName: Post Mech Wings
+		Tooltip: ""
+	}
 }
 
 Projectiles: {
@@ -1270,6 +1295,11 @@ Projectiles: {
 	JadeDart.DisplayName: Jade Dart
 	HeavyStone.DisplayName: Heavy Stone
 	TeethBreakerMega.DisplayName: Teeth Breaker Mega
+	ThunderjabProj.DisplayName: Thunderjab Proj
+	ThunderSpike.DisplayName: Thunder Spike
+	ThunderChakramProj.DisplayName: Thunder Chakram Proj
+	ThunderSigilProj1.DisplayName: Thunder Sigil Proj1
+	ThunderSigilProj.DisplayName: Thunder Sigil Proj
 }
 
 Buffs: {
@@ -1379,16 +1409,6 @@ Keybinds: {
 	"Armor Set Bonus Activate.DisplayName": Armor  Set  Bonus  Activate
 }
 
-NPCs: {
-	Cogworm.DisplayName: Sinlord Wyrm
-	CogwormBody.DisplayName: Sinlord Body
-	CogwormTail.DisplayName: Sinlord Tail
-	CogwormGhost.DisplayName: Sinlord Ghost
-	AirElementalEnemy.DisplayName: Air Elemental Enemy
-	WaterElementalEnemy.DisplayName: Water Elemental Enemy
-	HellheartMonolith.DisplayName: Hellheart Monolith
-}
-
 Configs.BossConfig.DisplayName: Boss Config
 
 Config: {
@@ -1422,5 +1442,10 @@ Biomes: {
 	SnowVillage: {
 		TownNPCDialogueName: the Snow Village
 		DisplayName: Snow Village
+	}
+
+	NewHell: {
+		TownNPCDialogueName: the New Hell
+		DisplayName: New Hell
 	}
 }

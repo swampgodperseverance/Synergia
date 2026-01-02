@@ -10,6 +10,7 @@ namespace Synergia.Common.GlobalPlayer {
         Step_By_StepAnimationData throwAnimation;
         Vector2 shake = Vector2.Zero;
         Vector2 velocity = Vector2.Zero;
+
         public void DrawThrowingUI() {
             ThrowingPlayer throwing = Player.GetModPlayer<ThrowingPlayer>();
             if (throwing.ActiveUI) {
@@ -20,14 +21,11 @@ namespace Synergia.Common.GlobalPlayer {
                     float velocityY = (float)Math.Sin(Main.GameUpdateCount * 0.08f) * 3f;
                     velocity = new Vector2(0, velocityY);
                 }
-                Texture2D texture = Request<Texture2D>("Synergia/Content/Projectiles/Thrower/ThrowerInterface1").Value;
-                throwAnimation.Init(1, 6); // <- 6 сколько фреймов, 1 колонок
-                throwAnimation.Update(throwing.comboCount); // <- тут меняем фрейм от количества чего то там я не помну. И только Byte 
-                throwAnimation.GetSource(texture); // <- сама текстура
-                Vector2 drawPos = UIHelper.PlayerPos(-40, 89);
+                Texture2D texture = Request<Texture2D>(Reassures.Reassures.GetUIElementName("ThrowerInterface")).Value;
+                Vector2 drawPos = UIHelper.PlayerPos(-40, 45);
                 drawPos += shake;
                 drawPos += velocity;
-                Main.spriteBatch.Draw(texture, drawPos, throwAnimation.GetSource(texture), Color.White, 0f, Vector2.Zero, 0.95f, SpriteEffects.None, 0);
+                Main.spriteBatch.Draw(texture, drawPos, texture.Frame(1, 6, 0, throwing.comboCount), Color.White, 0f, Vector2.Zero, 0.95f, SpriteEffects.None, 0);
             }
         }
     }

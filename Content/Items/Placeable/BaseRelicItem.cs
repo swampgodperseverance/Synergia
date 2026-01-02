@@ -1,8 +1,7 @@
 ﻿using Terraria;
 using Terraria.ID;
-using Terraria.ModLoader;
 
-namespace Synergia.Content.Items.Misc
+namespace Synergia.Content.Items.Placeable
 {
     public abstract class BaseRelicItem : ModItem
     {
@@ -20,7 +19,7 @@ namespace Synergia.Content.Items.Misc
             Item.useTurn = true;
             Item.createTile = RelicType;
             Item.master = true;
-            Item.value = Terraria.Item.buyPrice(0, 5);
+            Item.value = Item.buyPrice(0, 5);
         }
     }
 }

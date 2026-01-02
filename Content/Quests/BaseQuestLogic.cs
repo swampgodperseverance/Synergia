@@ -1,13 +1,10 @@
 ﻿using Bismuth.Utilities.ModSupport;
-using Synergia.Helpers;
 using Terraria;
 using static Synergia.Common.SUtils.LocUtil;
 
 namespace Synergia.Content.Quests;
 
 public abstract class BaseQuestLogic : BaseQuest {
-
-    readonly UIHelper helper = new();
     public abstract string Key { get; }
     public sealed override string UniqueKey => Key;
     public string BaseGetChat(Player player, string npcName, string npcKey, string npcKey2, string npcKey3) {

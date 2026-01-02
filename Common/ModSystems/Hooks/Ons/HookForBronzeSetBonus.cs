@@ -18,7 +18,7 @@ namespace Synergia.Common.ModSystems.Hooks.Ons {
             player.setBonus = EditSetBonusText(ref oldText, "7", "10");
             player.setBonus = EditSetBonusText(ref oldText, "+1", "+3") + "\n" + SUtils.LocUtil.ItemTooltip(SUtils.LocUtil.ARM, "BronzeSetBonus");
 
-            player.GetModPlayer<SynergiaPlayer>().equipBronzeSet = true;
+            player.GetModPlayer<ArmorPlayers>().equipBronzeSet = true;
         }
     }
 }

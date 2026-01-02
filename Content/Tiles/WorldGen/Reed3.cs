@@ -3,7 +3,6 @@ using Microsoft.Xna.Framework;
 using Synergia.Content.Items.QuestItem;
 using System.Collections.Generic;
 using Terraria;
-using Terraria.ModLoader;
 using Terraria.ObjectData;
 using static Synergia.Common.QuestSystem.QuestConst;
 
@@ -29,7 +28,7 @@ namespace Synergia.Content.Tiles.WorldGen {
             foreach (IQuest quest in quests) {
                 if (quest.IsActive(player)) {
                     if (Main.rand.NextBool(3)) {
-                        if (player.HasItem(ModContent.ItemType<WhisperigReed>())) {
+                        if (player.HasItem(ItemType<WhisperigReed>())) {
                             return false;
                         }
                         else { return true; }
@@ -40,7 +39,7 @@ namespace Synergia.Content.Tiles.WorldGen {
             return false;
         }
         public override IEnumerable<Item> GetItemDrops(int i, int j) {
-            yield return new Item(ModContent.ItemType<WhisperigReed>());
+            yield return new Item(ItemType<WhisperigReed>());
         }
     }
 }

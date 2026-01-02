@@ -16,7 +16,6 @@ using Terraria.GameContent.UI.Chat;
 using Terraria.GameInput;
 using Terraria.ID;
 using Terraria.Localization;
-using Terraria.ModLoader;
 using Terraria.UI.Chat;
 
 namespace Synergia.Common.ModSystems.Hooks.Ons

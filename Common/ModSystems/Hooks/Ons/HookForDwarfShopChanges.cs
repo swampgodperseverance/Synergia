@@ -34,7 +34,7 @@ namespace Synergia.Common.ModSystems.Hooks.Ons
             .Add<FrostburnAuraStaff>([Condition.DownedEyeOfCthulhu])
             .Add<IceBrazier>([Condition.DownedEyeOfCthulhu])
             .Add(new Item(988) { shopCustomPrice = 10 })
-            .Add(new Item(ModContent.ItemType<FrostburnDart>()) { shopCustomPrice = 10 })
+            .Add(new Item(ItemType<FrostburnDart>()) { shopCustomPrice = 10 })
             .Register();
         }
     }

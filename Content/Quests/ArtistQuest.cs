@@ -2,7 +2,6 @@
 using Bismuth.Utilities.ModSupport;
 using Terraria;
 using Terraria.ID;
-using Terraria.ModLoader;
 using static Synergia.Common.QuestSystem;
 using static Synergia.Common.QuestSystem.QuestConst;
 using static Synergia.Common.SUtils.LocUtil;
@@ -24,7 +23,7 @@ namespace Synergia.Content.Quests {
         public override bool IsCompleted(Player player) => BaseIsCompleted(player);
         public override void OnChatButtonClicked(Player player) {
             BaseOnChatButtonClicked(player);
-            CheckItem(player, ref player.GetModPlayer<QuestBoolean>().ArtistQuest, ItemID.RedHusk, 1, 1, LocQuestKey("Artist", "QuestCompleted"), LocQuestKey("Artist", "QuestCompletedFalse"), ModContent.ItemType<CrimstoneDye>());
+            CheckItem(player, ref player.GetModPlayer<QuestBoolean>().ArtistQuest, ItemID.RedHusk, 1, 1, LocQuestKey("Artist", "QuestCompleted"), LocQuestKey("Artist", "QuestCompletedFalse"), ItemType<CrimstoneDye>());
         }
         public override bool IsAvailable(Player player) => BaseIsAvailable(player);
         public override bool IsActive(Player player) => BaseIsActive(player);

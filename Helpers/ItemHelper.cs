@@ -55,5 +55,7 @@ namespace Synergia.Helpers {
                 }
             }
         }
+        public static int GetRoAItem(string name) => ModList.Roa.Find<ModItem>(name).Type;
+        public static int GetSelectItem(Mod modName, string itemName) => modName.Find<ModItem>(itemName).Type;
     }
 }

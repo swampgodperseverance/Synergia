@@ -1,8 +1,7 @@
-﻿using Microsoft.Xna.Framework;
-using Synergia.Common;
+﻿using Synergia.Common;
 using Synergia.Common.GlobalPlayer;
-using Synergia.Content.Items;
 using Synergia.Content.Items.Misc;
+using Synergia.Content.Items.Placeable;
 using Synergia.Content.Items.Weapons.Cogworm;
 using Synergia.Content.Projectiles.Hostile;
 using System;
@@ -10,9 +9,9 @@ using Terraria;
 using Terraria.Audio;
 using Terraria.GameContent.ItemDropRules;
 using Terraria.ID;
-using Terraria.ModLoader;
 using ValhallaMod.Items.Placeable.Blocks;
 using static Synergia.Common.SUtils.LocUtil;
+using static Synergia.Reassures.Reassures.RSounds;
 
 namespace Synergia.Content.NPCs
 {
@@ -799,11 +798,11 @@ namespace Synergia.Content.NPCs
         
             if (Main.rand.NextBool())
             {
-                SoundEngine.PlaySound(Sounds.CragwormHit with { Volume = 0.8f, Pitch = -0.1f }, NPC.Center);
+                SoundEngine.PlaySound(CragwormHit with { Volume = 0.8f, Pitch = -0.1f }, NPC.Center);
             }
             else
             {
-                SoundEngine.PlaySound(Sounds.CragwormHit2 with { Volume = 0.8f, Pitch = -0.1f }, NPC.Center);
+                SoundEngine.PlaySound(CragwormHit2 with { Volume = 0.8f, Pitch = -0.1f }, NPC.Center);
             }
         }
 

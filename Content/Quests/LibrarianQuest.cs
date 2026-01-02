@@ -1,6 +1,5 @@
 ﻿using Bismuth.Utilities.ModSupport;
 using Terraria;
-using Terraria.ModLoader;
 using ValhallaMod.Items.Material;
 using ValhallaMod.Items.Weapons.Magic;
 using static Synergia.Common.QuestSystem;
@@ -17,13 +16,14 @@ namespace Synergia.Content.Quests {
         public override int Priority => 10;
         public override bool ISManyEndings => false;
         public override QuestPhase Phase => QuestPhase.PreSkeletron;
+        public override int CornerItem => ItemType<DamagedBook>();
         public override PostBossQuest PostBossRequirement => PostBossQuest.Null;
         public override string GetChat(NPC npc, Player player) => BaseGetChat(player, "Librarian", "QuestProgress0", "QuestProgress2", "QuestProgress1");
         public override string GetButtonText(Player player, ref bool Isfristclicked) => BaseGetButtonText(player, ref Isfristclicked, "Librarian", "QuestButton", "QuestButtonGive");
         public override bool IsCompleted(Player player) => BaseIsCompleted(player);
         public override void OnChatButtonClicked(Player player) {
             BaseOnChatButtonClicked(player);
-            CheckItem(player, ref player.GetModPlayer<QuestBoolean>().LibrarianQuest, ModContent.ItemType<DamagedBook>(), 1, 1, LocQuestKey("Librarian", "QuestCompleted"), LocQuestKey("Librarian", "QuestCompletedFalse"), ModContent.ItemType<WaterCandelabra>());
+            CheckItem(player, ref player.GetModPlayer<QuestBoolean>().LibrarianQuest, ItemType<DamagedBook>(), 1, 1, LocQuestKey("Librarian", "QuestCompleted"), LocQuestKey("Librarian", "QuestCompletedFalse"), ItemType<WaterCandelabra>());
         }
         public override bool IsAvailable(Player player) => BaseIsAvailable(player);
         public override bool IsActive(Player player) => BaseIsActive(player);

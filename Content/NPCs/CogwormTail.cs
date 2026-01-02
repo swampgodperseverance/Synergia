@@ -1,10 +1,8 @@
-﻿using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
-using Terraria;
+﻿using Terraria;
 using Terraria.Audio;
 using Terraria.ID;
-using Terraria.ModLoader;
 using static Synergia.Common.SUtils.LocUtil;
+using static Synergia.Reassures.Reassures.RSounds;
 
 namespace Synergia.Content.NPCs
 {
@@ -49,11 +47,11 @@ namespace Synergia.Content.NPCs
         {
             if (Main.rand.NextBool())
             {
-                SoundEngine.PlaySound(Sounds.CragwormHit with { Volume = 0.8f, Pitch = -0.1f }, NPC.Center);
+                SoundEngine.PlaySound(CragwormHit with { Volume = 0.8f, Pitch = -0.1f }, NPC.Center);
             }
             else
             {
-                SoundEngine.PlaySound(Sounds.CragwormHit2 with { Volume = 0.8f, Pitch = -0.1f }, NPC.Center);
+                SoundEngine.PlaySound(CragwormHit2 with { Volume = 0.8f, Pitch = -0.1f }, NPC.Center);
             }
         }
 

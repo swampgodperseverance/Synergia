@@ -1,4 +1,4 @@
 displayName = Synergia
-author = Swamp
+author = Swamp, Aeris
 version = 0.220
-modReferences = starforgedclassic, RoA, Consolaria, StramsSurvival, ValhallaMod, TRAEBossRework, NewHorizons, Avalon, Bismuth,
+modReferences = starforgedclassic, RoA, Consolaria, StramsSurvival, ValhallaMod, TRAEBossRework, NewHorizons, Avalon, Bismuth, ParticleLibrary 

@@ -1,5 +1,4 @@
-﻿using Terraria.ModLoader;
-namespace Synergia;
+﻿namespace Synergia;
 
 // Мы постоянно делали этот код.
 // Вместо создания новой переменой бери от сюда 

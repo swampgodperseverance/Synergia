@@ -560,7 +560,7 @@ public class GenerationVillageInHell : BaseWorldGens {
         WorldGen.PlaceObject(pos + 112, HellVillageY - 67, TileID.ClosedDoor,       false, 44);
         WorldGen.PlaceObject(pos + 139, HellVillageY - 71, TileID.ClosedDoor,       false, 48);
         WorldGen.PlaceObject(pos + 162, HellVillageY - 72, TileID.ClosedDoor,       false, 48);
-        WorldGen.PlaceObject(pos + 95, HellVillageY - 74, TileID.Bookcases,         false, 4 );
+        WorldGen.PlaceObject(pos + 95,  HellVillageY - 74, TileID.Bookcases,        false, 4 );
         WorldGen.PlaceObject(pos + 141, HellVillageY - 71, TileID.Bookcases,        false, 4 );
         WorldGen.PlaceObject(pos + 136, HellVillageY - 71, TileID.PottedPlants2,    false, 7 );
         WorldGen.PlaceObject(pos + 144, HellVillageY - 71, TileID.Benches,          false, 10);
@@ -571,6 +571,7 @@ public class GenerationVillageInHell : BaseWorldGens {
         WorldGen.PlaceObject(pos + 152, HellVillageY - 76, candle,                  false, 0 );
         WorldGen.PlaceObject(pos + 161, HellVillageY - 76, Lamp,                    false, 0 );
         WorldGen.PlaceObject(pos + 163, HellVillageY - 76, Lamp,                    false, 0 );
+        WorldGen.PlaceObject(pos + 2,   HellVillageY - 99, TileID.Statues,          false, 15);
 
         WorldGen.Place3x3Wall(pos + 107, HellVillageY - 69, TileID.Painting3X3, 16);
         WorldGen.Place3x3Wall(pos + 159, HellVillageY - 75, TileID.Painting3X3, 45);

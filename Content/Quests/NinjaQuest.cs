@@ -28,7 +28,7 @@ namespace Synergia.Content.Quests {
         public override void OnChatButtonClicked(Player player) {
             BaseOnChatButtonClicked(player);
             int itemId = helper.NoStaticGetNextItemType(CarrotID);
-            CheckItem(player, ref player.GetModPlayer<QuestBoolean>().NinjaQuest, itemId, 1, 1, LocQuestKey("Ninja", "QuestCompleted"), LocQuestKey("Ninja", "QuestCompletedFalse"), ModContent.ItemType<ShurikenWheel>());
+            CheckItem(player, ref player.GetModPlayer<QuestBoolean>().NinjaQuest, itemId, 1, 1, LocQuestKey("Ninja", "QuestCompleted"), LocQuestKey("Ninja", "QuestCompletedFalse"), ItemType<ShurikenWheel>());
             if (Progress == 0) {
                 CompletedQuickSpawnItem(player, ItemID.GoldCoin, 4);
             }

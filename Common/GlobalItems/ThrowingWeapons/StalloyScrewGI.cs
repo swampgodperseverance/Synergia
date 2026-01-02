@@ -3,7 +3,6 @@ using Synergia.Common.GlobalItems.ThrowingWeapons;
 using Synergia.Content.Projectiles.Thrower;
 using Terraria;
 using Terraria.DataStructures;
-using Terraria.ModLoader;
 using ValhallaMod.Items.Weapons.Thrown;
 
 namespace Synergia.Common.GlobalItems

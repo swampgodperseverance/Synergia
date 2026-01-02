@@ -1,6 +1,5 @@
 ﻿using Terraria.GameContent.ItemDropRules;
 using Terraria.Localization;
-using Terraria.ModLoader;
 
 namespace Synergia.Common.SynergiaCondition;
 

@@ -1,8 +1,7 @@
-﻿﻿using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.Localization;
-using Terraria.ModLoader;
 using Terraria.ObjectData;
 
 namespace Synergia.Content.Tiles.Trophy
@@ -19,7 +18,7 @@ namespace Synergia.Content.Tiles.Trophy
 			TileObjectData.addTile(Type);
 
 			AddMapEntry(new Color(120, 85, 60), Language.GetText("MapObject.Trophy"));
-			DustType = 7;
+			DustType = DustID.WoodFurniture;
 		}
 	}
 }

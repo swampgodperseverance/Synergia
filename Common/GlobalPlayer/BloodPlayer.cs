@@ -1,6 +1,4 @@
 ﻿using Terraria;
-using Terraria.ModLoader;
-using ValhallaMod.Items.Tools;
 
 namespace Synergia.Common.GlobalPlayer {
     public class BloodPlayer : ModPlayer {

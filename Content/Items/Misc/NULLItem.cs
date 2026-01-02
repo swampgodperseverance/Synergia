@@ -2,6 +2,7 @@
 using Avalon.Items.Material.Ores;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Synergia.Common.ModConfigs;
 using Synergia.Common.Rarities;
 using Synergia.Common.SynergiaCondition;
 using Synergia.Helpers;
@@ -9,10 +10,8 @@ using System.Collections.Generic;
 using Terraria;
 using Terraria.GameContent;
 using Terraria.ID;
-using Terraria.ModLoader;
 using static Synergia.Common.ModSystems.RecipeSystem.ChangesRecipe.AvalonsChanges.Avalons;
 using static Synergia.Common.SUtils.LocUtil;
-using static Terraria.ModLoader.ModContent;
 
 namespace Synergia.Content.Items.Misc {
     public partial class NULLItem {
@@ -22,16 +21,13 @@ namespace Synergia.Content.Items.Misc {
             public abstract int CloneItem { get; }
             public abstract List<int> AnimationList { get; }
             public virtual bool IsNotAnimationItem => false;
-            public virtual bool ItemIconPulse => true;
+            public virtual bool ItemIconPulse => false;
             public virtual int TimeToNextItem => 60;
             public virtual float Scale => 0;
-            public sealed override string Texture => Synergia.Blank;
-            public sealed override void SetDefaults() {
-                Item.CloneDefaults(CloneItem);
-            }
-            public sealed override void SetStaticDefaults() {
-                ItemID.Sets.ItemIconPulse[Type] = ItemIconPulse;
-            }
+            public sealed override bool IsLoadingEnabled(Mod mod) => GetInstance<BossConfig>().NewRecipe;
+            public sealed override string Texture => Reassures.Reassures.Blank;
+            public sealed override void SetDefaults() => Item.CloneDefaults(CloneItem);
+            public sealed override void SetStaticDefaults() => ItemID.Sets.ItemIconPulse[Type] = ItemIconPulse;
             public sealed override bool PreDrawInInventory(SpriteBatch spriteBatch, Vector2 position, Rectangle frame, Color drawColor, Color itemColor, Vector2 origin, float scale) {
                 int type = Helper.GetAnimatedItemType(AnimationList, TimeToNextItem);
                 Texture2D animation = TextureAssets.Item[type].Value;
@@ -69,31 +65,29 @@ namespace Synergia.Content.Items.Misc {
         public class FragmentSolar : BaseNULLItem {
             public override int CloneItem => ItemID.FragmentSolar;
             public override List<int> AnimationList => [ItemID.FragmentSolar, ItemID.FragmentVortex];
+            public override bool ItemIconPulse => true;
         }
         public class FragmentStardust : BaseNULLItem {
             public override int CloneItem => ItemID.FragmentSolar;
             public override List<int> AnimationList => [ItemID.FragmentStardust, ItemID.FragmentNebula];
+            public override bool ItemIconPulse => true;
         }
         public class HardModeAnvil : BaseNULLItem {
             public override int CloneItem => ItemID.MythrilAnvil;
             public override List<int> AnimationList => [ItemID.MythrilAnvil, ItemID.OrichalcumAnvil, NaquadahAnvil];
-            public override bool ItemIconPulse => false;
         }
         public class HardModeForge : BaseNULLItem {
             public override int CloneItem => ItemID.TitaniumForge;
             public override List<int> AnimationList => [ItemID.TitaniumForge, ItemID.AdamantiteForge, TroxiniumForge];
             public override float Scale => 0.3f;
-            public override bool ItemIconPulse => false;
         }
         public class AlchemicOre : BaseNULLItem {
             public override int CloneItem => ItemID.IronOre;
             public override List<int> AnimationList => [ItemID.IronOre, ItemID.LeadOre, ItemType<NickelOre>()];
-            public override bool ItemIconPulse => false;
         }
         public class AlchemicFlower : BaseNULLItem {
             public override int CloneItem => ItemID.Deathweed;
             public override List<int> AnimationList => [ItemID.Deathweed, ItemType<Bloodberry>(), ItemType<Barfbush>()];
-            public override bool ItemIconPulse => false;
         } 
     }
 }

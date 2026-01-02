@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework.Graphics;
+﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Content;
 using System;
 using Terraria;
@@ -6,32 +7,25 @@ using Terraria.DataStructures;
 using Terraria.Enums;
 using Terraria.ID;
 using Terraria.Localization;
-using Terraria.ModLoader;
 using Terraria.ObjectData;
-using Microsoft.Xna.Framework;
 
 namespace Synergia.Content.Tiles.Relic
 {
-    public abstract class BaseRelic : ModTile
-    {
+    public abstract class BaseRelic : ModTile {
         public const int FrameWidth = 18 * 3;
         public const int FrameHeight = 18 * 4;
         public const int HorizontalFrames = 1;
         public const int VerticalFrames = 1;
 
         public Asset<Texture2D> RelicTexture;
+        string RelicTextureName => $"Synergia/Assets/Textures/Relic/{ExtraTextureName}";
 
         public abstract string ExtraTextureName { get; }
-        string RelicTextureName => $"Synergia/Assets/Textures/Relic/{ExtraTextureName}";
         public override string Texture => "Synergia/Assets/Textures/Relic/RelicPedestal";
-
-        public override void Load()
-        {
-            RelicTexture = ModContent.Request<Texture2D>(RelicTextureName);
+        public override void Load() {
+            RelicTexture = Request<Texture2D>(RelicTextureName);
         }
-
-        public override void SetStaticDefaults()
-        {
+        public override void SetStaticDefaults() {
             Main.tileShine[Type] = 400;
             Main.tileFrameImportant[Type] = true;
             TileID.Sets.InteractibleByNPCs[Type] = true;
@@ -50,28 +44,22 @@ namespace Synergia.Content.Tiles.Relic
             TileObjectData.addTile(Type);
             AddMapEntry(new Color(233, 207, 94), Language.GetText("MapObject.Relic"));
         }
-        public override bool CreateDust(int i, int j, ref int type)
-        {
+        public override bool CreateDust(int i, int j, ref int type) {
             return false;
         }
-        public override void SetDrawPositions(int i, int j, ref int width, ref int offsetY, ref int height, ref short tileFrameX, ref short tileFrameY)
-        {
+        public override void SetDrawPositions(int i, int j, ref int width, ref int offsetY, ref int height, ref short tileFrameX, ref short tileFrameY) {
             tileFrameX %= FrameWidth;
             tileFrameY %= FrameHeight * 2;
         }
-        public override void DrawEffects(int i, int j, SpriteBatch spriteBatch, ref TileDrawInfo drawData)
-        {
-            if (drawData.tileFrameX % FrameWidth == 0 && drawData.tileFrameY % FrameHeight == 0)
-            {
+        public override void DrawEffects(int i, int j, SpriteBatch spriteBatch, ref TileDrawInfo drawData) {
+            if (drawData.tileFrameX % FrameWidth == 0 && drawData.tileFrameY % FrameHeight == 0) {
                 Main.instance.TilesRenderer.AddSpecialPoint(i, j, Terraria.GameContent.Drawing.TileDrawing.TileCounterType.CustomNonSolid);
             }
         }
-        public override void SpecialDraw(int i, int j, SpriteBatch spriteBatch)
-        {
+        public override void SpecialDraw(int i, int j, SpriteBatch spriteBatch) {
             Point p = new(i, j);
             Tile tile = Main.tile[p.X, p.Y];
-            if (!tile.HasTile)
-            {
+            if (!tile.HasTile) {
                 return;
             }
 
@@ -98,21 +86,18 @@ namespace Synergia.Content.Tiles.Relic
             Color effectColor = color;
             effectColor.A = 0;
             effectColor = effectColor * 0.1f * scale;
-            for (float num5 = 0f; num5 < 1f; num5 += 355f / (678f * (float)Math.PI))
-            {
+            for (float num5 = 0f; num5 < 1f; num5 += 355f / (678f * (float)Math.PI)) {
                 spriteBatch.Draw(texture, drawPos + (TwoPi * num5).ToRotationVector2() * (6f + offset * 2f), frame, effectColor, 0f, origin, 1f, effects, 0f);
             }
         }
-        public override void PostDrawPlacementPreview(int i, int j, SpriteBatch spriteBatch, Rectangle frame, Vector2 position, Color color, bool validPlacement, SpriteEffects spriteEffects)
-        {
+        public override void PostDrawPlacementPreview(int i, int j, SpriteBatch spriteBatch, Rectangle frame, Vector2 position, Color color, bool validPlacement, SpriteEffects spriteEffects) {
             bool facingRight = frame.Y / FrameHeight != 0;
             spriteEffects = facingRight ? SpriteEffects.FlipHorizontally : SpriteEffects.None;
             frame.Y %= FrameHeight;
 
             frame.X = frame.X / 18 * 16;
             frame.Y = frame.Y / 18 * 16;
-            if (facingRight && frame.X != 16)
-            {
+            if (facingRight && frame.X != 16) {
                 frame.X = frame.X == 0 ? 32 : 0;
             }
 

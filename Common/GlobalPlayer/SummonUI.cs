@@ -69,9 +69,9 @@ namespace Synergia.Common.GlobalPlayer {
                 ResetUIPositions = false;
             }
             if (IsActiveSummonUI && (player.maxMinions >= 2 || player.maxTurrets >= 2)) {
-                Texture2D summonTexture = ModContent.Request<Texture2D>(Synergia.GetUIElementName("MinionDisplay")).Value;
-                Texture2D sentryTexture = ModContent.Request<Texture2D>(Synergia.GetUIElementName("SentryDisplay")).Value;
-                Texture2D auraTexture = ModContent.Request<Texture2D>(Synergia.GetUIElementName("AuraDisplay")).Value;
+                Texture2D summonTexture = ModContent.Request<Texture2D>(Reassures.Reassures.GetUIElementName("MinionDisplay")).Value;
+                Texture2D sentryTexture = ModContent.Request<Texture2D>(Reassures.Reassures.GetUIElementName("SentryDisplay")).Value;
+                Texture2D auraTexture = ModContent.Request<Texture2D>(Reassures.Reassures.GetUIElementName("AuraDisplay")).Value;
 
                 spriteBatch.Draw(summonTexture, minionPos, Color.White);
                 Utils.DrawBorderString(spriteBatch, $"{player.numMinions}/{player.maxMinions}", minionPos + new Vector2(10, 10), Color.White);
