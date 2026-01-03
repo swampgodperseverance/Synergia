@@ -34,7 +34,7 @@ namespace Synergia.Content.Global
                 return;
             }
 
-            if (player.controlUseTile) // ПКМ (правый клик)
+            if (player.controlUseTile) 
             {
                 if (player.whoAmI == Main.myPlayer)
                 {
@@ -52,7 +52,7 @@ namespace Synergia.Content.Global
                         player.whoAmI
                     );
 
-                    cooldown = 30 * 60; // 30 секунд
+                    cooldown = 30 * 60;
                 }
             }
         }
