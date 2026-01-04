@@ -1,13 +1,9 @@
-﻿using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
-using Terraria;
-using Terraria.Audio;
+﻿using Synergia.Content.Projectiles.RangedProjectiles;
 using System;
+using Terraria;
 using Terraria.DataStructures;
 using Terraria.GameContent;
 using Terraria.ID;
-using Terraria.ModLoader;
-using Synergia.Content.Projectiles.RangedProjectiles;
 
 namespace Synergia.Content.Items.Weapons.Ranged
 {

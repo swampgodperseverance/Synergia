@@ -1,7 +1,6 @@
 ﻿using MonoMod.RuntimeDetour;
 using System.Reflection;
 using Terraria;
-using Terraria.ModLoader;
 using ValhallaMod.Items.Accessory;
 using ValhallaMod.Items.Placeable.Brazier;
 using ValhallaMod.Items.Weapons.Aura;

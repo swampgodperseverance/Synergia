@@ -112,7 +112,7 @@ namespace Synergia.Content.Projectiles.Reworks.AltUse
                 right.SetDirection(OrbitDirection.Right);
         }
 
-        public override void Kill(int timeLeft)
+        public override void OnKill(int timeLeft)
         {
             Player player = Main.player[Projectile.owner];
             if (player.active && !player.dead)

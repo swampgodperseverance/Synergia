@@ -1,13 +1,6 @@
-﻿using Terraria;
-using Terraria;
-using Terraria.ModLoader;
-using Terraria.ID;
-using Terraria.Audio;
-using Microsoft.Xna.Framework;
-using System;
-using Terraria.ModLoader;
+﻿using Consolaria.Content.NPCs.Bosses.Ocram;
 using Synergia.Content.Projectiles.Hostile;
-using Consolaria.Content.NPCs.Bosses.Ocram;
+using Terraria;
 
 namespace Synergia.Common.GlobalNPCs.AI
 {

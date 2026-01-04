@@ -61,7 +61,7 @@ namespace Synergia.Content.Projectiles.RangedProjectiles
             target.AddBuff(BuffID.OnFire3, 120);
         }
 
-        public override void Kill(int timeLeft)
+        public override void OnKill(int timeLeft)
         {
             SoundEngine.PlaySound(SoundID.Item74, Projectile.position); 
 

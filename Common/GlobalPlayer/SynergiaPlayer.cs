@@ -1,5 +1,6 @@
 ﻿using StramsSurvival.Buffs;
 using Synergia.Common.ModConfigs;
+using Synergia.Content.Achievements;
 using Synergia.Content.Buffs.Debuff;
 using Terraria;
 using Terraria.Localization;
@@ -38,6 +39,7 @@ namespace Synergia.Common.GlobalPlayer {
         }
         public override void OnEnterWorld() {
             if (!giveMsg) {
+                SaveAchieveIfCompleted.Restore();
                 if (ModList.PackBuilderLoaded != null) {
                     if (GetInstance<BossConfig>().NewRecipe) {
                         Main.NewText(string.Format(SUtils.LocUtil.LocUIKey(SUtils.LocUtil.CHATMSG, "tPacer"), ModList.PackBuilderLoaded.DisplayName, Language.GetTextValue("Mods.Synergia.Config.NewRecipe")), Microsoft.Xna.Framework.Color.DarkRed);

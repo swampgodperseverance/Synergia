@@ -4,6 +4,7 @@ using Terraria.ModLoader;
 using Terraria.DataStructures;
 using Synergia.Common.GlobalNPCs.AI;
 using Synergia.Content.Projectiles.Hostile.Bosses;
+using Terraria.ID;
 
 namespace Synergia.Common.GlobalNPCs
 {
@@ -14,7 +15,7 @@ namespace Synergia.Common.GlobalNPCs
         private int dustTimer = 0;
         private int projectileTimer = 0;
 
-        private bool initialized = false;
+        //private bool initialized = false;
 
         private const string TARGET_NAME = "RunicElemental";
 
@@ -44,7 +45,7 @@ namespace Synergia.Common.GlobalNPCs
 
             if (npc.aiStyle == -1 && !npc.friendly)
             {
-                float baseSpeed = 1.8f;
+                //float baseSpeed = 1.8f;
                 npc.velocity *= 1.22f; 
             }
 
@@ -56,7 +57,7 @@ namespace Synergia.Common.GlobalNPCs
                 for (int i = 0; i < 15; i++)
                 {
                     Vector2 pos = npc.Center + new Vector2(Main.rand.Next(-24, 24), Main.rand.Next(-24, 24));
-                    int dust = Dust.NewDust(pos, 6, 6, 169);
+                    int dust = Dust.NewDust(pos, 6, 6, DustID.IchorTorch);
                     Main.dust[dust].velocity *= 0.2f;
                     Main.dust[dust].noGravity = true;
                 }

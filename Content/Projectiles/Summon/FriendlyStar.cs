@@ -116,7 +116,7 @@ namespace Synergia.Content.Projectiles.Summon
      
             float idealDist = 120f;  
             float minDist = 140f;     
-            float maxDist = 400f;     
+            //float maxDist = 400f;     
 
             Vector2 toTargetDir = Vector2.Normalize(target.Center - Projectile.Center);
             float currentDist = Vector2.Distance(Projectile.Center, target.Center);

@@ -1,17 +1,13 @@
-using Synergia.Common.GlobalPlayer;
+using Microsoft.Xna.Framework.Input;
+using System.Collections.Generic;
 using Terraria;
-using Terraria.Audio;
 using Terraria.ID;
-using static Synergia.Reassures.Reassures;
+using static Synergia.Common.SUtils.LocUtil;
 
 namespace Synergia.Content.Items
 {
 	public class OldTales : ModItem
 	{
-		public override void SetStaticDefaults()
-		{
-		}
-
 		public override void SetDefaults()
 		{
 			Item.width = 32;
@@ -19,23 +15,22 @@ namespace Synergia.Content.Items
 			Item.useTime = 20;
 			Item.useAnimation = 20;
 			Item.useStyle = ItemUseStyleID.RaiseLamp;
-			Item.holdStyle = ItemHoldStyleID.HoldLamp;
+			//Item.holdStyle = ItemHoldStyleID.HoldLamp;
 			Item.rare = ItemRarityID.Green;
 			Item.autoReuse = false;
 		}
-
-		public override bool AltFunctionUse(Player player) => true;
-
-		public override bool? UseItem(Player player)
-		{
-			if (player.altFunctionUse == 2)
-			{
-				var bookPlayer = player.GetModPlayer<BookPlayer>();
-				bookPlayer.BookVisible = !bookPlayer.BookVisible;
-				
-				SoundEngine.PlaySound(bookPlayer.BookVisible ? GetSongByName("BookOpen") : GetSongByName("BookClose"));
+        public override void ModifyTooltips(List<TooltipLine> tooltips) {
+			tooltips.Add(new TooltipLine(Mod, $"Base{nameof(OldTales)}", ItemTooltip(WEP, "SadTooltips")));
+			string a = "";
+			string Shift = nameof(Shift);
+            Keys[] pressedKeys = Main.keyState.GetPressedKeys();
+            a = ItemTooltip(WEP, Shift);
+            foreach (Keys key in pressedKeys) {
+				if (key == Keys.LeftShift) {
+					a = ItemTooltip(WEP, "Aeris");
+                }
 			}
-			return true;
-		}
+            tooltips.Add(new TooltipLine(Mod, $"Developers", a));
+        }
 	}
 }

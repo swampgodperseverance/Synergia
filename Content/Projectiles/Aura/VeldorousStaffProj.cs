@@ -17,7 +17,7 @@ namespace Synergia.Content.Projectiles.Aura
         private float[] orbitAngles = new float[2] { 0f, MathHelper.Pi };
         private Vector2[] spiritVelocities = new Vector2[2];
 
-        public int PlayerLinked 
+        public int PlayerLinked2 
         {
             get => (int)Projectile.ai[1];
             set { Projectile.ai[1] = value; }
@@ -62,7 +62,7 @@ namespace Synergia.Content.Projectiles.Aura
         {
             base.AI();
             
-            if (PlayerLinked != 0)
+            if (PlayerLinked2 != 0)
             {
                 HandleSpiritsLogic();
             }

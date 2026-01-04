@@ -1,3 +1,4 @@
+using Synergia.Content.Achievements;
 using Synergia.GraphicsSetting;
 using Terraria;
 using Terraria.UI;
@@ -28,6 +29,7 @@ namespace Synergia
             if (!Main.dedServ) {
                 NewTexture.Load();
             }
+            SaveAchieveIfCompleted.Load();
         }
     }
 }

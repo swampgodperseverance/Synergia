@@ -1,16 +1,12 @@
-﻿using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
-using System;
-using Terraria;
+﻿using Terraria;
 using Terraria.Audio;
 using Terraria.ID;
-using Terraria.ModLoader;
 
 namespace Synergia.Content.Projectiles.Hostile.Bosses
 {
     public class NecroSphere : ModProjectile
     {
-        private bool hasFired;
+        //private bool hasFired;
 
         public override void SetDefaults()
         {

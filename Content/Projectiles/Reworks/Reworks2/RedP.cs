@@ -1,6 +1,4 @@
-﻿using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
-using System;
+﻿using Synergia.Trails;
 using System.Collections.Generic;
 using System.Linq;
 using Terraria;
@@ -9,8 +7,6 @@ using Terraria.DataStructures;
 using Terraria.GameContent;
 using Terraria.Graphics.Shaders;
 using Terraria.ID;
-using Terraria.ModLoader;
-using Synergia.Trails;
 
 namespace Synergia.Content.Projectiles.Reworks.Reworks2
 {
@@ -102,7 +98,7 @@ namespace Synergia.Content.Projectiles.Reworks.Reworks2
             Projectile.netUpdate = true;
         }
 
-        public override void Kill(int timeLeft)
+        public override void OnKill(int timeLeft)
         {
 
             SoundEngine.PlaySound(SoundID.Item14, Projectile.position);

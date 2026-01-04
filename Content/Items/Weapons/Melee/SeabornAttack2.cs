@@ -31,7 +31,7 @@ namespace Synergia.Content.Items.Weapons.Melee
         private int _timer;
         private bool _riseDecelerating = false;
         private Vector2 _miniRiseStart;
-        private bool _spawnedSwords = false;
+        //private bool _spawnedSwords = false;
 
         public override void SetStaticDefaults()
         {

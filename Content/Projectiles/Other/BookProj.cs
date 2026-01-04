@@ -8,6 +8,6 @@ namespace Synergia.Content.Projectiles.Other
     {
         public override int FirstTypeOfDust => DustID.CrimsonTorch;
         public override int SecondTypeOfDust => DustID.HallowedTorch;
-        public override int TransformsInItemType => ModContent.ItemType<OldTales2>();
+        public override int TransformsInItemType => 1;
     }
 }

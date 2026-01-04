@@ -1,13 +1,11 @@
-﻿using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
-using Terraria.DataStructures;
+﻿using Terraria.DataStructures;
 
 namespace Synergia.Dataset {
-    struct AnimationDate {
+    public struct AnimationDate {
         public SpriteFrame Frame;
         public bool StartAnimation;
         public int FrameTimer;
-        public SpriteEffects Effects;
+        public SpriteEffects Effects { get; private set; }
         public const int FrameDuration = 7;
         public byte RowCount;
 

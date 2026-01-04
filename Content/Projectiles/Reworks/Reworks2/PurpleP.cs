@@ -94,7 +94,7 @@ namespace Synergia.Content.Projectiles.Reworks.Reworks2
             Projectile.netUpdate = true;
         }
 
-        public override void Kill(int timeLeft)
+        public override void OnKill(int timeLeft)
         {
             
             SoundEngine.PlaySound(SoundID.Item74, Projectile.position); 

@@ -1,15 +1,12 @@
-﻿using Microsoft.Xna.Framework;
+﻿using Synergia.Content.Projectiles.Friendly;
 using Terraria;
-using Terraria.Audio;
 using Terraria.ID;
-using Terraria.ModLoader;
-using Synergia.Content.Projectiles.Friendly;
 
 namespace Synergia.Content.Items.Weapons.Mage
 {
     public class OrcishSwungo : ModItem
     {
-        private int noteCooldown = 0;
+        //private int noteCooldown = 0;
 
         public override void SetStaticDefaults()
         {

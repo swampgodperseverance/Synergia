@@ -194,7 +194,7 @@ namespace Synergia.Content.Projectiles.Reworks.AltUse
             return false;
         }
 
-        public override void Kill(int timeLeft)
+        public override void OnKill(int timeLeft)
         {
           
             Player.noItems = false;

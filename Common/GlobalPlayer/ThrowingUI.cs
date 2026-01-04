@@ -1,13 +1,11 @@
-﻿using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
-using Synergia.Dataset;
+﻿using Synergia.Dataset;
 using Synergia.Helpers;
 using System;
 using Terraria;
 
 namespace Synergia.Common.GlobalPlayer {
     public class ThrowingUI : ModPlayer {
-        Step_By_StepAnimationData throwAnimation;
+        //Step_By_StepAnimationData throwAnimation;
         Vector2 shake = Vector2.Zero;
         Vector2 velocity = Vector2.Zero;
 
