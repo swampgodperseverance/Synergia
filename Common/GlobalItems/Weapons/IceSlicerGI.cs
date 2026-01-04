@@ -24,11 +24,10 @@ namespace Synergia.Content.GlobalItems.Weapons
         {
             const int shotCount = 3;
             const int delayBetweenShots = 8;
-            const float spread = 0.15f; // радианы, примерно ±8.5 градусов
+            const float spread = 0.15f;
 
             for (int i = 0; i < shotCount; i++)
             {
-                // Разброс направления
                 Vector2 perturbedVelocity = velocity.RotatedBy(Main.rand.NextFloat(-spread, spread));
 
                 int proj = Projectile.NewProjectile(
@@ -41,7 +40,6 @@ namespace Synergia.Content.GlobalItems.Weapons
                     player.whoAmI
                 );
 
-                // Задержка появления
                 Main.projectile[proj].ai[0] = i * delayBetweenShots;
             }
 

@@ -3,41 +3,28 @@ using Microsoft.Xna.Framework.Graphics;
 using Terraria;
 using Terraria.GameContent;
 using Terraria.ID;
+using Terraria.ModLoader.IO; 
 using Terraria.ModLoader;
-using Synergia.Content.Projectiles.Reworks.Reworks2;
+using Synergia.Content.Projectiles.Reworks.AltUse;
 using Synergia.Common.Players;
 
 namespace Synergia.Content.GlobalItems.Weapons
 {
-    public class EverIceGI : GlobalItem
+    public class BatBatGI : GlobalItem
     {
         public override bool InstancePerEntity => true;
         public int rightClickCooldown = 0;
-
         public override bool AppliesToEntity(Item entity, bool lateInstantiation)
         {
-            if (entity.ModItem == null) return false;
-            var modName = entity.ModItem.Mod?.Name;
-            var itemName = entity.ModItem?.Name;
-            return string.Equals(modName, "ValhallaMod", System.StringComparison.OrdinalIgnoreCase)
-                && string.Equals(itemName, "EverlivingIce", System.StringComparison.OrdinalIgnoreCase);
-        }
 
+            return entity.type == ItemID.BatBat;
+        }
         public override void SetDefaults(Item item)
         {
-            item.damage = 32;
-            item.DamageType = DamageClass.Melee;
-            item.width = 54;
-            item.height = 64;
-            item.useTime = 30;
-            item.useAnimation = 30;
-            item.knockBack = 3;
-            item.value = 10000;
-            item.rare = ItemRarityID.Orange;
+
             item.autoReuse = true;
-            item.crit = 4;
             item.useStyle = ItemUseStyleID.Shoot;
-            item.shoot = ModContent.ProjectileType<EverIceSlash>();
+            item.shoot = ModContent.ProjectileType<BatBatRework>();
             item.channel = true;
             item.noUseGraphic = true;
             item.noMelee = true;
@@ -47,13 +34,13 @@ namespace Synergia.Content.GlobalItems.Weapons
 
         public override bool CanUseItem(Item item, Player player)
         {
-            return player.ownedProjectileCounts[ModContent.ProjectileType<EverIceSlash>()] < 1;
+            return player.ownedProjectileCounts[ModContent.ProjectileType<BatBatRework>()] < 1;
         }
 
         private bool flip = true;
         public override bool Shoot(Item item, Player player, Terraria.DataStructures.EntitySource_ItemUse_WithAmmo source, Microsoft.Xna.Framework.Vector2 position, Microsoft.Xna.Framework.Vector2 velocity, int type, int damage, float knockback)
         {
-            int idx = Projectile.NewProjectile(source, position, velocity, ModContent.ProjectileType<EverIceSlash>(), damage, knockback, player.whoAmI);
+            int idx = Projectile.NewProjectile(source, position, velocity, ModContent.ProjectileType<BatBatRework>(), damage, knockback, player.whoAmI);
             var proj = Main.projectile[idx];
             proj.ai[2] = flip ? -1 : 1;
             flip = !flip;
@@ -63,8 +50,8 @@ namespace Synergia.Content.GlobalItems.Weapons
 
         public override void HoldItem(Item item, Player player)
         {
-            var mp = player.GetModPlayer<EverIcePlayer>();
-            if (mp != null && mp.everIceEmpowered)
+            var mp = player.GetModPlayer<BatBatPlayer>();
+            if (mp != null && mp.BatBatEmpowered)
                 item.damage = 80;
             else
                 item.damage = 35;
@@ -97,6 +84,31 @@ namespace Synergia.Content.GlobalItems.Weapons
             time /= 2f;
             if (time >= 1f) time = 2f - time;
             time = time * 0.5f + 0.5f;
+        }
+
+    }
+    public class BatBatPlayer : ModPlayer
+    {
+
+        public int BatBatHitCount = 0;
+        public bool BatBatEmpowered = false;
+
+        public override void ResetEffects()
+        {
+
+        }
+
+
+        public override void SaveData(TagCompound tag)
+        {
+            tag["BatBatHitCount"] = BatBatHitCount;
+            tag["BatBatEmpowered"] = BatBatEmpowered;
+        }
+
+        public override void LoadData(TagCompound tag)
+        {
+            if (tag.ContainsKey("BatBatHitCount")) BatBatHitCount = tag.GetInt("BatBatHitCount");
+            if (tag.ContainsKey("BatBatEmpowered")) BatBatEmpowered = tag.GetBool("BatBatEmpowered");
         }
     }
 }

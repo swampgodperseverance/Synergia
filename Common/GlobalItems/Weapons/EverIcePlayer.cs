@@ -4,7 +4,7 @@ using Terraria.Audio;
 using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
-using Terraria.ModLoader.IO; // Добавь эту строку для TagCompound
+using Terraria.ModLoader.IO; //TAG
 using Synergia.Content.Projectiles.Reworks.Reworks2;
 using System.Collections.Generic;
 namespace Synergia.Common.Players
