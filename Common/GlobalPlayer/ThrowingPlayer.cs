@@ -16,8 +16,8 @@ namespace Synergia.Common.GlobalPlayer {
         public bool doubleMode;
         bool wasHoldingScrew;
 
-        public List<int> IsComboWeapons = [ItemID.Trimarang,ItemID.WoodenBoomerang, ItemID.Snowball, ItemType<StalloyScrew>(), ItemType<Rock>(), ItemType<TeethBreaker>()];
-        List<int> ProjType = [ProjectileType<RockProj>(), ProjectileType<ValhallaMod.Projectiles.Boomerang.TeethBreaker>()];
+        public List<int> IsComboWeapons = [ItemID.Trimarang,ItemID.WoodenBoomerang, ItemID.Snowball, ItemType<StalloyScrew>(), ItemType<Rock>(), ItemType<TeethBreaker>(), ItemType<Carnwennan>()];
+        List<int> ProjType = [ProjectileType<RockProj>(), ProjectileType<ValhallaMod.Projectiles.Boomerang.TeethBreaker>(), ProjectileType<CarnwennanProj>()];
 
         public override void Initialize() {
             comboCount = 0;

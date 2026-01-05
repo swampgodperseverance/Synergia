@@ -23,7 +23,7 @@ namespace Synergia.Common.GlobalPlayer {
                 Vector2 drawPos = UIHelper.PlayerPos(-40, 45);
                 drawPos += shake;
                 drawPos += velocity;
-                Main.spriteBatch.Draw(texture, drawPos, texture.Frame(1, 6, 0, throwing.comboCount), Color.White, 0f, Vector2.Zero, 0.95f, SpriteEffects.None, 0);
+                Main.spriteBatch.Draw(texture, drawPos, texture.Frame(1, 6, 0, throwing.comboCount), Color.White, 0f, Vector2.Zero, 1.05f, SpriteEffects.None, 0);
             }
         }
     }
