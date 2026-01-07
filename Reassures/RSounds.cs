@@ -19,6 +19,7 @@ namespace Synergia.Reassures {
             public static readonly SoundStyle SandSphere = new("Synergia/Assets/Sounds/SandSphere");
             public static readonly SoundStyle Impulse = new("Synergia/Assets/Sounds/Impulse");
             public static readonly SoundStyle Watersound = new("Synergia/Assets/Sounds/Watersound");
+            public static readonly SoundStyle SilentPunch = new("Synergia/Assets/Sounds/SilentPunch");
         }
     }
 }

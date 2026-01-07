@@ -55,12 +55,10 @@ namespace Synergia.Content.Projectiles.Reworks
             float rotationSpeed = MathHelper.Lerp(0f, 0.25f * Player.direction, eased);
             Projectile.rotation += rotationSpeed;
 
-            // --- Эффект прозрачности во время вращения ---
-            // Легкая пульсация прозрачности (между 0.6 и 1.0)
+         
             float pulse = 0.8f + 0.2f * (float)Math.Sin(Timer * 0.15f);
             Projectile.Opacity = MathHelper.Lerp(Projectile.Opacity, pulse, 0.1f);
 
-            // --- Звук взмаха, без наложения ---
             if (Timer % 5 == 0)
             {
                 int soundCooldown = 20;
@@ -86,7 +84,6 @@ namespace Synergia.Content.Projectiles.Reworks
             if (Main.myPlayer == Projectile.owner && Timer % 45 == 0 && Main.rand.NextBool(4))
                 ShootFireball();
 
-            // --- Плавное затухание после отпускания ---
             if (!Player.channel)
             {
                 Projectile.localAI[0]++;
@@ -94,7 +91,7 @@ namespace Synergia.Content.Projectiles.Reworks
                 fadeProgress = MathHelper.Clamp(fadeProgress, 0f, 1f);
 
                 Projectile.rotation *= MathHelper.Lerp(1f, 0.92f, fadeProgress);
-                Projectile.Opacity = MathHelper.Lerp(Projectile.Opacity, 0f, fadeProgress); // теперь мягко исчезает
+                Projectile.Opacity = MathHelper.Lerp(Projectile.Opacity, 0f, fadeProgress); 
                 Projectile.scale = MathHelper.Lerp(Projectile.scale, 0.85f, fadeProgress);
                 Lighting.AddLight(Projectile.Center, 0.8f * Projectile.Opacity, 0.25f * Projectile.Opacity, 0f);
 
@@ -116,29 +113,24 @@ namespace Synergia.Content.Projectiles.Reworks
         {
             float rotation = Projectile.rotation - (Projectile.direction == -1 ? 0f : MathHelper.PiOver2) - MathHelper.PiOver4;
 
-            // Количество пылинок — можно подстроить под визуал
             int dustCount = 10;
 
             for (int i = 0; i < dustCount; i++)
             {
-                // Немного случайное смещение вдоль клинка
+
                 float alongBlade = Main.rand.NextFloat(0.2f, 1f);
                 Vector2 basePos = Projectile.Center + rotation.ToRotationVector2() * 85f * alongBlade;
 
-                // Добавляем разброс по радиусу (вокруг линии меча)
                 Vector2 offset = Main.rand.NextVector2Circular(10f, 10f);
                 Vector2 dustPos = basePos + offset;
 
-                // Случайное направление скорости (немного хаотичное, но в ту же сторону)
                 Vector2 dustVel = rotation.ToRotationVector2().RotatedByRandom(0.7f) * Main.rand.NextFloat(0.3f, 1.2f);
 
                 Dust dust = Dust.NewDustPerfect(dustPos, DustID.Torch, dustVel);
                 dust.noGravity = true;
 
-                // Размер — слегка варьируется
                 dust.scale = Main.rand.NextFloat(0.8f, 1.5f);
 
-                // Цвет можно чуть приглушить, чтобы выглядело мягче
                 dust.color = Color.Lerp(Color.White, new Color(255, 150, 50), Main.rand.NextFloat(0.3f, 1f));
             }
         }
@@ -208,9 +200,8 @@ namespace Synergia.Content.Projectiles.Reworks
             Texture2D texture = TextureAssets.Projectile[Type].Value;
             SpriteEffects effects = Projectile.spriteDirection == -1 ? SpriteEffects.None : SpriteEffects.FlipHorizontally;
             Vector2 origin = new(Projectile.spriteDirection == 1 ? texture.Width : 0f, texture.Height);
-            Color color = Color.White * Projectile.Opacity; // <---- вот здесь прозрачность применяется
+            Color color = Color.White * Projectile.Opacity;
 
-            // Эффект "призрачного шлейфа"
             for (int i = 0; i < Projectile.oldPos.Length; i++)
             {
                 float fade = (1f - i / (float)Projectile.oldPos.Length);
@@ -228,7 +219,6 @@ namespace Synergia.Content.Projectiles.Reworks
                 );
             }
 
-            // Основное тело меча
             Main.spriteBatch.Draw(
                 texture,
                 Projectile.Center - Main.screenPosition,
