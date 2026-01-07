@@ -1046,6 +1046,11 @@ Items: {
 		DisplayName: Post Mech Wings
 		Tooltip: ""
 	}
+
+	Flarion: {
+		DisplayName: Flarion
+		Tooltip: ""
+	}
 }
 
 Projectiles: {
@@ -1309,6 +1314,11 @@ Projectiles: {
 	SolarWindRework.DisplayName: Solar Wind Rework
 	TentacleSpikeRework.DisplayName: Tentacle Spike Rework
 	ValhalliteSwordRework.DisplayName: Valhallite Sword Rework
+	FeroziumIcicle.DisplayName: Ferozium Icicle
+	Darkwennan.DisplayName: Darkwennan
+	DarkwennanBlood.DisplayName: Darkwennan Blood
+	FlarionProj.DisplayName: Flarion Proj
+	FlarionProj2.DisplayName: Flarion Proj2
 }
 
 Buffs: {

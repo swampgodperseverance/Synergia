@@ -97,10 +97,14 @@ namespace Synergia.Common.ModSystems.Hooks.Ons {
                 }
                 else {
                     waveStr = ((invasionProgressMax != 0) ? ((int)((float)invasionProgress * 100f / (float)invasionProgressMax) + "%") : invasionProgress.ToString());
-                    waveStr = Language.GetTextValue("Game.WaveCleared", waveStr);
-                }
-                if (waveStr == "0") {
-                    waveStr = "";
+                    string t;
+                    if (invasionProgressIcon == 5) {
+                        t = "";
+                    }
+                    else {
+                        t = waveStr;
+                    }
+                    waveStr = Language.GetTextValue("Game.WaveCleared", t);
                 }
                 Vector2 vector6 = FontAssets.MouseText.Value.MeasureString(text);
                 float num13 = 120f;
@@ -115,7 +119,6 @@ namespace Synergia.Common.ModSystems.Hooks.Ons {
             }
             else {
                 orig();
-                return;
             }
         }
     }

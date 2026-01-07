@@ -1,18 +1,17 @@
-﻿using Microsoft.Xna.Framework.Graphics;
-using ReLogic.Content;
+﻿using ReLogic.Content;
+using Synergia.GraphicsSetting.SynergiaHeaven;
 using System;
 using Terraria;
 using Terraria.Graphics.Effects;
 using Terraria.Graphics.Shaders;
-using Terraria.ModLoader;
 
 namespace Synergia.GraphicsSetting;
 
 public class SynegiyGraphics {
     public const string ARMORRADAR = nameof(ARMORRADAR);
     public const string COGWORMSHADER = nameof(COGWORMSHADER);
+    public const string PRESENTSKY = nameof(PRESENTSKY);
     public const string BASEFILTER = "FilterMiniTower";
-
 
     public static string FilePath(string name) => $"Synergia/Assets/Effects/{name}";
     static string GetShaderNeme(ref string saveShaderName, string shaderName) {
@@ -21,8 +20,8 @@ public class SynegiyGraphics {
     }
     public static void Init(AssetRepository Assets) {
         if (!Main.dedServ) {
-            LoadFilters(COGWORMSHADER, BASEFILTER, 0.7f, 0.2f, 0.2f, 0.4f, EffectPriority.VeryHigh, new SynergiaSky()); // 1.0, 0.2, 0.2
-            //LoadShader("DyesShaders", "HueShiftPass");
+            LoadFiltersIntensity(COGWORMSHADER, BASEFILTER, 0.7f, 0.2f, 0.2f, 0.4f, new SynergiaSky()); // 1.0, 0.2, 0.2
+            LoadFiltersOpacity(PRESENTSKY, BASEFILTER, 0f, 0f, 0f, 0f, new PresentSky());
         }
     }
     [Obsolete("Лучше не трогать!!!!!")]
@@ -31,8 +30,12 @@ public class SynegiyGraphics {
         Filters.Scene[name] = new Filter(new ScreenShaderData(screenRef, passName), EffectPriority.VeryHigh);
         Filters.Scene[name].Load();
     }
-    static void LoadFilters(string name, string passName, float r, float g, float b, float intensity, EffectPriority priority, CustomSky sky) {
+    static void LoadFiltersIntensity(string name, string passName, float r, float g, float b, float intensity, CustomSky sky, EffectPriority priority = EffectPriority.VeryHigh) {
         Filters.Scene[name] = new Filter(new ScreenShaderData(passName).UseColor(r, g, b).UseIntensity(intensity), priority);
+        SkyManager.Instance[name] = sky;
+    }
+    static void LoadFiltersOpacity(string name, string passName, float r, float g, float b, float intensity, CustomSky sky, EffectPriority priority = EffectPriority.VeryHigh) {
+        Filters.Scene[name] = new Filter(new ScreenShaderData(passName).UseColor(r, g, b).UseOpacity(intensity), priority);
         SkyManager.Instance[name] = sky;
     }
     static void LoadImages(string name, string passName, string texture, float intensity, EffectPriority priority) {

@@ -4,7 +4,7 @@ using Terraria;
 using Terraria.GameContent;
 using Terraria.Graphics.Effects;
 
-namespace Synergia.GraphicsSetting;
+namespace Synergia.GraphicsSetting.SynergiaHeaven;
 
 public class SynergiaSky : CustomSky {
     private bool isActive;

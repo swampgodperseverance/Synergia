@@ -1,4 +1,5 @@
 ﻿using Synergia.Common.ModConfigs;
+using System;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.GameContent;
@@ -63,7 +64,6 @@ public abstract class ModEvent : ModSystem {
     }
     public override void PostUpdateWorld() {
         if (IsActive) {
-            UpdateProgressBarState();
             SpawnNPC();
             NextWave();
             EndEvent();
@@ -85,7 +85,7 @@ public abstract class ModEvent : ModSystem {
     }
     public void ActiveEvent() {
         IsActive = true;
-        if (MaxWave != 0 && CurrentWave == 0 && fistText == false) {
+        if (MaxWave != 0 && CurrentWave == -1 && fistText == false) {
             OnStart(CurrentWave);
         }
     }
@@ -105,7 +105,17 @@ public abstract class ModEvent : ModSystem {
         barAlpha = MathHelper.Lerp(barAlpha, targetAlpha, 0.1f);
     }
     void DrawProgressBar() {
-        if (!spawnNPC || !IsActive || EventName == null || barAlpha <= 0f) {
+        if (!IsActive || EventName == null) {
+            return;
+        }
+        bool npcInMap = false;
+        foreach (int type in EventEnemies) {
+            if (NPC.AnyNPCs(type)) {
+                npcInMap = true;
+                UpdateProgressBarState();
+            }
+        }
+        if (!npcInMap || barAlpha <= 0f) {
             return;
         }
         if (GetInstance<BossConfig>().ActiveNewUI) {
@@ -120,7 +130,7 @@ public abstract class ModEvent : ModSystem {
             spriteBatch.Draw(colorBar, new Vector2(barPos.X + 45, barPos.Y + 70), new Rectangle(0, 0, (int)(colorBar.Width * progress), colorBar.Height), Color.White * barAlpha);
 
             if (MaxWave > 0) {
-                waveStr = Language.GetTextValue(arg1: (EventSize != 0) ? ((int)((float)EventProgress * 100f / (float)EventSize) + "%") : Language.GetTextValue("Game.InvasionPoints", EventProgress), key: "Game.WaveMessage", arg0: CurrentWave);
+                waveStr = Language.GetTextValue(arg1: (EventSize != 0) ? ((int)((float)EventProgress * 100f / (float)EventSize) + "%") : Language.GetTextValue("Game.InvasionPoints", EventProgress), key: "Game.WaveMessage", arg0: CurrentWave + 1);
             }
             else {
                 waveStr = ((EventSize != 0) ? ((int)((float)EventProgress * 100f / (float)EventSize) + "%") : EventProgress.ToString());
@@ -151,7 +161,7 @@ public abstract class ModEvent : ModSystem {
                 Vector2 vector = new(screenWidth - 120, screenHeight - 40);
                 Utils.DrawInvBG(R: new Rectangle((int)vector.X - num2 / 2, (int)vector.Y - num3 / 2, num2, num3), sb: spriteBatch, c: new Color(63, 65, 151, 255) * 0.785f);
                 string text2 = "";
-                text2 = Language.GetTextValue(arg1: (EventSize != 0) ? ((int)((float)EventProgress * 100f / (float)EventSize) + "%") : Language.GetTextValue("Game.InvasionPoints", EventProgress), key: "Game.WaveMessage", arg0: MaxWave);
+                text2 = Language.GetTextValue(arg1: (EventSize != 0) ? ((int)((float)EventProgress * 100f / (float)EventSize) + "%") : Language.GetTextValue("Game.InvasionPoints", EventProgress), key: "Game.WaveMessage", arg0: CurrentWave + 1);
                 Texture2D value2 = TextureAssets.ColorBar.Value;
                 _ = TextureAssets.ColorBlip.Value;
                 float num4 = MathHelper.Clamp((float)EventProgress / (float)EventSize, 0f, 1f);
@@ -209,6 +219,9 @@ public abstract class ModEvent : ModSystem {
         }
     }
     void DoOnKillNPC(NPC npc) {
+        if ((npc.realLife >= 0 && npc.realLife != npc.whoAmI) || npc.life > 0) {
+            return;
+        }
         if (IsActive) {
             OnKillNPC(npc, CurrentWave);
         }
