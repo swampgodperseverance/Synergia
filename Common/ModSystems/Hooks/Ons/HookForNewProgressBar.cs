@@ -1,12 +1,9 @@
-﻿using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
-using MonoMod.RuntimeDetour;
+﻿using MonoMod.RuntimeDetour;
 using System.Reflection;
 using Terraria;
 using Terraria.GameContent;
 using Terraria.ID;
 using Terraria.Localization;
-using Terraria.ModLoader;
 using static Terraria.Main;
 
 namespace Synergia.Common.ModSystems.Hooks.Ons {
@@ -28,6 +25,10 @@ namespace Synergia.Common.ModSystems.Hooks.Ons {
             NewInvasionProgressStyle = null;
         }
         static void DrawInvasionProgress_detour(Orig_DrawInvasionProgress orig) {
+            if (invasionType == 2) {
+                return;
+            }
+
             if (NewUI) {
                 if (invasionProgress == -1) { return; }
                 if (invasionProgressMode == 2 && invasionProgressNearInvasion && invasionProgressDisplayLeft < 160) { invasionProgressDisplayLeft = 160; }
@@ -43,10 +44,9 @@ namespace Synergia.Common.ModSystems.Hooks.Ons {
                 if (invasionProgressAlpha <= 0f) { return; }
 
                 float num = 0.5f + invasionProgressAlpha * 0.5f;
-                Texture2D value = TextureAssets.Extra[ExtrasID.EventIconGoblinArmy].Value;
-                Texture2D colorBar = ModContent.Request<Texture2D>("Bismuth/UI/OrcishInvasionFullBar").Value;
-                string text = "";
-                
+                Texture2D value = TextureAssets.Extra[ExtrasID.EventIconSnowLegion].Value;
+                Texture2D colorBar = ModContent.Request<Texture2D>(Reassures.Reassures.GetUIElementName("FrostBar")).Value;
+                string text = Lang.inter[87].Value;      
 
                 if (invasionProgressIcon == 1) {
                     value = TextureAssets.Extra[ExtrasID.EventIconFrostMoon].Value;
@@ -63,6 +63,11 @@ namespace Synergia.Common.ModSystems.Hooks.Ons {
                     text = Language.GetTextValue("DungeonDefenders2.InvasionProgressTitle");
                     colorBar = ModContent.Request<Texture2D>("Bismuth/UI/OrcishInvasionFullBar").Value;
                 }
+                else if (invasionProgressIcon == 4) {
+                    value = TextureAssets.Extra[ExtrasID.EventIconGoblinArmy].Value;
+                    text = Lang.inter[88].Value;
+                    colorBar = ModContent.Request<Texture2D>(Reassures.Reassures.GetUIElementName("GoblinBar")).Value;
+                }
                 else if (invasionProgressIcon == 7) {
                     value = TextureAssets.Extra[ExtrasID.EventIconMartianMadness].Value;
                     text = Lang.inter[85].Value;
@@ -73,16 +78,11 @@ namespace Synergia.Common.ModSystems.Hooks.Ons {
                     text = Lang.inter[86].Value;
                     colorBar = ModContent.Request<Texture2D>(Reassures.Reassures.GetUIElementName("PiraticBar")).Value;
                 }
-                else if (invasionProgressIcon == 5) {
-                    value = TextureAssets.Extra[ExtrasID.EventIconSnowLegion].Value;
-                    text = Lang.inter[87].Value;
-                    colorBar = ModContent.Request<Texture2D>(Reassures.Reassures.GetUIElementName("FrostBar")).Value;
-                }
-                else if (invasionProgressIcon == 4) {
-                    value = TextureAssets.Extra[ExtrasID.EventIconGoblinArmy].Value;
-                    text = Lang.inter[88].Value;
-                    colorBar = ModContent.Request<Texture2D>(Reassures.Reassures.GetUIElementName("GoblinBar")).Value;
-                }
+                //else if (invasionProgressIcon == 5) {
+                //    value = TextureAssets.Extra[ExtrasID.EventIconSnowLegion].Value;
+                //    text = Lang.inter[87].Value;
+                //    colorBar = ModContent.Request<Texture2D>(Reassures.Reassures.GetUIElementName("FrostBar")).Value;
+                //}
 
                 Texture2D emptyBar = ModContent.Request<Texture2D>("Bismuth/UI/OrcishInvasionEmptyBar").Value;
                 Vector2 barPos = new(screenWidth - emptyBar.Width, screenHeight - emptyBar.Height);
@@ -99,7 +99,9 @@ namespace Synergia.Common.ModSystems.Hooks.Ons {
                     waveStr = ((invasionProgressMax != 0) ? ((int)((float)invasionProgress * 100f / (float)invasionProgressMax) + "%") : invasionProgress.ToString());
                     waveStr = Language.GetTextValue("Game.WaveCleared", waveStr);
                 }
-
+                if (waveStr == "0") {
+                    waveStr = "";
+                }
                 Vector2 vector6 = FontAssets.MouseText.Value.MeasureString(text);
                 float num13 = 120f;
                 if (vector6.X > 200f) {

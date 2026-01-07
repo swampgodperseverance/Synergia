@@ -1300,6 +1300,15 @@ Projectiles: {
 	ThunderChakramProj.DisplayName: Thunder Chakram Proj
 	ThunderSigilProj1.DisplayName: Thunder Sigil Proj1
 	ThunderSigilProj.DisplayName: Thunder Sigil Proj
+	BatBatRework.DisplayName: Bat Bat Rework
+	GreatDrumstickRework.DisplayName: Great Drumstick Rework
+	HamBatRework.DisplayName: Ham Bat Rework
+	IchormoreRework.DisplayName: Ichormore Rework
+	ParadoxSwordRework.DisplayName: Paradox Sword Rework
+	SolarSlash.DisplayName: Solar Slash
+	SolarWindRework.DisplayName: Solar Wind Rework
+	TentacleSpikeRework.DisplayName: Tentacle Spike Rework
+	ValhalliteSwordRework.DisplayName: Valhallite Sword Rework
 }
 
 Buffs: {
@@ -1449,3 +1458,5 @@ Biomes: {
 		DisplayName: New Hell
 	}
 }
+
+Events.dsad: ""

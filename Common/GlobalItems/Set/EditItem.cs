@@ -1,10 +1,8 @@
 ﻿using Avalon.Items.Accessories.Hardmode;
 using Bismuth.Content.Items.Accessories;
 using Terraria;
-using System.Linq;
-using Terraria.ModLoader;
+using Terraria.ID;
 using ValhallaMod.Items.Weapons.Javelin;
-using static Synergia.Lists.Items;
 
 namespace Synergia.Common.GlobalItems.Set {
     public class EditItem : GlobalItem {
@@ -21,5 +19,13 @@ namespace Synergia.Common.GlobalItems.Set {
                 player.GetDamage(DamageClass.Generic) -= 0.20f;
             }
         }
+        //public override bool? UseItem(Item item, Player player) { 
+        //    if (item.type == ItemID.SnowGlobe) {
+        //        GetInstance<EventManger>().Events.TryGetValue(nameof(FrostLegion), out ModEvent mod);
+        //        mod.ActiveEvent();
+        //        return true;
+        //    }
+        //    return base.UseItem(item, player);
+        //}
     }
 }

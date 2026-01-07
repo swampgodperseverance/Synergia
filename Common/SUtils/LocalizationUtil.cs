@@ -29,4 +29,6 @@ public static class LocUtil {
     public static string LocQuestKey(string npcName, string nameKey) => Language.GetTextValue($"Mods.Synergia.Quests.{npcName}.{nameKey}");
     public static string LocUIKey(string nameCategory, string nameKey) => Language.GetTextValue($"Mods.Synergia.UI.{nameCategory}.{nameKey}");
     public static string ItemTooltip(string category, string tooltipKey) => Language.GetTextValue($"Mods.Synergia.Tooltips.{category}.{tooltipKey}");
+    public static string EventLocKey(string eventName) => Language.GetTextValue($"Mods.Synergia.Events.{eventName}");
+    public static string SynergiaLocKey(string name) => Language.GetTextValue($"Mods.Synergia.{name}");
 }

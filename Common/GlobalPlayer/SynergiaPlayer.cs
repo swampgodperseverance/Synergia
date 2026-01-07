@@ -40,12 +40,13 @@ namespace Synergia.Common.GlobalPlayer {
         public override void OnEnterWorld() {
             if (!giveMsg) {
                 SaveAchieveIfCompleted.Restore();
+                ModEvent.Instance.SettingEvent();
                 if (ModList.PackBuilderLoaded != null) {
                     if (GetInstance<BossConfig>().NewRecipe) {
-                        Main.NewText(string.Format(SUtils.LocUtil.LocUIKey(SUtils.LocUtil.CHATMSG, "tPacer"), ModList.PackBuilderLoaded.DisplayName, Language.GetTextValue("Mods.Synergia.Config.NewRecipe")), Microsoft.Xna.Framework.Color.DarkRed);
-                        giveMsg = true;
+                        Main.NewText(string.Format(SUtils.LocUtil.LocUIKey(SUtils.LocUtil.CHATMSG, "tPacer"), ModList.PackBuilderLoaded.DisplayName, Language.GetTextValue("Mods.Synergia.Config.NewRecipe")), Color.DarkRed);
                     }
                 }
+                giveMsg = true;
             }
         }
         #endregion;

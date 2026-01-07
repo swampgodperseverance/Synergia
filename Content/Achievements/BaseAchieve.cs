@@ -1,5 +1,4 @@
-﻿using Synergia.Common;
-using Terraria.Achievements;
+﻿using Terraria.Achievements;
 using Terraria.Localization;
 
 namespace Synergia.Content.Achievements {

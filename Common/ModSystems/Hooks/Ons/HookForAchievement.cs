@@ -79,10 +79,8 @@ namespace Synergia.Common.ModSystems.Hooks.Ons {
         }
         static void ClearValue(Achievement achievement) {
             foreach (CompletedEntry entry in SaveAchieveIfCompleted.SaveSystem.Completed) {
-                if (entry.Achievement == achievement.Name) {
-                    if (entry.Value) {
-                        entry.Value = false;
-                    }
+                if (entry.Achievement == achievement.Name && entry.Value) {
+                    entry.Value = false;
                 }
             }
             SaveAchieveIfCompleted.Save();
