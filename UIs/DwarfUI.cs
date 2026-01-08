@@ -19,7 +19,7 @@ using static Synergia.Helpers.UIHelper;
 
 namespace Synergia.UIs;
 // Some of the code is taken from EAMod
-internal class DwarfUI : UIState {
+public class DwarfUI : UIState {
 
     VanillaItemSlotWrapper itemSlotWeppon;
     VanillaItemSlotWrapper itemSlotPrace;
@@ -70,7 +70,7 @@ internal class DwarfUI : UIState {
             Item = saveItem.weaponSlotItem,
             Left = { Pixels = 50 },
             Top = { Pixels = 335 },
-            ValidItemFunc = item => item.IsAir || !item.IsAir && GetItem().Contains(item.type),
+            ValidItemFunc = item => item.IsAir || !item.IsAir && Items.ContainsKey(item.type),
         };
         itemSlotPrace = new VanillaItemSlotWrapper(ItemSlot.Context.BankItem, 0.85f) {
             Item = saveItem.praceSlotItem,

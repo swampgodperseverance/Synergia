@@ -3,6 +3,7 @@
 namespace Synergia.Reassures {
     public partial class Reassures {
         public static SoundStyle GetSongByName(string name) => new($"Synergia/Assets/Sounds/{name}");
+        public static string GetSongByName2(string name) => $"Synergia/Assets/Sounds/{name}";
         public class RSounds {
             public static readonly SoundStyle BookOpenSound = new("Synergia/Assets/Sounds/BookOpen");
             public static readonly SoundStyle BookCloseSound = new("Synergia/Assets/Sounds/BookClose");
@@ -21,5 +22,11 @@ namespace Synergia.Reassures {
             public static readonly SoundStyle Watersound = new("Synergia/Assets/Sounds/Watersound");
             public static readonly SoundStyle SilentPunch = new("Synergia/Assets/Sounds/SilentPunch");
         }
+    }
+    public class RegisterNewSongPatch : ILoadable {
+        public void Load(Mod mod) {
+            MusicLoader.AddMusic(mod, "Assets/Sounds/PeacefulTownV2");
+        }
+        public void Unload() { }
     }
 }
