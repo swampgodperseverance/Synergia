@@ -1,4 +1,5 @@
-﻿using Terraria;
+﻿using Synergia.Content.Projectiles.Other;
+using Terraria;
 using Terraria.Graphics.Effects;
 using Terraria.Utilities;
 using static Synergia.Reassures.Reassures.RTextures;
@@ -52,14 +53,14 @@ namespace Synergia.GraphicsSetting.SynergiaHeaven {
                 _present[i].Position = new Vector2(_random.Next(0, Main.maxTilesX) * 16, _random.Next(minValue, num));
                 _present[i].Speed = 5f + 3f * (float)_random.NextDouble();
                 _present[i].Depth = (float)i / (float)_present.Length * 1.75f + 1.6f;
-                _present[i].Texture = Present[_random.Next(2)].Value;
+                _present[i].Texture = Present[_random.Next(6)].Value;
                 if (_random.NextBool(60)) {
-                    _present[i].Texture = Present[2].Value;
+                    _present[i].Texture = Present[5].Value;
                     _present[i].Speed = 6f + 3f * (float)_random.NextDouble();
                     _present[i].Depth += 0.5f;
                 }
                 else if (_random.NextBool(30)) {
-                    _present[i].Texture = Present[2].Value;
+                    _present[i].Texture = Present[_random.Next(4)].Value;
                     _present[i].Speed = 6f + 2f * (float)_random.NextDouble();
                 }
 
@@ -84,15 +85,15 @@ namespace Synergia.GraphicsSetting.SynergiaHeaven {
                 if (!_isLeaving) {
                     _present[i].Depth = (float)i / (float)_present.Length * 1.75f + 1.6f;
                     _present[i].Position = new Vector2(_random.Next(0, Main.maxTilesX) * 16, -100f);
-                    _present[i].Texture = Present[_random.Next(2)].Value;
+                    _present[i].Texture = Present[_random.Next(6)].Value;
                     _present[i].Speed = 5f + 3f * (float)_random.NextDouble();
                     if (_random.NextBool(60)) {
-                        _present[i].Texture = Present[_random.Next(1)].Value;
+                        _present[i].Texture = Present[_random.Next(5)].Value;
                         _present[i].Speed = 6f + 3f * (float)_random.NextDouble();
                         _present[i].Depth += 0.5f;
                     }
                     else if (_random.NextBool(30)) {
-                        _present[i].Texture = Present[2].Value;
+                        _present[i].Texture = Present[_random.Next(4)].Value;
                         _present[i].Speed = 6f + 2f * (float)_random.NextDouble();
                     }
                 }
@@ -150,12 +151,12 @@ namespace Synergia.GraphicsSetting.SynergiaHeaven {
                         position.X += 4000f;
 
                     position.X -= 500f;
-                    if (rectangle.Contains((int)position.X, (int)position.Y))
+                    if (rectangle.Contains((int)position.X, (int)position.Y)) {
                         spriteBatch.Draw(_present[j].Texture, position, _present[j].GetSourceRectangle(), color, 0f, Vector2.Zero, vector2.X * 2f, SpriteEffects.None, 0f);
+                    }
                 }
             }
         }
-
         public override void Activate(Vector2 position, params object[] args) {
             GenerateSlimes();
             _isActive = true;

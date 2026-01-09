@@ -9,6 +9,11 @@ namespace Synergia.Helpers {
                 eventProgress += eventPoint;
             }
         }
+        public static void GetProgress(NPC npc, int necessaryNPC, ref int eventProgress, int eventPoint) {
+            if (necessaryNPC == npc.type) {
+                eventProgress += eventPoint;
+            }
+        }
         public static void SpawnNPC(ref IDictionary<int, float> pool, int npcType, float chance) {
             pool.Add(npcType, chance);
         }

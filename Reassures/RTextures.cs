@@ -13,11 +13,11 @@ namespace Synergia.Reassures {
         public class RTextures : ModSystem {
             public static Asset<Texture2D>[] FeatherLeft { get; private set; } = new Asset<Texture2D>[3];
             public static Asset<Texture2D>[] FeatherRight { get; private set; } = new Asset<Texture2D>[3];
-            public static Asset<Texture2D>[] Present { get; private set; } = new Asset<Texture2D>[3];
+            public static Asset<Texture2D>[] Present { get; private set; } = new Asset<Texture2D>[7];
             public override void Load() {
                 RegisterTextureElement(FeatherLeft, 3, "FeatherLeft");
                 RegisterTextureElement(FeatherRight, 3, "FeatherRight");
-                RegisterTextureElement(Present, 3, "BGPresent_");
+                RegisterTextureElement(Present, 7, "BGPresent_");
             }
         }
     }

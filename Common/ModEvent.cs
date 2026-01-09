@@ -1,5 +1,4 @@
 ﻿using Synergia.Common.ModConfigs;
-using System;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.GameContent;
@@ -14,7 +13,6 @@ namespace Synergia.Common;
 public abstract class ModEvent : ModSystem {
     public static ModEvent Instance { get; private set; }
 
-    bool fistText = false;
     float barAlpha;
     int barTimer;
     bool barVisible;
@@ -30,6 +28,7 @@ public abstract class ModEvent : ModSystem {
     public string EventName;
     public List<int> EventEnemies = [];
     public bool IsActive;
+    public bool FistText = false;
 
     public virtual void SettingEvent() { }
     public virtual void OnStart(int currentWave) { }
@@ -48,7 +47,7 @@ public abstract class ModEvent : ModSystem {
         EzSave(tag, "EventSize", ref EventSize);
         EzSave(tag, "EventProgress", ref EventProgress);
         EzSave(tag, "EventPoint", ref EventPoint);
-        EzSave(tag, "fistText", ref fistText);
+        EzSave(tag, "fistText", ref FistText);
         EzSave(tag, "IsActive", ref IsActive);
         EzSave(tag, "spawnNPC", ref spawnNPC);
     }
@@ -58,7 +57,7 @@ public abstract class ModEvent : ModSystem {
         EzLoad(tag, "EventSize", ref EventSize);
         EzLoad(tag, "EventProgress", ref EventProgress);
         EzLoad(tag, "EventPoint", ref EventPoint);
-        EzLoad(tag, "fistText", ref fistText);
+        EzLoad(tag, "fistText", ref FistText);
         EzLoad(tag, "IsActive", ref IsActive);
         EzLoad(tag, "spawnNPC", ref spawnNPC);
     }
@@ -85,7 +84,7 @@ public abstract class ModEvent : ModSystem {
     }
     public void ActiveEvent() {
         IsActive = true;
-        if (MaxWave != 0 && CurrentWave == -1 && fistText == false) {
+        if (MaxWave != 0 && CurrentWave == -1 && FistText == false) {
             OnStart(CurrentWave);
         }
     }
@@ -233,9 +232,9 @@ public abstract class ModEvent : ModSystem {
         if (CurrentTimeToSpawnNPC >= TimeToSpawnNPC) {
             CurrentTimeToSpawnNPC = TimeToSpawnNPC;
         }
-        if (CurrentTimeToSpawnNPC - 150 == TimeToSpawnNPC - 150 && !fistText) {
+        if (CurrentTimeToSpawnNPC - 150 == TimeToSpawnNPC - 150 && !FistText) {
             DoWave(CurrentWave);
-            fistText = true;
+            FistText = true;
         }
         if (CurrentTimeToSpawnNPC == TimeToSpawnNPC) {
             spawnNPC = true;
@@ -262,7 +261,7 @@ public abstract class ModEvent : ModSystem {
         EventProgress = 0;
         CurrentWave = 0;
         CurrentTimeToSpawnNPC = 0;
-        fistText = false;
+        FistText = false;
         barAlpha = 0f;
         IsActive = false;
         spawnNPC = false;

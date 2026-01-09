@@ -1,15 +1,11 @@
 ﻿using System;
-using Microsoft.Xna.Framework;
+using System.IO;
 using Terraria;
-using Microsoft.Xna.Framework.Graphics;
-using Terraria.GameContent;
 using Terraria.Audio;
 using Terraria.DataStructures;
+using Terraria.GameContent;
 using Terraria.ID;
-using System.IO;
-using Synergia.Content.Projectiles.Hostile;
-using Terraria.ModLoader;
-using static Synergia.Common.SUtils.LocUtil;    
+using static Synergia.Common.SUtils.LocUtil;
 
 namespace Synergia.Content.NPCs
 {
@@ -320,15 +316,15 @@ namespace Synergia.Content.NPCs
             if (direction == Vector2.Zero) direction = Vector2.UnitY;
             direction.Normalize();
 
-            Projectile.NewProjectile(
-                NPC.GetSource_FromAI(),
-                NPC.Center,
-                direction * 8f,
-                ModContent.ProjectileType<Shockwave>(),
-                NPC.damage / 2,
-                2f,
-                Main.myPlayer
-            );
+            //Projectile.NewProjectile(
+            //    NPC.GetSource_FromAI(),
+            //    NPC.Center,
+            //    direction * 8f,
+            //    ModContent.ProjectileType<Shockwave>(),
+            //    NPC.damage / 2,
+            //    2f,
+            //    Main.myPlayer
+            //);
 
             SoundEngine.PlaySound(SoundID.Item67 with { Volume = 0.8f }, NPC.Center);
         }

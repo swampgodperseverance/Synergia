@@ -1,12 +1,9 @@
-﻿using System;
-using Microsoft.Xna.Framework;
-using Terraria;
+﻿using Terraria;
 using Terraria.Audio;
-using Terraria.DataStructures;	
+using Terraria.DataStructures;
 using Terraria.GameContent.Bestiary;
 using Terraria.GameContent.ItemDropRules;
 using Terraria.ID;
-using Terraria.ModLoader;
 using Terraria.ModLoader.Utilities;
 using static Synergia.Common.SUtils.LocUtil;
 
@@ -131,12 +128,6 @@ namespace Synergia.Content.NPCs
 			NPC.life = 0;
 			NPC.checkDead();
 		}
-
-		public override float SpawnChance(NPCSpawnInfo spawnInfo)
-		{
-			return SpawnCondition.FrostLegion.Chance * 0.25f;
-		}
-
 		public override void ModifyNPCLoot(NPCLoot npcLoot)
 		{
 			npcLoot.Add(ItemDropRule.Common(ItemID.SnowBlock, 1, 5, 10));

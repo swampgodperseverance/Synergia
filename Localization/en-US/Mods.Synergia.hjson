@@ -1319,6 +1319,11 @@ Projectiles: {
 	DarkwennanBlood.DisplayName: Darkwennan Blood
 	FlarionProj.DisplayName: Flarion Proj
 	FlarionProj2.DisplayName: Flarion Proj2
+	EldestSnowmanCloud.DisplayName: Eldest Snowman Cloud
+	GreenPresentProj.DisplayName: Green Present Proj
+	WhitePresentProj.DisplayName: White Present Proj
+	YellowBuffer.DisplayName: Yellow Buffer
+	YellowPresentProj.DisplayName: Yellow Present Proj
 }
 
 Buffs: {
