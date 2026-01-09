@@ -12,7 +12,7 @@ namespace Synergia.Common.ModSystems.ModSupports {
                 AddNatureBeast();
             });
             void AddNatureBeast() {
-                object equip = EquipData(beginnings, head: ItemID.FlowerBoyHat, acc: [GetRoAItem("Herbarium")]);
+                object equip = EquipData(beginnings, head: ItemID.GarlandHat, acc: [GetRoAItem("Herbarium")]);
                 object misc = MiscData(beginnings, 60, 20);
                 object result = AddOrigin(beginnings, GetIcon("NatureBeast"), "SynergiaNatureBeast", "Mods.Synergia.Origins.NatureBeast", [(GetRoAItem("SapStream"), 1)], equip, misc);
             }
