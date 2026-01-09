@@ -44,6 +44,23 @@ namespace Synergia.Content.NPCs
             NPC.netAlways = true;
         }
 
+        public override void HitEffect(NPC.HitInfo hit) {
+            if (NPC.life > 0) {
+                for (int i = 0; (double)i < hit.Damage / (double)NPC.lifeMax * 100.0; i++) {
+                    int dust = Dust.NewDust(NPC.position, NPC.width, NPC.height, DustID.Snow, hit.HitDirection, -1f);
+                    Main.dust[dust].noGravity = true;
+                }
+            }
+            else {
+                for (int i = 0; i < 50; i++) {
+                    int dust = Dust.NewDust(NPC.position, NPC.width, NPC.height, DustID.Snow, hit.HitDirection, -1f);
+                    Main.dust[dust].noGravity = true;
+                    Dust dust2 = Main.dust[dust];
+                    dust2.scale *= 1.2f;
+                }
+            }
+        }
+
         public override void SendExtraAI(BinaryWriter writer)
         {
             writer.Write(isAttacking);
