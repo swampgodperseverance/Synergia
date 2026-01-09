@@ -118,7 +118,7 @@ public class FrostLegion : ModEvent {
             return;
         }
         List<int> projType = [ProjectileType<GreenPresentProj>(), ProjectileType<WhitePresentProj>(), ProjectileType<YellowPresentProj>()];
-        if (Main.rand.NextBool(120)) {
+        if (Main.rand.NextBool(180)) {
             for (int i = 0; i < Main.maxPlayers; i++) {
                 Player player = Main.player[i];
                 if (player.active) {

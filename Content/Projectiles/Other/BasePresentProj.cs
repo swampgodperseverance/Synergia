@@ -26,10 +26,10 @@ namespace Synergia.Content.Projectiles.Other {
             if (!initialized) {
                 initialized = true;
                 Projectile.Center = new Vector2(Projectile.Center.X, Main.screenPosition.Y - 120f);
-                Projectile.velocity.Y = 0.5f; // скорость падения
+                Projectile.velocity.Y = 0.4f; // скорость падения
             }
             if (!landed) {
-                Projectile.velocity.Y += 0.04f; // ускорение
+                Projectile.velocity.Y += 0.03f; // ускорение
                 Projectile.rotation = (float)System.Math.Sin(Main.GameUpdateCount * 0.06f) * 0.25f;
                 Projectile.frame = 0;
             }
