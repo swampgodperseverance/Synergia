@@ -1324,6 +1324,7 @@ Projectiles: {
 	WhitePresentProj.DisplayName: White Present Proj
 	YellowBuffer.DisplayName: Yellow Buffer
 	YellowPresentProj.DisplayName: Yellow Present Proj
+	SparkyTrail.DisplayName: Sparky Trail
 }
 
 Buffs: {
