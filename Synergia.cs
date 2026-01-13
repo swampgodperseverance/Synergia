@@ -1,5 +1,6 @@
 using Synergia.Content.Achievements;
 using Synergia.GraphicsSetting;
+using Synergia.UIs;
 using Terraria;
 using Terraria.UI;
 using static Synergia.Common.QuestSystem.SynergiaQuestRegistry;
@@ -12,10 +13,14 @@ namespace Synergia
     {
         public static Synergia Instance { get; private set; }
         public UserInterface DwarfUserInterface;
+        public UserInterface DwarfChatInterface;
+        public DwarfGUIChat DwarfChatUI;
         public const string ModName = nameof(Synergia);
 
         public override void Load() {
             #region UI
+            DwarfChatInterface = new UserInterface();
+            DwarfChatUI = new DwarfGUIChat();
             DwarfUserInterface = new UserInterface();
             #endregion
             Instance = this;

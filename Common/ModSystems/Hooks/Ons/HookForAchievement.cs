@@ -8,10 +8,11 @@ using System.Reflection;
 using Terraria.Achievements;
 using Terraria.GameContent.UI.Elements;
 using Terraria.Initializers;
+using Terraria.ModLoader;
 using Terraria.UI;
 
 namespace Synergia.Common.ModSystems.Hooks.Ons {
-    public class HookForAchievement : ModSystem {
+    internal class HookForAchievement : ModSystem {
         Hook completeAchieve;
         static FieldInfo ConditionsField;
 
@@ -89,6 +90,11 @@ namespace Synergia.Common.ModSystems.Hooks.Ons {
             completeAchieve?.Dispose();
             completeAchieve = null;
             ConditionsField = null;
+
+            On_AchievementInitializer.OnAchievementCompleted -= ChatMsgIfCompleted;
+            On_InGameNotificationsTracker.AddCompleted -= NotificationIfCompleted;
+            On_AchievementManager.ClearAll -= On_AchievementManager_ClearAll;
+            IL_UIAchievementListItem.DrawSelf -= IL_UIAchievementListItem_DrawSelf;
         }
     }
 }

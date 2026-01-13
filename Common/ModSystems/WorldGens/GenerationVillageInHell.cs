@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
+using Synergia.Content.NPCs;
 using Synergia.Helpers;
 using Synergia.UIs;
 using Terraria;
@@ -555,7 +556,7 @@ public class GenerationVillageInHell : BaseWorldGens {
         ushort Lamp = Ava.Find<ModTile>("ResistantWoodLantern").Type;
         ushort candle = Ava.Find<ModTile>("ResistantWoodCandelabra").Type;
 
-        NPC.NewNPC(new EntitySource_WorldGen(), (pos + 149) * 16, (HellVillageY - 72) * 16, ModContent.NPCType<Alchemist>(), 0, 0f, 0f, 0f, 0f, 255);
+        NPC.NewNPC(new EntitySource_WorldGen(), (pos + 149) * 16, (HellVillageY - 72) * 16, ModContent.NPCType<HellDwarf>(), 0, 0f, 0f, 0f, 0f, 255);
 
         WorldGen.PlaceObject(pos + 112, HellVillageY - 67, TileID.ClosedDoor,       false, 44);
         WorldGen.PlaceObject(pos + 139, HellVillageY - 71, TileID.ClosedDoor,       false, 48);

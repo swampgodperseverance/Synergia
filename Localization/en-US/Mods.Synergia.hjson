@@ -1475,3 +1475,4 @@ Biomes: {
 }
 
 Events.dsad: ""
+Emotes.DwarfEmote.Command: dwarfemote

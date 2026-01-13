@@ -37,5 +37,9 @@ namespace Synergia.Common.ModSystems.Hooks.Ons {
                 else { return index; }
             }
         }
+        public override void Unload() {
+            On_WorldGen.CheckOrb -= On_WorldGen_CheckOrb;
+            On_Item.NewItem_Inner -= On_Item_NewItem_Inner;
+        }
     }
 }

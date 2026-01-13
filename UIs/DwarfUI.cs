@@ -4,6 +4,7 @@ using ReLogic.Graphics;
 using Synergia.Common.GlobalPlayer;
 using Synergia.Content.Items.Tools;
 using Synergia.Content.Items.Weapons.Ranged;
+using Synergia.Content.NPCs;
 using Synergia.Dataset;
 using System.Collections.Generic;
 using Terraria;
@@ -84,7 +85,7 @@ public class DwarfUI : UIState {
     }
     public override void Update(GameTime gameTime) {
         base.Update(gameTime);
-        if (Main.LocalPlayer.talkNPC == -1 || Main.npc[Main.LocalPlayer.talkNPC].type != NPCType<Alchemist>()) {
+        if (Main.LocalPlayer.talkNPC == -1 || Main.npc[Main.LocalPlayer.talkNPC].type != NPCType<HellDwarf>()) {
             CloseUI_DropItems();
             GetInstance<Synergia>().DwarfUserInterface.SetState(null);
         }
@@ -198,16 +199,16 @@ public class DwarfUI : UIState {
 
                     ItemLoader.PreReforge(itemSlotPrace.Item);
                     bool valueFavorited = itemSlotPrace.Item.favorited;
-                    int valueStack, a = isStartForgoten ? 10 : 0;
+                    int valueStack, a = isStartForgoten ? 0 : 10;
                     valueStack = itemSlotPrace.Item.stack - a;
 
                     itemSlotPrace.Item.favorited = valueFavorited;
                     itemSlotPrace.Item.stack = valueStack;
                     SoundEngine.PlaySound(SoundID.Item37);
                 }
-                else { 
-                    tickPlayed = false; 
-                }
+            }
+            else {
+                tickPlayed = false;
             }
             if (hellsmithBarTextureAnim.StartAnimation) {
                 if (hellsmithBarTextureAnim.Frame.CurrentRow < 5) {

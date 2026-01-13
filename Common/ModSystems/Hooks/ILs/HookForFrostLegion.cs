@@ -22,5 +22,9 @@ namespace Synergia.Common.ModSystems.Hooks.ILs {
                 return 1000;
             });
         }
+        public override void Unload() {
+            On_Main.StartInvasion -= HokForNewInvasion.NewInvasion;
+            IL_NPC.checkDead -= NoPointForFrostLegion;
+        }
     }
 }
