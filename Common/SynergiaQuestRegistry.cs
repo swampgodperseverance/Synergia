@@ -12,6 +12,7 @@ public partial class QuestSystem {
             Register(new NinjaQuest());
             Register(new FarmerQuest());
             Register(new LibrarianQuest());
+            Register(new HellDwarfQuest());
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using Synergia.UIs;
+using System;
 using Terraria;
 using Terraria.GameContent.UI;
 using Terraria.ID;
@@ -8,6 +9,8 @@ namespace Synergia.Content.NPCs {
     [AutoloadHead]
     public class HellDwarf : ModNPC {
         static DwarfGUIChat dwarfChatUI;
+        static bool draw;
+        static bool uiOpened;
 
         public override void SetStaticDefaults() {
             Main.npcFrameCount[NPC.type] = 25;
@@ -50,32 +53,32 @@ namespace Synergia.Content.NPCs {
         public override string GetChat() {
             return Language.GetTextValue("tModLoader.DefaultTownNPCChat");
         }
-        public override void Load() {
-            On_Main.GUIChatDrawInner += On_Main_GUIChatDrawInner;
-        }
-        void On_Main_GUIChatDrawInner(On_Main.orig_GUIChatDrawInner orig, Main self) {
-            Player player = Main.LocalPlayer;
-
-            if (player.talkNPC < 0) {
-                orig(self);
-                return;
-            }
-
-            NPC npc = Main.npc[player.talkNPC];
-
-            if (npc.type == Type) {
-                GetInstance<Synergia>().DwarfChatInterface.SetState(new DwarfGUIChat());
-            }
-            else {
-                orig(self);
-            }
-        }
-
     }
     public class DwarfEmote : ModEmoteBubble {
         public override string Texture => (GetType().Namespace + "." + "Emote").Replace('.', '/');
         public override void SetStaticDefaults() {
             AddToCategory(EmoteID.Category.Town);
+        }
+    }
+    class D : ModSystem {
+        public override void Load() {
+            On_Main.GUIChatDrawInner += On_Main_GUIChatDraw;
+        }
+        void On_Main_GUIChatDraw(On_Main.orig_GUIChatDrawInner orig, Main self) {
+            Player player = Main.LocalPlayer;
+            if (player.talkNPC < 0 || player.talkNPC >= Main.npc.Length)
+                return;
+            NPC npc = Main.npc[player.talkNPC];
+            if (player.talkNPC < 0 && player.sign == -1) {
+                Main.npcChatText = "";
+                return;
+            }
+            if (npc.type == NPCType<HellDwarf>()) {
+                GetInstance<Synergia>().DwarfChatInterface.SetState(new DwarfGUIChat());
+            }
+            else {
+                orig(self);
+            }
         }
     }
 }

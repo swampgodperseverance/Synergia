@@ -1,6 +1,5 @@
 DwarfUI: {
-	IsGood: �����
-	IsNotGood: ������� ��������!
+	IsNotGood: 2!
 	Info:
 		'''
 		place weapons in 1 slot, 
@@ -8,7 +7,10 @@ DwarfUI: {
 		'''
 	WepponSlotInfo: "1"
 	PraceSlotInfo: "2"
+	IsGood: "2"
 }
+
+DwarfChat.NoQuest: I not quest for you
 
 BooK: {
 	Button: Nex Page

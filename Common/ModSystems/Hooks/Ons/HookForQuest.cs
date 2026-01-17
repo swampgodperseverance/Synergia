@@ -1,6 +1,4 @@
 ﻿using Bismuth.Utilities.ModSupport;
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
 using MonoMod.RuntimeDetour;
 using ReLogic.Graphics;
 using Synergia.Dataset;

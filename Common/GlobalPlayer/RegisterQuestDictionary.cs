@@ -2,6 +2,7 @@
 using NewHorizons.Content.NPCs.Town;
 using StramsSurvival.NPCs;
 using Synergia.Common.ModSystems.Hooks.Ons;
+using Synergia.Content.NPCs;
 using Synergia.Dataset;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -35,7 +36,9 @@ public partial class QuestSystem {
             if (!HookForQuest.NpcQuestKeys.ContainsKey(ModContent.NPCType<Librarian>())) {
                 HookForQuest.NpcQuestKeys[ModContent.NPCType<Librarian>()] = new QuestData(LIBRARIAN, 0, 1, true);
             }
-
+            if (!HookForQuest.NpcQuestKeys.ContainsKey(NPCType<HellDwarf>())) {
+                HookForQuest.NpcQuestKeys[ModContent.NPCType<HellDwarf>()] = new QuestData(HELLDWARF, 0, 1, true);
+            }
 
 
 

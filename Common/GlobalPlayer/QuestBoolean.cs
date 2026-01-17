@@ -7,7 +7,7 @@ namespace Synergia.Common
     {
         public class QuestBoolean : ModPlayer
         {
-            public bool DwarfQuest = false, HunterQuest = false, ArtistQuest = false, NinjaQuest = false, FarmerQuest = false, LibrarianQuest = false;
+            public bool DwarfQuest = false, HunterQuest = false, ArtistQuest = false, NinjaQuest = false, FarmerQuest = false, LibrarianQuest = false, HellDwarfQuest = false;
 
             public override void Initialize() {
                 DwarfQuest = false;
@@ -16,6 +16,7 @@ namespace Synergia.Common
                 NinjaQuest = false;
                 FarmerQuest = false;
                 LibrarianQuest = false;
+                HellDwarfQuest = false;
             }
             public override void SaveData(TagCompound tag) {
                 MySaveData(tag, nameof(DwarfQuest),     ref DwarfQuest);
@@ -24,6 +25,7 @@ namespace Synergia.Common
                 MySaveData(tag, nameof(NinjaQuest),     ref NinjaQuest);
                 MySaveData(tag, nameof(FarmerQuest),    ref FarmerQuest);
                 MySaveData(tag, nameof(LibrarianQuest), ref LibrarianQuest);
+                MySaveData(tag, nameof(HellDwarfQuest), ref HellDwarfQuest);
             }
             public override void LoadData(TagCompound tag) {
                 MyLoadData(tag, nameof(DwarfQuest),     ref DwarfQuest);
@@ -32,6 +34,7 @@ namespace Synergia.Common
                 MyLoadData(tag, nameof(NinjaQuest),     ref NinjaQuest);
                 MyLoadData(tag, nameof(FarmerQuest),    ref FarmerQuest);
                 MyLoadData(tag, nameof(LibrarianQuest), ref LibrarianQuest);
+                MyLoadData(tag, nameof(HellDwarfQuest), ref HellDwarfQuest);
             }
             void MySaveData(TagCompound tag, string saveName, ref bool save) => tag[saveName] = save;
             void MyLoadData(TagCompound tag, string saveName, ref bool save) => save = tag.GetBool(saveName);

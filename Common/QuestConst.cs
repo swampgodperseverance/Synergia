@@ -9,5 +9,6 @@ public partial class QuestSystem {
         public const string NINJA = "Ninja";
         public const string FARMER = "Farmer";
         public const string LIBRARIAN = "Librarian";
+        public const string HELLDWARF = "HellDwarf";
     }
 }

@@ -4,6 +4,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using NewHorizons.Content.NPCs.Town;
 using StramsSurvival.NPCs;
+using Synergia.Content.NPCs;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.ID;
@@ -44,6 +45,7 @@ namespace Synergia.Common
                 DrawQuestIcon(npc, spriteBatch, ModContent.NPCType<Ninja>(), NINJA);
                 DrawQuestIcon(npc, spriteBatch, ModContent.NPCType<Farmer>(), FARMER);
                 DrawQuestIcon(npc, spriteBatch, ModContent.NPCType<Librarian>(), LIBRARIAN);
+                DrawQuestIcon(npc, spriteBatch, ModContent.NPCType<HellDwarf>(), HELLDWARF);
             }
         }
     }
