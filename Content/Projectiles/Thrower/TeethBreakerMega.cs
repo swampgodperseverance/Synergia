@@ -71,7 +71,7 @@ namespace Synergia.Content.Projectiles.Thrower
 				}
 			}
 
-			return false; // чтобы глефа НЕ уничтожалась
+			return false;
 		}
 
 	}
