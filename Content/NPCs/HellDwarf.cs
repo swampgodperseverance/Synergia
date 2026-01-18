@@ -1,6 +1,4 @@
-﻿using Synergia.UIs;
-using System;
-using Terraria;
+﻿using Terraria;
 using Terraria.GameContent.UI;
 using Terraria.ID;
 using Terraria.Localization;
@@ -8,10 +6,6 @@ using Terraria.Localization;
 namespace Synergia.Content.NPCs {
     [AutoloadHead]
     public class HellDwarf : ModNPC {
-        static DwarfGUIChat dwarfChatUI;
-        static bool draw;
-        static bool uiOpened;
-
         public override void SetStaticDefaults() {
             Main.npcFrameCount[NPC.type] = 25;
             NPCID.Sets.ExtraFramesCount[NPC.type] = 5;
@@ -51,34 +45,13 @@ namespace Synergia.Content.NPCs {
             shop.Register();
         }
         public override string GetChat() {
-            return Language.GetTextValue("tModLoader.DefaultTownNPCChat");
+            return Language.GetTextValue("tModLoader.DefaultTownNPCChat") + "ddddddddddddddddddddddddddddddddddddd";
         }
     }
     public class DwarfEmote : ModEmoteBubble {
         public override string Texture => (GetType().Namespace + "." + "Emote").Replace('.', '/');
         public override void SetStaticDefaults() {
             AddToCategory(EmoteID.Category.Town);
-        }
-    }
-    class D : ModSystem {
-        public override void Load() {
-            On_Main.GUIChatDrawInner += On_Main_GUIChatDraw;
-        }
-        void On_Main_GUIChatDraw(On_Main.orig_GUIChatDrawInner orig, Main self) {
-            Player player = Main.LocalPlayer;
-            if (player.talkNPC < 0 || player.talkNPC >= Main.npc.Length)
-                return;
-            NPC npc = Main.npc[player.talkNPC];
-            if (player.talkNPC < 0 && player.sign == -1) {
-                Main.npcChatText = "";
-                return;
-            }
-            if (npc.type == NPCType<HellDwarf>()) {
-                GetInstance<Synergia>().DwarfChatInterface.SetState(new DwarfGUIChat());
-            }
-            else {
-                orig(self);
-            }
         }
     }
 }

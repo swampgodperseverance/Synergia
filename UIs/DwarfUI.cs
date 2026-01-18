@@ -87,7 +87,7 @@ public class DwarfUI : UIState {
         base.Update(gameTime);
         if (Main.LocalPlayer.talkNPC == -1 || Main.npc[Main.LocalPlayer.talkNPC].type != NPCType<HellDwarf>()) {
             CloseUI_DropItems();
-            GetInstance<Synergia>().DwarfUserInterface.SetState(null);
+            GetInstance<Synergia>().DwarfReforgeInterface.SetState(null);
         }
     }
     #region Util

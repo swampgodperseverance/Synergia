@@ -30,11 +30,6 @@ namespace Synergia.UIs {
                 _lastInputMode = PlayerInput.CurrentInputMode;
                 text = Lang.SupportGlyphs(text);
                 originalColor = baseColor;
-
-                /*
-                TextLines = Utils.WordwrapString(text, FontAssets.MouseText.Value, 460, 10, out var lineAmount);
-                AmountOfLines = lineAmount;
-                */
                 TextLines = Utils.WordwrapStringSmart(text, baseColor, FontAssets.MouseText.Value, 460, 10);
                 AmountOfLines = TextLines.Count;
             }
