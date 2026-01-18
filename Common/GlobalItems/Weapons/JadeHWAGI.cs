@@ -1,11 +1,8 @@
 ﻿using System;
-using Microsoft.Xna.Framework;
 using Terraria;
-using Terraria.ID;
-using ValhallaMod.Projectiles.Dart;
-using Terraria.ModLoader;
 using Terraria.DataStructures;
 using Synergia.Content.Projectiles.Reworks.Reworks2;
+
 namespace Synergia.Content.Global
 {
     public class HwachaGlobal : GlobalItem

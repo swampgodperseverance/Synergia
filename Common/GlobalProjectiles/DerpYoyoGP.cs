@@ -1,7 +1,4 @@
 ﻿using Terraria;
-using Terraria.ModLoader;
-using Terraria.ID;
-using Microsoft.Xna.Framework;
 using Synergia.Content.Projectiles.Reworks.Reworks2;
 
 namespace Synergia.Common.GlobalProjectiles

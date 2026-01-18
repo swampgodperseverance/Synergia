@@ -1,10 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using Microsoft.Xna.Framework;
 using Terraria;
-using Terraria.ID;
-using Terraria.ModLoader;
 using Terraria.DataStructures;
+using Synergia.Content.Projectiles.Reworks.AltUse;
 using Synergia.Content.Projectiles.Reworks.Reworks2;
 
 namespace Synergia.Content.Global

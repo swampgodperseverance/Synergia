@@ -1,11 +1,8 @@
-﻿using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
+﻿using Synergia.Common.Players;
 using Terraria;
 using Terraria.GameContent;
 using Terraria.ID;
-using Terraria.ModLoader;
 using Synergia.Content.Projectiles.Reworks.Reworks2;
-using Synergia.Common.Players;
 
 namespace Synergia.Content.GlobalItems.Weapons
 {

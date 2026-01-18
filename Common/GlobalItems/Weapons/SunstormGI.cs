@@ -1,11 +1,7 @@
-﻿using System;
-using Microsoft.Xna.Framework;
+﻿using Synergia.Content.Projectiles.Reworks.Reworks2;
+using System;
 using Terraria;
-using Terraria.ID;
-using Synergia.Content.Projectiles.Reworks.Reworks2;
-using Terraria.ModLoader;
 using Terraria.DataStructures;
-using Synergia.Content.Projectiles.Reworks;
 
 namespace Synergia.Content.Global
 {

@@ -6,6 +6,8 @@ using Terraria.DataStructures;
 using Terraria.GameContent;
 using Terraria.ID;
 using static Synergia.Common.SUtils.LocUtil;
+using Synergia.Content.Projectiles.Reworks.Reworks2;
+using Synergia.Content.Projectiles.Hostile;
 
 namespace Synergia.Content.NPCs
 {

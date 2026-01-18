@@ -1325,6 +1325,23 @@ Projectiles: {
 	YellowBuffer.DisplayName: Yellow Buffer
 	YellowPresentProj.DisplayName: Yellow Present Proj
 	SparkyTrail.DisplayName: Sparky Trail
+	Shockwave.DisplayName: Shockwave
+	AdamantiteDagger2.DisplayName: Adamantite Dagger2
+	AdamantiteRocket.DisplayName: Adamantite Rocket
+	Aeglos2.DisplayName: Aeglos2
+	BlackScarletGungnir.DisplayName: Black Scarlet Gungnir
+	BlazingSaws2.DisplayName: Blazing Saws2
+	BloodySpike.DisplayName: Bloody Spike
+	CrystallGranade2.DisplayName: Crystall Granade2
+	Garlic2.DisplayName: Garlic2
+	MiniLancea.DisplayName: Mini Lancea
+	NanoStar1.DisplayName: Nano Star1
+	NanoStar2.DisplayName: Nano Star2
+	ScarletGungnir2.DisplayName: Scarlet Gungnir2
+	ThrowingAxe2.DisplayName: Throwing Axe2
+	TitaniumWarhammer2.DisplayName: Titanium Warhammer2
+	TitaniumWarhammerReturn.DisplayName: Titanium Warhammer Return
+	TMicroHammer.DisplayName: T Micro Hammer
 }
 
 Buffs: {
