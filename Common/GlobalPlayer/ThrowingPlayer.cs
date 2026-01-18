@@ -1,11 +1,17 @@
-﻿using NewHorizons.Content.Items.Weapons.Throwing;
+﻿using Bismuth.Content.Projectiles;
+using NewHorizons.Content.Items.Weapons.Throwing;
+using NewHorizons.Content.Items.Weapons.Ranged;
+using Bismuth.Content.Items.Weapons.Throwing;
 using NewHorizons.Content.Projectiles.Throwing;
+using NewHorizons.Content.Projectiles.Ranged;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.Audio;
 using Terraria.ID;
 using ValhallaMod.Items.Weapons.Boomerang;
+using ValhallaMod.Items.Garden;
 using ValhallaMod.Items.Weapons.Thrown;
+using static Synergia.ModList;
 
 namespace Synergia.Common.GlobalPlayer {
     public class ThrowingPlayer : ModPlayer {
@@ -16,8 +22,20 @@ namespace Synergia.Common.GlobalPlayer {
         public bool doubleMode;
         bool wasHoldingScrew;
 
-        public List<int> IsComboWeapons = [ItemID.Trimarang,ItemID.WoodenBoomerang, ItemID.Snowball, ItemType<StalloyScrew>(), ItemType<Rock>(), ItemType<TeethBreaker>(), ItemType<Carnwennan>()];
-        List<int> ProjType = [ProjectileType<RockProj>(), ProjectileType<ValhallaMod.Projectiles.Boomerang.TeethBreaker>(), ProjectileType<CarnwennanProj>()];
+        public List<int> IsComboWeapons = [ItemID.Trimarang,ItemID.WoodenBoomerang, ItemID.Snowball, ItemType<StalloyScrew>(), ItemType<TitaniumWarhammer>(), ItemType<AdamantiteDagger>(), ItemType<TeethBreaker>(), ItemType<Carnwennan>(), ItemType<Aeglos>(), ItemType<Lancea>(), ItemType<Garlic>(), ItemType<ScarletGungnir>(), ItemType<BlazingSaws>(), ItemType<NanoStar>(), ItemType<CrystalGrenade>()];
+        static List<int> ProjType = [            
+            ProjectileType<ValhallaMod.Projectiles.Boomerang.TeethBreaker>(),
+            ProjectileType<CarnwennanProj>(),
+            ProjectileType<AdamantiteDaggerProj>(),
+            ProjectileType<TitaniumWarhammerProj>(),
+            ProjectileType<NanoStarProj>(),
+            ProjectileType<BlazingSawsProj>(),
+            ProjectileType<CrystalGrenadeProj>(),
+            ProjectileType<AeglosP>(),
+            ProjectileType<ScarletGungnirProj>(),
+            ProjectileType<LanceaP>(),
+            Valhalla.Find<ModProjectile>("Garlic").Type    
+        ];
 
         public override void Initialize() {
             comboCount = 0;
