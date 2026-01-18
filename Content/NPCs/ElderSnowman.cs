@@ -333,15 +333,15 @@ namespace Synergia.Content.NPCs
             if (direction == Vector2.Zero) direction = Vector2.UnitY;
             direction.Normalize();
 
-            //Projectile.NewProjectile(
-            //    NPC.GetSource_FromAI(),
-            //    NPC.Center,
-            //    direction * 8f,
-            //    ModContent.ProjectileType<Shockwave>(),
-            //    NPC.damage / 2,
-            //    2f,
-            //    Main.myPlayer
-            //);
+            Projectile.NewProjectile(
+                NPC.GetSource_FromAI(),
+                NPC.Center,
+                direction * 8f,
+                ModContent.ProjectileType<Shockwave>(),
+                NPC.damage / 2,
+                2f,
+                Main.myPlayer
+            );
 
             SoundEngine.PlaySound(SoundID.Item67 with { Volume = 0.8f }, NPC.Center);
         }
@@ -494,4 +494,5 @@ namespace Synergia.Content.NPCs
             return false;
         }
     }
+
 }

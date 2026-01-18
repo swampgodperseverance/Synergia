@@ -27,8 +27,9 @@ namespace Synergia.Common.GlobalItems.Weapons
 
             item.DamageType = DamageClass.Melee;
             item.knockBack = 5f;
-            item.useTime = 26;
-            item.useAnimation = 26;
+            item.useTime = 35;
+            item.useAnimation = 35;
+            item.damage = 55;
             item.useStyle = ItemUseStyleID.Shoot;
             item.useTurn = false;
             item.autoReuse = true;
@@ -38,6 +39,7 @@ namespace Synergia.Common.GlobalItems.Weapons
             item.noUseGraphic = true;
             item.shoot = ModContent.ProjectileType<SolarWindRework>();
             item.shootSpeed = 0f; 
+            item.reuseDelay = 5;
         }
 
 
