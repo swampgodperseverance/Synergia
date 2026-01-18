@@ -8,11 +8,10 @@ using System.Reflection;
 using Terraria.Achievements;
 using Terraria.GameContent.UI.Elements;
 using Terraria.Initializers;
-using Terraria.ModLoader;
 using Terraria.UI;
 
 namespace Synergia.Common.ModSystems.Hooks.Ons {
-    internal class HookForAchievement : ModSystem {
+    public class HookForAchievement : ModSystem {
         Hook completeAchieve;
         static FieldInfo ConditionsField;
 

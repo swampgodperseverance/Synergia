@@ -1,8 +1,11 @@
-﻿using Microsoft.Xna.Framework;
+﻿using Avalon.ModSupport.MLL.Items;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using NewHorizons.Content.Items.Weapons.Magic;
 using ReLogic.Graphics;
 using Synergia.Common.GlobalPlayer;
 using Synergia.Content.Items.Tools;
+using Synergia.Content.Items.Weapons.Mage;
 using Synergia.Content.Items.Weapons.Ranged;
 using Synergia.Content.NPCs;
 using Synergia.Dataset;
@@ -21,14 +24,13 @@ using static Synergia.Helpers.UIHelper;
 namespace Synergia.UIs;
 // Some of the code is taken from EAMod
 public class DwarfUI : UIState {
-
     VanillaItemSlotWrapper itemSlotWeppon;
     VanillaItemSlotWrapper itemSlotPrace;
     Dictionary<int, int> Items = new(){
         {ItemID.MoltenPickaxe, ItemType<CoreburnedPickaxe>()},
         {ItemID.PhoenixBlaster, ItemType<PhoenixDownfall>() },
-        //{ItemID.Scorcher, ItemType<ScorcherRequiem>() },
-        {120, ItemType<Enfer>() },
+        {ItemType<Scorcher>(), ItemType<ScorcherRequiem>() },
+        {ItemID.MoltenFury, ItemType<Enfer>() },
     };
     readonly SaveItemPlayer saveItem = Main.LocalPlayer.GetModPlayer<SaveItemPlayer>();
     Texture2D anvil;
@@ -69,14 +71,14 @@ public class DwarfUI : UIState {
         }
         itemSlotWeppon = new VanillaItemSlotWrapper(ItemSlot.Context.BankItem, 0.85f) {
             Item = saveItem.weaponSlotItem,
-            Left = { Pixels = 50 },
-            Top = { Pixels = 335 },
+            Left = { Pixels = 150 },
+            Top = { Pixels = 385 },
             ValidItemFunc = item => item.IsAir || !item.IsAir && Items.ContainsKey(item.type),
         };
         itemSlotPrace = new VanillaItemSlotWrapper(ItemSlot.Context.BankItem, 0.85f) {
             Item = saveItem.praceSlotItem,
-            Left = { Pixels = 100 },
-            Top = { Pixels = 335 },
+            Left = { Pixels = 200 },
+            Top = { Pixels = 385 },
             ValidItemFunc = item => item.IsAir || !item.IsAir && item.type == ItemType<SinstoneMagma>()
         };
 
@@ -108,7 +110,7 @@ public class DwarfUI : UIState {
         reforgeButtonTexture_glow = Request<Texture2D>(Reassures.Reassures.GetUIElementName("NakovalnyaBoga_glow")).Value;
         hellsmithBgTexture = Request<Texture2D>(Reassures.Reassures.GetUIElementName("HellsmithBg")).Value;
         hellsmithBarTexture = Request<Texture2D>(Reassures.Reassures.GetUIElementName("HellsmithBar")).Value;
-        VanillaItemTexture = Request<Texture2D>($"Terraria/Images/Item_{GetNextItemType(GetItem())}").Value;
+        VanillaItemTexture = GetTexture(GetNextItemType(Items.Keys));
         magmaSinstoneTexture = Request<Texture2D>("ValhallaMod/Items/Placeable/Blocks/SinstoneMagma").Value;
 
         itemSlotWeppon.ItemTypeTextyre = VanillaItemTexture;
@@ -133,20 +135,7 @@ public class DwarfUI : UIState {
         }
     }
     #endregion
-    #region ItemType
-    static List<int> GetItem() {
-        List<int> idList = [
-            ItemID.CopperOre,
-            ItemID.TinOre,
-            2,
-            11,
-            3507,
-            4956,
-            3509,
-        ];
-        return idList;
-    }
-    #endregion
+    static Texture2D GetTexture(int id) => TextureAssets.Item[id].Value;
     protected override void DrawSelf(SpriteBatch spriteBatch) {
         base.DrawSelf(spriteBatch);
         Textures();
@@ -164,22 +153,22 @@ public class DwarfUI : UIState {
         if (needResetForging) { ResetForgingState(); }
         DynamicSpriteFont curfont = FontAssets.ItemStack.Value;
         Main.hidePlayerCraftingMenu = true;
-        mouseInWepponSlot = MousePositionInUI(slotX, slotX + 40, slotY + 60, slotY + 110);
-        mouseInPraceSlot = MousePositionInUI(slotX + 50, slotX + 90, slotY + 60, slotY + 110);
+        mouseInWepponSlot = MousePositionInUI(slotX + 90, slotX + 140, slotY + 110, slotY + 160);
+        mouseInPraceSlot = MousePositionInUI(slotX + 150, slotX + 190, slotY + 110, slotY + 160);
         reforgeButtonAnim.Init(1, 4);
         reforgeButtonAnim.RowCount = 1;
         hellsmithBarTextureAnim.RowCount = 1;
         reforgeButtonAnim.Update();
         hellsmithBarTextureAnim.Init(1, 25);
-        spriteBatch.Draw(hellsmithBgTexture, new Vector2(slotX - 28, slotY - 17), Color.White);
-        spriteBatch.Draw(anvil, new Vector2(reforgeX - 50, reforgeY + 70), Color.White);
+        spriteBatch.Draw(hellsmithBgTexture, new Vector2(slotX + 79, slotY + 33), Color.White);
+        spriteBatch.Draw(anvil, new Vector2(reforgeX + 50, reforgeY + 120), Color.White);
         bool canReforge = Items.ContainsKey(itemSlotWeppon.Item.type) && !itemSlotPrace.Item.IsAir && itemSlotPrace.Item.stack >= 10;
         if (!itemSlotWeppon.Item.IsAir && canReforge) {
             Vector2 reforgeButtonOrigin = reforgeButtonAnim.GetSource(reforgeButtonTexture).Size() / 2f;
-            spriteBatch.Draw(reforgeButtonTexture, new Vector2(reforgeX + 75, reforgeY + 85), reforgeButtonAnim.GetSource(reforgeButtonTexture), Color.White, 0f, reforgeButtonOrigin, 1f, reforgeButtonAnim.Effects, 0f); // layer: 0 -> 1;
+            spriteBatch.Draw(reforgeButtonTexture, new Vector2(reforgeX + 180, reforgeY + 132), reforgeButtonAnim.GetSource(reforgeButtonTexture), Color.White, 0f, reforgeButtonOrigin, 1f, reforgeButtonAnim.Effects, 0f); // layer: 0 -> 1;
             Vector2 barOrigin = hellsmithBarTextureAnim.GetSource(hellsmithBarTexture).Size() / 2f;
-            spriteBatch.Draw(hellsmithBarTexture, new Vector2(reforgeX + 85, reforgeY + 45), hellsmithBarTextureAnim.GetSource(hellsmithBarTexture), Color.White, 0f, barOrigin, 1f, hellsmithBarTextureAnim.Effects, 0f);
-            hoveringOverReforgeButton = MousePositionInUI(reforgeX + 55, reforgeX + 90, reforgeY + 75, reforgeY + 105);
+            spriteBatch.Draw(hellsmithBarTexture, new Vector2(reforgeX + 190, reforgeY + 90), hellsmithBarTextureAnim.GetSource(hellsmithBarTexture), Color.White, 0f, barOrigin, 1f, hellsmithBarTextureAnim.Effects, 0f);
+            hoveringOverReforgeButton = MousePositionInUI(reforgeX + 160, reforgeX + 190, reforgeY + 118, reforgeY + 152);
             if (hoveringOverReforgeButton) {
                 if (needResetForging) {
                     ResetForgingState();
@@ -187,7 +176,7 @@ public class DwarfUI : UIState {
                     SoundEngine.PlaySound(SoundID.MenuTick);
                 }
                 Vector2 reforgeButtonTexture_glowOrigin = reforgeButtonAnim.GetSource(reforgeButtonTexture_glow).Size() / 2f;
-                spriteBatch.Draw(reforgeButtonTexture_glow, new Vector2(reforgeX + 75, reforgeY + 85), reforgeButtonAnim.GetSource(reforgeButtonTexture_glow), Color.Gold, 0f, reforgeButtonTexture_glowOrigin, 1f, reforgeButtonAnim.Effects, 1f);
+                spriteBatch.Draw(reforgeButtonTexture_glow, new Vector2(reforgeX + 180, reforgeY + 132), reforgeButtonAnim.GetSource(reforgeButtonTexture_glow), Color.Gold, 0f, reforgeButtonTexture_glowOrigin, 1f, reforgeButtonAnim.Effects, 1f);
                 Main.hoverItemName = Language.GetTextValue("LegacyInterface.19");
                 if (!tickPlayed) { SoundEngine.PlaySound(SoundID.MenuTick); }
                 tickPlayed = true;
@@ -285,7 +274,7 @@ public class DwarfUI : UIState {
             }
         }
         string message = LocUIKey("DwarfUI", "Info");
-        ChatManager.DrawColorCodedStringWithShadow(Main.spriteBatch, curfont, message, new Vector2(slotX, slotY), new Color(Main.mouseTextColor, Main.mouseTextColor, Main.mouseTextColor, Main.mouseTextColor), 0f, Vector2.Zero, Vector2.One, -1f, 2f);
+        ChatManager.DrawColorCodedStringWithShadow(Main.spriteBatch, curfont, message, new Vector2(slotX + 100, slotY + 50), new Color(Main.mouseTextColor, Main.mouseTextColor, Main.mouseTextColor, Main.mouseTextColor), 0f, Vector2.Zero, new Vector2(0.95f), -1f, 2f);
         if (mouseInWepponSlot) {
             Main.hoverItemName = LocUIKey("DwarfUI", "WepponSlotInfo");
         }

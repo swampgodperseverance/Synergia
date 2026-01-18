@@ -2,7 +2,6 @@
 using Synergia.Helpers;
 using Synergia.UIs;
 using Terraria;
-using Terraria.ID;
 
 namespace Synergia.Common.ModSystems.Hooks.Ons {
     public class HookForDwarfChat : ModSystem {
@@ -32,6 +31,9 @@ namespace Synergia.Common.ModSystems.Hooks.Ons {
             if (player.talkNPC == -1 || Main.npc[player.talkNPC].type != NPCType<HellDwarf>()) {
                 chat = null;
             }
+        }
+        public override void Unload() {
+            On_Main.GUIChatDrawInner -= NewDwarfChat;
         }
     }
 }

@@ -2,8 +2,8 @@ DwarfUI: {
 	IsNotGood: 2!
 	Info:
 		'''
-		place weapons in 1 slot, 
-		put Magma Sinstone in slot 2
+		Upgrade Hellstone items on this 
+		anvil with Magma Sinstone
 		'''
 	WepponSlotInfo: "1"
 	PraceSlotInfo: "2"

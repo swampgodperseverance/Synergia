@@ -1,5 +1,4 @@
-﻿using Microsoft.Xna.Framework;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Terraria;
 using Terraria.GameInput;
 using Terraria.ID;
@@ -25,6 +24,25 @@ namespace Synergia.Helpers {
                 currentItemIndex = (currentItemIndex + 1) % itemList.Count;
             }
             return itemList[currentItemIndex];
+        }
+        public static int GetNextItemType(IEnumerable<int> itemList) {
+            if (itemList == null) {
+                return ItemID.None;
+            }
+
+            IList<int> list = itemList as IList<int> ?? [.. itemList];
+
+            if (list.Count == 0) {
+                return ItemID.None;
+            }
+
+            nexItemTime++;
+            if (nexItemTime >= nexItemDelay) {
+                nexItemTime = 0;
+                currentItemIndex = (currentItemIndex + 1) % list.Count;
+            }
+
+            return list[currentItemIndex];
         }
         public int NoStaticGetNextItemType(List<int> itemList, int nexItemDelay2 = 60) {
             if (itemList == null || itemList.Count == 0) {
