@@ -9,8 +9,10 @@ using Terraria;
 using Terraria.Audio;
 using Terraria.ID;
 using ValhallaMod.Items.Weapons.Boomerang;
+using ValhallaMod.Items.Weapons.Glaive;
 using ValhallaMod.Items.Garden;
 using ValhallaMod.Items.Weapons.Thrown;
+using Consolaria.Content.Items.Weapons.Melee;
 using static Synergia.ModList;
 
 namespace Synergia.Common.GlobalPlayer {
@@ -22,10 +24,13 @@ namespace Synergia.Common.GlobalPlayer {
         public bool doubleMode;
         bool wasHoldingScrew;
 
-        public List<int> IsComboWeapons = [ItemID.Trimarang,ItemID.WoodenBoomerang, ItemID.Snowball, ItemType<StalloyScrew>(), ItemType<TitaniumWarhammer>(), ItemType<AdamantiteDagger>(), ItemType<TeethBreaker>(), ItemType<Carnwennan>(), ItemType<Aeglos>(), ItemType<Lancea>(), ItemType<Garlic>(), ItemType<ScarletGungnir>(), ItemType<BlazingSaws>(), ItemType<NanoStar>(), ItemType<CrystalGrenade>()];
+        public List<int> IsComboWeapons = [ItemID.Trimarang,ItemID.WoodenBoomerang, ItemID.Flamarang, ItemID.Snowball, ItemType<AlbinoMandible>(), ItemType<NewHorizons.Content.Items.Weapons.Throwing.NightGlaive>(), ItemType<SnowGlaive>(), ItemType<StalloyScrew>(), ItemType<TitaniumWarhammer>(), ItemType<AdamantiteDagger>(), ItemType<TeethBreaker>(), ItemType<Carnwennan>(), ItemType<Aeglos>(), ItemType<Lancea>(), ItemType<Garlic>(), ItemType<ScarletGungnir>(), ItemType<BlazingSaws>(), ItemType<NanoStar>(), ItemType<CrystalGrenade>()];
         static List<int> ProjType = [            
             ProjectileType<ValhallaMod.Projectiles.Boomerang.TeethBreaker>(),
+            ProjectileType<ValhallaMod.Projectiles.Glaive.SnowGlaive>(),
+            ProjectileType<Consolaria.Content.Projectiles.Friendly.AlbinoMandible>(),
             ProjectileType<CarnwennanProj>(),
+            ProjectileType<NightGlaiveProj>(),
             ProjectileType<AdamantiteDaggerProj>(),
             ProjectileType<TitaniumWarhammerProj>(),
             ProjectileType<NanoStarProj>(),
@@ -34,6 +39,7 @@ namespace Synergia.Common.GlobalPlayer {
             ProjectileType<AeglosP>(),
             ProjectileType<ScarletGungnirProj>(),
             ProjectileType<LanceaP>(),
+            ProjectileID.Flamarang,
             Valhalla.Find<ModProjectile>("Garlic").Type    
         ];
 
