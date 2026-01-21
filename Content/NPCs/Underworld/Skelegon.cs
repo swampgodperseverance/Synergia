@@ -5,7 +5,7 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using static Synergia.Common.SUtils.LocUtil;
 
-namespace Synergia.Content.NPCs
+namespace Synergia.Content.NPCs.Underworld
 {
     public class Skelegon : ModNPC
     {
@@ -99,3 +99,4 @@ namespace Synergia.Content.NPCs
         }
     }
 }
+
