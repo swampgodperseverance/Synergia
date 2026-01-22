@@ -24,10 +24,11 @@ namespace Synergia.Common.GlobalPlayer {
         public bool doubleMode;
         bool wasHoldingScrew;
 
-        public List<int> IsComboWeapons = [ItemID.Trimarang,ItemID.WoodenBoomerang, ItemID.Flamarang, ItemID.Snowball, ItemType<AlbinoMandible>(), ItemType<NewHorizons.Content.Items.Weapons.Throwing.NightGlaive>(), ItemType<SnowGlaive>(), ItemType<StalloyScrew>(), ItemType<TitaniumWarhammer>(), ItemType<AdamantiteDagger>(), ItemType<TeethBreaker>(), ItemType<Carnwennan>(), ItemType<Aeglos>(), ItemType<Lancea>(), ItemType<Garlic>(), ItemType<ScarletGungnir>(), ItemType<BlazingSaws>(), ItemType<NanoStar>(), ItemType<CrystalGrenade>()];
+        public List<int> IsComboWeapons = [ItemID.Trimarang,ItemID.WoodenBoomerang, ItemID.Anchor, ItemID.Flamarang, ItemID.Snowball, ItemType<AlbinoMandible>(), ItemType<OrichalcumKama>(), ItemType<CrimiteGlaive>(), ItemType<NewHorizons.Content.Items.Weapons.Throwing.NightGlaive>(), ItemType<SnowGlaive>(), ItemType<StalloyScrew>(), ItemType<TitaniumWarhammer>(), ItemType<AdamantiteDagger>(), ItemType<TeethBreaker>(), ItemType<Carnwennan>(), ItemType<Aeglos>(), ItemType<Lancea>(), ItemType<Garlic>(), ItemType<ScarletGungnir>(), ItemType<BlazingSaws>(), ItemType<NanoStar>(), ItemType<CrystalGrenade>()];
         static List<int> ProjType = [            
             ProjectileType<ValhallaMod.Projectiles.Boomerang.TeethBreaker>(),
             ProjectileType<ValhallaMod.Projectiles.Glaive.SnowGlaive>(),
+            ProjectileType<ValhallaMod.Projectiles.Glaive.CrimiteGlaive>(),
             ProjectileType<Consolaria.Content.Projectiles.Friendly.AlbinoMandible>(),
             ProjectileType<CarnwennanProj>(),
             ProjectileType<NightGlaiveProj>(),
@@ -39,6 +40,8 @@ namespace Synergia.Common.GlobalPlayer {
             ProjectileType<AeglosP>(),
             ProjectileType<ScarletGungnirProj>(),
             ProjectileType<LanceaP>(),
+            ProjectileType<OrichalcumKamaProj>(),
+            ProjectileID.Anchor,
             ProjectileID.Flamarang,
             Valhalla.Find<ModProjectile>("Garlic").Type    
         ];
