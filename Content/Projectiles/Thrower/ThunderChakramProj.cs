@@ -34,7 +34,7 @@ namespace Synergia.Content.Projectiles.Thrower
             Projectile.extraUpdates = 1;
             Projectile.aiStyle = -1;
 
-            bounces = 4;
+            bounces = 1;
             timeFlying = 20;
             speedHoming = 17f;
             speedFlying = 17f;
