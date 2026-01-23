@@ -17,11 +17,12 @@ namespace Synergia.Common.GlobalItems
             velocity *= 1.5f;
             damage = (int)(damage * 0.7f);
 
-            Projectile.NewProjectile(source, position, velocity.RotatedBy(MathHelper.ToRadians(5f)),  miniType, damage, knockback, player.whoAmI);
+            Projectile.NewProjectile(source, position, velocity.RotatedBy(MathHelper.ToRadians(12f)),  miniType, damage, knockback, player.whoAmI);
             Projectile.NewProjectile(source, position, velocity,                           miniType, damage, knockback, player.whoAmI);
-            Projectile.NewProjectile(source, position, velocity.RotatedBy(MathHelper.ToRadians(-5f)), miniType, damage, knockback, player.whoAmI);
+            Projectile.NewProjectile(source, position, velocity.RotatedBy(MathHelper.ToRadians(-12f)), miniType, damage, knockback, player.whoAmI);
 
             return false;
         }
     }
+
 }
