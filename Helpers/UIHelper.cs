@@ -13,6 +13,10 @@ namespace Synergia.Helpers {
         static int nexItemTime2 = 0;
         static int currentItemIndex2 = 0;
 
+        // Calamity
+        public const float DefaultPosX = 50.104603f;
+        public const float DefaultPosY = 58.05169f;
+
         public static bool MousePositionInUI(float startX, float endX, float statrtY, float endY) => Main.mouseX > startX && Main.mouseX < endX && Main.mouseY > statrtY && Main.mouseY < endY && !PlayerInput.IgnoreMouseInterface;
         public static int GetNextItemType(List<int> itemList) {
             if (itemList == null || itemList.Count == 0) {
@@ -70,10 +74,25 @@ namespace Synergia.Helpers {
                 layers.Insert(layerIndex, new LegacyGameInterfaceLayer(name, drawMethod, scaleType));
             }
         }
+        // Calamity
         public static Vector2 PlayerPos(float x = 0, float y = 0) {
-            Vector2 screenCenter = new(Main.screenWidth / 2f, Main.screenHeight / 2f);
-            Vector2 drawPos = screenCenter + new Vector2(x, y);
-            return drawPos;
+            Vector2 screenRatioPosition = new(DefaultPosX, DefaultPosY);
+            if (screenRatioPosition.X < 0f || screenRatioPosition.X > 100f) {
+                screenRatioPosition.X = DefaultPosX;
+            }
+            if (screenRatioPosition.Y < 0f || screenRatioPosition.Y > 100f) {
+                screenRatioPosition.Y = DefaultPosY;
+            }
+
+            Vector2 screenPos = screenRatioPosition;
+            screenPos.X = (int)(screenPos.X * 0.01f * Main.screenWidth);
+            screenPos.Y = (int)(screenPos.Y * 0.01f * Main.screenHeight);
+
+            return new Vector2(screenPos.X + x, screenPos.Y + y);
         }
+        //public static Vector2 Size(Texture2D texture, out float offset) {
+        //    offset = (texture.Width - texture.Width) * 0.5f;
+        //    return texture.Size() * 0.5f;
+        //}
     }
 }

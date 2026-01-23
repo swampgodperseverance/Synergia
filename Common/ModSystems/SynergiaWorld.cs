@@ -2,12 +2,15 @@
 using Synergia.Content.Items.Weapons.Summon;
 using Synergia.Content.NPCs;
 using Synergia.Helpers;
+using System.Collections.Generic;
 using static Synergia.Common.ModSystems.WorldGens.BaseWorldGens;
 using static Synergia.Helpers.SynegiaHelper;
 using static Synergia.Lists.Items;
 
 namespace Synergia.Common.ModSystems {
     public class SynergiaWorld : ModSystem {
+        public static Dictionary<int, (int, int)> BannerType { get; private set; } = [];
+
         public override void PostWorldGen() {
             WorldHelper.AddContainersLoot(13, 3, SkyChest, ItemType<Starcaller>());
             WorldHelper.DestroyerContainersLoot(13, ItemType<JungleSeedPacket>());

@@ -1,46 +1,33 @@
-﻿using Bismuth.Content.Projectiles;
-using NewHorizons.Content.Items.Weapons.Throwing;
-using NewHorizons.Content.Items.Weapons.Ranged;
-using Bismuth.Content.Items.Weapons.Throwing;
-using NewHorizons.Content.Projectiles.Throwing;
-using NewHorizons.Content.Projectiles.Ranged;
-using System.Collections.Generic;
+﻿using Synergia.Lists;
 using Terraria;
 using Terraria.Audio;
 using Terraria.ID;
-using ValhallaMod.Items.Weapons.Boomerang;
-using ValhallaMod.Items.Garden;
-using ValhallaMod.Items.Weapons.Thrown;
-using static Synergia.ModList;
 
 namespace Synergia.Common.GlobalPlayer {
     public class ThrowingPlayer : ModPlayer {
         public byte comboCount;
         public byte comboTimer;
+        public byte ModifyMaxComboTime;
+        public byte resetTime;
+        public byte ModifyMaxTimeForReset;
 
-        public bool ActiveUI;
-        public bool doubleMode;
+        const byte baseTimeForReset = 120;
+        byte maxTimeForReset;
+
+        const byte baseMaxComboTime = 60;
+        byte maxComboTime;
+
+        public bool ActiveUI { get; private set; }
+        public bool DoubleMode { get; private set; }
         bool wasHoldingScrew;
-
-        public List<int> IsComboWeapons = [ItemID.Trimarang,ItemID.WoodenBoomerang, ItemID.Snowball, ItemType<StalloyScrew>(), ItemType<TitaniumWarhammer>(), ItemType<AdamantiteDagger>(), ItemType<TeethBreaker>(), ItemType<Carnwennan>(), ItemType<Aeglos>(), ItemType<Lancea>(), ItemType<Garlic>(), ItemType<ScarletGungnir>(), ItemType<BlazingSaws>(), ItemType<NanoStar>(), ItemType<CrystalGrenade>()];
-        static List<int> ProjType = [            
-            ProjectileType<ValhallaMod.Projectiles.Boomerang.TeethBreaker>(),
-            ProjectileType<CarnwennanProj>(),
-            ProjectileType<AdamantiteDaggerProj>(),
-            ProjectileType<TitaniumWarhammerProj>(),
-            ProjectileType<NanoStarProj>(),
-            ProjectileType<BlazingSawsProj>(),
-            ProjectileType<CrystalGrenadeProj>(),
-            ProjectileType<AeglosP>(),
-            ProjectileType<ScarletGungnirProj>(),
-            ProjectileType<LanceaP>(),
-            Valhalla.Find<ModProjectile>("Garlic").Type    
-        ];
 
         public override void Initialize() {
             comboCount = 0;
             comboTimer = 0;
-            doubleMode = false;
+            resetTime = 0;
+            ModifyMaxComboTime = 0;
+            ModifyMaxTimeForReset = 0;
+            DoubleMode = false;
             wasHoldingScrew = false;
             ActiveUI = false;
         }
@@ -49,22 +36,34 @@ namespace Synergia.Common.GlobalPlayer {
                 ResetCombo();
             }
             wasHoldingScrew = ActiveUI;
+            ModifyMaxComboTime = 0;
+            ModifyMaxTimeForReset = 0;
         }
         public override void PostUpdate() {
-            if (doubleMode) {
+            if (DoubleMode) {
+                maxComboTime = (byte)(baseMaxComboTime + ModifyMaxComboTime);
                 comboTimer++;
-                if (comboTimer >= 120)
+                if (comboTimer >= maxComboTime) {
                     ResetCombo();
+                }
             }
-            if (IsComboWeapons.Contains(Player.HeldItem.type)) {
+            if (Items.IsComboWeapons.Contains(Player.HeldItem.type)) {
                 ActiveUI = true;
+                if (comboCount >= 1 && !DoubleMode) {
+                    resetTime++;
+                }
             }
             else {
                 ActiveUI = false;
+                resetTime = 0;
+            }
+            maxTimeForReset = (byte)(baseTimeForReset + ModifyMaxTimeForReset);
+            if (resetTime >= maxTimeForReset) {
+                ResetCombo();
             }
         }
         public override void OnHitNPCWithProj(Projectile proj, NPC target, NPC.HitInfo hit, int damageDone) {
-            if (ProjType.Contains(proj.type)) {
+            if (Projectiles.ThrowingProj.Contains(proj.type)) {
                 if (comboCount <= 5) {
                     AddCombo();
                 }
@@ -74,18 +73,18 @@ namespace Synergia.Common.GlobalPlayer {
             if (comboCount < 5) {
                 comboTimer = 0;
                 comboCount++;
-
+                resetTime = 0;
                 if (comboCount == 5) {
-                    doubleMode = true;
+                    DoubleMode = true;
                     SoundEngine.PlaySound(SoundID.MaxMana, Player.Center);
                 }
             }
         }
         public void ResetCombo() {
             comboCount = 0;
-            doubleMode = false;
             comboTimer = 0;
-
+            resetTime = 0;
+            DoubleMode = false;
             SoundEngine.PlaySound(new SoundStyle("Synergia/Assets/Sounds/ThrowingFail"), Player.Center);
         }
     }

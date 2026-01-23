@@ -1,10 +1,11 @@
-﻿using Terraria;
+﻿using Synergia.Content.Items.Placeable.Banners;
+using Synergia.Helpers;
+using Terraria;
 using Terraria.Audio;
 using Terraria.DataStructures;
 using Terraria.GameContent.Bestiary;
 using Terraria.GameContent.ItemDropRules;
 using Terraria.ID;
-using Terraria.ModLoader.Utilities;
 using static Synergia.Common.SUtils.LocUtil;
 
 namespace Synergia.Content.NPCs
@@ -38,7 +39,8 @@ namespace Synergia.Content.NPCs
 			NPC.DeathSound = SoundID.Item14;
 
 			NPC.velocity *= 1.6f;
-		}
+            this.AddBanner(ItemType<SnowykazeBannerItem>());
+        }
 
 		public override void FindFrame(int frameHeight)
 		{

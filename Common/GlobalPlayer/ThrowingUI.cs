@@ -1,5 +1,4 @@
-﻿using Synergia.Dataset;
-using Synergia.Helpers;
+﻿using Synergia.Helpers;
 using System;
 using Terraria;
 
@@ -20,10 +19,10 @@ namespace Synergia.Common.GlobalPlayer {
                     velocity = new Vector2(0, velocityY);
                 }
                 Texture2D texture = Request<Texture2D>(Reassures.Reassures.GetUIElementName("ThrowerInterface")).Value;
-                Vector2 drawPos = UIHelper.PlayerPos(-40, 45);
+                Vector2 drawPos = UIHelper.PlayerPos(0, +100);
                 drawPos += shake;
                 drawPos += velocity;
-                Main.spriteBatch.Draw(texture, drawPos, texture.Frame(1, 6, 0, throwing.comboCount), Color.White, 0f, Vector2.Zero, 1.05f, SpriteEffects.None, 0);
+                Main.spriteBatch.Draw(texture, drawPos, texture.Frame(1, 6, 0, throwing.comboCount), Color.White, 0f, texture.Size() * 0.5f, Main.UIScale, SpriteEffects.None, 0);
             }
         }
     }

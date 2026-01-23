@@ -23,7 +23,7 @@ public abstract class ModEvent : ModSystem {
     public int EventSize;
     public int EventProgress;
     public int EventPoint;
-    public int TimeToSpawnNPC = 1900;
+    public int TimeToSpawnNPC = 2100;
     public int CurrentTimeToSpawnNPC;
     public string EventName;
     public List<int> EventEnemies = [];
@@ -107,14 +107,15 @@ public abstract class ModEvent : ModSystem {
         if (!IsActive || EventName == null) {
             return;
         }
-        bool npcInMap = false;
-        foreach (int type in EventEnemies) {
-            if (NPC.AnyNPCs(type)) {
-                npcInMap = true;
-                UpdateProgressBarState();
-            }
-        }
-        if (!npcInMap || barAlpha <= 0f) {
+        UpdateProgressBarState();
+        //bool npcInMap = false;
+        //foreach (int type in EventEnemies) {
+        //    if (NPC.AnyNPCs(type)) {
+        //        npcInMap = true;
+        //        UpdateProgressBarState();
+        //    }
+        //}
+        if (barAlpha <= 0f) {
             return;
         }
         if (GetInstance<BossConfig>().ActiveNewUI) {

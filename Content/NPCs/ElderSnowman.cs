@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Synergia.Content.Items.Placeable.Banners;
+using Synergia.Content.Projectiles.Hostile;
+using System;
 using System.IO;
 using Terraria;
 using Terraria.Audio;
@@ -6,8 +8,7 @@ using Terraria.DataStructures;
 using Terraria.GameContent;
 using Terraria.ID;
 using static Synergia.Common.SUtils.LocUtil;
-using Synergia.Content.Projectiles.Reworks.Reworks2;
-using Synergia.Content.Projectiles.Hostile;
+using Synergia.Helpers;
 
 namespace Synergia.Content.NPCs
 {
@@ -44,6 +45,7 @@ namespace Synergia.Content.NPCs
             NPC.noGravity = true;
             NPC.noTileCollide = true;
             NPC.netAlways = true;
+            this.AddBanner(ItemType<ElderSnowmanBannerItem>());
         }
 
         public override void HitEffect(NPC.HitInfo hit) {

@@ -1,4 +1,5 @@
-﻿using Terraria;
+﻿using Synergia.Common.GlobalPlayer;
+using Terraria;
 using Terraria.DataStructures;
 using Terraria.ID;
 
@@ -12,6 +13,11 @@ namespace Synergia.Content.Items.Accessories {
         }
         public override void SetStaticDefaults() {
             ArmorIDs.Wing.Sets.Stats[Item.wingSlot] = new WingStats(170, 7.5f, 1f);
+        }
+        public override void UpdateAccessory(Player player, bool hideVisual) {
+            ThrowingPlayer throwing = player.GetModPlayer<ThrowingPlayer>();
+            throwing.ModifyMaxComboTime += 40;
+            throwing.ModifyMaxTimeForReset += 40;
         }
     }
 }

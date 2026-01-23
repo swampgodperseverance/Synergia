@@ -17,6 +17,9 @@ using static Synergia.Helpers.EventHelper;
 namespace Synergia.Common;
 
 public class FrostLegion : ModEvent {
+    readonly List<int> vanilla = [NPCID.SnowmanGangsta, NPCID.MisterStabby, NPCID.SnowBalla, NPCType<Coldmando>(), NPCType<MisterShotty>()];
+    bool preSpawn = false;
+
     public override void SettingEvent() {
         EventName = Lang.inter[87].Value;
         EventPoint = 1;
@@ -52,6 +55,9 @@ public class FrostLegion : ModEvent {
         }
     }
     public override void SpawnNPC(ref IDictionary<int, float> pool, int currentWave) {
+        if (currentWave != 2) {
+            GetVanillaNPC(ref pool, currentWave);
+        }
         switch (currentWave) {
             case 0: EventHelper.SpawnNPC(ref pool, NPCType<Snowykaze>(), 0.45f); break;
             case 1: Spawn(ref pool, NPCType<ElderSnowman>(), 0.30f); break;
@@ -72,6 +78,7 @@ public class FrostLegion : ModEvent {
     }
     public override void OnEnd() {
         DownedBossSystem.CompleteNewFrostEvent = true;
+        preSpawn = false;
         Main.invasionSize = 0;
         Main.invasionSizeStart = 0;
         Main.invasionProgress = 0;
@@ -101,14 +108,18 @@ public class FrostLegion : ModEvent {
         }
     }
     static void Spawn(ref IDictionary<int, float> pool, int npcType, float chance) {
-        EventHelper.SpawnNPC(ref pool, npcType, chance);
+        if (!pool.ContainsKey(npcType)) {
+            EventHelper.SpawnNPC(ref pool, npcType, chance);
+        }
         if (NPC.AnyNPCs(npcType)) {
             pool.Clear();
         }
     }
     static void Spawn2(ref IDictionary<int, float> pool, int npcType, float chance) {
         pool.Clear();
-        EventHelper.SpawnNPC(ref pool, npcType, chance);
+        if (!pool.ContainsKey(npcType)) {
+            EventHelper.SpawnNPC(ref pool, npcType, chance);
+        }
         if (NPC.AnyNPCs(npcType)) {
             pool.Clear();
         }
@@ -125,6 +136,13 @@ public class FrostLegion : ModEvent {
                     Vector2 pos = new(player.Center.X - Main.rand.Next(-1000, 1000), player.Center.Y - 1000);
                     Projectile proj = Main.projectile[Projectile.NewProjectile(player.GetSource_FromThis(), pos, Vector2.Zero, Main.rand.Next(projType), 0, 0f, Main.myPlayer, 0f, 0f)];
                 }
+            }
+        }
+    }
+    void GetVanillaNPC(ref IDictionary<int, float> pool, int currentWave) {
+        if (currentWave != 2) {
+            for (int i = 0; i < 4; i++) {
+                EventHelper.SpawnNPC(ref pool, vanilla[i], 1f);
             }
         }
     }

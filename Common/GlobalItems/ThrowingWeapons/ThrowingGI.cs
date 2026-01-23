@@ -1,5 +1,4 @@
-﻿using Microsoft.Xna.Framework;
-using Synergia.Common.GlobalPlayer;
+﻿using Synergia.Common.GlobalPlayer;
 using System.Collections.Generic;
 using Terraria;
 using static Synergia.Common.SUtils.LocUtil;
@@ -12,7 +11,7 @@ namespace Synergia.Common.GlobalItems.ThrowingWeapons {
         public sealed override bool AppliesToEntity(Item entity, bool lateInstantiation) => entity.type == ItemType;
         public sealed override bool Shoot(Item item, Player player, Terraria.DataStructures.EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback) {
             ThrowingPlayer modPlayer = player.GetModPlayer<ThrowingPlayer>();
-            if (modPlayer.doubleMode) {
+            if (modPlayer.DoubleMode) {
                 return NewBehavior(item, player, source, position, velocity, type, damage, knockback);
             }
             return true;

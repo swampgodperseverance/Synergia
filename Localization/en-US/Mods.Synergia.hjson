@@ -1051,6 +1051,21 @@ Items: {
 		DisplayName: Flarion
 		Tooltip: ""
 	}
+
+	ElderSnowmanBannerItem: {
+		DisplayName: Elder Snowman Banner Item
+		Tooltip: ""
+	}
+
+	SnowykazeBannerItem: {
+		Tooltip: ""
+		DisplayName: Snowykaze Banner Item
+	}
+
+	HellDog: {
+		DisplayName: Hell Dog
+		Tooltip: ""
+	}
 }
 
 Projectiles: {
