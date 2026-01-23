@@ -2,6 +2,12 @@
 using Terraria;
 using Terraria.Audio;
 using Terraria.ID;
+using ValhallaMod.Items.Weapons.Boomerang;
+using ValhallaMod.Items.Weapons.Glaive;
+using ValhallaMod.Items.Garden;
+using ValhallaMod.Items.Weapons.Thrown;
+using Consolaria.Content.Items.Weapons.Melee;
+using static Synergia.ModList;
 
 namespace Synergia.Common.GlobalPlayer {
     public class ThrowingPlayer : ModPlayer {
