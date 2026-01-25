@@ -6,9 +6,9 @@ using static Synergia.Common.SUtils.LocUtil;
 
 namespace Synergia.Helpers {
     public static class ItemHelper {
-        public static void BaseAccTooltips(Item item, List<TooltipLine> tooltips, int type, byte line, string key) {
+        public static void BaseAccTooltips(Item item, List<TooltipLine> tooltips, int type, byte line, string key, bool custom = false) {
             if (item.type == type) {
-                tooltips[line].Text = ItemTooltip(ACC, key);
+                tooltips[line].Text = custom ? key : ItemTooltip(ACC, key);
             }
         }
         public static void DeleteLine(Item item, List<TooltipLine> tooltips, int type, byte line) {
@@ -23,10 +23,15 @@ namespace Synergia.Helpers {
                 }
             }
         }
-        public static void BaseAddTooltips(Item item, List<TooltipLine> tooltips, List<int> types, string name, string key, Color? color = null) {
+        public static void CustomColor(Item item, List<TooltipLine> tooltips, int type, byte line, Color color) {
+            if (item.type == type) {
+                tooltips[line].OverrideColor = color;
+            }
+        }
+        public static void BaseAddTooltips(Item item, List<TooltipLine> tooltips, List<int> types, string name, string key, Color? color = null, bool custom = false) {
             foreach (int type in types) {
                 if (item.type == type) {
-                    TooltipLine tooltipLine = new(Synergia.Instance, name, ItemTooltip(WEP, key));
+                    TooltipLine tooltipLine = new(Synergia.Instance, name, custom ? key : ItemTooltip(WEP, key));
                     if (color != null) {
                         tooltipLine.OverrideColor = color;
                     }
@@ -34,9 +39,9 @@ namespace Synergia.Helpers {
                 }
             }
         }
-        public static void BaseAddTooltips(Item item, List<TooltipLine> tooltips, int type, string name, string key, Color? color = null) {
+        public static void BaseAddTooltips(Item item, List<TooltipLine> tooltips, int type, string name, string key, Color? color = null, bool custom = false) {
             if (item.type == type) {
-                TooltipLine tooltipLine = new(Synergia.Instance, name, ItemTooltip(WEP, key));
+                TooltipLine tooltipLine = new(Synergia.Instance, name, custom ? key : ItemTooltip(WEP, key));
                 if (color != null) {
                     tooltipLine.OverrideColor = color;
                 }

@@ -1066,6 +1066,11 @@ Items: {
 		DisplayName: Hell Dog
 		Tooltip: ""
 	}
+
+	SludgeMountain: {
+		DisplayName: Sludge Mountain
+		Tooltip: ""
+	}
 }
 
 Projectiles: {
@@ -1357,6 +1362,21 @@ Projectiles: {
 	TitaniumWarhammer2.DisplayName: Titanium Warhammer2
 	TitaniumWarhammerReturn.DisplayName: Titanium Warhammer Return
 	TMicroHammer.DisplayName: T Micro Hammer
+	SkelegonProj1.DisplayName: Skelegon Proj1
+	SkelegonProj2.DisplayName: Skelegon Proj2
+	SkelegonProj3.DisplayName: Skelegon Proj3
+	Sludge.DisplayName: Sludge
+	Anchor2.DisplayName: Anchor2
+	AnchorJunk.DisplayName: Anchor Junk
+	Flamarang2.DisplayName: Flamarang2
+	FlamarangProjectile.DisplayName: Flamarang Projectile
+	FleshGrinder2.DisplayName: Flesh Grinder2
+	FleshGrinderProj.DisplayName: Flesh Grinder Proj
+	IcePieces.DisplayName: Ice Pieces
+	NightGlaive2.DisplayName: Night Glaive2
+	NightGlaiveProj.DisplayName: Night Glaive Proj
+	OrichalcumKama2.DisplayName: Orichalcum Kama2
+	SnowGlaive2.DisplayName: Snow Glaive2
 }
 
 Buffs: {
@@ -1509,3 +1529,15 @@ Biomes: {
 
 Events.dsad: ""
 Emotes.DwarfEmote.Command: dwarfemote
+
+BaseLoc: {
+	DamageClass: {
+		throwing: throwing
+		Throwing: throwing
+	}
+
+	AttackSpead: Increases {0} speed by {1}%
+	ComboTime: increases the combo action time {0}
+	DeactiveTime: increases the combo action time {0}
+	SynergiaThrowing: increases the combo action time {0} and increases the combo action time {1}
+}

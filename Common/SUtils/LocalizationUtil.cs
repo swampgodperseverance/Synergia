@@ -31,4 +31,11 @@ public static class LocUtil {
     public static string ItemTooltip(string category, string tooltipKey) => Language.GetTextValue($"Mods.Synergia.Tooltips.{category}.{tooltipKey}");
     public static string EventLocKey(string eventName) => Language.GetTextValue($"Mods.Synergia.Events.{eventName}");
     public static string SynergiaLocKey(string name) => Language.GetTextValue($"Mods.Synergia.{name}");
+    public static string AddBaseTooltips(string name) => Language.GetTextValue($"Mods.Synergia.BaseLoc.{name}");
+    public static string DamageClassName(string className) => $"Mods.Synergia.BaseLoc.DamageClass.{className}";
+    public static string AddAttackSpeed(string damageTypeKey, int speed) {
+        string damageType = Language.GetTextValue(damageTypeKey);
+        string attackSpead = Language.GetTextValue("Mods.Synergia.BaseLoc.AttackSpead");
+        return string.Format(attackSpead, damageType, speed);
+    }
 }

@@ -7,25 +7,17 @@ using ValhallaMod.Items.Weapons.Javelin;
 namespace Synergia.Common.GlobalItems.Set {
     public class EditItem : GlobalItem {
         public override void SetDefaults(Item entity) {
-            if (entity.type == ModContent.ItemType<CarrotDagger>()) {
+            if (entity.type == ItemType<CarrotDagger>()) {
                 entity.damage = 15;
             }
         }
         public override void UpdateAccessory(Item item, Player player, bool hideVisual) {
-            if (item.type == ModContent.ItemType<BacchusBoots>()) {
+            if (item.type == ItemType<BacchusBoots>()) {
                 player.GetDamage(DamageClass.Summon) += 0.10f;
             }
-            if (item.type == ModContent.ItemType<BerserksRing>()) {
+            if (item.type == ItemType<BerserksRing>()) {
                 player.GetDamage(DamageClass.Generic) -= 0.20f;
             }
         }
-        //public override bool? UseItem(Item item, Player player) { 
-        //    if (item.type == ItemID.SnowGlobe) {
-        //        GetInstance<EventManger>().Events.TryGetValue(nameof(FrostLegion), out ModEvent mod);
-        //        mod.ActiveEvent();
-        //        return true;
-        //    }
-        //    return base.UseItem(item, player);
-        //}
     }
 }

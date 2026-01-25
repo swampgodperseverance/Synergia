@@ -1,8 +1,8 @@
-﻿using Microsoft.Xna.Framework;
+﻿using Synergia.Content.Items.Placeable.Banners;
+using Synergia.Helpers;
 using Terraria;
 using Terraria.Audio;
 using Terraria.ID;
-using Terraria.ModLoader;
 using static Synergia.Common.SUtils.LocUtil;
 
 namespace Synergia.Content.NPCs.Underworld
@@ -31,6 +31,7 @@ namespace Synergia.Content.NPCs.Underworld
             NPC.scale = 1.4f;
             NPC.HitSound = SoundID.NPCHit2;
             NPC.DeathSound = new SoundStyle("Synergia/Assets/Sounds/BrokenBone");
+            this.AddBanner(ItemType<HellDog>());
         }
 
         public override void AI()

@@ -1,18 +1,13 @@
-﻿using System;
-using Terraria.DataStructures;
-using Terraria.Audio;
-using Terraria.Graphics.Shaders;
-using System.IO;
-using System.Linq;
-using System.Collections.Generic;
-using Microsoft.Xna.Framework;
-using Terraria.Audio;
-using Terraria;
-using Terraria.ID;
-using Terraria.ModLoader;
+﻿using NewHorizons.Content.Projectiles.Throwing;
 using Synergia.Helpers;
 using Synergia.Trails;
-using NewHorizons.Content.Projectiles.Throwing;
+using System.Collections.Generic;
+using System.Linq;
+using Terraria;
+using Terraria.Audio;
+using Terraria.DataStructures;
+using Terraria.Graphics.Shaders;
+using Terraria.ID;
 
 
 namespace Synergia.Content.Projectiles.Thrower
@@ -203,7 +198,7 @@ public class BloodySpike : ModProjectile
             return true;
         }
 
-        public override void Kill(int timeLeft)
+        public override void OnKill(int timeLeft)
         {
             SoundEngine.PlaySound(SoundID.NPCHit5, Projectile.position);
 

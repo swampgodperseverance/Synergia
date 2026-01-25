@@ -6,7 +6,7 @@ namespace Synergia.Common.GlobalItems.Changes {
             EditArmor(entity);
             EditWeapon(entity);
         }
-        public abstract void EditArmor(Item entity);
+        public virtual void EditArmor(Item entity) { }
         public virtual void EditWeapon(Item entity) { }
         protected static void EditArmor(Item item, int armorType, int defense = 0) {
             if (item.type == armorType) {

@@ -52,7 +52,7 @@ namespace Synergia.Content.Projectiles.Reworks
             }
 
             const float homingRange = 800f;
-            const float homingStrength = 0.09f;
+            //const float homingStrength = 0.09f;
             const float maxSpeedMultiplier = 1.6f;
 
             NPC closestNPC = null;
