@@ -11,6 +11,8 @@ namespace Synergia.Lists {
             ProjectileType<CarnwennanProj>(),
             ProjectileType<AdamantiteDaggerProj>(),
             ProjectileType<TitaniumWarhammerProj>(),
+            ProjectileType<CrystalDaggerProj>(),
+            ProjectileType<ChlorophytePiercerProj>(),
             ProjectileType<NanoStarProj>(),
             ProjectileType<BlazingSawsProj>(),
             ProjectileType<CrystalGrenadeProj>(),
