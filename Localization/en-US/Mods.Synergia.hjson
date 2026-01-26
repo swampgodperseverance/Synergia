@@ -1377,6 +1377,11 @@ Projectiles: {
 	NightGlaiveProj.DisplayName: Night Glaive Proj
 	OrichalcumKama2.DisplayName: Orichalcum Kama2
 	SnowGlaive2.DisplayName: Snow Glaive2
+	RingFlash.DisplayName: Ring Flash
+	CrystalDagger2.DisplayName: Crystal Dagger2
+	ChlorophytePiercer2.DisplayName: Chlorophyte Piercer2
+	BigBobLaser.DisplayName: Big Bob Laser
+	ScorcherHeldItemProj.DisplayName: Scorcher Held Item Proj
 }
 
 Buffs: {
@@ -1541,3 +1546,5 @@ BaseLoc: {
 	DeactiveTime: increases the combo action time {0}
 	SynergiaThrowing: increases the combo action time {0} and increases the combo action time {1}
 }
+
+NPC.BigBob.DisplayName: Big Bob
