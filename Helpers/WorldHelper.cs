@@ -30,6 +30,21 @@ namespace Synergia.Helpers
                 }
             }
         }
+        public static void CleaningLiquid(int startX, int startY, int endX, int endY) {
+            int minX = Math.Min(startX, endX);
+            int maxX = Math.Max(startX, endX);
+            int minY = Math.Min(startY, endY);
+            int maxY = Math.Max(startY, endY);
+
+            for (int x = minX; x <= maxX; x++) {
+                for (int y = minY; y <= maxY; y++) {
+                    if (WorldGen.InWorld(x, y, 10)) {
+                        Tile tile = Main.tile[x, y];
+                        tile.LiquidAmount = 0;
+                    }
+                }
+            }
+        }
         /// <summary> Проверяет, находится ли игрок внутри прямоугольной области. Если находится — опционально добавляет бафф.</summary>
         public static bool CheakBiome(Player player, int width, int height, int left, int top, int buff = 1)
         {

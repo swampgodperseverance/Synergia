@@ -15,10 +15,12 @@ namespace Synergia.Common.ModSystems {
             WorldHelper.AddContainersLoot(13, 3, SkyChest, ItemType<Starcaller>());
             WorldHelper.DestroyerContainersLoot(13, ItemType<JungleSeedPacket>());
             WorldHelper.AddContainersLoot(13, 1, ItemType<JungleSeedPacket>(), 1, 3);
+            WorldHelper.CleaningLiquid(HellVillageX - 220, HellVillageY - 115, HellVillageX - 57, HellVillageY - 67);
         }
         public override void PostUpdateWorld() {
-            EditsArena(HellArenaPositionX - 198, HellArenaPositionY);
+            EditsArena(HellArenaPositionX - 198, HellArenaPositionY);   
             EditsVillage(HellVillageX - 280, HellVillageY);
+            EditsLake(HellLakeX - 236, HellLakeY);
         }
         static void EditsArena(int x, int y) {
             //WorldGen.PlaceTile(x + 111, y - 28, 120);
@@ -32,6 +34,11 @@ namespace Synergia.Common.ModSystems {
         }
         public void Village() {
             // тут твой код если персонаж в деревни
+        }
+        static void EditsLake(int x, int y) {
+            //WorldGen.PlaceChest(x + 132, y - 12, TileID.Containers, false, 2);
+        }
+        public void Lake() {
         }
     }
 }
