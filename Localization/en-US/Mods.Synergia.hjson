@@ -1381,6 +1381,7 @@ Projectiles: {
 	CrystalDagger2.DisplayName: Crystal Dagger2
 	ChlorophytePiercer2.DisplayName: Chlorophyte Piercer2
 	BigBobLaser.DisplayName: Big Bob Laser
+	ScorcherHeldItemProj.DisplayName: Scorcher Held Item Proj
 }
 
 Buffs: {
