@@ -24,9 +24,7 @@ namespace Synergia.Helpers {
         }
         #endregion
         public static void SpawnNPC(int posX, int posY, int npcType, IEntitySource? source = null, int start = 0, float ai0 = 0f, float ai1 = 0f, float ai2 = 0f, float ai3 = 0f, int Target = 255) {
-            IEntitySource s;
-            if (source != null) { s = source; }
-            else { s = Main.LocalPlayer.GetSource_FromThis(); }
+            IEntitySource s = source ?? Main.LocalPlayer.GetSource_FromThis();
 	        if(!NPC.AnyNPCs(npcType)){
  		        NPC.NewNPC(s, posX, posY, npcType, start, ai0, ai1, ai2, ai3, Target);
             }

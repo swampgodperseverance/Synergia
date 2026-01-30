@@ -127,7 +127,7 @@ namespace Synergia.Content.Projectiles.Hostile
             return new Color(255, 60, 60, 0) * alpha;
         }
 
-        public override void Kill(int timeLeft)
+        public override void OnKill(int timeLeft)
         {
             SoundEngine.PlaySound(SoundID.Item14, Projectile.Center);
         }

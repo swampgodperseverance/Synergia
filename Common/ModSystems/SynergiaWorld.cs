@@ -1,10 +1,9 @@
 ﻿using StramsSurvival.Items;
 using Synergia.Content.Items.Weapons.Summon;
-using Synergia.Content.NPCs;
 using Synergia.Helpers;
 using System.Collections.Generic;
+using Terraria;
 using static Synergia.Common.ModSystems.WorldGens.BaseWorldGens;
-using static Synergia.Helpers.SynegiaHelper;
 using static Synergia.Lists.Items;
 
 namespace Synergia.Common.ModSystems {
@@ -25,20 +24,12 @@ namespace Synergia.Common.ModSystems {
         static void EditsArena(int x, int y) {
             //WorldGen.PlaceTile(x + 111, y - 28, 120);
         }
-        public void Arena() {
-            // тут твой код если персонаж в арене
-            SpawnNPC((HellArenaPositionX - 198 + 110) * 16, (HellArenaPositionY - 28) * 16, NPCType<HellheartMonolith>());
-        }
         static void EditsVillage(int x, int y) {
             // WorldGen.PlaceObject(x + 2, y - 99, TileID.Statues, false, 15);
         }
-        public void Village() {
-            // тут твой код если персонаж в деревни
-        }
         static void EditsLake(int x, int y) {
             //WorldGen.PlaceChest(x + 132, y - 12, TileID.Containers, false, 2);
-        }
-        public void Lake() {
+            //WorldGen.PlaceWall(x + 93, y - 30, ModList.Roa.Find<ModWall>("GrimstoneWall").Type);
         }
     }
 }
