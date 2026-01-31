@@ -1,136 +1,131 @@
-using Microsoft.Xna.Framework;
-using Terraria.Localization;
-using Terraria.Audio;
-using Terraria.GameContent.Creative;
+﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using Terraria;
-using Terraria.Utilities;
+using Terraria.Audio;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.GameContent;
-using static Terraria.ModLoader.ModContent;
+
 namespace Synergia.Content.Projectiles.Hostile
 {
     public class BigBobLaser : ModProjectile
     {
-        private static readonly UnifiedRandom rng = new UnifiedRandom();
-        private const float HomingAccel = 0.75f;
-        private const float MaxSpeed = 14f;
+        public override void SetStaticDefaults()
+        {
+            Main.projFrames[Projectile.type] = 5;
 
-        private int lifeTimer;
-        private float alpha;
+            ProjectileID.Sets.TrailCacheLength[Projectile.type] = 10;
+            ProjectileID.Sets.TrailingMode[Projectile.type] = 2;
+        }
 
         public override void SetDefaults()
         {
-            Projectile.width = 34;
-            Projectile.height = 34;
-            Projectile.hostile = true;
-            Projectile.friendly = false;
-            Projectile.penetrate = -1;
-            Projectile.timeLeft = 125;
-            Projectile.tileCollide = false;
-            Projectile.aiStyle = 0;
+            Projectile.width = 16;
+            Projectile.height = 42;
 
-            ProjectileID.Sets.TrailCacheLength[Projectile.type] = 8;
-            ProjectileID.Sets.TrailingMode[Projectile.type] = 0;
+            Projectile.friendly = false;
+            Projectile.hostile = true;
+
+            Projectile.penetrate = -1;
+            Projectile.timeLeft = 160;
+            Projectile.tileCollide = false;
+            Projectile.ignoreWater = true;
+
+            Projectile.alpha = 0;
         }
 
         public override void AI()
         {
-            lifeTimer++;
-
-            if (lifeTimer < 20)
-                alpha = MathHelper.Lerp(alpha, 1f, 0.15f);
-            else if (Projectile.timeLeft < 25)
-                alpha = MathHelper.Lerp(alpha, 0f, 0.2f);
-            else
-                alpha = 1f;
-
-            if (Projectile.timeLeft == 95)
-            {
-                Projectile.velocity += new Vector2(
-                    rng.NextBool() ? -6f : 9f,
-                    rng.NextBool() ? -10f : 6f
-                );
-            }
-
-            if (lifeTimer > 40)
-            {
-                Player target = FindClosestPlayer();
-                if (target != null)
-                {
-                    Vector2 dir = Projectile.DirectionTo(target.Center);
-                    Projectile.velocity += dir * HomingAccel;
-
-                    if (Projectile.velocity.Length() > MaxSpeed)
-                        Projectile.velocity = Projectile.velocity.SafeNormalize(Vector2.UnitY) * MaxSpeed;
-                }
-            }
-
             Projectile.rotation = Projectile.velocity.ToRotation() + MathHelper.PiOver2;
+            Projectile.frameCounter++;
+            if (Projectile.frameCounter >= 5)
+            {
+                Projectile.frameCounter = 0;
+                Projectile.frame++;
+                if (Projectile.frame >= Main.projFrames[Projectile.type])
+                    Projectile.frame = 0;
+            }
+
+            if (Main.rand.NextBool(2))
+            {
+                Dust dust = Dust.NewDustDirect(
+                    Projectile.position,
+                    Projectile.width,
+                    Projectile.height,
+                    DustID.Blood,
+                    -Projectile.velocity.X * 0.2f,
+                    -Projectile.velocity.Y * 0.2f,
+                    100,
+                    default,
+                    1.4f
+                );
+                dust.noGravity = true;
+            }
+
+            if (Projectile.timeLeft <= 30)
+            {
+                Projectile.velocity *= 0.94f;
+                Projectile.alpha += 8;
+            }
         }
 
-        private Player FindClosestPlayer()
+        public override void Kill(int timeLeft)
         {
-            Player result = null;
-            float dist = float.MaxValue;
+            SoundEngine.PlaySound(SoundID.NPCDeath1, Projectile.position);
 
-            for (int i = 0; i < Main.maxPlayers; i++)
+            for (int i = 0; i < 12; i++)
             {
-                Player p = Main.player[i];
-                if (!p.active || p.dead)
-                    continue;
-
-                float d = Vector2.Distance(Projectile.Center, p.Center);
-                if (d < dist)
-                {
-                    dist = d;
-                    result = p;
-                }
+                Dust dust = Dust.NewDustDirect(
+                    Projectile.position,
+                    Projectile.width,
+                    Projectile.height,
+                    DustID.Blood,
+                    Main.rand.NextFloat(-3f, 3f),
+                    Main.rand.NextFloat(-3f, 3f),
+                    80,
+                    default,
+                    1.8f
+                );
+                dust.noGravity = true;
             }
-            return result;
         }
 
         public override bool PreDraw(ref Color lightColor)
         {
-            Texture2D tex = TextureAssets.Projectile[Projectile.type].Value;
-            Vector2 origin = tex.Size() * 0.5f;
+            Texture2D texture = TextureAssets.Projectile[Projectile.type].Value;
+
+            int frameHeight = texture.Height / Main.projFrames[Projectile.type];
+            Rectangle frame = new Rectangle(
+                0,
+                frameHeight * Projectile.frame,
+                texture.Width,
+                frameHeight
+            );
+
+            Vector2 origin = frame.Size() / 2f;
 
             for (int i = 0; i < Projectile.oldPos.Length; i++)
             {
+                Vector2 drawPos = Projectile.oldPos[i] + Projectile.Size / 2f - Main.screenPosition;
                 float fade = (Projectile.oldPos.Length - i) / (float)Projectile.oldPos.Length;
-                Color col = new Color(255, 60, 60, 0) * fade * alpha;
 
-                Vector2 drawPos =
-                    Projectile.oldPos[i]
-                    + Projectile.Size * 0.5f
-                    - Main.screenPosition;
+                Color color = new Color(180, 20, 20, 100) * fade;
 
                 Main.EntitySpriteDraw(
-                    tex,
+                    texture,
                     drawPos,
-                    null,
-                    col,
+                    frame,
+                    color,
                     Projectile.rotation,
                     origin,
-                    Projectile.scale,
+                    Projectile.scale * (1.1f + fade * 0.2f),
                     SpriteEffects.None,
                     0
                 );
             }
+
             return true;
-        }
-
-        public override Color? GetAlpha(Color lightColor)
-        {
-            return new Color(255, 60, 60, 0) * alpha;
-        }
-
-        public override void OnKill(int timeLeft)
-        {
-            SoundEngine.PlaySound(SoundID.Item14, Projectile.Center);
         }
     }
 }
-    
