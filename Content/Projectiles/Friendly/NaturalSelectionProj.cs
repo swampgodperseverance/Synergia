@@ -10,8 +10,8 @@ namespace Synergia.Content.Projectiles.Friendly
     {
         public override void SetDefaults()
         {
-            Projectile.width = 20;
-            Projectile.height = 20;
+            Projectile.width = 38;
+            Projectile.height = 38;
             Projectile.aiStyle = 3; 
             Projectile.friendly = true;
             Projectile.DamageType = DamageClass.Throwing;
