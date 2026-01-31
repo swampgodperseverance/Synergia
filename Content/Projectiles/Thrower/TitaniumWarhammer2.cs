@@ -26,7 +26,7 @@ namespace Synergia.Content.Projectiles.Thrower
                 Projectile.Kill();
         }
 
-        public override void OnKill(int timeLeft)
+        public override void Kill(int timeLeft)
         {
             if (Projectile.owner == Main.myPlayer)
             {

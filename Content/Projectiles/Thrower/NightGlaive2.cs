@@ -1,9 +1,21 @@
-﻿using Synergia.Common.ModSystems;
-using System;
-using Terraria;
+﻿using System;
+using Terraria.DataStructures;
+using Terraria.Audio;
+using Terraria.Graphics.Shaders;
+using System.IO;
+using System.Linq;
+using Synergia.Common.ModSystems;
+using System.Collections.Generic;
+using Microsoft.Xna.Framework;
 using Terraria.Audio;
 using Terraria.GameContent;
+using Terraria;
 using Terraria.ID;
+using Terraria.ModLoader;
+using Synergia.Helpers;
+using Synergia.Trails;
+using NewHorizons.Content.Projectiles.Throwing;
+
 
 namespace Synergia.Content.Projectiles.Thrower
 {
