@@ -1,4 +1,5 @@
-﻿using Synergia.Content.NPCs;
+﻿// Code by 𝒜𝑒𝓇𝒾𝓈
+using Synergia.Content.NPCs;
 using static Synergia.Common.ModSystems.WorldGens.BaseWorldGens;
 using static Synergia.Helpers.SynegiaHelper;
 

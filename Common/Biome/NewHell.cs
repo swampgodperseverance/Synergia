@@ -1,4 +1,5 @@
-﻿using Synergia.Common.GlobalPlayer;
+﻿// Code by 𝒜𝑒𝓇𝒾𝓈
+using Synergia.Common.GlobalPlayer;
 using Synergia.Common.ModSystems.WorldGens;
 using Synergia.Helpers;
 using Terraria;

@@ -1,4 +1,5 @@
-﻿using Bismuth.Utilities.ModSupport;
+﻿// Code by 𝒜𝑒𝓇𝒾𝓈
+using Bismuth.Utilities.ModSupport;
 using Synergia.Dataset;
 using System.Linq;
 using Terraria;

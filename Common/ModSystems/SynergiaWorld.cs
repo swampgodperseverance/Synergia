@@ -1,8 +1,8 @@
-﻿using StramsSurvival.Items;
+﻿// Code by 𝒜𝑒𝓇𝒾𝓈
+using StramsSurvival.Items;
 using Synergia.Content.Items.Weapons.Summon;
 using Synergia.Helpers;
 using System.Collections.Generic;
-using Terraria;
 using static Synergia.Common.ModSystems.WorldGens.BaseWorldGens;
 using static Synergia.Lists.Items;
 
