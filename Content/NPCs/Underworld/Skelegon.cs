@@ -1,9 +1,11 @@
-﻿using Synergia.Content.Items.Placeable.Banners;
-using Synergia.Helpers;
+﻿using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.Audio;
 using Terraria.ID;
+using Terraria.ModLoader;
+using Terraria.GameContent.ItemDropRules;
 using static Synergia.Common.SUtils.LocUtil;
+using Synergia.Common.GlobalPlayer;
 
 namespace Synergia.Content.NPCs.Underworld
 {
@@ -31,13 +33,30 @@ namespace Synergia.Content.NPCs.Underworld
             NPC.scale = 1.4f;
             NPC.HitSound = SoundID.NPCHit2;
             NPC.DeathSound = new SoundStyle("Synergia/Assets/Sounds/BrokenBone");
-            this.AddBanner(ItemType<HellDog>());
+            NPC.lavaImmune = Main.expertMode;
+        }
+
+        public override float SpawnChance(NPCSpawnInfo spawnInfo)
+        {
+            BiomePlayer modPlayer = spawnInfo.Player.GetModPlayer<BiomePlayer>();
+
+            if (modPlayer.villageBiome && spawnInfo.Player.ZoneUnderworldHeight)
+                return 0.6f;
+
+            return 0f;
         }
 
         public override void AI()
         {
             NPC.TargetClosest(false);
             Player player = Main.player[NPC.target];
+
+            if (Main.expertMode && NPC.lavaWet)
+            {
+                NPC.lifeRegen += 20;
+                if (NPC.life < NPC.lifeMax)
+                    NPC.life++;
+            }
 
             float distance = Vector2.Distance(NPC.Center, player.Center);
             bool aggressive = distance <= 420f;
@@ -61,6 +80,11 @@ namespace Synergia.Content.NPCs.Underworld
             NPC.frame.Y = (int)NPC.frameCounter * frameHeight;
         }
 
+        public override void ModifyNPCLoot(NPCLoot npcLoot)
+        {
+            npcLoot.Add(ItemDropRule.Common(ItemID.Bone, 1, 3, 6));
+        }
+
         public override void OnKill()
         {
             if (Main.netMode == NetmodeID.MultiplayerClient)
@@ -68,12 +92,12 @@ namespace Synergia.Content.NPCs.Underworld
 
             Vector2 center = NPC.Center;
 
-            for (int i = 0; i < Main.rand.Next(2, 4); i++)
+            for (int i = 0; i < Main.rand.Next(3, 5); i++)
             {
                 Projectile.NewProjectile(
                     NPC.GetSource_Death(),
                     center,
-                    Main.rand.NextVector2Circular(6f, 6f),
+                    Main.rand.NextVector2Circular(9f, 9f),
                     ModContent.ProjectileType<Projectiles.Hostile.SkelegonProj3>(),
                     25,
                     2f
@@ -83,7 +107,7 @@ namespace Synergia.Content.NPCs.Underworld
             Projectile.NewProjectile(
                 NPC.GetSource_Death(),
                 center,
-                Main.rand.NextVector2Circular(5f, 5f),
+                Main.rand.NextVector2Circular(8f, 8f),
                 ModContent.ProjectileType<Projectiles.Hostile.SkelegonProj1>(),
                 30,
                 2f
@@ -92,7 +116,7 @@ namespace Synergia.Content.NPCs.Underworld
             Projectile.NewProjectile(
                 NPC.GetSource_Death(),
                 center,
-                Main.rand.NextVector2Circular(5f, 5f),
+                Main.rand.NextVector2Circular(8f, 8f),
                 ModContent.ProjectileType<Projectiles.Hostile.SkelegonProj2>(),
                 30,
                 2f
@@ -100,4 +124,3 @@ namespace Synergia.Content.NPCs.Underworld
         }
     }
 }
-

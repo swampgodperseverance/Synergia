@@ -45,7 +45,7 @@ namespace Synergia.Content.Projectiles.Thrower
 		}
 
 		// Token: 0x060000F0 RID: 240 RVA: 0x00008F10 File Offset: 0x00007110
-		public override void OnKill(int timeLeft)
+		public override void Kill(int timeLeft)
 		{
 			SoundEngine.PlaySound(SoundID.Dig, new Vector2?(base.Projectile.position), null);
 			if (Main.rand.NextBool(10))

@@ -39,7 +39,7 @@ namespace Synergia.Content.Projectiles.Thrower
         }
 
         // Token: 0x060000AB RID: 171 RVA: 0x00006E34 File Offset: 0x00005034
-        public override void OnKill(int timeLeft)
+        public override void Kill(int timeLeft)
         {
             if (Main.rand.NextBool(10))
             {

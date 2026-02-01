@@ -11,10 +11,10 @@ namespace Synergia.Content.Items.Weapons.Throwing
         {
             Item.damage = 20;
             Item.DamageType = DamageClass.Throwing;
-            Item.width = 32;
+            Item.width = 37;
             Item.height = 32;
-            Item.useTime = 25;
-            Item.useAnimation = 25;
+            Item.useTime = 40;
+            Item.useAnimation = 40;
             Item.useStyle = ItemUseStyleID.Swing;
             Item.knockBack = 5;
             Item.value = Item.buyPrice(gold: 1);
