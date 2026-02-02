@@ -1382,6 +1382,11 @@ Projectiles: {
 	ChlorophytePiercer2.DisplayName: Chlorophyte Piercer2
 	BigBobLaser.DisplayName: Big Bob Laser
 	ScorcherHeldItemProj.DisplayName: Scorcher Held Item Proj
+	MythrilJavelin2.DisplayName: Mythril Javelin2
+	MythrilKnife.DisplayName: Mythril Knife
+	NaturalSelection2.DisplayName: Natural Selection2
+	SunJavelin2.DisplayName: Sun Javelin2
+	SunJavelinProj.DisplayName: Sun Javelin Proj
 }
 
 Buffs: {
