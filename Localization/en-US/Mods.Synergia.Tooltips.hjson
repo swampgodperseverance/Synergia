@@ -8,6 +8,13 @@ Armors: {
 	Test1: Test Accessory Tooltip
 	BronzeSetBonus: The thrower's weapon is poisoned with bronze venom
 	CorrodeSetBonus: Your attacks inflict enemies with corrosion decreasing their defense
+	GutsSetBonus:
+		'''
+		+10% Summon damage
+		Summons up to 5 hunger jaws
+		Each jaw attacks enemies nearby the player
+		Press BLYAT KNOPKY ZABINDIT to launch them to your cursor
+		'''
 	ThunderSetBonus:
 		'''
 		Melee attacks release lightning on hit
