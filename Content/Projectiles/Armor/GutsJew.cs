@@ -79,7 +79,7 @@ namespace Synergia.Content.Projectiles.Armor
                 NPC target = FindNearestEnemy(player, 200f);
                 if (target != null)
                 {
-                    Vector2 toTarget = target.Center - Projectile.Center;   // ← declare here once
+                    Vector2 toTarget = target.Center - Projectile.Center;  
 
                     float targetRotation = toTarget.ToRotation();
                     float angleDiff = MathHelper.WrapAngle(targetRotation - Projectile.rotation);
@@ -91,7 +91,7 @@ namespace Synergia.Content.Projectiles.Armor
 
                         NPC.HitInfo hitInfo = target.CalculateHitInfo(
                             baseDamage,
-                            hitDirection: Math.Sign(toTarget.X),   // or Math.Sign(target.Center.X - Projectile.Center.X)
+                            hitDirection: Math.Sign(toTarget.X),   // Math.Sign(target.Center.X - Projectile.Center.X)
                             crit: false,
                             knockBack: 4f,
                             damageType: DamageClass.Summon,
