@@ -1,25 +1,24 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;
+using System;
+using Synergia.Trails;
+using Terraria.GameContent;
 using Terraria.ID;
 using Terraria.Audio;
-using System;
 using Terraria.ModLoader;
 
 namespace Synergia.Content.Projectiles.Friendly
 {
-    public sealed class MagicStalactite : ModProjectile // Roa inspired
+    public sealed class MagicStalactite : ModProjectile
     {
-        private const int TrailLength = 5;
-        private const int FadeInDuration = 60;
-        private const int DustSpawnRate = 16;
+        private const int DustSpawnRate = 10;
         private bool initialized;
 
         public override void SetStaticDefaults()
         {
-            ProjectileID.Sets.TrailCacheLength[Projectile.type] = TrailLength;
+            ProjectileID.Sets.TrailCacheLength[Projectile.type] = 8;
             ProjectileID.Sets.TrailingMode[Projectile.type] = 0;
-            ProjectileID.Sets.CultistIsResistantTo[Projectile.type] = true;
         }
 
         public override void SetDefaults()
@@ -30,7 +29,7 @@ namespace Synergia.Content.Projectiles.Friendly
             Projectile.DamageType = DamageClass.Magic;
             Projectile.penetrate = 1;
             Projectile.timeLeft = 180;
-            Projectile.alpha = 0; // теперь непрозрачный
+            Projectile.alpha = 0;
             Projectile.tileCollide = false;
             Projectile.aiStyle = -1;
             Projectile.usesLocalNPCImmunity = true;
@@ -41,7 +40,6 @@ namespace Synergia.Content.Projectiles.Friendly
         {
             Player player = Main.player[Projectile.owner];
 
-            // Один раз задаём направление при спавне
             if (!initialized)
             {
                 initialized = true;
@@ -49,69 +47,66 @@ namespace Synergia.Content.Projectiles.Friendly
                 {
                     Vector2 direction = Main.MouseWorld - player.Center;
                     direction.Normalize();
-                    direction *= 14f; // скорость
+                    direction *= 14f;
                     Projectile.velocity = direction;
                     Projectile.netUpdate = true;
                 }
             }
 
-            // Постепенно ускоряемся
             Projectile.velocity *= 1.02f;
 
-            // Поворачиваем по направлению движения
             if (Projectile.velocity.Length() > 0.1f)
                 Projectile.rotation = Projectile.velocity.ToRotation() + MathHelper.PiOver2;
 
-            // Немного лавовых частиц при полёте
             if (Main.rand.NextBool(DustSpawnRate))
                 SpawnTravelDust();
+
+            Lighting.AddLight(Projectile.Center, 0.9f, 0.55f, 0.15f);
         }
 
         private void SpawnTravelDust()
         {
-            int dustType = DustID.Lava;
-            float scale = Main.rand.NextFloat(1.0f, 1.4f);
-
+            int dustType = DustID.Torch;
+            float scale = Main.rand.NextFloat(1.1f, 1.6f);
             Dust dust = Dust.NewDustPerfect(
-                Projectile.Center + Main.rand.NextVector2Circular(Projectile.width / 2, Projectile.height / 2),
+                Projectile.Center + Main.rand.NextVector2Circular(4f, 8f),
                 dustType,
-                Projectile.velocity * 0.2f + Main.rand.NextVector2Circular(0.5f, 0.5f),
-                100,
-                Color.OrangeRed,
+                Projectile.velocity * 0.3f + Main.rand.NextVector2Circular(0.8f, 0.8f),
+                60,
+                default,
                 scale
             );
-
             dust.noGravity = true;
-            dust.fadeIn = 0.6f;
+            dust.fadeIn = 0.9f;
         }
 
         public override void OnKill(int timeLeft)
         {
-            SoundEngine.PlaySound(SoundID.Item27 with { Volume = 0.7f }, Projectile.Center);
+            SoundEngine.PlaySound(SoundID.Item27 with { Volume = 0.7f, PitchVariance = 0.2f }, Projectile.Center);
 
-            for (int i = 0; i < 8; i++)
+            for (int i = 0; i < 12; i++)
+            {
+                Dust dust = Dust.NewDustPerfect(
+                    Projectile.Center,
+                    DustID.Torch,
+                    Main.rand.NextVector2Circular(4.5f, 4.5f),
+                    80,
+                    default,
+                    Main.rand.NextFloat(1.3f, 2.0f)
+                );
+                dust.noGravity = true;
+                dust.fadeIn = 1.3f;
+            }
+
+            for (int i = 0; i < 5; i++)
             {
                 Dust dust = Dust.NewDustPerfect(
                     Projectile.Center,
                     DustID.Torch,
                     Main.rand.NextVector2Circular(3f, 3f),
-                    100,
-                    Color.OrangeRed,
-                    Main.rand.NextFloat(1.2f, 1.8f)
-                );
-                dust.noGravity = true;
-                dust.fadeIn = 1.2f;
-            }
-
-            for (int i = 0; i < 3; i++)
-            {
-                Dust dust = Dust.NewDustPerfect(
-                    Projectile.Center,
-                    DustID.Firework_Red,
-                    Main.rand.NextVector2Circular(2f, 2f),
                     0,
-                    Color.OrangeRed,
-                    Main.rand.NextFloat(0.8f, 1.2f)
+                    default,
+                    Main.rand.NextFloat(0.9f, 1.4f)
                 );
                 dust.noGravity = true;
             }
@@ -119,44 +114,72 @@ namespace Synergia.Content.Projectiles.Friendly
 
         public override bool PreDraw(ref Color lightColor)
         {
-            Main.instance.LoadProjectile(Projectile.type);
-            Texture2D texture = Terraria.GameContent.TextureAssets.Projectile[Projectile.type].Value;
-            Vector2 origin = texture.Size() * 0.5f;
+            SpriteBatch spriteBatch = Main.spriteBatch;
+            Texture2D texture = (Texture2D)ModContent.Request<Texture2D>(Texture);
+            Vector2 drawOrigin = new Vector2(texture.Width * 0.5f, Projectile.height * 0.5f);
+            SpriteEffects effects = (Projectile.spriteDirection == -1) ? SpriteEffects.None : SpriteEffects.FlipHorizontally;
 
-            // Лавовый след
-            for (int i = 0; i < Projectile.oldPos.Length; i++)
+            for (int k = 0; k < Projectile.oldPos.Length; k++)
             {
-                if (Projectile.oldPos[i] == Vector2.Zero) continue;
+                if (Projectile.oldPos[k] == Vector2.Zero)
+                    continue;
 
-                float progress = 1f - (i / (float)Projectile.oldPos.Length);
-                Vector2 drawPos = Projectile.oldPos[i] + Projectile.Size * 0.5f - Main.screenPosition;
-                Color trailColor = new Color(255, 100, 30, 0) * progress * 0.8f;
-                float scale = Projectile.scale * (0.8f + progress * 0.2f);
+                Vector2 drawPos = Projectile.oldPos[k] - Main.screenPosition + drawOrigin + new Vector2(0f, Projectile.gfxOffY);
+                float progress = (float)k / Projectile.oldPos.Length;
+                Color color = Color.Orange * (0.4f * (1f - progress));
 
-                Main.EntitySpriteDraw(
+                float rotation;
+                if (k + 1 >= Projectile.oldPos.Length || Projectile.oldPos[k + 1] == Vector2.Zero)
+                {
+                    rotation = (Projectile.position - Projectile.oldPos[k]).ToRotation() + MathHelper.PiOver2;
+                }
+                else
+                {
+                    rotation = (Projectile.oldPos[k + 1] - Projectile.oldPos[k]).ToRotation() + MathHelper.PiOver2;
+                }
+
+                float scale = Projectile.scale * (0.7f + 0.3f * progress);
+                spriteBatch.Draw(texture, drawPos, null, color, rotation, drawOrigin, scale, effects, 0f);
+            }
+
+            Color outlineColor = Color.Lerp(Color.OrangeRed, Color.Yellow, 0.5f);
+            outlineColor.A = 150;
+
+            for (int i = 0; i < 3; i++)
+            {
+                float outlineOffset = (i + 1) * 0.6f;
+                Vector2 offset = Vector2.Zero;
+
+                switch (i)
+                {
+                    case 0: offset = new Vector2(-outlineOffset, 0); break;
+                    case 1: offset = new Vector2(outlineOffset, 0); break;
+                    case 2: offset = new Vector2(0, -outlineOffset); break;
+                }
+
+                spriteBatch.Draw(
                     texture,
-                    drawPos,
+                    Projectile.position - Main.screenPosition + drawOrigin + offset,
                     null,
-                    trailColor,
+                    outlineColor * 0.3f,
                     Projectile.rotation,
-                    origin,
-                    scale,
-                    SpriteEffects.None,
-                    0
+                    drawOrigin,
+                    Projectile.scale,
+                    effects,
+                    0f
                 );
             }
 
-            // Основное тело
-            Main.EntitySpriteDraw(
+            spriteBatch.Draw(
                 texture,
-                Projectile.Center - Main.screenPosition,
+                Projectile.position - Main.screenPosition + drawOrigin,
                 null,
                 Color.White,
                 Projectile.rotation,
-                origin,
+                drawOrigin,
                 Projectile.scale,
-                SpriteEffects.None,
-                0
+                effects,
+                0f
             );
 
             return false;
