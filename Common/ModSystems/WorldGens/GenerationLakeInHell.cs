@@ -1,5 +1,6 @@
 ﻿// Code by 𝒜𝑒𝓇𝒾𝓈
 using Avalon.Tiles;
+using Avalon.Tiles.Furniture.ResistantWood;
 using Synergia.Helpers;
 using Terraria;
 using Terraria.ID;
@@ -426,11 +427,24 @@ namespace Synergia.Common.ModSystems.WorldGens {
                         case 5: tile.WallType = WallID.AshWoodFence; break;
                         case 6: tile.WallType = WallID.EbonwoodFence; break;
                     }
+                    if (LakeTile[y, x] != 0) {
+                        HellLakeTilesVector.Add(new Vector2(worldX, worldY));
+                    }
+                    if (LakeWall[y, x] != 0) {
+                        HellLakeWallesVector.Add(new Vector2(worldX, worldY));
+                    }
                 }
             }
-            int posX = HellLakeX - 236;
-            WorldGen.PlaceChest(posX + 132, HellLakeY - 12, TileID.Containers, false, 2);
+            int chest = WorldGen.PlaceChest(HellLakeX - 236 + 132, HellLakeY - 12, TileID.Containers, false, 4);
+            if (chest != -1) { ChestLoot(Main.chest[chest].item, 0); }
+            GenCandelabraTile(49); GenCandelabraTile(65); GenCandelabraTile(137); GenCandelabraTile(188); GenCandelabraTile(204);
             return true;
+        }
+        static void ChestLoot(Item[] chestInventory, int chestIndex) {
+            WorldHelper.LootInContainers(chestInventory, ref chestIndex, Valhalla.Find<ModItem>("SinstoneMagma").Type, 25, 30);
+        }
+        static void GenCandelabraTile(byte x) {
+            WorldGen.Place2x2(HellLakeX - 236 + x, HellLakeY - 106, (ushort)TileType<ResistantWoodCandelabra>(), 0);
         }
     }
 }

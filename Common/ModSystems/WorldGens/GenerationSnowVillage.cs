@@ -154,7 +154,7 @@ namespace Synergia.Common.ModSystems.WorldGens
             return false;
 
         GenerateBuild:
-            NPC.NewNPC(new EntitySource_WorldGen(), (SnowVilagePositionX + 13) * 16, (SnowVilagePositionY - 11) * 16, ModContent.NPCType<Dwarf>(), 0, 0f, 0f, 0f, 0f, 255);
+            NPC.NewNPC(new EntitySource_WorldGen(), (SnowVilagePositionX + 13) * 16, (SnowVilagePositionY - 11) * 16, NPCType<Dwarf>(), 0, 0f, 0f, 0f, 0f, 255);
 
             int width = SnowVilageTiles.GetLength(1);
             int height = SnowVilageTiles.GetLength(0);
@@ -184,22 +184,22 @@ namespace Synergia.Common.ModSystems.WorldGens
                         case 3: tile.TileType = TileID.StoneSlab; tile.HasTile = true; break;
                         case 4: tile.TileType = TileID.Stone; tile.HasTile = true; break;
                         case 5: tile.TileType = TileID.GrayBrick; tile.HasTile = true; break;
-                        case 6: tile.TileType = (ushort)ModContent.TileType<CorrodeBrick>(); tile.HasTile = true; break;
-                        case 7: tile.TileType = (ushort)ModContent.TileType<ValhalliteBrick>(); tile.HasTile = true; break;
+                        case 6: tile.TileType = (ushort)TileType<CorrodeBrick>(); tile.HasTile = true; break;
+                        case 7: tile.TileType = (ushort)TileType<ValhalliteBrick>(); tile.HasTile = true; break;
                         case 8: tile.TileType = Roa.Find<ModTile>("ElderwoodBeam").Type; tile.HasTile = true; break;
                         case 9: tile.TileType = TileID.LivingWood; tile.HasTile = true; break;
                         case a: WorldGen.PlaceTile(SnowVilagePositionX + X, SnowVilagePositionY - Y, TileID.Platforms, false, false, -1, 19); break;
                         case b: tile.TileType = Roa.Find<ModTile>("ElderwoodPlatform").Type; tile.HasTile = true; break;
-                        case c: tile.TileType = (ushort)ModContent.TileType<PurpleBrickPlatform>(); tile.HasTile = true; break;
+                        case c: tile.TileType = (ushort)TileType<PurpleBrickPlatform>(); tile.HasTile = true; break;
                         case d: tile.TileType = TileID.WoodBlock; tile.HasTile = true; break;
                         case e: tile.TileType = Roa.Find<ModTile>("Elderwood").Type; tile.HasTile = true; break;
-                        case f: tile.TileType = (ushort)ModContent.TileType<TinRoof>(); tile.HasTile = true; break;
+                        case f: tile.TileType = (ushort)TileType<TinRoof>(); tile.HasTile = true; break;
                         case g: tile.TileType = TileID.Chain; tile.HasTile = true; break;
                         case h: tile.TileType = TileID.SilverBrick; tile.HasTile = true; break;
                         case i: tile.TileType = TileID.Diamond; tile.HasTile = true; break;
                         case j: WorldGen.PlaceTile(SnowVilagePositionX + X, SnowVilagePositionY - Y, TileID.Platforms, false, false, -1, 6); break;
                         case k: tile.TileType = TileID.AmberStoneBlock; tile.HasTile = true; break;
-                        case l: tile.TileType = (ushort)ModContent.TileType<Zircon>(); tile.HasTile = true; break;
+                        case l: tile.TileType = (ushort)TileType<Zircon>(); tile.HasTile = true; break;
                     }
                     switch (SnowVilageWalls[Y, X]) {
                         case 0: WorldGen.KillWall(X, Y); break;
@@ -214,7 +214,7 @@ namespace Synergia.Common.ModSystems.WorldGens
                         case 9: tile.WallType = WallID.Planked; break;
                         case a: tile.WallType = WallID.Glass; break;
                         case b: tile.WallType = WallID.IceBrick; break;
-                        case c: tile.WallType = (ushort)ModContent.WallType<ResistantWoodFence>(); break;
+                        case c: tile.WallType = (ushort)WallType<ResistantWoodFence>(); break;
                         case d: tile.WallType = tile.WallType = Roa.Find<ModWall>("ElderwoodWall").Type; break;
                         case e: tile.WallType = WallID.Cloud; break;
                         case f: tile.WallType = WallID.TinBrick; break;
@@ -230,30 +230,33 @@ namespace Synergia.Common.ModSystems.WorldGens
                     if (SnowVilageTiles[Y, X] != 0) {
                         VilageTiles.Add(new Vector2(SnowVilagePositionX + X, SnowVilagePositionY - Y));
                     }
+                    if (SnowVilageWalls[Y, X] != 0) {
+                        VilageWalles.Add(new Vector2(SnowVilagePositionX + X, SnowVilagePositionY - Y));
+                    }
                 }
             }
 
-            WorldGen.Place2x2(SnowVilagePositionX + 96, SnowVilagePositionY - 8, (ushort)ModContent.TileType<FermentingBarrel>(), 0);
-            WorldGen.Place3x2(SnowVilagePositionX + 88, SnowVilagePositionY - 9, (ushort)ModContent.TileType<Oven>());
+            WorldGen.Place2x2(SnowVilagePositionX + 96, SnowVilagePositionY - 8, (ushort)TileType<FermentingBarrel>(), 0);
+            WorldGen.Place3x2(SnowVilagePositionX + 88, SnowVilagePositionY - 9, (ushort)TileType<Oven>());
 
-            WorldGen.PlaceObject(SnowVilagePositionX + 86, SnowVilagePositionY - 9, (ushort)ModContent.TileType<SmoothMarblePillarBroken>());
-            WorldGen.PlaceObject(SnowVilagePositionX + 80, SnowVilagePositionY - 9, (ushort)ModContent.TileType<ResistantWoodTable>());
+            WorldGen.PlaceObject(SnowVilagePositionX + 86, SnowVilagePositionY - 9, (ushort)TileType<SmoothMarblePillarBroken>());
+            WorldGen.PlaceObject(SnowVilagePositionX + 80, SnowVilagePositionY - 9, (ushort)TileType<ResistantWoodTable>());
             WorldGen.PlaceObject(SnowVilagePositionX + 66, SnowVilagePositionY - 9, Valhalla.Find<ModTile>("Millstone").Type);
             WorldGen.PlaceObject(SnowVilagePositionX + 5, SnowVilagePositionY - 10, TileID.Statues, mute: false, 32);
             WorldGen.PlaceObject(SnowVilagePositionX + 21, SnowVilagePositionY - 11, TileID.Statues);
             WorldGen.PlaceObject(SnowVilagePositionX + 62, SnowVilagePositionY - 10, TileID.Lampposts);
             WorldGen.PlaceObject(SnowVilagePositionX + 29, SnowVilagePositionY - 10, TileID.Lampposts);
             WorldGen.PlaceObject(SnowVilagePositionX + 56, SnowVilagePositionY - 10, TileID.WaterFountain, mute: false, 3);
-            WorldGen.PlaceObject(SnowVilagePositionX + 27, SnowVilagePositionY - 11, (ushort)ModContent.TileType<Avalon.Tiles.NickelAnvil>());
-            WorldGen.PlaceObject(SnowVilagePositionX + 18, SnowVilagePositionY - 11, (ushort)ModContent.TileType<Workbench>());
+            WorldGen.PlaceObject(SnowVilagePositionX + 27, SnowVilagePositionY - 11, (ushort)TileType<Avalon.Tiles.NickelAnvil>());
+            WorldGen.PlaceObject(SnowVilagePositionX + 18, SnowVilagePositionY - 11, (ushort)TileType<Workbench>());
             WorldGen.PlaceObject(SnowVilagePositionX + 16, SnowVilagePositionY - 11, TileID.FishingCrate, mute: false, 18);
-            WorldGen.PlaceObject(SnowVilagePositionX + 9, SnowVilagePositionY - 11, (ushort)ModContent.TileType<LaminatedTable>());
-            WorldGen.PlaceObject(SnowVilagePositionX + 11, SnowVilagePositionY - 11, (ushort)ModContent.TileType<Chair>(), mute: false, 2);
-            WorldGen.PlaceObject(SnowVilagePositionX + 13, SnowVilagePositionY - 11, (ushort)ModContent.TileType<LaminatedBed>());
+            WorldGen.PlaceObject(SnowVilagePositionX + 9, SnowVilagePositionY - 11, (ushort)TileType<LaminatedTable>());
+            WorldGen.PlaceObject(SnowVilagePositionX + 11, SnowVilagePositionY - 11, (ushort)TileType<Chair>(), mute: false, 2);
+            WorldGen.PlaceObject(SnowVilagePositionX + 13, SnowVilagePositionY - 11, (ushort)TileType<LaminatedBed>());
             WorldGen.PlaceObject(SnowVilagePositionX + 38, SnowVilagePositionY - 11, TileID.Lamps);
             WorldGen.PlaceObject(SnowVilagePositionX + 40, SnowVilagePositionY - 11, TileID.Sawmill);
             WorldGen.PlaceObject(SnowVilagePositionX + 42, SnowVilagePositionY - 11, TileID.WorkBenches, mute: false, 43);
-            WorldGen.PlaceObject(SnowVilagePositionX + 45, SnowVilagePositionY - 11, (ushort)ModContent.TileType<ResistantWoodClock>());
+            WorldGen.PlaceObject(SnowVilagePositionX + 45, SnowVilagePositionY - 11, (ushort)TileType<ResistantWoodClock>());
             WorldGen.PlaceObject(SnowVilagePositionX + 49, SnowVilagePositionY - 11, TileID.Fireplace);
             WorldGen.PlaceObject(SnowVilagePositionX + 90, SnowVilagePositionY - 9, TileID.Lamps);
             WorldGen.PlaceObject(SnowVilagePositionX + 92, SnowVilagePositionY - 11, TileID.ClosedDoor, mute: false, 30);
@@ -268,7 +271,7 @@ namespace Synergia.Common.ModSystems.WorldGens
             WorldGen.PlaceObject(SnowVilagePositionX + 12, SnowVilagePositionY - 16, TileID.Banners, false, 2);
             WorldGen.PlaceObject(SnowVilagePositionX + 89, SnowVilagePositionY - 12, TileID.LightningBuginaBottle);
 
-            WorldGen.Place6x4Wall(SnowVilagePositionX + 15, SnowVilagePositionY - 14, (ushort)ModContent.TileType<RiseOfTheOldGod>(), 0);
+            WorldGen.Place6x4Wall(SnowVilagePositionX + 15, SnowVilagePositionY - 14, (ushort)TileType<RiseOfTheOldGod>(), 0);
 
             WorldGen.Place1x1(SnowVilagePositionX + 37, SnowVilagePositionY - 11, TileID.ClayPot, 0);
             WorldGen.Place1x1(SnowVilagePositionX + 7, SnowVilagePositionY - 13, TileID.Candles, 0);
@@ -290,10 +293,10 @@ namespace Synergia.Common.ModSystems.WorldGens
             WorldGen.Place2x2(SnowVilagePositionX + 88, SnowVilagePositionY - 14, TileID.UlyssesButterflyJar, 0);
             WorldGen.Place2x2(SnowVilagePositionX + 90, SnowVilagePositionY - 14, TileID.Heart, 0);
             WorldGen.Place2x2(SnowVilagePositionX + 49, SnowVilagePositionY - 13, TileID.FishBowl, 0);
-            WorldGen.Place2x2(SnowVilagePositionX + 84, SnowVilagePositionY - 11, (ushort)ModContent.TileType<OtherworldlyMusicBox2>(), 0);
+            WorldGen.Place2x2(SnowVilagePositionX + 84, SnowVilagePositionY - 11, (ushort)TileType<OtherworldlyMusicBox2>(), 0);
 
             WorldGen.Place3x2(SnowVilagePositionX + 25, SnowVilagePositionY - 11, TileID.Blendomatic, 0);
-            WorldGen.Place3x3(SnowVilagePositionX + 85, SnowVilagePositionY - 16, (ushort)ModContent.TileType<ZincChandelier>(), 0);
+            WorldGen.Place3x3(SnowVilagePositionX + 85, SnowVilagePositionY - 16, (ushort)TileType<ZincChandelier>(), 0);
 
             WorldGen.PlaceBanner(SnowVilagePositionX + 91, SnowVilagePositionY - 16, TileID.Banners, 124);
             WorldGen.PlaceBanner(SnowVilagePositionX + 83, SnowVilagePositionY - 16, TileID.Banners, 126);
@@ -366,7 +369,7 @@ namespace Synergia.Common.ModSystems.WorldGens
             WorldGen.PlaceTile(SnowVilagePositionX + 54, SnowVilagePositionY + 1, TileID.SnowBlock);
             WorldGen.PlaceTile(SnowVilagePositionX + 53, SnowVilagePositionY + 1, TileID.SnowBlock);
 
-            int BarrelIndex = WorldGen.PlaceChest(SnowVilagePositionX + 33, SnowVilagePositionY - 9, (ushort)ModContent.TileType<Chest>(), false, 2);
+            int BarrelIndex = WorldGen.PlaceChest(SnowVilagePositionX + 33, SnowVilagePositionY - 9, (ushort)TileType<Chest>(), false, 2);
             if (BarrelIndex != -1) { GenerateBarrelLoot(Main.chest[BarrelIndex].item, 0); }
 
             return true;
@@ -376,7 +379,7 @@ namespace Synergia.Common.ModSystems.WorldGens
             WorldHelper.RandomLootInCoutainer(ChestInventory, ref BarrelIndex, 1, 1, ItemID.IceBlade, ItemID.IceBoomerang, ItemID.Snowball);
             WorldHelper.RandomLootInCoutainer(ChestInventory, ref BarrelIndex, 1, 1, ItemID.BlizzardinaBottle, ItemID.FlurryBoots, ItemID.IceSkates);
             WorldHelper.LootInContainers(ChestInventory, ref BarrelIndex, ItemID.Fish, 1, 1);
-            WorldHelper.RandomLootInCoutainer(ChestInventory, ref BarrelIndex, 3, 7, ItemID.Topaz, ItemID.Amethyst, ItemID.Sapphire, ItemID.Amber, ItemID.Emerald, ItemID.Ruby, ItemID.Diamond, ModContent.ItemType<Avalon.Items.Material.Ores.Tourmaline>(), ModContent.ItemType<Avalon.Items.Material.Ores.Zircon>());
+            WorldHelper.RandomLootInCoutainer(ChestInventory, ref BarrelIndex, 3, 7, ItemID.Topaz, ItemID.Amethyst, ItemID.Sapphire, ItemID.Amber, ItemID.Emerald, ItemID.Ruby, ItemID.Diamond, ItemType<Avalon.Items.Material.Ores.Tourmaline>(), ItemType<Avalon.Items.Material.Ores.Zircon>());
             WorldHelper.IfOreTireLoot(ChestInventory, ref BarrelIndex, 4, ItemID.GoldBar, ItemID.PlatinumBar, 5, 15);
             WorldHelper.LootInContainers(ChestInventory, ref BarrelIndex, ItemID.FlinxFur, 5, 10);
             WorldHelper.LootInContainers(ChestInventory, ref BarrelIndex, ItemID.HealingPotion, 3, 5);

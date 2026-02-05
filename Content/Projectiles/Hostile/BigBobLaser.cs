@@ -70,7 +70,7 @@ namespace Synergia.Content.Projectiles.Hostile
             }
         }
 
-        public override void Kill(int timeLeft)
+        public override void OnKill(int timeLeft)
         {
             SoundEngine.PlaySound(SoundID.NPCDeath1, Projectile.position);
 

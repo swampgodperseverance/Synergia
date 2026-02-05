@@ -1,4 +1,5 @@
-﻿using Synergia.Common.GlobalItems.Changes;
+﻿// Code by 𝒜𝑒𝓇𝒾𝓈
+using Synergia.Common.GlobalItems.Changes;
 using Terraria;
 
 namespace Synergia.Common.ModSystems.RecipeSystem.ChangesRecipe.AvalonsChanges {

@@ -546,16 +546,16 @@ public class GenerationArenasInHell : BaseWorldGens {
 
                 switch (HellArenaTiles[y, x]) {
                     case 0: break;
-                    case 1: tile.TileType = (ushort)ModContent.TileType<Sinstone>(); tile.HasTile = true; break;
+                    case 1: tile.TileType = (ushort)TileType<Sinstone>(); tile.HasTile = true; break;
                     case 2: tile.TileType = Avalon.Find<ModTile>("BlastedStone").Type; tile.HasTile = true; break;
                     case 3: tile.TileType = Avalon.Find<ModTile>("BlastedStone").Type; tile.HasTile = true; break;
                     case 4: tile.TileType = Avalon.Find<ModTile>("ResistantWood").Type; tile.HasTile = true; break;
-                    case 5: tile.TileType = (ushort)ModContent.TileType<SinstoneMagma>(); tile.HasTile = true; break;
+                    case 5: tile.TileType = (ushort)TileType<SinstoneMagma>(); tile.HasTile = true; break;
                     case 6: tile.TileType = TileID.Ash; tile.HasTile = true; break;
                     case 7: tile.TileType = TileID.Hellstone; tile.HasTile = true; break;
                     case 8: tile.TileType = Roa.Find<ModTile>("BackwoodsStoneBrick").Type; tile.HasTile = true; tile.IsActuated = true; break;
                     case 9: tile.TileType = Avalon.Find<ModTile>("ResistantWood").Type; tile.HasTile = true; tile.IsActuated = true; break;
-                    case a: tile.TileType = (ushort)ModContent.TileType<SinstoneMagma>(); tile.HasTile = true; tile.IsActuated = true; break;
+                    case a: tile.TileType = (ushort)TileType<SinstoneMagma>(); tile.HasTile = true; tile.IsActuated = true; break;
                     case b: tile.TileType = TileID.AshGrass; tile.HasTile = true; break;
                     case c: tile.TileType = TileID.AshVines; tile.HasTile = true; break;
                     case d: tile.TileType = TileID.AshPlants; tile.HasTile = true; break;
@@ -577,7 +577,10 @@ public class GenerationArenasInHell : BaseWorldGens {
                     case 1: tile.LiquidType = LiquidID.Lava; tile.LiquidAmount = 255; break;
                 }
                 if (HellArenaTiles[y, x] != 0) {
-                    ArenaTiles.Add(new Vector2(HellArenaPositionX - 198 + x, HellArenaPositionY - y));
+                    ArenaTiles.Add(new Vector2(HellArenaPositionX - 198 + x, worldY));
+                }
+                if (HellArenaWalls[y, x] != 0) {
+                    ArenaWalles.Add(new Vector2(HellArenaPositionX - 198 + x, worldY));
                 }
             }
         }

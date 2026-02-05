@@ -1,4 +1,5 @@
-﻿using Terraria;
+﻿// Code by 𝒜𝑒𝓇𝒾𝓈
+using Terraria;
 
 namespace Synergia.Common.GlobalItems.Changes {
     public abstract class BaseItem : GlobalItem {

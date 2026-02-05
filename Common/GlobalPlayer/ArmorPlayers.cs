@@ -1,9 +1,8 @@
-﻿using Synergia.Content.Buffs.Debuff;
+﻿using ParticleLibrary.Utilities;
+using Synergia.Content.Buffs.Debuff;
 using Synergia.Helpers;
 using Terraria;
 using Terraria.ID;
-using Microsoft.Xna.Framework;
-using ParticleLibrary.Utilities;
 
 namespace Synergia.Common.GlobalPlayer {
     public class ArmorPlayers : ModPlayer {

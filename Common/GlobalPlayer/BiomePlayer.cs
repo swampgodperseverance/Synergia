@@ -1,8 +1,4 @@
 ﻿// Code by 𝒜𝑒𝓇𝒾𝓈
-using Synergia.Content.NPCs;
-using static Synergia.Common.ModSystems.WorldGens.BaseWorldGens;
-using static Synergia.Helpers.SynegiaHelper;
-
 namespace Synergia.Common.GlobalPlayer
 {
     public class BiomePlayer : ModPlayer
@@ -18,20 +14,5 @@ namespace Synergia.Common.GlobalPlayer
             villageBiome = false;
             arenaBiome = false;
         }
-        public override void ResetEffects() {
-            InSnowVillage = false;
-        }
-        public void Arena(bool active) {
-            // тут твой код если персонаж в арене
-            SpawnNPC((HellArenaPositionX - 198 + 110) * 16, (HellArenaPositionY - 28) * 16, NPCType<HellheartMonolith>());
-            arenaBiome = active;
-        }
-        public void Village(bool active) {
-            villageBiome = active;
-            // тут твой код если персонаж в деревни
-        }        
-        public void Lake(bool active) {
-            lakeBiome = active;
-        }
-    }                                                                                                                       
+    }                                                                                  
 }

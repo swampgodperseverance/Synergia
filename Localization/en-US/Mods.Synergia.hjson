@@ -1071,6 +1071,26 @@ Items: {
 		DisplayName: Sludge Mountain
 		Tooltip: ""
 	}
+
+	Gutshelmet: {
+		DisplayName: Gutshelmet
+		Tooltip: ""
+	}
+
+	Gutslegs: {
+		DisplayName: Gutslegs
+		Tooltip: ""
+	}
+
+	Gutsplate: {
+		DisplayName: Gutsplate
+		Tooltip: ""
+	}
+
+	ThunderniteHamaxe: {
+		DisplayName: Thundernite Hamaxe
+		Tooltip: ""
+	}
 }
 
 Projectiles: {
@@ -1387,6 +1407,8 @@ Projectiles: {
 	NaturalSelection2.DisplayName: Natural Selection2
 	SunJavelin2.DisplayName: Sun Javelin2
 	SunJavelinProj.DisplayName: Sun Javelin Proj
+	Gut.DisplayName: Gut
+	GutsJew.DisplayName: Guts Jew
 }
 
 Buffs: {

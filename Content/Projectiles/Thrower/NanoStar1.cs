@@ -177,7 +177,7 @@ namespace Synergia.Content.Projectiles.Thrower
             Projectile.Kill();
         }
 
-        public override void Kill(int timeLeft)
+        public override void OnKill(int timeLeft)
         {
             SoundEngine.PlaySound(SoundID.Dig, Projectile.position);
 

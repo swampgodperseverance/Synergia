@@ -1,7 +1,6 @@
 ﻿using Avalon.Items.Accessories.Hardmode;
 using Bismuth.Content.Items.Accessories;
 using Terraria;
-using Terraria.ID;
 using ValhallaMod.Items.Weapons.Javelin;
 
 namespace Synergia.Common.GlobalItems.Set {

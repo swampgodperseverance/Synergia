@@ -2,5 +2,6 @@
 global using Microsoft.Xna.Framework.Graphics;
 global using Terraria.ModLoader;
 global using static Terraria.ModLoader.ModContent;
+global using static Synergia.Reassures.Reassures;
 
 namespace Synergia;

@@ -1,4 +1,5 @@
-﻿using Bismuth.Content.Items.Armor;
+﻿// Code by 𝒜𝑒𝓇𝒾𝓈
+using Bismuth.Content.Items.Armor;
 using Bismuth.Content.Items.Tools;
 using Bismuth.Content.Items.Weapons.Melee;
 using Bismuth.Content.Items.Weapons.Ranged;

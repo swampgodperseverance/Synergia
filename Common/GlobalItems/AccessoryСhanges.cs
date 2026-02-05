@@ -1,4 +1,6 @@
+using Synergia.Common.GlobalPlayer;
 using Terraria;
+using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace Synergia.Common.GlobalItems

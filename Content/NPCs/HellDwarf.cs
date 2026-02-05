@@ -1,4 +1,5 @@
-﻿using Terraria;
+﻿// Code by 𝒜𝑒𝓇𝒾𝓈
+using Terraria;
 using Terraria.GameContent.UI;
 using Terraria.ID;
 using Terraria.Localization;

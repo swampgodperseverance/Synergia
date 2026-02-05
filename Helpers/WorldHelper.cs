@@ -1,4 +1,4 @@
-﻿using Microsoft.Xna.Framework;
+﻿// Code by 𝒜𝑒𝓇𝒾𝓈
 using System;
 using System.Collections.Generic;
 using Terraria;
@@ -8,8 +8,7 @@ namespace Synergia.Helpers
 {
     public class WorldHelper
     {
-        public static void Cleaning(int startX, int startY, int endX, int endY, params int[] type)
-        {
+        public static void Cleaning(int startX, int startY, int endX, int endY, params int[] type) {
             int minX = Math.Min(startX, endX);
             int maxX = Math.Max(startX, endX);
             int minY = Math.Min(startY, endY);
@@ -17,12 +16,9 @@ namespace Synergia.Helpers
 
             HashSet<int> tileTypesToDestroy = [.. type];
 
-            for (int x = minX; x <= maxX; x++)
-            {
-                for (int y = minY; y <= maxY; y++)
-                {
-                    if (WorldGen.InWorld(x, y, 10) && Main.tile[x, y].HasTile && tileTypesToDestroy.Contains(Main.tile[x, y].TileType))
-                    {
+            for (int x = minX; x <= maxX; x++) {
+                for (int y = minY; y <= maxY; y++) {
+                    if (WorldGen.InWorld(x, y, 10) && Main.tile[x, y].HasTile && tileTypesToDestroy.Contains(Main.tile[x, y].TileType)) {
                         Tile tile = Main.tile[x, y];
                         tile.WallType = WallID.None;
                         tile.HasTile = false;
@@ -45,23 +41,25 @@ namespace Synergia.Helpers
                 }
             }
         }
-        /// <summary> Проверяет, находится ли игрок внутри прямоугольной области. Если находится — опционально добавляет бафф.</summary>
-        public static bool CheakBiome(Player player, int width, int height, int left, int top, int buff = 1)
-        {
+        public static bool CheckBiome(Player player, int width, int height, int left, int top, int buff = 1) {
             Point pos = player.Center.ToTileCoordinates();
 
             int right = left + width;
             int bottom = top + height;
 
-            if (pos.X >= left && pos.X < right && pos.Y >= top && pos.Y < bottom)
-            {
+            if (pos.X >= left && pos.X < right && pos.Y >= top && pos.Y < bottom) {
                 if (buff != 1) player.AddBuff(buff, 3);
                 return true;
             }
 
             return false;
         }
-        /// <param name="style">Посмотри на вики. Начало идет айди а затем стиль</param> <param name="chance">Базово 5</param> <param name="item">ну тут и так логично</param>
+        public static bool CheckBiomeTile(int x, int y, int width, int height, int left, int top) {
+            int right = left + width;
+            int bottom = top + height;
+
+            return x >= left && x < right && y >= top && y < bottom;
+        }
         public static void AddContainersLoot(int style, int chance, int item, int min = 0, int max = 0) {
             for (int chestIndex = 0; chestIndex < 1000; chestIndex++) {
                 Chest chest = Main.chest[chestIndex];
@@ -109,19 +107,16 @@ namespace Synergia.Helpers
                 }
             }
         }
-        /// <summary> Если нужно добавить один предмет</summary>
         public static void LootInContainers(Item[] ChestInventory, ref int Index, int Item, int Min = 1, int Max = 1) {
             ChestInventory[Index].SetDefaults(Item); Random(ChestInventory, ref Index, Min, Max); Index++;
         }
-        /// <summary> Если нужно добавить один случаеный предмет из списка ну например zenith, wood</summary>
         public static void RandomLootInCoutainer(Item[] ChestInventory, ref int Index, int Min = 1, int Max = 1, params int[] Items) { 
             ChestInventory[Index].SetDefaults(Utils.SelectRandom(WorldGen.genRand, Items));
             Random(ChestInventory, ref Index, Min, Max); Index++;
         }
-        /// <summary>  </summary>
         /// <param name="Tire">1:Copper, 2:Iron, 3:Silver, 4:Gold, 5: Copper </param>
         public static void IfOreTireLoot(Item[] ChestInventory, ref int Index, int Tire, int IfTrue, int Else, int Min = 1, int Max = 1) {
-            bool ThisWoroldHasOre = Tire switch
+            bool ThisWorldHasOre = Tire switch
             {
                 1 => WorldGen.SavedOreTiers.Copper == TileID.Copper,
                 2 => WorldGen.SavedOreTiers.Iron == TileID.Iron,
@@ -130,17 +125,12 @@ namespace Synergia.Helpers
                 _ => WorldGen.SavedOreTiers.Copper == TileID.Copper,
             };
 
-            int itemToGive;
-
-            if (ThisWoroldHasOre) itemToGive = IfTrue;
-            else itemToGive = Else;
+            int itemToGive = ThisWorldHasOre ? IfTrue : Else;
 
             ChestInventory[Index].SetDefaults(itemToGive); Random(ChestInventory, ref Index, Min, Max); Index++;
         }
         static void Random(Item[] ChestInventory, ref int Index, int Min, int Max) {
-            int a;
-            if (Max != 0) { a = 1; }
-            else { a = 0; }
+            int a = Max != 0 ? 1 : 0;
             ChestInventory[Index].stack = Main.rand.Next(Min, Max + a);
         }
     }

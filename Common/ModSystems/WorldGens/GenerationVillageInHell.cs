@@ -492,22 +492,22 @@ public class GenerationVillageInHell : BaseWorldGens {
 
                 switch (hellVillageTiles[y, x]) {
                     case 0: break;
-                    case 1: tile.TileType = (ushort)ModContent.TileType<Sinstone>(); tile.HasTile = true; break;
+                    case 1: tile.TileType = (ushort)TileType<Sinstone>(); tile.HasTile = true; break;
                     case 2: tile.TileType = TileID.Ash; tile.HasTile = true; break;
                     case 3: tile.TileType = TileID.Hellstone; tile.HasTile = true; break;
                     case 4: tile.TileType = Roa.Find<ModTile>("BackwoodsStone").Type; tile.HasTile = true; break;
                     case 5: tile.TileType = Ava.Find<ModTile>("BlastedStone").Type; tile.HasTile = true; break;
-                    case 6: tile.TileType = (ushort)ModContent.TileType<SinstoneMagma>(); tile.HasTile = true; break;
+                    case 6: tile.TileType = (ushort)TileType<SinstoneMagma>(); tile.HasTile = true; break;
                     case 7: tile.TileType = Ava.Find<ModTile>("CaesiumOre").Type; tile.HasTile = true; break;
                     case 8: tile.TileType = Roa.Find<ModTile>("BackwoodsStoneBrick").Type; tile.HasTile = true; break;
                     case 9: tile.TileType = TileID.HellstoneBrick; tile.HasTile = true; break;
                     case a: tile.TileType = Ava.Find<ModTile>("ImperviousBrick").Type; tile.HasTile = true; break;
-                    case b: tile.TileType = (ushort)ModContent.TileType<TarBrick>(); tile.HasTile = true; break;
-                    case c: tile.TileType = (ushort)ModContent.TileType<SinstoneBrick>(); tile.HasTile = true; break;
+                    case b: tile.TileType = (ushort)TileType<TarBrick>(); tile.HasTile = true; break;
+                    case c: tile.TileType = (ushort)TileType<SinstoneBrick>(); tile.HasTile = true; break;
                     case d: tile.TileType = TileID.AshWood; tile.HasTile = true; break;
                     case e: tile.TileType = Ava.Find<ModTile>("ResistantWood").Type; tile.HasTile = true; break;
                     case f: WorldGen.PlaceTile(HellVillageX - 280 + x, HellVillageY - y, 19); break;
-                    case g: tile.TileType = (ushort)ModContent.TileType<HellstoneRoof>(); tile.HasTile = true; break;
+                    case g: tile.TileType = (ushort)TileType<HellstoneRoof>(); tile.HasTile = true; break;
                 }
                 switch (hellVillageaWalls[y, x]) {
                     case 0: tile.WallType = WallID.None; break;
@@ -516,9 +516,9 @@ public class GenerationVillageInHell : BaseWorldGens {
                     case 3: tile.WallType = Roa.Find<ModWall>("GrimstoneBrickWall").Type; break;
                     case 4: tile.WallType = WallID.HellstoneBrick; break;
                     case 5: tile.WallType = WallID.AshWoodFence; break;
-                    case 6: tile.WallType = (ushort)ModContent.WallType<TarBrickWall>(); break;
+                    case 6: tile.WallType = (ushort)WallType<TarBrickWall>(); break;
                     case 7: tile.WallType = Ava.Find<ModWall>("ImperviousBrickWall").Type; break;
-                    case 8: tile.WallType = (ushort)ModContent.WallType<SinstoneBrickWall>(); break;
+                    case 8: tile.WallType = (ushort)WallType<SinstoneBrickWall>(); break;
                     case 9: tile.WallType = WallID.GrayBrick; break;
                     case a: tile.WallType = Roa.Find<ModWall>("GrimstoneWall").Type; break;
                     case b: tile.WallType = WallID.Lava3Echo; break;
@@ -543,7 +543,10 @@ public class GenerationVillageInHell : BaseWorldGens {
                     case 1: tile.LiquidType = LiquidID.Lava; tile.LiquidAmount = 255; break;
                 }
                 if (hellVillageTiles[y, x] != 0) {
-                    HellVillageTilesVector.Add(new Vector2(HellVillageX - 280 + x, HellVillageY - y));
+                    HellVillageTilesVector.Add(new Vector2(worldX, worldY));
+                }
+                if (hellVillageaWalls[y, x] != 0) {
+                    HellVillageWallesVector.Add(new Vector2(worldX, worldY));
                 }
             }
         }
@@ -556,7 +559,7 @@ public class GenerationVillageInHell : BaseWorldGens {
         ushort Lamp = Ava.Find<ModTile>("ResistantWoodLantern").Type;
         ushort candle = Ava.Find<ModTile>("ResistantWoodCandelabra").Type;
 
-        NPC.NewNPC(new EntitySource_WorldGen(), (pos + 149) * 16, (HellVillageY - 72) * 16, ModContent.NPCType<HellDwarf>(), 0, 0f, 0f, 0f, 0f, 255);
+        NPC.NewNPC(new EntitySource_WorldGen(), (pos + 149) * 16, (HellVillageY - 72) * 16, NPCType<HellDwarf>(), 0, 0f, 0f, 0f, 0f, 255);
 
         WorldGen.PlaceObject(pos + 112, HellVillageY - 67, TileID.ClosedDoor,       false, 44);
         WorldGen.PlaceObject(pos + 139, HellVillageY - 71, TileID.ClosedDoor,       false, 48);
