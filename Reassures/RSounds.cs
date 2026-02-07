@@ -21,6 +21,7 @@ namespace Synergia.Reassures {
             public static readonly SoundStyle Impulse = new("Synergia/Assets/Sounds/Impulse");
             public static readonly SoundStyle Watersound = new("Synergia/Assets/Sounds/Watersound");
             public static readonly SoundStyle SilentPunch = new("Synergia/Assets/Sounds/SilentPunch");
+            public static readonly SoundStyle BigBoom = new("Synergia/Assets/Sounds/BigBoom");
         }
     }
     public class RegisterNewSongPatch : ILoadable {

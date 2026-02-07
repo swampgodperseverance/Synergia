@@ -16,10 +16,15 @@ namespace Synergia.Content.Projectiles.RangedProjectiles
     public class EnferArrow : ModProjectile
     {
         private PrimDrawer trailDrawer;
+        private bool hasLooped = false;
+        private bool isLooping = false;
+        private int loopTick = 0;
+        private int loopDuration;
+        private float loopStrength;
 
         public override void SetStaticDefaults()
         {
-            ProjectileID.Sets.TrailCacheLength[Projectile.type] = 7;
+            ProjectileID.Sets.TrailCacheLength[Projectile.type] = 13;
             ProjectileID.Sets.TrailingMode[Projectile.type] = 0;
         }
 
@@ -46,12 +51,8 @@ namespace Synergia.Content.Projectiles.RangedProjectiles
             foreach (var key in shaderKeys)
             {
                 if (GameShaders.Misc.TryGetValue(key, out lavaShader))
-                {
                     break;
-                }
             }
-
-            // Настройка параметров шейдера
             if (lavaShader != null)
             {
                 lavaShader.UseImage1("Images/Misc/noise");
@@ -59,7 +60,6 @@ namespace Synergia.Content.Projectiles.RangedProjectiles
                 lavaShader.UseColor(Color.OrangeRed);
                 lavaShader.UseSecondaryColor(Color.Yellow);
             }
-
             trailDrawer = new PrimDrawer(
                 widthFunc: (float t) => MathHelper.Lerp(3.3f, 0.7f, t),
                 colorFunc: (float t) =>
@@ -73,14 +73,42 @@ namespace Synergia.Content.Projectiles.RangedProjectiles
                 },
                 shader: lavaShader
             );
-        } 
+        }
 
         public override void AI()
         {
             Projectile.velocity.Y *= 0.99f;
             Projectile.rotation = Projectile.velocity.ToRotation() + MathHelper.PiOver2;
 
-            if (Main.rand.NextBool(4))
+            if (!hasLooped && !isLooping)
+            {
+                if (Main.rand.NextBool(140))
+                {
+                    isLooping = true;
+                    loopTick = 0;
+                    loopDuration = Main.rand.Next(14, 24);
+                    loopStrength = MathHelper.ToRadians(Main.rand.NextFloat(9.5f, 13f));
+                }
+            }
+
+            if (isLooping)
+            {
+                float direction = Main.rand.NextBool() ? 1f : -1f;
+                Projectile.velocity = Projectile.velocity.RotatedBy(loopStrength * direction);
+                loopTick++;
+                if (loopTick >= loopDuration)
+                {
+                    isLooping = false;
+                    hasLooped = true;
+                }
+            }
+
+            if (!isLooping)
+            {
+                Projectile.velocity = Projectile.velocity.RotatedBy(Main.rand.NextFloat(-0.028f, 0.028f));
+            }
+
+            if (Main.rand.NextBool(3))
             {
                 int dust = Dust.NewDust(
                     Projectile.Center - new Vector2(4f),
@@ -104,7 +132,6 @@ namespace Synergia.Content.Projectiles.RangedProjectiles
         public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
         {
             target.AddBuff(BuffID.OnFire3, 240);
-
             for (int i = 0; i < Main.rand.Next(1, 3); i++)
             {
                 Vector2 speed = new Vector2(
@@ -141,7 +168,7 @@ namespace Synergia.Content.Projectiles.RangedProjectiles
                 );
                 Main.dust[dust].noGravity = true;
             }
-             for (int i = 0; i < Main.rand.Next(2, 4); i++)
+            for (int i = 0; i < Main.rand.Next(2, 4); i++)
             {
                 Vector2 speed = new Vector2(
                     Main.rand.NextFloat(-2f, 2f),
@@ -167,17 +194,14 @@ namespace Synergia.Content.Projectiles.RangedProjectiles
                     .Where(v => v != Vector2.Zero)
                     .Select(v => v + Projectile.Size / 2f)
                     .ToList();
-
                 if (points.Count > 1)
                 {
                     Vector2 offset = -Main.screenPosition;
                     trailDrawer.DrawPrims(points, offset, totalTrailPoints: 40);
                 }
             }
-
             Texture2D texture = TextureAssets.Projectile[Projectile.type].Value;
             Vector2 drawPos = Projectile.Center - Main.screenPosition;
-
             Main.EntitySpriteDraw(
                 texture,
                 drawPos,
@@ -189,7 +213,6 @@ namespace Synergia.Content.Projectiles.RangedProjectiles
                 SpriteEffects.None,
                 0
             );
-
             return false;
         }
     }
