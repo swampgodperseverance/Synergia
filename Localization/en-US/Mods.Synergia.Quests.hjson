@@ -88,3 +88,68 @@ Librarian: {
 
 Dwarf2.QuestName: ""
 BaseButton: Quest
+
+HellDwarf: {
+	QuestName: Bottled Lava
+	QuestDescription: Give Bottled Lava for Dwarf in Hell.
+	QuestStage: Collect Bottled Lava
+	QuestProgress0: Thanks for the Bottled Lava!
+	QuestProgress1: I cant even believe that I'm giving tasks to someone again, and in such a terrible place too. I need bottled lava
+	QuestProgress2: You Can't get it? No problem.
+	QuestButton: Accept
+	QuestButtonGive: Give Bottled
+	QuestCompleted: Exactly, thank you somuch. There is some magma chunks for you
+	QuestCompletedFalse: You don't have an Bottled Lava
+}
+
+HunterQuest_Frist: {
+	QuestName: Downed Lothor
+	QuestDescription: Give Lothor Soul for Dwarf in Hell.
+	QuestStage: Collect Lothor Soul
+	QuestProgress0: Thanks for the Lothor Soul!
+	QuestProgress1: Hi again. Have you even heard something about the Druid who became a monster? I would like to see his skull on my wall. Bring this if you're not a weakling
+	QuestProgress2: Don't think you can do it that easily.
+	QuestButton: Accept
+	QuestButtonGive: Give Soul
+	QuestCompleted: So you beat it... Unbelievable I thought you was dead. Glad to see you, there is your reward
+	QuestCompletedFalse: You don't have an Lothor Soul
+}
+
+DwarfQuest_Frist: {
+	QuestName: Downed Evil Snow Men
+	QuestDescription: Give Soul of Ice for Dwarf in tundra.
+	QuestStage: Collect Soul of Ice
+	QuestProgress0: Thanks for the Soul of Ice!
+	QuestProgress1: Do you know something about snow legion? These are the good snowmen of the past who were swallowed by the darkness, kill their leader
+	QuestProgress2: Be prepared. They attack in droves.
+	QuestButton: Accept
+	QuestButtonGive: Give Soul
+	QuestCompleted: Finally end of the snowmen dynasty. There was tons of problems from it. Take this
+	QuestCompletedFalse: You don't have an Soul of Ice
+}
+
+ArtistQuest_Frist: {
+	QuestName: Flaming Fabric
+	QuestDescription: Give Flaming Fabric for Artist
+	QuestStage: Collect Flaming Fabric
+	QuestProgress0: Thanks for the Soul of Ice!
+	QuestProgress1: Strange man from the backwoods told me about this material, silk which burning on the hands. May be i can create something helpful from this
+	QuestProgress2: I’m waiting for it. I will give you something interesting
+	QuestButton: Accept
+	QuestButtonGive: Give Fabric
+	QuestCompleted: Perfect personification of hell. You are free again now. There is my friend Dante coat and not only
+	QuestCompletedFalse: You don't have an Flaming Fabric
+}
+
+NinjaQuest_Frist: {
+	QuestName: Luck Potion
+	QuestDescription: Give LuckPotion for Ninja
+	QuestStage: Collect Luck Potion
+	QuestProgress0: Thanks for the Luck Potion!
+	QuestProgress1: Wanna try lucky potion for the first time. Maybe at least now I won't get hit by a slime.
+	QuestProgress2: Still empty-handed? Hmph. You're very slow for a ninja.
+	QuestButton: Accept
+	QuestButtonGive: Give Potion
+	QuestCompleted: Great work, thanks. I will try it. Take these clevers. You can use them for something
+	QuestCompletedFalse: You don't have an Flaming Fabric
+}

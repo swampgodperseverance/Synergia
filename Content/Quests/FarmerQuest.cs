@@ -1,13 +1,13 @@
 ﻿using Bismuth.Utilities.ModSupport;
 using StramsSurvival.Items.Placeable.Furniture;
+using StramsSurvival.NPCs;
 using Terraria;
-using static Synergia.Common.QuestSystem;
-using static Synergia.Common.QuestSystem.QuestConst;
-using static Synergia.Common.SUtils.LocUtil;
 using static Synergia.Lists.Items;
 
 namespace Synergia.Content.Quests {
     public class FarmerQuest : BaseQuestLogic {
+        public override int QuestNPC => NPCType<Farmer>();
+        public override bool IsEndQuest => Main.LocalPlayer.GetModPlayer<QuestBoolean>().FarmerQuest;
         public override string Key => "FarmerQuest";
         public override string DisplayName => LocQuestKey("Farmer", "QuestName");
         public override string DisplayDescription => LocQuestKey("Farmer", "QuestDescription");

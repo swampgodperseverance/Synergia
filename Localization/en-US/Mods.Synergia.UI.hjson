@@ -1,23 +1,20 @@
 DwarfUI: {
-	IsNotGood: 2!
+	WeaponsSlotInfo: Insert weapon here
+	PriceSlotInfo: Insert Sinstone Magma([i:ValhallaMod/SinstoneMagma])
 	Info:
 		'''
 		Upgrade Hellstone items on this 
 		anvil with Magma Sinstone
 		'''
-	WepponSlotInfo: "1"
-	PraceSlotInfo: "2"
-	IsGood: "2"
+	IsGood: Item improved!
+	IsNotGood: Item is broken!
 }
 
 DwarfChat.NoQuest: I not quest for you
+ChatsMsg.tPacer: You have {0}, pls disable mod or disable in config <{1}>
 
-BooK: {
-	Button: Nex Page
-	Button2: Nex Page
-}
-
-ChatsMsg: {
-	tPacer: You have {0}, pls disable mod or disable in config <{1}>
-	Test: ""
+LuceatUI: {
+	Lake: Teleport you in bridge
+	Village: Teleport you in village
+	Hell: Teleport you in arena
 }

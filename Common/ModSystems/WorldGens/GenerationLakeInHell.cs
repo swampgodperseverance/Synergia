@@ -374,8 +374,8 @@ namespace Synergia.Common.ModSystems.WorldGens {
             int EndX = Main.maxTilesX - 800; // <--- Самая нижния правая точка в аду по X с которой начнетса генерация
             int EndY = Main.maxTilesY - 162; // <--- До какой точки Y будет очистка
 
-            HellLakeX = EndX;
-            HellLakeY = startY;
+            SynergiaGenVars.HellLakeX = EndX;
+            SynergiaGenVars.HellLakeY = startY;
             
             int width = LakeTile.GetLength(1);
             int height = LakeTile.GetLength(0);
@@ -384,8 +384,8 @@ namespace Synergia.Common.ModSystems.WorldGens {
 
             for (int y = 0; y < height; y++) {
                 for (int x = 0; x < width; x++) {
-                    int worldX = HellLakeX - 236 + x;
-                    int worldY = HellLakeY - y;
+                    int worldX = SynergiaGenVars.HellLakeX - 236 + x;
+                    int worldY = SynergiaGenVars.HellLakeY - y;
 
                     if (!WorldGen.InWorld(worldX, worldY, 10)) {
                         continue;
@@ -428,14 +428,14 @@ namespace Synergia.Common.ModSystems.WorldGens {
                         case 6: tile.WallType = WallID.EbonwoodFence; break;
                     }
                     if (LakeTile[y, x] != 0) {
-                        HellLakeTilesVector.Add(new Vector2(worldX, worldY));
+                        SynergiaGenVars.HellLakeTilesVector.Add(new Vector2(worldX, worldY));
                     }
                     if (LakeWall[y, x] != 0) {
-                        HellLakeWallesVector.Add(new Vector2(worldX, worldY));
+                        SynergiaGenVars.HellLakeWallesVector.Add(new Vector2(worldX, worldY));
                     }
                 }
             }
-            int chest = WorldGen.PlaceChest(HellLakeX - 236 + 132, HellLakeY - 12, TileID.Containers, false, 4);
+            int chest = WorldGen.PlaceChest(SynergiaGenVars.HellLakeX - 236 + 132, SynergiaGenVars.HellLakeY - 12, TileID.Containers, false, 4);
             if (chest != -1) { ChestLoot(Main.chest[chest].item, 0); }
             GenCandelabraTile(49); GenCandelabraTile(65); GenCandelabraTile(137); GenCandelabraTile(188); GenCandelabraTile(204);
             return true;
@@ -444,7 +444,7 @@ namespace Synergia.Common.ModSystems.WorldGens {
             WorldHelper.LootInContainers(chestInventory, ref chestIndex, Valhalla.Find<ModItem>("SinstoneMagma").Type, 25, 30);
         }
         static void GenCandelabraTile(byte x) {
-            WorldGen.Place2x2(HellLakeX - 236 + x, HellLakeY - 106, (ushort)TileType<ResistantWoodCandelabra>(), 0);
+            WorldGen.Place2x2(SynergiaGenVars.HellLakeX - 236 + x, SynergiaGenVars.HellLakeY - 106, (ushort)TileType<ResistantWoodCandelabra>(), 0);
         }
     }
 }

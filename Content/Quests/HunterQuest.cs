@@ -1,11 +1,10 @@
 ﻿using Bismuth.Utilities.ModSupport;
 using StramsSurvival.Items.Foods;
+using Synergia.Common.ModSystems.Hooks.Ons;
 using Synergia.Content.Items.QuestItem;
+using System.Security.Cryptography;
 using Terraria;
 using Terraria.ID;
-using static Synergia.Common.QuestSystem;
-using static Synergia.Common.QuestSystem.QuestConst;
-using static Synergia.Common.SUtils.LocUtil;
 
 namespace Synergia.Content.Quests {
     public class HunterQuest : BaseQuestLogic {
@@ -27,6 +26,7 @@ namespace Synergia.Content.Quests {
             CheckItem(player, ref player.GetModPlayer<QuestBoolean>().HunterQuest, ItemType<WhisperigReed>(), 1, 1, LocQuestKey("Hunter", "QuestCompleted"), LocQuestKey("Hunter", "QuestCompletedFalse"), ItemType<SurfandTurf>());
             if (Progress == 0) {
                 CompletedQuickSpawnItem(player, ItemID.GoldCoin, 5);
+                HookForQuest.NpcQuestKeys.Remove(ModList.Roa.Find<ModNPC>("Hunter").Type);
             }
         }
         public override bool IsAvailable(Player player) => BaseIsAvailable(player);

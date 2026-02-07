@@ -1,7 +1,9 @@
 ﻿using Microsoft.Xna.Framework;
+using Synergia.Content.NPCs;
 using Synergia.Helpers;
 using System.Collections.Generic;
 using Terraria;
+using Terraria.DataStructures;
 using Terraria.GameContent.Generation;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -522,8 +524,8 @@ public class GenerationArenasInHell : BaseWorldGens {
         int EndX = Main.maxTilesX - 343; // <--- Самая нижния правая точка в аду по X с которой начнетса генерация
         int EndY = Main.maxTilesY - 162; // <--- До какой точки Y будет очистка
 
-        HellArenaPositionX = EndX;
-        HellArenaPositionY = startY;
+        SynergiaGenVars.HellArenaPositionX = EndX;
+        SynergiaGenVars.HellArenaPositionY = startY;
 
         int width = HellArenaTiles.GetLength(1);
         int height = HellArenaTiles.GetLength(0);
@@ -532,14 +534,14 @@ public class GenerationArenasInHell : BaseWorldGens {
 
         for (int y = 0; y < height; y++) {
             for (int x = 0; x < width; x++) {
-                BasePositionArena = HellArenaPositionX - 198 + x;
-                int worldY = HellArenaPositionY - y;
+                int worldX = SynergiaGenVars.HellArenaPositionX - 198 + x;
+                int worldY = SynergiaGenVars.HellArenaPositionY - y;
 
-                if (!WorldGen.InWorld(BasePositionArena, worldY, 10)) {
+                if (!WorldGen.InWorld(worldX, worldY, 10)) {
                     continue;
                 }
 
-                Tile tile = Framing.GetTileSafely(BasePositionArena, worldY);
+                Tile tile = Framing.GetTileSafely(worldX, worldY);
                 tile.ClearEverything();
 
                 ModLoader.TryGetMod("Avalon", out Mod Avalon);
@@ -577,18 +579,18 @@ public class GenerationArenasInHell : BaseWorldGens {
                     case 1: tile.LiquidType = LiquidID.Lava; tile.LiquidAmount = 255; break;
                 }
                 if (HellArenaTiles[y, x] != 0) {
-                    ArenaTiles.Add(new Vector2(HellArenaPositionX - 198 + x, worldY));
+                    SynergiaGenVars.ArenaTiles.Add(new Vector2(worldX, worldY));
                 }
                 if (HellArenaWalls[y, x] != 0) {
-                    ArenaWalles.Add(new Vector2(HellArenaPositionX - 198 + x, worldY));
+                    SynergiaGenVars.ArenaWalles.Add(new Vector2(worldX, worldY));
                 }
             }
         }
+        int pos = SynergiaGenVars.HellArenaPositionX - 198;
+        SynergiaGenVars.ArenaTilesMP = new(pos, SynergiaGenVars.HellArenaPositionY, SynergiaGenVars.HellArenaPositionX, SynergiaGenVars.HellArenaPositionY - 112);
 
-        int pos = HellArenaPositionX - 198;
-
-        WorldGen.PlaceObject(pos + 105, HellArenaPositionY - 11, Ava.Find<ModTile>("ResistantWoodLamp").Type);
-        WorldGen.PlaceObject(pos + 112, HellArenaPositionY - 11, Ava.Find<ModTile>("ResistantWoodLamp").Type);
+        WorldGen.PlaceObject(pos + 105, SynergiaGenVars.HellArenaPositionY - 11, Ava.Find<ModTile>("ResistantWoodLamp").Type);
+        WorldGen.PlaceObject(pos + 112, SynergiaGenVars.HellArenaPositionY - 11, Ava.Find<ModTile>("ResistantWoodLamp").Type);
 
         return true;
     }

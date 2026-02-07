@@ -468,11 +468,11 @@ public class GenerationVillageInHell : BaseWorldGens {
         int startX = Main.maxTilesX - 822; // <--- До какой точки X будет очистка
         int startY = Main.maxTilesY - 44; // <--- Самая нижния правая точка в аду по Y. Нет на самом деле это - 45. 1244 - самый нижний блок в мире после идет исключение.
 
-        int EndX = HellArenaPositionX - 199; // <--- Точка в аду где находится арена по X с которой начнётся очистка
+        int EndX = SynergiaGenVars.HellArenaPositionX - 199; // <--- Точка в аду где находится арена по X с которой начнётся очистка
         int EndY = Main.maxTilesY - 162; // <--- До какой точки Y будет очистка
 
-        HellVillageX = EndX;
-        HellVillageY = startY;
+        SynergiaGenVars.HellVillageX = EndX;
+        SynergiaGenVars.HellVillageY = startY;
 
         int width = hellVillageTiles.GetLength(1);
         int height = hellVillageTiles.GetLength(0);
@@ -480,8 +480,8 @@ public class GenerationVillageInHell : BaseWorldGens {
         WorldHelper.Cleaning(EndX, startY, startX, EndY, TileID.Ash, TileID.Hellstone, ModContent.TileType<Sinstone>(), TileID.AshGrass, TileID.Stone, 82, 637, 185, 634, 28);
         for (int y = 0; y < height; y++) {
             for (int x = 0; x < width; x++) {
-                int worldX = HellVillageX - 280 + x;
-                int worldY = HellVillageY - y;
+                int worldX = SynergiaGenVars.HellVillageX - 280 + x;
+                int worldY = SynergiaGenVars.HellVillageY - y;
 
                 if (!WorldGen.InWorld(worldX, worldY, 10)) {
                     continue;
@@ -506,7 +506,7 @@ public class GenerationVillageInHell : BaseWorldGens {
                     case c: tile.TileType = (ushort)TileType<SinstoneBrick>(); tile.HasTile = true; break;
                     case d: tile.TileType = TileID.AshWood; tile.HasTile = true; break;
                     case e: tile.TileType = Ava.Find<ModTile>("ResistantWood").Type; tile.HasTile = true; break;
-                    case f: WorldGen.PlaceTile(HellVillageX - 280 + x, HellVillageY - y, 19); break;
+                    case f: WorldGen.PlaceTile(SynergiaGenVars.HellVillageX - 280 + x, SynergiaGenVars.HellVillageY - y, 19); break;
                     case g: tile.TileType = (ushort)TileType<HellstoneRoof>(); tile.HasTile = true; break;
                 }
                 switch (hellVillageaWalls[y, x]) {
@@ -543,15 +543,15 @@ public class GenerationVillageInHell : BaseWorldGens {
                     case 1: tile.LiquidType = LiquidID.Lava; tile.LiquidAmount = 255; break;
                 }
                 if (hellVillageTiles[y, x] != 0) {
-                    HellVillageTilesVector.Add(new Vector2(worldX, worldY));
+                    SynergiaGenVars.HellVillageTilesVector.Add(new Vector2(worldX, worldY));
                 }
                 if (hellVillageaWalls[y, x] != 0) {
-                    HellVillageWallesVector.Add(new Vector2(worldX, worldY));
+                    SynergiaGenVars.HellVillageWallesVector.Add(new Vector2(worldX, worldY));
                 }
             }
         }
 
-        int pos = HellVillageX - 280;
+        int pos = SynergiaGenVars.HellVillageX - 280;
 
         ushort lamp = Ava.Find<ModTile>("ResistantWoodLamp").Type;
         ushort book = Ava.Find<ModTile>("ResistantWoodBookcase").Type;
@@ -559,31 +559,52 @@ public class GenerationVillageInHell : BaseWorldGens {
         ushort Lamp = Ava.Find<ModTile>("ResistantWoodLantern").Type;
         ushort candle = Ava.Find<ModTile>("ResistantWoodCandelabra").Type;
 
-        NPC.NewNPC(new EntitySource_WorldGen(), (pos + 149) * 16, (HellVillageY - 72) * 16, NPCType<HellDwarf>(), 0, 0f, 0f, 0f, 0f, 255);
+        NPC.NewNPC(new EntitySource_WorldGen(), (pos + 149) * 16, (SynergiaGenVars.HellVillageY - 72) * 16, NPCType<HellDwarf>(), 0, 0f, 0f, 0f, 0f, 255);
 
-        WorldGen.PlaceObject(pos + 112, HellVillageY - 67, TileID.ClosedDoor,       false, 44);
-        WorldGen.PlaceObject(pos + 139, HellVillageY - 71, TileID.ClosedDoor,       false, 48);
-        WorldGen.PlaceObject(pos + 162, HellVillageY - 72, TileID.ClosedDoor,       false, 48);
-        WorldGen.PlaceObject(pos + 95,  HellVillageY - 74, TileID.Bookcases,        false, 4 );
-        WorldGen.PlaceObject(pos + 141, HellVillageY - 71, TileID.Bookcases,        false, 4 );
-        WorldGen.PlaceObject(pos + 136, HellVillageY - 71, TileID.PottedPlants2,    false, 7 );
-        WorldGen.PlaceObject(pos + 144, HellVillageY - 71, TileID.Benches,          false, 10);
-        WorldGen.PlaceObject(pos + 146, HellVillageY - 72, lamp,                    false, 0 );
-        WorldGen.PlaceObject(pos + 149, HellVillageY - 72, TileID.Tables,           false, 13);
-        WorldGen.PlaceObject(pos + 152, HellVillageY - 72, book,                    false, 0 );
-        WorldGen.PlaceObject(pos + 155, HellVillageY - 72, Anvil,                   false, 0 );
-        WorldGen.PlaceObject(pos + 152, HellVillageY - 76, candle,                  false, 0 );
-        WorldGen.PlaceObject(pos + 161, HellVillageY - 76, Lamp,                    false, 0 );
-        WorldGen.PlaceObject(pos + 163, HellVillageY - 76, Lamp,                    false, 0 );
-        WorldGen.PlaceObject(pos + 2,   HellVillageY - 99, TileID.Statues,          false, 15);
+        WorldGen.PlaceObject(pos + 112, SynergiaGenVars.HellVillageY - 67, TileID.ClosedDoor,       false, 44);
+        WorldGen.PlaceObject(pos + 139, SynergiaGenVars.HellVillageY - 71, TileID.ClosedDoor,       false, 48);
+        WorldGen.PlaceObject(pos + 162, SynergiaGenVars.HellVillageY - 72, TileID.ClosedDoor,       false, 48);
+        WorldGen.PlaceObject(pos + 95,  SynergiaGenVars.HellVillageY - 74, TileID.Bookcases,        false, 4 );
+        WorldGen.PlaceObject(pos + 141, SynergiaGenVars.HellVillageY - 71, TileID.Bookcases,        false, 4 );
+        WorldGen.PlaceObject(pos + 136, SynergiaGenVars.HellVillageY - 71, TileID.PottedPlants2,    false, 7 );
+        WorldGen.PlaceObject(pos + 144, SynergiaGenVars.HellVillageY - 71, TileID.Benches,          false, 10);
+        WorldGen.PlaceObject(pos + 146, SynergiaGenVars.HellVillageY - 72, lamp,                    false, 0 );
+        WorldGen.PlaceObject(pos + 149, SynergiaGenVars.HellVillageY - 72, TileID.Tables,           false, 13);
+        WorldGen.PlaceObject(pos + 152, SynergiaGenVars.HellVillageY - 72, book,                    false, 0 );
+        WorldGen.PlaceObject(pos + 155, SynergiaGenVars.HellVillageY - 72, Anvil,                   false, 0 );
+        WorldGen.PlaceObject(pos + 152, SynergiaGenVars.HellVillageY - 76, candle,                  false, 0 );
+        WorldGen.PlaceObject(pos + 161, SynergiaGenVars.HellVillageY - 76, Lamp,                    false, 0 );
+        WorldGen.PlaceObject(pos + 163, SynergiaGenVars.HellVillageY - 76, Lamp,                    false, 0 );
+        WorldGen.PlaceObject(pos + 2,   SynergiaGenVars.HellVillageY - 99, TileID.Statues,          false, 15);
 
-        WorldGen.Place3x3Wall(pos + 107, HellVillageY - 69, TileID.Painting3X3, 16);
-        WorldGen.Place3x3Wall(pos + 159, HellVillageY - 75, TileID.Painting3X3, 45);
+        WorldGen.Place3x3Wall(pos + 107, SynergiaGenVars.HellVillageY - 69, TileID.Painting3X3, 16);
+        WorldGen.Place3x3Wall(pos + 159, SynergiaGenVars.HellVillageY - 75, TileID.Painting3X3, 45);
 
-        WorldGen.PlaceOnTable1x1(pos + 150, HellVillageY - 74, TileID.Bottles, 5);
+        WorldGen.PlaceOnTable1x1(pos + 150, SynergiaGenVars.HellVillageY - 74, TileID.Bottles, 5);
 
-        WorldGen.Place2x2(pos + 149, HellVillageY - 74, TileID.LavafishBowl, 0);
+        WorldGen.Place2x2(pos + 149, SynergiaGenVars.HellVillageY - 74, TileID.LavafishBowl, 0);
+
+        AddWall(SynergiaGenVars.HellVillageX - 280, SynergiaGenVars.HellVillageY);
 
         return true;
+    }
+    static void AddWall(int x, int y) {
+        ushort wall = Roa.Find<ModWall>("GrimstoneBrickWall").Type;
+        WorldGen.PlaceWall(x + 220, y - 56, wall);
+        WorldGen.PlaceWall(x + 220, y - 55, wall);
+        WorldGen.PlaceWall(x + 219, y - 55, wall);
+        WorldGen.PlaceWall(x + 218, y - 55, wall);
+        WorldGen.PlaceWall(x + 217, y - 55, wall);
+        WorldGen.PlaceWall(x + 217, y - 54, wall);
+        WorldGen.PlaceWall(x + 216, y - 53, wall);
+        WorldGen.PlaceWall(x + 216, y - 52, wall);
+        WorldGen.PlaceWall(x + 215, y - 52, wall);
+        WorldGen.PlaceWall(x + 216, y - 51, wall);
+        WorldGen.PlaceWall(x + 215, y - 51, wall);
+        WorldGen.PlaceWall(x + 215, y - 50, wall);
+        WorldGen.PlaceWall(x + 214, y - 50, wall);
+        WorldGen.PlaceWall(x + 213, y - 49, wall);
+        WorldGen.PlaceWall(x + 213, y - 48, wall);
+        WorldGen.PlaceWall(x + 212, y - 47, wall);
     }
 }

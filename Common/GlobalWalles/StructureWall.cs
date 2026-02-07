@@ -23,10 +23,10 @@ namespace Synergia.Common.GlobalWalles {
             else { return true; }
         }
         static bool EnableVector(int i, int j) {
-            bool snowVilage = BaseWorldGens.VilageWalles.Contains(new Vector2(i, j));
-            bool arena = BaseWorldGens.ArenaWalles.Contains(new Vector2(i, j));
-            bool hellVilage = BaseWorldGens.HellVillageWallesVector.Contains(new Vector2(i, j));
-            bool lake = BaseWorldGens.HellLakeWallesVector.Contains(new Vector2(i, j));
+            bool snowVilage = SynergiaGenVars.VilageWalles.Contains(new Vector2(i, j));
+            bool arena = SynergiaGenVars.ArenaWalles.Contains(new Vector2(i, j));
+            bool hellVilage = SynergiaGenVars.HellVillageWallesVector.Contains(new Vector2(i, j));
+            bool lake = SynergiaGenVars.HellLakeWallesVector.Contains(new Vector2(i, j));
             if (snowVilage || arena || hellVilage || lake) { return true; }
             else { return false; }
         }

@@ -1,9 +1,11 @@
 ﻿using Avalon.ModSupport.MLL.Items;
+using Bismuth.Content.Items.Other;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using NewHorizons.Content.Items.Weapons.Magic;
 using ReLogic.Graphics;
 using Synergia.Common.GlobalPlayer;
+using Synergia.Content.Items.Misc;
 using Synergia.Content.Items.Tools;
 using Synergia.Content.Items.Weapons.Mage;
 using Synergia.Content.Items.Weapons.Ranged;
@@ -26,11 +28,12 @@ namespace Synergia.UIs;
 public class DwarfUI : UIState {
     VanillaItemSlotWrapper itemSlotWeppon;
     VanillaItemSlotWrapper itemSlotPrace;
-    Dictionary<int, int> Items = new(){
+    public Dictionary<int, int> Items { get; private set; } = new() {
         {ItemID.MoltenPickaxe, ItemType<CoreburnedPickaxe>()},
-        {ItemID.PhoenixBlaster, ItemType<PhoenixDownfall>() },
-        {ItemType<Scorcher>(), ItemType<ScorcherRequiem>() },
-        {ItemID.MoltenFury, ItemType<Enfer>() },
+        {ItemID.PhoenixBlaster, ItemType<PhoenixDownfall>()},
+        {ItemID.MoltenFury, ItemType<Enfer>()},
+        {ItemType<Scorcher>(), ItemType<ScorcherRequiem>()},
+        {ItemType<Luceat>(), ItemType<HellLuceat>()},
     };
     readonly SaveItemPlayer saveItem = Main.LocalPlayer.GetModPlayer<SaveItemPlayer>();
     Texture2D anvil;
@@ -273,13 +276,13 @@ public class DwarfUI : UIState {
                 }
             }
         }
-        string message = LocUIKey("DwarfUI", "Info");
-        ChatManager.DrawColorCodedStringWithShadow(Main.spriteBatch, curfont, message, new Vector2(slotX + 100, slotY + 50), new Color(Main.mouseTextColor, Main.mouseTextColor, Main.mouseTextColor, Main.mouseTextColor), 0f, Vector2.Zero, new Vector2(0.95f), -1f, 2f);
+
+        ChatManager.DrawColorCodedStringWithShadow(Main.spriteBatch, curfont, LocUIKey("DwarfUI", "Info"), new Vector2(slotX + 100, slotY + 50), new Color(Main.mouseTextColor, Main.mouseTextColor, Main.mouseTextColor, Main.mouseTextColor), 0f, Vector2.Zero, new Vector2(0.95f), -1f, 2f);
         if (mouseInWepponSlot) {
-            Main.hoverItemName = LocUIKey("DwarfUI", "WepponSlotInfo");
+            Main.hoverItemName = LocUIKey("DwarfUI", "WeaponsSlotInfo");
         }
         if (mouseInPraceSlot) {
-            Main.hoverItemName = LocUIKey("DwarfUI", "PraceSlotInfo");
+            Main.hoverItemName = LocUIKey("DwarfUI", "PriceSlotInfo");
         }
     }
 }

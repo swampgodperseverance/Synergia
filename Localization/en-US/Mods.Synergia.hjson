@@ -1091,6 +1091,11 @@ Items: {
 		DisplayName: Thundernite Hamaxe
 		Tooltip: ""
 	}
+
+	HellLuceat: {
+		DisplayName: Hell Luceat
+		Tooltip: ""
+	}
 }
 
 Projectiles: {

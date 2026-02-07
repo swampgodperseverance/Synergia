@@ -1,13 +1,14 @@
-﻿using Bismuth.Utilities.ModSupport;
+﻿using Avalon.NPCs.TownNPCs;
+using Bismuth.Utilities.ModSupport;
+using StramsSurvival.NPCs;
 using Terraria;
 using ValhallaMod.Items.Material;
 using ValhallaMod.Items.Weapons.Magic;
-using static Synergia.Common.QuestSystem;
-using static Synergia.Common.QuestSystem.QuestConst;
-using static Synergia.Common.SUtils.LocUtil;
 
 namespace Synergia.Content.Quests {
     public class LibrarianQuest : BaseQuestLogic {
+        public override int QuestNPC => NPCType<Librarian>();
+        public override bool IsEndQuest => Main.LocalPlayer.GetModPlayer<QuestBoolean>().LibrarianQuest;
         public override string Key => "LibrarianQuest";
         public override string DisplayName => LocQuestKey("Librarian", "QuestName");
         public override string DisplayDescription => LocQuestKey("Librarian", "QuestDescription");

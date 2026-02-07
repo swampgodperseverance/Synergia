@@ -2,8 +2,6 @@
 using System.Collections.Generic;
 using Terraria;
 using ValhallaMod.Items.Placeable;
-using static Synergia.Common.QuestSystem;
-using static Synergia.Common.SUtils.LocUtil;
 
 namespace Synergia.Common {
     public class HellQuest {

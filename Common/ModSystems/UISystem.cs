@@ -13,16 +13,17 @@ public class UISystem : ModSystem {
 
         int inventoryIndex = layers.FindIndex(layer => layer.Name.Equals("Vanilla: Inventory"));
         //int resourceBarsIndex = layers.FindIndex(layers => layers.Name.Equals("Vanilla: Resource Bars"));
-        //int chat = layers.FindIndex(layers => layers.Name.Equals("Vanilla: Inventory"));
 
         AddLayer(layers, inventoryIndex, "Synergia: Dwarf UI", () => { mod.DwarfReforgeInterface.Draw(Main.spriteBatch, new GameTime()); return true; });
         AddLayer(layers, inventoryIndex, "Synergia: Throwing UI", () => { if (Main.myPlayer >= 0) { Main.LocalPlayer.GetModPlayer<ThrowingUI>().DrawThrowingUI(); } return true; });
         AddLayer(layers, inventoryIndex, "Synergia: Summon UI", () => { if (Main.myPlayer >= 0) { Main.LocalPlayer.GetModPlayer<SummonUI>().DrawSummonUI(spriteBatch); } return true; });
         AddLayer(layers, inventoryIndex, "Synergia: Blood UI", () => { if (Main.myPlayer >= 0) { Main.LocalPlayer.GetModPlayer<BloodUI>().DrawBloodUI(spriteBatch); } return true; });
         AddLayer(layers, inventoryIndex, "Synergia: Dwarf Chat UI", () => { mod.DwarfChatInterface.Draw(Main.spriteBatch, new GameTime()); return true; });
+        AddLayer(layers, inventoryIndex, "Synergia: Luceat UI", () => { mod.LuceatInterface.Draw(Main.spriteBatch, new GameTime()); return true; });
     }
     public override void UpdateUI(GameTime gameTime) {
         mod.DwarfReforgeInterface?.Update(gameTime);
         mod.DwarfChatInterface?.Update(gameTime);
+        mod.LuceatInterface?.Update(gameTime);
     }
 }

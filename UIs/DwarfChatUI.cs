@@ -19,7 +19,6 @@ using static Synergia.Common.ModSystems.Hooks.Ons.HookForQuest;
 using static Synergia.Common.QuestSystem;
 using static Synergia.Common.SUtils.LocUtil;
 using static Synergia.Helpers.SynegiaHelper;
-using static Synergia.Reassures.Reassures;
 using static Terraria.Main;
 
 namespace Synergia.UIs {
@@ -88,11 +87,7 @@ namespace Synergia.UIs {
             anyButtonHovered = false;
 
             Player player = LocalPlayer;
-
-            string text = npcChatText;
-            Color color = Color.AliceBlue;
-
-            _cache.PrepareCache(text, color);
+            _cache.PrepareCache(npcChatText, Color.AliceBlue);
 
             List<List<TextSnippet>> lines = _cache.TextLines;
             int lineCount = _cache.AmountOfLines;
@@ -196,24 +191,19 @@ namespace Synergia.UIs {
                 npcChatText = LocUIKey("DwarfChat", "NoQuest");
             }
         }
-        // TODO: Cleaning code  
         static void DrawQuestItemIcon(SpriteBatch sb, Vector2 pos) {
             if (itemIcon != null && chain != null) {
                 sb.Draw(chain, pos, Color.White);
                 sb.Draw(itemIcon, new Vector2(pos.X, pos.Y + 40f), Color.White);
-                int itemType = npcChatCornerItem;
-                Item iItemType = new(itemType);
+                Item iItemType = new(npcChatCornerItem);
                 Asset<Texture2D> item = TextureAssets.Item[npcChatCornerItem];
                 Texture2D tex = item.Value;
                 if (item != null) {
                     Vector2 mousePos = new(mouseX, mouseY);
                     Vector2 itemSlot = pos + new Vector2(28f, 60f);
-                    Vector2 origin = tex.Size() / 2f;
                     float scale = 1f;
-                    if (tex.Width > 32 || tex.Height > 32) {
-                        scale = 32f / Math.Max(tex.Width, tex.Height);
-                    }
-                    sb.Draw(item.Value, itemSlot, null, Color.White, 0f, origin, scale, SpriteEffects.None, 0);
+                    if (tex.Width > 32 || tex.Height > 32) { scale = 32f / Math.Max(tex.Width, tex.Height); }
+                    sb.Draw(item.Value, itemSlot, null, Color.White, 0f, tex.Size() / 2f, scale, SpriteEffects.None, 0);
                     if (mousePos.Between(new Vector2(itemSlot.X - 20, itemSlot.Y - 20), new Vector2(itemSlot.X + 20, itemSlot.Y + 10))) {
                         if (mouseLeftRelease && mouseLeft) {
                             if (!drawingPlayerChat) {

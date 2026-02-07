@@ -3,9 +3,11 @@ using Synergia.Common.Biome;
 using Synergia.Common.ModConfigs;
 using Synergia.Common.ModSystems.WorldGens;
 using Synergia.Content.Achievements;
+using Synergia.Content.Buffs;
 using Synergia.Content.Buffs.Debuff;
 using Synergia.Helpers;
 using Terraria;
+using Terraria.ID;
 using Terraria.Localization;
 using Terraria.ModLoader.IO;
 
@@ -41,11 +43,18 @@ namespace Synergia.Common.GlobalPlayer {
                     Player.waterWalk = false;
                     Player.waterWalk2 = false;
                 }
+                Player.ClearBuff(BuffID.Featherfall);
+                Player.ClearBuff(BuffID.WaterWalking);
+                Player.ClearBuff(BuffID.Gravitation);
+            }
+            if (!NPC.downedBoss3 && Player.ZoneUnderworldHeight) {
+                Player.AddBuff(BuffType<HellishAir>(), 2);
             }
         }
         public override bool CanBeTeleportedTo(Vector2 teleportPosition, string context) {
-            bool hellStruct = WorldHelper.CheckBiomeTile((int)(teleportPosition.X / 16f), (int)(teleportPosition.Y / 16f), 237 + BaseWorldGens.HellArenaPositionX - BaseWorldGens.HellLakeX, 119, BaseWorldGens.HellLakeX - 236, BaseWorldGens.HellLakeY - 119);
-            if (hellStruct && context == "TeleportRod") { return false; } else { return base.CanBeTeleportedTo(teleportPosition, context); }
+            bool hellStruct = WorldHelper.CheckBiomeTile((int)(teleportPosition.X / 16f), (int)(teleportPosition.Y / 16f), 237 + SynergiaGenVars.HellArenaPositionX - SynergiaGenVars.HellLakeX, 119, SynergiaGenVars.HellLakeX - 236, SynergiaGenVars.HellLakeY - 149);
+            bool arena = Player.GetModPlayer<BiomePlayer>().arenaBiome;
+            if (!arena && hellStruct && context == "TeleportRod") { return false; } else if(arena) { return base.CanBeTeleportedTo(teleportPosition, context); } else { return base.CanBeTeleportedTo(teleportPosition, context); }
         }
         public override void PostUpdateBuffs() {
             ReplaceBuff(BuffType<Dehydrated>(), BuffType<SynergiaDehydrated>());

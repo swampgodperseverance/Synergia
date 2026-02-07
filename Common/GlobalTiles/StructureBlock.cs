@@ -57,10 +57,10 @@ public class StructureBlock : GlobalTile {
         return returnFlag;
     }
     static bool EnableVector(int i, int j) {
-        bool snowVilage = BaseWorldGens.VilageTiles.Contains(new Vector2(i, j));
-        bool arena = BaseWorldGens.ArenaTiles.Contains(new Vector2(i, j));
-        bool hellVilage = BaseWorldGens.HellVillageTilesVector.Contains(new Vector2(i, j));
-        bool lake = BaseWorldGens.HellLakeTilesVector.Contains(new Vector2(i, j));
+        bool snowVilage = SynergiaGenVars.VilageTiles.Contains(new Vector2(i, j));
+        bool arena = SynergiaGenVars.ArenaTiles.Contains(new Vector2(i, j));
+        bool hellVilage = SynergiaGenVars.HellVillageTilesVector.Contains(new Vector2(i, j));
+        bool lake = SynergiaGenVars.HellLakeTilesVector.Contains(new Vector2(i, j));
         if (snowVilage || arena || hellVilage || lake) { return true; }
         else { return false; }
     }
