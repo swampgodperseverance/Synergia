@@ -1,4 +1,5 @@
-﻿using Avalon.Items.Weapons.Magic.Hardmode.Sunstorm;
+﻿using Avalon.Items.Weapons.Magic.Hardmode.AquaImpact;
+using Avalon.Items.Weapons.Magic.Hardmode.Sunstorm;
 using Bismuth.Content.Items.Weapons.Throwing;
 using Bismuth.Content.Projectiles;
 using Microsoft.Xna.Framework.Graphics;
@@ -16,6 +17,7 @@ namespace Synergia.GraphicsSetting {
         public static void Load() {
             TextureWeapons(ItemType<OrcishJavelin>());
             TextureWeapons(ItemType<Sunstorm>());
+            TextureWeapons(ItemType<AquaImpact>());
             TextureWeapons(ItemType<StarAuraStaff>());
             TextureWeapons(ItemType<TitaniumJavelin>());
 
