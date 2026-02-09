@@ -1,5 +1,4 @@
 ﻿// Code by 𝒜𝑒𝓇𝒾𝓈
-using StramsSurvival.Items;
 using Synergia.Content.Items.Weapons.Summon;
 using Synergia.Helpers;
 using System.Collections.Generic;
@@ -36,8 +35,6 @@ namespace Synergia.Common.ModSystems {
         }
         public override void PostWorldGen() {
             WorldHelper.AddContainersLoot(13, 3, SkyChest, ItemType<Starcaller>());
-            WorldHelper.DestroyerContainersLoot(13, ItemType<JungleSeedPacket>());
-            WorldHelper.AddContainersLoot(13, 1, ItemType<JungleSeedPacket>(), 1, 3);
             WorldHelper.CleaningLiquid(HellVillageX - 220, HellVillageY - 115, HellVillageX - 57, HellVillageY - 67);
             WorldHelper.CleaningLiquid(HellLakeX - 214, HellVillageY - 112, HellLakeX, HellVillageY - 80);
         }

@@ -4,15 +4,12 @@ using Avalon.Tiles.Furniture.ResistantWood;
 using Avalon.Tiles.Ores;
 using Avalon.Walls;
 using Consolaria.Content.Tiles;
-using Microsoft.Xna.Framework;
-using StramsSurvival.Tiles.Furniture;
 using Synergia.Helpers;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.Localization;
-using Terraria.ModLoader;
 using Terraria.WorldBuilding;
 using ValhallaMod.NPCs.TownNPCs;
 using ValhallaMod.Tiles.Blocks;
@@ -235,9 +232,6 @@ namespace Synergia.Common.ModSystems.WorldGens
                     }
                 }
             }
-
-            WorldGen.Place2x2(SynergiaGenVars.SnowVillagePositionX + 96, SynergiaGenVars.SnowVillagePositionY - 8, (ushort)TileType<FermentingBarrel>(), 0);
-            WorldGen.Place3x2(SynergiaGenVars.SnowVillagePositionX + 88, SynergiaGenVars.SnowVillagePositionY - 9, (ushort)TileType<Oven>());
 
             WorldGen.PlaceObject(SynergiaGenVars.SnowVillagePositionX + 86, SynergiaGenVars.SnowVillagePositionY - 9, (ushort)TileType<SmoothMarblePillarBroken>());
             WorldGen.PlaceObject(SynergiaGenVars.SnowVillagePositionX + 80, SynergiaGenVars.SnowVillagePositionY - 9, (ushort)TileType<ResistantWoodTable>());

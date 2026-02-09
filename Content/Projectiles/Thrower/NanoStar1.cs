@@ -1,13 +1,10 @@
-﻿using System;
+﻿using NewHorizons.Globals;
+using System;
 using System.Collections.Generic;
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
-using NewHorizons.Globals;
 using Terraria;
 using Terraria.Audio;
 using Terraria.GameContent;
 using Terraria.ID;
-using Terraria.ModLoader;
 
 namespace Synergia.Content.Projectiles.Thrower
 {
@@ -177,7 +174,7 @@ namespace Synergia.Content.Projectiles.Thrower
             Projectile.Kill();
         }
 
-        public override void Kill(int timeLeft)
+        public override void OnKill(int timeLeft)
         {
             SoundEngine.PlaySound(SoundID.Dig, Projectile.position);
 

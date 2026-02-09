@@ -1,11 +1,7 @@
-﻿using System;
-using Microsoft.Xna.Framework;
+﻿using NewHorizons.Content.Items.Weapons.Throwing;
 using Terraria;
 using Terraria.Audio;
 using Terraria.ID;
-using Terraria.ModLoader;
-using NewHorizons.Content.Projectiles.Ranged;
-using NewHorizons.Content.Items.Weapons.Throwing;
 
 namespace Synergia.Content.Projectiles.Thrower
 {
@@ -39,7 +35,7 @@ namespace Synergia.Content.Projectiles.Thrower
         }
 
         // Token: 0x060000AB RID: 171 RVA: 0x00006E34 File Offset: 0x00005034
-        public override void Kill(int timeLeft)
+        public override void OnKill(int timeLeft)
         {
             if (Main.rand.NextBool(10))
             {

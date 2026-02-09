@@ -1171,6 +1171,13 @@ Projectiles: {
 	LavaRune2.DisplayName: Lava Rune2
 	LavaRune3.DisplayName: Lava Rune3
 	LavaRune4.DisplayName: Lava Rune4
+	AquaBoom.DisplayName: Aqua Boom
+	AquaRework.DisplayName: Aqua Rework
+	AquaSmall.DisplayName: Aqua Small
+	AzraelsHeartstopper2.DisplayName: Azraels Heartstopper2
+	CupidJavelin.DisplayName: Cupid Javelin
+	Pulsar2.DisplayName: Pulsar2
+	Shroomerang2.DisplayName: Shroomerang2
 }
 
 Buffs: {

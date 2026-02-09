@@ -41,12 +41,6 @@
       <Reference Include="starforgedclassic">
         <HintPath>..\..\ModReader\starforgedclassic\starforgedclassic.dll</HintPath>
       </Reference>
-      <Reference Include="StramsLib">
-        <HintPath>..\..\ModReader\StramsLib\StramsLib.dll</HintPath>
-      </Reference>
-      <Reference Include="StramsSurvival">
-        <HintPath>..\..\ModReader\StramsSurvival\StramsSurvival.dll</HintPath>
-      </Reference>
       <Reference Include="StructureHelper">
         <HintPath>..\..\ModReader\StructureHelper\StructureHelper.dll</HintPath>
       </Reference>

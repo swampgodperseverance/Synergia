@@ -1,19 +1,13 @@
-﻿using System;
-using Terraria.DataStructures;
-using Terraria.Audio;
-using Terraria.Graphics.Shaders;
-using System.IO;
-using System.Linq;
-using System.Collections.Generic;
-using Microsoft.Xna.Framework;
-using Terraria.Audio;
-using Terraria;
-using Terraria.ID;
-using Terraria.ModLoader;
+﻿using NewHorizons.Content.Projectiles.Throwing;
 using Synergia.Helpers;
 using Synergia.Trails;
-using NewHorizons.Content.Projectiles.Throwing;
-
+using System.Collections.Generic;
+using System.Linq;
+using Terraria;
+using Terraria.Audio;
+using Terraria.DataStructures;
+using Terraria.Graphics.Shaders;
+using Terraria.ID;
 
 namespace Synergia.Content.Projectiles.Thrower
 {
@@ -32,15 +26,13 @@ namespace Synergia.Content.Projectiles.Thrower
 			Projectile.DamageType = DamageClass.Throwing;
 			Projectile.scale = 1f;
 			Projectile.extraUpdates = 3;
-			AIType = 14;
-			Projectile.aiStyle = 1;
+			AIType = ProjectileID.Bullet;
+			Projectile.aiStyle = ProjAIStyleID.Arrow;
 		}
 
 		public override void AI()
 		{
-			int d = Dust.NewDust(Projectile.position, 42, 42, 219,
-				Projectile.oldVelocity.X * 0.4f,
-				Projectile.oldVelocity.Y * 0.4f);
+            int d = Dust.NewDust(Projectile.position, 42, 42, DustID.Fireworks, Projectile.oldVelocity.X * 0.4f, Projectile.oldVelocity.Y * 0.4f);
 			Main.dust[d].scale = 0.6f;
 			Main.dust[d].noGravity = true;
 
@@ -203,13 +195,13 @@ public class BloodySpike : ModProjectile
             return true;
         }
 
-        public override void Kill(int timeLeft)
+        public override void OnKill(int timeLeft)
         {
             SoundEngine.PlaySound(SoundID.NPCHit5, Projectile.position);
 
             for (int i = 0; i < 10; i++)
             {
-                int d = Dust.NewDust(Projectile.position, Projectile.width, Projectile.height, 5);
+                int d = Dust.NewDust(Projectile.position, Projectile.width, Projectile.height, DustID.Blood);
                 Main.dust[d].velocity *= 2.8f;
                 Main.dust[d].noGravity = true;
                 Main.dust[d].scale *= Main.rand.NextFloat(0.9f, 1.35f);

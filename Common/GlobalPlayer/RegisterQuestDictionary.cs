@@ -1,12 +1,10 @@
 ﻿using Avalon.NPCs.TownNPCs;
 using NewHorizons.Content.NPCs.Town;
-using StramsSurvival.NPCs;
 using Synergia.Common.ModSystems.Hooks.Ons;
 using Synergia.Content.NPCs;
 using Synergia.Dataset;
 using Terraria;
 using Terraria.ID;
-using ValhallaMod;
 using ValhallaMod.NPCs.TownNPCs;
 using static Synergia.Lists.Items;
 using static Synergia.ModList;
@@ -36,14 +34,14 @@ public partial class QuestSystem {
             }
             if (!quest.NinjaQuest) {
                 if (!HookForQuest.NpcQuestKeys.ContainsKey(NPCType<Ninja>())) {
-                    HookForQuest.NpcQuestKeys[NPCType<Ninja>()] = new QuestData(NINJA, 0, 1, true, CarrotID);
+                    HookForQuest.NpcQuestKeys[NPCType<Ninja>()] = new QuestData(NINJA, 0, 1, true);
                 }
             }
-            if (!quest.FarmerQuest) {
-                if (!HookForQuest.NpcQuestKeys.ContainsKey(NPCType<Farmer>())) {
-                    HookForQuest.NpcQuestKeys[NPCType<Farmer>()] = new QuestData(FARMER, 0, 1, true, FoodID);
-                }
-            }
+            //if (!quest.FarmerQuest) {
+            //    if (!HookForQuest.NpcQuestKeys.ContainsKey(NPCType<Farmer>())) {
+            //        HookForQuest.NpcQuestKeys[NPCType<Farmer>()] = new QuestData(FARMER, 0, 1, true, FoodID);
+            //    }
+            //}
             if (!quest.LibrarianQuest) {
                 if (!HookForQuest.NpcQuestKeys.ContainsKey(NPCType<Librarian>())) {
                     HookForQuest.NpcQuestKeys[NPCType<Librarian>()] = new QuestData(LIBRARIAN, 0, 1, true);
@@ -77,11 +75,11 @@ public partial class QuestSystem {
                 AddQuest(NPCType<Ninja>(), NINJA);
             }
             if (quest.FarmerQuest) {
-                if (Player.talkNPC == -1 || Main.npc[Player.talkNPC].type != NPCType<Farmer>()) {
-                    if (!HookForQuest.NpcQuestKeys.ContainsKey(NPCType<Farmer>())) {
-                        HookForQuest.NpcQuestKeys[NPCType<Farmer>()] = new QuestData(NINJA, 0, 1, true, FoodID);
-                    }
-                }
+                //if (Player.talkNPC == -1 || Main.npc[Player.talkNPC].type != NPCType<Farmer>()) {
+                //    if (!HookForQuest.NpcQuestKeys.ContainsKey(NPCType<Farmer>())) {
+                //        HookForQuest.NpcQuestKeys[NPCType<Farmer>()] = new QuestData(NINJA, 0, 1, true, FoodID);
+                //    }
+                //}
             }
             if (quest.LibrarianQuest) {
                 AddQuest(NPCType<Librarian>(), LIBRARIAN);

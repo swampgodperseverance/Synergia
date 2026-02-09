@@ -1,7 +1,6 @@
 ﻿using Avalon.NPCs.TownNPCs;
 using Bismuth.Utilities.ModSupport;
 using NewHorizons.Content.NPCs.Town;
-using StramsSurvival.NPCs;
 using Synergia.Content.NPCs;
 using System.Collections.Generic;
 using Terraria;
@@ -32,7 +31,6 @@ namespace Synergia.Common {
                 DrawQuestIcon(npc, spriteBatch, Roa.Find<ModNPC>("Hunter").Type, HUNTER);
                 DrawQuestIcon(npc, spriteBatch, NPCType<Artist>(), ARTIST);
                 DrawQuestIcon(npc, spriteBatch, NPCType<Ninja>(), NINJA);
-                DrawQuestIcon(npc, spriteBatch, NPCType<Farmer>(), FARMER);
                 DrawQuestIcon(npc, spriteBatch, NPCType<Librarian>(), LIBRARIAN);
                 DrawQuestIcon(npc, spriteBatch, NPCType<HellDwarf>(), HELLDWARF);
             }

@@ -1,5 +1,4 @@
-﻿using StramsSurvival.Buffs;
-using Synergia.Common.Biome;
+﻿using Synergia.Common.Biome;
 using Synergia.Common.ModConfigs;
 using Synergia.Common.ModSystems.WorldGens;
 using Synergia.Content.Achievements;
@@ -57,8 +56,8 @@ namespace Synergia.Common.GlobalPlayer {
             if (!arena && hellStruct && context == "TeleportRod") { return false; } else if(arena) { return base.CanBeTeleportedTo(teleportPosition, context); } else { return base.CanBeTeleportedTo(teleportPosition, context); }
         }
         public override void PostUpdateBuffs() {
-            ReplaceBuff(BuffType<Dehydrated>(), BuffType<SynergiaDehydrated>());
-            ReplaceBuff(BuffType<Starving>(), BuffType<SynergiaStarving>());
+            //ReplaceBuff(BuffType<Dehydrated>(), BuffType<SynergiaDehydrated>());
+            //ReplaceBuff(BuffType<Starving>(), BuffType<SynergiaStarving>());
         }
         public override void UpdateBadLifeRegen() {
             if (Player.HasBuff(BuffType<SynergiaDehydrated>())) {

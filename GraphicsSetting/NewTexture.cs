@@ -2,7 +2,6 @@ using Avalon.Items.Weapons.Magic.Hardmode.AquaImpact;
 using Avalon.Items.Weapons.Magic.Hardmode.Sunstorm;
 using Bismuth.Content.Items.Weapons.Throwing;
 using Bismuth.Content.Projectiles;
-using Microsoft.Xna.Framework.Graphics;
 using Terraria.GameContent;
 using ValhallaMod.Items.Weapons.Aura;
 
@@ -28,7 +27,7 @@ namespace Synergia.GraphicsSetting {
             TextureAssets.Item[ItemType<Sunstorm>()] = Request<Texture2D>("Avalon/Items/Weapons/Magic/Hardmode/Sunstorm/Sunstorm");
             TextureAssets.Item[ItemType<StarAuraStaff>()] = Request<Texture2D>("ValhallaMod/Items/Weapons/Aura/StarAuraStaff");
             TextureAssets.Item[ItemType<TitaniumJavelin>()] = Request<Texture2D>("Bismuth/Content/Items/Weapons/Throwing/TitaniumJavelin");
-            TextureAssets.Item[ItemType<AquaImpact>()] = Request<Texture2D>("Avalon/Items/Weapons/Magic/Hardmode/AquaImpact/AquaImpact")
+            TextureAssets.Item[ItemType<AquaImpact>()] = Request<Texture2D>("Avalon/Items/Weapons/Magic/Hardmode/AquaImpact/AquaImpact");
 
             TextureAssets.Projectile[ProjectileType<OrcishJavelinP>()] = Request<Texture2D>("Bismuth/Content/Projectiles/OrcishJavelinP"); 
         }

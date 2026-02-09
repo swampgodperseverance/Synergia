@@ -1,25 +1,22 @@
 ﻿using Avalon.Items.Tools.Hardmode;
 using Bismuth.Content.Items.Weapons.Throwing;
+using Consolaria.Content.Items.Weapons.Melee;
 using NewHorizons.Content.Items.Weapons.Ranged;
 using NewHorizons.Content.Items.Weapons.Throwing;
 using Synergia.Content.Items.Weapons.Throwing;
 using System.Collections.Generic;
-using Consolaria.Content.Items.Weapons.Melee;
 using ValhallaMod.Items.Garden;
+using ValhallaMod.Items.Weapons.Blood;
 using ValhallaMod.Items.Weapons.Boomerang;
+using ValhallaMod.Items.Weapons.Glaive;
 using ValhallaMod.Items.Weapons.Javelin;
 using ValhallaMod.Items.Weapons.Thrown;
-using ValhallaMod.Items.Weapons.Glaive;
 using static Synergia.ModList;
 using static Terraria.ID.ItemID;
-using Carrot = StramsSurvival.Items.Foods.Carrot;
-using Carrot1 = NewHorizons.Content.Items.Materials.Carrot;
-using ValhallaMod.Items.Weapons.Blood;
 
 
 namespace Synergia.Lists {
     public class Items {
-        public static List<int> CarrotID { get; private set; } = [ItemType<Carrot>(), ItemType<Carrot1>()];
         public static List<int> FoodID { get; private set; } = [];
         public static List<int> CorruptionItem { get; private set; } = [Musket, BandofStarpower, ShadowOrb, BallOHurt, Roa.Find<ModItem>("PlanetomaStaff").Type, Roa.Find<ModItem>("Bookworms").Type, Roa.Find<ModItem>("Vilethorn").Type];
         public static List<int> SkyChest { get; private set; } = [Starfury, LuckyHorseshoe, ShinyRedBalloon, CelestialMagnet];

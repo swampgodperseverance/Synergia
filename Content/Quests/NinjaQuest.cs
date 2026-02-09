@@ -1,16 +1,13 @@
 ﻿using Bismuth.Utilities.ModSupport;
 using NewHorizons.Content.Items.Accessories;
+using NewHorizons.Content.Items.Materials;
 using NewHorizons.Content.NPCs.Town;
 using Synergia.Common.ModSystems.Hooks.Ons;
-using Synergia.Helpers;
 using Terraria;
 using Terraria.ID;
-using static Synergia.Lists.Items;
 
 namespace Synergia.Content.Quests {
     public class NinjaQuest : BaseQuestLogic {
-        readonly UIHelper helper = new();
-
         public override int QuestNPC => NPCType<Ninja>();
         public override bool IsEndQuest => Main.LocalPlayer.GetModPlayer<QuestBoolean>().NinjaQuest;
         public override string Key => "NinjaQuestPostKingSlime";
@@ -27,8 +24,7 @@ namespace Synergia.Content.Quests {
         public override bool IsCompleted(Player player) => BaseIsCompleted(player);
         public override void OnChatButtonClicked(Player player) {
             BaseOnChatButtonClicked(player);
-            int itemId = helper.NoStaticGetNextItemType(CarrotID);
-            CheckItem(player, ref player.GetModPlayer<QuestBoolean>().NinjaQuest, itemId, 1, 1, LocQuestKey("Ninja", "QuestCompleted"), LocQuestKey("Ninja", "QuestCompletedFalse"), ItemType<ShurikenWheel>());
+            CheckItem(player, ref player.GetModPlayer<QuestBoolean>().NinjaQuest, ItemType<Carrot>(), 1, 1, LocQuestKey("Ninja", "QuestCompleted"), LocQuestKey("Ninja", "QuestCompletedFalse"), ItemType<ShurikenWheel>());
             if (Progress == 0) {
                 CompletedQuickSpawnItem(player, ItemID.GoldCoin, 4);
                 HookForQuest.NpcQuestKeys.Remove(QuestNPC);
