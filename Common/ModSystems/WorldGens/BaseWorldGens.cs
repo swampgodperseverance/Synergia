@@ -10,7 +10,7 @@ namespace Synergia.Common.ModSystems.WorldGens {
     public abstract class BaseWorldGens : ModSystem {
 
         public const byte a = 10, b = 11, c = 12, d = 13, e = 14, f = 15, g = 16, h = 17, i = 18, j = 19, k = 20, l = 21;
-
+        public virtual string SaveName => GetType().Name;
         public abstract bool GensBool { get; set; }
         public virtual string NameGen => "Error";
         public string Favorit = "Final Cleanup";
@@ -32,19 +32,16 @@ namespace Synergia.Common.ModSystems.WorldGens {
             GensBool = false;
         }
         public override void SaveWorldData(TagCompound tag) {
-            BitsByte Generated2 = new();
-            Generated2[0] = GensBool;
+            tag[SaveName] = GensBool;
         }
         public override void LoadWorldData(TagCompound tag) {
-            BitsByte Generated2 = (BitsByte)tag.GetByte("Generated2");
-            GensBool = Generated2[0];
+            GensBool = tag.GetBool(SaveName);
         }
         public override void NetSend(BinaryWriter writer) {
-            BitsByte Flags = new(); Flags[0] = GensBool;
+            writer.Write(GensBool);
         }
         public override void NetReceive(BinaryReader reader) {
-            BitsByte Flags = reader.ReadByte();
-            GensBool = Flags[0];
+            GensBool = reader.ReadBoolean();
         }
     }
 }

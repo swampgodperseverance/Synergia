@@ -1,7 +1,8 @@
 ﻿using Avalon.NPCs.TownNPCs;
 using Bismuth.Utilities.ModSupport;
-using StramsSurvival.NPCs;
+using Synergia.Common.ModSystems.Hooks.Ons;
 using Terraria;
+using Terraria.ID;
 using ValhallaMod.Items.Material;
 using ValhallaMod.Items.Weapons.Magic;
 
@@ -25,6 +26,7 @@ namespace Synergia.Content.Quests {
         public override void OnChatButtonClicked(Player player) {
             BaseOnChatButtonClicked(player);
             CheckItem(player, ref player.GetModPlayer<QuestBoolean>().LibrarianQuest, ItemType<DamagedBook>(), 1, 1, LocQuestKey("Librarian", "QuestCompleted"), LocQuestKey("Librarian", "QuestCompletedFalse"), ItemType<WaterCandelabra>());
+            if (Progress == 0) { HookForQuest.NpcQuestKeys.Remove(QuestNPC); }
         }
         public override bool IsAvailable(Player player) => BaseIsAvailable(player);
         public override bool IsActive(Player player) => BaseIsActive(player);

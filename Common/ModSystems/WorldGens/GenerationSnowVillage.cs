@@ -146,7 +146,7 @@ namespace Synergia.Common.ModSystems.WorldGens
                 }
                 if (list.Count > 0) {
                     Point point = list[WorldGen.genRand.Next(0, list.Count)];
-                    SynergiaGenVars.SnowVilagePositionX = point.X; SynergiaGenVars.SnowVilagePositionY = point.Y;
+                    SynergiaGenVars.SnowVillagePositionX = point.X; SynergiaGenVars.SnowVillagePositionY = point.Y;
                     goto GenerateBuild;
                 }
             }
@@ -154,27 +154,27 @@ namespace Synergia.Common.ModSystems.WorldGens
             return false;
 
         GenerateBuild:
-            NPC.NewNPC(new EntitySource_WorldGen(), (SynergiaGenVars.SnowVilagePositionX + 13) * 16, (SynergiaGenVars.SnowVilagePositionY - 11) * 16, NPCType<Dwarf>(), 0, 0f, 0f, 0f, 0f, 255);
+            NPC.NewNPC(new EntitySource_WorldGen(), (SynergiaGenVars.SnowVillagePositionX + 13) * 16, (SynergiaGenVars.SnowVillagePositionY - 11) * 16, NPCType<Dwarf>(), 0, 0f, 0f, 0f, 0f, 255);
 
             int width = SnowVilageTiles.GetLength(1);
             int height = SnowVilageTiles.GetLength(0);
 
-            WorldHelper.Cleaning(SynergiaGenVars.SnowVilagePositionX + 3, SynergiaGenVars.SnowVilagePositionY - 11, SynergiaGenVars.SnowVilagePositionX + 100, SynergiaGenVars.SnowVilagePositionY - 0, TileID.SnowBlock, TileID.IceBlock, TileID.Grass, TileID.Dirt);
+            WorldHelper.Cleaning(SynergiaGenVars.SnowVillagePositionX + 3, SynergiaGenVars.SnowVillagePositionY - 11, SynergiaGenVars.SnowVillagePositionX + 100, SynergiaGenVars.SnowVillagePositionY - 0, TileID.SnowBlock, TileID.IceBlock, TileID.Grass, TileID.Dirt);
 
-            WorldHelper.Cleaning(SynergiaGenVars.SnowVilagePositionX + 34, SynergiaGenVars.SnowVilagePositionY - 11, SynergiaGenVars.SnowVilagePositionX + 35, SynergiaGenVars.SnowVilagePositionY - 10, TileID.SnowBlock, TileID.IceBlock, TileID.Trees, TileID.Grass, TileID.Dirt);
-            WorldHelper.Cleaning(SynergiaGenVars.SnowVilagePositionX + 7, SynergiaGenVars.SnowVilagePositionY - 18, SynergiaGenVars.SnowVilagePositionX + 56, SynergiaGenVars.SnowVilagePositionY - 11, TileID.SnowBlock, TileID.IceBlock, TileID.Trees, TileID.Grass, TileID.Dirt); // - первый 2 домика
-            WorldHelper.Cleaning(SynergiaGenVars.SnowVilagePositionX + 57, SynergiaGenVars.SnowVilagePositionY - 30, SynergiaGenVars.SnowVilagePositionX + 77, SynergiaGenVars.SnowVilagePositionY - 10, TileID.SnowBlock, TileID.IceBlock, TileID.Grass, TileID.Dirt); // - двор
-            WorldHelper.Cleaning(SynergiaGenVars.SnowVilagePositionX + 78, SynergiaGenVars.SnowVilagePositionY - 20, SynergiaGenVars.SnowVilagePositionX + 97, SynergiaGenVars.SnowVilagePositionY - 9, TileID.SnowBlock, TileID.IceBlock, TileID.Trees, TileID.Grass, TileID.Dirt); // - последний дом
+            WorldHelper.Cleaning(SynergiaGenVars.SnowVillagePositionX + 34, SynergiaGenVars.SnowVillagePositionY - 11, SynergiaGenVars.SnowVillagePositionX + 35, SynergiaGenVars.SnowVillagePositionY - 10, TileID.SnowBlock, TileID.IceBlock, TileID.Trees, TileID.Grass, TileID.Dirt);
+            WorldHelper.Cleaning(SynergiaGenVars.SnowVillagePositionX + 7, SynergiaGenVars.SnowVillagePositionY - 18, SynergiaGenVars.SnowVillagePositionX + 56, SynergiaGenVars.SnowVillagePositionY - 11, TileID.SnowBlock, TileID.IceBlock, TileID.Trees, TileID.Grass, TileID.Dirt); // - первый 2 домика
+            WorldHelper.Cleaning(SynergiaGenVars.SnowVillagePositionX + 57, SynergiaGenVars.SnowVillagePositionY - 30, SynergiaGenVars.SnowVillagePositionX + 77, SynergiaGenVars.SnowVillagePositionY - 10, TileID.SnowBlock, TileID.IceBlock, TileID.Grass, TileID.Dirt); // - двор
+            WorldHelper.Cleaning(SynergiaGenVars.SnowVillagePositionX + 78, SynergiaGenVars.SnowVillagePositionY - 20, SynergiaGenVars.SnowVillagePositionX + 97, SynergiaGenVars.SnowVillagePositionY - 9, TileID.SnowBlock, TileID.IceBlock, TileID.Trees, TileID.Grass, TileID.Dirt); // - последний дом
 
             for (int X = 0; X < width; X++) {
                 for (int Y = 0; Y < height; Y++) {
-                    int worldX = SynergiaGenVars.SnowVilagePositionX + X;
-                    int worldY = SynergiaGenVars.SnowVilagePositionY - Y;
+                    int worldX = SynergiaGenVars.SnowVillagePositionX + X;
+                    int worldY = SynergiaGenVars.SnowVillagePositionY - Y;
 
                     if (!WorldGen.InWorld(worldX, worldY, 10))
                         continue;
 
-                    Tile tile = Framing.GetTileSafely(SynergiaGenVars.SnowVilagePositionX + X, SynergiaGenVars.SnowVilagePositionY - Y);
+                    Tile tile = Framing.GetTileSafely(SynergiaGenVars.SnowVillagePositionX + X, SynergiaGenVars.SnowVillagePositionY - Y);
                     tile.ClearEverything();
 
                     switch (SnowVilageTiles[Y, X]) {
@@ -188,7 +188,7 @@ namespace Synergia.Common.ModSystems.WorldGens
                         case 7: tile.TileType = (ushort)TileType<ValhalliteBrick>(); tile.HasTile = true; break;
                         case 8: tile.TileType = Roa.Find<ModTile>("ElderwoodBeam").Type; tile.HasTile = true; break;
                         case 9: tile.TileType = TileID.LivingWood; tile.HasTile = true; break;
-                        case a: WorldGen.PlaceTile(SynergiaGenVars.SnowVilagePositionX + X, SynergiaGenVars.SnowVilagePositionY - Y, TileID.Platforms, false, false, -1, 19); break;
+                        case a: WorldGen.PlaceTile(SynergiaGenVars.SnowVillagePositionX + X, SynergiaGenVars.SnowVillagePositionY - Y, TileID.Platforms, false, false, -1, 19); break;
                         case b: tile.TileType = Roa.Find<ModTile>("ElderwoodPlatform").Type; tile.HasTile = true; break;
                         case c: tile.TileType = (ushort)TileType<PurpleBrickPlatform>(); tile.HasTile = true; break;
                         case d: tile.TileType = TileID.WoodBlock; tile.HasTile = true; break;
@@ -197,7 +197,7 @@ namespace Synergia.Common.ModSystems.WorldGens
                         case g: tile.TileType = TileID.Chain; tile.HasTile = true; break;
                         case h: tile.TileType = TileID.SilverBrick; tile.HasTile = true; break;
                         case i: tile.TileType = TileID.Diamond; tile.HasTile = true; break;
-                        case j: WorldGen.PlaceTile(SynergiaGenVars.SnowVilagePositionX + X, SynergiaGenVars.SnowVilagePositionY - Y, TileID.Platforms, false, false, -1, 6); break;
+                        case j: WorldGen.PlaceTile(SynergiaGenVars.SnowVillagePositionX + X, SynergiaGenVars.SnowVillagePositionY - Y, TileID.Platforms, false, false, -1, 6); break;
                         case k: tile.TileType = TileID.AmberStoneBlock; tile.HasTile = true; break;
                         case l: tile.TileType = (ushort)TileType<Zircon>(); tile.HasTile = true; break;
                     }
@@ -228,148 +228,148 @@ namespace Synergia.Common.ModSystems.WorldGens
                         case 5: tile.Slope = SlopeType.SlopeDownLeft; break;
                     }
                     if (SnowVilageTiles[Y, X] != 0) {
-                        SynergiaGenVars.VilageTiles.Add(new Vector2(SynergiaGenVars.SnowVilagePositionX + X, SynergiaGenVars.SnowVilagePositionY - Y));
+                        SynergiaGenVars.VillageTiles.Add(new Vector2(SynergiaGenVars.SnowVillagePositionX + X, SynergiaGenVars.SnowVillagePositionY - Y));
                     }
                     if (SnowVilageWalls[Y, X] != 0) {
-                        SynergiaGenVars.VilageWalles.Add(new Vector2(SynergiaGenVars.SnowVilagePositionX + X, SynergiaGenVars.SnowVilagePositionY - Y));
+                        SynergiaGenVars.VillageWalles.Add(new Vector2(SynergiaGenVars.SnowVillagePositionX + X, SynergiaGenVars.SnowVillagePositionY - Y));
                     }
                 }
             }
 
-            WorldGen.Place2x2(SynergiaGenVars.SnowVilagePositionX + 96, SynergiaGenVars.SnowVilagePositionY - 8, (ushort)TileType<FermentingBarrel>(), 0);
-            WorldGen.Place3x2(SynergiaGenVars.SnowVilagePositionX + 88, SynergiaGenVars.SnowVilagePositionY - 9, (ushort)TileType<Oven>());
+            WorldGen.Place2x2(SynergiaGenVars.SnowVillagePositionX + 96, SynergiaGenVars.SnowVillagePositionY - 8, (ushort)TileType<FermentingBarrel>(), 0);
+            WorldGen.Place3x2(SynergiaGenVars.SnowVillagePositionX + 88, SynergiaGenVars.SnowVillagePositionY - 9, (ushort)TileType<Oven>());
 
-            WorldGen.PlaceObject(SynergiaGenVars.SnowVilagePositionX + 86, SynergiaGenVars.SnowVilagePositionY - 9, (ushort)TileType<SmoothMarblePillarBroken>());
-            WorldGen.PlaceObject(SynergiaGenVars.SnowVilagePositionX + 80, SynergiaGenVars.SnowVilagePositionY - 9, (ushort)TileType<ResistantWoodTable>());
-            WorldGen.PlaceObject(SynergiaGenVars.SnowVilagePositionX + 66, SynergiaGenVars.SnowVilagePositionY - 9, Valhalla.Find<ModTile>("Millstone").Type);
-            WorldGen.PlaceObject(SynergiaGenVars.SnowVilagePositionX + 5, SynergiaGenVars.SnowVilagePositionY - 10, TileID.Statues, mute: false, 32);
-            WorldGen.PlaceObject(SynergiaGenVars.SnowVilagePositionX + 21, SynergiaGenVars.SnowVilagePositionY - 11, TileID.Statues);
-            WorldGen.PlaceObject(SynergiaGenVars.SnowVilagePositionX + 62, SynergiaGenVars.SnowVilagePositionY - 10, TileID.Lampposts);
-            WorldGen.PlaceObject(SynergiaGenVars.SnowVilagePositionX + 29, SynergiaGenVars.SnowVilagePositionY - 10, TileID.Lampposts);
-            WorldGen.PlaceObject(SynergiaGenVars.SnowVilagePositionX + 56, SynergiaGenVars.SnowVilagePositionY - 10, TileID.WaterFountain, mute: false, 3);
-            WorldGen.PlaceObject(SynergiaGenVars.SnowVilagePositionX + 27, SynergiaGenVars.SnowVilagePositionY - 11, (ushort)TileType<Avalon.Tiles.NickelAnvil>());
-            WorldGen.PlaceObject(SynergiaGenVars.SnowVilagePositionX + 18, SynergiaGenVars.SnowVilagePositionY - 11, (ushort)TileType<Workbench>());
-            WorldGen.PlaceObject(SynergiaGenVars.SnowVilagePositionX + 16, SynergiaGenVars.SnowVilagePositionY - 11, TileID.FishingCrate, mute: false, 18);
-            WorldGen.PlaceObject(SynergiaGenVars.SnowVilagePositionX + 9, SynergiaGenVars.SnowVilagePositionY - 11, (ushort)TileType<LaminatedTable>());
-            WorldGen.PlaceObject(SynergiaGenVars.SnowVilagePositionX + 11, SynergiaGenVars.SnowVilagePositionY - 11, (ushort)TileType<Chair>(), mute: false, 2);
-            WorldGen.PlaceObject(SynergiaGenVars.SnowVilagePositionX + 13, SynergiaGenVars.SnowVilagePositionY - 11, (ushort)TileType<LaminatedBed>());
-            WorldGen.PlaceObject(SynergiaGenVars.SnowVilagePositionX + 38, SynergiaGenVars.SnowVilagePositionY - 11, TileID.Lamps);
-            WorldGen.PlaceObject(SynergiaGenVars.SnowVilagePositionX + 40, SynergiaGenVars.SnowVilagePositionY - 11, TileID.Sawmill);
-            WorldGen.PlaceObject(SynergiaGenVars.SnowVilagePositionX + 42, SynergiaGenVars.SnowVilagePositionY - 11, TileID.WorkBenches, mute: false, 43);
-            WorldGen.PlaceObject(SynergiaGenVars.SnowVilagePositionX + 45, SynergiaGenVars.SnowVilagePositionY - 11, (ushort)TileType<ResistantWoodClock>());
-            WorldGen.PlaceObject(SynergiaGenVars.SnowVilagePositionX + 49, SynergiaGenVars.SnowVilagePositionY - 11, TileID.Fireplace);
-            WorldGen.PlaceObject(SynergiaGenVars.SnowVilagePositionX + 90, SynergiaGenVars.SnowVilagePositionY - 9, TileID.Lamps);
-            WorldGen.PlaceObject(SynergiaGenVars.SnowVilagePositionX + 92, SynergiaGenVars.SnowVilagePositionY - 11, TileID.ClosedDoor, mute: false, 30);
-            WorldGen.PlaceObject(SynergiaGenVars.SnowVilagePositionX + 76, SynergiaGenVars.SnowVilagePositionY - 11, TileID.ClosedDoor, mute: false, 30);
-            WorldGen.PlaceObject(SynergiaGenVars.SnowVilagePositionX + 78, SynergiaGenVars.SnowVilagePositionY - 13, TileID.FishingCrate, mute: false, 1);
-            WorldGen.PlaceObject(SynergiaGenVars.SnowVilagePositionX + 42, SynergiaGenVars.SnowVilagePositionY - 12, TileID.MusicBoxes, mute: false, 14);
-            WorldGen.PlaceObject(SynergiaGenVars.SnowVilagePositionX + 52, SynergiaGenVars.SnowVilagePositionY - 12, Roa.Find<ModTile>("ElderwoodDoorClosed").Type);
-            WorldGen.PlaceObject(SynergiaGenVars.SnowVilagePositionX + 22, SynergiaGenVars.SnowVilagePositionY - 12, TileID.ClosedDoor, mute: false, 44);
-            WorldGen.PlaceObject(SynergiaGenVars.SnowVilagePositionX + 6, SynergiaGenVars.SnowVilagePositionY - 12, TileID.ClosedDoor, mute: false, 30);
-            WorldGen.PlaceObject(SynergiaGenVars.SnowVilagePositionX + 10, SynergiaGenVars.SnowVilagePositionY - 18, TileID.Furnaces);
-            WorldGen.PlaceObject(SynergiaGenVars.SnowVilagePositionX + 9, SynergiaGenVars.SnowVilagePositionY - 16, TileID.Banners, false, 2);
-            WorldGen.PlaceObject(SynergiaGenVars.SnowVilagePositionX + 12, SynergiaGenVars.SnowVilagePositionY - 16, TileID.Banners, false, 2);
-            WorldGen.PlaceObject(SynergiaGenVars.SnowVilagePositionX + 89, SynergiaGenVars.SnowVilagePositionY - 12, TileID.LightningBuginaBottle);
+            WorldGen.PlaceObject(SynergiaGenVars.SnowVillagePositionX + 86, SynergiaGenVars.SnowVillagePositionY - 9, (ushort)TileType<SmoothMarblePillarBroken>());
+            WorldGen.PlaceObject(SynergiaGenVars.SnowVillagePositionX + 80, SynergiaGenVars.SnowVillagePositionY - 9, (ushort)TileType<ResistantWoodTable>());
+            WorldGen.PlaceObject(SynergiaGenVars.SnowVillagePositionX + 66, SynergiaGenVars.SnowVillagePositionY - 9, Valhalla.Find<ModTile>("Millstone").Type);
+            WorldGen.PlaceObject(SynergiaGenVars.SnowVillagePositionX + 5, SynergiaGenVars.SnowVillagePositionY - 10, TileID.Statues, mute: false, 32);
+            WorldGen.PlaceObject(SynergiaGenVars.SnowVillagePositionX + 21, SynergiaGenVars.SnowVillagePositionY - 11, TileID.Statues);
+            WorldGen.PlaceObject(SynergiaGenVars.SnowVillagePositionX + 62, SynergiaGenVars.SnowVillagePositionY - 10, TileID.Lampposts);
+            WorldGen.PlaceObject(SynergiaGenVars.SnowVillagePositionX + 29, SynergiaGenVars.SnowVillagePositionY - 10, TileID.Lampposts);
+            WorldGen.PlaceObject(SynergiaGenVars.SnowVillagePositionX + 56, SynergiaGenVars.SnowVillagePositionY - 10, TileID.WaterFountain, mute: false, 3);
+            WorldGen.PlaceObject(SynergiaGenVars.SnowVillagePositionX + 27, SynergiaGenVars.SnowVillagePositionY - 11, (ushort)TileType<Avalon.Tiles.NickelAnvil>());
+            WorldGen.PlaceObject(SynergiaGenVars.SnowVillagePositionX + 18, SynergiaGenVars.SnowVillagePositionY - 11, (ushort)TileType<Workbench>());
+            WorldGen.PlaceObject(SynergiaGenVars.SnowVillagePositionX + 16, SynergiaGenVars.SnowVillagePositionY - 11, TileID.FishingCrate, mute: false, 18);
+            WorldGen.PlaceObject(SynergiaGenVars.SnowVillagePositionX + 9, SynergiaGenVars.SnowVillagePositionY - 11, (ushort)TileType<LaminatedTable>());
+            WorldGen.PlaceObject(SynergiaGenVars.SnowVillagePositionX + 11, SynergiaGenVars.SnowVillagePositionY - 11, (ushort)TileType<Chair>(), mute: false, 2);
+            WorldGen.PlaceObject(SynergiaGenVars.SnowVillagePositionX + 13, SynergiaGenVars.SnowVillagePositionY - 11, (ushort)TileType<LaminatedBed>());
+            WorldGen.PlaceObject(SynergiaGenVars.SnowVillagePositionX + 38, SynergiaGenVars.SnowVillagePositionY - 11, TileID.Lamps);
+            WorldGen.PlaceObject(SynergiaGenVars.SnowVillagePositionX + 40, SynergiaGenVars.SnowVillagePositionY - 11, TileID.Sawmill);
+            WorldGen.PlaceObject(SynergiaGenVars.SnowVillagePositionX + 42, SynergiaGenVars.SnowVillagePositionY - 11, TileID.WorkBenches, mute: false, 43);
+            WorldGen.PlaceObject(SynergiaGenVars.SnowVillagePositionX + 45, SynergiaGenVars.SnowVillagePositionY - 11, (ushort)TileType<ResistantWoodClock>());
+            WorldGen.PlaceObject(SynergiaGenVars.SnowVillagePositionX + 49, SynergiaGenVars.SnowVillagePositionY - 11, TileID.Fireplace);
+            WorldGen.PlaceObject(SynergiaGenVars.SnowVillagePositionX + 90, SynergiaGenVars.SnowVillagePositionY - 9, TileID.Lamps);
+            WorldGen.PlaceObject(SynergiaGenVars.SnowVillagePositionX + 92, SynergiaGenVars.SnowVillagePositionY - 11, TileID.ClosedDoor, mute: false, 30);
+            WorldGen.PlaceObject(SynergiaGenVars.SnowVillagePositionX + 76, SynergiaGenVars.SnowVillagePositionY - 11, TileID.ClosedDoor, mute: false, 30);
+            WorldGen.PlaceObject(SynergiaGenVars.SnowVillagePositionX + 78, SynergiaGenVars.SnowVillagePositionY - 13, TileID.FishingCrate, mute: false, 1);
+            WorldGen.PlaceObject(SynergiaGenVars.SnowVillagePositionX + 42, SynergiaGenVars.SnowVillagePositionY - 12, TileID.MusicBoxes, mute: false, 14);
+            WorldGen.PlaceObject(SynergiaGenVars.SnowVillagePositionX + 52, SynergiaGenVars.SnowVillagePositionY - 12, Roa.Find<ModTile>("ElderwoodDoorClosed").Type);
+            WorldGen.PlaceObject(SynergiaGenVars.SnowVillagePositionX + 22, SynergiaGenVars.SnowVillagePositionY - 12, TileID.ClosedDoor, mute: false, 44);
+            WorldGen.PlaceObject(SynergiaGenVars.SnowVillagePositionX + 6, SynergiaGenVars.SnowVillagePositionY - 12, TileID.ClosedDoor, mute: false, 30);
+            WorldGen.PlaceObject(SynergiaGenVars.SnowVillagePositionX + 10, SynergiaGenVars.SnowVillagePositionY - 18, TileID.Furnaces);
+            WorldGen.PlaceObject(SynergiaGenVars.SnowVillagePositionX + 9, SynergiaGenVars.SnowVillagePositionY - 16, TileID.Banners, false, 2);
+            WorldGen.PlaceObject(SynergiaGenVars.SnowVillagePositionX + 12, SynergiaGenVars.SnowVillagePositionY - 16, TileID.Banners, false, 2);
+            WorldGen.PlaceObject(SynergiaGenVars.SnowVillagePositionX + 89, SynergiaGenVars.SnowVillagePositionY - 12, TileID.LightningBuginaBottle);
 
-            WorldGen.Place6x4Wall(SynergiaGenVars.SnowVilagePositionX + 15, SynergiaGenVars.SnowVilagePositionY - 14, (ushort)TileType<RiseOfTheOldGod>(), 0);
+            WorldGen.Place6x4Wall(SynergiaGenVars.SnowVillagePositionX + 15, SynergiaGenVars.SnowVillagePositionY - 14, (ushort)TileType<RiseOfTheOldGod>(), 0);
 
-            WorldGen.Place1x1(SynergiaGenVars.SnowVilagePositionX + 37, SynergiaGenVars.SnowVilagePositionY - 11, TileID.ClayPot, 0);
-            WorldGen.Place1x1(SynergiaGenVars.SnowVilagePositionX + 7, SynergiaGenVars.SnowVilagePositionY - 13, TileID.Candles, 0);
-            WorldGen.Place1x1(SynergiaGenVars.SnowVilagePositionX + 80, SynergiaGenVars.SnowVilagePositionY - 15, TileID.Books, 0);
-            WorldGen.Place1x1(SynergiaGenVars.SnowVilagePositionX + 81, SynergiaGenVars.SnowVilagePositionY - 15, TileID.Books, 0);
-            WorldGen.Place1x1(SynergiaGenVars.SnowVilagePositionX + 82, SynergiaGenVars.SnowVilagePositionY - 15, TileID.Books, 0);
-            WorldGen.Place1x1(SynergiaGenVars.SnowVilagePositionX + 42, SynergiaGenVars.SnowVilagePositionY - 15, TileID.Books, 0);
-            WorldGen.Place1x1(SynergiaGenVars.SnowVilagePositionX + 43, SynergiaGenVars.SnowVilagePositionY - 15, TileID.Books, 0);
-            WorldGen.Place1x1(SynergiaGenVars.SnowVilagePositionX + 19, SynergiaGenVars.SnowVilagePositionY - 15, TileID.Books, 0);
-            WorldGen.Place1x1(SynergiaGenVars.SnowVilagePositionX + 20, SynergiaGenVars.SnowVilagePositionY - 15, TileID.Books, 0);
-            WorldGen.Place1x1(SynergiaGenVars.SnowVilagePositionX + 7, SynergiaGenVars.SnowVilagePositionY - 15, TileID.Candles, 50);
-            WorldGen.Place1x2(SynergiaGenVars.SnowVilagePositionX + 78, SynergiaGenVars.SnowVilagePositionY - 9, TileID.Chairs, 17);
-            WorldGen.Place1x2(SynergiaGenVars.SnowVilagePositionX + 51, SynergiaGenVars.SnowVilagePositionY - 11, TileID.Chairs, 17);
+            WorldGen.Place1x1(SynergiaGenVars.SnowVillagePositionX + 37, SynergiaGenVars.SnowVillagePositionY - 11, TileID.ClayPot, 0);
+            WorldGen.Place1x1(SynergiaGenVars.SnowVillagePositionX + 7, SynergiaGenVars.SnowVillagePositionY - 13, TileID.Candles, 0);
+            WorldGen.Place1x1(SynergiaGenVars.SnowVillagePositionX + 80, SynergiaGenVars.SnowVillagePositionY - 15, TileID.Books, 0);
+            WorldGen.Place1x1(SynergiaGenVars.SnowVillagePositionX + 81, SynergiaGenVars.SnowVillagePositionY - 15, TileID.Books, 0);
+            WorldGen.Place1x1(SynergiaGenVars.SnowVillagePositionX + 82, SynergiaGenVars.SnowVillagePositionY - 15, TileID.Books, 0);
+            WorldGen.Place1x1(SynergiaGenVars.SnowVillagePositionX + 42, SynergiaGenVars.SnowVillagePositionY - 15, TileID.Books, 0);
+            WorldGen.Place1x1(SynergiaGenVars.SnowVillagePositionX + 43, SynergiaGenVars.SnowVillagePositionY - 15, TileID.Books, 0);
+            WorldGen.Place1x1(SynergiaGenVars.SnowVillagePositionX + 19, SynergiaGenVars.SnowVillagePositionY - 15, TileID.Books, 0);
+            WorldGen.Place1x1(SynergiaGenVars.SnowVillagePositionX + 20, SynergiaGenVars.SnowVillagePositionY - 15, TileID.Books, 0);
+            WorldGen.Place1x1(SynergiaGenVars.SnowVillagePositionX + 7, SynergiaGenVars.SnowVillagePositionY - 15, TileID.Candles, 50);
+            WorldGen.Place1x2(SynergiaGenVars.SnowVillagePositionX + 78, SynergiaGenVars.SnowVillagePositionY - 9, TileID.Chairs, 17);
+            WorldGen.Place1x2(SynergiaGenVars.SnowVillagePositionX + 51, SynergiaGenVars.SnowVillagePositionY - 11, TileID.Chairs, 17);
 
-            WorldGen.Place3x2(SynergiaGenVars.SnowVilagePositionX + 83, SynergiaGenVars.SnowVilagePositionY - 9, TileID.Dressers, 18);
+            WorldGen.Place3x2(SynergiaGenVars.SnowVillagePositionX + 83, SynergiaGenVars.SnowVillagePositionY - 9, TileID.Dressers, 18);
 
-            WorldGen.Place2x1(SynergiaGenVars.SnowVilagePositionX + 79, SynergiaGenVars.SnowVilagePositionY - 11, TileID.Bowls, 0);
-            WorldGen.Place2x1(SynergiaGenVars.SnowVilagePositionX + 8, SynergiaGenVars.SnowVilagePositionY - 13, TileID.Bowls, 1);
-            WorldGen.Place2x2(SynergiaGenVars.SnowVilagePositionX + 88, SynergiaGenVars.SnowVilagePositionY - 14, TileID.UlyssesButterflyJar, 0);
-            WorldGen.Place2x2(SynergiaGenVars.SnowVilagePositionX + 90, SynergiaGenVars.SnowVilagePositionY - 14, TileID.Heart, 0);
-            WorldGen.Place2x2(SynergiaGenVars.SnowVilagePositionX + 49, SynergiaGenVars.SnowVilagePositionY - 13, TileID.FishBowl, 0);
-            WorldGen.Place2x2(SynergiaGenVars.SnowVilagePositionX + 84, SynergiaGenVars.SnowVilagePositionY - 11, (ushort)TileType<OtherworldlyMusicBox2>(), 0);
+            WorldGen.Place2x1(SynergiaGenVars.SnowVillagePositionX + 79, SynergiaGenVars.SnowVillagePositionY - 11, TileID.Bowls, 0);
+            WorldGen.Place2x1(SynergiaGenVars.SnowVillagePositionX + 8, SynergiaGenVars.SnowVillagePositionY - 13, TileID.Bowls, 1);
+            WorldGen.Place2x2(SynergiaGenVars.SnowVillagePositionX + 88, SynergiaGenVars.SnowVillagePositionY - 14, TileID.UlyssesButterflyJar, 0);
+            WorldGen.Place2x2(SynergiaGenVars.SnowVillagePositionX + 90, SynergiaGenVars.SnowVillagePositionY - 14, TileID.Heart, 0);
+            WorldGen.Place2x2(SynergiaGenVars.SnowVillagePositionX + 49, SynergiaGenVars.SnowVillagePositionY - 13, TileID.FishBowl, 0);
+            WorldGen.Place2x2(SynergiaGenVars.SnowVillagePositionX + 84, SynergiaGenVars.SnowVillagePositionY - 11, (ushort)TileType<OtherworldlyMusicBox2>(), 0);
 
-            WorldGen.Place3x2(SynergiaGenVars.SnowVilagePositionX + 25, SynergiaGenVars.SnowVilagePositionY - 11, TileID.Blendomatic, 0);
-            WorldGen.Place3x3(SynergiaGenVars.SnowVilagePositionX + 85, SynergiaGenVars.SnowVilagePositionY - 16, (ushort)TileType<ZincChandelier>(), 0);
+            WorldGen.Place3x2(SynergiaGenVars.SnowVillagePositionX + 25, SynergiaGenVars.SnowVillagePositionY - 11, TileID.Blendomatic, 0);
+            WorldGen.Place3x3(SynergiaGenVars.SnowVillagePositionX + 85, SynergiaGenVars.SnowVillagePositionY - 16, (ushort)TileType<ZincChandelier>(), 0);
 
-            WorldGen.PlaceBanner(SynergiaGenVars.SnowVilagePositionX + 91, SynergiaGenVars.SnowVilagePositionY - 16, TileID.Banners, 124);
-            WorldGen.PlaceBanner(SynergiaGenVars.SnowVilagePositionX + 83, SynergiaGenVars.SnowVilagePositionY - 16, TileID.Banners, 126);
+            WorldGen.PlaceBanner(SynergiaGenVars.SnowVillagePositionX + 91, SynergiaGenVars.SnowVillagePositionY - 16, TileID.Banners, 124);
+            WorldGen.PlaceBanner(SynergiaGenVars.SnowVillagePositionX + 83, SynergiaGenVars.SnowVillagePositionY - 16, TileID.Banners, 126);
 
-            WorldGen.PlaceOnTable1x1(SynergiaGenVars.SnowVilagePositionX + 81, SynergiaGenVars.SnowVilagePositionY - 11, TileID.Bottles, 4);
-            WorldGen.PlaceOnTable1x1(SynergiaGenVars.SnowVilagePositionX + 82, SynergiaGenVars.SnowVilagePositionY - 11, Roa.Find<ModTile>("ElderwoodCandle").Type, 0);
-            WorldGen.PlaceOnTable1x1(SynergiaGenVars.SnowVilagePositionX + 50, SynergiaGenVars.SnowVilagePositionY - 13, TileID.Bottles, 1);
-            WorldGen.PlaceOnTable1x1(SynergiaGenVars.SnowVilagePositionX + 18, SynergiaGenVars.SnowVilagePositionY - 12, TileID.Bottles, 1);
-            WorldGen.PlaceOnTable1x1(SynergiaGenVars.SnowVilagePositionX + 19, SynergiaGenVars.SnowVilagePositionY - 12, TileID.Candles, 0);
-            WorldGen.PlaceOnTable1x1(SynergiaGenVars.SnowVilagePositionX + 10, SynergiaGenVars.SnowVilagePositionY - 13, TileID.Bottles, 4);
+            WorldGen.PlaceOnTable1x1(SynergiaGenVars.SnowVillagePositionX + 81, SynergiaGenVars.SnowVillagePositionY - 11, TileID.Bottles, 4);
+            WorldGen.PlaceOnTable1x1(SynergiaGenVars.SnowVillagePositionX + 82, SynergiaGenVars.SnowVillagePositionY - 11, Roa.Find<ModTile>("ElderwoodCandle").Type, 0);
+            WorldGen.PlaceOnTable1x1(SynergiaGenVars.SnowVillagePositionX + 50, SynergiaGenVars.SnowVillagePositionY - 13, TileID.Bottles, 1);
+            WorldGen.PlaceOnTable1x1(SynergiaGenVars.SnowVillagePositionX + 18, SynergiaGenVars.SnowVillagePositionY - 12, TileID.Bottles, 1);
+            WorldGen.PlaceOnTable1x1(SynergiaGenVars.SnowVillagePositionX + 19, SynergiaGenVars.SnowVillagePositionY - 12, TileID.Candles, 0);
+            WorldGen.PlaceOnTable1x1(SynergiaGenVars.SnowVillagePositionX + 10, SynergiaGenVars.SnowVillagePositionY - 13, TileID.Bottles, 4);
 
-            WorldGen.PlaceTile(SynergiaGenVars.SnowVilagePositionX + 103, SynergiaGenVars.SnowVilagePositionY - 2, TileID.SnowBlock);
-            WorldGen.PlaceTile(SynergiaGenVars.SnowVilagePositionX + 103, SynergiaGenVars.SnowVilagePositionY - 1, TileID.SnowBlock);
-            WorldGen.PlaceTile(SynergiaGenVars.SnowVilagePositionX + 103, SynergiaGenVars.SnowVilagePositionY + 0, TileID.SnowBlock);
-            WorldGen.PlaceTile(SynergiaGenVars.SnowVilagePositionX + 103, SynergiaGenVars.SnowVilagePositionY + 1, TileID.SnowBlock);
-            WorldGen.PlaceTile(SynergiaGenVars.SnowVilagePositionX + 103, SynergiaGenVars.SnowVilagePositionY + 2, TileID.SnowBlock);
-            WorldGen.PlaceTile(SynergiaGenVars.SnowVilagePositionX + 104, SynergiaGenVars.SnowVilagePositionY - 0, TileID.SnowBlock);
-            WorldGen.PlaceTile(SynergiaGenVars.SnowVilagePositionX + 104, SynergiaGenVars.SnowVilagePositionY + 1, TileID.SnowBlock);
-            WorldGen.PlaceTile(SynergiaGenVars.SnowVilagePositionX + 104, SynergiaGenVars.SnowVilagePositionY + 2, TileID.SnowBlock);
-            WorldGen.PlaceTile(SynergiaGenVars.SnowVilagePositionX + 102, SynergiaGenVars.SnowVilagePositionY + 2, TileID.SnowBlock);
-            WorldGen.PlaceTile(SynergiaGenVars.SnowVilagePositionX + 101, SynergiaGenVars.SnowVilagePositionY + 2, TileID.SnowBlock);
-            WorldGen.PlaceTile(SynergiaGenVars.SnowVilagePositionX + 86, SynergiaGenVars.SnowVilagePositionY + 2, TileID.SnowBlock);
-            WorldGen.PlaceTile(SynergiaGenVars.SnowVilagePositionX + 87, SynergiaGenVars.SnowVilagePositionY + 2, TileID.SnowBlock);
-            WorldGen.PlaceTile(SynergiaGenVars.SnowVilagePositionX + 88, SynergiaGenVars.SnowVilagePositionY + 2, TileID.SnowBlock);
-            WorldGen.PlaceTile(SynergiaGenVars.SnowVilagePositionX + 60, SynergiaGenVars.SnowVilagePositionY + 2, TileID.SnowBlock);
-            WorldGen.PlaceTile(SynergiaGenVars.SnowVilagePositionX + 61, SynergiaGenVars.SnowVilagePositionY + 2, TileID.SnowBlock);
-            WorldGen.PlaceTile(SynergiaGenVars.SnowVilagePositionX + 62, SynergiaGenVars.SnowVilagePositionY + 2, TileID.SnowBlock);
-            WorldGen.PlaceTile(SynergiaGenVars.SnowVilagePositionX + 63, SynergiaGenVars.SnowVilagePositionY + 2, TileID.SnowBlock);
-            WorldGen.PlaceTile(SynergiaGenVars.SnowVilagePositionX + 64, SynergiaGenVars.SnowVilagePositionY + 2, TileID.SnowBlock);
-            WorldGen.PlaceTile(SynergiaGenVars.SnowVilagePositionX + 65, SynergiaGenVars.SnowVilagePositionY + 2, TileID.SnowBlock);
-            WorldGen.PlaceTile(SynergiaGenVars.SnowVilagePositionX + 66, SynergiaGenVars.SnowVilagePositionY + 2, TileID.SnowBlock);
-            WorldGen.PlaceTile(SynergiaGenVars.SnowVilagePositionX + 67, SynergiaGenVars.SnowVilagePositionY + 2, TileID.SnowBlock);
-            WorldGen.PlaceTile(SynergiaGenVars.SnowVilagePositionX + 68, SynergiaGenVars.SnowVilagePositionY + 2, TileID.SnowBlock);
-            WorldGen.PlaceTile(SynergiaGenVars.SnowVilagePositionX + 69, SynergiaGenVars.SnowVilagePositionY + 2, TileID.SnowBlock);
-            WorldGen.PlaceTile(SynergiaGenVars.SnowVilagePositionX + 70, SynergiaGenVars.SnowVilagePositionY + 2, TileID.SnowBlock);
-            WorldGen.PlaceTile(SynergiaGenVars.SnowVilagePositionX + 103, SynergiaGenVars.SnowVilagePositionY + 1, TileID.SnowBlock);
-            WorldGen.PlaceTile(SynergiaGenVars.SnowVilagePositionX + 102, SynergiaGenVars.SnowVilagePositionY + 1, TileID.SnowBlock);
-            WorldGen.PlaceTile(SynergiaGenVars.SnowVilagePositionX + 101, SynergiaGenVars.SnowVilagePositionY + 1, TileID.SnowBlock);
-            WorldGen.PlaceTile(SynergiaGenVars.SnowVilagePositionX + 100, SynergiaGenVars.SnowVilagePositionY + 1, TileID.SnowBlock);
-            WorldGen.PlaceTile(SynergiaGenVars.SnowVilagePositionX + 99, SynergiaGenVars.SnowVilagePositionY + 1, TileID.SnowBlock);
-            WorldGen.PlaceTile(SynergiaGenVars.SnowVilagePositionX + 98, SynergiaGenVars.SnowVilagePositionY + 1, TileID.SnowBlock);
-            WorldGen.PlaceTile(SynergiaGenVars.SnowVilagePositionX + 97, SynergiaGenVars.SnowVilagePositionY + 1, TileID.SnowBlock);
-            WorldGen.PlaceTile(SynergiaGenVars.SnowVilagePositionX + 92, SynergiaGenVars.SnowVilagePositionY + 1, TileID.SnowBlock);
-            WorldGen.PlaceTile(SynergiaGenVars.SnowVilagePositionX + 91, SynergiaGenVars.SnowVilagePositionY + 1, TileID.SnowBlock);
-            WorldGen.PlaceTile(SynergiaGenVars.SnowVilagePositionX + 90, SynergiaGenVars.SnowVilagePositionY + 1, TileID.SnowBlock);
-            WorldGen.PlaceTile(SynergiaGenVars.SnowVilagePositionX + 89, SynergiaGenVars.SnowVilagePositionY + 1, TileID.SnowBlock);
-            WorldGen.PlaceTile(SynergiaGenVars.SnowVilagePositionX + 88, SynergiaGenVars.SnowVilagePositionY + 1, TileID.SnowBlock);
-            WorldGen.PlaceTile(SynergiaGenVars.SnowVilagePositionX + 87, SynergiaGenVars.SnowVilagePositionY + 1, TileID.SnowBlock);
-            WorldGen.PlaceTile(SynergiaGenVars.SnowVilagePositionX + 86, SynergiaGenVars.SnowVilagePositionY + 1, TileID.SnowBlock);
-            WorldGen.PlaceTile(SynergiaGenVars.SnowVilagePositionX + 85, SynergiaGenVars.SnowVilagePositionY + 1, TileID.SnowBlock);
-            WorldGen.PlaceTile(SynergiaGenVars.SnowVilagePositionX + 84, SynergiaGenVars.SnowVilagePositionY + 1, TileID.SnowBlock);
-            WorldGen.PlaceTile(SynergiaGenVars.SnowVilagePositionX + 72, SynergiaGenVars.SnowVilagePositionY + 1, TileID.SnowBlock);
-            WorldGen.PlaceTile(SynergiaGenVars.SnowVilagePositionX + 71, SynergiaGenVars.SnowVilagePositionY + 1, TileID.SnowBlock);
-            WorldGen.PlaceTile(SynergiaGenVars.SnowVilagePositionX + 70, SynergiaGenVars.SnowVilagePositionY + 1, TileID.SnowBlock);
-            WorldGen.PlaceTile(SynergiaGenVars.SnowVilagePositionX + 69, SynergiaGenVars.SnowVilagePositionY + 1, TileID.SnowBlock);
-            WorldGen.PlaceTile(SynergiaGenVars.SnowVilagePositionX + 68, SynergiaGenVars.SnowVilagePositionY + 1, TileID.SnowBlock);
-            WorldGen.PlaceTile(SynergiaGenVars.SnowVilagePositionX + 67, SynergiaGenVars.SnowVilagePositionY + 1, TileID.SnowBlock);
-            WorldGen.PlaceTile(SynergiaGenVars.SnowVilagePositionX + 66, SynergiaGenVars.SnowVilagePositionY + 1, TileID.SnowBlock);
-            WorldGen.PlaceTile(SynergiaGenVars.SnowVilagePositionX + 65, SynergiaGenVars.SnowVilagePositionY + 1, TileID.SnowBlock);
-            WorldGen.PlaceTile(SynergiaGenVars.SnowVilagePositionX + 64, SynergiaGenVars.SnowVilagePositionY + 1, TileID.SnowBlock);
-            WorldGen.PlaceTile(SynergiaGenVars.SnowVilagePositionX + 63, SynergiaGenVars.SnowVilagePositionY + 1, TileID.SnowBlock);
-            WorldGen.PlaceTile(SynergiaGenVars.SnowVilagePositionX + 62, SynergiaGenVars.SnowVilagePositionY + 1, TileID.SnowBlock);
-            WorldGen.PlaceTile(SynergiaGenVars.SnowVilagePositionX + 61, SynergiaGenVars.SnowVilagePositionY + 1, TileID.SnowBlock);
-            WorldGen.PlaceTile(SynergiaGenVars.SnowVilagePositionX + 60, SynergiaGenVars.SnowVilagePositionY + 1, TileID.SnowBlock);
-            WorldGen.PlaceTile(SynergiaGenVars.SnowVilagePositionX + 59, SynergiaGenVars.SnowVilagePositionY + 1, TileID.SnowBlock);
-            WorldGen.PlaceTile(SynergiaGenVars.SnowVilagePositionX + 58, SynergiaGenVars.SnowVilagePositionY + 1, TileID.SnowBlock);
-            WorldGen.PlaceTile(SynergiaGenVars.SnowVilagePositionX + 57, SynergiaGenVars.SnowVilagePositionY + 1, TileID.SnowBlock);
-            WorldGen.PlaceTile(SynergiaGenVars.SnowVilagePositionX + 56, SynergiaGenVars.SnowVilagePositionY + 1, TileID.SnowBlock);
-            WorldGen.PlaceTile(SynergiaGenVars.SnowVilagePositionX + 55, SynergiaGenVars.SnowVilagePositionY + 1, TileID.SnowBlock);
-            WorldGen.PlaceTile(SynergiaGenVars.SnowVilagePositionX + 54, SynergiaGenVars.SnowVilagePositionY + 1, TileID.SnowBlock);
-            WorldGen.PlaceTile(SynergiaGenVars.SnowVilagePositionX + 53, SynergiaGenVars.SnowVilagePositionY + 1, TileID.SnowBlock);
+            WorldGen.PlaceTile(SynergiaGenVars.SnowVillagePositionX + 103, SynergiaGenVars.SnowVillagePositionY - 2, TileID.SnowBlock);
+            WorldGen.PlaceTile(SynergiaGenVars.SnowVillagePositionX + 103, SynergiaGenVars.SnowVillagePositionY - 1, TileID.SnowBlock);
+            WorldGen.PlaceTile(SynergiaGenVars.SnowVillagePositionX + 103, SynergiaGenVars.SnowVillagePositionY + 0, TileID.SnowBlock);
+            WorldGen.PlaceTile(SynergiaGenVars.SnowVillagePositionX + 103, SynergiaGenVars.SnowVillagePositionY + 1, TileID.SnowBlock);
+            WorldGen.PlaceTile(SynergiaGenVars.SnowVillagePositionX + 103, SynergiaGenVars.SnowVillagePositionY + 2, TileID.SnowBlock);
+            WorldGen.PlaceTile(SynergiaGenVars.SnowVillagePositionX + 104, SynergiaGenVars.SnowVillagePositionY - 0, TileID.SnowBlock);
+            WorldGen.PlaceTile(SynergiaGenVars.SnowVillagePositionX + 104, SynergiaGenVars.SnowVillagePositionY + 1, TileID.SnowBlock);
+            WorldGen.PlaceTile(SynergiaGenVars.SnowVillagePositionX + 104, SynergiaGenVars.SnowVillagePositionY + 2, TileID.SnowBlock);
+            WorldGen.PlaceTile(SynergiaGenVars.SnowVillagePositionX + 102, SynergiaGenVars.SnowVillagePositionY + 2, TileID.SnowBlock);
+            WorldGen.PlaceTile(SynergiaGenVars.SnowVillagePositionX + 101, SynergiaGenVars.SnowVillagePositionY + 2, TileID.SnowBlock);
+            WorldGen.PlaceTile(SynergiaGenVars.SnowVillagePositionX + 86, SynergiaGenVars.SnowVillagePositionY + 2, TileID.SnowBlock);
+            WorldGen.PlaceTile(SynergiaGenVars.SnowVillagePositionX + 87, SynergiaGenVars.SnowVillagePositionY + 2, TileID.SnowBlock);
+            WorldGen.PlaceTile(SynergiaGenVars.SnowVillagePositionX + 88, SynergiaGenVars.SnowVillagePositionY + 2, TileID.SnowBlock);
+            WorldGen.PlaceTile(SynergiaGenVars.SnowVillagePositionX + 60, SynergiaGenVars.SnowVillagePositionY + 2, TileID.SnowBlock);
+            WorldGen.PlaceTile(SynergiaGenVars.SnowVillagePositionX + 61, SynergiaGenVars.SnowVillagePositionY + 2, TileID.SnowBlock);
+            WorldGen.PlaceTile(SynergiaGenVars.SnowVillagePositionX + 62, SynergiaGenVars.SnowVillagePositionY + 2, TileID.SnowBlock);
+            WorldGen.PlaceTile(SynergiaGenVars.SnowVillagePositionX + 63, SynergiaGenVars.SnowVillagePositionY + 2, TileID.SnowBlock);
+            WorldGen.PlaceTile(SynergiaGenVars.SnowVillagePositionX + 64, SynergiaGenVars.SnowVillagePositionY + 2, TileID.SnowBlock);
+            WorldGen.PlaceTile(SynergiaGenVars.SnowVillagePositionX + 65, SynergiaGenVars.SnowVillagePositionY + 2, TileID.SnowBlock);
+            WorldGen.PlaceTile(SynergiaGenVars.SnowVillagePositionX + 66, SynergiaGenVars.SnowVillagePositionY + 2, TileID.SnowBlock);
+            WorldGen.PlaceTile(SynergiaGenVars.SnowVillagePositionX + 67, SynergiaGenVars.SnowVillagePositionY + 2, TileID.SnowBlock);
+            WorldGen.PlaceTile(SynergiaGenVars.SnowVillagePositionX + 68, SynergiaGenVars.SnowVillagePositionY + 2, TileID.SnowBlock);
+            WorldGen.PlaceTile(SynergiaGenVars.SnowVillagePositionX + 69, SynergiaGenVars.SnowVillagePositionY + 2, TileID.SnowBlock);
+            WorldGen.PlaceTile(SynergiaGenVars.SnowVillagePositionX + 70, SynergiaGenVars.SnowVillagePositionY + 2, TileID.SnowBlock);
+            WorldGen.PlaceTile(SynergiaGenVars.SnowVillagePositionX + 103, SynergiaGenVars.SnowVillagePositionY + 1, TileID.SnowBlock);
+            WorldGen.PlaceTile(SynergiaGenVars.SnowVillagePositionX + 102, SynergiaGenVars.SnowVillagePositionY + 1, TileID.SnowBlock);
+            WorldGen.PlaceTile(SynergiaGenVars.SnowVillagePositionX + 101, SynergiaGenVars.SnowVillagePositionY + 1, TileID.SnowBlock);
+            WorldGen.PlaceTile(SynergiaGenVars.SnowVillagePositionX + 100, SynergiaGenVars.SnowVillagePositionY + 1, TileID.SnowBlock);
+            WorldGen.PlaceTile(SynergiaGenVars.SnowVillagePositionX + 99, SynergiaGenVars.SnowVillagePositionY + 1, TileID.SnowBlock);
+            WorldGen.PlaceTile(SynergiaGenVars.SnowVillagePositionX + 98, SynergiaGenVars.SnowVillagePositionY + 1, TileID.SnowBlock);
+            WorldGen.PlaceTile(SynergiaGenVars.SnowVillagePositionX + 97, SynergiaGenVars.SnowVillagePositionY + 1, TileID.SnowBlock);
+            WorldGen.PlaceTile(SynergiaGenVars.SnowVillagePositionX + 92, SynergiaGenVars.SnowVillagePositionY + 1, TileID.SnowBlock);
+            WorldGen.PlaceTile(SynergiaGenVars.SnowVillagePositionX + 91, SynergiaGenVars.SnowVillagePositionY + 1, TileID.SnowBlock);
+            WorldGen.PlaceTile(SynergiaGenVars.SnowVillagePositionX + 90, SynergiaGenVars.SnowVillagePositionY + 1, TileID.SnowBlock);
+            WorldGen.PlaceTile(SynergiaGenVars.SnowVillagePositionX + 89, SynergiaGenVars.SnowVillagePositionY + 1, TileID.SnowBlock);
+            WorldGen.PlaceTile(SynergiaGenVars.SnowVillagePositionX + 88, SynergiaGenVars.SnowVillagePositionY + 1, TileID.SnowBlock);
+            WorldGen.PlaceTile(SynergiaGenVars.SnowVillagePositionX + 87, SynergiaGenVars.SnowVillagePositionY + 1, TileID.SnowBlock);
+            WorldGen.PlaceTile(SynergiaGenVars.SnowVillagePositionX + 86, SynergiaGenVars.SnowVillagePositionY + 1, TileID.SnowBlock);
+            WorldGen.PlaceTile(SynergiaGenVars.SnowVillagePositionX + 85, SynergiaGenVars.SnowVillagePositionY + 1, TileID.SnowBlock);
+            WorldGen.PlaceTile(SynergiaGenVars.SnowVillagePositionX + 84, SynergiaGenVars.SnowVillagePositionY + 1, TileID.SnowBlock);
+            WorldGen.PlaceTile(SynergiaGenVars.SnowVillagePositionX + 72, SynergiaGenVars.SnowVillagePositionY + 1, TileID.SnowBlock);
+            WorldGen.PlaceTile(SynergiaGenVars.SnowVillagePositionX + 71, SynergiaGenVars.SnowVillagePositionY + 1, TileID.SnowBlock);
+            WorldGen.PlaceTile(SynergiaGenVars.SnowVillagePositionX + 70, SynergiaGenVars.SnowVillagePositionY + 1, TileID.SnowBlock);
+            WorldGen.PlaceTile(SynergiaGenVars.SnowVillagePositionX + 69, SynergiaGenVars.SnowVillagePositionY + 1, TileID.SnowBlock);
+            WorldGen.PlaceTile(SynergiaGenVars.SnowVillagePositionX + 68, SynergiaGenVars.SnowVillagePositionY + 1, TileID.SnowBlock);
+            WorldGen.PlaceTile(SynergiaGenVars.SnowVillagePositionX + 67, SynergiaGenVars.SnowVillagePositionY + 1, TileID.SnowBlock);
+            WorldGen.PlaceTile(SynergiaGenVars.SnowVillagePositionX + 66, SynergiaGenVars.SnowVillagePositionY + 1, TileID.SnowBlock);
+            WorldGen.PlaceTile(SynergiaGenVars.SnowVillagePositionX + 65, SynergiaGenVars.SnowVillagePositionY + 1, TileID.SnowBlock);
+            WorldGen.PlaceTile(SynergiaGenVars.SnowVillagePositionX + 64, SynergiaGenVars.SnowVillagePositionY + 1, TileID.SnowBlock);
+            WorldGen.PlaceTile(SynergiaGenVars.SnowVillagePositionX + 63, SynergiaGenVars.SnowVillagePositionY + 1, TileID.SnowBlock);
+            WorldGen.PlaceTile(SynergiaGenVars.SnowVillagePositionX + 62, SynergiaGenVars.SnowVillagePositionY + 1, TileID.SnowBlock);
+            WorldGen.PlaceTile(SynergiaGenVars.SnowVillagePositionX + 61, SynergiaGenVars.SnowVillagePositionY + 1, TileID.SnowBlock);
+            WorldGen.PlaceTile(SynergiaGenVars.SnowVillagePositionX + 60, SynergiaGenVars.SnowVillagePositionY + 1, TileID.SnowBlock);
+            WorldGen.PlaceTile(SynergiaGenVars.SnowVillagePositionX + 59, SynergiaGenVars.SnowVillagePositionY + 1, TileID.SnowBlock);
+            WorldGen.PlaceTile(SynergiaGenVars.SnowVillagePositionX + 58, SynergiaGenVars.SnowVillagePositionY + 1, TileID.SnowBlock);
+            WorldGen.PlaceTile(SynergiaGenVars.SnowVillagePositionX + 57, SynergiaGenVars.SnowVillagePositionY + 1, TileID.SnowBlock);
+            WorldGen.PlaceTile(SynergiaGenVars.SnowVillagePositionX + 56, SynergiaGenVars.SnowVillagePositionY + 1, TileID.SnowBlock);
+            WorldGen.PlaceTile(SynergiaGenVars.SnowVillagePositionX + 55, SynergiaGenVars.SnowVillagePositionY + 1, TileID.SnowBlock);
+            WorldGen.PlaceTile(SynergiaGenVars.SnowVillagePositionX + 54, SynergiaGenVars.SnowVillagePositionY + 1, TileID.SnowBlock);
+            WorldGen.PlaceTile(SynergiaGenVars.SnowVillagePositionX + 53, SynergiaGenVars.SnowVillagePositionY + 1, TileID.SnowBlock);
 
-            int BarrelIndex = WorldGen.PlaceChest(SynergiaGenVars.SnowVilagePositionX + 33, SynergiaGenVars.SnowVilagePositionY - 9, (ushort)TileType<Chest>(), false, 2);
+            int BarrelIndex = WorldGen.PlaceChest(SynergiaGenVars.SnowVillagePositionX + 33, SynergiaGenVars.SnowVillagePositionY - 9, (ushort)TileType<Chest>(), false, 2);
             if (BarrelIndex != -1) { GenerateBarrelLoot(Main.chest[BarrelIndex].item, 0); }
 
             return true;

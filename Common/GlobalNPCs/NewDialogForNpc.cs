@@ -1,7 +1,6 @@
 ﻿using Bismuth.Content.NPCs;
 using Terraria;
 using ValhallaMod.NPCs.TownNPCs;
-using static Synergia.Common.SUtils.LocUtil;
 
 namespace Synergia.Common.GlobalNPCs;
 

@@ -16,12 +16,16 @@ namespace Synergia.Common {
             if (quest == null || player == null) {
                 return;
             }
-            if (quest.UniqueKey == "TestUIQuest") {
+            AddQuestChat(quest, player, "TestUIQuest", "Dwarf");
+            AddQuestChat(quest, player, "HellDwarfQuest_First", "HellDwarfQuest_First");
+        }
+        void AddQuestChat(IQuest quest, Player player, string questKey, string locKey) {
+            if (quest.UniqueKey == questKey) {
                 if (!quest.IsCompleted(player)) {
-                    QuestChat = LocQuestKey("Dwarf", "QuestCompletedFalse");
+                    QuestChat = LocQuestKey(locKey, "QuestCompletedFalse");
                 }
                 if (player.GetModPlayer<QuestBoolean>().HellDwarfQuest) {
-                    QuestChat = LocQuestKey("Dwarf", "QuestProgress0");
+                    QuestChat = LocQuestKey(locKey, "QuestProgress0");
                 }
             }
         }

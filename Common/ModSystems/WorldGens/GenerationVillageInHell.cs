@@ -542,12 +542,6 @@ public class GenerationVillageInHell : BaseWorldGens {
                     case 0: tile.LiquidAmount = 0; break;
                     case 1: tile.LiquidType = LiquidID.Lava; tile.LiquidAmount = 255; break;
                 }
-                if (hellVillageTiles[y, x] != 0) {
-                    SynergiaGenVars.HellVillageTilesVector.Add(new Vector2(worldX, worldY));
-                }
-                if (hellVillageaWalls[y, x] != 0) {
-                    SynergiaGenVars.HellVillageWallesVector.Add(new Vector2(worldX, worldY));
-                }
             }
         }
 

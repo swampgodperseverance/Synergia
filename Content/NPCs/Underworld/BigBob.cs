@@ -1,13 +1,13 @@
 ﻿using Synergia.Common.GlobalPlayer;
 using System.IO;
 using Terraria;
+using Terraria.Audio;
 using Terraria.GameContent.ItemDropRules;
 using Terraria.ID;
 
 namespace Synergia.Content.NPCs.Underworld {
     public class BigBob : ModNPC {
-        public override string LocalizationCategory => "NPC";
-
+        public override string LocalizationCategory => Category(CategoryName.NPC);
         enum AIState { Walking, PreCast, Casting, PostCast }
         AIState CurrentState = AIState.Walking;
         int stateTimer;
@@ -43,6 +43,7 @@ namespace Synergia.Content.NPCs.Underworld {
             NPC.noTileCollide = false;
             NPC.lavaImmune = true;
             NPC.stepSpeed = 2f;
+            NPC.HitSound = SoundID.NPCHit14;
         }
         public override void AI() {
             NPC.TargetClosest();
@@ -58,6 +59,12 @@ namespace Synergia.Content.NPCs.Underworld {
                         closestPlayer = player;
                         NPC.target = i;
                     }
+                }
+            }
+            if (CurrentState != AIState.Casting || CurrentState != AIState.PreCast) {
+                if (Main.rand.NextBool(120)) {
+                    // need custom sound
+                    // SoundEngine.PlaySound(SoundID.Zombie28, NPC.position);
                 }
             }
 
@@ -124,17 +131,10 @@ namespace Synergia.Content.NPCs.Underworld {
                             float[] spreads = { -0.18f, 0f, 0.18f };
                             float spread = spreads[shotIndex];
                             Vector2 dir = toTarget.RotatedBy(spread) * 8.6f;
+                            SoundEngine.PlaySound(SoundID.DD2_BetsyFireballShot, NPC.position);
 
                             if (Main.netMode != NetmodeID.MultiplayerClient) {
-                                Projectile.NewProjectile(
-                                    NPC.GetSource_FromAI(),
-                                    NPC.Center,
-                                    dir,
-                                    ProjectileType<Projectiles.Hostile.BigBobLaser>(),
-                                    22,
-                                    1f,
-                                    Main.myPlayer
-                                );
+                                Projectile.NewProjectile(NPC.GetSource_FromAI(), NPC.Center, dir, ProjectileType<Projectiles.Hostile.BigBobLaser>(), 22, 1f, Main.myPlayer);
                             }
 
                             flashTimer = 1f;
@@ -194,14 +194,12 @@ namespace Synergia.Content.NPCs.Underworld {
             writer.Write(attackCooldown);
             writer.Write(flashTimer);
         }
-
         public override void ReceiveExtraAI(BinaryReader reader) {
             CurrentState = (AIState)reader.ReadByte();
             stateTimer = reader.ReadInt32();
             attackCooldown = reader.ReadInt32();
             flashTimer = reader.ReadSingle();
         }
-
         public override void FindFrame(int frameHeight) {
             NPC.frameCounter++;
             int walkFrames = 11;
@@ -250,10 +248,6 @@ namespace Synergia.Content.NPCs.Underworld {
                 break;
             }
         }
-        public override float SpawnChance(NPCSpawnInfo spawnInfo) {
-            BiomePlayer biomePlayer = spawnInfo.Player.GetModPlayer<BiomePlayer>();
-            return NPC.downedPlantBoss && biomePlayer.villageBiome && spawnInfo.Player.ZoneUnderworldHeight ? 0.6f : 0f;
-        }
         public override bool PreDraw(SpriteBatch spriteBatch, Vector2 screenPos, Color drawColor) {
             if (flashTimer > 0f) {
                 float intensity = flashTimer * 0.6f;
@@ -275,6 +269,7 @@ namespace Synergia.Content.NPCs.Underworld {
         }
         public override void HitEffect(NPC.HitInfo hit) {
             if (NPC.life <= 0) {
+                SoundEngine.PlaySound(SoundID.NPCDeath27, NPC.position);
                 for (int k = 1; k < 5; k++) {
                     if (Mod.Find<ModGore>($"BigBobGore{k}") != null) {
                         Gore.NewGore(NPC.GetSource_Death(), NPC.Center, NPC.velocity * 0.4f, Mod.Find<ModGore>($"BigBobGore{k}").Type);
@@ -287,6 +282,7 @@ namespace Synergia.Content.NPCs.Underworld {
                 }
             }
         }
+        public override float SpawnChance(NPCSpawnInfo spawnInfo) => NPC.downedPlantBoss && spawnInfo.Player.GetModPlayer<BiomePlayer>().villageBiome && spawnInfo.Player.ZoneUnderworldHeight ? 0.6f : 0f;
         public override void ModifyNPCLoot(NPCLoot npcLoot) => npcLoot.Add(ItemDropRule.Common(ItemType<ValhallaMod.Items.Placeable.Blocks.SinstoneMagma>(), 1, 2, 5));
         public override void OnKill() {
             if (Main.netMode == NetmodeID.Server) {

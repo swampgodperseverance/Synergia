@@ -427,12 +427,6 @@ namespace Synergia.Common.ModSystems.WorldGens {
                         case 5: tile.WallType = WallID.AshWoodFence; break;
                         case 6: tile.WallType = WallID.EbonwoodFence; break;
                     }
-                    if (LakeTile[y, x] != 0) {
-                        SynergiaGenVars.HellLakeTilesVector.Add(new Vector2(worldX, worldY));
-                    }
-                    if (LakeWall[y, x] != 0) {
-                        SynergiaGenVars.HellLakeWallesVector.Add(new Vector2(worldX, worldY));
-                    }
                 }
             }
             int chest = WorldGen.PlaceChest(SynergiaGenVars.HellLakeX - 236 + 132, SynergiaGenVars.HellLakeY - 12, TileID.Containers, false, 4);

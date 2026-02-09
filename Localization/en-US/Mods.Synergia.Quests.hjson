@@ -153,3 +153,55 @@ NinjaQuest_Frist: {
 	QuestCompleted: Great work, thanks. I will try it. Take these clevers. You can use them for something
 	QuestCompletedFalse: You don't have an Flaming Fabric
 }
+
+FarmerQuest_First: {
+	QuestName: Luck Potion
+	QuestDescription: Give LuckPotion for Ninja
+	QuestStage: Collect Luck Potion
+	QuestProgress0: Thanks for the Luck Potion!
+	QuestProgress1: I’m hungry after hard day. Can you bring me some food please?
+	QuestProgress2: Still don’t have it?
+	QuestButton: Accept
+	QuestButtonGive: Give Potion
+	QuestCompleted: Thanks! I’ve been dreaming about this for two days. Here — take your reward.
+	QuestCompletedFalse: You don't have an Flaming Fabric
+}
+
+LibrarianQuest_First: {
+	QuestName: Luck Potion
+	QuestDescription: Give LuckPotion for Ninja
+	QuestStage: Collect Luck Potion
+	QuestProgress0: Thanks for the Luck Potion!
+	QuestProgress1: Next task, my son. Create a rusty book on the tome forge for heaven's sake, and bring it to me.
+	QuestProgress2: Why are you staring at me? For being a mage, you should know how to obtain books
+	QuestButton: Accept
+	QuestButtonGive: Give Potion
+	QuestCompleted: Not bad. I see you are making progress. Take some useful items from me
+	QuestCompletedFalse: You don't have an Flaming Fabric
+}
+
+HellDwarfQuest_First: {
+	QuestName: Luck Potion
+	QuestDescription: Give LuckPotion for Ninja
+	QuestStage: Collect Luck Potion
+	QuestProgress0: Thanks for the Luck Potion!
+	QuestProgress1: The bridge has been intact for a long time, and there was no trace of lava there. There is a locked chest at the bottom, create a key and get the contents from there.
+	QuestProgress2: You Can't get it? Yeah, i know it’s hard
+	QuestButton: Accept
+	QuestButtonGive: Give Potion
+	QuestCompleted: Impossible. I cant even believe. I haven't been this happy in a long time
+	QuestCompletedFalse: You don't have an Flaming Fabric
+}
+
+DwarfQuest_Second: {
+	QuestName: Luck Potion
+	QuestDescription: Give LuckPotion for Ninja
+	QuestStage: Collect Luck Potion
+	QuestProgress0: Thanks for the Luck Potion!
+	QuestProgress1: I've been wanting to make an item similar to the helmet of that dwarf who abandoned us. I wish I knew what it looked like.
+	QuestProgress2: Hmm...
+	QuestButton: Accept
+	QuestButtonGive: Give Potion
+	QuestCompleted: How do you know what he looks like? That's suspicious.. But ok, thanks
+	QuestCompletedFalse: You don't have an Flaming Fabric
+}

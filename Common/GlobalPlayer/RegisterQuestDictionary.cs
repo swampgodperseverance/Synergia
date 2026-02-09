@@ -6,6 +6,7 @@ using Synergia.Content.NPCs;
 using Synergia.Dataset;
 using Terraria;
 using Terraria.ID;
+using ValhallaMod;
 using ValhallaMod.NPCs.TownNPCs;
 using static Synergia.Lists.Items;
 using static Synergia.ModList;
@@ -34,18 +35,24 @@ public partial class QuestSystem {
                 }
             }
             if (!quest.NinjaQuest) {
-                if (!HookForQuest.NpcQuestKeys.ContainsKey(ModContent.NPCType<Ninja>())) {
-                    HookForQuest.NpcQuestKeys[ModContent.NPCType<Ninja>()] = new QuestData(NINJA, 0, 1, true, CarrotID);
+                if (!HookForQuest.NpcQuestKeys.ContainsKey(NPCType<Ninja>())) {
+                    HookForQuest.NpcQuestKeys[NPCType<Ninja>()] = new QuestData(NINJA, 0, 1, true, CarrotID);
                 }
             }
-            if (!HookForQuest.NpcQuestKeys.ContainsKey(ModContent.NPCType<Farmer>())) {
-                HookForQuest.NpcQuestKeys[ModContent.NPCType<Farmer>()] = new QuestData(FARMER, 0, 1, true, FoodID);
+            if (!quest.FarmerQuest) {
+                if (!HookForQuest.NpcQuestKeys.ContainsKey(NPCType<Farmer>())) {
+                    HookForQuest.NpcQuestKeys[NPCType<Farmer>()] = new QuestData(FARMER, 0, 1, true, FoodID);
+                }
             }
-            if (!HookForQuest.NpcQuestKeys.ContainsKey(ModContent.NPCType<Librarian>())) {
-                HookForQuest.NpcQuestKeys[ModContent.NPCType<Librarian>()] = new QuestData(LIBRARIAN, 0, 1, true);
+            if (!quest.LibrarianQuest) {
+                if (!HookForQuest.NpcQuestKeys.ContainsKey(NPCType<Librarian>())) {
+                    HookForQuest.NpcQuestKeys[NPCType<Librarian>()] = new QuestData(LIBRARIAN, 0, 1, true);
+                }
             }
-            if (!HookForQuest.NpcQuestKeys.ContainsKey(NPCType<HellDwarf>())) {
-                HookForQuest.NpcQuestKeys[ModContent.NPCType<HellDwarf>()] = new QuestData(HELLDWARF, 0, 1, true);
+            if (!quest.HellDwarfQuest) {
+                if (!HookForQuest.NpcQuestKeys.ContainsKey(NPCType<HellDwarf>())) {
+                    HookForQuest.NpcQuestKeys[NPCType<HellDwarf>()] = new QuestData(HELLDWARF, 0, 1, true);
+                }
             }
             for (int i = 0; i < ItemLoader.ItemCount; i++) {
                 if (ItemID.Sets.IsFood[i]) {
@@ -62,14 +69,31 @@ public partial class QuestSystem {
                     }
                 }
             }
-            if (quest.DwarfQuest) {
-                AddQuest(NPCType<Dwarf>(), DWARF);
-            }
+            MultiQuest(quest.DwarfQuest, quest.DwarfQuest1, NPCType<Dwarf>(), DWARF);
             if (quest.ArtistQuest) {
                 AddQuest(NPCType<Artist>(), ARTIST);
             }
             if (quest.NinjaQuest) {
                 AddQuest(NPCType<Ninja>(), NINJA);
+            }
+            if (quest.FarmerQuest) {
+                if (Player.talkNPC == -1 || Main.npc[Player.talkNPC].type != NPCType<Farmer>()) {
+                    if (!HookForQuest.NpcQuestKeys.ContainsKey(NPCType<Farmer>())) {
+                        HookForQuest.NpcQuestKeys[NPCType<Farmer>()] = new QuestData(NINJA, 0, 1, true, FoodID);
+                    }
+                }
+            }
+            if (quest.LibrarianQuest) {
+                AddQuest(NPCType<Librarian>(), LIBRARIAN);
+            }
+            if (quest.HellDwarfQuest) {
+                AddQuest(NPCType<HellDwarf>(), HELLDWARF);
+            }
+        }
+        void MultiQuest(bool quest1, bool quest2, int npcType, string questKey) {
+            if (quest1) {
+                if (quest2) { AddQuest(npcType, questKey); }
+                else AddQuest(npcType, questKey);
             }
         }
         void AddQuest(int npcType, string questKey) {

@@ -1,3 +1,4 @@
+using Avalon.Buffs.Debuffs;
 using Synergia.Content.Achievements;
 using Synergia.Content.Quests;
 using Synergia.GraphicsSetting;
@@ -37,6 +38,9 @@ namespace Synergia
                     ps.PostSetup(this);
                 }
             }
+        }
+        public override void Unload() {
+            NewTexture.Unload();
         }
     }
 }

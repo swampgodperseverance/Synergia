@@ -118,7 +118,7 @@ public abstract class ModEvent : ModSystem {
         if (barAlpha <= 0f) {
             return;
         }
-        if (GetInstance<BossConfig>().ActiveNewUI) {
+        if (GetInstance<UIConfig>().ActiveNewUI) {
             Texture2D colorBar = Request<Texture2D>(GetUIElementName(Name + "_Bar")).Value;
             Texture2D value = Request<Texture2D>(GetUIElementName(Name + "_Icon")).Value;
             Texture2D emptyBar = Request<Texture2D>("Bismuth/UI/OrcishInvasionEmptyBar").Value;

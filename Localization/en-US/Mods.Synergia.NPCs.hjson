@@ -27,6 +27,26 @@ Sparky.DisplayName: Sparky
 HellDwarf: {
 	DisplayName: Hell Dwarf
 
+	Name: {
+		Skyzephire: skyzephire
+		Thorin: Thorin
+		Belegar: Belegar Hell hammer
+		Dragan: Dragan
+		Wulfrik: Wulfrik
+	}
+
+	Chat: {
+		Text:  I think that lonely life not that bad. Sometimes I think i was kicked out for a reason and for better life. Better to be honest with yourself, than to live in a lie.
+		Text1: Interesting to hear all these lying stories. I hope you didn't believe'em
+		Text2: I don't truly know what's happening here, in this abandoned and collapsed place, but I feel confident that no one will disturb me.
+		Text3: On the one of the signs was written that here lived a race of people-demons. What you think, these stories are real?
+		Text4: But one thing I know for sure, there is enormous cave nearby. This cave is shelter of the Wyrm, those living here considered him a demigod, but he destroyed �em and their faith.
+		Text5: Interesting, what's hidden under this bridge? Monsters can't let me dive in, maybe I can find something?
+		Text6: The real reason why I was chased away that they think I'm a traitor.
+		Text7: But I'm not a traitor or a something. Heart of The Tundra, which was sealed in an ancient Ice Monument, was exchanged for protection and stolen by Jotunn
+		Text8: Heart of the Tundra is an ancient artifact which was protected by dwarves for decades
+	}
+
 	TownNPCMood: {
 		Content: I am content.
 		NoHome: I hate not having a home.
@@ -40,3 +60,4 @@ HellDwarf: {
 }
 
 Skelegon.DisplayName: Skelegon
+BigBob.DisplayName: Undertaken

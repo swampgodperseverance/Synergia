@@ -1,7 +1,4 @@
-﻿global using static Synergia.Common.QuestSystem;
-global using static Synergia.Common.QuestSystem.QuestConst;
-global using static Synergia.Common.SUtils.LocUtil;
-using static Bismuth.Utilities.ModSupport.QuestRegistry;
+﻿using static Bismuth.Utilities.ModSupport.QuestRegistry;
 using Bismuth.Utilities.ModSupport;
 using Terraria;
 using System.Collections.Generic;

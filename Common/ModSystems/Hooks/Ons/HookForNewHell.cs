@@ -12,6 +12,7 @@ using Terraria.Audio;
 using Terraria.GameContent;
 using Terraria.ID;
 using ValhallaMod.NPCs.TownNPCs;
+using Terraria.Localization;
 
 namespace Synergia.Common.ModSystems.Hooks.Ons {
     public class HookForNewHell : ModSystem {
@@ -28,6 +29,7 @@ namespace Synergia.Common.ModSystems.Hooks.Ons {
             On_Projectile.AI_007_GrapplingHooks += On_Projectile_AI_007_GrapplingHooks; // Disabled hook;
             On_Mount.SetMount += On_Mount_SetMount; // Disabled mount;
             On_Main.DrawNPCHeadFriendly += On_Main_DrawNPCHeadFriendly; // Disabled draw Dwarf and HellDwarf icon if player didn't meet them
+            On_Player.DropTombstone += On_Player_DropTombstone; // Disabled Tombstone if player dead in New Hell
         }
         bool NewLogic(Orig_IsActive orig, CaesiumBlastplains caesiumBlastplains, Player player) => false;
         bool On_WorldGen_PlaceTile(On_WorldGen.orig_PlaceTile orig, int i, int j, int Type, bool mute, bool forced, int plr, int style) {
@@ -94,6 +96,10 @@ namespace Synergia.Common.ModSystems.Hooks.Ons {
                 }
             }
         }
+        void On_Player_DropTombstone(On_Player.orig_DropTombstone orig, Player self, long coinsOwned, NetworkText deathText, int hitDirection) {
+            if (self.InModBiome<NewHell>()) { return; }
+            else { orig(self, coinsOwned, deathText, hitDirection); }
+        }
         public override void Unload() {
             avalonBg?.Dispose();
             avalonBg = null;
@@ -102,6 +108,7 @@ namespace Synergia.Common.ModSystems.Hooks.Ons {
             On_Projectile.AI_007_GrapplingHooks -= On_Projectile_AI_007_GrapplingHooks;
             On_Mount.SetMount -= On_Mount_SetMount;
             On_Main.DrawNPCHeadFriendly -= On_Main_DrawNPCHeadFriendly;
+            On_Player.DropTombstone -= On_Player_DropTombstone;
         }
     }
 }

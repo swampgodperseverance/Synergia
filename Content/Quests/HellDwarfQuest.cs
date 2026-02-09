@@ -1,9 +1,9 @@
 ﻿using Avalon.Items.Material;
 using Bismuth.Utilities.ModSupport;
+using Synergia.Common.ModSystems.Hooks.Ons;
 using Synergia.Content.NPCs;
 using Terraria;
 using ValhallaMod.Items.Placeable.Blocks;
-using ValhallaMod.NPCs.TownNPCs;
 
 namespace Synergia.Content.Quests {
     public class HellDwarfQuest : BaseQuestLogic {
@@ -25,6 +25,7 @@ namespace Synergia.Content.Quests {
         public override void OnChatButtonClicked(Player player) {
             BaseOnChatButtonClicked(player);
             CheckItem(player, ref player.GetModPlayer<QuestBoolean>().HellDwarfQuest, ItemType<BottledLava>(), 1, 1, LocQuestKey("HellDwarf", "QuestCompleted"), LocQuestKey("HellDwarf", "QuestCompletedFalse"), ItemType<SinstoneMagma>(), 25);
+            if (Progress == 0) { HookForQuest.NpcQuestKeys.Remove(QuestNPC); }
         }
         public override bool IsAvailable(Player player) => BaseIsAvailable(player);
         public override bool IsActive(Player player) => BaseIsActive(player);

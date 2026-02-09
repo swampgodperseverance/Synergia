@@ -1,6 +1,7 @@
 ﻿using Bismuth.Utilities.ModSupport;
 using StramsSurvival.Items.Placeable.Furniture;
 using StramsSurvival.NPCs;
+using Synergia.Common.ModSystems.Hooks.Ons;
 using Terraria;
 using static Synergia.Lists.Items;
 
@@ -24,6 +25,7 @@ namespace Synergia.Content.Quests {
             BaseOnChatButtonClicked(player);
             foreach (int itemId in FoodID) {
                 CheckItem(player, ref player.GetModPlayer<QuestBoolean>().FarmerQuest, itemId, 1, 1, LocQuestKey("Farmer", "QuestCompleted"), LocQuestKey("Farmer", "QuestCompletedFalse"), ItemType<Oven>());
+                if (Progress == 0) { HookForQuest.NpcQuestKeys.Remove(QuestNPC); }
                 if (player.GetModPlayer<QuestBoolean>().FarmerQuest) {
                     break;
                 }

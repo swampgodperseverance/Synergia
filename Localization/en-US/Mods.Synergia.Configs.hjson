@@ -1,0 +1,27 @@
+UIConfig.DisplayName: UI Config
+BossConfig.DisplayName: Boss Config
+
+Config: {
+	UI: {
+		NewUI: Active New Progres bar for events
+		NewUITooltip: Activates new UI for events
+		ResetUITooltip: Resets the ui position
+		ResetUI: Reset UI
+		HoverUITooltip: Allows you to modify position user interface elements.
+		HoverUI: Modify position UI
+		ActiveSummonUITooltip: If it bothers you, you can enable it by default value enabled
+		ActiveSummonUI: Active Summon UI
+		SummonUI: Summon UI
+	}
+
+	SynegiaConfig: {
+		OcramHardModeAI: Enable Hard Mode AI
+		MakesOcramAI: Makes Ocram's AI more challenging
+		OcramWildAI: Enable Bacterium Prime hard AI
+		MakesOcramAI2: Makes Bacterium Prime completely broken. Default Bacterium Prime without ai get 3 more new attacks. Why do you need that?
+		PapuanHardAI: Enable Papuan Wizard Hard AI
+		MakesPapuanAI: Makes Papuan Wizard significantly stronger with teleport and projectile attacks.
+		NewRecipe: Includes new recipes
+		NewRecipeTooltip: Synergia uses a complex recipe system. The tPackBuilder mod also changes them, but they will be simpler. Therefore, use only this mod or uncheck the box and use tPackBuilder.
+	}
+}

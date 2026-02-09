@@ -180,121 +180,6 @@ Items: {
 		DisplayName: Old Tales
 	}
 
-	KingSlimeHistory: {
-		Tooltip:
-			'''
-			The oldest slime in the whole world.
-			Legend says that his soul always reincarnate.
-			'''
-		DisplayName: ""
-	}
-
-	TurkorHistory: {
-		Tooltip:
-			'''
-			He didn`t come for revenge.
-			He come for a reminder.
-			A levitating creature.
-			'''
-		DisplayName: ""
-	}
-
-	SkeletHistory: {
-		Tooltip:
-			'''
-			I found a strange man near the dungeon and he start to ask me about “curse”? idk
-			After this, he attacked me
-			'''
-		DisplayName: ""
-	}
-
-	LuteHistory: {
-		Tooltip:
-			'''
-			Walking through a dark forest, a shaman who had a soul in a cage came at me from the sneaky side.
-			After the lord died, it flew to the altar, damn....
-			If you want to summon him, put soul on altar in the backwood biome
-			'''
-		DisplayName: ""
-	}
-
-	LepusHistory: {
-		Tooltip:
-			'''
-			This bunny was enormous.
-			Be careful this thing is dangerous.
-			'''
-		DisplayName: ""
-	}
-
-	GoblinHistory: {
-		Tooltip:
-			'''
-			After defeating the green thing.
-			I heard a call from the west but didn`t pay much attention to it.
-			Suddenly after a few minutes, a bunch of nasty goblins pounced.
-			And while I was hiding I heard that one of them had escaped into the caves.
-			I would have to find him.
-			'''
-		DisplayName: ""
-	}
-
-	FlashHistory: {
-		Tooltip:
-			'''
-			A wall. It stretched all the way to the horizon, mottled with veins, knotted muscles, and dimly glittering eyes. 
-			Somewhere in the depths, a groan could be heard-not human, no. It was like the breathing of pain itself.
-			Sometimes I think I'm still standing in front of that Wall. Sometimes I think I've become a part of it. 
-			And if you hear a faint call among the hell one day, don't answer it.
-			'''
-		DisplayName: ""
-	}
-
-	EyeHistory: {
-		Tooltip:
-			'''
-			He appeared suddenly - a lone eye in the sky, pulsing with malice.
-			I looked up at him and the night was no longer just a night for me.
-			'''
-		DisplayName: ""
-	}
-
-	BacteriumHistory: {
-		Tooltip:
-			'''
-			My friend told me that in addition to this thing, there`s a flying brain.
-			That`s disgusting.
-			'''
-		DisplayName: ""
-	}
-
-	BeakHistory: {
-		Tooltip:
-			'''
-			Walking in the desert, I killed a vulture for a snack. 
-			During my meal, I saw a giant creature in the sky. Luckily, I stayed in a cave
-			'''
-		DisplayName: ""
-	}
-
-	BeeHistory: {
-		Tooltip:
-			'''
-			Found a giant hive in the jungle once.
-			I pierced a larva with honey, and I totally regretted it.
-			'''
-		DisplayName: ""
-	}
-
-	DeerHistory: {
-		Tooltip:
-			'''
-			One day I was walking on the tundra looking for food, and I came across a giant reindeer.
-			It tore me to pieces, a monstrous thing
-			'''
-		DisplayName: ""
-	}
-
 	DurataniumJavelin: {
 		Tooltip: ""
 		DisplayName: Duratanium Javelin
@@ -619,40 +504,9 @@ Items: {
 		DisplayName: Hellworm Scale
 	}
 
-	SkeletSummonHistory: {
-		Tooltip: You should talk with a man near the dungeon in the nighttime
-		DisplayName: ""
-	}
-
-	LuteSummonHistory: {
-		Tooltip: Put a Druid Soul on the backwoods overgrown altar
-		DisplayName: ""
-	}
-
 	CogwormRelicItem: {
 		Tooltip: ""
 		DisplayName: Cogworm Relic
-	}
-
-	OldTales2: {
-		Tooltip: ""
-		DisplayName: Oldest Tales
-	}
-
-	ColdSummonHistory: {
-		DisplayName: ""
-		Tooltip: Item can be obtainable from the gifts, or?..
-	}
-
-	ColdHistory: {
-		Tooltip:
-			'''
-			Forged from giant icy boulders with a glowing frozen 
-			heart, he towers above his army.
-			He hurls massive snow chunks and 
-			freezes the ground beneath his foes
-			'''
-		DisplayName: ""
 	}
 
 	CarnageStory: {
@@ -662,110 +516,6 @@ Items: {
 			me a golden bait saying that the catch would be gigantic
 			'''
 		DisplayName: ""
-	}
-
-	BlazewormHistory: {
-		Tooltip:
-			'''
-			Deep in the Underworld, even the Wall of Flesh shivers. 
-			From the lava emerges the fiery worm-boss, so massive and furious 
-			that hell itself hides in silence.
-			'''
-		DisplayName: ""
-	}
-
-	EclipseHistory: {
-		DisplayName: ""
-		Tooltip: You can find tablet fragments inside giant temple somewhere in the jungle..
-	}
-
-	EmperorHistory: {
-		DisplayName: ""
-		Tooltip:
-			'''
-			the guide told me a legend about a certain samurai who rises above 
-			the souls of renounced people, and gave me this strange star-like thing
-			let's check it out
-			'''
-	}
-
-	GolemHistory: {
-		DisplayName: ""
-		Tooltip:
-			'''
-			I found gigantic stone temple when wandered through underground jungle
-			Witch Doctor said that somewhere inside there is a giant altar
-			'''
-	}
-
-	GolemSummonHistory: {
-		DisplayName: ""
-		Tooltip: You should use power cell near the altar to summon ancient golem
-	}
-
-	MoonsHistory: {
-		DisplayName: ""
-		Tooltip:
-			'''
-			One peaceful evening, the moon turned orange, and monsters filled the land.
-			Zombies wore strange masks, vampires flew across the sky, and even giant pumpkins hunted the villagers.
-			The night seemed endless, but when dawn came, the horror faded. Yet peace did not last long. 
-			The very next day, the sun darkened, and a Solar Eclipse began. Powerful creatures arrived, stronger than anything before.
-			'''
-	}
-
-	NautilusHistory: {
-		DisplayName: ""
-		Tooltip:
-			'''
-			Fishing during the blood moon was a bad idea...
-			Dread. It was more powerful than i think
-			'''
-	}
-
-	NautilusSummonHistory: {
-		DisplayName: ""
-		Tooltip: You can obtain this item by killing water blood moon creatures
-	}
-
-	OcramHistory: {
-		DisplayName: ""
-		Tooltip: As guide said to me, this will be final challenge before freeing the world from ancient evil
-	}
-
-	PiratesHistory: {
-		DisplayName: ""
-		Tooltip:
-			'''
-			Yesterday I was building a small house near the ocean when I suddenly saw a pirate ship in the distance.
-			Soon, pirates rushed onto the beach, shouting and firing their guns. I grabbed my bow and started fighting.
-			They dropped a lot of gold chunks, but there were too many of them. I ran to the nurse for healing, then went back outside.
-			After a long battle, the captain finally fell. The invasion was over, and I found a strange golden chest among the loot.
-			'''
-	}
-
-	PlanteraHistory: {
-		DisplayName: ""
-		Tooltip: I found a giant flower when im walking near the jungles, I regretted breaking it
-	}
-
-	PlanteraSummonHistory: {
-		DisplayName: ""
-		Tooltip: Destroy giant bulb somewhere in jungles
-	}
-
-	QueenHistory: {
-		DisplayName: ""
-		Tooltip:
-			'''
-			When i was mining in the Hallowed Caves, i accidently broke a big pink gelatine crystal
-			looks interesting
-			'''
-	}
-
-	TrioHistory: {
-		DisplayName: ""
-		Tooltip: The next goal was to destroy three giant robots that look like an eye, a skull and a worm.
 	}
 
 	RingofVengeanceseeker: {
@@ -1414,6 +1164,13 @@ Projectiles: {
 	SunJavelinProj.DisplayName: Sun Javelin Proj
 	Gut.DisplayName: Gut
 	GutsJew.DisplayName: Guts Jew
+	AshenCopy.DisplayName: Ashen Copy
+	ValhalliteKnightIceProj.DisplayName: Valhallite Knight Ice Proj
+	EnferBoom.DisplayName: Enfer Boom
+	LavaRune1.DisplayName: Lava Rune1
+	LavaRune2.DisplayName: Lava Rune2
+	LavaRune3.DisplayName: Lava Rune3
+	LavaRune4.DisplayName: Lava Rune4
 }
 
 Buffs: {
@@ -1478,8 +1235,8 @@ Buffs: {
 	}
 
 	SnowVillageBuff: {
-		DisplayName: Snow Village Buff
-		Description: Mods.Synergia.Buffs.SnowVillageBuff.Description
+		DisplayName: Snow Village
+		Description: The village protects you
 	}
 
 	GloomBuff: {
@@ -1523,28 +1280,6 @@ Keybinds: {
 	"Armor Set Bonus Activate.DisplayName": Armor  Set  Bonus  Activate
 }
 
-Configs.BossConfig.DisplayName: Boss Config
-
-Config: {
-	OcramHardModeAI: Enable Hard Mode AI
-	MakesOcramAI: Makes Ocram's AI more challenging
-	OcramWildAI: Enable Bacterium Prime hard AI
-	MakesOcramAI2: Makes Bacterium Prime completely broken. Default Bacterium Prime without ai get 3 more new attacks. Why do you need that?
-	PapuanHardAI: Enable Papuan Wizard Hard AI
-	MakesPapuanAI: Makes Papuan Wizard significantly stronger with teleport and projectile attacks.
-	NewUI: Active New Progres bar for events
-	NewUITooltip: Activates new UI for events
-	ResetUITooltip: Resets the ui position
-	ResetUI: Reset UI
-	HoverUITooltip: Allows you to modify position user interface elements.
-	HoverUI: Modify position UI
-	ActiveSummonUITooltip: If it bothers you, you can enable it by default value enabled
-	ActiveSummonUI: Active Summon UI
-	SummonUI: Summon UI
-	NewRecipe: Includes new recipes
-	NewRecipeTooltip: Synergia uses a complex recipe system. The tPackBuilder mod also changes them, but they will be simpler. Therefore, use only this mod or uncheck the box and use tPackBuilder.
-}
-
 SinlordSummon: Use Hellworm scale in the underworld
 
 Tiles: {
@@ -1564,13 +1299,12 @@ Biomes: {
 	}
 }
 
-Events.dsad: ""
 Emotes.DwarfEmote.Command: dwarfemote
 
 BaseLoc: {
 	DamageClass: {
 		throwing: throwing
-		Throwing: throwing
+		Throwing: Throwing
 	}
 
 	AttackSpead: Increases {0} speed by {1}%
@@ -1578,5 +1312,3 @@ BaseLoc: {
 	DeactiveTime: increases the combo action time {0}
 	SynergiaThrowing: increases the combo action time {0} and increases the combo action time {1}
 }
-
-NPC.BigBob.DisplayName: Big Bob

@@ -8,7 +8,7 @@ using Terraria;
 namespace Synergia.Common.Biome {
     public class SnowVillage : ModBiome {
         public override bool IsBiomeActive(Player player) {
-            bool active = WorldHelper.CheckBiome(player, 103, 25, SynergiaGenVars.SnowVilagePositionX, SynergiaGenVars.SnowVilagePositionY - 25, BuffType<SnowVillageBuff>());
+            bool active = WorldHelper.CheckBiome(player, 103, 25, SynergiaGenVars.SnowVillagePositionX, SynergiaGenVars.SnowVillagePositionY - 25, BuffType<SnowVillageBuff>());
             if (active && !SynergiaWorld.FirstEnterInSnowVillage) { SynergiaWorld.FirstEnterInSnowVillage = true; }
             return active;
         }

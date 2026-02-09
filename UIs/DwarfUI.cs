@@ -1,7 +1,4 @@
-﻿using Avalon.ModSupport.MLL.Items;
-using Bismuth.Content.Items.Other;
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
+﻿using Bismuth.Content.Items.Other;
 using NewHorizons.Content.Items.Weapons.Magic;
 using ReLogic.Graphics;
 using Synergia.Common.GlobalPlayer;
@@ -20,7 +17,6 @@ using Terraria.Localization;
 using Terraria.UI;
 using Terraria.UI.Chat;
 using ValhallaMod.Items.Placeable.Blocks;
-using static Synergia.Common.SUtils.LocUtil;
 using static Synergia.Helpers.UIHelper;
 
 namespace Synergia.UIs;

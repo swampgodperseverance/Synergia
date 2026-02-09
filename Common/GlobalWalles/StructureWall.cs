@@ -1,34 +1,27 @@
 ﻿// Code by 𝒜𝑒𝓇𝒾𝓈
+using Bismuth.Content.Items.Other;
 using Synergia.Common.ModSystems.WorldGens;
+using Synergia.Helpers;
 using Terraria;
 
 namespace Synergia.Common.GlobalWalles {
     public class StructureWall : GlobalWall {
         public override void KillWall(int i, int j, int type, ref bool fail) {
-            if (EnableVector(i, j)) {
+            if (BaseLogic(i, j)) {
                 fail = true;
                 Main.tile[i, j].WallType = (ushort)type;
             }
         }
-        public override bool Drop(int i, int j, int type, ref int dropType) {
-            if (EnableVector(i, j)) {
+        public override bool Drop(int i, int j, int type, ref int dropType) => BaseLogic(i, j);
+        public override bool CanExplode(int i, int j, int type) => BaseLogic(i, j);
+        static bool HellStructBlock(int i, int j) => WorldHelper.CheckBiomeTile(i, j, 237 + SynergiaGenVars.HellArenaPositionX - SynergiaGenVars.HellLakeX, 119, SynergiaGenVars.HellLakeX - 236, SynergiaGenVars.HellLakeY - 119);
+        static bool SnowVillages(int i, int j) => SynergiaGenVars.VillageTiles.Contains(new Vector2(i, j));
+        static bool BaseLogic(int i, int j) {
+            if (HellStructBlock(i, j) || SnowVillages(i, j)) {
+                if (Main.LocalPlayer.HasItem(ItemType<MasterToolBox>())) { return true; }
                 return false;
             }
-            return base.Drop(i, j, type, ref dropType);
-        }
-        public override bool CanExplode(int i, int j, int type) {
-            if (EnableVector(i, j)) {
-                return false;
-            }
-            else { return true; }
-        }
-        static bool EnableVector(int i, int j) {
-            bool snowVilage = SynergiaGenVars.VilageWalles.Contains(new Vector2(i, j));
-            bool arena = SynergiaGenVars.ArenaWalles.Contains(new Vector2(i, j));
-            bool hellVilage = SynergiaGenVars.HellVillageWallesVector.Contains(new Vector2(i, j));
-            bool lake = SynergiaGenVars.HellLakeWallesVector.Contains(new Vector2(i, j));
-            if (snowVilage || arena || hellVilage || lake) { return true; }
-            else { return false; }
+            return true;
         }
     }
 }

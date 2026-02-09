@@ -5,7 +5,7 @@ using Terraria;
 using Terraria.ID;
 
 namespace Synergia.Content.Quests {
-    public class NinjaQuest_Frist : BaseQuestLogic {
+    public class NinjaQuest_First : BaseQuestLogic {
         public override int QuestNPC => NPCType<Ninja>();
         public override bool IsEndQuest => Main.LocalPlayer.GetModPlayer<QuestBoolean>().NinjaQuest1;
         public override string Key => "NinjaQuest_1";

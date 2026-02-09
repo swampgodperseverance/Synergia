@@ -6,7 +6,7 @@ using ValhallaMod.NPCs.TownNPCs;
 using static Synergia.Helpers.ItemHelper;
 
 namespace Synergia.Content.Quests {
-    public class ArtistQuest_Frist: BaseQuestLogic {
+    public class ArtistQuest_First: BaseQuestLogic {
         public override int QuestNPC => NPCType<Artist>();
         public override bool IsEndQuest => Main.LocalPlayer.GetModPlayer<QuestBoolean>().ArtistQuest1;
         public override string Key => "ArtistQuest_1";

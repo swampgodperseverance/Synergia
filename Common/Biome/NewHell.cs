@@ -18,6 +18,7 @@ namespace Synergia.Common.Biome {
                 bPlayer.arenaBiome = arena;
                 bPlayer.villageBiome = village;
                 bPlayer.lakeBiome = lake;
+                //Main.NewText(village);
                 if (village && !SynergiaWorld.FirstEnterInHellVillage) { SynergiaWorld.FirstEnterInHellVillage = true; }
                 return fullHell;
             }

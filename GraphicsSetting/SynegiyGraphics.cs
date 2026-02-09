@@ -12,8 +12,6 @@ public class SynegiyGraphics {
     public const string COGWORMSHADER = nameof(COGWORMSHADER);
     public const string PRESENTSKY = nameof(PRESENTSKY);
     public const string BASEFILTER = "FilterMiniTower";
-    public static Asset<Effect> MyEffect;
-    public static string MY;
 
     public static string FilePath(string name) => $"Synergia/Assets/Effects/{name}";
     static string GetShaderNeme(ref string saveShaderName, string shaderName) {
@@ -24,7 +22,6 @@ public class SynegiyGraphics {
         if (!Main.dedServ) {
             LoadFiltersIntensity(COGWORMSHADER, BASEFILTER, 0.7f, 0.2f, 0.2f, 0.4f, new SynergiaSky()); // 1.0, 0.2, 0.2
             LoadFiltersOpacity(PRESENTSKY, BASEFILTER, 0f, 0f, 0f, 0f, new PresentSky());
-            //LoadShader(ref MyEffect, "DistortionShader", ref MY, "DistortPixel");
         }
     }
     [Obsolete("Лучше не трогать!!!!!")]

@@ -4,7 +4,7 @@ using Terraria;
 using Terraria.ID;
 
 namespace Synergia.Content.Quests {
-    public class HunterQuest_Frist : BaseQuestLogic {
+    public class HunterQuest_First : BaseQuestLogic {
         public override string DisplayName => LocQuestKey("HunterQuest_Frist", "QuestName");
         public override string DisplayDescription => LocQuestKey("HunterQuest_Frist", "QuestDescription");
         public override string DisplayStage => LocQuestKey("HunterQuest_Frist", "QuestStage");

@@ -578,16 +578,9 @@ public class GenerationArenasInHell : BaseWorldGens {
                     case 0: tile.LiquidAmount = 0; break;
                     case 1: tile.LiquidType = LiquidID.Lava; tile.LiquidAmount = 255; break;
                 }
-                if (HellArenaTiles[y, x] != 0) {
-                    SynergiaGenVars.ArenaTiles.Add(new Vector2(worldX, worldY));
-                }
-                if (HellArenaWalls[y, x] != 0) {
-                    SynergiaGenVars.ArenaWalles.Add(new Vector2(worldX, worldY));
-                }
             }
         }
         int pos = SynergiaGenVars.HellArenaPositionX - 198;
-        SynergiaGenVars.ArenaTilesMP = new(pos, SynergiaGenVars.HellArenaPositionY, SynergiaGenVars.HellArenaPositionX, SynergiaGenVars.HellArenaPositionY - 112);
 
         WorldGen.PlaceObject(pos + 105, SynergiaGenVars.HellArenaPositionY - 11, Ava.Find<ModTile>("ResistantWoodLamp").Type);
         WorldGen.PlaceObject(pos + 112, SynergiaGenVars.HellArenaPositionY - 11, Ava.Find<ModTile>("ResistantWoodLamp").Type);

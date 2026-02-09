@@ -5,7 +5,6 @@ using Terraria;
 using Terraria.Audio;
 using Terraria.GameContent.ItemDropRules;
 using Terraria.ID;
-using static Synergia.Common.SUtils.LocUtil;
 
 namespace Synergia.Content.NPCs.Underworld
 {
@@ -33,10 +32,6 @@ namespace Synergia.Content.NPCs.Underworld
             NPC.DeathSound = new SoundStyle("Synergia/Assets/Sounds/BrokenBone");
             NPC.lavaImmune = Main.expertMode;
             this.AddBanner(ItemType<HellDog>());
-        }
-        public override float SpawnChance(NPCSpawnInfo spawnInfo) {
-            BiomePlayer biomePlayer = spawnInfo.Player.GetModPlayer<BiomePlayer>();
-            return NPC.downedPlantBoss && biomePlayer.villageBiome && spawnInfo.Player.ZoneUnderworldHeight ? 0.6f : 0f;
         }
         public override void AI() {
             NPC.TargetClosest(false);
@@ -68,6 +63,7 @@ namespace Synergia.Content.NPCs.Underworld
             }
             NPC.frame.Y = (int)NPC.frameCounter * frameHeight;
         }
+        public override float SpawnChance(NPCSpawnInfo spawnInfo) => NPC.downedPlantBoss && spawnInfo.Player.GetModPlayer<BiomePlayer>().villageBiome && spawnInfo.Player.ZoneUnderworldHeight ? 0.6f : 0f;
         public override void ModifyNPCLoot(NPCLoot npcLoot) => npcLoot.Add(ItemDropRule.Common(ItemID.Bone, 1, 3, 6));
         public override void OnKill()
         {
