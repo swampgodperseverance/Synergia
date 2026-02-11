@@ -1,7 +1,6 @@
 ﻿using Bismuth.Content.Buffs;
 using Synergia.Content.Buffs;
 using Terraria;
-using static Synergia.Reassures.Reassures;
 
 namespace Synergia.Common {
     public partial class EditSound {

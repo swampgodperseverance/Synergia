@@ -25,6 +25,7 @@ namespace Synergia.Common.ModSystems.Hooks.Ons {
             MethodInfo info = typeof(CaesiumBlastplains).GetMethod(nameof(CaesiumBlastplains.IsBiomeActive));
             avalonBg = new Hook(info, (Get_IsActiveDetour)NewLogic); // Disabled biome in Avalon;
             On_WorldGen.PlaceTile += On_WorldGen_PlaceTile; // Disabled Magic Ice if use item Ice Rood;
+            On_WorldGen.moveRoom += On_WorldGen_moveRoom1; ; // Disabled Town NPC in Hell Struct
             On_NPC.checkDead += On_NPC_checkDead; // Disabled lava if lava slime dead;
             On_Projectile.AI_007_GrapplingHooks += On_Projectile_AI_007_GrapplingHooks; // Disabled hook;
             On_Mount.SetMount += On_Mount_SetMount; // Disabled mount;
@@ -42,6 +43,16 @@ namespace Synergia.Common.ModSystems.Hooks.Ons {
                 return true;
             }
             else { return orig(i, j, Type, mute, forced, plr, style); }
+        }
+        void On_WorldGen_moveRoom1(On_WorldGen.orig_moveRoom orig, int x, int y, int n) {
+            bool hellStruct = WorldHelper.CheckBiomeTile(x, y, 237 + SynergiaGenVars.HellArenaPositionX - SynergiaGenVars.HellLakeX, 119, SynergiaGenVars.HellLakeX - 236, SynergiaGenVars.HellLakeY - 119);
+            if (hellStruct) {
+                if (Main.npc[n].type == NPCType<HellDwarf>()) {
+                    orig(x, y, n);
+                }
+                else { Main.NewText(Language.GetTextValue("LegacyInterface.55") + " " + Lang.GetNPCName(Main.npc[n].type), byte.MaxValue, 240, 20); }
+            }
+            else { orig(x, y, n); }
         }
         void On_NPC_checkDead(On_NPC.orig_checkDead orig, NPC npc) {
             orig(npc);
@@ -66,6 +77,16 @@ namespace Synergia.Common.ModSystems.Hooks.Ons {
                     }
                 }
             }
+        }
+        void On_NPC_UpdateHomeTileState(On_NPC.orig_UpdateHomeTileState orig, NPC self, bool homeless, int x, int y) {
+            bool hellStruct = WorldHelper.CheckBiomeTile(x, y, 237 + SynergiaGenVars.HellArenaPositionX - SynergiaGenVars.HellLakeX, 119, SynergiaGenVars.HellLakeX - 236, SynergiaGenVars.HellLakeY - 119);
+            if (hellStruct) {
+                if (self.type == NPCType<HellDwarf>()) {
+                    orig(self, homeless, x, y);
+                }
+                else { return; }
+            }
+            else { orig(self, homeless, x, y); }
         }
         void On_Projectile_AI_007_GrapplingHooks(On_Projectile.orig_AI_007_GrapplingHooks orig, Projectile self) {
             Player player = Main.player[self.owner];

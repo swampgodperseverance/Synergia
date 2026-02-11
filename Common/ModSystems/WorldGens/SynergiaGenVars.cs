@@ -18,6 +18,9 @@ namespace Synergia.Common.ModSystems.WorldGens {
         public static int HellLakeX { get; set; }
         public static int HellLakeY { get; set; }
 
+        public static bool SnowVillageGen { get; set; }
+        public static bool HellVillageGen { get; set; }
+
         public override void OnWorldLoad() {
             VillageTiles.Clear();
             VillageWalles.Clear();
@@ -30,6 +33,9 @@ namespace Synergia.Common.ModSystems.WorldGens {
             HellVillageY = 0;
             HellLakeX = 0;
             HellLakeY = 0;
+
+            SnowVillageGen = false;
+            HellVillageGen = false;
         }
         public override void SaveWorldData(TagCompound tag) {
             tag["VillageTiles"] = VillageTiles;
@@ -43,6 +49,9 @@ namespace Synergia.Common.ModSystems.WorldGens {
             tag["hellVillageY"] = HellVillageY;
             tag["HellLakeX"] = HellLakeX;
             tag["HellLakeY"] = HellLakeY;
+
+            tag["SnowVillageGen"] = SnowVillageGen;
+            tag["HellVillageGen"] = HellVillageGen;
         }
         public override void LoadWorldData(TagCompound tag) {
             VillageTiles = tag.Get<List<Vector2>>("VillageTiles");
@@ -56,6 +65,9 @@ namespace Synergia.Common.ModSystems.WorldGens {
             HellVillageY = tag.GetInt("hellVillageY");
             HellLakeX = tag.GetInt("HellLakeX");
             HellLakeY = tag.GetInt("HellLakeY");
+
+            SnowVillageGen = tag.GetBool("SnowVillageGen");
+            HellVillageGen = tag.GetBool("HellVillageGen");
         }
         public override void NetSend(BinaryWriter writer) {
             writer.Write(VillageTiles.Count);
@@ -71,6 +83,9 @@ namespace Synergia.Common.ModSystems.WorldGens {
             writer.Write(HellVillageY);
             writer.Write(HellLakeX);
             writer.Write(HellLakeY);
+
+            writer.Write(SnowVillageGen);
+            writer.Write(HellVillageGen);
         }
         public override void NetReceive(BinaryReader reader) {
             int count = reader.ReadInt32();  VillageTiles.Clear();
@@ -86,6 +101,9 @@ namespace Synergia.Common.ModSystems.WorldGens {
             HellVillageY = reader.ReadInt32();
             HellLakeX = reader.ReadInt32();
             HellLakeY = reader.ReadInt32();
+
+            SnowVillageGen = reader.ReadBoolean();
+            HellVillageGen = reader.ReadBoolean();
         }
     }
 }

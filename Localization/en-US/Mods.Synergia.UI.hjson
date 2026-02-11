@@ -11,7 +11,11 @@ DwarfUI: {
 }
 
 DwarfChat.NoQuest: I not quest for you
-ChatsMsg.tPacer: You have {0}, pls disable mod or disable in config <{1}>
+
+ChatsMsg: {
+	tPacer: You have {0}, pls disable mod or disable in config <{1}>
+	EmptyStruct: This world doesn't contain any structures from the mod {0}, please recreate the world.
+}
 
 LuceatUI: {
 	Lake: Teleport you in bridge

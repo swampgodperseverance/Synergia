@@ -163,36 +163,59 @@ public class DwarfUI : UIState {
         spriteBatch.Draw(anvil, new Vector2(reforgeX + 50, reforgeY + 120), Color.White);
         bool canReforge = Items.ContainsKey(itemSlotWeppon.Item.type) && !itemSlotPrace.Item.IsAir && itemSlotPrace.Item.stack >= 10;
         if (!itemSlotWeppon.Item.IsAir && canReforge) {
-            Vector2 reforgeButtonOrigin = reforgeButtonAnim.GetSource(reforgeButtonTexture).Size() / 2f;
-            spriteBatch.Draw(reforgeButtonTexture, new Vector2(reforgeX + 180, reforgeY + 132), reforgeButtonAnim.GetSource(reforgeButtonTexture), Color.White, 0f, reforgeButtonOrigin, 1f, reforgeButtonAnim.Effects, 0f); // layer: 0 -> 1;
-            Vector2 barOrigin = hellsmithBarTextureAnim.GetSource(hellsmithBarTexture).Size() / 2f;
-            spriteBatch.Draw(hellsmithBarTexture, new Vector2(reforgeX + 190, reforgeY + 90), hellsmithBarTextureAnim.GetSource(hellsmithBarTexture), Color.White, 0f, barOrigin, 1f, hellsmithBarTextureAnim.Effects, 0f);
-            hoveringOverReforgeButton = MousePositionInUI(reforgeX + 160, reforgeX + 190, reforgeY + 118, reforgeY + 152);
+            #region get and draw price
+            int convertPrice = itemSlotWeppon.Item.value / 10;
+            if (convertPrice == 0) convertPrice = Item.buyPrice(0, 0, 1, 0);
+            string costText = Language.GetTextValue("LegacyInterface.46") + ": ";
+            string coinsText = "";
+            int[] coins = Utils.CoinsSplit(convertPrice);
+            if (coins[3] > 0) {
+                coinsText = coinsText + "[c/" + Colors.AlphaDarken(Colors.CoinPlatinum).Hex3() + ":" + coins[3] + " " + Language.GetTextValue("LegacyInterface.15") + "] ";
+            }
+            if (coins[2] > 0) {
+                coinsText = coinsText + "[c/" + Colors.AlphaDarken(Colors.CoinGold).Hex3() + ":" + coins[2] + " " + Language.GetTextValue("LegacyInterface.16") + "] ";
+            }
+            if (coins[1] > 0) {
+                coinsText = coinsText + "[c/" + Colors.AlphaDarken(Colors.CoinSilver).Hex3() + ":" + coins[1] + " " + Language.GetTextValue("LegacyInterface.17") + "] ";
+            }
+            if (coins[0] > 0) {
+                coinsText = coinsText + "[c/" + Colors.AlphaDarken(Colors.CoinCopper).Hex3() + ":" + coins[0] + " " + Language.GetTextValue("LegacyInterface.18") + "] ";
+            }
+            ChatManager.DrawColorCodedStringWithShadow(Main.spriteBatch, curfont, costText, new Vector2(reforgeX + 170, reforgeY + 120), new Color(Main.mouseTextColor, Main.mouseTextColor, Main.mouseTextColor, Main.mouseTextColor), 0f, Vector2.Zero, Vector2.One, -1f, 2f);
+            ChatManager.DrawColorCodedStringWithShadow(Main.spriteBatch, curfont, coinsText, new Vector2(reforgeX + 170 + FontAssets.MouseText.Value.MeasureString(costText).X, (float)reforgeY + 120), Color.White, 0f, Vector2.Zero, Vector2.One, -1f, 2f);
+            #endregion
+            spriteBatch.Draw(reforgeButtonTexture, new Vector2(reforgeX + 135, reforgeY + 132), reforgeButtonAnim.GetSource(reforgeButtonTexture), Color.White, 0f, reforgeButtonAnim.GetSource(reforgeButtonTexture).Size() / 2f, 1f, reforgeButtonAnim.Effects, 0f);
+            spriteBatch.Draw(hellsmithBarTexture, new Vector2(reforgeX + 190, reforgeY + 90), hellsmithBarTextureAnim.GetSource(hellsmithBarTexture), Color.White, 0f, hellsmithBarTextureAnim.GetSource(hellsmithBarTexture).Size() / 2f, 1f, hellsmithBarTextureAnim.Effects, 0f);
+            hoveringOverReforgeButton = MousePositionInUI(reforgeX + 115, reforgeX + 155, reforgeY + 118, reforgeY + 152);
             if (hoveringOverReforgeButton) {
-                if (needResetForging) {
+                if (needResetForging && Main.LocalPlayer.CanAfford(convertPrice, -1)) {
                     ResetForgingState();
                     hellsmithBarTextureAnim.StartAnimation = true; 
                     SoundEngine.PlaySound(SoundID.MenuTick);
                 }
-                Vector2 reforgeButtonTexture_glowOrigin = reforgeButtonAnim.GetSource(reforgeButtonTexture_glow).Size() / 2f;
-                spriteBatch.Draw(reforgeButtonTexture_glow, new Vector2(reforgeX + 180, reforgeY + 132), reforgeButtonAnim.GetSource(reforgeButtonTexture_glow), Color.Gold, 0f, reforgeButtonTexture_glowOrigin, 1f, reforgeButtonAnim.Effects, 1f);
+                spriteBatch.Draw(reforgeButtonTexture_glow, new Vector2(reforgeX + 135, reforgeY + 132), reforgeButtonAnim.GetSource(reforgeButtonTexture_glow), Color.Gold, 0f, reforgeButtonAnim.GetSource(reforgeButtonTexture_glow).Size() / 2f, 1f, reforgeButtonAnim.Effects, 1f);
                 Main.hoverItemName = Language.GetTextValue("LegacyInterface.19");
                 if (!tickPlayed) { SoundEngine.PlaySound(SoundID.MenuTick); }
                 tickPlayed = true;
                 Main.LocalPlayer.mouseInterface = true;
-                if (Main.mouseLeftRelease && Main.mouseLeft)
-                {
-                    reforgeButtonAnim.StartAnimation = true;
-                    hellsmithBarTextureAnim.StartAnimation = true;
+                if (Main.mouseLeftRelease && Main.mouseLeft) {
+                    if (!Main.LocalPlayer.CanAfford(convertPrice, -1)) {
+                        CombatText.NewText(Main.LocalPlayer.getRect(), Color.Red, LocUIKey("DwarfUI", "IsNotGood"));
+                    }
+                    else {
+                        reforgeButtonAnim.StartAnimation = true;
+                        hellsmithBarTextureAnim.StartAnimation = true;
 
-                    ItemLoader.PreReforge(itemSlotPrace.Item);
-                    bool valueFavorited = itemSlotPrace.Item.favorited;
-                    int valueStack, a = isStartForgoten ? 0 : 10;
-                    valueStack = itemSlotPrace.Item.stack - a;
+                        ItemLoader.PreReforge(itemSlotPrace.Item);
+                        bool valueFavorited = itemSlotPrace.Item.favorited;
+                        int valueStack, a = isStartForgoten ? 0 : 10;
+                        valueStack = itemSlotPrace.Item.stack - a;
+                        Main.LocalPlayer.BuyItem(a == 0 ? 0 : convertPrice, -1);
 
-                    itemSlotPrace.Item.favorited = valueFavorited;
-                    itemSlotPrace.Item.stack = valueStack;
-                    SoundEngine.PlaySound(SoundID.Item37);
+                        itemSlotPrace.Item.favorited = valueFavorited;
+                        itemSlotPrace.Item.stack = valueStack;
+                        SoundEngine.PlaySound(SoundID.Item37);
+                    }
                 }
             }
             else {

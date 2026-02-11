@@ -1,4 +1,5 @@
-﻿using Synergia.Common.ModSystems.WorldGens;
+﻿// Code by 𝒜𝑒𝓇𝒾𝓈
+using Synergia.Common.ModSystems.WorldGens;
 using Synergia.Content.Items.Misc;
 using System;
 using System.Collections.Generic;
@@ -8,7 +9,6 @@ using Terraria.GameContent;
 using Terraria.ID;
 using Terraria.UI;
 using Terraria.UI.Chat;
-using Synergia.Common.SUtils;
 
 namespace Synergia.UIs {
     public class LuceatUI : UIState {
@@ -56,25 +56,25 @@ namespace Synergia.UIs {
             Vector2 villageButton = new(baseVector.X + 40, baseVector.Y);
             Vector2 arenaButton = new(baseVector.X + 80, baseVector.Y);
             Player player = Main.LocalPlayer;
-            DrawButton(spriteBatch, "Lake", baseVector, 0, LocUtil.LocUIKey("LuceatUI", "Lake"), player, TpLake);
-            DrawButton(spriteBatch, "Village", villageButton, 1, LocUtil.LocUIKey("LuceatUI", "Village"), player, TpVillage);
-            DrawButton(spriteBatch, "Arena", arenaButton, 2, LocUtil.LocUIKey("LuceatUI", "Hell"), player, TpArena);
+            DrawButton(spriteBatch, "Lake", baseVector, 0, LocUIKey("LuceatUI", "Lake"), player, TpLake);
+            DrawButton(spriteBatch, "Village", villageButton, 1, LocUIKey("LuceatUI", "Village"), player, TpVillage);
+            DrawButton(spriteBatch, "Arena", arenaButton, 2, LocUIKey("LuceatUI", "Hell"), player, TpArena);
 
             Main.LocalPlayer.mouseInterface |= anyButtonHovered;
 
             buttonHoverPrev.Clear();
-            foreach (var kv in buttonHoverNow) {
+            foreach (KeyValuePair<string, bool> kv in buttonHoverNow) {
                 buttonHoverPrev[kv.Key] = kv.Value;
             }
         }
-        void DrawButton(SpriteBatch sb,string id, Vector2 pos, int index, string message, Player player, Action<Player> onClick) {
+        void DrawButton(SpriteBatch sb, string id, Vector2 pos, int index, string message, Player player, Action<Player> onClick) {
             Texture2D texture = RTextures.Location[index].Value;
             Rectangle rect = new((int)pos.X, (int)pos.Y, texture.Width, texture.Height);
             Point mousePos = new(Main.mouseX, Main.mouseY);
             bool hover = rect.Contains(mousePos);
             buttonHoverNow[id] = hover;
             anyButtonHovered |= hover;
-            bool wasHover = buttonHoverPrev.TryGetValue(id, out var v) && v;
+            bool wasHover = buttonHoverPrev.TryGetValue(id, out bool v) && v;
             sb.Draw(texture, pos, Color.White);
             if (hover && !wasHover) {
                 SoundEngine.PlaySound(SoundID.MenuTick);

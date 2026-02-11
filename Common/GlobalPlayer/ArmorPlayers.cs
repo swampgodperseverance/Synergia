@@ -33,7 +33,7 @@ namespace Synergia.Common.GlobalPlayer {
             if (thunderSet && (proj.CountsAsClass(DamageClass.Melee) || item.CountsAsClass(DamageClass.Throwing))) {
                 SpawnBurst(target.Center, DustID.GemTopaz);
             }
-            if (equipBronzeSet && (proj.CountsAsClass(DamageClass.Melee) || item.CountsAsClass(DamageClass.Throwing))) {
+            if (equipBronzeSet && (proj.CountsAsClass(DamageClass.Throwing) || item.CountsAsClass(DamageClass.Throwing))) {
                 if (Main.rand.NextBool(2)) {
                     target.AddBuff(BuffType<SulphurVenom>(), 60);
                 }

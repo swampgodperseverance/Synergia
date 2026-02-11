@@ -1,6 +1,6 @@
-﻿using Terraria;
+﻿// Code by 𝒜𝑒𝓇𝒾𝓈
+using Terraria;
 using Terraria.DataStructures;
-using static Synergia.Reassures.Reassures.RTextures;
 
 namespace Synergia.Common.PlayerLayers {
     public class MechWingsLayers : PlayerDrawLayer {
@@ -40,8 +40,8 @@ namespace Synergia.Common.PlayerLayers {
             Vector2[] right = [posRight, posRight1, posRight2];
 
             for (int i = 0; i < 3; i++) {
-                DrawFeatherTrail(drawInfo, FeatherRight[i].Value, right[i], i, color, drawInfo.playerEffect);
-                DrawFeatherTrail(drawInfo, FeatherLeft [i].Value, left[i],  i, color, drawInfo.playerEffect);
+                DrawFeatherTrail(drawInfo, RTextures.FeatherRight[i].Value, right[i], i, color, drawInfo.playerEffect);
+                DrawFeatherTrail(drawInfo, RTextures.FeatherLeft [i].Value, left[i],  i, color, drawInfo.playerEffect);
             }
         }
         static void DrawFeatherTrail(PlayerDrawSet drawInfo, Texture2D tex, Vector2 basePos, int i, Color color, SpriteEffects effects) {

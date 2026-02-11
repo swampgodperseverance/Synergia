@@ -366,6 +366,8 @@ namespace Synergia.Common.ModSystems.WorldGens
             int BarrelIndex = WorldGen.PlaceChest(SynergiaGenVars.SnowVillagePositionX + 33, SynergiaGenVars.SnowVillagePositionY - 9, (ushort)TileType<Chest>(), false, 2);
             if (BarrelIndex != -1) { GenerateBarrelLoot(Main.chest[BarrelIndex].item, 0); }
 
+            SynergiaGenVars.SnowVillageGen = true;
+
             return true;
         }  
         static void GenerateBarrelLoot(Item[] ChestInventory, int BarrelIndex)

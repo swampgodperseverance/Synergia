@@ -1,6 +1,11 @@
 ﻿// Code by 𝒜𝑒𝓇𝒾𝓈
+using Synergia.Common.ModSystems;
+using Synergia.Common.ModSystems.WorldGens;
+using Synergia.Helpers;
 using System.Collections.Generic;
 using Terraria;
+using Terraria.DataStructures;
+using Terraria.GameContent.Bestiary;
 using Terraria.GameContent.UI;
 using Terraria.ID;
 using Terraria.Localization;
@@ -10,6 +15,13 @@ namespace Synergia.Content.NPCs {
     public class HellDwarf : ModNPC {
         public override string LocalizationCategory => Category(CategoryName.NPC);
         public override List<string> SetNPCNameList() => [this.GetLocalizedValue("Name.Skyzephire"), this.GetLocalizedValue("Name.Thorin"), this.GetLocalizedValue("Name.Belegar"), this.GetLocalizedValue("Name.Dragan"), this.GetLocalizedValue("Name.Wulfrik")];
+        public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry) {
+            bestiaryEntry.Info.AddRange(
+            [
+                new FlavorTextBestiaryInfoElement("Mods.Synergia.NPCs.HellDwarf.BestiaryInfo"),
+                BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Biomes.TheUnderworld,
+            ]);
+        }
         public override void SetStaticDefaults() {
             Main.npcFrameCount[NPC.type] = 25;
             NPCID.Sets.ExtraFramesCount[NPC.type] = 5;
@@ -25,14 +37,33 @@ namespace Synergia.Content.NPCs {
             NPC.width = 30;
             NPC.height = 44;
             NPC.aiStyle = NPCAIStyleID.Passive;
-            NPC.damage = 10;
+            NPC.damage = 100;
             NPC.defense = 20;
-            NPC.lifeMax = 1000;
+            NPC.lifeMax = 10000;
             NPC.HitSound = SoundID.NPCHit1;
             NPC.DeathSound = SoundID.NPCDeath1;
             NPC.knockBackResist = 0f;
             AnimationType = NPCID.GoblinTinkerer;
         }
+        public override bool CheckConditions(int left, int right, int top, int bottom) {
+            bool hellStruct = WorldHelper.CheckBiomeTile(left, top, 237 + SynergiaGenVars.HellArenaPositionX - SynergiaGenVars.HellLakeX, 119, SynergiaGenVars.HellLakeX - 236, SynergiaGenVars.HellLakeY - 119);
+            return hellStruct;
+        }
+        public override void OnSpawn(IEntitySource source) {
+            if (source is EntitySource_SpawnNPC) {
+                SynergiaWorld.SpawnDwarf = true;
+            }
+        }
+        public override bool CanTownNPCSpawn(int numTownNPCs) {
+            if (SynergiaWorld.SpawnDwarf) {
+                return true;
+            }
+            if (!SynergiaWorld.SpawnDwarf && SynergiaWorld.FirstEnterInHellVillage && NPC.downedPlantBoss) {
+                return true;
+            }
+            else { return false; }
+        }
+        public override bool CanGoToStatue(bool toKingStatue) => toKingStatue;
         public override string GetChat() {
             return Main.rand.Next(maxValue: 9) switch {
                 0 => GetText("Text"),
@@ -47,6 +78,7 @@ namespace Synergia.Content.NPCs {
                 _ => Language.GetTextValue("tModLoader.DefaultTownNPCChat"),
             };
         }
+        // TODO: add item for shop
         public override void AddShops() {
             NPCShop shop = new(Type, Name);
             shop.Add(1);
@@ -66,6 +98,14 @@ namespace Synergia.Content.NPCs {
             }
         }
         string GetText(string key) => LocNPCKey(Name, "Chat." + key);
+        // TODO: Add custom text
+        public override bool ModifyDeathMessage(ref NetworkText customText, ref Color color) {
+            return base.ModifyDeathMessage(ref customText, ref color);
+        }
+        // TODO: Add gore
+        public override void HitEffect(NPC.HitInfo hit) {
+            base.HitEffect(hit);
+        }
     }
     public class DwarfEmote : ModEmoteBubble {
         public override string Texture => (GetType().Namespace + "." + "Emote").Replace('.', '/');

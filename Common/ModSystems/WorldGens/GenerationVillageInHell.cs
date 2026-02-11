@@ -1,11 +1,9 @@
-﻿using Microsoft.Xna.Framework;
+﻿// Code by 𝒜𝑒𝓇𝒾𝓈
 using Synergia.Content.NPCs;
 using Synergia.Helpers;
-using Synergia.UIs;
 using Terraria;
 using Terraria.DataStructures;
 using Terraria.ID;
-using Terraria.ModLoader;
 using Terraria.WorldBuilding;
 using ValhallaMod.Tiles.Blocks;
 using ValhallaMod.Walls;
@@ -579,6 +577,8 @@ public class GenerationVillageInHell : BaseWorldGens {
         WorldGen.Place2x2(pos + 149, SynergiaGenVars.HellVillageY - 74, TileID.LavafishBowl, 0);
 
         AddWall(SynergiaGenVars.HellVillageX - 280, SynergiaGenVars.HellVillageY);
+
+        SynergiaGenVars.HellVillageGen = true;
 
         return true;
     }

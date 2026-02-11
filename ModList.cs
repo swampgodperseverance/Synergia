@@ -12,7 +12,6 @@ public static class ModList {
     public static Mod Horizons { get; private set; }
     public static Mod Roa { get; private set; }
     public static Mod StarforgedClassic { get; private set; }
-    public static Mod Survival { get; private set; }
     public static Mod Valhalla { get; private set; }
     public static Mod TRAEProjectLoaded { get; private set; }
     public static Mod TRAEProjectRework { get; private set; }
@@ -25,16 +24,11 @@ public static class ModList {
         Horizons = ModLoader.GetMod("NewHorizons");
         Roa = ModLoader.GetMod("RoA");
         StarforgedClassic = ModLoader.GetMod("starforgedclassic");
-        Survival = ModLoader.GetMod("StramsSurvival");
         Valhalla = ModLoader.GetMod("ValhallaMod");
         TRAEProjectRework = ModLoader.GetMod("TRAEBossRework");
         ModLoader.TryGetMod("TRAEProject", out Mod TRAEProject);
         ModLoader.TryGetMod("PackBuilder", out Mod PackBuilder);
-        if (TRAEProject != null) {
-            TRAEProjectLoaded = TRAEProject;
-        }
-        if (PackBuilder != null) {
-            PackBuilderLoaded = PackBuilder;
-        }
+        if (TRAEProject != null) { TRAEProjectLoaded = TRAEProject; }
+        if (PackBuilder != null) { PackBuilderLoaded = PackBuilder; }
     }
 }

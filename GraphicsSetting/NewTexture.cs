@@ -23,6 +23,7 @@ namespace Synergia.GraphicsSetting {
             TextureProj(ProjectileType<OrcishJavelinP>());
         }
         public static void Unload() {
+            // May this is not good idea
             TextureAssets.Item[ItemType<OrcishJavelin>()] = Request<Texture2D>("Bismuth/Content/Items/Weapons/Throwing/OrcishJavelin");
             TextureAssets.Item[ItemType<Sunstorm>()] = Request<Texture2D>("Avalon/Items/Weapons/Magic/Hardmode/Sunstorm/Sunstorm");
             TextureAssets.Item[ItemType<StarAuraStaff>()] = Request<Texture2D>("ValhallaMod/Items/Weapons/Aura/StarAuraStaff");
