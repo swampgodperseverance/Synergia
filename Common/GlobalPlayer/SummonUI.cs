@@ -44,8 +44,8 @@ namespace Synergia.Common.GlobalPlayer {
         static void MySaveData(TagCompound tag, string saveName, ref Vector2 save) => tag[saveName] = save;
         static void MyLoadData(TagCompound tag, string saveName, ref Vector2 save) => save = tag.Get<Vector2>(saveName);
         public void ResetPositions() {
-            basePosition = new(Main.screenWidth - 289, 43); 
-            minionPos = basePosition - new Vector2(120, -50); 
+            basePosition = new(Main.screenWidth - 289, 43);
+            minionPos = basePosition - new Vector2(120, -50);
             sentryPos = basePosition - new Vector2(120, -90); 
             auraPos = basePosition - new Vector2(120, -130);
             initialized = true; 
@@ -54,7 +54,6 @@ namespace Synergia.Common.GlobalPlayer {
             Player player = Main.LocalPlayer;
             AuraPlayer auraPlayer = player.GetModPlayer<AuraPlayer>();
             DynamicSpriteFont font = FontAssets.MouseText.Value;
-
             if (!initialized) {
                 basePosition = new(Main.screenWidth - 289, 43);
 
@@ -69,9 +68,9 @@ namespace Synergia.Common.GlobalPlayer {
                 ResetUIPositions = false;
             }
             if (IsActiveSummonUI && (player.maxMinions >= 2 || player.maxTurrets >= 2)) {
-                Texture2D summonTexture = ModContent.Request<Texture2D>(Reassures.Reassures.GetUIElementName("MinionDisplay")).Value;
-                Texture2D sentryTexture = ModContent.Request<Texture2D>(Reassures.Reassures.GetUIElementName("SentryDisplay")).Value;
-                Texture2D auraTexture = ModContent.Request<Texture2D>(Reassures.Reassures.GetUIElementName("AuraDisplay")).Value;
+                Texture2D summonTexture = Request<Texture2D>(GetUIElementName("MinionDisplay")).Value;
+                Texture2D sentryTexture = Request<Texture2D>(GetUIElementName("SentryDisplay")).Value;
+                Texture2D auraTexture = Request<Texture2D>(GetUIElementName("AuraDisplay")).Value;
 
                 spriteBatch.Draw(summonTexture, minionPos, Color.White);
                 Utils.DrawBorderString(spriteBatch, $"{player.numMinions}/{player.maxMinions}", minionPos + new Vector2(10, 10), Color.White);

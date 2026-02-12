@@ -162,6 +162,9 @@ public class DwarfUI : UIState {
         spriteBatch.Draw(hellsmithBgTexture, new Vector2(slotX + 79, slotY + 33), Color.White);
         spriteBatch.Draw(anvil, new Vector2(reforgeX + 50, reforgeY + 120), Color.White);
         bool canReforge = Items.ContainsKey(itemSlotWeppon.Item.type) && !itemSlotPrace.Item.IsAir && itemSlotPrace.Item.stack >= 10;
+        if (!canReforge) {
+            ChatManager.DrawColorCodedStringWithShadow(Main.spriteBatch, curfont, LocUIKey("DwarfUI", "Info"), new Vector2(slotX + 100, slotY + 50), new Color(Main.mouseTextColor, Main.mouseTextColor, Main.mouseTextColor, Main.mouseTextColor), 0f, Vector2.Zero, new Vector2(0.95f), -1f, 2f);
+        }
         if (!itemSlotWeppon.Item.IsAir && canReforge) {
             #region get and draw price
             int convertPrice = itemSlotWeppon.Item.value / 10;
@@ -181,19 +184,21 @@ public class DwarfUI : UIState {
             if (coins[0] > 0) {
                 coinsText = coinsText + "[c/" + Colors.AlphaDarken(Colors.CoinCopper).Hex3() + ":" + coins[0] + " " + Language.GetTextValue("LegacyInterface.18") + "] ";
             }
-            ChatManager.DrawColorCodedStringWithShadow(Main.spriteBatch, curfont, costText, new Vector2(reforgeX + 170, reforgeY + 120), new Color(Main.mouseTextColor, Main.mouseTextColor, Main.mouseTextColor, Main.mouseTextColor), 0f, Vector2.Zero, Vector2.One, -1f, 2f);
-            ChatManager.DrawColorCodedStringWithShadow(Main.spriteBatch, curfont, coinsText, new Vector2(reforgeX + 170 + FontAssets.MouseText.Value.MeasureString(costText).X, (float)reforgeY + 120), Color.White, 0f, Vector2.Zero, Vector2.One, -1f, 2f);
+            Vector2 posCostText = Language.ActiveCulture.Name == "ru-RU" || Language.ActiveCulture.Name == "pl-PL" ? new(reforgeX + 90, reforgeY + 10) : new(reforgeX + 30, reforgeY + 30);
+            Vector2 posCoinsText = Language.ActiveCulture.Name == "ru-RU" || Language.ActiveCulture.Name == "pl-PL" ? new(reforgeX + 30, reforgeY + 30) : new(reforgeX + 30 + FontAssets.MouseText.Value.MeasureString(costText).X, reforgeY + 30);
+            ChatManager.DrawColorCodedStringWithShadow(Main.spriteBatch, curfont, costText, posCostText, new Color(Main.mouseTextColor, Main.mouseTextColor, Main.mouseTextColor, Main.mouseTextColor), 0f, Vector2.Zero, Vector2.One, -1f, 2f);
+            ChatManager.DrawColorCodedStringWithShadow(Main.spriteBatch, curfont, coinsText, posCoinsText, Color.White, 0f, Vector2.Zero, Vector2.One, -1f, 2f);
             #endregion
-            spriteBatch.Draw(reforgeButtonTexture, new Vector2(reforgeX + 135, reforgeY + 132), reforgeButtonAnim.GetSource(reforgeButtonTexture), Color.White, 0f, reforgeButtonAnim.GetSource(reforgeButtonTexture).Size() / 2f, 1f, reforgeButtonAnim.Effects, 0f);
+            spriteBatch.Draw(reforgeButtonTexture, new Vector2(reforgeX + 180, reforgeY + 132), reforgeButtonAnim.GetSource(reforgeButtonTexture), Color.White, 0f, reforgeButtonAnim.GetSource(reforgeButtonTexture).Size() / 2f, 1f, reforgeButtonAnim.Effects, 0f);
             spriteBatch.Draw(hellsmithBarTexture, new Vector2(reforgeX + 190, reforgeY + 90), hellsmithBarTextureAnim.GetSource(hellsmithBarTexture), Color.White, 0f, hellsmithBarTextureAnim.GetSource(hellsmithBarTexture).Size() / 2f, 1f, hellsmithBarTextureAnim.Effects, 0f);
-            hoveringOverReforgeButton = MousePositionInUI(reforgeX + 115, reforgeX + 155, reforgeY + 118, reforgeY + 152);
+            hoveringOverReforgeButton = MousePositionInUI(reforgeX + 160, reforgeX + 190, reforgeY + 118, reforgeY + 152);
             if (hoveringOverReforgeButton) {
                 if (needResetForging && Main.LocalPlayer.CanAfford(convertPrice, -1)) {
                     ResetForgingState();
                     hellsmithBarTextureAnim.StartAnimation = true; 
                     SoundEngine.PlaySound(SoundID.MenuTick);
                 }
-                spriteBatch.Draw(reforgeButtonTexture_glow, new Vector2(reforgeX + 135, reforgeY + 132), reforgeButtonAnim.GetSource(reforgeButtonTexture_glow), Color.Gold, 0f, reforgeButtonAnim.GetSource(reforgeButtonTexture_glow).Size() / 2f, 1f, reforgeButtonAnim.Effects, 1f);
+                spriteBatch.Draw(reforgeButtonTexture_glow, new Vector2(reforgeX + 180, reforgeY + 132), reforgeButtonAnim.GetSource(reforgeButtonTexture_glow), Color.Gold, 0f, reforgeButtonAnim.GetSource(reforgeButtonTexture_glow).Size() / 2f, 1f, reforgeButtonAnim.Effects, 1f);
                 Main.hoverItemName = Language.GetTextValue("LegacyInterface.19");
                 if (!tickPlayed) { SoundEngine.PlaySound(SoundID.MenuTick); }
                 tickPlayed = true;
@@ -288,15 +293,11 @@ public class DwarfUI : UIState {
                                 }
                             }
                         }
-                        else {
-                            return;
-                        }         
+                        else { return; }         
                     }
                 }
             }
         }
-
-        ChatManager.DrawColorCodedStringWithShadow(Main.spriteBatch, curfont, LocUIKey("DwarfUI", "Info"), new Vector2(slotX + 100, slotY + 50), new Color(Main.mouseTextColor, Main.mouseTextColor, Main.mouseTextColor, Main.mouseTextColor), 0f, Vector2.Zero, new Vector2(0.95f), -1f, 2f);
         if (mouseInWepponSlot) {
             Main.hoverItemName = LocUIKey("DwarfUI", "WeaponsSlotInfo");
         }

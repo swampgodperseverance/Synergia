@@ -644,18 +644,19 @@ Items: {
 
 	Enfer: {
 		DisplayName: Belphegor
-		Tooltip: '''
-				'Obey me, Belphegor.' 
-				Shoots high velocity, chaotic arrows
-				Each arrow explodes on small damaging flames. 
-				Every third shot spawns a Enferous Runes
-				4 Enferous Runes combine into one and create an explosion
-				'''
+		Tooltip:
+			'''
+			'Obey me, Belphegor.' 
+			Shoots high velocity, chaotic arrows
+			Each arrow explodes on small damaging flames. 
+			Every third shot spawns a Enferous Runes
+			4 Enferous Runes combine into one and create an explosion
+			'''
 	}
 
 	ScorcherRequiem: {
 		DisplayName: Pirouette
-		Tooltip: "Shoots a ricocheting laser. Accelerates over time"
+		Tooltip: Shoots a ricocheting laser. Accelerates over time
 	}
 
 	PhoenixDownfall: {
@@ -1325,4 +1326,3 @@ BaseLoc: {
 	DeactiveTime: increases the combo action time {0}
 	SynergiaThrowing: increases the combo action time {0} and increases the combo action time {1}
 }
-

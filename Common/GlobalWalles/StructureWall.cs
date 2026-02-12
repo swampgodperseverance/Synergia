@@ -19,9 +19,9 @@ namespace Synergia.Common.GlobalWalles {
         static bool BaseLogic(int i, int j) {
             if (HellStructBlock(i, j) || SnowVillages(i, j)) {
                 if (Main.LocalPlayer.HasItem(ItemType<MasterToolBox>())) { return true; }
-                return false;
+                else { return false; }
             }
-            return true;
+            else { return true; }
         }
     }
 }

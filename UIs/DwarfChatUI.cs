@@ -117,20 +117,23 @@ namespace Synergia.UIs {
             // Quest
             string qustButton = Language.GetTextValue("Mods.Synergia.Quests.BaseButton");
             float scale2 = ScaleForLanguage2(Language.ActiveCulture.Name);
+            float r = Language.ActiveCulture.Name == "pt-BR" ? 110 : 0;
             Vector2 qustButtonPos = new(reforgeButtonPos.X + scale2, reforgeButtonPos.Y);
             Vector2 posIfQuest = isQuestButton ? buttonPos : qustButtonPos;
-            DrawQuestButton(spriteBatch, font, posIfQuest, vector3, qustButtonPos, scale2, player);
+            DrawQuestButton(spriteBatch, font, new (posIfQuest.X + r, posIfQuest.Y), vector3, qustButtonPos, scale2, player);
 
             // Close
             string closeButton = Language.GetTextValue("LegacyInterface.52");
             float s = Language.ActiveCulture.Name switch { "de-DE" => -20, "fr-FR" => -20, "ru-RU" => -20, _ => 0, };
             float w = isQuestButton ? 25 : 0;
-            Vector2 closeButtonPos = new(posIfQuest.X + scale + s + w, posIfQuest.Y);
+            r = Language.ActiveCulture.Name == "pt-BR" ? r += 10 : r = 0;
+            Vector2 closeButtonPos = new(posIfQuest.X + scale + s + w + r, posIfQuest.Y);
             DrawButton(spriteBatch, font, "Close", closeButton, closeButtonPos, vector3, player, CloseWindow);
 
             // Happiness
             string happinessButton = Language.GetTextValue("UI.NPCCheckHappiness");
-            Vector2 happinessButtonPos = new(closeButtonPos.X + scale, closeButtonPos.Y);
+            r = Language.ActiveCulture.Name == "pt-BR" ? r -= 100 : r = 0;
+            Vector2 happinessButtonPos = new(closeButtonPos.X + scale + r, closeButtonPos.Y);
             if (!isQuestButton) {
                 DrawButton(spriteBatch, font, "Shop", shopButton, buttonPos, vector3, player, Shop);
                 DrawButton(spriteBatch, font, "Reforge", reforgeButton, reforgeButtonPos, vector3, player, Reforge);

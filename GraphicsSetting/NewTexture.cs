@@ -24,13 +24,13 @@ namespace Synergia.GraphicsSetting {
         }
         public static void Unload() {
             // May this is not good idea
-            TextureAssets.Item[ItemType<OrcishJavelin>()] = Request<Texture2D>("Bismuth/Content/Items/Weapons/Throwing/OrcishJavelin");
-            TextureAssets.Item[ItemType<Sunstorm>()] = Request<Texture2D>("Avalon/Items/Weapons/Magic/Hardmode/Sunstorm/Sunstorm");
-            TextureAssets.Item[ItemType<StarAuraStaff>()] = Request<Texture2D>("ValhallaMod/Items/Weapons/Aura/StarAuraStaff");
-            TextureAssets.Item[ItemType<TitaniumJavelin>()] = Request<Texture2D>("Bismuth/Content/Items/Weapons/Throwing/TitaniumJavelin");
-            TextureAssets.Item[ItemType<AquaImpact>()] = Request<Texture2D>("Avalon/Items/Weapons/Magic/Hardmode/AquaImpact/AquaImpact");
+            //TextureAssets.Item[ItemType<OrcishJavelin>()] = Request<Texture2D>("Bismuth/Content/Items/Weapons/Throwing/OrcishJavelin");
+            //TextureAssets.Item[ItemType<Sunstorm>()] = Request<Texture2D>("Avalon/Items/Weapons/Magic/Hardmode/Sunstorm/Sunstorm");
+            //TextureAssets.Item[ItemType<StarAuraStaff>()] = Request<Texture2D>("ValhallaMod/Items/Weapons/Aura/StarAuraStaff");
+            //TextureAssets.Item[ItemType<TitaniumJavelin>()] = Request<Texture2D>("Bismuth/Content/Items/Weapons/Throwing/TitaniumJavelin");
+            //TextureAssets.Item[ItemType<AquaImpact>()] = Request<Texture2D>("Avalon/Items/Weapons/Magic/Hardmode/AquaImpact/AquaImpact");
 
-            TextureAssets.Projectile[ProjectileType<OrcishJavelinP>()] = Request<Texture2D>("Bismuth/Content/Projectiles/OrcishJavelinP"); 
+            //TextureAssets.Projectile[ProjectileType<OrcishJavelinP>()] = Request<Texture2D>("Bismuth/Content/Projectiles/OrcishJavelinP"); 
         }
         public static string GetName(int type, string category) {
             string internalName = "";

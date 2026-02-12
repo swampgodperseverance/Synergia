@@ -6,14 +6,13 @@ using Terraria.DataStructures;
 namespace Synergia.Common.PlayerLayers {
     public class UIPlayerLayer : PlayerDrawLayer {
         public override Position GetDefaultPosition() => PlayerDrawLayers.BeforeFirstVanillaLayer;
-
         protected override void Draw(ref PlayerDrawSet drawInfo) {
             Player player = drawInfo.drawPlayer;
-            ThrowingPlayer throwing = player.GetModPlayer<ThrowingPlayer>();
-            BloodPlayer bPlayer = player.GetModPlayer<BloodPlayer>();
+            if (drawInfo.shadow != 0f || player.dead || player.whoAmI != Main.myPlayer) { return; }
             Vector2 Position = drawInfo.Position;
             Vector2 pos = new((int)(Position.X - Main.screenPosition.X + player.width / 2), (int)(Position.Y - Main.screenPosition.Y + (player.height / 2) - 2f * player.gravDir));
-            if (drawInfo.shadow != 0f || player.dead || player.whoAmI != Main.myPlayer) { return; } 
+            ThrowingPlayer throwing = player.GetModPlayer<ThrowingPlayer>();
+            BloodPlayer bPlayer = player.GetModPlayer<BloodPlayer>();
             if (throwing.ActiveUI) { drawInfo.DrawDataCache.Add(ThrowingUI(pos, throwing)); }
             if (bPlayer.activeBloodUI) { drawInfo.DrawDataCache.Add(BloodUI(pos, bPlayer)); }
         }
