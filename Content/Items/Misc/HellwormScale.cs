@@ -6,6 +6,7 @@ using Terraria.Localization;
 using Microsoft.Xna.Framework;
 using Terraria.Audio;
 using Synergia.Common.Rarities;
+using Synergia.Content.NPCs.Boss.SinlordWyrm;
 
 namespace Synergia.Content.Items.Misc
 {
@@ -33,7 +34,7 @@ namespace Synergia.Content.Items.Misc
         public override bool CanUseItem(Player player)
         {
             bool inUnderworld = player.ZoneUnderworldHeight;
-            bool bossExists = NPC.AnyNPCs(ModContent.NPCType<Cogworm>());
+            bool bossExists = NPC.AnyNPCs(ModContent.NPCType<Sinlord>());
             
             return inUnderworld && !bossExists;
         }
@@ -42,7 +43,7 @@ namespace Synergia.Content.Items.Misc
         {
             if (player.whoAmI == Main.myPlayer && CanUseItem(player))
             {
-                int type = ModContent.NPCType<Cogworm>();
+                int type = ModContent.NPCType<Sinlord>();
 
  
                 SoundEngine.PlaySound(new SoundStyle("Synergia/Assets/Sounds/WormRoar"), player.Center);
