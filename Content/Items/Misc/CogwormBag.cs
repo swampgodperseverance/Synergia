@@ -44,7 +44,7 @@ sealed class CogwormBag : ModItem {
             ItemDropRule.Common(ModContent.ItemType<Weapons.Cogworm.HellgateAuraScythe>())
         ));
 
-        itemLoot.Add(ItemDropRule.CoinsBasedOnNPCValue(ModContent.NPCType<NPCs.Cogworm>()));
+        itemLoot.Add(ItemDropRule.CoinsBasedOnNPCValue(ModContent.NPCType<NPCs.Boss.SinlordWyrm.Sinlord>()));
 
     }
 

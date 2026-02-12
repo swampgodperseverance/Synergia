@@ -1,4 +1,4 @@
-﻿using Synergia.Content.NPCs;
+﻿using Synergia.Content.NPCs.Boss.SinlordWyrm;
 using Terraria;
 using Terraria.Graphics.Effects;
 using Terraria.ModLoader;
@@ -12,7 +12,7 @@ public class VisualsSetting : ModSystem {
             return;
         }
         else {
-            GetFilter(GetNpcType(ModContent.NPCType<Cogworm>()), SynegiyGraphics.COGWORMSHADER);
+            GetFilter(GetNpcType(ModContent.NPCType<Sinlord>()), SynegiyGraphics.COGWORMSHADER);
             base.PostUpdateEverything();
         }
     }
