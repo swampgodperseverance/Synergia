@@ -1255,11 +1255,11 @@ Buffs: {
 
 	GloomBuff: {
 		Description: Mods.Synergia.Buffs.GloomBuff.Description
-		DisplayName: Gloom Buff
+		DisplayName: Gloomed
 	}
 
 	GloomDebuff: {
-		DisplayName: Gloom Debuff
+		DisplayName: Degloomed
 		Description: Mods.Synergia.Buffs.GloomDebuff.Description
 	}
 
@@ -1270,12 +1270,12 @@ Buffs: {
 
 	ShardflingPotionBuff: {
 		Description: Mods.Synergia.Buffs.ShardflingPotionBuff.Description
-		DisplayName: Shardfling Potion Buff
+		DisplayName: Shardfling
 	}
 
 	OssuaryBuff: {
-		Description: Mods.Synergia.Buffs.OssuaryBuff.Description
-		DisplayName: Ossuary Buff
+		Description: Sharpened skulls with spikes follow you
+		DisplayName: Hateful Bones
 	}
 
 	Bloodbound: {
@@ -1326,3 +1326,4 @@ BaseLoc: {
 	DeactiveTime: increases the combo action time {0}
 	SynergiaThrowing: increases the combo action time {0} and increases the combo action time {1}
 }
+
