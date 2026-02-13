@@ -11,7 +11,7 @@ namespace Synergia.Common
     {
         public override Asset<Texture2D> GetIconTexture(ref Rectangle? iconFrame)
         {
-            return ModContent.Request<Texture2D>("Synergia/Content/NPCs/Cogworm_Head_Boss");
+            return ModContent.Request<Texture2D>("Synergia/Content/NPCs/Boss/SinlordWyrm/SinlordMiniIcon");
         }
 
         public override bool PreDraw(SpriteBatch spriteBatch, NPC npc, ref BossBarDrawParams drawParams)
@@ -24,4 +24,5 @@ namespace Synergia.Common
             return true;
         }
     }
+
 }
