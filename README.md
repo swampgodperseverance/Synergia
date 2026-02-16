@@ -58,9 +58,11 @@ Designed for large modpacks
 Gigantic update in progress.
 
 
-🔗 Links
-[Discord]([[URL](https://terrariamods.wiki.gg/wiki/Consolaria](https://discord.gg/P5Y3xYyn)))
+### 🔗 Links
 
-[Steam Page]([URL](https://steamcommunity.com/sharedfiles/filedetails/?id=3557507083)))
+[Discord](https://discord.gg/P5Y3xYyn)
 
-[Wiki Page]([URL](https://steamcommunity.com/sharedfiles/filedetails/?id=3557507083](https://terrariamods.wiki.gg/wiki/Synergia))))
+[Steam Page](https://steamcommunity.com/sharedfiles/filedetails/?id=3557507083)
+
+[Wiki Page](https://terrariamods.wiki.gg/wiki/Synergia)
+
