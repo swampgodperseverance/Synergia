@@ -8,21 +8,21 @@ Synergia is a large-scale integration project designed to unify, rebalance, and 
 
 Synergia integrates and rebalances:
 
-[Avalon]([URL](https://terrariamods.wiki.gg/wiki/Avalon))
+[Avalon](https://terrariamods.wiki.gg/wiki/Avalon)
 
-[Bismuth]([URL](https://terrariamods.wiki.gg/wiki/Bismuth_Mod))
+[Bismuth](https://terrariamods.wiki.gg/wiki/Bismuth_Mod)
 
-[Consolaria]([URL](https://terrariamods.wiki.gg/wiki/Consolaria))
+[Consolaria](https://terrariamods.wiki.gg/wiki/Consolaria)
 
-[New Horizons]([URL](https://terrariamods.wiki.gg/wiki/Horizon_Mod))
+[New Horizons](https://terrariamods.wiki.gg/wiki/Horizon_Mod)
 
-[Rise of Ages (RoA)]([URL](https://terrariamods.wiki.gg/wiki/Rise_of_Ages))
+[Rise of Ages (RoA)](https://terrariamods.wiki.gg/wiki/Rise_of_Ages)
 
-[Starforged Classic]([URL](https://terrariamods.wiki.gg/wiki/Starforged))
+[Starforged Classic](https://terrariamods.wiki.gg/wiki/Starforged)
 
-[Valhalla Mod]([URL](https://terrariamods.wiki.gg/wiki/Valhalla))
+[Valhalla Mod](https://terrariamods.wiki.gg/wiki/Valhalla)
 
-[TRAE Boss Rework]([URL](https://terrariamods.wiki.gg/wiki/TRAE_Project/TRAE_Lite_Mods))
+[TRAE Boss Rework](https://terrariamods.wiki.gg/wiki/TRAE_Project/TRAE_Lite_Mods)
 
 
 
