@@ -1,6 +1,9 @@
 <img width="2560" height="1440" alt="image" src="https://github.com/user-attachments/assets/d915ab31-246f-4aeb-8ae7-3c245f3c7476" />
+
 # Synergia
+
 **A Complete Mod Integration.**
+
 Synergia is a large-scale integration project designed to unify, rebalance, and seamlessly connect multiple major content mods into one cohesive progression experience.
 
 Synergia integrates and rebalances:
