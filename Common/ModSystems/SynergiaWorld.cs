@@ -3,7 +3,6 @@ using Synergia.Content.Items.Weapons.Summon;
 using Synergia.Helpers;
 using System.Collections.Generic;
 using System.IO;
-using Terraria;
 using Terraria.ModLoader.IO;
 using static Synergia.Common.ModSystems.WorldGens.SynergiaGenVars;
 using static Synergia.Lists.Items;

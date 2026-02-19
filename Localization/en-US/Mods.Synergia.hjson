@@ -1185,6 +1185,13 @@ Projectiles: {
 	CupidJavelin.DisplayName: Cupid Javelin
 	Pulsar2.DisplayName: Pulsar2
 	Shroomerang2.DisplayName: Shroomerang2
+	NoxiousRing.DisplayName: Noxious Ring
+	ScorcherMuzzleFlash.DisplayName: Scorcher Muzzle Flash
+	BurningAura.DisplayName: Burning Aura
+	BurningExplosion.DisplayName: Burning Explosion
+	BurningScream.DisplayName: Burning Scream
+	SinlordFireBreath.DisplayName: Sinlord Fire Breath
+	Tree.DisplayName: Tree
 }
 
 Buffs: {
@@ -1326,4 +1333,3 @@ BaseLoc: {
 	DeactiveTime: increases the combo action time {0}
 	SynergiaThrowing: increases the combo action time {0} and increases the combo action time {1}
 }
-

@@ -4,7 +4,6 @@ using Terraria;
 using Terraria.ModLoader.IO;
 
 namespace Synergia.Common.ModSystems.WorldGens {
-    /// TODO: Need fix 
     public class SynergiaGenVars: ModSystem {
         public static List<Vector2> VillageTiles { get; set; } = [];
         public static List<Vector2> VillageWalles { get; set; } = [];
