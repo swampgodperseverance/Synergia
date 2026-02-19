@@ -1,13 +1,15 @@
 ﻿using System;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using Terraria;
-using Terraria.ID;
-using Terraria.ModLoader;
-using Terraria.GameContent;
-using ValhallaMod.Projectiles.AI;
+using ReLogic.Content;
 using Synergia.Helpers;
 using Synergia.Trails;
+using Terraria;
+using Terraria.DataStructures;
+using Terraria.GameContent;
+using Terraria.ID;
+using Terraria.ModLoader;
+using ValhallaMod.Projectiles.AI;
 
 namespace Synergia.Content.Projectiles.Thrower
 {
@@ -102,7 +104,115 @@ namespace Synergia.Content.Projectiles.Thrower
             return false;
         }
     }
+    public class FlarionProj3 : ValhallaGlaive
+    {
+        private LavaRainbowRod lavaTrail = new LavaRainbowRod();
+        private float glowPulse;
+        private Texture2D glowmask;
 
+        public override void SetStaticDefaults()
+        {
+            ProjectileID.Sets.TrailCacheLength[Projectile.type] = 7;
+            ProjectileID.Sets.TrailingMode[Projectile.type] = 2;
+        }
+
+        public override void SetDefaults()
+        {
+            Projectile.width = 34;
+            Projectile.height = 34;
+            Projectile.aiStyle = 0;
+            Projectile.friendly = true;
+            Projectile.penetrate = 2;
+            Projectile.DamageType = DamageClass.Melee;
+            Projectile.light = 0.5f;
+
+            extraUpdatesHoming = 1;
+            extraUpdatesComingBack = 1;
+            rotationSpeed = 0.4f;
+            bounces = 0;
+            tileBounce = true;
+            timeFlying = 26;
+            speedHoming = 18f;
+            speedFlying = 18f;
+            speedComingBack = 20f;
+            homingDistanceMax = 320f;
+            homingStyle = 0;
+            homingStart = false;
+            homingIgnoreTile = false;
+        }
+
+        public override void OnSpawn(IEntitySource source)
+        {
+            glowmask = ModContent.Request<Texture2D>("Synergia/Content/Projectiles/Thrower/FlarionProj3_Glow", AssetRequestMode.ImmediateLoad).Value;
+        }
+
+        public override void AI()
+        {
+            base.AI();
+
+            if (Main.rand.NextBool(2))
+            {
+                Dust d = Dust.NewDustDirect(Projectile.position, Projectile.width, Projectile.height, DustID.Torch, 0f, 0f, 100, default, 1.4f);
+                d.noGravity = true;
+                d.velocity *= 0.3f;
+            }
+
+            Projectile.localAI[0]++;
+
+            if (Projectile.localAI[1] == 0f && Projectile.localAI[0] >= timeFlying - 8f)
+            {
+                Projectile.localAI[1] = 1f;
+
+                for (int i = 0; i < 8; i++)
+                {
+                    float angle = MathHelper.ToRadians(45f * i);
+                    Vector2 vel = Projectile.velocity.SafeNormalize(Vector2.Zero).RotatedBy(angle) * 14f;
+
+                    Projectile.NewProjectile(
+                        Projectile.GetSource_FromThis(),
+                        Projectile.Center,
+                        vel,
+                        ModContent.ProjectileType<FlarionProj2>(),
+                        (int)(Projectile.damage * 0.7f),
+                        Projectile.knockBack * 0.8f,
+                        Projectile.owner
+                    );
+                }
+            }
+
+            glowPulse += 0.1f;
+        }
+
+        public override bool PreDraw(ref Color lightColor)
+        {
+            lavaTrail.Draw(Projectile);
+
+            Texture2D texture = TextureAssets.Projectile[Projectile.type].Value;
+            Vector2 origin = texture.Size() / 2f;
+            SpriteEffects effects = Projectile.spriteDirection == -1 ? SpriteEffects.FlipHorizontally : SpriteEffects.None;
+
+            for (int k = 1; k < Projectile.oldPos.Length; k++)
+            {
+                if (Projectile.oldPos[k] == Vector2.Zero) continue;
+                Vector2 drawPos = Projectile.oldPos[k] - Main.screenPosition + Projectile.Size / 2f;
+                Color color = new Color(255, 100, 0, 0) * ((Projectile.oldPos.Length - k) / (float)Projectile.oldPos.Length) * 0.5f;
+                float scale = Projectile.scale * (1f - k / (float)Projectile.oldPos.Length);
+                Main.EntitySpriteDraw(texture, drawPos, null, color, Projectile.oldRot[k], origin, scale, effects, 0);
+            }
+
+            Main.EntitySpriteDraw(texture, Projectile.Center - Main.screenPosition, null, lightColor, Projectile.rotation, origin, Projectile.scale, effects, 0);
+
+            if (glowmask != null)
+            {
+                float pulse = (float)(Math.Sin(glowPulse) * 0.5 + 0.5);
+                Color glowColor = Color.White * (0.5f + 0.5f * pulse);
+                float glowScale = Projectile.scale * (1f + 0.2f * pulse);
+                Main.EntitySpriteDraw(glowmask, Projectile.Center - Main.screenPosition, null, glowColor, Projectile.rotation, glowmask.Size() / 2f, glowScale, effects, 0);
+            }
+
+            return false;
+        }
+    }
     public class FlarionProj2 : ModProjectile
     {
         private LavaRainbowRod lavaTrail = new LavaRainbowRod();

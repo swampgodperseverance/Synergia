@@ -11,7 +11,7 @@ using Synergia.Trails;
 
 namespace Synergia.Content.Projectiles.Thrower
 {
-    public class FleshGrinder2 : ModProjectile    // ← убираем наследование от ValhallaGlaive
+    public class FleshGrinder2 : ModProjectile   
     {
         private int timer;
         private PrimDrawer primDrawer;
@@ -116,7 +116,6 @@ namespace Synergia.Content.Projectiles.Thrower
 
     }
 
-    // FleshGrinderProj остаётся почти без изменений (маленькие кусочки летят прямо)
     public class FleshGrinderProj : ModProjectile
     {
         private int hits;
