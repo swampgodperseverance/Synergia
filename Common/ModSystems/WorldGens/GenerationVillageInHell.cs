@@ -1,4 +1,5 @@
 ﻿// Code by 𝒜𝑒𝓇𝒾𝓈
+using Avalon.Tiles;
 using Synergia.Content.NPCs;
 using Synergia.Helpers;
 using Terraria;
@@ -493,7 +494,7 @@ public class GenerationVillageInHell : BaseWorldGens {
                     case 1: tile.TileType = (ushort)TileType<Sinstone>(); tile.HasTile = true; break;
                     case 2: tile.TileType = TileID.Ash; tile.HasTile = true; break;
                     case 3: tile.TileType = TileID.Hellstone; tile.HasTile = true; break;
-                    case 4: tile.TileType = Roa.Find<ModTile>("BackwoodsStone").Type; tile.HasTile = true; break;
+                    case 4: tile.TileType = (ushort)TileType<BlastedStone>(); tile.HasTile = true; break;
                     case 5: tile.TileType = Ava.Find<ModTile>("BlastedStone").Type; tile.HasTile = true; break;
                     case 6: tile.TileType = (ushort)TileType<SinstoneMagma>(); tile.HasTile = true; break;
                     case 7: tile.TileType = Ava.Find<ModTile>("CaesiumOre").Type; tile.HasTile = true; break;

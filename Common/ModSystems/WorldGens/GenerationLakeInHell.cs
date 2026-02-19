@@ -400,7 +400,7 @@ namespace Synergia.Common.ModSystems.WorldGens {
                         case 2: tile.TileType = TileID.Ash; tile.HasTile = true; break;
                         case 3: tile.TileType = TileID.Hellstone; tile.HasTile = true; break;
                         case 4: tile.TileType = (ushort)TileType<SinstoneMagma>(); tile.HasTile = true; break;
-                        case 5: tile.TileType = Roa.Find<ModTile>("BackwoodsStone").Type; tile.HasTile = true; break;
+                        case 5: tile.TileType = (ushort)TileType<BlastedStone>(); tile.HasTile = true; break;
                         case 6: tile.TileType = (ushort)TileType<BurntCobble>(); tile.HasTile = true; break;
                         case 7: tile.TileType = TileID.AshWood; tile.HasTile = true; break;
                         case 8: WorldGen.PlaceTile(worldX, worldY, 19, false, false, -1, 47); break;

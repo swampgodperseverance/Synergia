@@ -1,5 +1,6 @@
 ﻿// Code by 𝒜𝑒𝓇𝒾𝓈
 using Synergia.Common.GlobalPlayer;
+using System;
 using Terraria;
 using Terraria.DataStructures;
 
@@ -19,7 +20,19 @@ namespace Synergia.Common.PlayerLayers {
         static DrawData ThrowingUI(Vector2 pos, ThrowingPlayer throwing) {
             Texture2D texture = Request<Texture2D>(GetUIElementName("ThrowerInterface")).Value;
             Vector2 throwingPos = new(pos.X, pos.Y + 175);
-            return new(texture, throwingPos, texture.Frame(1, 6, 0, throwing.comboCount), Color.White, 0f, texture.Size() * 0.5f, Main.UIScale, SpriteEffects.None, 0); ;
+            Vector2 shake = Vector2.Zero;
+            Vector2 velocity = Vector2.Zero;
+            if (throwing.comboCount == 5) {
+                shake = Main.rand.NextVector2Circular(1f, 1f);
+            }
+            if (throwing.comboCount >= 0 && throwing.comboCount <= 4) {
+                float velocityY = (float)Math.Sin(Main.GameUpdateCount * 0.08f) * 3f;
+                velocity = new Vector2(0, velocityY);
+            }
+            throwingPos += shake;
+            throwingPos += velocity;
+            throwingPos = new Vector2((int)throwingPos.X, (int)throwingPos.Y);
+            return new(texture, throwingPos, texture.Frame(1, 6, 0, throwing.comboCount, 0, 0), Color.White, 0f, texture.Size() * 0.5f, Main.UIScale, SpriteEffects.None, 0); ;
         }
         static DrawData BloodUI(Vector2 pos, BloodPlayer bPlayer) {
             Texture2D barTextura = Request<Texture2D>(GetUIElementName("BloodUI")).Value;

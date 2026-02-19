@@ -8,7 +8,7 @@ namespace Synergia.Common.GlobalTiles;
 
 public class StructureBlock : GlobalTile {
     public override bool CanPlace(int i, int j, int type) {
-        if (HellStructBlock(i, j)) { return type == 4; }
+        if (HellStructBlock(i, j)) { return Main.LocalPlayer.HasItem(ItemType<MasterToolBox>()) || type == 4; }
         else { return BaseLogic(i, j); }
     }
     public override bool CanKillTile(int i, int j, int type, ref bool blockDamaged) => BaseLogic(i, j);

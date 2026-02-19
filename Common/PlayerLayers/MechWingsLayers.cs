@@ -9,8 +9,7 @@ namespace Synergia.Common.PlayerLayers {
         protected override void Draw(ref PlayerDrawSet drawInfo) {
             Player drawPlayer = drawInfo.drawPlayer;
 
-            if (drawPlayer.dead)
-                return;
+            if (drawPlayer.dead) { return; }
 
             Vector2 Position = drawInfo.Position;
             Vector2 pos = new((int)(Position.X - Main.screenPosition.X + (drawPlayer.width / 2)), (int)(Position.Y - Main.screenPosition.Y + (drawPlayer.height / 2) - 2f * drawPlayer.gravDir));
@@ -60,9 +59,7 @@ namespace Synergia.Common.PlayerLayers {
             Vector2 origin = tex.Size() / 2f;
             pos += origin;
 
-            DrawData data = new(tex, pos.Floor(), null, color, drawPlayer.bodyRotation, origin, 1f, effects) {
-                shader = drawPlayer.cWings
-            };
+            DrawData data = new(tex, pos.Floor(), null, color, drawPlayer.bodyRotation, origin, 1f, effects) { shader = drawPlayer.cWings };
             drawInfo.DrawDataCache.Add(data);
         }
     }

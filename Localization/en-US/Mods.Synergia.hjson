@@ -1192,6 +1192,7 @@ Projectiles: {
 	BurningScream.DisplayName: Burning Scream
 	SinlordFireBreath.DisplayName: Sinlord Fire Breath
 	Tree.DisplayName: Tree
+	FaceMace2.DisplayName: Face Mace2
 }
 
 Buffs: {
