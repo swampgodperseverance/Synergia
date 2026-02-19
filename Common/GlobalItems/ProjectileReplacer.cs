@@ -82,7 +82,13 @@ namespace Synergia.Common.GlobalItems
                             break;  
                          case "JadeSpear":
                             item.shoot = ModContent.ProjectileType<Content.Projectiles.Reworks.Reworks2.JadeSpearRework>();
-                            break;  
+                            break;
+                         case "FaceMace":
+                            item.shoot = ModContent.ProjectileType<Content.Projectiles.Reworks.Reworks2.FaceMace2>();
+                            break;
+                         case "AzraelsHeartstopper":
+                            item.shoot = ModContent.ProjectileType<Content.Projectiles.Thrower.AzraelsHeartstopper2>();
+                            break;
                     }
                 }
             
