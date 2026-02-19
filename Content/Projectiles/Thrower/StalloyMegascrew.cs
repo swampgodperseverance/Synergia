@@ -42,12 +42,11 @@ namespace Synergia.Content.Projectiles.Thrower
         {
             base.AI();
 
-            // Сохраняем текущий поворот в oldRot для правильного трэйл
             Projectile.rotation = Projectile.velocity.ToRotation() + MathHelper.PiOver2;
-            // Если oldRot не хватает, инициализируем
+
             if (Projectile.oldRot.Length != ProjectileID.Sets.TrailCacheLength[Projectile.type])
                 Projectile.oldRot = new float[ProjectileID.Sets.TrailCacheLength[Projectile.type]];
-            // Сдвигаем старые повороты
+
             for (int i = Projectile.oldRot.Length - 1; i > 0; i--)
                 Projectile.oldRot[i] = Projectile.oldRot[i - 1];
             Projectile.oldRot[0] = Projectile.rotation;
@@ -71,7 +70,6 @@ namespace Synergia.Content.Projectiles.Thrower
             Vector2 origin = new(texture.Width / 2, texture.Height / 2);
             SpriteEffects effects = Projectile.spriteDirection == -1 ? SpriteEffects.FlipHorizontally : SpriteEffects.None;
 
-            // --- ТРЕЙЛ с правильным поворотом ---
             for (int i = 0; i < Projectile.oldPos.Length; i++)
             {
                 Vector2 drawPos = Projectile.oldPos[i] + Projectile.Size / 2 - Main.screenPosition;
@@ -84,7 +82,7 @@ namespace Synergia.Content.Projectiles.Thrower
                     drawPos,
                     null,
                     trailColor,
-                    Projectile.oldRot[i], // теперь используем сохранённый поворот
+                    Projectile.oldRot[i], 
                     origin,
                     scale,
                     effects,
@@ -92,7 +90,7 @@ namespace Synergia.Content.Projectiles.Thrower
                 );
             }
 
-            // Основное тело
+          
             Main.EntitySpriteDraw(
                 texture,
                 Projectile.Center - Main.screenPosition,

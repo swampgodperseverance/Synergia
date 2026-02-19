@@ -18,30 +18,37 @@ namespace Synergia.Content.Projectiles.Thrower
             ProjectileID.Sets.TrailingMode[Projectile.type] = 0;
         }
 
-        public override bool ShouldUpdatePosition() => false;
-
         public override void SetDefaults()
         {
             Projectile.width = 76;
             Projectile.height = 76;
             Projectile.aiStyle = -1;
-
             Projectile.friendly = true;
             Projectile.DamageType = DamageClass.Throwing;
             Projectile.hostile = false;
-
             Projectile.tileCollide = false;
-            Projectile.penetrate = -1;
+            Projectile.penetrate = 1;
             Projectile.timeLeft = 78;
+            Projectile.usesLocalNPCImmunity = true;
+            Projectile.localNPCHitCooldown = 3;
             Projectile.alpha = 255;
         }
 
         public override void AI()
         {
             Lighting.AddLight(Projectile.Center, 1.1f, 1.0f, 0.6f);
-
             Projectile.ai[0]++;
-            Projectile.velocity = Projectile.velocity.SafeNormalize(Vector2.UnitX);
+
+            float speed = Projectile.velocity.Length();
+            if (speed > 0f)
+            {
+                Projectile.velocity = Projectile.velocity.SafeNormalize(Vector2.UnitX) * speed;
+            }
+            else
+            {
+                Projectile.velocity = Vector2.UnitX * 10f;
+            }
+
             Projectile.rotation = Projectile.velocity.ToRotation() + MathHelper.ToRadians(90f);
 
             if (Projectile.alpha > 0)
@@ -49,13 +56,46 @@ namespace Synergia.Content.Projectiles.Thrower
             else
                 Projectile.alpha = 0;
 
-            Vector2 perpOffset = Projectile.velocity.RotatedBy(MathHelper.PiOver2) * 3f; 
+            if (Projectile.ai[0] > 5)
+            {
+                Rectangle projectileHitbox = Projectile.Hitbox;
+
+                foreach (NPC npc in Main.npc)
+                {
+                    if (npc.active && !npc.friendly && npc.CanBeChasedBy() &&
+                        projectileHitbox.Intersects(npc.Hitbox))
+                    {
+                        int damage = Projectile.damage;
+                        float knockback = Projectile.knockBack;
+                        bool crit = false;
+
+                        NPC.HitInfo hitInfo = new NPC.HitInfo
+                        {
+                            Damage = damage,
+                            Knockback = knockback,
+                            Crit = crit,
+                            HitDirection = npc.Center.X < Projectile.Center.X ? -1 : 1
+                        };
+
+                        npc.StrikeNPC(hitInfo, true, true);
+
+                        if (Projectile.penetrate == 1)
+                        {
+                            Projectile.Kill();
+                            return;
+                        }
+                        break;
+                    }
+                }
+            }
+
+            Vector2 perpOffset = Projectile.velocity.RotatedBy(MathHelper.PiOver2) * 3f;
 
             if (Projectile.ai[0] > 45)
             {
-                Projectile.position += Projectile.velocity * 25f;
+                Projectile.velocity = Projectile.velocity.SafeNormalize(Vector2.UnitX) * 25f;
 
-                if (Main.rand.NextBool(2)) 
+                if (Main.rand.NextBool(2))
                 {
                     Dust dust = Dust.NewDustPerfect(
                         Projectile.Center + perpOffset,
@@ -93,7 +133,6 @@ namespace Synergia.Content.Projectiles.Thrower
             }
         }
 
-
         public override void OnKill(int timeLeft)
         {
             for (int i = 0; i < 40; i++)
@@ -111,6 +150,11 @@ namespace Synergia.Content.Projectiles.Thrower
                 dust.noGravity = true;
                 dust.fadeIn = 1.3f;
             }
+        }
+
+        public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
+        {
+            CombatText.NewText(target.Hitbox, Color.Red, "HIT");
         }
 
         public override bool PreDraw(ref Color lightColor)

@@ -1,9 +1,21 @@
-﻿using Synergia.Common.ModSystems;
-using System;
-using Terraria;
+﻿using System;
+using Terraria.DataStructures;
+using Terraria.Audio;
+using Terraria.Graphics.Shaders;
+using System.IO;
+using System.Linq;
+using Synergia.Common.ModSystems;
+using System.Collections.Generic;
+using Microsoft.Xna.Framework;
 using Terraria.Audio;
 using Terraria.GameContent;
+using Terraria;
 using Terraria.ID;
+using Terraria.ModLoader;
+using Synergia.Helpers;
+using Synergia.Trails;
+using NewHorizons.Content.Projectiles.Throwing;
+
 
 namespace Synergia.Content.Projectiles.Thrower
 {
@@ -226,7 +238,7 @@ namespace Synergia.Content.Projectiles.Thrower
         public override void OnKill(int timeLeft) {
             SoundEngine.PlaySound(SoundID.Item10.WithVolumeScale(0.9f).WithPitchOffset(0.25f), Projectile.Center);
             for (byte i = 0; i < 7; i++) {
-                int dustIndex = Dust.NewDust(Projectile.position, Projectile.width, Projectile.height, DustID.Shadowflame, 0f, 0f, 100, Color.Purple, 1.4f);
+                int dustIndex = Dust.NewDust(Projectile.position, Projectile.width, Projectile.height, 27, 0f, 0f, 100, Color.Purple, 1.4f);
                 Main.dust[dustIndex].noGravity = true;
                 Main.dust[dustIndex].velocity *= 2f;
             }
@@ -249,7 +261,7 @@ namespace Synergia.Content.Projectiles.Thrower
             Projectile.rotation += -Projectile.direction * 0.28f;
 
             if (Main.rand.NextBool(2)) {
-                int dustIndex = Dust.NewDust(Projectile.position, Projectile.width, Projectile.height, DustID.Shadowflame, Projectile.velocity.X, Projectile.velocity.Y, 100, Color.Purple, 1.1f);
+                int dustIndex = Dust.NewDust(Projectile.position, Projectile.width, Projectile.height, 27, Projectile.velocity.X, Projectile.velocity.Y, 100, Color.Purple, 1.1f);
                 Main.dust[dustIndex].noGravity = true;
                 Main.dust[dustIndex].velocity *= 0.25f;
             }
