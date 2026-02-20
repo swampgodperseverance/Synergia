@@ -13,14 +13,13 @@ using ValhallaMod.Items.Weapons.Glaive;
 using Starforgedclassic.Content.Weapons.Solarang;
 using static Synergia.ModList;
 using static Terraria.ID.ItemID;
-using Carrot = StramsSurvival.Items.Foods.Carrot;
 using Carrot1 = NewHorizons.Content.Items.Materials.Carrot;
 using ValhallaMod.Items.Weapons.Blood;
 
 
 namespace Synergia.Lists {
     public class Items {
-        public static List<int> CarrotID { get; private set; } = [ItemType<Carrot>(), ItemType<Carrot1>()];
+        public static List<int> CarrotID { get; private set; } = [ItemType<Carrot1>()];
         public static List<int> FoodID { get; private set; } = [];
         public static List<int> CorruptionItem { get; private set; } = [Musket, BandofStarpower, ShadowOrb, BallOHurt, Roa.Find<ModItem>("PlanetomaStaff").Type, Roa.Find<ModItem>("Bookworms").Type, Roa.Find<ModItem>("Vilethorn").Type];
         public static List<int> SkyChest { get; private set; } = [Starfury, LuckyHorseshoe, ShinyRedBalloon, CelestialMagnet];
