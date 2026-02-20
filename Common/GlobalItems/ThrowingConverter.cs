@@ -1,20 +1,15 @@
-using Terraria;
-using Terraria.ModLoader;
-using Terraria.ID;
-using System.Collections.Generic;
-using Terraria.Localization;
-using static Terraria.ModLoader.ModContent;
-using static Terraria.Localization.Language;
-
 using Consolaria.Content.Items.Weapons.Melee;
-using TRAEBossRework.NewContent.Items.DreadItems.ShellSpinner;
 using Consolaria.Content.Items.Weapons.Ranged;
 using Starforgedclassic.Content.Weapons.Solarang;
-using ValhallaMod.Items.Weapons.Thrown;
+using System.Collections.Generic;
+using Terraria;
+using Terraria.ID;
+using TRAEBossRework.NewContent.Items.DreadItems.ShellSpinner;
+using ValhallaMod.Items.Garden;
 using ValhallaMod.Items.Weapons.Boomerang;
 using ValhallaMod.Items.Weapons.Glaive;
 using ValhallaMod.Items.Weapons.Javelin;
-using ValhallaMod.Items.Garden;
+using ValhallaMod.Items.Weapons.Thrown;
 
 namespace Synergia.Common.GlobalItems
 {

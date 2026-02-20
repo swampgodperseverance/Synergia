@@ -1,4 +1,5 @@
-﻿using Terraria;
+﻿using Synergia.Content.Buffs;
+using Terraria;
 
 namespace Synergia.Common.GlobalPlayer {
     public class BloodPlayer : ModPlayer {
@@ -17,21 +18,13 @@ namespace Synergia.Common.GlobalPlayer {
             currentHit = 0;
         }
         public override void PostUpdate() {
-            if (Lists.Items.WeaponActiveBlood.Contains(Player.HeldItem.type)) {
-                activeBloodUI = true;
-            }
-            else {
-                activeBloodUI = false;
-            }
-            if (currentHit >= hitForActiveBloodBuff) {
-                activeBloodBuff = true;
-            }
+            if (Lists.Items.WeaponActiveBlood.Contains(Player.HeldItem.type)) { activeBloodUI = true; }
+            else { activeBloodUI = false; }
+            if (currentHit >= hitForActiveBloodBuff) { activeBloodBuff = true; }
             if (currentHit >= 1) {
                 if (!activeBloodBuff) {
                     timeLastHit++;
-                    if (timeLastHit >= timeForResetHit) {
-                        currentHit = 0;
-                    }
+                    if (timeLastHit >= timeForResetHit) { currentHit = 0; }
                 }
             }
             if (!activeBloodUI) {
@@ -40,10 +33,8 @@ namespace Synergia.Common.GlobalPlayer {
             }
         }
         public override void PostUpdateBuffs() {
-            if (activeBloodBuff) {
-                // Тут баф
-
-            }
+            if (activeBloodBuff) { Player.AddBuff(BuffType<BloodBuff>(), 1); }
+            else { Player.ClearBuff(BuffType<BloodBuff>()); }
         }
     }
 }

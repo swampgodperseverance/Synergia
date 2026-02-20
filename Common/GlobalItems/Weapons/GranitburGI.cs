@@ -23,7 +23,7 @@ namespace Synergia.Common.GlobalItems.Weapons
         {
             if (!AppliesToEntity(item, false)) return;
             item.scale = 1.2f;
-            item.shoot = ModContent.ProjectileType<GranitburRework>();
+            item.shoot = 1;//ModContent.ProjectileType<GranitburRework>();
         }
 
         public int swingCounter = 0;
@@ -44,7 +44,7 @@ namespace Synergia.Common.GlobalItems.Weapons
             if (Main.myPlayer == player.whoAmI)
             {
                 float swingTime = item.useAnimation;
-                int projType = ModContent.ProjectileType<GranitburRework>();
+                int projType = 1; //ModContent.ProjectileType<GranitburRework>();
                 int proj = Projectile.NewProjectile(
                     source,
                     player.MountedCenter,

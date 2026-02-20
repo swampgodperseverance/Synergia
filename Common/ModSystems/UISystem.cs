@@ -1,4 +1,5 @@
-﻿using Synergia.Common.GlobalPlayer;
+﻿// Code by 𝒜𝑒𝓇𝒾𝓈
+using Synergia.Common.GlobalPlayer;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.UI;

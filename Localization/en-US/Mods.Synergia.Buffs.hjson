@@ -1,0 +1,12 @@
+BloodBuff: {
+	Tir0:
+		'''
+		Open the bestiary to receive a bonus.
+		Current Level: {0}
+		'''
+	Tir1:
+		'''
+		Increases your movement speed and leaves a trail of blood behind you
+		Current Level: {0}
+		'''
+}

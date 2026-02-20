@@ -29,7 +29,7 @@ namespace Synergia.Common.GlobalItems.Weapons
             item.reuseDelay = 0;
             item.mana = 23;
             item.shootSpeed = 11f;
-            item.shoot = ModContent.ProjectileType<FreezeSpawn>();
+            item.shoot = 1;//ModContent.ProjectileType<FreezeSpawn>();
             item.noMelee = true;
             item.autoReuse = true;
         }
@@ -53,7 +53,7 @@ namespace Synergia.Common.GlobalItems.Weapons
                 source,
                 spawnPos,
                 finalVelocity,
-                ModContent.ProjectileType<FreezeSpawn>(),
+                1, //ModContent.ProjectileType<FreezeSpawn>(),
                 damage,
                 knockback,
                 player.whoAmI

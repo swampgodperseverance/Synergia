@@ -1193,6 +1193,13 @@ Projectiles: {
 	SinlordFireBreath.DisplayName: Sinlord Fire Breath
 	Tree.DisplayName: Tree
 	FaceMace2.DisplayName: Face Mace2
+	AirflowProjectile2.DisplayName: Airflow Projectile2
+	CactusStar2.DisplayName: Cactus Star2
+	EverwoodJavelin2.DisplayName: Everwood Javelin2
+	FlarionProj3.DisplayName: Flarion Proj3
+	OmegaDiscRework.DisplayName: Omega Disc Rework
+	OmegaDiscSmall.DisplayName: Omega Disc Small
+	ThornChakram2.DisplayName: Thorn Chakram2
 }
 
 Buffs: {
@@ -1294,6 +1301,11 @@ Buffs: {
 	SulphurVenom: {
 		DisplayName: Sulphur Venom
 		Description: Mods.Synergia.Buffs.SulphurVenom.Description
+	}
+
+	BloodBuff: {
+		DisplayName: Blood Buff
+		Description: Mods.Synergia.Buffs.BloodBuff.Description
 	}
 }
 

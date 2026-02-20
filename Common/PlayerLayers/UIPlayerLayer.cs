@@ -10,8 +10,9 @@ namespace Synergia.Common.PlayerLayers {
         protected override void Draw(ref PlayerDrawSet drawInfo) {
             Player player = drawInfo.drawPlayer;
             if (drawInfo.shadow != 0f || player.dead || player.whoAmI != Main.myPlayer) { return; }
+            float mountScale = player.mount.Active ? 20 : 0;
             Vector2 Position = drawInfo.Position;
-            Vector2 pos = new((int)(Position.X - Main.screenPosition.X + player.width / 2), (int)(Position.Y - Main.screenPosition.Y + (player.height / 2) - 2f * player.gravDir));
+            Vector2 pos = new((int)(Position.X - Main.screenPosition.X + player.width / 2), (int)(Position.Y - Main.screenPosition.Y + (player.height / 2) - 2f * player.gravDir) + mountScale);
             ThrowingPlayer throwing = player.GetModPlayer<ThrowingPlayer>();
             BloodPlayer bPlayer = player.GetModPlayer<BloodPlayer>();
             if (throwing.ActiveUI) { drawInfo.DrawDataCache.Add(ThrowingUI(pos, throwing)); }
