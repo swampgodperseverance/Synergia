@@ -28,5 +28,3 @@ namespace Synergia.Lists {
         //public static List<int> DisableItem { get; private set; } = [ItemType<AdamantiteHat>(), ItemType<BronzeMask>(), ItemType<CobaltHeadgear>(), ItemType<MythrilHeadgear>(), ItemType<OrichalcumHat>(), ItemType<PalladiumHat>(), ItemType<TitaniumHat>(), ItemType<HallowedFaceShield>(), ItemType<HallowedHeadpiece>()];                                                       
     }
 }
-
-    
