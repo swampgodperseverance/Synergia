@@ -28,11 +28,11 @@ HellDwarf: {
 	DisplayName: Hell Dwarf
 
 	Name: {
-		Skyzephire: skyzephire
-		Thorin: Thorin
-		Belegar: Belegar Hell hammer
-		Dragan: Dragan
-		Wulfrik: Wulfrik
+		Skyzephire: Verge 
+		Thorin: Thorfinnsson
+		Belegar: Belegar Hellhammer
+		Dragan: Dragan 
+		Wulfrik: Wulfrik Kerdo
 	}
 
 	BestiaryInfo: Little is known other than that he can handle Sinstone Magma
