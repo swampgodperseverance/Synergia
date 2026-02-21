@@ -35,7 +35,7 @@ namespace Synergia.Content.GlobalItems.Weapons
                         player.GetSource_OnHit(target),
                         player.Center,
                         velocity,
-                        1,//ModContent.ProjectileType<DarkRework2>(),
+                        ModContent.ProjectileType<DarkRework2>(),
                         (int)(item.damage * 1.5f),
                         item.knockBack * 2f,
                         player.whoAmI,

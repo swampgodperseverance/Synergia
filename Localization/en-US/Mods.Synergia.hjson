@@ -1200,6 +1200,13 @@ Projectiles: {
 	OmegaDiscRework.DisplayName: Omega Disc Rework
 	OmegaDiscSmall.DisplayName: Omega Disc Small
 	ThornChakram2.DisplayName: Thorn Chakram2
+	DarkRework2.DisplayName: Dark Rework2
+	FreezeBoltRework.DisplayName: Freeze Bolt Rework
+	FreezeSpawn.DisplayName: Freeze Spawn
+	GranitburProjectile.DisplayName: Granitbur Projectile
+	GranitburRework.DisplayName: Granitbur Rework
+	ShadowBeamRework.DisplayName: Shadow Beam Rework
+	LifesAura.DisplayName: Lifes Aura
 }
 
 Buffs: {

@@ -1,13 +1,12 @@
-﻿using Synergia.Common;
+﻿// Code by 𝒜𝑒𝓇𝒾𝓈
 using Synergia.Common.BloodBuffSeting.Core;
-using System;
 using Terraria;
 using Terraria.DataStructures;
 
 namespace Synergia.Content.Buffs {
     public class BloodBuff : ModBuff {
         public override void SetStaticDefaults() {
-            Main.buffNoTimeDisplay[Type] = false;
+            Main.buffNoTimeDisplay[Type] = true;
         }
         public override void PostDraw(SpriteBatch spriteBatch, int buffIndex, BuffDrawParams drawParams) {
             /// Draw Blood if Mouse in buff icon
@@ -15,25 +14,23 @@ namespace Synergia.Content.Buffs {
             /// <see cref="Common.ModSystems.Hooks.Ons.HookForBloodBuff.On_Main_MouseText_DrawBuffTooltip">
         }
         public override void ModifyBuffText(ref string buffName, ref string tip, ref int rare) {
-            //tip = string.Format(Language.GetTextValue("Mods.Synergia.Tooltips.Buff", DamageBonuses()));
             AbstractBestiaryInfo info = GetLevel();
-            tip = string.Format(info.Tooltips, info.Leveled);
+            if (info.AdditionalTooltips != "") { tip = string.Format(info.Tooltips, info.AdditionalTooltips, info.Leveled); }
+            else { tip = string.Format(info.Tooltips, info.Leveled); }
+	        //String Old Buff
         }
         public override void Update(Player player, ref int buffIndex) {
-           // Main.NewText(GetBestiaryLevel());
-            player.GetDamage(DamageClass.Throwing).Flat += DamageBonuses();
-            AbstractBestiaryInfo info = GetLevel();
-            info.Buff(player);
+            int level = GetBestiaryLevel();
+            for (int i = 0; i <= level; i++) { BestiaryManger.Instance.GetLevelBloodBuff(i)?.Buff(player); }
         }
+        internal static AbstractBestiaryInfo GetLevel() => BestiaryManger.Instance.GetLevelBloodBuff(GetBestiaryLevel());
         internal static int GetBestiaryLevel() {
-            int level = (int)(Main.GetBestiaryProgressReport().CompletionAmountTotal / 10f);
-
-            return Math.Min(level, 1);
+            for (int i = 100; i > 0;) {
+                if (GetBestiaryProgress(i)) { return i / 10; }
+                i -= 10;
+            }
+            return 0;
         }
-        internal static AbstractBestiaryInfo GetLevel() {
-            AbstractBestiaryInfo info = BestiaryManger.Instance.GetLevelBloodBuff(GetBestiaryLevel());
-            return info;
-        }
-        internal static int DamageBonuses() => (int)Main.GetBestiaryProgressReport().CompletionAmountTotal == 1 ? (int)Main.GetBestiaryProgressReport().CompletionAmountTotal : (int)Main.GetBestiaryProgressReport().CompletionAmountTotal / 2;
+        static bool GetBestiaryProgress(int value) => Main.GetBestiaryProgressReport().CompletionPercent >= value / 100f;
     }
 }

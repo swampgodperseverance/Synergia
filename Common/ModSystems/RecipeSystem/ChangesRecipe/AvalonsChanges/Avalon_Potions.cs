@@ -1,10 +1,10 @@
 ﻿using Avalon.Items.Material.Herbs;
 using Avalon.Items.Potions.Buff;
 using Consolaria.Content.Items.Materials;
+using Synergia.Content.Items.Misc;
 using Terraria;
-using static Terraria.ModLoader.ModContent;
-using static Synergia.Common.ModSystems.RecipeSystem.RecipeGroups;
 using Terraria.ID;
+using static Synergia.Common.ModSystems.RecipeSystem.RecipeGroups;
 
 namespace Synergia.Common.ModSystems.RecipeSystem.ChangesRecipe.AvalonsChanges {
     public partial class Avalons;

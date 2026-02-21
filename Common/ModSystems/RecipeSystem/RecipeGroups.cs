@@ -3,10 +3,8 @@ using Avalon.Items.Material.Ores;
 using Synergia.Content.Items.Misc;
 using Terraria;
 using Terraria.Localization;
-using Terraria.ModLoader;
 using static Synergia.Common.ModSystems.RecipeSystem.ChangesRecipe.AvalonsChanges.Avalons;
 using static Terraria.ID.ItemID;
-using static Terraria.ModLoader.ModContent;
 
 namespace Synergia.Common.ModSystems.RecipeSystem {
     public class RecipeGroups : ModSystem {

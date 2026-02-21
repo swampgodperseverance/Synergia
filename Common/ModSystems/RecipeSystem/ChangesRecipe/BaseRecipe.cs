@@ -1,12 +1,11 @@
 ﻿using Synergia.Common.ModConfigs;
 using System.Collections.Generic;
 using Terraria;
-using Terraria.ModLoader;
 
 namespace Synergia.Common.ModSystems.RecipeSystem.ChangesRecipe {
     public abstract class BaseRecipe : ModSystem {
         public sealed override void PostAddRecipes() {
-            if (ModContent.GetInstance<BossConfig>().NewRecipe) {
+            if (GetInstance<BossConfig>().NewRecipe) {
                 List<Recipe> recipesCopy = [.. Main.recipe];
                 foreach (Recipe recipe in recipesCopy) {
                     DisableRecipe(recipe);
@@ -18,7 +17,7 @@ namespace Synergia.Common.ModSystems.RecipeSystem.ChangesRecipe {
             }
         }
         public sealed override void AddRecipes() {
-            if (ModContent.GetInstance<BossConfig>().NewRecipe) {
+            if (GetInstance<BossConfig>().NewRecipe) {
                 Recipes();
             }
         }

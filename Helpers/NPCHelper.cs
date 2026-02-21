@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using Terraria;
+using Terraria.ID;
 
 namespace Synergia.Helpers {
     public static partial class NPCHelper {
@@ -42,6 +43,14 @@ namespace Synergia.Helpers {
                 npc != null &&
                 npc.active &&
                 npc.life > 0;
+        }
+        // Тоже самое что и ванильный HealEffect только другое цвет
+        public static void HitEffect(this NPC npc, int healAmount) {
+            HitEffect(new Rectangle((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height), healAmount);
+        }
+        static void HitEffect(Rectangle r, int healAmount) {
+            if (Main.netMode == NetmodeID.Server) { NetMessage.SendData(MessageID.CombatTextInt, -1, -1, null, (int)CombatText.HealLife.PackedValue, r.Center.X, r.Center.Y, healAmount); }
+            else { CombatText.NewText(r, CombatText.DamagedHostile, healAmount); }
         }
     }
 }

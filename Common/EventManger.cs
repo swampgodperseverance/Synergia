@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿// Code by 𝒜𝑒𝓇𝒾𝓈
+using System.Collections.Generic;
 
 namespace Synergia.Common {
     public class EventManger : ModSystem {

@@ -53,7 +53,7 @@ namespace Synergia.Common.GlobalItems.Weapons
                 source,
                 spawnPos,
                 finalVelocity,
-                1, //ModContent.ProjectileType<FreezeSpawn>(),
+                ModContent.ProjectileType<FreezeSpawn>(),
                 damage,
                 knockback,
                 player.whoAmI

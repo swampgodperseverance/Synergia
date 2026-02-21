@@ -1,12 +1,32 @@
 BloodBuff: {
 	Tir0:
 		'''
-		Open the bestiary to receive a bonus.
+		Increases your movement speed by 8% and leaves a trail of blood behind you
 		Current Level: {0}
 		'''
 	Tir1:
 		'''
-		Increases your movement speed and leaves a trail of blood behind you
+		{0}
+		Current Level: {1}
+		'''
+	Tir2:
+		'''
+		You have a chance to avoid any damage.
+		Current Level: {0}
+		'''
+	Tir3:
+		'''
+		Increases your movement speed by 7%
+		Current Level: {0}
+		'''
+	Tir4:
+		'''
+		{0}
+		Current Level: {1}
+		'''
+	Tir5:
+		'''
+		A bloody aura appears around the player, dealing damage to enemies.
 		Current Level: {0}
 		'''
 }
