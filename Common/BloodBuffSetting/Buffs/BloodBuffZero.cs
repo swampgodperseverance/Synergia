@@ -4,7 +4,7 @@ using Terraria;
 using Terraria.ID;
 
 namespace Synergia.Common.BloodBuffSeting.Buffs {
-    public class BloodBuffZero : AbstractBestiaryInfo {
+    public class BloodBuffZero : AbstractBloodBuffInfo {
         public override int Leveled => 0;
         public override string Tooltips => Localization("Tir0");
         public override void Buff(Player player) {

@@ -12,7 +12,7 @@ namespace Synergia.Common.ModSystems.Hooks.Ons {
         void On_Main_MouseText_DrawBuffTooltip(On_Main.orig_MouseText_DrawBuffTooltip orig, Main self, string buffString, ref int X, ref int Y, int buffNameHeight) {
             orig(self, buffString, ref X, ref Y, buffNameHeight);
             Vector2 basePos = new(X, Y + buffNameHeight);
-            AbstractBestiaryInfo info = BloodBuff.GetLevel();
+            AbstractBloodBuffInfo info = BloodBuff.GetLevel();
             bool currentBuff;
             if (info.AdditionalTooltips != "") { currentBuff = buffString == string.Format(info.Tooltips, info.AdditionalTooltips, info.Leveled); }
             else { currentBuff = buffString == string.Format(info.Tooltips, info.Leveled); }

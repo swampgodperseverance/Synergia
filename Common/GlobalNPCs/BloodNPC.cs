@@ -15,12 +15,20 @@ namespace Synergia.Common.GlobalNPCs {
                             bPlayer.currentHit++;
                             bPlayer.timeLastHit = 0;
                         }
+                        if (bPlayer.Tir10Buffs) {
+                            int amount = Main.rand.Next(1, 6);
+                            player.Heal(amount);
+                        }
                     }
                     else {
                         if (target.type != NPCID.TargetDummy) {
                             if (bPlayer.currentHit != BloodPlayer.hitForActiveBloodBuff + 1) {
                                 bPlayer.currentHit++;
                                 bPlayer.timeLastHit = 0;
+                            }
+                            if (bPlayer.Tir10Buffs) {
+                                int amount = Main.rand.Next(1, 6);
+                                player.Heal(amount);
                             }
                         }
                     }

@@ -29,4 +29,29 @@ BloodBuff: {
 		A bloody aura appears around the player, dealing damage to enemies.
 		Current Level: {0}
 		'''
+	Tir6:
+		'''
+		Increases damage resistance by 8%
+		Current Level: {0}
+		'''
+	Tir7:
+		'''
+		Adds a 50% chance to fire a blood projectile when attacking
+		Current Level: {0}
+		'''
+	Tir8:
+		'''
+		{0}
+		Current Level: {1}
+		'''
+	Tir9:
+		'''
+		Allows you to make a bloody dash
+		Current Level: {0}
+		'''
+	Tir10:
+		'''
+		Adds a vampirism effect to your weapon
+		Current Level: {0}
+		'''
 }

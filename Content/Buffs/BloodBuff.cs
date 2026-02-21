@@ -14,16 +14,16 @@ namespace Synergia.Content.Buffs {
             /// <see cref="Common.ModSystems.Hooks.Ons.HookForBloodBuff.On_Main_MouseText_DrawBuffTooltip">
         }
         public override void ModifyBuffText(ref string buffName, ref string tip, ref int rare) {
-            AbstractBestiaryInfo info = GetLevel();
+            AbstractBloodBuffInfo info = GetLevel();
             if (info.AdditionalTooltips != "") { tip = string.Format(info.Tooltips, info.AdditionalTooltips, info.Leveled); }
             else { tip = string.Format(info.Tooltips, info.Leveled); }
 	        //String Old Buff
         }
         public override void Update(Player player, ref int buffIndex) {
             int level = GetBestiaryLevel();
-            for (int i = 0; i <= level; i++) { BestiaryManger.Instance.GetLevelBloodBuff(i)?.Buff(player); }
+            for (int i = 0; i <= level; i++) { BloodBuffManger.Instance.GetLevelBloodBuff(i)?.Buff(player); }
         }
-        internal static AbstractBestiaryInfo GetLevel() => BestiaryManger.Instance.GetLevelBloodBuff(GetBestiaryLevel());
+        internal static AbstractBloodBuffInfo GetLevel() => BloodBuffManger.Instance.GetLevelBloodBuff(GetBestiaryLevel());
         internal static int GetBestiaryLevel() {
             for (int i = 100; i > 0;) {
                 if (GetBestiaryProgress(i)) { return i / 10; }

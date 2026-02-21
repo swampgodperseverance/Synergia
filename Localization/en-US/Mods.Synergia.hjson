@@ -1207,6 +1207,7 @@ Projectiles: {
 	GranitburRework.DisplayName: Granitbur Rework
 	ShadowBeamRework.DisplayName: Shadow Beam Rework
 	LifesAura.DisplayName: Lifes Aura
+	BloodProjectile.DisplayName: Blood Projectile
 }
 
 Buffs: {

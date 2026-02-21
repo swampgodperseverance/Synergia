@@ -3,7 +3,7 @@ using Synergia.Common.BloodBuffSeting.Core;
 using Terraria;
 
 namespace Synergia.Common.BloodBuffSetting.Buffs {
-    public class BloodBuffLevelFour : AbstractBestiaryInfo {
+    public class BloodBuffLevelFour : AbstractBloodBuffInfo {
         public override int Leveled => 4;
         public override string Tooltips => Localization("Tir4");
         public override string AdditionalTooltips => AddAttackSpeed(DamageClassName("throwing"), 7);

@@ -3,7 +3,7 @@ using Terraria;
 using Terraria.Localization;
 
 namespace Synergia.Common.BloodBuffSeting.Core {
-    public class BestiaryInfo {
+    public class BloodBuffInfo {
         public static string Localization(string tir) => Language.GetTextValue($"Mods.Synergia.Buffs.BloodBuff.{tir}");
         public virtual int Leveled => -1;
         public virtual string Tooltips => "";

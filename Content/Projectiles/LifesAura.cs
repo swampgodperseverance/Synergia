@@ -29,12 +29,17 @@ namespace Synergia.Content.Projectiles {
                 Projectile.ai[0]++;
                 for (int i = 0; i < Main.maxNPCs; i++) {
                     NPC npc = Main.npc[i];
-                    if (npc.active && !npc.townNPC) {
+                    if (npc.active && !npc.townNPC && npc.type != NPCID.TargetDummy) {
                         float dist = Vector2.Distance(Projectile.Center, npc.Center);
                         if (dist < maxDist) {
                             if (Projectile.ai[0] % 25 == 0) {
                                 int amount = Main.rand.Next(3, 9);
                                 npc.life -= amount;
+                                if (npc.life <= 0) {
+                                    NPC.HitInfo hitInfo = new() { Damage = 9999 };
+                                    npc.HitEffect(hitInfo);
+                                    npc.checkDead();
+                                }
                                 Helpers.NPCHelper.HitEffect(npc, amount);
                                 Projectile.ai[0] = 0;
                             }

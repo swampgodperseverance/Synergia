@@ -3,13 +3,13 @@ using Synergia.Common.GlobalPlayer;
 using Terraria;
 
 namespace Synergia.Common.BloodBuffSeting.Core {
-    public abstract class AbstractBestiaryInfo : BestiaryInfo, ILoadable {
+    public abstract class AbstractBloodBuffInfo : BloodBuffInfo, ILoadable {
         public void Load(Mod mod) {
-            BestiaryManger manager = BestiaryManger.Instance;
+            BloodBuffManger manager = BloodBuffManger.Instance;
             manager.Info.Add(this);
             manager.CurrentLevel.Add(Leveled, this);
         }
-        protected static AbstractBestiaryInfo GetLevelInstance(int level) => BestiaryManger.Instance.CurrentLevel.TryGetValue(level, out var info) ? info : null;
+        protected static AbstractBloodBuffInfo GetLevelInstance(int level) => BloodBuffManger.Instance.CurrentLevel.TryGetValue(level, out var info) ? info : null;
         protected static BloodPlayer GetBloodPlayer(Player player) => player.GetModPlayer<BloodPlayer>();
         public void Unload() { }
     }
