@@ -2,7 +2,7 @@ The biggest Synergia update changelog ////////WIP
 Bismuth mod was added to the modpack. Stram's mod was removed.
 ADDITIONS
 Frostholm city structure was added.
-Swampy Cave structure was added.
+Hoodlums Headquarter structure was added.
 Inferno Frontier structure was added.
 New enemy Skelegon was added.
 New enemy Overtaken was added.
@@ -10,6 +10,10 @@ New enemy Sparky was added.
 New town NPC Hell Dwarven was added.
 New enemy Snowykaze was added.
 New enemy Elder Snowman was added.
+New enemy Hoodlum Swampling was added.
+New enemy Swampling Warrior was added.
+New enemy Frog Rider was added.
+New enemy Brothers Swamplings was added.
 Frost legion event was reworked.
 Hellheart Monolith was added.
 New weapon Belphegor was added.
@@ -42,8 +46,17 @@ Viscera Helm was added.
 Viscera Greaves were added.
 Hungry Mouths were added.
 Fading Hell hat was added.
+Fading Hell hat: Shadow flame Version was added.
+Fading Hell hat: Frozen flame Version was added.
+Fading Hell hat: Cursed flame Version was added.
 Fading Hell cuirass was added.
+Fading Hell cuirass: Shadow flame Version was added.
+Fading Hell cuirass: Frozen flame Version was added.
+Fading Hell cuirass: Cursed flame Version was added.
 Fading Hell leggings were added.
+Fading Hell leggings: Shadow flame Version was added.
+Fading Hell leggings: Frozen flame Version was added.
+Fading Hell leggings: Cursed flame Version was added.
 Corrode visage was added.
 Thundernite helmet was added.
 Thundernite breastplate was added.
@@ -52,7 +65,7 @@ New beginnings compat was added.
 Fargos Hell bridge compat was added.
 Redemption compat was added (TNANKS HALLAM!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!)
 Glooming buff was added.
-5Starlord buff was added.
+Starlord buff was added.
 Prominence Blessing buff  was added.
 Peaceful Snow Village buff was added.
 Hateful Bones buff was added. 
@@ -71,6 +84,12 @@ New necromancer attack with the cursed fireballs.
 New expert necromancer attack with reflective mirror.
 Hell Luceat was added.
 New sword swing system.
+New reforging system by SerNik was added.
+New recipes builder system by SerNik.
+New recipes modification system by SerNik.
+Bloodbound buff tier system y SerNik was added.
+Bloodthirsty Thrower subclass was added.
+Combo Thrower subclass was added.
 CHANGES/REWORKS
 Beast Bow from RoA was changed.(Attack Rework or Visual upgrade)
 Flaming Blade from Valhalla was changed.(Attack Rework or Visual upgrade)
@@ -78,6 +97,7 @@ Nebula Lyre from Valhalla was changed.(Attack Rework or Visual upgrade)
 Magic claw from Valhalla was changed.(Attack Rework or Visual upgrade)
 Bee sword from Valhalla was changed.(Attack Rework or Visual upgrade)
 Water gun from Valhalla was changed.(Attack Rework or Visual upgrade)
+Tar Blade from Valhalla was changed.(Attack Rework or Visual upgrade)
 Valhallite sword from Valhalla was changed.(Attack Rework or Visual upgrade)
 Everliving Ice from Valhalla was changed.(Attack Rework or Visual upgrade)
 Gloom Scepter from Valhalla was changed.(Attack Rework or Visual upgrade)
@@ -94,7 +114,8 @@ Ice Slicer from Valhalla was changed.(Attack Rework or Visual upgrade)
 Paradox Sword from Valhalla was changed.(Attack Rework or Visual upgrade)
 Shadow beam from Valhalla was changed.(Attack Rework or Visual upgrade)
 Sun javelin from Valhalla was changed.(Attack Rework or Visual upgrade)
-Azraels Heartstopper from valhalla was changed to the thrower damage.(Attack Rework or Visual upgrade)
+Azraels Heartstopper from Valhalla was changed.(Attack Rework or Visual upgrade)
+Azraels Heartstopper from Valhalla was changed to the thrower damage.(Attack Rework or Visual upgrade)
 Jade spear from Valhalla was changed.(Attack Rework or Visual upgrade)
 Typhoon from Bismuth was changed.(Attack Rework or Visual upgrade)
 Fury of Waters from Bismuth was changed.(Attack Rework or Visual upgrade)
@@ -104,6 +125,7 @@ Evil Narsil from Bismuth was changed.(Attack Rework or Visual upgrade)
 Bismuthum Crossbow from Bismuth was changed.(Attack Rework or Visual upgrade)
 Bismuthum glove from Bismuth was changed.(Attack Rework or Visual upgrade)
 Jaguars Chakram from Bismuth was changed.(Attack Rework or Visual upgrade)
+Solar Disc from Bismuth was changed.(Attack Rework or Visual upgrade)
 Wave of Force from Bismuth was changed.(Attack Rework or Visual upgrade)
 Shark Halberd from Bismuth was changed.(Attack Rework or Visual upgrade)
 Water Headpiece from Bismuth was rebalanced from start of the game to pre-Plantera.
@@ -116,6 +138,119 @@ Aqua Impact effects were changed.(Avalon)
 Hellfire from Avalon was changed(Attack Rework or Visual upgrade)
 Sunstorm sprite was changed.(Avalon)
 Sunstorm effects were changed.(Avalon)
-Ferozium Sword was completely reworked.
+Ferozium IceSword was completely reworked.
 Space cowboy from Horizon mod was changed.
+Shuriken is a bloodthirsty weapon now.
+Bloody Machete is a bloodthirsty weapon now.
+Star Arise is a bloodthirsty weapon now.
+ShadowFlame Knife is a bloodthirsty weapon now.
+FlyingKnife is a bloodthirsty weapon now.
+Javelin is a bloodthirsty weapon now.
+Frost Daggerfish is a bloodthirsty weapon now.
+Bone Dagger is a bloodthirsty weapon now.
+Bone Javelin is a bloodthirsty weapon now.
+Bananarang is a bloodthirsty weapon now.
+Possessed Hatchet is a bloodthirsty weapon now.
+Scourge of the Corruptor is a bloodthirsty weapon now.
+Light Disc is a bloodthirsty weapon now.
+Throwing Knife is a bloodthirsty weapon now.
+Gamma Blade from Horizons is a bloodthirsty weapon now.
+Bone Kama from Horizons is a bloodthirsty weapon now.
+Palladium Waraxe from Horizons is a bloodthirsty weapon now.
+Molten Dagger from Horizons is a bloodthirsty weapon now.
+Kunai from Horizons is a bloodthirsty weapon now.
+Rusty Axe from Horizons is a bloodthirsty weapon now.
+Blood Spiller from Horizons is a bloodthirsty weapon now.
+Cobalt Kunai from Horizons is a bloodthirsty weapon now.
+Jaguars Chakram from Bismuth is a bloodthirsty weapon now.
+Jaguars Dagger from Bismuth is a bloodthirsty weapon now.
+Orcish Javelin from Bismuth is a bloodthirsty weapon now.
+Throwing Axe from Bismuth is a bloodthirsty weapon now.
+Typhoon from Bismuth is a bloodthirsty weapon now.
+Fury of Waters from Bismuth is a bloodthirsty weapon now.
+Shark Javelin from Bismuth is a bloodthirsty weapon now.
+Orichalcum Javelin from Bismuth is a bloodthirsty weapon now.
+Mythril Javelin from Bismuth is a bloodthirsty weapon now.
+Chlorophyte Javelin from Bismuth is a bloodthirsty weapon now.
+Titanium Javelin from Bismuth is a bloodthirsty weapon now.
+Cobalt Javelin from Bismuth is a bloodthirsty weapon now.
+Star of the Dunedain from Bismuth is a bloodthirsty weapon now.
+Adamantite Javelin from Bismuth is a bloodthirsty weapon now.
+Solar Disk from Bismuth is a bloodthirsty weapon now.
+Tar Blade from Valhalla is a bloodthirsty weapon now.
+Demonite Glaive from Valhalla is a bloodthirsty weapon now. 
+Night Glaive from Valhalla is a bloodthirsty weapon now.
+True Night Glaive from Valhalla is a bloodthirsty weapon now.
+Chlorophyle Glaive from Valhalla is a bloodthirsty weapon now.
+Mekurabe from Valhalla is a bloodthirsty weapon now. 
+Terra Glaive from Valhalla is a bloodthirsty weapon now. 
+True Light Disc from Valhalla is a bloodthirsty weapon now.
+Sufferang from Valhalla is a bloodthirsty weapon now.
+Corrode Shuriken from Valhalla is a bloodthirsty weapon now.
+Cluster Grenade from Valhalla is a bloodthirsty weapon now. 
+Big BeeNade from Valhalla is a bloodthirsty weapon now.
+Carrot Dagger from Valhalla is a bloodthirsty weapon now.
+Cactus Knife from Valhalla is a bloodthirsty weapon now. 
+Spider Knife from Valhalla is a bloodthirsty weapon now. 
+Tooth Knife from Valhalla is a bloodthirsty weapon now. 
+Virulent Scythe from Avalon is a bloodthirsty weapon now.
+Enchanted Shuriken from Avalon is a bloodthirsty weapon now. 
+Crystal Tomahawk from Avalon is a bloodthirsty weapon now. 
+Icicle from Avalon is a bloodthirsty weapon now. 
+Tetanus Chakram from Avalon is a bloodthirsty weapon now.
+Shurikerang from Avalon is a bloodthirsty weapon now. 
+Solarang From Starforged is a bloodthirsty weapon now. 
+Valhallite Javelin is a bloodthirsty weapon now. 
+Duratanium Javelin is a bloodthirsty weapon now. 
+Naquadah Javelin is a bloodthirsty weapon now. 
+Bloody Scythe is a bloodthirsty weapon now.
+Decayed Scythe is a bloodthirsty weapon now. 
+Thunder Chakram is a bloodthirsty weapon now. 
+Jade Glaive is a bloodthirsty weapon now. 
+Infamous Flame is a bloodthirsty weapon now.
+Blasphemous Heavens is a bloodthirsty weapon now. 
+Blazes is a bloodthirsty weapon now. 
+Oculith Shard is a bloodthirsty weapon now. 
+Gold Glove is a bloodthirsty weapon now. 
+Troxinium Knife is a bloodthirsty weapon now.
+Trimarang is a Combo Charging weapon now.
+Flamarang is a Combo Charging weapon now.
+Bone is a Combo Charging weapon now.
+Shroomerang is a Combo Charging weapon now.
+Thorn Chakram is a Combo Charging weapon now.
+Anchor is a Combo Charging weapon now.
+Wooden Boomerang is a Combo Charging weapon now.
+Snowball is a Combo Charging weapon now.
+Fruitcake Chakram is a Combo Charging weapon now.
+Omega Disc from Valhalla is a Combo Charging weapon now.
+Flarion is a Combo Charging weapon now.
+Everwood Javelin is a Combo Charging weapon now.
+Pulsar from Horizons is a Combo Charging weapon now.
+Sun Javelin from Valhalla is a Combo Charging weapon now.
+Natural Selection is a Combo Charging weapon now.
+Albino Mandible from Consolaria is a Combo Charging weapon now.
+Stalloy Screw from Valhalla is a Combo Charging weapon now.
+Airflow is a Combo Charging weapon now.
+Titanium Warhammer from Horizons is a Combo Charging weapon now.
+Adamantite Dagger from Horizons is a Combo Charging weapon now.
+Teeth Breaker from Valhalla is a Combo Charging weapon now.
+Cactus Star from Valhalla is a Combo Charging weapon now.
+Azraels Heartstopper from Valhalla is a Combo Charging weapon now.
+Chlorophyte Javelin from Horizons is a Combo Charging weapon now.
+Night Glaive from Horizonsis a Combo Charging weapon now.
+Mythril Javelin from Horizonsis a Combo Charging weapon now.
+Crystal Dagger from Horizonsis a Combo Charging weapon now.
+Crimite Glaive from Valhalla is a Combo Charging weapon now.
+Snow Glaive from Valhalla is a Combo Charging weapon now.
+Orichalcum Kama from Horizonsis a Combo Charging weapon now.
+Carnwennan from Horizonsis a Combo Charging weapon now.
+Aeglos from Bismuth is a Combo Charging weapon now.
+Lancea from Bismuth is a Combo Charging weapon now.
+Garlic from Valhalla is a Combo Charging weapon now.
+Scarlet Gungnir from Horizonsis a Combo Charging weapon now.
+Blazing Saws from Horizons is a Combo Charging weapon now.
+Nano Star from Horizons is a Combo Charging weapon now.
+Crystal Grenade from Valhalla is a Combo Charging weapon now.
+Sky Chest loot conditions was changed.
+Orcish Chest loot conditions was changed.
 
