@@ -1,57 +1,28 @@
 BloodBuff: {
-	Tir0:
-		'''
-		Increases your movement speed by 8% and leaves a trail of blood behind you
-		Current Level: {0}
-		'''
-	Tir1:
-		'''
-		{0}
-		Current Level: {1}
-		'''
-	Tir2:
-		'''
-		You have a chance to avoid any damage.
-		Current Level: {0}
-		'''
-	Tir3:
-		'''
-		Increases your movement speed by 7%
-		Current Level: {0}
-		'''
-	Tir4:
-		'''
-		{0}
-		Current Level: {1}
-		'''
-	Tir5:
-		'''
-		A bloody aura appears around the player, dealing damage to enemies.
-		Current Level: {0}
-		'''
-	Tir6:
-		'''
-		Increases damage resistance by 8%
-		Current Level: {0}
-		'''
-	Tir7:
-		'''
-		Adds a 50% chance to fire a blood projectile when attacking
-		Current Level: {0}
-		'''
-	Tir8:
-		'''
-		{0}
-		Current Level: {1}
-		'''
-	Tir9:
-		'''
-		Allows you to make a bloody dash
-		Current Level: {0}
-		'''
-	Tir10:
-		'''
-		Adds a vampirism effect to your weapon
-		Current Level: {0}
-		'''
+	CurrentLevel: Current Level:
+	LevelMax: Your Level max
+	Level: Bonus For Level:
+	PressShift: Hold down the shift key to see the bonuses.
+	PressCtrl: Hold down the control key to see the total number of bonuses.
+	Tir0: Increases your movement speed by 8%
+	Tir1: "{0}"
+	Tir2: You have a chance to avoid any damage.
+	Tir3: Increases your movement speed by 7%
+	Tir4: "{0}"
+	Tir5: A bloody aura appears around the player, dealing damage to enemies.
+	Tir6: Increases damage resistance by 8%
+	Tir7: Adds a 50% chance to fire a blood projectile when attacking
+	Tir8: "{0}"
+	Tir9: Allows you to make a bloody dash
+	Tir10: Adds a vampirism effect to your weapon
+	Bonus: Bonys
+	Pasive: Pasive Skill
+	MovmentBonus: Increases your movement speed by {0}%
+	ThrowingSpeedBonus: Increases your throwing speed by {0}%
+	DamageResist: Increases your damage resistance by {0}%
+	Dodge: Chance to dodge damage
+	Aura: Bloody aura
+	Shot: Chance for an additional projectile
+	Dash: Blood Dash
+	Vampirism: Vampirism effect
 }

@@ -1,4 +1,5 @@
-﻿using Synergia.Common.BloodBuffSeting.Core;
+﻿// Code by 𝒜𝑒𝓇𝒾𝓈
+using Synergia.Common.BloodBuffSeting.Core;
 using Terraria;
 
 namespace Synergia.Common.BloodBuffSetting.Buffs {

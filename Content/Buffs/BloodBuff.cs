@@ -15,8 +15,8 @@ namespace Synergia.Content.Buffs {
         }
         public override void ModifyBuffText(ref string buffName, ref string tip, ref int rare) {
             AbstractBloodBuffInfo info = GetLevel();
-            if (info.AdditionalTooltips != "") { tip = string.Format(info.Tooltips, info.AdditionalTooltips, info.Leveled); }
-            else { tip = string.Format(info.Tooltips, info.Leveled); }
+            if (info.AdditionalTooltips != "") { tip = string.Format(info.Tooltips, info.AdditionalTooltips); }
+            else { tip = info.Tooltips; }
 	        //String Old Buff
         }
         public override void Update(Player player, ref int buffIndex) {

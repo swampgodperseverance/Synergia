@@ -1,4 +1,5 @@
-﻿using Terraria;
+﻿// Code by 𝒜𝑒𝓇𝒾𝓈
+using Terraria;
 using Terraria.ID;
 
 namespace Synergia.Common.GlobalPlayer {

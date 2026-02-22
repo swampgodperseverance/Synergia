@@ -1,4 +1,5 @@
-﻿using Synergia.Content.Buffs;
+﻿// Code by 𝒜𝑒𝓇𝒾𝓈
+using Synergia.Content.Buffs;
 using Synergia.Content.Projectiles;
 using Terraria;
 using Terraria.ID;
