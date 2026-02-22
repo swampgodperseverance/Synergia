@@ -17,8 +17,7 @@ using System;
 
 namespace Synergia.Common.ModSystems.Hooks.Ons {
     public class HookForNewHell : ModSystem {
-        Hook roa;
-        Hook avalonBg;
+        Hook roa, avalon;
 
         // RoA
         delegate bool orig_IsBiomeActive(object type, Player player);
@@ -31,10 +30,10 @@ namespace Synergia.Common.ModSystems.Hooks.Ons {
             if (ModLoader.TryGetMod("RoA", out Mod RoAMod)) {
                 Type BackwoodsBiomeClass = RoAMod.GetType().Assembly.GetType("RoA.Content.Biomes.Backwoods.BackwoodsBiome");
                 MethodInfo targetMethod = BackwoodsBiomeClass.GetMethod("IsBiomeActive", BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance);
-                roa = new Hook(targetMethod, (orig_GetBiomeActive)RoAIsBiomeActive);
+                roa = new Hook(targetMethod, (orig_GetBiomeActive)RoAIsBiomeActive); // Disable Backwoods in hell struct
             }
             MethodInfo info = typeof(CaesiumBlastplains).GetMethod(nameof(CaesiumBlastplains.IsBiomeActive));
-            avalonBg = new Hook(info, (Get_IsActiveDetour)NewLogic); // Disabled biome in Avalon;
+            avalon = new Hook(info, (Get_IsActiveDetour)NewLogic); // Disabled biome in Avalon;
             On_WorldGen.PlaceTile += On_WorldGen_PlaceTile; // Disabled Magic Ice if use item Ice Rood;
             On_WorldGen.moveRoom += On_WorldGen_moveRoom; // Disabled Town NPC in Hell Struct
             On_NPC.checkDead += On_NPC_checkDead; // Disabled lava if lava slime dead;
@@ -44,7 +43,7 @@ namespace Synergia.Common.ModSystems.Hooks.Ons {
             On_Player.DropTombstone += On_Player_DropTombstone; // Disabled Tombstone if player dead in New Hell
         }
         bool RoAIsBiomeActive(orig_IsBiomeActive orig, object type, Player player) {
-            bool hellStruct = WorldHelper.CheckBiome(player, 237 + SynergiaGenVars.HellArenaPositionX - SynergiaGenVars.HellLakeX, 119, SynergiaGenVars.HellLakeX - 236, SynergiaGenVars.HellLakeY - 119);
+            bool hellStruct = WorldHelper.CheckBiome(player, 237 + SynergiaGenVars.HellArenaPositionX - SynergiaGenVars.HellLakeX, 119, SynergiaGenVars.HellLakeX - 236, SynergiaGenVars.HellLakeY - 140);
             if (hellStruct) { return false; }
             else { return orig(type, player); }
         }
@@ -63,29 +62,21 @@ namespace Synergia.Common.ModSystems.Hooks.Ons {
         void On_WorldGen_moveRoom(On_WorldGen.orig_moveRoom orig, int x, int y, int n) {
             bool hellStruct = WorldHelper.CheckBiomeTile(x, y, 237 + SynergiaGenVars.HellArenaPositionX - SynergiaGenVars.HellLakeX, 119, SynergiaGenVars.HellLakeX - 236, SynergiaGenVars.HellLakeY - 119);
             if (hellStruct) {
-                if (Main.npc[n].type == NPCType<HellDwarf>()) {
-                    orig(x, y, n);
-                }
+                if (Main.npc[n].type == NPCType<HellDwarf>()) { orig(x, y, n); }
                 else { Main.NewText(Language.GetTextValue("LegacyInterface.55") + " " + Lang.GetNPCName(Main.npc[n].type), byte.MaxValue, 240, 20); }
             }
             else { orig(x, y, n); }
         }
         void On_NPC_checkDead(On_NPC.orig_checkDead orig, NPC npc) {
             orig(npc);
-            if ((npc.realLife >= 0 && npc.realLife != npc.whoAmI) || npc.life > 0) {
-                return;
-            }
-            if (npc.target < 0 || npc.target >= Main.maxPlayers) {
-                return;
-            }
+            if ((npc.realLife >= 0 && npc.realLife != npc.whoAmI) || npc.life > 0) { return; }
+            if (npc.target < 0 || npc.target >= Main.maxPlayers) { return; }
             Player player = Main.player[npc.target];
             if (player.InModBiome<NewHell>()) {
                 if (npc.type == NPCID.LavaSlime) {
                     int tileX = (int)(npc.Center.X / 16f);
                     int tileY = (int)(npc.Center.Y / 16f);
-                    if (!WorldGen.InWorld(tileX, tileY)) {
-                        return;
-                    }
+                    if (!WorldGen.InWorld(tileX, tileY)) { return; }
                     Tile tile = Main.tile[tileX, tileY];
                     if (tile.LiquidAmount > 0) {
                         tile.LiquidAmount = 0;
@@ -105,19 +96,13 @@ namespace Synergia.Common.ModSystems.Hooks.Ons {
         void On_Main_DrawNPCHeadFriendly(On_Main.orig_DrawNPCHeadFriendly orig, Entity theNPC, byte alpha, float headScale, SpriteEffects dir, int townHeadId, float x, float y) {
             if (theNPC is NPC npc) {
                 if (npc.active && npc.townNPC) {
-                    if (npc.type != NPCType<Dwarf>() && npc.type != NPCType<HellDwarf>()) {
-                        orig(theNPC, alpha, headScale, dir, townHeadId, x, y);
-                    }
+                    if (npc.type != NPCType<Dwarf>() && npc.type != NPCType<HellDwarf>()) { orig(theNPC, alpha, headScale, dir, townHeadId, x, y); }
                     else {
                         if (SynergiaWorld.FirstEnterInHellVillage) {
-                            if (npc.type == NPCType<HellDwarf>()) {
-                                orig(theNPC, alpha, headScale, dir, TownNPCProfiles.GetHeadIndexSafe(npc), x, y);
-                            }
+                            if (npc.type == NPCType<HellDwarf>()) { orig(theNPC, alpha, headScale, dir, TownNPCProfiles.GetHeadIndexSafe(npc), x, y); }
                         }
                         if (SynergiaWorld.FirstEnterInSnowVillage) {
-                            if (npc.type == NPCType<Dwarf>()) {
-                                orig(theNPC, alpha, headScale, dir, TownNPCProfiles.GetHeadIndexSafe(npc), x, y);
-                            }
+                            if (npc.type == NPCType<Dwarf>()) { orig(theNPC, alpha, headScale, dir, TownNPCProfiles.GetHeadIndexSafe(npc), x, y); }
                         }
                     }
                 }
@@ -130,8 +115,8 @@ namespace Synergia.Common.ModSystems.Hooks.Ons {
         public override void Unload() {
             roa?.Dispose();
             roa = null;
-            avalonBg?.Dispose();
-            avalonBg = null;
+            avalon?.Dispose();
+            avalon = null;
             On_WorldGen.PlaceTile -= On_WorldGen_PlaceTile;
             On_WorldGen.moveRoom -= On_WorldGen_moveRoom;
             On_NPC.checkDead -= On_NPC_checkDead;
