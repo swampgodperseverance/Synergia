@@ -1,4 +1,4 @@
-﻿// Code by SerNik
+Code by SerNik
 using Avalon.Tiles;
 using Avalon.Tiles.Furniture.ResistantWood;
 using Synergia.Helpers;

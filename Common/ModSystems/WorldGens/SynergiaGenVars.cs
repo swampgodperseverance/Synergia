@@ -1,4 +1,4 @@
-﻿// Code by SerNik
+// Code by SerNik
 using System.Collections.Generic;
 using System.IO;
 using Terraria;
