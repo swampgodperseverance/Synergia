@@ -3,13 +3,13 @@ BossConfig.DisplayName: Boss Config
 
 Config: {
 	UI: {
-		NewUI: Active New Progres bar for events
-		NewUITooltip: Activates new UI for events
-		ResetUITooltip: Resets the ui position
+		NewUI: New Progress bar for events
+		NewUITooltip: Activates new Bismuth-styled UI for every event.
+		ResetUITooltip: Resets the UIs position
 		ResetUI: Reset UI
 		HoverUITooltip: Allows you to modify position user interface elements.
 		HoverUI: Modify position UI
-		ActiveSummonUITooltip: If it bothers you, you can enable it by default value enabled
+		ActiveSummonUITooltip: If it bothers you, you can enable it by default value enabled.
 		ActiveSummonUI: Active Summon UI
 		SummonUI: Summon UI
 	}
