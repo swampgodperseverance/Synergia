@@ -13,8 +13,8 @@ BloodBuff: {
 	Tir6: Increases damage resistance by 8%
 	Tir7: Adds a 50% chance to fire a blood projectile when attacking.
 	Tir8: "{0}"
-	Tir9: Allows you to make a bloody dash
-	Tir10: Adds a vampirism effect to your weapon
+	Tir9: Allows you to make a bloody dash.
+	Tir10: Adds a vampirism effect to your weapons.
 	Bonus: Bonus
 	Pasive: Pasive Skills
 	MovmentBonus: Increases your movement speed by {0}%.
