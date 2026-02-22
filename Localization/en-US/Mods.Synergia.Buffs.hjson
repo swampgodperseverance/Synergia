@@ -1,6 +1,6 @@
 BloodBuff: {
 	CurrentLevel: Current Level:
-	LevelMax: Your Level max
+	LevelMax: Your Max Level
 	Level: Bonus For Level:
 	PressShift: Hold down the shift key to see the bonuses.
 	PressCtrl: Hold down the control key to see the total number of bonuses.
@@ -11,19 +11,19 @@ BloodBuff: {
 	Tir4: "{0}"
 	Tir5: A bloody aura appears around the player, dealing damage to enemies.
 	Tir6: Increases damage resistance by 8%
-	Tir7: Adds a 50% chance to fire a blood projectile when attacking
+	Tir7: Adds a 50% chance to fire a blood projectile when attacking.
 	Tir8: "{0}"
 	Tir9: Allows you to make a bloody dash
 	Tir10: Adds a vampirism effect to your weapon
-	Bonus: Bonys
-	Pasive: Pasive Skill
-	MovmentBonus: Increases your movement speed by {0}%
-	ThrowingSpeedBonus: Increases your throwing speed by {0}%
-	DamageResist: Increases your damage resistance by {0}%
-	Dodge: Chance to dodge damage
-	Aura: Bloody aura
-	Shot: Chance for an additional projectile
-	Dash: Blood Dash
-	Vampirism: Vampirism effect
+	Bonus: Bonus
+	Pasive: Pasive Skills
+	MovmentBonus: Increases your movement speed by {0}%.
+	ThrowingSpeedBonus: Increases your throwing speed by {0}%.
+	DamageResist: Increases your damage resistance by {0}%.
+	Dodge: Chance to avoid any damage.
+	Aura: Bloody Aura surrounds you.
+	Shot: Chance for an additional projectile.
+	Dash: Bloody Dash.
+	Vampirism: Vampirism Effect.
 	Info: Every 10% of the completed bestiary grants one level of buff.
 }
