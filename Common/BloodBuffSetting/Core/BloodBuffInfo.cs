@@ -7,7 +7,6 @@ namespace Synergia.Common.BloodBuffSeting.Core {
         public static string Localization(string tir) => Language.GetTextValue($"Mods.Synergia.Buffs.BloodBuff.{tir}");
         public virtual int Leveled => -1;
         public virtual string Tooltips => "";
-        // List<String> ?
         public virtual string AdditionalTooltips => "";
         public virtual void Buff(Player player) { }
     }

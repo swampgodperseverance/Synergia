@@ -17,7 +17,6 @@ namespace Synergia.Content.Buffs {
             AbstractBloodBuffInfo info = GetLevel();
             if (info.AdditionalTooltips != "") { tip = string.Format(info.Tooltips, info.AdditionalTooltips); }
             else { tip = info.Tooltips; }
-	        //String Old Buff
         }
         public override void Update(Player player, ref int buffIndex) {
             int level = GetBestiaryLevel();

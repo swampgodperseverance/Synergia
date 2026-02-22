@@ -1,11 +1,11 @@
-﻿using Synergia.Common.ModConfigs;
+﻿// Code by 𝒜𝑒𝓇𝒾𝓈
+using Synergia.Common.ModConfigs;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.GameContent;
 using Terraria.Localization;
 using Terraria.ModLoader.IO;
 using static Synergia.Helpers.SynegiaHelper;
-using static Synergia.Reassures.Reassures;
 using static Terraria.Main;
 
 namespace Synergia.Common;
@@ -40,7 +40,13 @@ public abstract class ModEvent : ModSystem {
 
     public virtual void Load(int currentWave) { }
     public virtual void PostUpdateWorld(int currentWave) { }
-
+    public override void OnWorldLoad() {
+        CurrentWave = 0;
+        EventProgress = 0;
+        FistText = false;
+        IsActive = false;
+        spawnNPC = false;
+    }
     public override void SaveWorldData(TagCompound tag) {
         EzSave(tag, "MaxWave", ref MaxWave);
         EzSave(tag, "CurrentWave", ref CurrentWave);

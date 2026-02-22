@@ -25,22 +25,22 @@ namespace Synergia.Common.ModSystems.Hooks.Ons {
         static void Tooltips(ref int X, ref int Y, AbstractBloodBuffInfo info) {
             Vector2 posTooltips = new(X, Y + 58); // 30
             float maxScale = 60;
+            bool drawShiftTooltips = false;
+            bool drawCtrlTooltips = false;
             if (info.Leveled == 10) {
                 DrawTooltips(posTooltips, "CurrentLevel");
                 DrawTooltips(new Vector2(posTooltips.X + 10 + FontAssets.MouseText.Value.MeasureString(Loc("CurrentLevel")).X, posTooltips.Y), "LevelMax", color: Color.IndianRed);
             }
             else { DrawLevelTooltips(posTooltips, Color.PaleVioletRed, info); }
             if (info.Leveled != 0) {
-                bool drawShiftTooltips = Main.keyState.IsKeyDown(Keys.LeftShift) || Main.keyState.IsKeyDown(Keys.RightShift);
-                bool drawCtrlTooltips = Main.keyState.IsKeyDown(Keys.LeftControl) || Main.keyState.IsKeyDown(Keys.RightControl);
+                drawShiftTooltips = Main.keyState.IsKeyDown(Keys.LeftShift) || Main.keyState.IsKeyDown(Keys.RightShift);
+                drawCtrlTooltips = Main.keyState.IsKeyDown(Keys.LeftControl) || Main.keyState.IsKeyDown(Keys.RightControl);
                 if (drawShiftTooltips) {
                     maxScale = 0;
-                    for (int i = info.Leveled - 1; i > -1;) {
+                    for (int i = info.Leveled; i > -1;) {
                         maxScale += 30;
                         AbstractBloodBuffInfo info2 = BloodBuffManger.Instance.GetLevelBloodBuff(i);
-                        if (info2.AdditionalTooltips == "") {
-                            DrawTooltips(new Vector2(posTooltips.X, posTooltips.Y + maxScale), $"{Loc("Level")} {info2.Leveled}: {info2.Tooltips}", false);
-                        }
+                        if (info2.AdditionalTooltips == "") { DrawTooltips(new Vector2(posTooltips.X, posTooltips.Y + maxScale), $"{Loc("Level")} {info2.Leveled}: {info2.Tooltips}", false); }
                         else { DrawTooltips(new Vector2(posTooltips.X, posTooltips.Y + maxScale), $"{Loc("Level")} {info2.Leveled}: {info2.AdditionalTooltips}", false); }
                         i--;
                     }
@@ -49,7 +49,6 @@ namespace Synergia.Common.ModSystems.Hooks.Ons {
                     float scale2 = drawShiftTooltips ? 30 : 0;
                     DrawTooltips(new Vector2(posTooltips.X + 60, posTooltips.Y + maxScale + scale2), $"------{Loc("Bonus")}------", false, Color.SteelBlue);
                     maxScale += 30;
-                    bool drawPassive = false;
                     bool drawDodge = false;
                     bool drawAura = false;
                     bool drawShot = false;
@@ -60,7 +59,7 @@ namespace Synergia.Common.ModSystems.Hooks.Ons {
                     int damageResist = 0;
                     if (info.Leveled >= 0) { speed += 8; }
                     if (info.Leveled >= 1) { attackSpeed += 8; }
-                    if (info.Leveled >= 3) { drawPassive = true; drawDodge = true; }
+                    if (info.Leveled >= 3) { drawDodge = true; }
                     if (info.Leveled >= 3) { speed += 7; }
                     if (info.Leveled >= 4) { attackSpeed += 7; }
                     if (info.Leveled >= 5) { drawAura = true; }
@@ -69,15 +68,15 @@ namespace Synergia.Common.ModSystems.Hooks.Ons {
                     if (info.Leveled >= 8) { attackSpeed += 6; }
                     if (info.Leveled >= 9) { drawDash = true; }
                     if (info.Leveled == 10) { drawVampirism = true; }
-                    DrawTooltips(new Vector2(posTooltips.X, posTooltips.Y + maxScale + scale2), string.Format(Loc("MovmentBonus"), speed), false, Color.LightGreen); maxScale += 30;
-                    DrawTooltips(new Vector2(posTooltips.X, posTooltips.Y + maxScale + scale2), string.Format(Loc("ThrowingSpeedBonus"), attackSpeed), false, Color.PaleVioletRed); maxScale += 30;
+                    if (speed != 0) { DrawTooltips(new Vector2(posTooltips.X, posTooltips.Y + maxScale + scale2), string.Format(Loc("MovmentBonus"), speed), false, Color.LightGreen); maxScale += 30; }
+                    if (attackSpeed != 0) { DrawTooltips(new Vector2(posTooltips.X, posTooltips.Y + maxScale + scale2), string.Format(Loc("ThrowingSpeedBonus"), attackSpeed), false, Color.PaleVioletRed); maxScale += 30; }
                     if (damageResist != 0) { DrawTooltips(new Vector2(posTooltips.X, posTooltips.Y + maxScale + scale2), string.Format(Loc("DamageResist"), damageResist), false, Color.DodgerBlue); maxScale += 30; }
-                    if (drawPassive) { DrawTooltips(new Vector2(posTooltips.X + 60, posTooltips.Y + maxScale + scale2), $"------{Loc("Pasive")}------", false, Color.PaleGreen); maxScale += 30; } 
+                    if (drawDodge) { DrawTooltips(new Vector2(posTooltips.X + 60, posTooltips.Y + maxScale + scale2), $"------{Loc("Pasive")}------", false, Color.PaleGreen); maxScale += 30; } 
                     if (drawDodge) { DrawTooltips(new Vector2(posTooltips.X, posTooltips.Y + maxScale + scale2), "Dodge", color: Color.DarkSeaGreen); maxScale += 30; }
                     if (drawAura) { DrawTooltips(new Vector2(posTooltips.X, posTooltips.Y + maxScale + scale2), "Aura", color: Color.DarkSeaGreen); maxScale += 30; }
                     if (drawShot) { DrawTooltips(new Vector2(posTooltips.X, posTooltips.Y + maxScale + scale2), "Shot", color: Color.DarkSeaGreen); maxScale += 30; }
                     if (drawDash) { DrawTooltips(new Vector2(posTooltips.X, posTooltips.Y + maxScale + scale2), "Dash", color: Color.DarkSeaGreen); maxScale += 30; }
-                    if (drawVampirism) { DrawTooltips(new Vector2(posTooltips.X, posTooltips.Y + maxScale + scale2), "Vampirism", color: Color.DarkSeaGreen); }
+                    if (drawVampirism) { DrawTooltips(new Vector2(posTooltips.X, posTooltips.Y + maxScale + scale2), "Vampirism", color: Color.DarkSeaGreen); maxScale += 30; }
                 }
                 if (!drawShiftTooltips) { DrawTooltips(new Vector2(posTooltips.X, posTooltips.Y + 30), "PressShift", true, Color.Silver); }
                 if (!drawCtrlTooltips) {
@@ -85,11 +84,12 @@ namespace Synergia.Common.ModSystems.Hooks.Ons {
                     DrawTooltips(new Vector2(posTooltips.X, posTooltips.Y + maxScale + scale2), "PressCtrl", true, Color.Silver);
                 }
             }
+            if (info.Leveled != 10) {
+                float infoScale = !drawShiftTooltips ? 30 : 60; infoScale -= drawCtrlTooltips ? 30 : 0;
+                DrawTooltips(new Vector2(posTooltips.X, posTooltips.Y + maxScale + infoScale), "Info", color: Color.PaleVioletRed); // Plum // PaleVioletRed // DarkCyan // DeepPink
+            }
         }
-        static Vector2 DrawTooltips(Vector2 pos, string locKey, bool loc = true, Color? color = null) {
-            Color c = color ?? new(Main.mouseTextColor, Main.mouseTextColor, Main.mouseTextColor, 255);
-            return ChatManager.DrawColorCodedStringWithShadow(Main.spriteBatch, FontAssets.MouseText.Value, loc ? Loc(locKey) : locKey, pos, c, 0f, Vector2.Zero, Vector2.One);
-        }
+        static Vector2 DrawTooltips(Vector2 pos, string locKey, bool loc = true, Color? color = null) => ChatManager.DrawColorCodedStringWithShadow(Main.spriteBatch, FontAssets.MouseText.Value, loc ? Loc(locKey) : locKey, pos, color ?? new(Main.mouseTextColor, Main.mouseTextColor, Main.mouseTextColor, 255), 0f, Vector2.Zero, Vector2.One);
         static void DrawLevelTooltips(Vector2 posTooltips, Color color, AbstractBloodBuffInfo info) {
             DrawTooltips(posTooltips, "CurrentLevel");
             DrawTooltips(new Vector2(posTooltips.X + 10 + FontAssets.MouseText.Value.MeasureString(Loc("CurrentLevel")).X, posTooltips.Y), $"{info.Leveled}", false, color: color);

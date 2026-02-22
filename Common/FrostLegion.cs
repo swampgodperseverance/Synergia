@@ -1,4 +1,5 @@
-﻿using Synergia.Common.ModSystems;
+﻿// Code by 𝒜𝑒𝓇𝒾𝓈
+using Synergia.Common.ModSystems;
 using Synergia.Content.NPCs;
 using Synergia.Content.Projectiles.Other;
 using Synergia.GraphicsSetting;
@@ -18,7 +19,6 @@ namespace Synergia.Common;
 
 public class FrostLegion : ModEvent {
     readonly List<int> vanilla = [NPCID.SnowmanGangsta, NPCID.MisterStabby, NPCID.SnowBalla, NPCType<Coldmando>(), NPCType<MisterShotty>()];
-    bool preSpawn = false;
 
     public override void SettingEvent() {
         EventName = Lang.inter[87].Value;
@@ -43,6 +43,10 @@ public class FrostLegion : ModEvent {
             ActivePresentInSky(IsActive);
         }
     }
+    public override void PostUpdateWorld() {
+        base.PostUpdateWorld();
+        Main.LocalPlayer.ManageSpecialBiomeVisuals(SynegiyGraphics.PRESENTSKY, IsActive);
+    }
     public override void OnKillNPC(NPC npc, int currentWave) {
         if (currentWave != 2) {
             GetProgress(npc, EventEnemies, ref EventProgress, EventPoint);
@@ -55,19 +59,17 @@ public class FrostLegion : ModEvent {
         }
     }
     public override void SpawnNPC(ref IDictionary<int, float> pool, int currentWave) {
-        if (currentWave != 2) {
-            GetVanillaNPC(ref pool, currentWave);
-        }
+        pool.Clear();
+
+        if (currentWave != 2) { GetVanillaNPC(ref pool, currentWave); }
         switch (currentWave) {
-            case 0: EventHelper.SpawnNPC(ref pool, NPCType<Snowykaze>(), 0.45f); break;
-            case 1: Spawn(ref pool, NPCType<ElderSnowman>(), 0.30f); break;
-            case 2: Spawn2(ref pool, NPCType<ColdFather>(), 1f); pool.Remove(NPCType<Snowykaze>()); pool.Remove(NPCType<ElderSnowman>()); break;
+            case 0: EventHelper.SpawnNPC(ref pool, NPCType<Snowykaze>(), 0.01f); break;
+            case 1: Spawn(ref pool, NPCType<ElderSnowman>(), 0.02f); break;
+            case 2: Spawn2(ref pool, NPCType<ColdFather>(), 0.01f); break;
         }
     }
     public override void DoWave(int currentWave) {
-        if (!FistText) {
-            TextWave(currentWave, 143, 144, 145);
-        }
+        if (!FistText) { TextWave(currentWave, 143, 144, 145); }
         Main.LocalPlayer.ManageSpecialBiomeVisuals(SynegiyGraphics.PRESENTSKY, IsActive);
     }
     public override void OnNextWave(int currentWave) {
@@ -78,7 +80,6 @@ public class FrostLegion : ModEvent {
     }
     public override void OnEnd() {
         DownedBossSystem.CompleteNewFrostEvent = true;
-        preSpawn = false;
         Main.invasionSize = 0;
         Main.invasionSizeStart = 0;
         Main.invasionProgress = 0;
@@ -142,7 +143,7 @@ public class FrostLegion : ModEvent {
     void GetVanillaNPC(ref IDictionary<int, float> pool, int currentWave) {
         if (currentWave != 2) {
             for (int i = 0; i < 4; i++) {
-                EventHelper.SpawnNPC(ref pool, vanilla[i], 1f);
+                EventHelper.SpawnNPC(ref pool, vanilla[i], 0.02f);
             }
         }
     }

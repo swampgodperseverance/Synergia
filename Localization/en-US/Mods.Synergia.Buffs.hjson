@@ -25,4 +25,5 @@ BloodBuff: {
 	Shot: Chance for an additional projectile
 	Dash: Blood Dash
 	Vampirism: Vampirism effect
+	Info: Every 10% of the completed bestiary grants one level of buff.
 }
