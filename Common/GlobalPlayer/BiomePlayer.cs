@@ -1,4 +1,4 @@
-﻿// Code by 𝒜𝑒𝓇𝒾𝓈
+﻿// Code by SerNik
 using Terraria;
 using static Synergia.Common.ModSystems.WorldGens.SynergiaGenVars;
 

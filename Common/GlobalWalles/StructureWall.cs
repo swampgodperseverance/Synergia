@@ -1,4 +1,4 @@
-﻿// Code by 𝒜𝑒𝓇𝒾𝓈
+﻿// Code by SerNik
 using Bismuth.Content.Items.Other;
 using Synergia.Common.ModSystems.WorldGens;
 using Synergia.Helpers;

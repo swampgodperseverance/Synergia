@@ -1,4 +1,4 @@
-﻿// Code by 𝒜𝑒𝓇𝒾𝓈
+﻿// Code by SerNik
 using Bismuth.Utilities.ModSupport;
 using Synergia.Dataset;
 using System.Linq;

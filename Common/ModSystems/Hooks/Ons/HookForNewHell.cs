@@ -1,4 +1,4 @@
-﻿// Code by 𝒜𝑒𝓇𝒾𝓈
+﻿// Code by SerNik
 using Avalon.Biomes;
 using MonoMod.RuntimeDetour;
 using Synergia.Common.Biome;
@@ -13,15 +13,26 @@ using Terraria.GameContent;
 using Terraria.ID;
 using ValhallaMod.NPCs.TownNPCs;
 using Terraria.Localization;
+using System;
 
 namespace Synergia.Common.ModSystems.Hooks.Ons {
     public class HookForNewHell : ModSystem {
+        Hook roa;
         Hook avalonBg;
 
+        // RoA
+        delegate bool orig_IsBiomeActive(object type, Player player);
+        delegate bool orig_GetBiomeActive(orig_IsBiomeActive orig_GetBiomeActive, object type, Player player);
+        // Avalon
         delegate bool Orig_IsActive(CaesiumBlastplains caesiumBlastplains, Player player);
         delegate bool Get_IsActiveDetour(Orig_IsActive orig, CaesiumBlastplains caesiumBlastplains, Player player);
 
         public override void Load() {
+            if (ModLoader.TryGetMod("RoA", out Mod RoAMod)) {
+                Type BackwoodsBiomeClass = RoAMod.GetType().Assembly.GetType("RoA.Content.Biomes.Backwoods.BackwoodsBiome");
+                MethodInfo targetMethod = BackwoodsBiomeClass.GetMethod("IsBiomeActive", BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance);
+                roa = new Hook(targetMethod, (orig_GetBiomeActive)RoAIsBiomeActive);
+            }
             MethodInfo info = typeof(CaesiumBlastplains).GetMethod(nameof(CaesiumBlastplains.IsBiomeActive));
             avalonBg = new Hook(info, (Get_IsActiveDetour)NewLogic); // Disabled biome in Avalon;
             On_WorldGen.PlaceTile += On_WorldGen_PlaceTile; // Disabled Magic Ice if use item Ice Rood;
@@ -31,6 +42,11 @@ namespace Synergia.Common.ModSystems.Hooks.Ons {
             On_Mount.SetMount += On_Mount_SetMount; // Disabled mount;
             On_Main.DrawNPCHeadFriendly += On_Main_DrawNPCHeadFriendly; // Disabled draw Dwarf and HellDwarf icon if player didn't meet them
             On_Player.DropTombstone += On_Player_DropTombstone; // Disabled Tombstone if player dead in New Hell
+        }
+        bool RoAIsBiomeActive(orig_IsBiomeActive orig, object type, Player player) {
+            bool hellStruct = WorldHelper.CheckBiome(player, 237 + SynergiaGenVars.HellArenaPositionX - SynergiaGenVars.HellLakeX, 119, SynergiaGenVars.HellLakeX - 236, SynergiaGenVars.HellLakeY - 119);
+            if (hellStruct) { return false; }
+            else { return orig(type, player); }
         }
         bool NewLogic(Orig_IsActive orig, CaesiumBlastplains caesiumBlastplains, Player player) => false;
         bool On_WorldGen_PlaceTile(On_WorldGen.orig_PlaceTile orig, int i, int j, int Type, bool mute, bool forced, int plr, int style) {
@@ -112,6 +128,8 @@ namespace Synergia.Common.ModSystems.Hooks.Ons {
             else { orig(self, coinsOwned, deathText, hitDirection); }
         }
         public override void Unload() {
+            roa?.Dispose();
+            roa = null;
             avalonBg?.Dispose();
             avalonBg = null;
             On_WorldGen.PlaceTile -= On_WorldGen_PlaceTile;

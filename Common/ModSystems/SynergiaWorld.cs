@@ -1,4 +1,4 @@
-﻿// Code by 𝒜𝑒𝓇𝒾𝓈
+﻿// Code by SerNik
 using Synergia.Content.Items.Weapons.Summon;
 using Synergia.Helpers;
 using System.Collections.Generic;

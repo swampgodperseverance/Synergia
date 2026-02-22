@@ -1,4 +1,4 @@
-﻿// Code by 𝒜𝑒𝓇𝒾𝓈
+﻿// Code by SerNik
 using Synergia.Common.ModSystems;
 using Synergia.Content.NPCs;
 using Synergia.Content.Projectiles.Other;

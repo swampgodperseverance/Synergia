@@ -1,4 +1,4 @@
-﻿// Code by 𝒜𝑒𝓇𝒾𝓈
+﻿// Code by SerNik
 using Synergia.Common.GlobalPlayer;
 using Synergia.Content.Projectiles.Thrower;
 using System.Collections.Generic;

@@ -1,4 +1,4 @@
-﻿// Code by 𝒜𝑒𝓇𝒾𝓈
+﻿// Code by SerNik
 using Microsoft.Xna.Framework.Input;
 using Synergia.Common.BloodBuffSeting.Core;
 using Synergia.Content.Buffs;
