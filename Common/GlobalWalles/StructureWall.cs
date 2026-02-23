@@ -17,11 +17,14 @@ namespace Synergia.Common.GlobalWalles {
         static bool HellStructBlock(int i, int j) => WorldHelper.CheckBiomeTile(i, j, 237 + SynergiaGenVars.HellArenaPositionX - SynergiaGenVars.HellLakeX, 119, SynergiaGenVars.HellLakeX - 236, SynergiaGenVars.HellLakeY - 119);
         static bool SnowVillages(int i, int j) => SynergiaGenVars.VillageTiles.Contains(new Vector2(i, j));
         static bool BaseLogic(int i, int j) {
-            if (HellStructBlock(i, j) || SnowVillages(i, j)) {
-                if (Main.LocalPlayer.HasItem(ItemType<MasterToolBox>())) { return true; }
-                else { return false; }
+            if (!WorldGen.gen) {
+                if (HellStructBlock(i, j) || SnowVillages(i, j)) {
+                    if (Main.LocalPlayer.HasItem(ItemType<MasterToolBox>())) { return true; }
+                    else { return false; }
+                }
+                else { return true; }
             }
-            else { return true; }
+            else { return false; }
         }
     }
 }
