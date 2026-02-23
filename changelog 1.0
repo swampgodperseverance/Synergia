@@ -13,9 +13,10 @@ New enemy Elder Snowman was added.
 New enemy Hoodlum Swampling was added.
 New enemy Swampling Warrior was added.
 New enemy Frog Rider was added.
-New enemy Brothers Swamplings was added.
+New enemy Mischiveous Duo was added.
 Frost legion event was reworked.
-Hellheart Monolith was added.
+New background was added for the Frost Legion
+3 new types of presents were added, each with unique effects. 
 New weapon Belphegor was added.
 New weapon Seaborn was added.
 New weapon Orcish Swungo was added.
@@ -80,9 +81,32 @@ New dashing Eye of Chtulhu attack.
 New summoning Eye of Chtulhu attack.
 New Minotaur attack.
 New necromancer attack with the launch of swords.
+New papuan Wizard attack with the sucking hole.
+New papuan Wizard attack with Projectile shooting.
+New papuan Wizard minion's attack wit Projectile shooting.
 New necromancer attack with the cursed fireballs.
 New expert necromancer attack with reflective mirror.
 Hell Luceat was added.
+Banner for the Swampling was added.
+Banner for the Swampling Warrior was added.
+Banner for the Frog Rider was added.
+Banner for the Mischieovous Duo was added.
+Banner for the Elder Snowman Duo was added.
+Banner for the Snowykaze was added.
+Banner for the Overtaken was added.
+Banner for the Skelegon was added.
+Banner for the Sparky was added.
+Sinlord Wyrm now have a master pet.
+Embient event "The Mist" was added. After 3rd Hell Dwarf quest a Hellheart Monolith appears in the Beast Cave, screen around is dark, and zoom is on maximal value. The only one visible thing, the Monolith in the mist.
+New quest for the Hell Dwarven.
+Second quest forr the Hell Dwarven.
+Third quest for the Hell Dwarven.
+Fourth quest for the Hell Dwarven.
+New quest for theDwarven in the Tundra.
+Second quest for the Dwarven in the Tundra.
+Third quest for the Dwarven in the Tundra.
+New quest for the Hunter NPC from RoA.
+New quest for the Ninja.
 New sword swing system.
 New reforging system by SerNik was added.
 New recipes builder system by SerNik.
@@ -90,6 +114,9 @@ New recipes modification system by SerNik.
 Bloodbound buff tier system y SerNik was added.
 Bloodthirsty Thrower subclass was added.
 Combo Thrower subclass was added.
+New config for enabling new UIs.
+New config for movinh new UIs.
+New config for enabling new recipes.
 CHANGES/REWORKS
 Beast Bow from RoA was changed.(Attack Rework or Visual upgrade)
 Flaming Blade from Valhalla was changed.(Attack Rework or Visual upgrade)
@@ -107,8 +134,12 @@ Illuminant Batbow from Valhalla was changed.(Attack Rework or Visual upgrade)
 Jade Hwacha from Valhalla was changed.(Attack Rework or Visual upgrade)
 Jade Shortsword from Valhalla was changed.(Attack Rework or Visual upgrade)
 Jade Magic from Valhalla was changed.(Attack Rework or Visual upgrade)
-Kamek's wand from valhalla was changed.(Attack Rework or Visual upgrade)
+Kamek's wand from Valhalla was changed.(Attack Rework or Visual upgrade)
+Rising Tide from Valhalla was changed.(Attack Rework or Visual upgrade)
 Helios from Valhalla was changed.(Attack Rework or Visual upgrade)
+Derpfling Yo Yo from Valhalla was changed.(Attack Rework or Visual upgrade)
+Widows Whip from Valhalla was changed.(Attack Rework or Visual upgrade)
+Jungle Spores related content from Valhalla was changed.(Visual upgrade)  
 Laser Scissors from Valhalla were changed.(Attack Rework or Visual upgrade)
 Ice Slicer from Valhalla was changed.(Attack Rework or Visual upgrade)
 Paradox Sword from Valhalla was changed.(Attack Rework or Visual upgrade)
@@ -120,7 +151,11 @@ Jade spear from Valhalla was changed.(Attack Rework or Visual upgrade)
 Typhoon from Bismuth was changed.(Attack Rework or Visual upgrade)
 Fury of Waters from Bismuth was changed.(Attack Rework or Visual upgrade)
 Dwarven Battle Axe from Bismuth was changed.(Attack Rework or Visual upgrade)
-Solar wind from Bismuth was changed.(Attack Rework or Visual upgrade)
+Solar Wind from Bismuth was changed.(Attack Rework or Visual upgrade)
+Prominence from Bismuth was changed to the summon class.
+Prominence from Bismuth was changed.(Attack Rework or Visual upgrade)
+Moonlight Staff from Bismuth was changed to the summon class.
+Moonlight Staff from Bismuth was changed.(Attack Rework or Visual upgrade)
 Evil Narsil from Bismuth was changed.(Attack Rework or Visual upgrade)
 Bismuthum Crossbow from Bismuth was changed.(Attack Rework or Visual upgrade)
 Bismuthum glove from Bismuth was changed.(Attack Rework or Visual upgrade)
@@ -138,7 +173,8 @@ Aqua Impact effects were changed.(Avalon)
 Hellfire from Avalon was changed(Attack Rework or Visual upgrade)
 Sunstorm sprite was changed.(Avalon)
 Sunstorm effects were changed.(Avalon)
-Ferozium IceSword was completely reworked.
+Noxious Yo Yo from Avalon was changed.(Attack Rework or Visual upgrade)
+Ferozium IceSword from Avalon was completely reworked.
 Space cowboy from Horizon mod was changed.
 Shuriken is a bloodthirsty weapon now.
 Bloody Machete is a bloodthirsty weapon now.
@@ -251,6 +287,16 @@ Scarlet Gungnir from Horizonsis a Combo Charging weapon now.
 Blazing Saws from Horizons is a Combo Charging weapon now.
 Nano Star from Horizons is a Combo Charging weapon now.
 Crystal Grenade from Valhalla is a Combo Charging weapon now.
+Banshee Head was greatly nerfed. 
+Scroll of Chunin was completely reworked to the combo Accessory.
+Scroll of Genin was completely reworked to the combo Accessory.
+Scroll of Jonin was completely reworked to the combo Accessory.
+Berserker Ring was greatly nerfed.
 Sky Chest loot conditions was changed.
 Orcish Chest loot conditions was changed.
-
+Orcish Invasion was moved to the post-Lothor.
+Desert Beak was moved to the post-Lothor but still can be fought before.
+Hell Dying Debuff was moved to the post-Lothor.
+Valhallite Anvil was removed from the Frozen Dwarven's shop.
+Lancea was removed from the Imperial Warrior shop.
+Blunderbussin was added to the Arms Dealer shop after plantera's dead.
