@@ -117,7 +117,7 @@ Combo Thrower subclass was added.
 New config for enabling new UIs.
 New config for movinh new UIs.
 New config for enabling new recipes.
-CHANGES/REWORKS
+CHANGES/REWORKS/RESPRITES
 Beast Bow from RoA was changed.(Attack Rework or Visual upgrade)
 Flaming Blade from Valhalla was changed.(Attack Rework or Visual upgrade)
 Nebula Lyre from Valhalla was changed.(Attack Rework or Visual upgrade)
@@ -299,4 +299,28 @@ Desert Beak was moved to the post-Lothor but still can be fought before.
 Hell Dying Debuff was moved to the post-Lothor.
 Valhallite Anvil was removed from the Frozen Dwarven's shop.
 Lancea was removed from the Imperial Warrior shop.
-Blunderbussin was added to the Arms Dealer shop after plantera's dead.
+Blunderbussin was added to the Arms Dealer shop after plantera's death.
+Sinlord Wyrm was completely reworked.
+Sinlord Wyrm meteors were resprited.
+Sinlord Wyrm stalactites were resprited.
+Sinlord Wyrm Bone was resprited.
+Sinlord Wyrm got new head animation.
+Sinlord Wyrm summoning item was changed to the Unowen's dedicated item
+Menace Was resprited and reworked.
+Cleavage was resprited and reworked.
+Hellgate aura scythe was reworked.
+Pyroclast was resprited and reworked.
+Impact was resrpited and reworked.
+Jade Glaive was resprited and reworked.
+Precious Skull resprited and visuals upgrade.
+Caesium Skull resprited and visuals upgrade.
+Almost all long spears projs resprited, those are:
+-Adamantite Spear            -Overgrown Spear
+-Troxinium Spear             -Orichalkum Spear
+-Dark Lance                  -Gungnir
+-Marble Breaker              -Duratanium Spear
+-Mythril Spear               -Cobalt Spear
+-Palladium Spear             -Terra Spear
+Orcish Javelin was resprited
+Star Aura Staff was resprited
+
