@@ -9,7 +9,7 @@ namespace Synergia.Common.ModSystems.Hooks.ILs {
         ILHook ExtraMountCavesGeneratorILHook;
 
         public override void Load() {
-            LoadRoAHook();
+            //LoadRoAHook();
         }
         void LoadRoAHook() {
             if (ModLoader.TryGetMod("RoA", out Mod RoAMod)) {

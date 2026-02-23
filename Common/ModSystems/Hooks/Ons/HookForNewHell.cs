@@ -43,7 +43,7 @@ namespace Synergia.Common.ModSystems.Hooks.Ons {
             On_Player.DropTombstone += On_Player_DropTombstone; // Disabled Tombstone if player dead in New Hell
         }
         bool RoAIsBiomeActive(orig_IsBiomeActive orig, object type, Player player) {
-            bool hellStruct = WorldHelper.CheckBiome(player, 237 + SynergiaGenVars.HellArenaPositionX - SynergiaGenVars.HellLakeX, 119, SynergiaGenVars.HellLakeX - 236, SynergiaGenVars.HellLakeY - 140);
+            bool hellStruct = WorldHelper.CheckBiome(player, 237 + SynergiaGenVars.HellArenaPositionX - SynergiaGenVars.HellLakeX, 140, SynergiaGenVars.HellLakeX - 236, SynergiaGenVars.HellLakeY - 140);
             if (hellStruct) { return false; }
             else { return orig(type, player); }
         }
