@@ -1,15 +1,9 @@
 ﻿using Avalon.Common;
-using Avalon.Common.Extensions; 
 using Avalon.Common.Templates;
-using Avalon.Data.Sets;
-using Microsoft.Xna.Framework;
 using System;
 using Terraria;
 using Terraria.Audio;
-using Terraria.DataStructures;
 using Terraria.ID;
-using Terraria.Localization;
-using Terraria.ModLoader;
 
 namespace Synergia.Content.Projectiles.Reworks.AltUse
 {
