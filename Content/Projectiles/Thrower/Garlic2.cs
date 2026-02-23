@@ -2,7 +2,7 @@
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.Audio;
-using ValhallaMod.Projectiles.Thrown;
+using ValhallaMod.Projectiles.Ranged.Thrown;
 using ValhallaMod;
 using Terraria.ModLoader;
 

@@ -15,7 +15,7 @@ namespace Synergia.Content.Projectiles.Reworks.AltUse
 {
     public class ValhalliteSwordRework : MaceTemplate
     {
-        public override string Texture => "ValhallaMod/Items/Weapons/Sword/ValhalliteSword";
+        public override string Texture => "ValhallaMod/Items/Weapons/Melee/Swords/ValhalliteSword";
         public override string TrailTexture => "Synergia/Content/Projectiles/Reworks/AltUse/ValhalliteSwordRework";
 
         public override float ScaleMult => Projectile.ai[2] < 2 ? 1.3f : 1.1f;

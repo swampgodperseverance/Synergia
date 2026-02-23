@@ -1,10 +1,6 @@
-﻿using System;
-using Microsoft.Xna.Framework;
-using Terraria;
+﻿using Terraria;
 using Terraria.DataStructures;
-using Terraria.ModLoader;
 using ValhallaMod.Buffs.Cooldown;
-using ValhallaMod.Projectiles.Swing;
 
 namespace Synergia.Content.Items.Weapons.Melee
 {

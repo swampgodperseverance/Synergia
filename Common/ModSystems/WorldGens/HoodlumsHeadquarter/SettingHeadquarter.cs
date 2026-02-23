@@ -1,5 +1,4 @@
 ﻿// Code by SerNik
-using Bismuth.Utilities;
 using Terraria.WorldBuilding;
 
 namespace Synergia.Common.ModSystems.WorldGens.HoodlumsHeadquarter {

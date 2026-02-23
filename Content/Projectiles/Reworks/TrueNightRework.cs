@@ -149,7 +149,7 @@ namespace Synergia.Content.Projectiles.Reworks
                         Projectile.GetSource_FromThis(),
                         targetPos,
                         velocity,
-                        ModContent.ProjectileType<ValhallaMod.Projectiles.Spear.TrueDarkLanceProjectile>(),
+                        ModContent.ProjectileType<ValhallaMod.Projectiles.Melee.Spears.TrueDarkLanceProjectile>(),
                         Projectile.damage / 7,
                         Projectile.knockBack,
                         Projectile.owner

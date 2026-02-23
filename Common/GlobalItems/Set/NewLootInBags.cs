@@ -7,7 +7,7 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using TRAEBossRework.NewContent.Items.DreadItems.BossBag;
 using ValhallaMod.Items.Consumable.Bag;
-using ValhallaMod.Items.Weapons.Javelin;
+using ValhallaMod.Items.Weapons.Ranged.Javelins;
 using static Synergia.Helpers.ItemHelper;
 using static Terraria.ModLoader.ModContent;
 

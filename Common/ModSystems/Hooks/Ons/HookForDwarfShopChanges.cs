@@ -3,8 +3,8 @@ using System.Reflection;
 using Terraria;
 using ValhallaMod.Items.Accessory;
 using ValhallaMod.Items.Placeable.Brazier;
-using ValhallaMod.Items.Weapons.Aura;
-using ValhallaMod.Items.Weapons.Dart;
+using ValhallaMod.Items.Weapons.Summon.Auras;
+using ValhallaMod.Items.Weapons.Ranged.Darts;
 using ValhallaMod.NPCs.TownNPCs;
 
 namespace Synergia.Common.ModSystems.Hooks.Ons

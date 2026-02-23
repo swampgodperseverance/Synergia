@@ -9,10 +9,9 @@ using Consolaria.Content.Items.Materials;
 using Synergia.Content.Items.Misc;
 using Terraria.ID;
 using ValhallaMod.Items.Accessory.Shield;
-using ValhallaMod.Items.Material;
 using ValhallaMod.Items.Material.Bar;
 using ValhallaMod.Items.Placeable.Blocks;
-using static Terraria.ModLoader.ModContent;
+using ValhallaMod.Items.Material;
 
 namespace Synergia.Common.ModSystems.RecipeSystem.ChangesRecipe.AvalonsChanges {
     public partial class Avalons {
@@ -21,7 +20,7 @@ namespace Synergia.Common.ModSystems.RecipeSystem.ChangesRecipe.AvalonsChanges {
         public static int AFlowerlessPlant          { get; private set; } =          ItemType<AFlowerlessPlant>();
         public static int CloakofAssists            { get; private set; } =            ItemType<CloakofAssists>();
         public static int CreatorsTome              { get; private set; } =              ItemType<CreatorsTome>();
-        public static int DamagedBook               { get; private set; } =               ItemType<DamagedBook>();
+        public static int DamagedBook               { get; private set; } =              ItemType<TatteredBook>(); 
         public static int SoulofBlight              { get; private set; } =              ItemType<SoulofBlight>();
         public static int NecroBuckler              { get; private set; } =              ItemType<NecroBuckler>();
         public static int DullingTotem              { get; private set; } =              ItemType<DullingTotem>();

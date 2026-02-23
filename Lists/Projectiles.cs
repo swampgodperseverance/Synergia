@@ -1,30 +1,30 @@
 ﻿using Bismuth.Content.Projectiles;
 using NewHorizons.Content.Projectiles.Ranged;
 using NewHorizons.Content.Projectiles.Throwing;
-using ValhallaMod.Projectiles.Thrown;
-using System.Collections.Generic;
-using static Synergia.ModList;
-using Terraria.ID;
 using Synergia.Content.Projectiles.Friendly;
 using Synergia.Content.Projectiles.Reworks.Reworks2;
-using ValhallaMod.Projectiles.Boomerang;
 using Synergia.Content.Projectiles.Thrower;
+using System.Collections.Generic;
+using Terraria.ID;
+using ValhallaMod.Projectiles.Ranged.Thrown;
+using static Synergia.ModList;
 
 namespace Synergia.Lists {
     public static class Projectiles {
-       public static HashSet<int> ThrowingProj = [
-            ProjectileType<ValhallaMod.Projectiles.Boomerang.TeethBreaker>(),
-            ProjectileType<ValhallaMod.Projectiles.Glaive.CrimiteGlaive>(),
+        public static HashSet<int> ThrowingProj = [
+            Valhalla.Find<ModProjectile>("TeethBreaker").Type,
+            Valhalla.Find<ModProjectile>("CrimiteGlaive").Type,
+            Valhalla.Find<ModProjectile>("SnowGlaive").Type,
+            Valhalla.Find<ModProjectile>("OmegaDisc").Type,
+            Valhalla.Find<ModProjectile>("Garlic").Type,
             ProjectileType<AzraelsHeartstopper2>(),
             ProjectileType<Consolaria.Content.Projectiles.Friendly.AlbinoMandible>(),
-            ProjectileType<ValhallaMod.Projectiles.Glaive.SnowGlaive>(),
             ProjectileType<NewHorizons.Content.Projectiles.Throwing.NightGlaiveProj>(),
-            ProjectileType<NewHorizons.Content.Projectiles.Throwing.MythrilJavelinProj>(),
-            ProjectileType<NewHorizons.Content.Projectiles.Throwing.OrichalcumKamaProj>(),
+            ProjectileType<MythrilJavelinProj>(),
+            ProjectileType<OrichalcumKamaProj>(),
             ProjectileType<CarnwennanProj>(),
             ProjectileType<AdamantiteDaggerProj>(),
             ProjectileType<TitaniumWarhammerProj>(),
-            ProjectileType<ValhallaMod.Projectiles.Boomerang.OmegaDisc>(),
             ProjectileType<EverwoodJavelinProjectile>(),
             ProjectileType<CrystalDaggerProj>(),
             ProjectileType<PulsarProj>(),
@@ -32,7 +32,7 @@ namespace Synergia.Lists {
             ProjectileType<AirflowProjectile>(),
             ProjectileType<ChlorophytePiercerProj>(),
             ProjectileID.ThornChakram,
-            ProjectileType<ValhallaMod.Projectiles.Thrown.CactusStar>(), 
+            ProjectileType<CactusStar>(),
             ProjectileType<NanoStarProj>(),
             ProjectileType<BlazingSawsProj>(),
             ProjectileType<CrystalGrenadeProj>(),
@@ -47,7 +47,9 @@ namespace Synergia.Lists {
             ProjectileID.FruitcakeChakram,
             ProjectileType<ScarletGungnirProj>(),
             ProjectileType<LanceaP>(),
-            Valhalla.Find<ModProjectile>("Garlic").Type
+            ProjectileID.SnowBallFriendly,
+            ProjectileID.Trimarang,
+            ProjectileType<StalloyScrew>()
         ];
     }
 }

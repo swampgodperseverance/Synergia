@@ -5,7 +5,7 @@ using Terraria.Audio;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using ValhallaMod.Projectiles.Spear;
+using ValhallaMod.Projectiles.Melee.Spears;
 
 namespace Synergia.Content.Projectiles.Reworks
 {

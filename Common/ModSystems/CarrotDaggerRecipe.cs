@@ -1,6 +1,6 @@
 using Terraria;
 using Terraria.ModLoader;
-using ValhallaMod.Items.Weapons.Javelin;
+using ValhallaMod.Items.Weapons.Ranged.Javelins;
 
 namespace Synergia.Common.ModSystems
 {

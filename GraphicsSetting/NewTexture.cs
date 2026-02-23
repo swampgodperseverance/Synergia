@@ -3,7 +3,7 @@ using Avalon.Items.Weapons.Magic.Hardmode.Sunstorm;
 using Bismuth.Content.Items.Weapons.Throwing;
 using Bismuth.Content.Projectiles;
 using Terraria.GameContent;
-using ValhallaMod.Items.Weapons.Aura;
+using ValhallaMod.Items.Weapons.Summon.Auras;
 
 namespace Synergia.GraphicsSetting {
     public static class NewTexture {

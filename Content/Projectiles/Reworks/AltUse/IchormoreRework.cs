@@ -15,7 +15,7 @@ namespace Synergia.Content.Projectiles.Reworks.AltUse
 {
     public class IchormoreRework : MaceTemplate
     {
-        public override string Texture => "ValhallaMod/Items/Weapons/Sword/Ichormore";
+        public override string Texture => "ValhallaMod/Items/Weapons/Melee/Swords/Ichormore";
         public override string TrailTexture => "Synergia/Content/Projectiles/Reworks/AltUse/IchormoreRework";
 
         public override float ScaleMult

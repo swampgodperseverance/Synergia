@@ -6,7 +6,7 @@ using Terraria.GameContent;
 using Terraria.ID;
 using Terraria.ModLoader;
 using ValhallaMod.Projectiles.AI;
-using ValhallaMod.Projectiles.Thrown;
+using ValhallaMod.Projectiles.Ranged.Thrown;
 
 namespace Synergia.Content.Projectiles.Thrower
 {

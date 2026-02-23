@@ -4,7 +4,7 @@ using Terraria;
 using Terraria.DataStructures;
 using Synergia.Content.Projectiles.Thrower;
 using Terraria.ID;
-using ValhallaMod.Items.Weapons.Thrown;
+using ValhallaMod.Items.Weapons.Ranged.Thrown;
 
 namespace Synergia.Common.GlobalItems
 {

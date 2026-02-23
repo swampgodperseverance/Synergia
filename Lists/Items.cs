@@ -8,10 +8,10 @@ using Synergia.Content.Items.Weapons.Throwing;
 using System.Collections.Generic;
 using ValhallaMod.Items.Garden;
 using ValhallaMod.Items.Weapons.Blood;
-using ValhallaMod.Items.Weapons.Boomerang;
-using ValhallaMod.Items.Weapons.Glaive;
-using ValhallaMod.Items.Weapons.Javelin;
-using ValhallaMod.Items.Weapons.Thrown;
+using ValhallaMod.Items.Weapons.Melee.Boomerangs;
+using ValhallaMod.Items.Weapons.Melee.Glaives;
+using ValhallaMod.Items.Weapons.Ranged.Javelins;
+using ValhallaMod.Items.Weapons.Ranged.Thrown;
 using static Synergia.ModList;
 using static Terraria.ID.ItemID;
 

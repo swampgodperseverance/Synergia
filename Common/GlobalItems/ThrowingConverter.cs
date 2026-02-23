@@ -6,10 +6,10 @@ using Terraria;
 using Terraria.ID;
 using TRAEBossRework.NewContent.Items.DreadItems.ShellSpinner;
 using ValhallaMod.Items.Garden;
-using ValhallaMod.Items.Weapons.Boomerang;
-using ValhallaMod.Items.Weapons.Glaive;
-using ValhallaMod.Items.Weapons.Javelin;
-using ValhallaMod.Items.Weapons.Thrown;
+using ValhallaMod.Items.Weapons.Melee.Boomerangs;
+using ValhallaMod.Items.Weapons.Melee.Glaives;
+using ValhallaMod.Items.Weapons.Ranged.Javelins;
+using ValhallaMod.Items.Weapons.Ranged.Thrown;
 
 namespace Synergia.Common.GlobalItems
 {

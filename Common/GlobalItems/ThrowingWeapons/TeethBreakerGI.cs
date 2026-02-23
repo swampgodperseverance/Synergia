@@ -4,7 +4,7 @@ using Synergia.Content.Projectiles.Thrower;
 using Terraria;
 using Terraria.DataStructures;
 using Terraria.ModLoader;
-using ValhallaMod.Items.Weapons.Boomerang;
+using ValhallaMod.Items.Weapons.Melee.Boomerangs;
 
 namespace Synergia.Common.GlobalItems
 {

@@ -2,7 +2,7 @@
 using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
-using ValhallaMod.Items.Weapons.Spear;
+using ValhallaMod.Items.Weapons.Melee.Spears;
 using static Synergia.Lists.Items;
 
 namespace Synergia.Common.ModSystems.Hooks.Ons {

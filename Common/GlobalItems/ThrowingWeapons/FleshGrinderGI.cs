@@ -2,7 +2,7 @@
 using Synergia.Common.GlobalItems.ThrowingWeapons;
 using Synergia.Content.Projectiles.Thrower;
 using Terraria;
-using ValhallaMod.Items.Weapons.Glaive;
+using ValhallaMod.Items.Weapons.Melee.Glaives;
 using Terraria.DataStructures;
 using Terraria.ID;
 

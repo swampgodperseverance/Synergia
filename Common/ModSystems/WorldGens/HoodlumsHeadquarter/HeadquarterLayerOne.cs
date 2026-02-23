@@ -3,7 +3,6 @@ using Avalon.Tiles.Ores;
 using Bismuth.Content.Tiles;
 using Synergia.Helpers;
 using Terraria;
-using Terraria.ID;
 using Terraria.WorldBuilding;
 using static Bismuth.Utilities.BismuthWorld;
 using static Synergia.Common.ModSystems.WorldGens.SynergiaGenVars;

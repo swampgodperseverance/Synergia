@@ -137,7 +137,7 @@ namespace Synergia.Content.Projectiles.Reworks
                         Projectile.GetSource_FromThis(),
                         Main.player[Projectile.owner].Center,
                         perturbedDir,
-                        ModContent.ProjectileType<ValhallaMod.Projectiles.Spear.TrueGungirProjectile>(),
+                        ModContent.ProjectileType<ValhallaMod.Projectiles.Melee.Spears.TrueGungirProjectile>(),
                         Projectile.damage / 7,
                         Projectile.knockBack,
                         Projectile.owner
