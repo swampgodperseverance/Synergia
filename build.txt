@@ -1,4 +1,4 @@
 displayName = Synergia
-author = Swamp, Aeris
-version = 0.220
+author = Synergia Crew
+version = 1.0
 modReferences = starforgedclassic, RoA, Consolaria, ValhallaMod, TRAEBossRework, NewHorizons, Avalon, Bismuth, ParticleLibrary 
