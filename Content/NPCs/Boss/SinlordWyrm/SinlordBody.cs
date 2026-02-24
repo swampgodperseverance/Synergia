@@ -24,7 +24,7 @@ namespace Synergia.Content.NPCs.Boss.SinlordWyrm
 			if(ModLoader.TryGetMod("CalamityMod", out Mod calamity)) calamity.Call("SetDefenseDamageNPC", NPC, true);
 			NPC.lifeMax = 100000;
 			NPC.damage = 35;
-			NPC.defense = 165;
+			NPC.defense = 125;
 			NPC.noTileCollide = true;
 			NPC.noGravity = true;
 			NPC.HitSound = new SoundStyle($"{Mod.Name}/Assets/Sounds/CragwormHit2");
