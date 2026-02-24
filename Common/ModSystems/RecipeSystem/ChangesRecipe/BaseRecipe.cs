@@ -91,6 +91,17 @@ namespace Synergia.Common.ModSystems.RecipeSystem.ChangesRecipe {
                 recipe.requiredTile[^1] = tileType;
             }
         }
+        protected static void RemoveTiles(Recipe recipe, int tileType, int newTileType, params int[] createTypes)
+        {
+            foreach (int createType in createTypes)
+            {
+                if (recipe.createItem.type == createType)
+                {
+                    recipe.requiredTile.Remove(tileType);
+                    recipe.AddTile(newTileType);
+                }
+            }
+        }
         /// Шоркаты для создания рецептов, чтобы не нужно было каждый раз писать одно и то же.
         protected static void Recipes4(int target, int ingredient, int ingredient2, int ingredient3, int ingredient4, int tileType, byte count = 1, byte count2 = 1, byte count3 = 1, byte count4 = 1, byte targetCount = 1) {
             Recipe recipe = Recipe.Create(target, targetCount);
