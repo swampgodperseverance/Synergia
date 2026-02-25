@@ -23,7 +23,7 @@ namespace Synergia.Content.Projectiles.Boss.SinlordWyrm
 			Projectile.aiStyle = -1;
 			Projectile.extraUpdates = 7;
 			Projectile.timeLeft = 90;
-			Projectile.tileCollide = true;
+			Projectile.tileCollide = false;
 			Projectile.penetrate = -1;
 		}
 		public override void AI() {
@@ -42,32 +42,6 @@ namespace Synergia.Content.Projectiles.Boss.SinlordWyrm
 				Projectile.frameCounter = 0;
 			}
 			Projectile.frame = (int)Projectile.ai[1];
-		}
-		public override bool TileCollideStyle(ref int width, ref int height, ref bool fallThrough, ref Vector2 hitboxCenterFrac) {
-			fallThrough = true;
-			float hitboxSize = 15;
-			switch(Projectile.ai[1]) {
-				case 1:
-					hitboxSize += 9;
-				break;
-				case 2:
-					hitboxSize += 14;
-				break;
-				case 3:
-					hitboxSize += 23;
-				break;
-				case 4:
-					hitboxSize += 26;
-				break;
-				case 5:
-					hitboxSize += 28;
-				break;
-				case 6:
-					hitboxSize += 30;
-				break;
-			}
-			hitboxSize *= Projectile.scale;
-			return Collision.SolidCollision(Projectile.Center - new Vector2(hitboxSize), (int)(hitboxSize * 2f), (int)(hitboxSize * 2f));
 		}
 		public override bool CanHitPlayer(Player target) {
 			float hitboxSize = 15;
@@ -103,6 +77,5 @@ namespace Synergia.Content.Projectiles.Boss.SinlordWyrm
 			for(int k = 0; k < Projectile.oldPos.Length; k++) Main.EntitySpriteDraw(texture, Projectile.oldPos[k] + Projectile.Size * 0.5f - Main.screenPosition, new Rectangle(0, texture.Height / Main.projFrames[Projectile.type] * (int)MathHelper.Max(Projectile.frame - k / Main.projFrames[Projectile.type] / 2, 0), texture.Width, texture.Height / Main.projFrames[Projectile.type]), lightColor, -MathHelper.TwoPi * Main.GlobalTimeWrappedHourly + Projectile.rotation + k * MathHelper.PiOver4 / 3f, new Vector2(texture.Width, texture.Height / Main.projFrames[Projectile.type]) / 2, Projectile.scale, SpriteEffects.None, 0);
 			return false;
 		}
-		public override bool OnTileCollide(Vector2 oldVelocity) => false;
 	}
 }
