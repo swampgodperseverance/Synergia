@@ -173,7 +173,7 @@ namespace Synergia.Content.Projectiles.Thrower
                         Projectile.Center,
                         vel,
                         ModContent.ProjectileType<FlarionProj2>(),
-                        (int)(Projectile.damage * 0.7f),
+                        (int)(Projectile.damage * 0.5f),
                         Projectile.knockBack * 0.8f,
                         Projectile.owner
                     );

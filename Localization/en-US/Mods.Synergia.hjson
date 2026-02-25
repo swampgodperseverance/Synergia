@@ -853,6 +853,21 @@ Items: {
 		DisplayName: Hell Luceat
 		Tooltip: ""
 	}
+
+	CogBronze: {
+		DisplayName: Cog Bronze
+		Tooltip: ""
+	}
+
+	BronzeDrill: {
+		DisplayName: Bronze Drill
+		Tooltip: ""
+	}
+
+	TurretToolBronze: {
+		DisplayName: Turret Tool Bronze
+		Tooltip: ""
+	}
 }
 
 Projectiles: {
@@ -1208,6 +1223,8 @@ Projectiles: {
 	ShadowBeamRework.DisplayName: Shadow Beam Rework
 	LifesAura.DisplayName: Lifes Aura
 	BloodProjectile.DisplayName: Blood Projectile
+	TurretBronze.DisplayName: Turret Bronze
+	BronzeDrillProj.DisplayName: Bronze Drill Proj
 }
 
 Buffs: {

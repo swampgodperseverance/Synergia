@@ -14,7 +14,7 @@ namespace Synergia.Common.GlobalItems
         public override bool NewBehavior(Item item, Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback) {
             int newType = ModContent.ProjectileType<FlarionProj3>();
             velocity *= 1.2f;
-            damage = (int)(damage * 1.2f);
+            damage = (int)(damage * 0.8f);
             knockback *= 1.2f;
             Projectile.NewProjectile(source, position, velocity, newType, damage, knockback, player.whoAmI);
             return false;
