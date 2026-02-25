@@ -9,7 +9,11 @@ using Terraria.Graphics.CameraModifiers;
 using System;
 using System.IO;
 using System.Collections.Generic;
+using Synergia.Content.Items.Misc;
+using Synergia.Content.Items.Placeable;
+using Synergia.Content.Items.Weapons.Cogworm;
 using Synergia.Content.Projectiles.Boss.SinlordWyrm;
+using ValhallaMod.Items.Placeable.Blocks;
 
 namespace Synergia.Content.NPCs.Boss.SinlordWyrm
 {
@@ -602,3 +606,4 @@ namespace Synergia.Content.NPCs.Boss.SinlordWyrm
 		public override bool CheckActive() => !NPC.active || NPC.target < 0 || Main.player[NPC.target].dead;
 	}
 }
+
