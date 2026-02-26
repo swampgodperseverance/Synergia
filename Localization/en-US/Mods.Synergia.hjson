@@ -868,6 +868,11 @@ Items: {
 		DisplayName: Turret Tool Bronze
 		Tooltip: ""
 	}
+
+	Lavinator: {
+		DisplayName: Lavinator
+		Tooltip: ""
+	}
 }
 
 Projectiles: {
@@ -1225,6 +1230,14 @@ Projectiles: {
 	BloodProjectile.DisplayName: Blood Projectile
 	TurretBronze.DisplayName: Turret Bronze
 	BronzeDrillProj.DisplayName: Bronze Drill Proj
+	SinlordFireEruption.DisplayName: Sinlord Fire Eruption
+	SinlordEffects.DisplayName: Sinlord Effects
+	SinlordDash.DisplayName: Sinlord Dash
+	FireWhirl.DisplayName: Fire Whirl
+	FireSwirl.DisplayName: Fire Swirl
+	LavinatorDart.DisplayName: Lavinator Dart
+	LavinatorFlash.DisplayName: Lavinator Flash
+	LavinatorMicroBurst.DisplayName: Lavinator Micro Burst
 }
 
 Buffs: {

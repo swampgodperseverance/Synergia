@@ -28,7 +28,7 @@ namespace Synergia.Content.Projectiles.Reworks
             Projectile.friendly = true;
             Projectile.DamageType = DamageClass.Ranged;
             Projectile.tileCollide = true;
-            Projectile.penetrate = -1;
+            Projectile.penetrate = 3;
             Projectile.timeLeft = 300;
             Projectile.extraUpdates = 1;
             Projectile.alpha = 0;

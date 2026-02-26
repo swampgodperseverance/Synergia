@@ -10,6 +10,7 @@ using System;
 using System.IO;
 using System.Collections.Generic;
 using Synergia.Content.Items.Misc;
+using Terraria.GameContent.ItemDropRules;
 using Synergia.Content.Items.Placeable;
 using Synergia.Content.Items.Weapons.Cogworm;
 using Synergia.Content.Projectiles.Boss.SinlordWyrm;

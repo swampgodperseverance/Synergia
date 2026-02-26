@@ -28,14 +28,14 @@ namespace Synergia.Content.Global
         {
             if (AppliesToEntity(entity, false))
             {
-                entity.useTime /= 2;
-                entity.useAnimation /= 2;
+                entity.useTime /= 1;
+                entity.useAnimation /= 1;
 
-                if (entity.useTime < 2)
-                    entity.useTime = 2;
+                if (entity.useTime < 1)
+                    entity.useTime = 1;
 
-                if (entity.useAnimation < 2)
-                    entity.useAnimation = 2;
+                if (entity.useAnimation < 1)
+                    entity.useAnimation = 1;
             }
         }
 

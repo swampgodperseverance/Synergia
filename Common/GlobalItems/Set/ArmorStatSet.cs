@@ -122,7 +122,6 @@ namespace Synergia.Common.GlobalItems.Set
 				if (item.type == valhalla.Find<ModItem>("SniperLegs").Type)
 				{
 					player.GetDamage(DamageClass.Ranged) += 0.05f;
-					player.GetAttackSpeed(DamageClass.Ranged) += 0.10f;
 					player.GetDamage(DamageClass.Melee) -= 0.11f;
 				}
 				
