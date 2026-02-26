@@ -1,17 +1,20 @@
 ﻿using Bismuth.Content.Buffs;
+using Synergia.Common.Biome;
 using Synergia.Content.Buffs;
 using Terraria;
 
 namespace Synergia.Common {
     public partial class EditSound {
         public class PeacefulTown : ModSceneEffect {
-            public override int Music => MusicLoader.GetMusicSlot(GetSongByName2("PeacefulTownV2"));
+            string song;
+            public override int Music => MusicLoader.GetMusicSlot(GetSongByName2(song));
             public override SceneEffectPriority Priority => SceneEffectPriority.BossHigh;
             public override bool IsSceneEffectActive(Player player) {
-                if (player == null || !player.active) {
-                    return false;
-                }
-                return player.HasBuff<AuraOfEmpire>() || player.HasBuff<SnowVillageBuff>();
+                bool resolute = false;
+                if (player == null || !player.active) { return false; }
+                if (player.HasBuff<AuraOfEmpire>() || player.HasBuff<SnowVillageBuff>()) { song = "PeacefulTownV2"; resolute = true; }
+                if (player.InModBiome<NewHell>()) { song = "InfernoFrontierSoundtrack"; resolute = true; }
+                return resolute;
             }
         }
     }

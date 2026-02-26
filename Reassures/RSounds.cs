@@ -28,6 +28,7 @@ namespace Synergia.Reassures {
     public class RegisterNewSongPatch : ILoadable {
         public void Load(Mod mod) {
             MusicLoader.AddMusic(mod, "Assets/Sounds/PeacefulTownV2");
+            MusicLoader.AddMusic(mod, "Assets/Sounds/InfernoFrontierSoundtrack");
         }
         public void Unload() { }
     }
