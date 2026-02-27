@@ -1238,6 +1238,11 @@ Projectiles: {
 	LavinatorDart.DisplayName: Lavinator Dart
 	LavinatorFlash.DisplayName: Lavinator Flash
 	LavinatorMicroBurst.DisplayName: Lavinator Micro Burst
+	BurningBeam.DisplayName: Burning Beam
+	Hellheart.DisplayName: Hellheart
+	HellheartFlame.DisplayName: Hellheart Flame
+	SinlordFireProminence.DisplayName: Sinlord Fire Prominence
+	LavaInfernalGlow.DisplayName: Lava Infernal Glow
 }
 
 Buffs: {

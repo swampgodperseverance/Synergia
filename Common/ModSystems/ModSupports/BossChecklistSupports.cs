@@ -23,7 +23,7 @@ namespace Synergia.Common.ModSystems.ModSupports {
             bossChecklistMod.Call(type, Mod, internalName, weight, downed, bossType, new Dictionary<string, object>() { ["spawnItems"] = new List<int> { spawnItem }, ["customPortrait"] = customPortrait});
         }
         static Action<SpriteBatch, Rectangle, Color> CustomPortrait(string name, float size) {
-            return (sb, rect, color) => { Texture2D texture = Request<Texture2D>($"Synergia/Content/NPCs/{name}").Value; 
+            return (sb, rect, color) => { Texture2D texture = Request<Texture2D>($"Synergia/Assets/Textures/{name}").Value; 
                 Vector2 centered = new(rect.X + rect.Width / 2f, rect.Y + rect.Height / 2f); 
                 sb.Draw(texture, centered, null, color, 0f, texture.Size() / 2f, size, SpriteEffects.None, 0f); 
             };
