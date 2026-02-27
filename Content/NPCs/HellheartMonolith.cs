@@ -194,7 +194,7 @@ namespace Synergia.Content.NPCs
                     (int)NPC.Center.Y - 100,
                     ModContent.NPCType<NPCs.Boss.SinlordWyrm.Sinlord>()
                 );
-
+                Projectile.NewProjectile(NPC.GetSource_Death(), NPC.Center, Vector2.Zero, ModContent.ProjectileType<Content.Projectiles.Boss.SinlordWyrm.Hellheart>(), 0, 0f, Main.myPlayer, sinlord);
                 if (Main.netMode == NetmodeID.Server)
                 {
                     NetMessage.SendData(MessageID.SyncNPC, -1, -1, null, sinlord);
