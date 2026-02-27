@@ -7,10 +7,11 @@ using Terraria;
 namespace Synergia.Common.GlobalWalles {
     public class StructureWall : GlobalWall {
         public override void KillWall(int i, int j, int type, ref bool fail) {
-            if (BaseLogic(i, j)) {
-                fail = true;
-                Main.tile[i, j].WallType = (ushort)type;
+            if (HellStructBlock(i, j) || SnowVillages(i, j)) {
+                if (Main.LocalPlayer.HasItem(ItemType<MasterToolBox>())) { base.KillWall(i, j, type, ref fail); }
+                else { fail = true; Main.tile[i, j].WallType = (ushort)type; }
             }
+            else { base.KillWall(i, j, type, ref fail); }
         }
         public override bool Drop(int i, int j, int type, ref int dropType) => BaseLogic(i, j);
         public override bool CanExplode(int i, int j, int type) => BaseLogic(i, j);
