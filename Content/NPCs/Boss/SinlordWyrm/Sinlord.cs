@@ -2,6 +2,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;
 using Terraria.ID;
+using Terraria.GameContent.ItemDropRules;
 using Terraria.DataStructures;
 using Terraria.ModLoader;
 using Terraria.Audio;
@@ -10,7 +11,6 @@ using System;
 using System.IO;
 using System.Collections.Generic;
 using Synergia.Content.Items.Misc;
-using Terraria.GameContent.ItemDropRules;
 using Synergia.Content.Items.Placeable;
 using Synergia.Content.Items.Weapons.Cogworm;
 using Synergia.Content.Projectiles.Boss.SinlordWyrm;
@@ -21,7 +21,7 @@ namespace Synergia.Content.NPCs.Boss.SinlordWyrm
 	[AutoloadBossHead]
 	public class Sinlord : ModNPC
 	{
-		private bool allowPhase2Transition = false;
+		private bool allowPhaseTransition = false;
 		private bool openMouth = false;
 		private bool playScreenshake = false;
 		internal Vector2 storedPos = Vector2.Zero;
@@ -41,6 +41,7 @@ namespace Synergia.Content.NPCs.Boss.SinlordWyrm
 			NPC.boss = true;
 			NPC.npcSlots = 6f;
 			NPC.Size = new Vector2(80f * NPC.scale);
+			NPC.HitSound = new SoundStyle($"{Mod.Name}/Assets/Sounds/CragwormHit2");
 			NPC.aiStyle = -1;
 		}
 		public override void ApplyDifficultyAndPlayerScaling(int numPlayers, float balance, float bossAdjustment) {
@@ -105,14 +106,23 @@ namespace Synergia.Content.NPCs.Boss.SinlordWyrm
 				}
 				NPC.netUpdate = true;
 			}
-			bool phase2 = NPC.life < NPC.lifeMax * (Main.expertMode ? 0.75 : 0.5);
+			bool phase2 = Main.expertMode || NPC.ai[0] > 6f;
 			Vector2 targetPos = Main.player[NPC.target].Center;
 			Vector2 shootDir = targetPos - NPC.Center;
 			int projectileDamage = NPC.damage;
 			if(Main.masterMode) projectileDamage /= 3;
 			else if(Main.expertMode) projectileDamage /= 2;
 			bool playScreenshake = Collision.SolidCollision(NPC.position, NPC.width, NPC.height);
-			if(Main.expertMode && NPC.life < NPC.lifeMax * 0.35 && NPC.ai[0] < 6f && (allowPhase2Transition || NPC.ai[1] == 0f) && NPC.ai[0] != -1f) {
+			if(Main.expertMode && NPC.life < NPC.lifeMax * 0.35 && NPC.ai[0] < 13f && (allowPhaseTransition || NPC.ai[1] == 0f) && NPC.ai[0] != -1f) {
+				NPC.ai[0] = 13f;
+				NPC.ai[1] = 0f;
+				NPC.ai[2] = 0f;
+				NPC.ai[3] = 0f;
+				NPC.dontTakeDamage = true;
+				openMouth = false;
+				NPC.netUpdate = true;
+			}
+			else if(NPC.life < NPC.lifeMax * 0.6 && NPC.ai[0] < 6f && (allowPhaseTransition || NPC.ai[1] == 0f) && NPC.ai[0] != -1f) {
 				NPC.ai[0] = 6f;
 				NPC.ai[1] = 0f;
 				NPC.ai[2] = 0f;
@@ -142,7 +152,7 @@ namespace Synergia.Content.NPCs.Boss.SinlordWyrm
 						NPC.StrikeInstantKill();
 						foreach(int i in segments) if(Main.npc[i].active) Main.npc[i].StrikeInstantKill();
 					}
-					allowPhase2Transition = false;
+					allowPhaseTransition = false;
 					NPC.velocity *= 0.95f;
 				break;
 				case 0:
@@ -164,7 +174,7 @@ namespace Synergia.Content.NPCs.Boss.SinlordWyrm
 						}
 					}
 					NPC.ai[0]++;
-					allowPhase2Transition = false;
+					allowPhaseTransition = false;
 					NPC.dontTakeDamage = true;
 					NPC.netUpdate = true;
 				break;
@@ -196,7 +206,7 @@ namespace Synergia.Content.NPCs.Boss.SinlordWyrm
 						NPC.velocity += shootDir.SafeNormalize(NPC.velocity) * (1f - (NPC.ai[1] - 30f) / 30f);
 						NPC.velocity *= 0.95f;
 					}
-					allowPhase2Transition = false;
+					allowPhaseTransition = false;
 				break;
 				case 2:
 					NPC.dontTakeDamage = false;
@@ -206,7 +216,7 @@ namespace Synergia.Content.NPCs.Boss.SinlordWyrm
 					}
 					float actualAttackTime = masterMode ? 90f : 120f;
 					if(NPC.ai[1] < actualAttackTime) {
-						allowPhase2Transition = true;
+						allowPhaseTransition = true;
 						playScreenshake = false;
 						if(NPC.ai[1] < 30f && phase2 && NPC.ai[3] == 2f) NPC.ai[3]++;
 						float distance = shootDir.Length();
@@ -215,7 +225,7 @@ namespace Synergia.Content.NPCs.Boss.SinlordWyrm
 					}
 					else if(NPC.ai[1] < actualAttackTime + 30f) {
 						playScreenshake = false;
-						allowPhase2Transition = NPC.ai[3] < 3f;
+						allowPhaseTransition = NPC.ai[3] < 3f;
 						openMouth = (int)(NPC.ai[1] / 6) % 2 == 0;
 						if(NPC.ai[3] < 3f) NPC.localAI[0] = 0f;
 						else NPC.localAI[0] = (NPC.ai[1] - actualAttackTime) / 30f;
@@ -224,7 +234,7 @@ namespace Synergia.Content.NPCs.Boss.SinlordWyrm
 					else if(NPC.ai[1] < actualAttackTime + 90f) {
 						if(NPC.ai[1] == actualAttackTime + 30f) SoundEngine.PlaySound(SoundID.Item46 with { SoundLimitBehavior = SoundLimitBehavior.ReplaceOldest, Pitch = -0.4f, Volume = 4f }, NPC.Center);
 						openMouth = true;
-						allowPhase2Transition = false;
+						allowPhaseTransition = false;
 						NPC.localAI[0] = (float)Math.Sin((NPC.ai[1] - actualAttackTime - 30f) * MathHelper.Pi / 60f);
 						NPC.velocity = Vector2.Normalize(NPC.velocity) * (NPC.localAI[0] * 28f + 4f);
 						if(NPC.ai[3] < 3f) NPC.localAI[0] *= 0.25f;
@@ -274,7 +284,7 @@ namespace Synergia.Content.NPCs.Boss.SinlordWyrm
 					playScreenshake = false;
 					openMouth = NPC.ai[1] > 90f && NPC.ai[1] < 150f;
 					if(!openMouth) {
-						allowPhase2Transition = !phase2 || NPC.ai[3] < 2f;
+						allowPhaseTransition = !phase2 || NPC.ai[3] < 2f;
 						if(phase2 && NPC.ai[3] == 2f) if(NPC.ai[1] <= 90f) {
 							NPC.localAI[0] = NPC.ai[1] / 90f;
 							if(Main.netMode != 1 && NPC.ai[1] < 72f) Projectile.NewProjectile(NPC.GetSource_FromAI(), NPC.Center, Main.rand.NextVector2Circular(64f, 64f), ModContent.ProjectileType<SinlordEffects>(), 0, 0f, Main.myPlayer, NPC.whoAmI);
@@ -289,7 +299,7 @@ namespace Synergia.Content.NPCs.Boss.SinlordWyrm
 						if(NPC.ai[0] == 9f && NPC.ai[3] == 2f && NPC.ai[1] < 90f) NPC.ai[1]++;
 					}
 					else {
-						allowPhase2Transition = false;
+						allowPhaseTransition = false;
 						if(phase2 && NPC.ai[3] < 2f) NPC.velocity += shootDir.SafeNormalize(NPC.velocity) * 0.05f;
 						if(Main.netMode != 1) if(phase2 && NPC.ai[3] == 2f) {
 							for(int i = -4; i <= 4; i++) Projectile.NewProjectile(NPC.GetSource_FromAI(), NPC.Center + NPC.rotation.ToRotationVector2() * NPC.height / 3, NPC.velocity.SafeNormalize(NPC.rotation.ToRotationVector2()).RotatedBy(MathHelper.ToRadians(i * 3f)) * 9f, ModContent.ProjectileType<SinlordFireBreath>(), projectileDamage / 4, 0f, Main.myPlayer);
@@ -326,17 +336,17 @@ namespace Synergia.Content.NPCs.Boss.SinlordWyrm
 				break;
 				case 4:
 					if(shootDir.Length() > 800) {
-						allowPhase2Transition = false;
+						allowPhaseTransition = false;
 						NPC.ai[2] = 0f;
 						NPC.velocity += shootDir.SafeNormalize(NPC.oldVelocity);
 						NPC.velocity *= 0.95f;
 					}
 					else if(NPC.velocity.Length() < 16f) {
-						allowPhase2Transition = false;
+						allowPhaseTransition = false;
 						NPC.velocity *= 1.05f;
 					}
 					else {
-						allowPhase2Transition = true;
+						allowPhaseTransition = true;
 						NPC.velocity = NPC.velocity.RotatedBy((float)Math.Sin(NPC.ai[2] * 0.025f * MathHelper.TwoPi) * MathHelper.ToRadians(2.5f));
 						if(NPC.ai[1] > 570f && NPC.velocity.Length() > 4f) NPC.velocity *= 0.96f;
 						if(++NPC.ai[2] > 40f) NPC.ai[2] = 0f;
@@ -361,7 +371,7 @@ namespace Synergia.Content.NPCs.Boss.SinlordWyrm
 				case 5:
 				case 11:
 					playScreenshake = false;
-					allowPhase2Transition = true;
+					allowPhaseTransition = true;
 					if(NPC.ai[2] == 0f) {
 						NPC.ai[2] = -Math.Sign(shootDir.X);
 						NPC.netUpdate = true;
@@ -414,6 +424,7 @@ namespace Synergia.Content.NPCs.Boss.SinlordWyrm
 					}
 				break;
 				case 7:
+					allowPhaseTransition = true;
 					playScreenshake = false;
 					if(NPC.ai[2] == 0f && Main.netMode != 1) {
 						NPC.ai[2] = Main.rand.NextBool() ? 1f : -1f;
@@ -448,6 +459,7 @@ namespace Synergia.Content.NPCs.Boss.SinlordWyrm
 						break;
 					}
 					if(NPC.ai[1] < 0f) NPC.ai[1] = 0f;
+					allowPhaseTransition = false;
 					if(NPC.ai[1] < 30f) {
 						openMouth = (int)(NPC.ai[1] / 6) % 2 == 0;
 						NPC.localAI[0] = NPC.ai[1] / 30f;
@@ -493,12 +505,15 @@ namespace Synergia.Content.NPCs.Boss.SinlordWyrm
 						NPC.ai[2] = Math.Abs(shootDir.X) > Math.Abs(shootDir.Y) ? 1f : -1f;
 						NPC.netUpdate = true;
 					}
+					allowPhaseTransition = false;
 					if(NPC.ai[1] < 30f) {
+						allowPhaseTransition = true;
 						playScreenshake = false;
 						NPC.velocity += -shootDir.SafeNormalize(-NPC.velocity) * 0.93f;
 						NPC.velocity *= 0.97f;
 					}
 					else if(NPC.ai[1] < 90f) {
+						allowPhaseTransition = true;
 						playScreenshake = false;
 						NPC.velocity += (targetPos - (NPC.ai[2] > 0f ? Math.Sign(shootDir.X) * Vector2.UnitX : Math.Sign(shootDir.Y) * Vector2.UnitY) * 800f - NPC.Center) * 0.0026f;
 						NPC.velocity *= 0.94f;
@@ -508,10 +523,10 @@ namespace Synergia.Content.NPCs.Boss.SinlordWyrm
 						NPC.velocity = (NPC.ai[2] > 0f ? Math.Sign(shootDir.X) * Vector2.UnitX : Math.Sign(shootDir.Y) * Vector2.UnitY) * 48f;
 						if(Main.netMode != 1) {
 							Projectile.NewProjectile(NPC.GetSource_FromAI(), new Vector2(NPC.ai[2] > 0f ? targetPos.X - Math.Sign(shootDir.X) * 1200f : NPC.Center.X, NPC.ai[2] < 0f ? targetPos.Y - Math.Sign(shootDir.Y) * 1200f : NPC.Center.Y), NPC.velocity, ModContent.ProjectileType<SinlordDash>(), 0, 0f, Main.myPlayer);
-							foreach(int i in segments) if(Main.rand.NextBool(2) || masterMode) Projectile.NewProjectile(NPC.GetSource_FromAI(), Main.npc[i].Center + NPC.velocity, Vector2.UnitY.RotatedBy(Main.npc[i].rotation) * (Main.rand.NextBool(2) ? -4f : 4f), ModContent.ProjectileType<HellMeteor3>(), projectileDamage / 3, 0f, Main.myPlayer, NPC.target + 1, Main.rand.Next(30, 91));
+							if(NPC.ai[3] < 3f) foreach(int i in segments) if(Main.rand.NextBool(2) || masterMode) Projectile.NewProjectile(NPC.GetSource_FromAI(), Main.npc[i].Center + NPC.velocity, Vector2.UnitY.RotatedBy(Main.npc[i].rotation) * (Main.rand.NextBool(2) ? -4f : 4f), ModContent.ProjectileType<HellMeteor3>(), projectileDamage / 3, 0f, Main.myPlayer, NPC.target + 1, Main.rand.Next(30, 91));
 							Projectile.NewProjectile(NPC.GetSource_FromAI(), NPC.Center + NPC.rotation.ToRotationVector2() * NPC.height / 3, Vector2.Zero, ModContent.ProjectileType<BurningScream>(), 0, 0f, Main.myPlayer, 20f);
 						}
-						SoundEngine.PlaySound(SoundID.Item20 with { SoundLimitBehavior = SoundLimitBehavior.ReplaceOldest, Pitch = -0.8f, Volume = 4f }, NPC.Center);
+						if(NPC.ai[3] < 3f) SoundEngine.PlaySound(SoundID.Item20 with { SoundLimitBehavior = SoundLimitBehavior.ReplaceOldest, Pitch = -0.8f, Volume = 4f }, NPC.Center);
 						NPC.netUpdate = true;
 					}
 					if(++NPC.ai[1] > 120f) {
@@ -527,6 +542,7 @@ namespace Synergia.Content.NPCs.Boss.SinlordWyrm
 					}
 				break;
 				case 12:
+					allowPhaseTransition = false;
 					playScreenshake = false;
 					if(NPC.ai[1] == 0f && NPC.Distance(targetPos) > 480f) {
 						NPC.velocity += (targetPos - NPC.Center).SafeNormalize(NPC.velocity);
@@ -541,7 +557,7 @@ namespace Synergia.Content.NPCs.Boss.SinlordWyrm
 							storedPos = NPC.Center;
 							if(Main.netMode != 1) Projectile.NewProjectile(NPC.GetSource_FromAI(), storedPos, Vector2.Zero, ModContent.ProjectileType<FireWhirl>(), projectileDamage, 0f, Main.myPlayer, NPC.whoAmI + 1, 480f, 4f);
 						}
-						if(NPC.ai[1] % 10f == 0f && Main.netMode != 1) Projectile.NewProjectile(NPC.GetSource_FromAI(), storedPos, Main.rand.NextVector2Circular(1f, 1f), ModContent.ProjectileType<FireSwirl>(), projectileDamage / 2, 0f, Main.myPlayer, -NPC.ai[2]);
+						if(NPC.ai[1] > 20f && NPC.ai[1] % 10f == 0f && Main.netMode != 1) Projectile.NewProjectile(NPC.GetSource_FromAI(), storedPos, Main.rand.NextVector2Circular(1f, 1f), ModContent.ProjectileType<FireSwirl>(), projectileDamage / 2, 0f, Main.myPlayer, -NPC.ai[2]);
 						float distance = shootDir.Length();
 						float offset = MathHelper.Clamp(distance - 128f, -40f, 40f);
 						NPC.velocity = Vector2.Normalize(shootDir).RotatedBy(MathHelper.ToRadians(MathHelper.Min(90f, NPC.ai[1] * 3f) - offset) * NPC.ai[2]) * 24f;
@@ -553,6 +569,184 @@ namespace Synergia.Content.NPCs.Boss.SinlordWyrm
 						NPC.ai[2] = 0f;
 						NPC.ai[3] = 0f;
 						NPC.localAI[0] = 0f;
+						NPC.netUpdate = true;
+						NPC.TargetClosest();
+					}
+				break;
+				case 13:
+					playScreenshake = false;
+					if(NPC.ai[1] == 0f) NPC.dontTakeDamage = true;
+					if(++NPC.ai[1] > 60f) {
+						NPC.dontTakeDamage = false;
+						NPC.ai[0]++;
+						NPC.ai[1] = 0f;
+						NPC.ai[2] = 0f;
+						NPC.localAI[0] = 0.5f;
+						NPC.netUpdate = true;
+						openMouth = false;
+						NPC.TargetClosest();
+					}
+					NPC.localAI[0] = (float)Math.Abs(Math.Sin(NPC.ai[1] / 30f * MathHelper.TwoPi)) * 0.5f + NPC.ai[1] / 120f;
+					NPC.velocity += shootDir.SafeNormalize(NPC.velocity) * 0.01f;
+					NPC.velocity *= 0.95f;
+				break;
+				case 14:
+					allowPhaseTransition = false;
+					playScreenshake = false;
+					if(NPC.ai[2] == 0f && Main.netMode != 1) {
+						NPC.ai[2] = Main.rand.NextBool() ? 1f : -1f;
+						NPC.netUpdate = true;
+					}
+					{
+						shootDir = storedPos - NPC.Center;
+						if(NPC.ai[1] % 25f == 0 && Main.netMode != 1) Projectile.NewProjectile(NPC.GetSource_FromAI(), targetPos - new Vector2(Main.rand.Next(-1000, 1001), 800f), Vector2.UnitY * 8f, ModContent.ProjectileType<HellStalactite1>(), projectileDamage / 3, 0f, Main.myPlayer);
+						if(NPC.ai[1] > 20f && NPC.ai[1]< 420f && NPC.ai[1] % 10f == 0f && Main.netMode != 1) Projectile.NewProjectile(NPC.GetSource_FromAI(), Main.npc[segments[Main.rand.Next(segments.Count)]].Center, Main.rand.NextVector2Circular(16f, 16f), ModContent.ProjectileType<HellheartFlame>(), projectileDamage / 2, 0f, Main.myPlayer, storedPos.X, storedPos.Y, MathHelper.Lerp(42f, 126f, NPC.ai[1] / 480f));
+						float distance = shootDir.Length();
+						float offset = MathHelper.Clamp(distance - 640f, -40f, 40f);
+						NPC.velocity = Vector2.Normalize(shootDir).RotatedBy(MathHelper.ToRadians(MathHelper.Min(90f, NPC.ai[1] * 3f) - offset) * NPC.ai[2]) * 24f;
+					}
+					if(++NPC.ai[1] > 480f) {
+						NPC.ai[0]++;
+						NPC.ai[1] = 0f;
+						NPC.ai[2] = 0f;
+						NPC.ai[3] = 0f;
+						NPC.localAI[0] = 0.5f;
+						NPC.netUpdate = true;
+						NPC.TargetClosest();
+					}
+				break;
+				case 15:
+					if(shootDir.Length() > 800) {
+						allowPhaseTransition = false;
+						NPC.ai[2] = 0f;
+						NPC.velocity += shootDir.SafeNormalize(NPC.oldVelocity);
+						NPC.velocity *= 0.95f;
+					}
+					else if(NPC.velocity.Length() < 16f) {
+						allowPhaseTransition = false;
+						NPC.velocity *= 1.05f;
+					}
+					else {
+						allowPhaseTransition = true;
+						NPC.velocity = NPC.velocity.RotatedBy((float)Math.Sin(NPC.ai[2] * 0.025f * MathHelper.TwoPi) * MathHelper.ToRadians(2.5f));
+						if(NPC.ai[1] > 570f && NPC.velocity.Length() > 4f) NPC.velocity *= 0.96f;
+						if(++NPC.ai[2] > 40f) NPC.ai[2] = 0f;
+					}
+					if(NPC.ai[1] % (legendaryMode ? 100 : 150) == 0 && NPC.ai[1] < 600f) {
+						if(Main.netMode != 1) {
+							Projectile.NewProjectile(NPC.GetSource_FromAI(), storedPos, Vector2.Zero, ModContent.ProjectileType<BurningScream>(), 0, 0f, Main.myPlayer, 20f);
+							for(int i = 0; i < (legendaryMode ? 11 : 7); i++) Projectile.NewProjectile(NPC.GetSource_FromAI(), storedPos, Main.rand.NextVector2CircularEdge(1f, 1f), ModContent.ProjectileType<SinlordFireProminence>(), projectileDamage, 0f, Main.myPlayer, Main.rand.Next(-100, 101) * 0.001f, 110f);
+						}
+						SoundEngine.PlaySound(SoundID.Item20 with { SoundLimitBehavior = SoundLimitBehavior.ReplaceOldest, Pitch = -0.8f, Volume = 4f }, NPC.Center);
+					}
+					if(Main.netMode != 1 && (NPC.ai[1] - 100) % (legendaryMode ? 100 : 150) == 0 && NPC.ai[1] < 600f) Projectile.NewProjectile(NPC.GetSource_FromAI(), targetPos, Vector2.Zero, ModContent.ProjectileType<BurningAura>(), 0, 0f, Main.myPlayer, 25f);
+					if(NPC.ai[1] > 20f && NPC.ai[1] % 20f == 0f && Main.netMode != 1) Projectile.NewProjectile(NPC.GetSource_FromAI(), storedPos, Main.rand.NextVector2Circular(1f, 1f), ModContent.ProjectileType<FireSwirl>(), projectileDamage / 2, 0f, Main.myPlayer, 1f);
+					if(++NPC.ai[1] > 600f) {
+						NPC.ai[0]++;
+						NPC.ai[1] = 0f;
+						NPC.ai[2] = 0f;
+						NPC.netUpdate = true;
+						openMouth = false;
+						NPC.TargetClosest();
+					}
+				break;
+				case 16:
+					allowPhaseTransition = false;
+					playScreenshake = false;
+					if(NPC.ai[2] == 0f && Main.netMode != 1) {
+						NPC.ai[2] = Main.rand.NextBool() ? 1f : -1f;
+						NPC.netUpdate = true;
+					}
+					if(NPC.ai[1] < 120f) {
+						if(Main.netMode != 1) Projectile.NewProjectile(NPC.GetSource_FromAI(), NPC.Center, Main.rand.NextVector2Circular(64f, 64f), ModContent.ProjectileType<SinlordEffects>(), 0, 0f, Main.myPlayer, NPC.whoAmI);
+						NPC.localAI[0] = 0.5f + NPC.ai[1] / 240f;
+						shootDir = storedPos - NPC.Center;
+						float distance = shootDir.Length();
+						float offset = MathHelper.Clamp(distance - 640f, -40f, 40f);
+						NPC.velocity = Vector2.Normalize(shootDir).RotatedBy(MathHelper.ToRadians(MathHelper.Min(90f, NPC.ai[1] * 3f) - offset) * NPC.ai[2]) * 24f;
+					}
+					else if(NPC.Distance(storedPos) > 320f) {
+						openMouth = false;
+						if(Main.netMode != 1) Projectile.NewProjectile(NPC.GetSource_FromAI(), NPC.Center, Main.rand.NextVector2Circular(64f, 64f), ModContent.ProjectileType<SinlordEffects>(), 0, 0f, Main.myPlayer, NPC.whoAmI);
+						NPC.velocity += Vector2.Normalize(storedPos - NPC.Center);
+						NPC.velocity *= 0.95f;
+					}
+					else {
+						NPC.velocity = Vector2.Normalize(storedPos - NPC.Center);
+						NPC.position -= NPC.velocity;
+						if(!openMouth && Main.netMode != 1) {
+							Projectile.NewProjectile(NPC.GetSource_FromAI(), targetPos, Vector2.Zero, ModContent.ProjectileType<BurningAura>(), 0, 0f, Main.myPlayer, 720f - NPC.ai[1]);
+							Projectile.NewProjectile(NPC.GetSource_FromAI(), storedPos, NPC.velocity * 16f, ModContent.ProjectileType<BurningBeam>(), projectileDamage, 0f, Main.myPlayer, 720f - NPC.ai[1], NPC.target + 1);
+						}
+						openMouth = true;
+						if(NPC.ai[1] % 4 == 0) {
+							if(Main.netMode != 1) {
+								Projectile.NewProjectile(NPC.GetSource_FromAI(), NPC.Center, Main.rand.NextVector2Circular(16f, 16f), ModContent.ProjectileType<HellheartFlame>(), projectileDamage / 2, 0f, Main.myPlayer, storedPos.X, storedPos.Y, 126f);
+								Projectile.NewProjectile(NPC.GetSource_FromAI(), storedPos + Main.rand.NextVector2Circular(1000, 1000), Vector2.Zero, ModContent.ProjectileType<BurningExplosion>(), projectileDamage / 3, 0f, Main.myPlayer, 30f);
+							}
+							SoundEngine.PlaySound(SoundID.DD2_FlameburstTowerShot with { SoundLimitBehavior = SoundLimitBehavior.ReplaceOldest, Pitch = -0.8f, Volume = 4f }, NPC.Center);
+						}
+						if(Main.netMode != 1) Projectile.NewProjectile(NPC.GetSource_FromAI(), NPC.Center + NPC.rotation.ToRotationVector2() * NPC.height / 3, NPC.velocity.SafeNormalize(NPC.rotation.ToRotationVector2()) * 3f, ModContent.ProjectileType<SinlordFireBreath>(), projectileDamage / 4, 0f, Main.myPlayer);
+					}
+					if(++NPC.ai[1] > 720f) {
+						NPC.ai[0]++;
+						NPC.ai[1] = 0f;
+						NPC.ai[2] = 0f;
+						openMouth = false;
+						NPC.localAI[0] = 0.5f;
+						NPC.netUpdate = true;
+						NPC.TargetClosest();
+					}
+				break;
+				case 17:
+					NPC.localAI[0] = (1f - NPC.ai[1] / 60f) * 0.5f + 0.5f;
+					if(++NPC.ai[1] > 60f) {
+						if(Main.netMode != 1) foreach(int i in segments) if(Main.rand.NextBool(2) || masterMode) Projectile.NewProjectile(NPC.GetSource_FromAI(), Main.npc[i].Center + NPC.velocity, Vector2.UnitY.RotatedBy(Main.npc[i].rotation) * (Main.rand.NextBool(2) ? -4f : 4f), ModContent.ProjectileType<HellMeteor3>(), projectileDamage / 3, 0f, Main.myPlayer, NPC.target + 1, Main.rand.Next(30, 91));
+						NPC.ai[0]++;
+						NPC.ai[1] = 0f;
+						NPC.localAI[0] = 0.5f;
+						NPC.netUpdate = true;
+						NPC.TargetClosest();
+					}
+				break;
+				case 18:
+					if(NPC.ai[2] == 0f) {
+						NPC.velocity = shootDir.SafeNormalize(NPC.velocity) * 24f;
+						NPC.ai[2] = shootDir.Length();
+						openMouth = false; 
+					}
+					if(NPC.ai[2] > 1f) {
+						openMouth = true;
+						if(NPC.localAI[0] < 1f) NPC.localAI[0] += 0.1f;
+						if(Main.netMode != 1) Projectile.NewProjectile(NPC.GetSource_FromAI(), NPC.Center + NPC.velocity + NPC.rotation.ToRotationVector2() * NPC.height / 3, NPC.velocity.SafeNormalize(NPC.rotation.ToRotationVector2()) * 6f, ModContent.ProjectileType<SinlordFireBreath>(), projectileDamage, 0f, Main.myPlayer);
+						SoundEngine.PlaySound(SoundID.DD2_FlameburstTowerShot with { SoundLimitBehavior = SoundLimitBehavior.ReplaceOldest, Pitch = -0.8f, Volume = 4f }, NPC.Center);
+						NPC.ai[2] -= NPC.velocity.Length();
+						if(NPC.ai[2] < 1f) NPC.ai[2] = 1f;
+					}
+					else {
+						if(NPC.localAI[0] > 0.5f) NPC.localAI[0] -= 0.05f;
+						else NPC.localAI[0] = 0.5f;
+						NPC.velocity += shootDir.SafeNormalize(NPC.velocity) * 0.24f;
+						NPC.velocity *= 0.96f;
+						if(NPC.ai[1] > 90f) {
+							if(NPC.ai[1] == 100f && Main.netMode != 1) for(int i = 0; i < 18; i++) Projectile.NewProjectile(NPC.GetSource_FromAI(), NPC.Center, shootDir.SafeNormalize(Vector2.Zero).RotatedBy(i / 18f * MathHelper.TwoPi) * Main.rand.Next(8, 16), ModContent.ProjectileType<HellMeteor2>(), projectileDamage / 3, 0f, Main.myPlayer);
+							if(NPC.ai[1] % 4 == 0) {
+								if(Main.netMode != 1) Projectile.NewProjectile(NPC.GetSource_FromAI(), NPC.Center + NPC.rotation.ToRotationVector2() * NPC.height / 3, NPC.velocity.SafeNormalize(NPC.rotation.ToRotationVector2()) * 9f + Main.rand.NextVector2Circular(6f, 6f), ModContent.ProjectileType<LavaBone>(), projectileDamage / 4, 0f, Main.myPlayer);
+								SoundEngine.PlaySound(SoundID.Item88 with { SoundLimitBehavior = SoundLimitBehavior.ReplaceOldest, Pitch = -0.8f, Volume = 4f }, NPC.Center);
+							}
+							openMouth = true;
+						}
+						else openMouth = false; 
+					}
+					if(++NPC.ai[1] > 120f) {
+						if(++NPC.ai[3] > 3f) {
+							NPC.ai[0] = 14f;
+							NPC.ai[3] = 0f;
+						}
+						NPC.ai[1] = 0f;
+						NPC.ai[2] = 0f;
+						NPC.localAI[0] = 0.5f;
+						openMouth = false;
 						NPC.netUpdate = true;
 						NPC.TargetClosest();
 					}
