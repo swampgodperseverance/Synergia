@@ -41,6 +41,7 @@ namespace Synergia.Content.NPCs.Boss.SinlordWyrm
 			NPC.boss = true;
 			NPC.npcSlots = 6f;
 			NPC.Size = new Vector2(80f * NPC.scale);
+			NPC.scale = 1.3f;
 			NPC.HitSound = new SoundStyle($"{Mod.Name}/Assets/Sounds/CragwormHit2");
 			NPC.aiStyle = -1;
 		}
@@ -119,6 +120,7 @@ namespace Synergia.Content.NPCs.Boss.SinlordWyrm
 				NPC.ai[2] = 0f;
 				NPC.ai[3] = 0f;
 				NPC.dontTakeDamage = true;
+				storedPos = targetPos;
 				openMouth = false;
 				NPC.netUpdate = true;
 			}
@@ -762,12 +764,12 @@ namespace Synergia.Content.NPCs.Boss.SinlordWyrm
 		public override bool PreDraw(SpriteBatch sprite, Vector2 screenPosition, Color lightColor) {
 			lightColor = NPC.GetNPCColorTintedByBuffs(lightColor);
 			Texture2D texture = (Texture2D)ModContent.Request<Texture2D>(Texture);
-			sprite.Draw(texture, NPC.Center - screenPosition, new Rectangle(0, texture.Height / 2 * (openMouth ? 1 : 0), texture.Width, texture.Height / 2), lightColor, NPC.rotation + MathHelper.PiOver2, texture.Size() * new Vector2(0.5f, 0.25f), NPC.scale, SpriteEffects.None, 0);
+			sprite.Draw(texture, NPC.Center - screenPosition, new Rectangle(0, texture.Height / 2 * (openMouth ? 1 : 0), texture.Width, texture.Height / 2), lightColor, NPC.rotation + MathHelper.PiOver2, new Vector2(texture.Width / 2, texture.Height / 4), NPC.scale, SpriteEffects.None, 0);
 			texture = (Texture2D)ModContent.Request<Texture2D>(Texture + "_Glow");
-			sprite.Draw(texture, NPC.Center - screenPosition, new Rectangle(0, texture.Height / 2 * (openMouth ? 1 : 0), texture.Width, texture.Height / 2), Color.White, NPC.rotation + MathHelper.PiOver2, texture.Size() * new Vector2(0.5f, 0.25f), NPC.scale, SpriteEffects.None, 0);
+			sprite.Draw(texture, NPC.Center - screenPosition, new Rectangle(0, texture.Height / 2 * (openMouth ? 1 : 0), texture.Width, texture.Height / 2), Color.White, NPC.rotation + MathHelper.PiOver2, new Vector2(texture.Width / 2, texture.Height / 4), NPC.scale, SpriteEffects.None, 0);
 			if(NPC.localAI[0] <= 0f) return false;
 			texture = (Texture2D)ModContent.Request<Texture2D>(Texture + "_White");
-			sprite.Draw(texture, NPC.Center - screenPosition, new Rectangle(0, texture.Height / 2 * (openMouth ? 1 : 0), texture.Width, texture.Height / 2), Color.DarkOrange with {A = 0} * NPC.localAI[0], NPC.rotation + MathHelper.PiOver2, texture.Size() * new Vector2(0.5f, 0.25f), NPC.scale, SpriteEffects.None, 0);
+			sprite.Draw(texture, NPC.Center - screenPosition, new Rectangle(0, texture.Height / 2 * (openMouth ? 1 : 0), texture.Width, texture.Height / 2), new Color(253, 32, 2, 0) * NPC.localAI[0], NPC.rotation + MathHelper.PiOver2, new Vector2(texture.Width / 2, texture.Height / 4), NPC.scale, SpriteEffects.None, 0);
 			return false;
 		}
 		public override void SendExtraAI(BinaryWriter writer) {
