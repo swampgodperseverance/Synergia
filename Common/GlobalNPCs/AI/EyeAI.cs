@@ -1,213 +1,150 @@
-﻿using System;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using Terraria;
 using Terraria.ID;
-using Terraria.ModLoader;
 using Terraria.Audio;
+using Terraria.ModLoader;
+using System;
 
-namespace Synergia.Content.Projectiles.Hostile.Bosses
+namespace Synergia.Common.GlobalNPCs.AI
 {
-    public class EyeBlinkGlobalNPC : GlobalNPC
-    {
-        public override bool InstancePerEntity => true;
-
-        // Спин-атака
-        private int spinTimer = 0;       // отсчет времени до спина
-        private int spinInterval = 0;    // случайный интервал между спинами
-
-        public override void AI(NPC npc)
-        {
-            base.AI(npc);
-
-            if (npc.type != NPCID.EyeofCthulhu) return;
-
-            // Проверка цели
-            if (npc.target < 0 || npc.target >= Main.maxPlayers || !Main.player[npc.target].active || Main.player[npc.target].dead)
-            {
-                npc.TargetClosest();
-                if (npc.target < 0 || npc.target >= Main.maxPlayers || !Main.player[npc.target].active || Main.player[npc.target].dead)
-                    return;
-            }
-
-            Player player = Main.player[npc.target];
-            if (player == null || !player.active || player.dead) return;
-
-            const float hpThresholdFraction = 0.5f; 
-            const float spinHpMax = 0.65f;
-            const float spinHpMin = 0.5f;
-            const int shrinkDuration = 40;
-            const int teleportHold = 8;
-            const float dashSpeed = 15f;
-            const float dashAccel = 1.06f;
-            const int dashDuration = 45;
-            const int fadeAlphaTarget = 255;
-            const int dustCount = 12;
-            const int attackCooldownTicks = 600; 
-            const int spinDuration = 120;
-            const float spinProjectileSpeed = 8f; 
-            const int spinSpawnInterval = 10;
-            const int firstSpinDelay = 300;       
-            const int spinCooldownMin = 480;     
-            const int spinCooldownMax = 720;      // 
-
-
-            if (npc.localAI[3] > 0f) // телепорт/рывок
-                npc.localAI[3] = Math.Max(0f, npc.localAI[3] - 1f);
-
-
-            if (npc.life < npc.lifeMax * spinHpMax && npc.life > npc.lifeMax * spinHpMin)
-            {
-                // Таймер спина
-                spinTimer++;
-
-                if (npc.localAI[0] == 0f && spinTimer >= (spinInterval == 0 ? firstSpinDelay : spinInterval))
-                {
-                    npc.localAI[0] = 4f; 
-                    npc.localAI[1] = 0f; 
-                    spinInterval = Main.rand.Next(spinCooldownMin, spinCooldownMax);
-                    spinTimer = 0; 
-                    npc.netUpdate = true;
-                }
-            }
-
-            if (npc.localAI[0] == 4f) 
-            {
-                npc.localAI[1]++;
-
-                float t = MathHelper.Clamp(npc.localAI[1] / (float)spinDuration, 0f, 1f);
-                float rotationSpeed = EaseInOutCubic(t) * MathHelper.TwoPi; 
-                npc.rotation += rotationSpeed * 0.016f;
-
-                if (npc.localAI[1] % spinSpawnInterval == 0)
-                {
-                    float angle = Main.rand.NextFloat(MathHelper.TwoPi);
-                    Vector2 velocity = angle.ToRotationVector2() * spinProjectileSpeed;
-                    if (Main.netMode != NetmodeID.MultiplayerClient)
-                    {
-                        Projectile.NewProjectile(npc.GetSource_FromAI(), npc.Center, velocity, ModContent.ProjectileType<EyeP>(), 20, 1f, Main.myPlayer);
-                    }
-                }
-
-                if (npc.localAI[1] >= spinDuration)
-                {
-                    npc.localAI[0] = 0f;
-                    npc.localAI[1] = 0f;
-                    npc.netUpdate = true;
-                }
-                return;
-            }
-
-
-            if (npc.life < npc.lifeMax * hpThresholdFraction && npc.localAI[0] == 0f && npc.localAI[3] <= 0f)
-            {
-                npc.localAI[0] = 1f;
-                npc.localAI[1] = 0f;
-                npc.netUpdate = true;
-            }
-
-            if (npc.localAI[0] == 1f)
-            {
-                npc.localAI[1]++;
-                float t = MathHelper.Clamp(npc.localAI[1] / (float)shrinkDuration, 0f, 1f);
-                npc.scale = MathHelper.Lerp(1f, 0.35f, EaseOutCubic(t));
-                npc.alpha = (int)MathHelper.Lerp(0f, fadeAlphaTarget, EaseInCubic(t));
-
-                if (Main.rand.NextBool(3))
-                {
-                    int d = Dust.NewDust(npc.position, npc.width, npc.height, DustID.GoldCoin, 0f, 0f, 150);
-                    Main.dust[d].velocity *= 0.3f;
-                    Main.dust[d].noGravity = true;
-                }
-
-                npc.velocity *= 0.9f;
-
-                if (npc.localAI[1] >= shrinkDuration)
-                {
-                    npc.localAI[0] = 2f;
-                    npc.localAI[1] = 0f;
-                    npc.netUpdate = true;
-                }
-                return;
-            }
-
-
-            if (npc.localAI[0] == 2f)
-            {
-                npc.localAI[1]++;
-                if (npc.localAI[1] == 1f)
-                {
-                    SoundEngine.PlaySound(SoundID.Item8, npc.Center);
-                    int side = Main.rand.NextBool() ? 1 : -1;
-                    float horizontalOffset = 450f;
-                    float verticalOffset = Main.rand.NextFloat(-80f, 80f);
-                    npc.Center = player.Center + new Vector2(side * horizontalOffset, verticalOffset);
-                    npc.localAI[2] = side;
-
-                    for (int i = 0; i < dustCount; i++)
-                    {
-                        Vector2 vel = new Vector2(-side * Main.rand.NextFloat(2f, 6f), Main.rand.NextFloat(-2f, 2f));
-                        int d = Dust.NewDust(npc.position, npc.width, npc.height, DustID.PurpleCrystalShard, vel.X, vel.Y, 150);
-                        Main.dust[d].noGravity = true;
-                        Main.dust[d].velocity *= 1.1f;
-                    }
-
-                    npc.alpha = fadeAlphaTarget;
-                    npc.scale = 0.35f;
-                    npc.velocity = Vector2.Zero;
-                    npc.netUpdate = true;
-                }
-
-                if (npc.localAI[1] >= teleportHold)
-                {
-                    npc.localAI[0] = 3f;
-                    npc.localAI[1] = 0f;
-                    npc.netUpdate = true;
-                }
-                return;
-            }
-
-
-            if (npc.localAI[0] == 3f)
-            {
-                npc.localAI[1]++;
-                if (npc.localAI[1] == 1f)
-                {
-                    npc.alpha = 0;
-                    npc.scale = 1f;
-                    Vector2 dir = player.Center - npc.Center;
-                    if (dir == Vector2.Zero) dir = new Vector2(0f, 1f);
-                    dir.Normalize();
-                    float side = npc.localAI[2] >= 0f ? 1f : -1f;
-                    npc.velocity = dir * dashSpeed;
-                    npc.velocity.X += side * 1.2f;
-                    SoundEngine.PlaySound(SoundID.Roar, npc.Center);
-                    npc.netUpdate = true;
-                }
-                else
-                {
-                    npc.velocity *= dashAccel;
-                    if (npc.velocity.Length() > 28f) npc.velocity = Vector2.Normalize(npc.velocity) * 28f;
-                }
-
-                if (npc.localAI[1] > dashDuration)
-                {
-                    npc.localAI[0] = 0f;
-                    npc.localAI[1] = 0f;
-                    npc.localAI[2] = 0f;
-                    npc.localAI[3] = attackCooldownTicks;
-                    npc.velocity *= 0.25f;
-                    npc.netUpdate = true;
-                }
-                return;
-            }
-        }
-
-        private float EaseOutCubic(float t) => 1f - (float)Math.Pow(1f - MathHelper.Clamp(t, 0f, 1f), 3);
-        private float EaseInCubic(float t) => (float)Math.Pow(MathHelper.Clamp(t, 0f, 1f), 3);
-        private float EaseInOutCubic(float t)
-        {
-            t = MathHelper.Clamp(t, 0f, 1f);
-            return t < 0.5f ? 4f * t * t * t : 1f - (float)Math.Pow(-2f * t + 2f, 3) / 2f;
-        }
-    }
+	public class EyeAI : GlobalNPC
+	{
+		public override bool AppliesToEntity(NPC npc, bool lateInstatiation) => npc.type == NPCID.EyeofCthulhu;
+		public override bool PreAI(NPC npc) {
+			if(!Main.masterMode || npc.despawnEncouraged) return true;
+			bool autoSnap = true;
+			bool suppressAI = false;
+			float rotation = npc.rotation;
+			float rotationSpeed = 0.1f;
+			if(npc.ai[0] >= 3 && npc.life < npc.lifeMax * 0.4) switch(npc.ai[1]) {
+				case 3:
+					if(npc.ai[3] > 3) {
+						npc.ai[1] = npc.life < npc.lifeMax * 0.12 || Main.player[npc.target].Center.Y - 14 * 16 > npc.Center.Y ? 6 : Main.player[npc.target].Center.Y + 12 * 16 < npc.Center.Y ? 7 : 8;
+						npc.ai[2] = 0;
+						npc.netUpdate = true;
+						suppressAI = true;
+					}
+				break;
+				case 6:
+					if(npc.ai[2] == 0) {
+						npc.ai[3] = -Math.Sign(Main.player[npc.target].Center.X - npc.Center.X);
+						npc.netUpdate = true;
+					}
+					if(npc.ai[2] < 60) {
+						Vector2 targetPos = Main.player[npc.target].Center;
+						targetPos.Y -= 420f;
+						targetPos.X += npc.ai[3] * 480f + (float)Math.Sin(npc.ai[2] / 60f * MathHelper.Pi) * 320f * npc.ai[3];
+						npc.velocity += (targetPos - npc.Center) * 0.01f;
+						npc.velocity *= 0.9f;
+						rotation = (Main.player[npc.target].Center - npc.Center).ToRotation() - MathHelper.PiOver2;
+					}
+					else if(npc.ai[2] == 60f) {
+						npc.ai[3] *= -1;
+						npc.velocity = Vector2.UnitX * npc.ai[3] * 24f;
+						npc.netUpdate = true;
+						SoundEngine.PlaySound(SoundID.Roar, npc.position);
+					}
+					else if(npc.ai[2] < 120) {
+						rotation = npc.velocity.ToRotation() - MathHelper.PiOver2;
+						Vector2 shootDir = Vector2.Normalize(npc.velocity);
+						if(Main.netMode != 1 && npc.ai[2] % 6f == 0f) Projectile.NewProjectile(npc.GetSource_FromAI(), npc.Center - Vector2.UnitY * 4f + shootDir * npc.width * 0.4f, shootDir * 4f, 811, 15, 0f, Main.myPlayer, 1000f);
+					}
+					else if(npc.ai[2] < 180) {
+						Vector2 targetPos = Main.player[npc.target].Center;
+						targetPos.X += npc.ai[3] * 640f + (float)Math.Sin((npc.ai[2] - 180) / 60f * MathHelper.Pi) * 240f * npc.ai[3];
+						npc.velocity += (targetPos - npc.Center) * 0.01f;
+						npc.velocity *= 0.9f;
+						rotation = (Main.player[npc.target].Center - npc.Center).ToRotation() - MathHelper.PiOver2;
+					}
+					else if(npc.ai[2] == 180) {
+						npc.ai[3] *= -1;
+						npc.velocity = Vector2.UnitX * npc.ai[3] * 28f;
+						npc.netUpdate = true;
+						SoundEngine.PlaySound(SoundID.Roar, npc.position);
+					}
+					else if(npc.ai[2] < 210) rotation = npc.velocity.ToRotation() - MathHelper.PiOver2;
+					else {
+						rotation = (Main.player[npc.target].Center - npc.Center).ToRotation() - MathHelper.PiOver2;
+						npc.velocity *= 0.92f;
+					}
+					if(npc.ai[2] > 240) {
+						npc.ai[1] = npc.life < npc.lifeMax * 0.12 ? 7 : 0;
+						npc.ai[2] = 0;
+						npc.ai[3] = 0;
+						npc.netUpdate = true;
+					}
+					else npc.ai[2]++;
+					suppressAI = true;
+				break;
+				case 7:
+					if(npc.ai[2] == 0) {
+						npc.ai[3] = npc.velocity.X != 0 ? -Math.Sign(npc.velocity.X) : Main.rand.NextBool() ? -1 : 1;
+						npc.netUpdate = true;
+						SoundEngine.PlaySound(SoundID.Roar, npc.position);
+					}
+					if(npc.ai[2] < 120) {
+						Vector2 targetPos = Main.player[npc.target].Center;
+						targetPos -= Vector2.Normalize(targetPos - npc.Center).RotatedBy(npc.ai[3] * (Math.Sign(Main.player[npc.target].velocity.X) == Math.Sign(npc.velocity.X) ? 0.55f : 0.45f)) * 320f;
+						npc.velocity += (targetPos - npc.Center) * 0.01f;
+						npc.velocity *= 0.9f;
+						rotation = npc.velocity.ToRotation() - MathHelper.PiOver2;
+					}
+					else {
+						autoSnap = false;
+						rotation = (Main.player[npc.target].Center - npc.Center).ToRotation() - MathHelper.PiOver2;
+						rotationSpeed = 0.03f;
+						Vector2 shootDir = (npc.rotation + MathHelper.PiOver2).ToRotationVector2();
+						if(Main.netMode != 1 && npc.ai[2] % 6f == 0f) Projectile.NewProjectile(npc.GetSource_FromAI(), npc.Center - Vector2.UnitY * 4f + shootDir * npc.width * 0.4f, shootDir * 16f, 811, 15, 0f, Main.myPlayer);
+						if(npc.ai[2] % 6f == 0f) npc.velocity -= shootDir * 10f;
+						npc.velocity *= 0.8f;
+					}
+					if(npc.ai[2] > 180) {
+						npc.ai[1] = 0;
+						npc.ai[2] = 0;
+						npc.ai[3] = 0;
+						npc.netUpdate = true;
+					}
+					else npc.ai[2]++;
+					suppressAI = true;
+				break;
+				case 8:
+					if(npc.ai[2] == 0) {
+						npc.velocity = Vector2.Normalize(Main.player[npc.target].Center - npc.Center) * 16f;
+						npc.netUpdate = true;
+						SoundEngine.PlaySound(SoundID.Roar, npc.position);
+					}
+					rotation = npc.velocity.ToRotation() - MathHelper.PiOver2;
+					if(npc.ai[2] > 56f) npc.velocity *= 0.9f;
+					else if(Main.netMode != 1 && npc.ai[2] > 12f && npc.ai[2] % 3f == 0f) Projectile.NewProjectileDirect(npc.GetSource_FromAI(), npc.Center - Vector2.UnitY * 4f + Vector2.Normalize(npc.velocity) * npc.width * 0.4f, Vector2.Normalize(npc.velocity).RotatedBy(Main.rand.NextFloat(-MathHelper.PiOver4, MathHelper.PiOver4) * 0.1f) * 16f, 811, 15, 0f, Main.myPlayer).velocity *= 1.5f;
+					if(npc.ai[2] > 60) {
+						npc.ai[1] = npc.life < npc.lifeMax * 0.12 || Main.player[npc.target].Center.Y - 14 * 16 > npc.Center.Y ? 6 : Main.player[npc.target].Center.Y + 12 * 16 < npc.Center.Y ? 7 : 0;
+						npc.ai[2] = 0;
+						npc.netUpdate = true;
+					}
+					else npc.ai[2]++;
+					suppressAI = true;
+				break;
+			}
+			if(npc.ai[0] == 1 || npc.ai[0] == 2) npc.dontTakeDamage = true;
+			else if(npc.dontTakeDamage) npc.dontTakeDamage = false;
+			if(suppressAI) {
+				if(rotation < 0f) rotation += MathHelper.TwoPi;
+				else if(rotation > MathHelper.TwoPi) rotation -= MathHelper.TwoPi;
+				if(npc.rotation < rotation) {
+					if(rotation - npc.rotation > MathHelper.Pi) npc.rotation -= rotationSpeed;
+					else npc.rotation += rotationSpeed;
+				}
+				else if(npc.rotation > rotation) {
+					if(npc.rotation - rotation > MathHelper.Pi) npc.rotation += rotationSpeed;
+					else npc.rotation -= rotationSpeed;
+				}
+				if(autoSnap && npc.rotation > rotation - rotationSpeed && npc.rotation < rotation + rotationSpeed && npc.rotation != rotation) npc.rotation = rotation;
+				if(npc.rotation < 0f) npc.rotation += MathHelper.TwoPi;
+				else if(npc.rotation > MathHelper.TwoPi) npc.rotation -= MathHelper.TwoPi;
+				if(autoSnap && npc.rotation > rotation - rotationSpeed && npc.rotation < rotation + rotationSpeed && npc.rotation != rotation) npc.rotation = rotation;
+			}
+			return !suppressAI;
+		}
+	}
 }

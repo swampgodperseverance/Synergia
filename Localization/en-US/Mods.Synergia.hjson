@@ -1243,6 +1243,7 @@ Projectiles: {
 	HellheartFlame.DisplayName: Hellheart Flame
 	SinlordFireProminence.DisplayName: Sinlord Fire Prominence
 	LavaInfernalGlow.DisplayName: Lava Infernal Glow
+	SwizzardHand.DisplayName: Swizzard Hand
 }
 
 Buffs: {

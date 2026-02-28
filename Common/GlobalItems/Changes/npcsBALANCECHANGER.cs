@@ -53,9 +53,15 @@ namespace Synergia.Common.GlobalNPCs.Changes
                 },
                 [NPCID.BoneSerpentHead] = npc =>
                 {
-                    npc.lifeMax += 60;
+                    npc.lifeMax += 180;
                     npc.damage += 10;
                     npc.defense += 4;
+                },
+                [NPCID.WallofFlesh] = npc =>
+                {
+                    npc.lifeMax += 600;
+                    npc.damage += 10;
+                    npc.defense += 10;
                 },
 
                 [ModContent.NPCType<Orc>()] = npc =>

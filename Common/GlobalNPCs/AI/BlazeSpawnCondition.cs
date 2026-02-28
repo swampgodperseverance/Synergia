@@ -9,6 +9,8 @@ namespace Synergia.Common.GlobalNPCs.AI
 {
     public class BlazeSpawnCondition : GlobalNPC
     {
+        //Written this way to crash proof it
+        public override bool AppliesToEntity(NPC npc, bool lateInstatiation) => npc.ModNPC?.Mod.Name == "Avalon" && npc.ModNPC?.Name == "Blaze"; 
         public override void EditSpawnPool(IDictionary<int, float> pool, NPCSpawnInfo spawnInfo)
         {
             if (!ModLoader.TryGetMod("Avalon", out Mod avalon))

@@ -1,8 +1,10 @@
-﻿using Terraria;
+using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using Terraria.ModLoader.IO;
 using Microsoft.Xna.Framework;
 using Synergia.Content.Projectiles.Hostile.Bosses;
+using System.IO;
 
 namespace Synergia.Common.GlobalNPCs
 {
@@ -13,11 +15,21 @@ namespace Synergia.Common.GlobalNPCs
         private int magnetTimer = 0;
         private int nextMagnetTime = 0;
 
+        public override bool AppliesToEntity(NPC npc, bool lateInstatiation) => npc.ModNPC?.Mod.Name == "Bismuth" && npc.ModNPC?.Name == "PapuanWizard";
+
+        public override void SendExtraAI(NPC npc, BitWriter bitWriter, BinaryWriter binaryWriter) {
+            if(Main.netMode == 0) return;
+            binaryWriter.Write(magnetTimer);
+            binaryWriter.Write(nextMagnetTime);
+        }
+        public override void ReceiveExtraAI(NPC npc, BitReader bitReader, BinaryReader binaryReader) {
+            if(Main.netMode == 0) return;
+            magnetTimer = binaryReader.ReadInt32();
+            nextMagnetTime = binaryReader.ReadInt32();
+        }
+
         public override void AI(NPC npc)
         {
-            if (npc.ModNPC == null || npc.ModNPC.Mod.Name != "Bismuth" || npc.ModNPC.Name != "PapuanWizard")
-                return;
-
             if (nextMagnetTime == 0)
                 nextMagnetTime = Main.rand.Next(960, 1320); 
 

@@ -1,16 +1,14 @@
-
-﻿using Terraria;
-using Terraria.ID;
-using Terraria.ModLoader;
 using System;
 using System.Collections.Generic;
-using ValhallaMod;
-using ValhallaMod.Items.Weapons.Melee.Swords;
+using Avalon.Items.Weapons.Melee.Hardmode.CraniumCrusher;
+using Avalon.Items.Weapons.Ranged.PreHardmode.EggCannon;
 using NewHorizons.Content.Items.Weapons.Throwing;
-using Synergia.Content.Items.Weapons.Throwing;
+using Terraria;
+using Terraria.ID;
+using Terraria.ModLoader;
 using ValhallaMod.Items.Weapons.Melee.Glaives;
 using ValhallaMod.Items.Weapons.Melee.Spears;
-using Avalon.Items.Weapons.Melee.Hardmode.CraniumCrusher;
+using ValhallaMod.Items.Weapons.Melee.Swords;
 
 namespace Synergia.Common.GlobalItems.Changes
 {
@@ -20,6 +18,9 @@ namespace Synergia.Common.GlobalItems.Changes
 
         public override void Load()
         {
+            int chemicalPrisonerType =
+                ModLoader.GetMod("RoA")?.Find<ModItem>("ChemicalPrisoner")?.Type ?? 0;
+
             Changes = new()
             {
                 [ItemID.TerraBlade] = item =>
@@ -63,8 +64,20 @@ namespace Synergia.Common.GlobalItems.Changes
                     item.damage -= 28;
                     item.useAnimation += 5;
                     item.useTime += 5;
-                },
 
+                },
+                [chemicalPrisonerType] = item =>
+                {
+                    item.damage -= 5;
+                    item.useAnimation += 4;
+                    item.useTime += 4;
+                },
+                [ModContent.ItemType<EggCannon>()] = item =>
+                {
+                    item.damage -= 6;
+                    item.useAnimation += 2;
+                    item.useTime += 2;
+                },
             };
         }
 

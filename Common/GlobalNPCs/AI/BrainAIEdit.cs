@@ -9,10 +9,10 @@ public class BrainAIEdit : GlobalNPC
 
     private int fireTimer = 0;
 
+    public override bool AppliesToEntity(NPC npc, bool lateInstatiation) => npc.type == NPCID.Creeper;
+
     public override void AI(NPC npc)
     {
-        if (npc.type == NPCID.Creeper)
-        {
             if (Main.netMode != NetmodeID.MultiplayerClient)
             {
                 fireTimer++;
@@ -35,6 +35,6 @@ public class BrainAIEdit : GlobalNPC
                     }
                 }
             }
-        }
+        
     }
 }

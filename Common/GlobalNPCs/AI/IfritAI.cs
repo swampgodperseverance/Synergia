@@ -1,5 +1,6 @@
-﻿using Terraria;
+using Terraria;
 using Terraria.ModLoader;
+using Terraria.ModLoader.IO;
 using Microsoft.Xna.Framework;
 using System;    
 using Terraria.ID;
@@ -8,6 +9,7 @@ using Terraria.DataStructures;
 using Synergia.Content.Projectiles.Hostile;
 using Terraria.GameContent.ItemDropRules;
 using System.Collections.Generic;
+using System.IO;
 
 namespace Synergia.Common.GlobalNPCs.AI
 {
@@ -18,12 +20,28 @@ namespace Synergia.Common.GlobalNPCs.AI
         private bool isTeleporting = false;
         private Player target;
 
+        public override bool AppliesToEntity(NPC npc, bool lateInstatiation) => npc.ModNPC?.Mod.Name == "ValhallaMod" && npc.ModNPC?.Name == "Ifrit";
+
+        public override void SendExtraAI(NPC npc, BitWriter bitWriter, BinaryWriter binaryWriter) {
+            if(Main.netMode == 0) return;
+            bitWriter.WriteBit(isTeleporting);
+            binaryWriter.Write(teleportTimer);
+            binaryWriter.Write(teleportCount);
+            binaryWriter.Write(target?.whoAmI ?? -1);
+        }
+        public override void ReceiveExtraAI(NPC npc, BitReader bitReader, BinaryReader binaryReader) {
+            if(Main.netMode == 0) return;
+            isTeleporting = bitReader.ReadBit();
+            teleportTimer = binaryReader.ReadInt32();
+            teleportCount = binaryReader.ReadInt32();
+            int playerId = binaryReader.ReadInt32();
+            target = playerId == -1 ? null : Main.player[playerId];
+        }
+
         public override bool InstancePerEntity => true;
 
         public override void AI(NPC npc)
         {
-            if (npc.ModNPC == null || npc.ModNPC.Mod.Name != "ValhallaMod" || npc.ModNPC.Name != "Ifrit")
-                return;
 
             target = Main.player[npc.target];
 
@@ -102,8 +120,6 @@ namespace Synergia.Common.GlobalNPCs.AI
 
         public override void OnSpawn(NPC npc, IEntitySource source)
         {
-            if (npc.ModNPC == null || npc.ModNPC.Mod.Name != "ValhallaMod" || npc.ModNPC.Name != "Ifrit")
-                return;
 
             if (NPC.downedGolemBoss)
             {
@@ -123,13 +139,7 @@ namespace Synergia.Common.GlobalNPCs.AI
 
         public override void ModifyNPCLoot(NPC npc, NPCLoot npcLoot)
         {
-            if (npc.ModNPC != null && npc.ModNPC.Mod.Name == "ValhallaMod" && npc.ModNPC.Name == "Ifrit")
-            {
-                if (NPC.downedGolemBoss)
-                {
-                    npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<ValhallaMod.Items.Material.EvilIngot>(), 1, 1, 1));
-                }
-            }
+            ItemDropRule.ByCondition(new SynergiaCondition.PostGolem(), ModContent.ItemType<ValhallaMod.Items.Material.EvilIngot>(), 1, 1, 1);
         }
     }
 }

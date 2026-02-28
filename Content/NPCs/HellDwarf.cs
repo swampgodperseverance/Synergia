@@ -4,8 +4,9 @@ using Synergia.Common.ModSystems.WorldGens;
 using Synergia.Helpers;
 using System.Collections.Generic;
 using Terraria;
-using Terraria.DataStructures;
 using Terraria.GameContent.Bestiary;
+using Terraria.DataStructures;
+using Terraria.GameContent.Creative;
 using Terraria.GameContent.UI;
 using Terraria.ID;
 using Terraria.Localization;
@@ -79,9 +80,34 @@ namespace Synergia.Content.NPCs {
             };
         }
         // TODO: add item for shop
-        public override void AddShops() {
-            NPCShop shop = new(Type, Name);
-            shop.Add(1);
+        public override void AddShops()
+        {
+            var shop = new NPCShop(Type, "Shop");
+
+            shop.Add(new Item(ItemID.AshBlock) { shopCustomPrice = Item.buyPrice(silver: 3) });
+            shop.Add(new Item(ItemID.Obsidian) { shopCustomPrice = Item.buyPrice(silver: 30) });
+            shop.Add(new Item(ItemID.LavaBomb) { shopCustomPrice = Item.buyPrice(silver: 20, copper: 50) });
+            shop.Add(new Item(ItemID.HellfireArrow) { shopCustomPrice = Item.buyPrice(silver: 8, copper: 80) });
+            shop.Add(new Item(ModContent.ItemType<ValhallaMod.Items.Placeable.Painting.MemoriesOfFire>()) { shopCustomPrice = Item.buyPrice(gold: 10) });
+
+            if (Main.hardMode)
+            {
+                shop.Add(new Item(ModContent.ItemType<Avalon.Items.Material.Shards.FireShard>()) { shopCustomPrice = Item.buyPrice(silver: 35) });
+                shop.Add(new Item(ItemID.LavaAbsorbantSponge) { shopCustomPrice = Item.buyPrice(platinum: 1, gold: 50) });
+                shop.Add(new Item(ItemID.PottedLavaPlantBulb) { shopCustomPrice = Item.buyPrice(gold: 4) });
+            }
+
+            if (NPC.downedPlantBoss)
+            {
+                shop.Add(new Item(ModContent.ItemType<Avalon.Items.Weapons.Ranged.PreHardmode.Boompipe.Boompipe>()) { shopCustomPrice = Item.buyPrice(gold: 16, silver: 90) });
+                shop.Add(new Item(ItemID.LavaRocket) { shopCustomPrice = Item.buyPrice(silver: 30) });
+            }
+
+            if (DownedBossSystem.DownedSinlordBoss)
+            {
+                shop.Add(new Item(ModContent.ItemType<ValhallaMod.Items.Placeable.Painting.HellUnderEarth>()) { shopCustomPrice = Item.buyPrice(platinum: 1) });
+            }
+
             shop.Register();
         }
         public override void TownNPCAttackSwing(ref int itemWidth, ref int itemHeight) {
