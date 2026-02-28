@@ -1,7 +1,9 @@
 ﻿using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using Terraria.ModLoader.IO;
 using Microsoft.Xna.Framework;
+using System.IO;
 
 public class ColdFatherSnowballAttack : GlobalNPC
 {
@@ -11,10 +13,25 @@ public class ColdFatherSnowballAttack : GlobalNPC
     private bool warningShown = false;
     private Vector2 warningPos;
 
+    //Note from Not U.N. Owen: If you are using a GlobalNPC to modify just ONE entity, be sure to limit it with this.
+    //It causes a lot of performance issues in multiplayer as it applies an instantiated GlobalNPC to all mobs instead of just the one being changed.
+    public override bool AppliesToEntity(NPC npc, bool lateInstatiation) => npc.type == ModContent.NPCType<ValhallaMod.NPCs.Snowman.ColdFather>();
+
+	public override void SendExtraAI(NPC npc, BitWriter bitWriter, BinaryWriter binaryWriter) {
+		if(Main.netMode == 0) return;
+		bitWriter.WriteBit(warningShown);
+        binaryWriter.Write(snowballTimer);
+        binaryWriter.WriteVector2(warningPos);
+	}
+	public override void ReceiveExtraAI(NPC npc, BitReader bitReader, BinaryReader binaryReader) {
+		if(Main.netMode == 0) return;
+		warningShown = bitReader.ReadBit();
+        snowballTimer = binaryReader.ReadInt32();
+        warningPos = binaryReader.ReadVector2();
+	}
+
     public override void AI(NPC npc)
     {
-        if (npc.type == ModContent.NPCType<ValhallaMod.NPCs.Snowman.ColdFather>())
-        {
             if (npc.life < npc.lifeMax / 2)
             {
                 snowballTimer++;
@@ -78,8 +95,9 @@ public class ColdFatherSnowballAttack : GlobalNPC
 
                     snowballTimer = 0;
                     warningShown = false;
+                    npc.netUpdate = true;
                 }
             }
-        }
+        
     }
 }
