@@ -3,7 +3,9 @@ using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using Terraria.ModLoader.IO;
 using Terraria.Audio;
+using System.IO;
 
 namespace Synergia.Content.Projectiles.Hostile.Bosses
 {
@@ -15,11 +17,22 @@ namespace Synergia.Content.Projectiles.Hostile.Bosses
         private int spinTimer = 0;       // отсчет времени до спина
         private int spinInterval = 0;    // случайный интервал между спинами
 
+        public override bool AppliesToEntity(NPC npc, bool lateInstatiation) => npc.type == NPCID.EyeofCthulhu;
+
+        public override void SendExtraAI(NPC npc, BitWriter bitWriter, BinaryWriter binaryWriter) {
+            if(Main.netMode == 0) return;
+            binaryWriter.Write(spinTimer);
+            binaryWriter.Write(spinInterval);
+        }
+        public override void ReceiveExtraAI(NPC npc, BitReader bitReader, BinaryReader binaryReader) {
+            if(Main.netMode == 0) return;
+            spinTimer = binaryReader.ReadInt32();
+            spinInterval = binaryReader.ReadInt32();
+        }
+
         public override void AI(NPC npc)
         {
             base.AI(npc);
-
-            if (npc.type != NPCID.EyeofCthulhu) return;
 
             // Проверка цели
             if (npc.target < 0 || npc.target >= Main.maxPlayers || !Main.player[npc.target].active || Main.player[npc.target].dead)
@@ -211,3 +224,4 @@ namespace Synergia.Content.Projectiles.Hostile.Bosses
         }
     }
 }
+
