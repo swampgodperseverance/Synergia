@@ -9,6 +9,8 @@ namespace Synergia.Common.GlobalNPCs.AI
 {
     public class CacodemonSpawnCondition : GlobalNPC
     {
+        //Written this way to crash proof it
+        public override bool AppliesToEntity(NPC npc, bool lateInstatiation) => npc.ModNPC?.Mod.Name == "ValhallaMod" && npc.ModNPC?.Name == "Cacodemon"; 
         public override void EditSpawnPool(IDictionary<int, float> pool, NPCSpawnInfo spawnInfo)
         {
             if (!ModLoader.TryGetMod("ValhallaMod", out Mod valhallaMod))
