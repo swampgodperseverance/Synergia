@@ -1,4 +1,4 @@
-﻿using Terraria;
+using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 using ValhallaMod.Dusts;
@@ -10,12 +10,11 @@ namespace Synergia.Common.GlobalNPCs.AI
 {
     public class JadeOrbGlobalNPC : GlobalNPC
     {
-        public override bool InstancePerEntity => true; 
+
+        public override bool AppliesToEntity(NPC npc, bool lateInstatiation) => npc.ModNPC?.Mod.Name == "ValhallaMod" && npc.ModNPC?.Name == "JadeOrb";
 
         public override void OnKill(NPC npc)
         {
-            if (npc.ModNPC != null && npc.ModNPC.Mod.Name == "ValhallaMod" && npc.ModNPC.Name == "JadeOrb")
-            {
                 if (Main.netMode != NetmodeID.MultiplayerClient)
                 {
                     for (int i = 0; i < 3; i++)
@@ -33,7 +32,6 @@ namespace Synergia.Common.GlobalNPCs.AI
                         );
                     }
                 }
-            }
         }
     }
 }
