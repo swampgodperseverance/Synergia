@@ -1,4 +1,4 @@
-﻿
+
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;
@@ -49,12 +49,12 @@ namespace Synergia.Content.Projectiles.Hostile
                 toTarget.Normalize();
 
                 float acceleration = 0.1f;
-                Projectile.velocity = Vector2.Lerp(Projectile.velocity, toTarget * (Projectile.velocity.Length() + acceleration), 0.05f);
+                Projectile.velocity = Vector2.Normalize(Vector2.Lerp(Vector2.Normalize(Projectile.velocity), toTarget, 0.05f * Projectile.timeLeft / 300f)) * (Projectile.velocity.Length() + acceleration);
             }
 
 
             Projectile.rotation = Projectile.velocity.ToRotation(); 
-
+            Projectile.spriteDirection = Projectile.direction;
 
             if (Projectile.timeLeft < 40)
             {
@@ -65,18 +65,21 @@ namespace Synergia.Content.Projectiles.Hostile
 
         public override bool PreDraw(ref Color lightColor)
         {
-            SpriteEffects effects = SpriteEffects.None;
+            SpriteEffects effects = Projectile.spriteDirection < 0 ? SpriteEffects.FlipVertically : SpriteEffects.None;
             Texture2D texture = Terraria.GameContent.TextureAssets.Projectile[Projectile.type].Value;
             Vector2 origin = new Vector2(texture.Width / 2, Projectile.height / Main.projFrames[Projectile.type] / 2);
-
+            int textureHeight = texture.Height / Main.projFrames[Projectile.type];
             for (int i = 0; i < Projectile.oldPos.Length; i++)
             {
                 Vector2 drawPos = Projectile.oldPos[i] + Projectile.Size / 2f - Main.screenPosition;
-                Color color = Projectile.GetAlpha(Color.White) * ((Projectile.oldPos.Length - i) / (float)Projectile.oldPos.Length);
-                Main.EntitySpriteDraw(texture, drawPos, new Rectangle(0, Projectile.frame * Projectile.height, Projectile.width, Projectile.height), color, Projectile.rotation, origin, Projectile.scale, effects, 0);
+                Color color = Projectile.GetAlpha(lightColor) * ((Projectile.oldPos.Length - i) / (float)Projectile.oldPos.Length);
+                if(i > 0) color *= 0.5f;
+                Main.EntitySpriteDraw(texture, drawPos, new Rectangle(0, Projectile.frame * textureHeight, texture.Width, textureHeight), color, Projectile.rotation, origin, Projectile.scale, effects, 0);
             }
+            texture = ModContent.Request<Texture2D>(GlowTexture).Value;
+            Main.EntitySpriteDraw(texture, Projectile.Center - Main.screenPosition, new Rectangle(0, Projectile.frame * textureHeight, texture.Width, textureHeight), Color.White, Projectile.rotation, origin, Projectile.scale, effects, 0);
 
-            return true;
+            return false;
         }
 
         public override void OnKill(int timeLeft)
