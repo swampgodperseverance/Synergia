@@ -1,5 +1,6 @@
-﻿using Terraria;
+using Terraria;
 using Terraria.ModLoader;
+using Terraria.ModLoader.IO;
 using Terraria.ID;
 using Microsoft.Xna.Framework;
 using Terraria.Audio;
@@ -7,6 +8,7 @@ using Avalon.Projectiles.Hostile.TuhrtlOutpost;
 using Avalon.Projectiles.Hostile.BacteriumPrime;
 using Synergia.Common.GlobalPlayer;
 using Synergia.Common.ModConfigs; 
+using System.IO;
 
 namespace Synergia.Common.GlobalNPCs.AI
 {
@@ -22,7 +24,26 @@ namespace Synergia.Common.GlobalNPCs.AI
         private int gasAttackPhase = 0; 
         private int gasShotsLeft = 0;
 
+        public override bool AppliesToEntity(NPC npc, bool lateInstatiation) => npc.type == ModContent.NPCType<Avalon.NPCs.Bosses.PreHardmode.BacteriumPrime>();
 
+        public override void SendExtraAI(NPC npc, BitWriter bitWriter, BinaryWriter binaryWriter) {
+            if(Main.netMode == 0) return;
+            bitWriter.WriteBit(isGasAttackActive);
+            binaryWriter.Write(phase1Timer);
+            binaryWriter.Write(phase2Timer);
+            binaryWriter.Write(gasAttackTimer);
+            binaryWriter.Write(gasAttackPhase);
+            binaryWriter.Write(gasShotsLeft);
+        }
+        public override void ReceiveExtraAI(NPC npc, BitReader bitReader, BinaryReader binaryReader) {
+            if(Main.netMode == 0) return;
+            isGasAttackActive = bitReader.ReadBit();
+            phase1Timer = binaryReader.ReadInt32();
+            phase2Timer = binaryReader.ReadInt32();
+            gasAttackTimer = binaryReader.ReadInt32();
+            gasAttackPhase = binaryReader.ReadInt32();
+            gasShotsLeft = binaryReader.ReadInt32();
+        }
 
         //hard
         private const float DamageMultiplier = 1.7f;
@@ -34,16 +55,11 @@ namespace Synergia.Common.GlobalNPCs.AI
 
         public override void SetDefaults(NPC npc)
         {
-            if (npc.type == ModContent.NPCType<Avalon.NPCs.Bosses.PreHardmode.BacteriumPrime>())
-            {
-                npc.buffImmune[BuffID.Venom] = true;
-            }
+            npc.buffImmune[BuffID.Venom] = true;
         }
 
         public override void AI(NPC npc)
         {
-            if (npc.type != ModContent.NPCType<Avalon.NPCs.Bosses.PreHardmode.BacteriumPrime>())
-                return;
 
             Player target = Main.player[npc.target];
             bool inPhaseTwo = npc.localAI[0] == 1f;
