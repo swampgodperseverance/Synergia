@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
@@ -6,6 +6,8 @@ using Terraria.ModLoader;
 using Terraria.DataStructures;
 using Synergia.Common.ModConfigs;
 using Terraria.Audio;
+using System.IO;
+using Terraria.ModLoader.IO;
 
 namespace Synergia.Common.GlobalNPCs.AI
 {
@@ -18,39 +20,33 @@ namespace Synergia.Common.GlobalNPCs.AI
         private int teleportTimer = 0;
         private int pulseTimer = 0;
         private int dustPulse = 0;
-        private bool initialized = false;
 
-        private const string TARGET_NAME = "PapuanWizard";
+        public override bool AppliesToEntity(NPC npc, bool lateInstatiation) => npc.ModNPC?.Mod.Name == "Bismuth" && npc.ModNPC?.Name == "PapuanWizard";
 
-        private bool IsTarget(NPC npc)
-        {
-            if (npc.ModNPC != null)
-            {
-                if (npc.ModNPC.Name == TARGET_NAME) return true;
-                if ((npc.ModNPC.GetType().FullName ?? "").EndsWith(TARGET_NAME, StringComparison.Ordinal))
-                    return true;
-            }
-            return false;
+        public override void SendExtraAI(NPC npc, BitWriter bitWriter, BinaryWriter binaryWriter) {
+            if(Main.netMode == 0) return;
+            binaryWriter.Write(pulseTimer);
+            binaryWriter.Write(teleportTimer);
+            binaryWriter.Write(dustPulse);
+        }
+        public override void ReceiveExtraAI(NPC npc, BitReader bitReader, BinaryReader binaryReader) {
+            if(Main.netMode == 0) return;
+            pulseTimer = binaryReader.ReadInt32();
+            teleportTimer = binaryReader.ReadInt32();
+            dustPulse = binaryReader.ReadInt32();
         }
 
         public override void SetDefaults(NPC npc)
         {
-            if (!initialized && IsTarget(npc))
-            {
-                initialized = true;
-                npc.lifeMax = (int)(npc.lifeMax * 1.4f);
-                npc.damage = (int)(npc.damage * 1.4f);
-                npc.defense += 20;
-            }
+            npc.lifeMax = (int)(npc.lifeMax * 1.4f);
+            npc.damage = (int)(npc.damage * 1.4f);
+            npc.defense += 20;
         }
 
         public override void AI(NPC npc)
         {
             if (!PapuanWizardUpgrades.HardAIEnabled)
     return; 
-
-            if (!IsTarget(npc))
-                return;
 
             teleportTimer++;
             pulseTimer++;
