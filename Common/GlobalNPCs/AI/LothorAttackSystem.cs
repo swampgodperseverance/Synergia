@@ -1,8 +1,10 @@
-﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework;
 using Terraria;
-using Terraria.ModLoader;
-using Synergia.Content.Projectiles.Hostile;
 using Terraria.ID;
+using Terraria.ModLoader;
+using Terraria.ModLoader.IO;
+using Synergia.Content.Projectiles.Hostile;
+using System.IO;
 
 namespace Synergia.Common.GlobalNPCs.AI
 {
@@ -19,6 +21,30 @@ namespace Synergia.Common.GlobalNPCs.AI
         private int _defensiveRingID = -1;
         private bool _lowHPPhase = false;
         private int _fastAttackTimer = 0;
+
+        public override bool AppliesToEntity(NPC npc, bool lateInstatiation) => IsRoALothor(npc);
+
+        public override void SendExtraAI(NPC npc, BitWriter bitWriter, BinaryWriter binaryWriter) {
+            if(Main.netMode == 0) return;
+            bitWriter.WriteBit(_warningActive);
+            bitWriter.WriteBit(_lowHPPhase);
+            binaryWriter.Write(_attackCooldown);
+            binaryWriter.Write(_defensiveRingID);
+            binaryWriter.Write(_fastAttackTimer);
+            binaryWriter.WriteVector2(_attackOrigin);
+            binaryWriter.WriteVector2(_attackTarget);
+        }
+        public override void ReceiveExtraAI(NPC npc, BitReader bitReader, BinaryReader binaryReader) {
+            if(Main.netMode == 0) return;
+            _warningActive = bitReader.ReadBit();
+            _lowHPPhase = bitReader.ReadBit();
+            _attackCooldown = binaryReader.ReadInt32();
+            _defensiveRingID = binaryReader.ReadInt32();
+            _fastAttackTimer = binaryReader.ReadInt32();
+            _attackOrigin = binaryReader.ReadVector2();
+            _attackTarget = binaryReader.ReadVector2();
+        }
+
 
         public override void AI(NPC npc)
         {
