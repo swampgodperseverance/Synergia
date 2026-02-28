@@ -28,7 +28,8 @@ namespace Synergia.Content.NPCs.Boss.SinlordWyrm
 			NPC.noTileCollide = true;
 			NPC.noGravity = true;
 			NPC.HitSound = new SoundStyle($"{Mod.Name}/Assets/Sounds/CragwormHit2");
-            NPC.knockBackResist = 0f;
+			NPC.knockBackResist = 0f;
+			NPC.scale = 1.3f;
 			NPC.npcSlots = 6f;
 			NPC.Size = new Vector2(60f * NPC.scale);
 			NPC.aiStyle = -1;
@@ -59,7 +60,7 @@ namespace Synergia.Content.NPCs.Boss.SinlordWyrm
 				NPC.ai[2] = 0f;
 				return;
 			}
-			float distancing = 1f / NPC.scale * (body.ModNPC is Sinlord ? 0.45f : 0.4f);
+			float distancing = 1f / NPC.scale * (body.ModNPC is Sinlord ? 94f / 68f * 0.4f : 0.45f) * 0.9f;
 			Vector2 attachToBody = body.Center - body.rotation.ToRotationVector2() * body.height * distancing - NPC.Center;
 			if(body.rotation != NPC.rotation) attachToBody = Utils.MoveTowards(Utils.RotatedBy(attachToBody, MathHelper.WrapAngle(body.rotation - NPC.rotation) * 0.02f, Vector2.Zero), (body.rotation - NPC.rotation).ToRotationVector2(), 1f);
 			NPC.Center = body.Center - body.rotation.ToRotationVector2() * body.height * distancing - Utils.SafeNormalize(attachToBody, Vector2.Zero) * NPC.height * distancing;
@@ -104,7 +105,7 @@ namespace Synergia.Content.NPCs.Boss.SinlordWyrm
 			sprite.Draw(texture, NPC.Center - screenPosition, null, Color.White, NPC.rotation + MathHelper.PiOver2, texture.Size() * 0.5f, NPC.scale, SpriteEffects.None, 0);
 			if(NPC.localAI[0] <= 0f) return false;
 			texture = (Texture2D)ModContent.Request<Texture2D>(Texture + "_White");
-			sprite.Draw(texture, NPC.Center - screenPosition, null, Color.DarkOrange with {A = 0} * NPC.localAI[0], NPC.rotation + MathHelper.PiOver2, texture.Size() * 0.5f, NPC.scale, SpriteEffects.None, 0);
+			sprite.Draw(texture, NPC.Center - screenPosition, null, new Color(253, 32, 2, 0) * NPC.localAI[0], NPC.rotation + MathHelper.PiOver2, texture.Size() * 0.5f, NPC.scale, SpriteEffects.None, 0);
 			return false;
 		}
 		public override bool? DrawHealthBar(byte hbPosition, ref float scale, ref Vector2 position) => false;
