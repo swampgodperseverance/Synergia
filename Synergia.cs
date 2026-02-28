@@ -1,6 +1,8 @@
+using Synergia.Common.ModSystems.Netcode;
 using Synergia.Content.Achievements;
 using Synergia.Content.Quests;
 using Synergia.GraphicsSetting;
+using System.IO;
 using Terraria;
 using Terraria.UI;
 using static Synergia.GraphicsSetting.SynegiyGraphics;
@@ -41,5 +43,7 @@ namespace Synergia
         public override void Unload() {
             NewTexture.Unload();
         }
+        public override void HandlePacket(BinaryReader reader, int whoAmI) =>
+            MultiplayerSystem.HandlePacket(reader, whoAmI);
     }
 }

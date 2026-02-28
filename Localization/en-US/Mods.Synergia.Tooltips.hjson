@@ -21,6 +21,15 @@ Armors: {
 		You leave a trail of energy around your body
 		Taking damage grants additional 0.5s immunity
 		'''
+	FadingHellSetBonus:
+		'''
+		Double tap {ToggleArmorSetBonusKey} to inflict fire on yourself
+		Fire type depends on which item you hold when inflict fire
+		On fire, you gain significant stat boosts and unique effects based on fire type
+		However, you start taking continuous damage that can kill you
+		You can't be healed by Nurse during fire
+		Your fire extinguishes over time or immediately in water
+		'''
 }
 
 Weapons: {
