@@ -22,7 +22,7 @@ namespace Synergia.Content.GlobalNPCs.AI
         private bool spawnedAt20 = false;
         private bool spawnedAt8 = false;
 
-        private int PirateSquidType => ModContent.NPCType<PirateSquid>();
+        public override bool AppliesToEntity(NPC npc, bool lateInstatiation) => npc.type == ModContent.NPCType<PirateSquid>();
 
         private int CarnageChest1Type => ModContent.ProjectileType<CarnageChest1>();
         private int CarnageChest2Type => ModContent.ProjectileType<CarnageChest2>();
@@ -33,9 +33,6 @@ namespace Synergia.Content.GlobalNPCs.AI
 
         public override void AI(NPC npc)
         {
-            if (npc.type != PirateSquidType)
-                return;
-
             float hpPercent = 100f * npc.life / npc.lifeMax;
 
             if (hpPercent <= 95 && !spawnedAt95)
