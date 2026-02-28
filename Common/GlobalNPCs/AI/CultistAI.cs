@@ -28,12 +28,9 @@ namespace Synergia.Common.GlobalNPCs.AI
 
         public override void SetDefaults(NPC npc)
         {
-            if (npc.type == NPCID.CultistBoss)
-            {
-                npc.lifeMax = (int)(npc.lifeMax * 1.5f);
-                npc.damage = (int)(npc.damage * 1.1f);
-                npc.defense += 20;
-            }
+            npc.lifeMax = (int)(npc.lifeMax * 1.5f);
+            npc.damage = (int)(npc.damage * 1.1f);
+            npc.defense += 20;
         }
 
         public override void AI(NPC npc)
