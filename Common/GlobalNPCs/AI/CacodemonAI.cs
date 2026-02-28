@@ -3,14 +3,20 @@ using Microsoft.Xna.Framework.Graphics;
 using Terraria;
 using Terraria.Audio;
 using Terraria.ID;
-using Synergia.Content.Projectiles.Hostile  ;
+using Synergia.Content.Projectiles.Hostile;
 using Terraria.ModLoader;
+using Terraria.ModLoader.IO;
+using System.IO;
 
 namespace Synergia.Common.GlobalNPCs.AI
 {
     public class CacodemonAI : GlobalNPC
     {
         public override bool InstancePerEntity => true;
+
+        //Note from Not U.N. Owen: If you are using a GlobalNPC to modify just ONE entity, be sure to limit it with this.
+        //It causes a lot of performance issues in multiplayer as it applies an instantiated GlobalNPC to all mobs instead of just the one being changed.
+        public override bool AppliesToEntity(NPC npc, bool lateInstatiation) => npc.ModNPC?.Mod.Name == "ValhallaMod" && npc.ModNPC?.Name == "Cacodemon"; //Written this way to crash proof it
         
         private int dashTimer = 0;
         private bool isDashing = false;
@@ -18,20 +24,31 @@ namespace Synergia.Common.GlobalNPCs.AI
         private int attackCooldown = 180;
         private int bloodFireCooldown = 0;
 
+
+		public override void SendExtraAI(NPC npc, BitWriter bitWriter, BinaryWriter binaryWriter) {
+			if(Main.netMode == 0) return;
+            bitWriter.WriteBit(isDashing);
+			binaryWriter.Write(dashTimer);
+			binaryWriter.Write(attackCooldown);
+			binaryWriter.Write(bloodFireCooldown);
+			binaryWriter.WriteVector2(dashDirection);
+		}
+		public override void ReceiveExtraAI(NPC npc, BitReader bitReader, BinaryReader binaryReader) {
+			if(Main.netMode == 0) return;
+            isDashing = bitReader.ReadBit();
+			dashTimer = binaryReader.ReadInt32();
+            attackCooldown = binaryReader.ReadInt32();
+            bloodFireCooldown = binaryReader.ReadInt32();
+            dashDirection = binaryReader.ReadVector2();
+		}
+
         public override void SetDefaults(NPC npc)
         {
 
-            if (npc.type == ModLoader.GetMod("ValhallaMod").Find<ModNPC>("Cacodemon").Type)
-            {
-
-            }
         }
 
         public override void AI(NPC npc)
         {
-
-            if (npc.type != ModLoader.GetMod("ValhallaMod").Find<ModNPC>("Cacodemon").Type)
-                return;
 
 
             if (attackCooldown > 0)
@@ -91,6 +108,7 @@ namespace Synergia.Common.GlobalNPCs.AI
                 dust.noGravity = true;
                 dust.velocity = dashDirection.RotatedByRandom(MathHelper.PiOver4) * 5f;
             }
+            npc.netUpdate = true;
         }
 
         private void EndDash(NPC npc)
@@ -106,6 +124,7 @@ namespace Synergia.Common.GlobalNPCs.AI
                 dust.noGravity = true;
                 dust.velocity = Main.rand.NextVector2Circular(3f, 3f);
             }
+            npc.netUpdate = true;
         }
 
         private void ShootBloodFireProjectiles(NPC npc)
@@ -151,7 +170,7 @@ namespace Synergia.Common.GlobalNPCs.AI
 
         public override void ModifyHitByProjectile(NPC npc, Projectile projectile, ref NPC.HitModifiers modifiers)
         {
-            if (npc.type == ModLoader.GetMod("ValhallaMod").Find<ModNPC>("Cacodemon").Type && isDashing)
+            if (isDashing)
             {
                 modifiers.FinalDamage *= 0.7f;
             }
