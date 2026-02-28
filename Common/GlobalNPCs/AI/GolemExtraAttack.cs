@@ -1,45 +1,18 @@
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using Microsoft.Xna.Framework;
 
-public class GolemExtraAttack : GlobalNPC
+namespace Synergia.Common.GlobalNPCs.AI
 {
-    public override bool InstancePerEntity => true;
-
-    private int attackTimer = 0;
-
-    public override void AI(NPC npc)
-    {
-        if (npc.type == NPCID.Golem || npc.type == NPCID.GolemHead)
-        {
-            attackTimer++;
-
-            if (attackTimer >= 300)
-            {
-                if (Main.netMode != NetmodeID.MultiplayerClient)
-                {
-                    Player target = Main.player[npc.target];
-
-                    Vector2 direction = (target.Center - npc.Center).SafeNormalize(Vector2.UnitX);
-
-                    // 8 projs
-                    int numberOfProjectiles = 8;
-                    float spread = MathHelper.ToRadians(45); 
-                    float baseSpeed = 4f;
-
-                    for (int i = 0; i < numberOfProjectiles; i++)
-                    {
-                        float rotation = MathHelper.Lerp(-spread / 2, spread / 2, i / (float)(numberOfProjectiles - 1));
-                        Vector2 perturbedSpeed = direction.RotatedBy(rotation) * baseSpeed;
-
-                        Projectile.NewProjectile(npc.GetSource_FromAI(), npc.Center, perturbedSpeed,
-                            ProjectileID.Fireball, 20, 1f, Main.myPlayer);
-                    }
-                }
-
-                attackTimer = 0;
-            }
-        }
-    }
+	public class GolemExtraAttacks : GlobalNPC
+	{
+		public override bool AppliesToEntity(NPC npc, bool lateInstatiation) => npc.type >= NPCID.Golem && npc.type <= NPCID.GolemHeadFree;
+		public override void SetDefaults(NPC npc) => npc.trapImmune = true;
+		public override void AI(NPC npc) {
+            if(NPC.golemBoss < 0) return;
+			if(npc.type == NPCID.GolemHead && npc.whoAmI < NPC.golemBoss) npc.position += Main.npc[NPC.golemBoss].velocity;
+			if(npc.type > NPCID.GolemHead && npc.type < NPCID.GolemHeadFree) npc.dontTakeDamage = Main.npc[NPC.golemBoss].dontTakeDamage;
+			if(npc.type > NPCID.GolemHead && npc.type < NPCID.GolemHeadFree && npc.ai[0] == 0f && Main.npc[NPC.golemBoss].ai[0] == 0f && Main.npc[NPC.golemBoss].ai[1] < -20f) npc.ai[1] = 0f;
+		}
+	}
 }
