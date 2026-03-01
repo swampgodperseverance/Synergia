@@ -40,7 +40,7 @@ namespace Synergia.Common.ModSystems {
 
     public class LavaInfernalGlow : ModProjectile
     {
-        // Если ты это читаешь то ты дура, если нужно указать что переменная приватная то просто ничего не пиши. Просто меня бесит не нужное присваивания
+        // Aeris fuck ur mum
         private float pulse;
         private float distortionTimer;
         bool lakeSpawn;

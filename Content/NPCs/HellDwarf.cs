@@ -1,11 +1,13 @@
 ﻿// Code by SerNik
+using System.Collections.Generic;
+using Bismuth.Content.Items.Materials;
+using Bismuth.Content.Items.Other;
 using Synergia.Common.ModSystems;
 using Synergia.Common.ModSystems.WorldGens;
 using Synergia.Helpers;
-using System.Collections.Generic;
 using Terraria;
-using Terraria.GameContent.Bestiary;
 using Terraria.DataStructures;
+using Terraria.GameContent.Bestiary;
 using Terraria.GameContent.Creative;
 using Terraria.GameContent.UI;
 using Terraria.ID;
@@ -87,27 +89,50 @@ namespace Synergia.Content.NPCs {
             shop.Add(new Item(ItemID.AshBlock) { shopCustomPrice = Item.buyPrice(silver: 3) });
             shop.Add(new Item(ItemID.Obsidian) { shopCustomPrice = Item.buyPrice(silver: 30) });
             shop.Add(new Item(ItemID.LavaBomb) { shopCustomPrice = Item.buyPrice(silver: 20, copper: 50) });
-            shop.Add(new Item(ItemID.HellfireArrow) { shopCustomPrice = Item.buyPrice(silver: 8, copper: 80) });
-            shop.Add(new Item(ModContent.ItemType<ValhallaMod.Items.Placeable.Painting.MemoriesOfFire>()) { shopCustomPrice = Item.buyPrice(gold: 10) });
+            shop.Add(new Item(ItemID.HellfireArrow) { shopCustomPrice = Item.buyPrice(silver: 4, copper: 80) });
 
-            if (Main.hardMode)
+            shop.Add(new Item(ModContent.ItemType<ValhallaMod.Items.Placeable.Painting.MemoriesOfFire>())
             {
-                shop.Add(new Item(ModContent.ItemType<Avalon.Items.Material.Shards.FireShard>()) { shopCustomPrice = Item.buyPrice(silver: 35) });
-                shop.Add(new Item(ItemID.LavaAbsorbantSponge) { shopCustomPrice = Item.buyPrice(platinum: 1, gold: 50) });
-                shop.Add(new Item(ItemID.PottedLavaPlantBulb) { shopCustomPrice = Item.buyPrice(gold: 4) });
-            }
+                shopCustomPrice = Item.buyPrice(gold: 10)
+            });
 
-            if (NPC.downedPlantBoss)
+            var condHardmode = new Condition("Mods.Avalon.HardmodeCondition", () => Main.hardMode);
+
+            shop.Add(new Item(ModContent.ItemType<Avalon.Items.Material.Shards.FireShard>())
             {
-                shop.Add(new Item(ModContent.ItemType<Avalon.Items.Weapons.Ranged.PreHardmode.Boompipe.Boompipe>()) { shopCustomPrice = Item.buyPrice(gold: 16, silver: 90) });
-                shop.Add(new Item(ItemID.LavaRocket) { shopCustomPrice = Item.buyPrice(silver: 30) });
-            }
+                shopCustomPrice = Item.buyPrice(silver: 35)
+            }, condHardmode);
 
-            if (DownedBossSystem.DownedSinlordBoss)
+            shop.Add(new Item(ItemID.LavaAbsorbantSponge)
             {
-                shop.Add(new Item(ModContent.ItemType<ValhallaMod.Items.Placeable.Painting.HellUnderEarth>()) { shopCustomPrice = Item.buyPrice(platinum: 1) });
-            }
+                shopCustomPrice = Item.buyPrice(platinum: 1, gold: 50)
+            }, condHardmode);
 
+            shop.Add(new Item(ItemID.PottedLavaPlantBulb)
+            {
+                shopCustomPrice = Item.buyPrice(gold: 4)
+            }, condHardmode);
+
+            var condPostPlant = new Condition("Mods.Avalon.DownedPlantBoss", () => NPC.downedPlantBoss);
+
+            shop.Add(new Item(ModContent.ItemType<Avalon.Items.Weapons.Ranged.PreHardmode.Boompipe.Boompipe>())
+            {
+                shopCustomPrice = Item.buyPrice(gold: 16, silver: 90)
+            }, condPostPlant);
+
+            shop.Add(new Item(ItemID.LavaRocket)
+            {
+                shopCustomPrice = Item.buyPrice(silver: 30)
+            }, condPostPlant);
+
+            var condSinlord = new Condition("Mods.Valhalla.DownedSinlord", () => DownedBossSystem.DownedSinlordBoss);
+
+            shop.Add(new Item(ModContent.ItemType<ValhallaMod.Items.Placeable.Painting.HellUnderEarth>())
+            {
+                shopCustomPrice = Item.buyPrice(platinum: 1)
+            }, condSinlord);
+
+            // Регистрируем магазин
             shop.Register();
         }
         public override void TownNPCAttackSwing(ref int itemWidth, ref int itemHeight) {

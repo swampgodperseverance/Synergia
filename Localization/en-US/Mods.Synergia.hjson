@@ -1267,6 +1267,8 @@ Projectiles: {
 	Hellfire.DisplayName: Hellfire
 	HellFireExplosion.DisplayName: Hell Fire Explosion
 	RoyalBlast.DisplayName: Royal Blast
+	BrainWaves.DisplayName: Brain Waves
+	BrainofCthulhu.DisplayName: Brainof Cthulhu
 }
 
 Buffs: {
