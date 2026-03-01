@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Terraria;
 using Terraria.ID;
 
@@ -16,7 +17,7 @@ namespace Synergia.Helpers {
         public static int? FindClosestNPC(Vector2 position, int type = 0, float maxDistance = -1f, bool ignoreTiles = false, bool shouldBeChaseable = true, List<int> ignoreThoseNPCs = null)
         {
             int? foundTarget = null;
-            float maxDistanceSquared = maxDistance * maxDistance;
+            float maxDistanceSquared = maxDistance * maxDistance * Math.Sign(maxDistance);
             for(int i = 0; i < Main.maxNPCs; i++)
             {
                 NPC npc = Main.npc[i];
@@ -24,7 +25,7 @@ namespace Synergia.Helpers {
 
                 if ((npc.type != type && type != 0) || !IsValidTarget(npc) || (!npc.CanBeChasedBy() && shouldBeChaseable))
                     continue;
-                if (distanceSquared > maxDistanceSquared && maxDistance != 0)
+                if (distanceSquared > maxDistanceSquared && maxDistanceSquared > 0)
                     continue;
                 if (!ignoreTiles && !Collision.CanHit(position, 0, 0, npc.Center, 0, 0))
                     continue;

@@ -1,12 +1,11 @@
-﻿using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
+﻿using Synergia.Common.GlobalPlayer;
+using Synergia.Common.ModSystems.WorldGens;
+using Synergia.Helpers;
+using System;
 using Terraria;
 using Terraria.ID;
-using Terraria.ModLoader;
-using System;
 
-namespace Synergia.Common.Systems
-{
+namespace Synergia.Common.ModSystems {
     public class HellLavaDistortionSystem : ModSystem
     {
         public override void PostUpdateWorld()
@@ -20,46 +19,31 @@ namespace Synergia.Common.Systems
             }
         }
 
-        private void TrySpawn(Player player)
+        private static void TrySpawn(Player player)
         {
-            if (!Main.rand.NextBool(15))
-                return;
+            if (!Main.rand.NextBool(player.GetModPlayer<BiomePlayer>().lakeBiome ? 5 : 15)) { return; }
 
             int radius = 600;
-
-            Vector2 randomPos = player.Center + new Vector2(
-                Main.rand.Next(-radius, radius),
-                Main.rand.Next(-radius, radius)
-            );
-
+            Vector2 randomPos = player.Center + new Vector2(Main.rand.Next(-radius, radius), Main.rand.Next(-radius, radius));
             Point tilePos = randomPos.ToTileCoordinates();
 
-            if (!WorldGen.InWorld(tilePos.X, tilePos.Y))
-                return;
-
+            if (!WorldGen.InWorld(tilePos.X, tilePos.Y)) { return; }
             Tile tile = Main.tile[tilePos.X, tilePos.Y];
 
             if (tile != null && tile.LiquidAmount > 0 && tile.LiquidType == LiquidID.Lava)
             {
-                Vector2 spawn = new Vector2(tilePos.X * 16 + 8, tilePos.Y * 16 - 8);
-
-                Projectile.NewProjectile(
-                    player.GetSource_FromThis(),
-                    spawn,
-                    new Vector2(0f, -2f),
-                    ModContent.ProjectileType<LavaInfernalGlow>(),
-                    25,
-                    2f,
-                    Main.myPlayer
-                );
+                Vector2 spawn = new(tilePos.X * 16 + 8, tilePos.Y * 16 - 8);
+                Projectile.NewProjectile(player.GetSource_FromThis(), spawn, new Vector2(0f, -2f), ProjectileType<LavaInfernalGlow>(), 25, 2f, Main.myPlayer);
             }
         }
     }
 
     public class LavaInfernalGlow : ModProjectile
     {
+        // Если ты это читаешь то ты дура, если нужно указать что переменная приватная то просто ничего не пиши. Просто меня бесит не нужное присваивания
         private float pulse;
         private float distortionTimer;
+        bool lakeSpawn;
 
         public override string Texture => "Synergia/Assets/Textures/Glow";
 
@@ -71,7 +55,7 @@ namespace Synergia.Common.Systems
             Projectile.tileCollide = false;
             Projectile.ignoreWater = true;
             Projectile.alpha = 255;
-            Projectile.hostile = true   ;
+            Projectile.hostile = true;
             Projectile.DamageType = DamageClass.Generic;
             Projectile.penetrate = 1;
             Projectile.usesLocalNPCImmunity = true;
@@ -81,6 +65,9 @@ namespace Synergia.Common.Systems
 
         public override void AI()
         {
+            bool lake = WorldHelper.CheckBiomeTile((int)Projectile.position.X / 16, (int)Projectile.position.Y / 16, 215, 119, SynergiaGenVars.HellLakeX - 236, SynergiaGenVars.HellLakeY - 119);
+            if (lake && !lakeSpawn) { Projectile.timeLeft += 240; lakeSpawn = true; }
+
             if (Projectile.alpha > 0)
             {
                 Projectile.alpha -= 15;
@@ -108,10 +95,7 @@ namespace Synergia.Common.Systems
             Projectile.rotation += 0.03f;
 
             float lightIntensity = 1.2f * (1f - Projectile.alpha / 255f);
-            Lighting.AddLight(Projectile.Center,
-                lightIntensity,
-                lightIntensity * 0.4f,
-                lightIntensity * 0.1f);
+            Lighting.AddLight(Projectile.Center, lightIntensity, lightIntensity * 0.4f, lightIntensity * 0.1f);
         }
 
         public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)

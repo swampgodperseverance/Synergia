@@ -873,6 +873,21 @@ Items: {
 		DisplayName: Lavinator
 		Tooltip: ""
 	}
+
+	FadingHellChestplate: {
+		DisplayName: Fading Hell Chestplate
+		Tooltip: ""
+	}
+
+	FadingHellHat: {
+		DisplayName: Fading Hell Hat
+		Tooltip: ""
+	}
+
+	FadingHellPants: {
+		DisplayName: Fading Hell Pants
+		Tooltip: ""
+	}
 }
 
 Projectiles: {
@@ -1244,6 +1259,14 @@ Projectiles: {
 	SinlordFireProminence.DisplayName: Sinlord Fire Prominence
 	LavaInfernalGlow.DisplayName: Lava Infernal Glow
 	SwizzardHand.DisplayName: Swizzard Hand
+	FadingHellFrostburnShieldExplosion.DisplayName: Fading Hell Frostburn Shield Explosion
+	FadingHellHeldItem.DisplayName: Fading Hell Held Item
+	ShadowPlayerGore.DisplayName: Shadow Player Gore
+	GolemFireBreath.DisplayName: Golem Fire Breath
+	GolemFireCharge.DisplayName: Golem Fire Charge
+	Hellfire.DisplayName: Hellfire
+	HellFireExplosion.DisplayName: Hell Fire Explosion
+	RoyalBlast.DisplayName: Royal Blast
 }
 
 Buffs: {

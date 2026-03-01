@@ -41,7 +41,7 @@ namespace Synergia.Content.NPCs.Boss.SinlordWyrm
 			sprite.Draw(texture, NPC.Center - screenPosition, null, Color.White, NPC.rotation + MathHelper.PiOver2, new Vector2(texture.Width) * 0.5f, NPC.scale, SpriteEffects.None, 0);
 			if(NPC.localAI[0] <= 0f) return false;
 			texture = (Texture2D)ModContent.Request<Texture2D>(Texture + "_White");
-			sprite.Draw(texture, NPC.Center - screenPosition, null, Color.DarkOrange with {A = 0} * NPC.localAI[0], NPC.rotation + MathHelper.PiOver2, new Vector2(texture.Width) * 0.5f, NPC.scale, SpriteEffects.None, 0);
+			sprite.Draw(texture, NPC.Center - screenPosition, null, new Color(253, 32, 2, 0) * NPC.localAI[0], NPC.rotation + MathHelper.PiOver2, new Vector2(texture.Width) * 0.5f, NPC.scale, SpriteEffects.None, 0);
 			return false;
 		}
 	}

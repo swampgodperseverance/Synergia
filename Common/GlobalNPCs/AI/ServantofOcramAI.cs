@@ -1,6 +1,8 @@
-﻿using Consolaria.Content.NPCs.Bosses.Ocram;
+using Consolaria.Content.NPCs.Bosses.Ocram;
 using Synergia.Content.Projectiles.Hostile;
 using Terraria;
+using Terraria.ModLoader.IO;
+using System.IO;
 
 namespace Synergia.Common.GlobalNPCs.AI
 {
@@ -11,27 +13,33 @@ namespace Synergia.Common.GlobalNPCs.AI
         private int attackTimer = 0;
         private bool initialized = false;
 
+        public override bool AppliesToEntity(NPC npc, bool lateInstatiation) => npc.type == ModContent.NPCType<ServantofOcram>();
+
+        public override void SendExtraAI(NPC npc, BitWriter bitWriter, BinaryWriter binaryWriter) {
+            if(Main.netMode == 0) return;
+            bitWriter.WriteBit(initialized);
+            binaryWriter.Write(attackTimer);
+        }
+        public override void ReceiveExtraAI(NPC npc, BitReader bitReader, BinaryReader binaryReader) {
+            if(Main.netMode == 0) return;
+            initialized = bitReader.ReadBit();
+            attackTimer = binaryReader.ReadInt32();
+        }
+
         public override void PostAI(NPC npc)
         {
-            if (npc.type == ModContent.NPCType<ServantofOcram>())
+            if (!initialized)
             {
-                if (!initialized)
-                {
-                    attackTimer = 0;
-                    initialized = true;
-                }
-                
-                attackTimer++;
-
-                if (attackTimer == 90)
-                {
-                    LaunchScythe(npc);
-                    attackTimer = 0;
-                }
+                attackTimer = 0;
+                initialized = true;
             }
-            else
+                
+            attackTimer++;
+
+            if (attackTimer == 90)
             {
-                initialized = false;
+                LaunchScythe(npc);
+                attackTimer = 0;
             }
         }
 
