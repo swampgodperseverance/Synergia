@@ -1266,6 +1266,7 @@ Projectiles: {
 	GolemFireCharge.DisplayName: Golem Fire Charge
 	Hellfire.DisplayName: Hellfire
 	HellFireExplosion.DisplayName: Hell Fire Explosion
+	RoyalBlast.DisplayName: Royal Blast
 }
 
 Buffs: {

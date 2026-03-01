@@ -66,7 +66,7 @@ namespace Synergia.Common.ModSystems {
         public override void AI()
         {
             bool lake = WorldHelper.CheckBiomeTile((int)Projectile.position.X / 16, (int)Projectile.position.Y / 16, 215, 119, SynergiaGenVars.HellLakeX - 236, SynergiaGenVars.HellLakeY - 119);
-            if (lake && !lakeSpawn) { Projectile.timeLeft = 240; lakeSpawn = true; }
+            if (lake && !lakeSpawn) { Projectile.timeLeft += 240; lakeSpawn = true; }
 
             if (Projectile.alpha > 0)
             {
