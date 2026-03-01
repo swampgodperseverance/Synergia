@@ -1,4 +1,4 @@
-﻿using Terraria;
+using Terraria;
 using Terraria.ModLoader;
 using Terraria.ID;
 using Microsoft.Xna.Framework;
@@ -8,13 +8,10 @@ namespace Synergia.Common.GlobalNPCs
 {
     public class TurkorFeatherAI : GlobalNPC
     {
-        public override bool InstancePerEntity => true;
+        public override bool AppliesToEntity(NPC npc, bool lateInstatiation) => npc.type == ModContent.NPCType<Consolaria.Content.NPCs.Bosses.Turkor.TurkortheUngrateful>();
 
         public override void AI(NPC npc)
         {
-            if (npc.type != ModContent.NPCType<Consolaria.Content.NPCs.Bosses.Turkor.TurkortheUngrateful>())
-                return;
-
             Player target = Main.player[npc.target];
             npc.localAI[0] += 1f;
             if (npc.localAI[1] > 0)
