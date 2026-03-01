@@ -82,31 +82,26 @@ namespace Synergia.Content.NPCs {
         // TODO: add item for shop
         public override void AddShops()
         {
-            var shop = new NPCShop(Type, "Shop");
+            NPCShop shop = new(Type, "Shop");
+
+            Condition wOF = Condition.Hardmode;
+            Condition plant = Condition.DownedPlantera;
+            Condition sinlord = new("sdadd", () => DownedBossSystem.DownedSinlordBoss);
 
             shop.Add(new Item(ItemID.AshBlock) { shopCustomPrice = Item.buyPrice(silver: 3) });
             shop.Add(new Item(ItemID.Obsidian) { shopCustomPrice = Item.buyPrice(silver: 30) });
             shop.Add(new Item(ItemID.LavaBomb) { shopCustomPrice = Item.buyPrice(silver: 20, copper: 50) });
             shop.Add(new Item(ItemID.HellfireArrow) { shopCustomPrice = Item.buyPrice(silver: 8, copper: 80) });
-            shop.Add(new Item(ModContent.ItemType<ValhallaMod.Items.Placeable.Painting.MemoriesOfFire>()) { shopCustomPrice = Item.buyPrice(gold: 10) });
+            shop.Add(new Item(ItemType<ValhallaMod.Items.Placeable.Painting.MemoriesOfFire>()) { shopCustomPrice = Item.buyPrice(gold: 10) });
 
-            if (Main.hardMode)
-            {
-                shop.Add(new Item(ModContent.ItemType<Avalon.Items.Material.Shards.FireShard>()) { shopCustomPrice = Item.buyPrice(silver: 35) });
-                shop.Add(new Item(ItemID.LavaAbsorbantSponge) { shopCustomPrice = Item.buyPrice(platinum: 1, gold: 50) });
-                shop.Add(new Item(ItemID.PottedLavaPlantBulb) { shopCustomPrice = Item.buyPrice(gold: 4) });
-            }
+            shop.Add(new Item(ItemType<Avalon.Items.Material.Shards.FireShard>()) { shopCustomPrice = Item.buyPrice(silver: 35) }, wOF);
+            shop.Add(new Item(ItemID.LavaAbsorbantSponge) { shopCustomPrice = Item.buyPrice(platinum: 1, gold: 50) }, wOF);
+            shop.Add(new Item(ItemID.PottedLavaPlantBulb) { shopCustomPrice = Item.buyPrice(gold: 4) }, wOF);
 
-            if (NPC.downedPlantBoss)
-            {
-                shop.Add(new Item(ModContent.ItemType<Avalon.Items.Weapons.Ranged.PreHardmode.Boompipe.Boompipe>()) { shopCustomPrice = Item.buyPrice(gold: 16, silver: 90) });
-                shop.Add(new Item(ItemID.LavaRocket) { shopCustomPrice = Item.buyPrice(silver: 30) });
-            }
+            shop.Add(new Item(ItemType<Avalon.Items.Weapons.Ranged.PreHardmode.Boompipe.Boompipe>()) { shopCustomPrice = Item.buyPrice(gold: 16, silver: 90) }, plant);
+            shop.Add(new Item(ItemID.LavaRocket) { shopCustomPrice = Item.buyPrice(silver: 30) }, plant);
 
-            if (DownedBossSystem.DownedSinlordBoss)
-            {
-                shop.Add(new Item(ModContent.ItemType<ValhallaMod.Items.Placeable.Painting.HellUnderEarth>()) { shopCustomPrice = Item.buyPrice(platinum: 1) });
-            }
+            shop.Add(new Item(ItemType<ValhallaMod.Items.Placeable.Painting.HellUnderEarth>()) { shopCustomPrice = Item.buyPrice(platinum: 1) }, sinlord);
 
             shop.Register();
         }
