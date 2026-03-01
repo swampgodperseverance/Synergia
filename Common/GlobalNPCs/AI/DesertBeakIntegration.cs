@@ -1,4 +1,4 @@
-﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna;
 using System;
@@ -6,6 +6,8 @@ using Terraria;
 using Terraria.Audio;
 using Terraria.ID;
 using Terraria.ModLoader;
+using Terraria.ModLoader.IO;
+using System.IO;
 using Synergia.Content.Projectiles.Hostile;
 
 namespace Synergia.Common.GlobalNPCs.AI
@@ -24,10 +26,29 @@ namespace Synergia.Common.GlobalNPCs.AI
         //private Vector2 featherVolleyDir;
         private Vector2 featherSpawnPos;
 
+        public override bool AppliesToEntity(NPC npc, bool lateInstatiation) => npc.type == ModLoader.GetMod("Avalon").Find<ModNPC>("DesertBeak").Type;
+
+        public override void SendExtraAI(NPC npc, BitWriter bitWriter, BinaryWriter binaryWriter) {
+            if(Main.netMode == 0) return;
+            bitWriter.WriteBit(isPreparingSandstorm);
+            bitWriter.WriteBit(isPreparingFeatherVolley);
+            binaryWriter.Write(sandstormCooldown);
+            binaryWriter.Write(featherVolleyTimer);
+            binaryWriter.Write(featherVolleySide);
+            binaryWriter.WriteVector2(featherSpawnPos);
+        }
+        public override void ReceiveExtraAI(NPC npc, BitReader bitReader, BinaryReader binaryReader) {
+            if(Main.netMode == 0) return;
+            isPreparingSandstorm = bitReader.ReadBit();
+            isPreparingFeatherVolley = bitReader.ReadBit();
+            sandstormCooldown = binaryReader.ReadInt32();
+            featherVolleyTimer = binaryReader.ReadInt32();
+            featherVolleySide = binaryReader.ReadInt32();
+            featherSpawnPos = binaryReader.ReadVector2();
+        }
+
         public override void AI(NPC npc)
         {
-            if (npc.type != ModLoader.GetMod("Avalon").Find<ModNPC>("DesertBeak").Type)
-                return;
 
             Player target = Main.player[npc.target];
             if (!target.active || target.dead) return;
