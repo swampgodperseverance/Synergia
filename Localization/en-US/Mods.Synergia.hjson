@@ -1244,6 +1244,8 @@ Projectiles: {
 	SinlordFireProminence.DisplayName: Sinlord Fire Prominence
 	LavaInfernalGlow.DisplayName: Lava Infernal Glow
 	SwizzardHand.DisplayName: Swizzard Hand
+	GolemFireCharge.DisplayName: Golem Fire Charge
+	GolemFireBreath.DisplayName: Golem Fire Breath
 }
 
 Buffs: {
