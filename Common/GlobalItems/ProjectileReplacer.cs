@@ -26,7 +26,7 @@ namespace Synergia.Common.GlobalItems
                             item.shoot = ModContent.ProjectileType<Content.Projectiles.Reworks.TroxiniumRework>();
                             break;
                         case "NaquadahLance":
-                            item.shoot = ModContent.ProjectileType<Content.Projectiles.Reworks.NaquadahRework>();
+                            item.shoot = ModContent.ProjectileType<Content.Projectiles.Reworks.NaquadahRework2>();
                             break;
                         case "CaesiumPike":
                             item.shoot = ModContent.ProjectileType<Content.Projectiles.Reworks.CaesiumSpear>();

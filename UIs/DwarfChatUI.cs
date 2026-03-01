@@ -160,7 +160,7 @@ namespace Synergia.UIs {
             stackSplit = 9999;
             npcChatText = "";
             SetNPCShopIndex(1);
-            instance.shop[npcShop].SetupShop(NPCShopDatabase.GetShopName(npc.type, nameof(HellDwarf)), npc);
+            instance.shop[npcShop].SetupShop(NPCShopDatabase.GetShopName(npc.type, "Shop"), npc);
             SoundEngine.PlaySound(SoundID.MenuOpen);
             showUI = true;
             isQuestButton = false;
