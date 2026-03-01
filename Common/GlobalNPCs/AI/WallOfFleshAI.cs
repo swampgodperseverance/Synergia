@@ -1,8 +1,10 @@
-﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ModLoader;
+using Terraria.ModLoader.IO;
 using Terraria.ID;
 using Synergia.Content.Projectiles.Hostile;
+using System.IO;
 
 namespace Synergia.Common.GlobalNPCs.AI
 {
@@ -12,10 +14,16 @@ namespace Synergia.Common.GlobalNPCs.AI
 
         public override bool InstancePerEntity => true;
 
+        public override bool AppliesToEntity(NPC npc, bool lateInstatiation) => npc.type == NPCID.WallofFlesh;
+
+        public override void SendExtraAI(NPC npc, BitWriter bitWriter, BinaryWriter binaryWriter) {
+            if(Main.netMode > 0) binaryWriter.Write(attackTimer);
+        }
+        public override void ReceiveExtraAI(NPC npc, BitReader bitReader, BinaryReader binaryReader) {
+            if(Main.netMode > 0) attackTimer = binaryReader.ReadInt32();
+        }
         public override void AI(NPC npc)
         {
-            if (npc.type == NPCID.WallofFlesh)
-            {
                 attackTimer++;
 
                 if (attackTimer >= 300) 
@@ -74,7 +82,6 @@ namespace Synergia.Common.GlobalNPCs.AI
                         }
                     }
                 }
-            }
         }
     }
 }

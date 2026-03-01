@@ -3,7 +3,7 @@ using Synergia.Common.SUtils;
 using Terraria;
 using Terraria.ID;
 
-namespace Synergia.Content.Items.Armor.Melee;
+namespace Synergia.Content.Items.Armor.Melee.Thunder;
 
 [AutoloadEquip(EquipType.Head)]
 public sealed class ThunderHead : ModItem {

@@ -1,10 +1,12 @@
-﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ModLoader;
+using Terraria.ModLoader.IO;
 using Terraria.DataStructures;
 using Synergia.Common.GlobalNPCs.AI;
 using Synergia.Content.Projectiles.Hostile.Bosses;
 using Terraria.ID;
+using System.IO;
 
 namespace Synergia.Common.GlobalNPCs
 {
@@ -16,6 +18,19 @@ namespace Synergia.Common.GlobalNPCs
         private int projectileTimer = 0;
 
         //private bool initialized = false;
+
+        public override bool AppliesToEntity(NPC npc, bool lateInstatiation) => IsTarget(npc);
+
+        public override void SendExtraAI(NPC npc, BitWriter bitWriter, BinaryWriter binaryWriter) {
+            if(Main.netMode == 0) return;
+            binaryWriter.Write(dustTimer);
+            binaryWriter.Write(projectileTimer);
+        }
+        public override void ReceiveExtraAI(NPC npc, BitReader bitReader, BinaryReader binaryReader) {
+            if(Main.netMode == 0) return;
+            dustTimer = binaryReader.ReadInt32();
+            projectileTimer = binaryReader.ReadInt32();
+        }
 
         private const string TARGET_NAME = "RunicElemental";
 
