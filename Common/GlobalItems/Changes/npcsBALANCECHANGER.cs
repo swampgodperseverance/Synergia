@@ -48,14 +48,14 @@ namespace Synergia.Common.GlobalNPCs.Changes
                 [NPCID.FireImp] = npc =>
                 {
                     npc.lifeMax += 105;
-                    npc.damage += 10;
-                    npc.defense += 4;
+                    npc.damage += 15;
+                    npc.defense += 6;
                 },
                 [NPCID.BoneSerpentHead] = npc =>
                 {
                     npc.lifeMax += 180;
-                    npc.damage += 10;
-                    npc.defense += 4;
+                    npc.damage += 12;
+                    npc.defense += 7;
                 },
                 [NPCID.WallofFlesh] = npc =>
                 {
@@ -74,12 +74,12 @@ namespace Synergia.Common.GlobalNPCs.Changes
                 {
                     npc.lifeMax += 140;
                     npc.damage += 15;
-                    npc.defense += 8;
+                    npc.defense += 12;
                 },
 
                 [ModContent.NPCType<OrcWizard>()] = npc =>
                 {
-                    npc.lifeMax += 150;
+                    npc.lifeMax += 160;
                     npc.damage += 10;
                     npc.defense += 5;
                 },
