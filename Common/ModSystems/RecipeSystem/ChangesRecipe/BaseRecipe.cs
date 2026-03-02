@@ -140,6 +140,17 @@ namespace Synergia.Common.ModSystems.RecipeSystem.ChangesRecipe {
             recipe.AddTile(tileType);
             recipe.Register();
         }
+ 
+        protected static void AddLotIngredient(Recipe recipe, int createType, params (int type, int stack)[] ingredients)
+        {
+            if (recipe.createItem.type == createType)
+            {
+                foreach (var (type, stack) in ingredients)
+                {
+                    recipe.AddIngredient(type, stack);
+                }
+            }
+        }
         protected static int RoAItem(string itemName) {
             return ModList.Roa.Find<ModItem>(itemName).Type;
         }

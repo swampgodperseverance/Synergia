@@ -128,7 +128,11 @@ New Soundtrack "Peaceful Town" by Gojisturba was added.
 New Soundtrack "Gehenna" by Gojisturba was added.
 New Soundtrack "Sinlord Presence" by Mumb was added.
 CHANGES/REWORKS/RESPRITES
-Golem AIs changes were remadeBeast Bow from RoA was changed.(Attack Rework or Visual upgrade)
+Golem AIs changes were remade.
+New King Slime rework.
+Brain of Chtulhu changes were remade.
+Added compatibility to the Unowen's Jungle and Evil bosses reworks. When player has these mods boss Ais are replaced by theirs
+Beast Bow from RoA was changed.(Attack Rework or Visual upgrade)
 Flaming Blade from Valhalla was changed.(Attack Rework or Visual upgrade)
 Nebula Lyre from Valhalla was changed.(Attack Rework or Visual upgrade)
 Magic claw from Valhalla was changed.(Attack Rework or Visual upgrade)
@@ -324,6 +328,7 @@ Impact was resrpited and reworked.
 Jade Glaive was resprited and reworked.
 Precious Skull resprited and visuals upgrade.
 Caesium Skull resprited and visuals upgrade.
+Pathogenic Aura resprited.
 Almost all long spears projs resprited, those are:
 -Adamantite Spear            -Overgrown Spear
 -Troxinium Spear             -Orichalkum Spear
@@ -336,20 +341,6 @@ Star Aura Staff was resprited
 Orcish Chest can be opened only if Lothor has been defeated
 Unowen gives Papuan wizard GN, Skeletron Prime GN, Ifrit GN, Lothor GN, Eye of Chtulhu GN, Cold father GN code a clean 
 COMPATIBILITY/BALANCE/RECIPES/ OLD WILL BE INCLUDED
-Caesium Armor set crafting station was changed to the Caesium Heavy Anvil.
-Caesium Weapons crafting station was changed to the Caesium Heavy Anvil(Mace/Crossbow/Scimitar).
-Bismuthum Armor set crafting station was changed to the Caesium Heavy Anvil.
-Bismuthum Weapons crafting station was changed to the Caesium Heavy Anvil(Glove/Crossbow/Sword).
-Bismuthum Tools crafting station was changed to the Caesium Heavy Anvil.
-Dragon Armor set crafting station was changed to the Caesium Heavy Anvil.
-Phantasmal Armor set crafting station was changed to the Caesium Heavy Anvil.
-Warlock Armor set crafting station was changed to the Caesium Heavy Anvil.
-Titan Armor set crafting station was changed to the Caesium Heavy Anvil.
-Tonbogiri recipe tweaks: needs a terra spear for craft yet. Also crafting station was changed to the Caesium Heavy Anvil.
-Sparkly Wings crafting station was changed to the Caesium Heavy Anvil.
-Suspicious Looking Skull crafting station was changed to the Caesium Heavy Anvil.
-Volcanic Reapeater crafting station was changed to the Caesium Heavy Anvil.
-Key of the Sun 
 Terra Blade damage was decreased by 20
 Radiance damage  was increased by 23(Valhalla)
 Terra Spear  damage was decreased by 40, Use Spead and Use Animation was increased by 15(Valhalla)
@@ -370,3 +361,31 @@ Orc Defender max life was increased by 140, contact damage was increased by 15 a
 Orc Wizard max life was increased by 160, damage was increased by 10 and defense was increased by 5(Bismuth)
 Rhino Orc max life was increased by 500, contact damage was increased by 25 and defense was increased by 10(Bismuth)
 Orcish Portal max life was increased by 1100 and defense was increased by 15(Bismuth)
+Caesium Armor set crafting station was changed to the Caesium Heavy Anvil.
+Caesium Weapons crafting station was changed to the Caesium Heavy Anvil(Mace/Crossbow/Scimitar).
+Bismuthum Armor set crafting station was changed to the Caesium Heavy Anvil.
+Bismuthum Weapons crafting station was changed to the Caesium Heavy Anvil(Glove/Crossbow/Sword).
+Bismuthum Tools crafting station was changed to the Caesium Heavy Anvil.
+Dragon Armor set crafting station was changed to the Caesium Heavy Anvil.
+Phantasmal Armor set crafting station was changed to the Caesium Heavy Anvil.
+Warlock Armor set crafting station was changed to the Caesium Heavy Anvil.
+Titan Armor set crafting station was changed to the Caesium Heavy Anvil.
+Tonbogiri recipe tweaks: needs a terra spear for craft yet. Also crafting station was changed to the Caesium Heavy Anvil.
+Sparkly Wings crafting station was changed to the Caesium Heavy Anvil.
+Suspicious Looking Skull crafting station was changed to the Caesium Heavy Anvil.
+Volcanic Reapeater crafting station was changed to the Caesium Heavy Anvil.
+Frigid Shard now requires Ice Crystal from Bismuth for crafting.
+Venom Spikes from Avalon now requires Vial of Venom for crafting.
+All Post-Desert Beak can be recrafted to each other now.
+Caesium Forge can be crafted with caesium chunks now.
+Gauntlet Potion recipe was recreated.
+Aura Potion from Avalon requires Flaming Fabric for crafting now.
+Clover Potion from Avalon requires Miracle Mint for crafting now.
+Fortune Potion from Avalon requires 2 Miracle Mints for crafting now.
+Fury Potion from Avalon requires Miracle Mint for crafting now.
+Gambler Potion from Avalon requires Miracle Mint for crafting now.
+All tear 1 Wreathes have shards in their recipes now (For example Feneth's Blazing wreath now requires fire shard for crafting)
+Add some wetness compatibility:
+1) Player gets less damage in hell when player has 75-100
+2) Water Fighter, Aqua Impact, Water Aura staff, Underwater aura staff, Underwater Scythe, Urchin Uppercutter, Typhoon deal more damage when player has 75-100
+Key of the Sun 
