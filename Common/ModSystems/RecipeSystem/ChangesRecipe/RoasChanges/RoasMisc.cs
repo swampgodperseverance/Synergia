@@ -34,7 +34,7 @@ namespace Synergia.Common.ModSystems.RecipeSystem.ChangesRecipe.AvalonsChanges {
             {
                 CreateGalipot();
                 CreateMercuriumNugget();
-        }
+            }
             static void CreateGalipot()
             {
                 Recipe recipe = Recipe.Create(RoAItem("Galipot"));

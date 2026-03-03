@@ -22,6 +22,7 @@ namespace Synergia.Common.ModSystems.RecipeSystem.ChangesRecipe.AvalonsChanges {
 
             public override void Ingredient(Recipe recipe) {
                 AddLotIngredient(recipe, RoAItem("FenethsBlazingWreath"), (ModContent.ItemType<FireShard>(), 1));
+                AddLotIngredient(recipe, RoAItem("FeathersInABottle"), (ModContent.ItemType<BreezeShard>(), 3));
                 AddLotIngredient(recipe, RoAItem("SnowWreath"), (ModContent.ItemType<FrostShard>(), 1));
                 AddLotIngredient(recipe, RoAItem("ForestWreath"), (ModContent.ItemType<EarthShard>(), 1));
                 AddLotIngredient(recipe, RoAItem("JungleWreath"), (ModContent.ItemType<ToxinShard>(), 1));
