@@ -19,6 +19,7 @@ New background was added for the Frost Legion
 3 new types of presents were added, each with unique effects. 
 New weapon Belphegor was added.
 New weapon Seaborn was added.
+New weapon Damasque was added.
 New weapon Orcish Swungo was added.
 New weapon Blunderbussin was added.
 New weapon Sludge Mountain was added as an alternative to the Valhalla's evil guns.
@@ -92,6 +93,8 @@ New papuan Wizard attack with Projectile shooting.
 New papuan Wizard minion's attack wit Projectile shooting.
 New necromancer attack with the cursed fireballs.
 New expert necromancer attack with reflective mirror.
+New Lunatic Cultist rework.
+New King Slime rework.
 Hell Luceat was added.
 New material Bronze Cog was added. Avalon Alt to the Valhalla's tin and copper content
 Banner for the Swampling was added.
@@ -130,7 +133,6 @@ New Soundtrack "Gehenna" by Gojisturba was added.
 New Soundtrack "Sinlord Presence" by Mumb was added.
 CHANGES/REWORKS/RESPRITES
 Golem AIs changes were remade.
-New King Slime rework.
 Brain of Chtulhu changes were remade.
 Added compatibility to the Unowen's Jungle and Evil bosses reworks. When player has these mods boss Ais are replaced by theirs
 Beast Bow from RoA was changed.(Attack Rework or Visual upgrade)
@@ -391,9 +393,62 @@ Clover Potion from Avalon requires Miracle Mint for crafting now.
 Fortune Potion from Avalon requires 2 Miracle Mints for crafting now.
 Fury Potion from Avalon requires Miracle Mint for crafting now.
 Gambler Potion from Avalon requires Miracle Mint for crafting now.
-Herbarium from RoA requires Avalon's flowers for crafting now.
-Stargazer hat from RoA requires Avalon's Starstone for crafting now.
+Adventures and Mishaps requires Animal Leather from RoA for crafting now.
+A Flowerless Plant requires Damaged Book and White Thread for crafting now.
+Bacchus Boots require 10 Stardust Fragment and Nutful Necklace for crafting now.
+Burning Desire requires Flaming Fabric for crafting now.
+Cloak of Assists requires Bee Necklace for crafting now.
+Creators Tome requires Evil Ingots and Souls of Blight for crafting now.
+Dionosus Amulet requires Souls of Blight for crafting now.
+Dulling Totem requires Diamond Amulet and Necro Buckler for crafting now.
+Reflex Shield requires Riot Shield, Sky Shield and Luminite Bars for crafting now.
+Flankers Tome requires Hardened Glass for crafting now.
+Goblin Army Knife requires Magnet Horsehoe and Necro Buckler for crafting now.
+Hades Cross requires Sinstone for crafting now.  
+Love Up and Down requires Nature's Heart and Soul of Blight for crafting now.
+Mediations Flame requires Beetroor for crafting now.
+Misty Peach Blossoms requires Damaged Book and Miracle Mint for crafting now.
+Southeastern Peacock requires Damaged book for crafting now.
+Tales of the Red Lotus requires Damaged Book and Miracle Mint for crafting now.
+Reflex Charm requires Big Lens for crafting now.
+Tale of the Red Dolt requires Damaged Book for crafting now.
+All The Voidlands recipes have Sphere of Aspiration in their craft now.
+Tome of Distance requires Damaged book for crafting now.
+Tome of the River Spirits requires Damaged book for crafting now.
+Tomorrows Phoenix requires Sap and Galipot for crafting now.
+Underestimated resolve requires Miracle Mint for crafting now.
+Alchemical skull recipe remade: Alchemical Skull from RoA, Necro Buckler, 10 Sinstone, Mystical Claw. 
+Gift of Starpower recipe remade: Natures Endowment, Sorcerer Emblem, Condensed Knowledge, 10 Nebula Fragments.
+Windshield  recipe remade:  GlassShield, 5 Breeze Shards, 10 Crystal Shards. 
 All tear 1 Wreathes have shards in their recipes now (For example Feneth's Blazing wreath now requires fire shard for crafting)
+Bloodlust and Death Ward potions now requires Bottled Lava instead of Bottle of Water for crafting.
+Death Ward potion is a Post-Plantera potion and require Life Dew for crafting now.
+Prismatic potion requires Chaos Dust for crafting now.
+Weakness potion has a recipe with contagion blocks now. 
+Tappers: Galipot should be crafted with Sap from Valhalla Mod now. Tappers no longer have recipe.
+All Slippery content (Bombs etc.) should be crafted with Sap now.
+Mercurium nugget has a recipe with Yucki Bit now. 
+Sentinel Helmet is a direct update of Feral Helmet from Bismuth now.
+Sentinel Breastplate is a direct update of Feral Breastplate from Bismuth now.
+Sentinel Leggings are a direct update of Feral Leggings from Bismuth now.
+Ashwalker Hood has a recipe similar to the Ashen Hood from Horizon now.
+Ashwalker Robe has a recipe similar to the Ashen Breastplate from Horizon now.
+Ashwalker Leggings have a recipe similar to the Ashen Leggings from Horizon now.
+Worshipper Bonehelm requires 10 Ancient Scrap for crafting now.
+Worshipper Mantle requires 15 Ancient Scrap for crafting now.
+Worshipper Garb requires 12 Ancient Scrap for crafting now.
+Flametracker Hat requires 6 Peat Powder for crafting now.
+Flametracker Jacket requires 10 Peat Powder for crafting now.
+Flametracker Pamts requires 8 Peat Powder for crafting now.  
+Starfusion requires a Meteoric Edge for crafting now.  
+Pastoral Rod requires an Elastic Cord for crafting now.  
+Tectonic Cane requires a Fire Shard for crafting now.
+Thorny Claws require a Toxin Shard for crafting now.
+Hellfire Claws require a Fire Shard for crafting now.
+Feather in a Bottle requires a Breeze Shard for crafting now.
+Cosmic Hat requires a Manastone for crafting now.
+Royal Quality Honey requires a Heartstone for crafting now. 
+Rod of the Pyre and others have alternative recipes with Bismuth Bars now.
 Add some wetness compatibility:
 1) Player gets less damage in hell when player has 75-100
 2) Water Fighter, Aqua Impact, Water Aura staff, Underwater aura staff, Underwater Scythe, Urchin Uppercutter, Typhoon deal more damage when player has 75-100
