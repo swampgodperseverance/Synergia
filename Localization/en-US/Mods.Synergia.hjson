@@ -1269,6 +1269,12 @@ Projectiles: {
 	RoyalBlast.DisplayName: Royal Blast
 	BrainofCthulhu.DisplayName: Brainof Cthulhu
 	BrainWaves.DisplayName: Brain Waves
+	Tornado.DisplayName: Tornado
+	SuperboltWarning.DisplayName: Superbolt Warning
+	Superbolt.DisplayName: Superbolt
+	IceMist.DisplayName: Ice Mist
+	FallingStar.DisplayName: Falling Star
+	HellishAirRune.DisplayName: Hellish Air Rune
 }
 
 Buffs: {
