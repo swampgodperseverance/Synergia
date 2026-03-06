@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using System.Linq;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -15,6 +15,10 @@ namespace Synergia.Common.GlobalProjectiles
         public override bool InstancePerEntity => true;
 
         private PrimDrawer visualTrail;
+
+        public override bool AppliesToEntity(Projectile projectile, bool lateInstatiation) => projectile.ModProjectile != null &&
+                projectile.ModProjectile.Mod.Name == "ValhallaMod" &&
+                projectile.ModProjectile.Name == "TarBlade";
 
         public override void AI(Projectile projectile)
         {
