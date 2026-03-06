@@ -1,4 +1,5 @@
-﻿using Avalon.Items.Material.Herbs;
+﻿using Avalon.Items.Material.Bars;
+using Avalon.Items.Material.Herbs;
 using Avalon.Items.Material.Ores;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -84,6 +85,11 @@ namespace Synergia.Content.Items.Misc {
         public class AlchemicOre : BaseNULLItem {
             public override int CloneItem => ItemID.IronOre;
             public override List<int> AnimationList => [ItemID.IronOre, ItemID.LeadOre, ItemType<NickelOre>()];
+        }
+        public class EvilBar : BaseNULLItem
+        {
+            public override int CloneItem => ItemID.DemoniteBar;
+            public override List<int> AnimationList => [ItemID.DemoniteBar, ItemID.CrimtaneBar, ItemType<BacciliteBar>()];
         }
         public class AlchemicFlower : BaseNULLItem {
             public override int CloneItem => ItemID.Deathweed;

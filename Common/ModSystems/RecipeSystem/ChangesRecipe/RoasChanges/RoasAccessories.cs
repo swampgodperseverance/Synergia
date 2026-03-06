@@ -8,6 +8,7 @@ using Avalon.Items.Tomes.PreHardmode;
 using Consolaria.Content.Items.Materials;
 using NewHorizons.Content.Items.Materials;
 using Starforgedclassic.Content.Accessories.SkyShield;
+using Synergia.Content.Items.Misc;
 using Terraria;
 using Terraria.ID;
 using ValhallaMod.Items.Accessory;
@@ -15,6 +16,7 @@ using ValhallaMod.Items.Accessory.Shield;
 using ValhallaMod.Items.Garden;
 using ValhallaMod.Items.Material;
 using ValhallaMod.Items.Material.Bar;
+using static Synergia.Content.Items.Misc.NULLItem;
 using static Terraria.ModLoader.ModContent;
 
 namespace Synergia.Common.ModSystems.RecipeSystem.ChangesRecipe.AvalonsChanges {
