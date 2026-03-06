@@ -1,29 +1,31 @@
-﻿using Bismuth.Content.NPCs;
+using Bismuth.Content.NPCs;
 using Terraria;
 using ValhallaMod.NPCs.TownNPCs;
 
-namespace Synergia.Common.GlobalNPCs;
+namespace Synergia.Common.GlobalNPCs
+{
+	public class NewDialogForNpc : GlobalNPC {
+		public override bool AppliesToEntity(NPC npc, bool lateInstatiation) => npc.ModNPC is DwarfBlacksmith || npc.ModNPC is Dwarf;
+		public override void GetChat(NPC npc, ref string chat) {
+			int DwarfInBismuth = NPC.FindFirstNPC(NPCType<DwarfBlacksmith>());
+			int DwarfInValhalla = NPC.FindFirstNPC(NPCType<Dwarf>());
 
-public class NewDialogForNpc : GlobalNPC {
-    public override void GetChat(NPC npc, ref string chat) {
-        int DwarfInBismuth = NPC.FindFirstNPC(NPCType<DwarfBlacksmith>());
-        int DwarfInValhalla = NPC.FindFirstNPC(NPCType<Dwarf>());
-
-        if (npc.type == NPCType<Dwarf>()) {
-            if (Main.rand.NextBool(10)) {
-                chat = LocKey(CategoryName.NPC, "Dialog.FrostDwarf");
-            }
-            if (Main.rand.NextBool(11) && DwarfInBismuth >= 0) {
-                chat = string.Format(LocKey(CategoryName.NPC, "Dialog.FrostDwarf2"), Main.npc[DwarfInBismuth].GivenName);
-            }
-        }
-        if (npc.type == NPCType<DwarfBlacksmith>()) {
-            if (Main.rand.NextBool(10)) {
-                chat = LocKey(CategoryName.NPC, "Dialog.CityDwarf");
-            }
-            if (Main.rand.NextBool(11) && DwarfInValhalla >= 0) {
-                chat = string.Format(LocKey(CategoryName.NPC, "Dialog.CityDwarf2"), Main.npc[DwarfInValhalla].GivenName);
-            }
-        }
-    }
+			if (npc.type == NPCType<Dwarf>()) {
+				if (Main.rand.NextBool(10)) {
+					chat = LocKey(CategoryName.NPC, "Dialog.FrostDwarf");
+				}
+				if (Main.rand.NextBool(11) && DwarfInBismuth >= 0) {
+					chat = string.Format(LocKey(CategoryName.NPC, "Dialog.FrostDwarf2"), Main.npc[DwarfInBismuth].GivenName);
+				}
+			}
+			if (npc.type == NPCType<DwarfBlacksmith>()) {
+				if (Main.rand.NextBool(10)) {
+					chat = LocKey(CategoryName.NPC, "Dialog.CityDwarf");
+				}
+				if (Main.rand.NextBool(11) && DwarfInValhalla >= 0) {
+					chat = string.Format(LocKey(CategoryName.NPC, "Dialog.CityDwarf2"), Main.npc[DwarfInValhalla].GivenName);
+				}
+			}
+		}
+	}
 }
