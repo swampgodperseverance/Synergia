@@ -11,7 +11,7 @@ namespace Synergia.Common.GlobalNPCs.AI
 	public class PlanteraFlowerSpawner : GlobalNPC
 	{
 		public override void Load() => On_NPC.AI += (orig, self) => {
-			if(self.type == NPCID.PlanterasTentacle && Main.npc[NPC.plantBoss].ai[1] > 780f) {
+			if(self.type == NPCID.PlanterasTentacle && NPC.plantBoss > -1) {
 				if(Main.npc[NPC.plantBoss].ai[1] >= 900f) {
 					if(Main.netMode != NetmodeID.MultiplayerClient) {
 						Projectile.NewProjectile(self.GetSource_FromAI(), self.Center, self.rotation.ToRotationVector2() * 15f * self.spriteDirection, ModContent.ProjectileType<PlanterasTentacle>(), 40, 0f, Main.myPlayer);
@@ -20,13 +20,18 @@ namespace Synergia.Common.GlobalNPCs.AI
 					SoundEngine.PlaySound(self.DeathSound, self.Center);
 					Main.instance.CameraModifiers.Add(new PunchCameraModifier(self.Center, self.rotation.ToRotationVector2() * self.spriteDirection, 4f, 10, 30, 480f, "Tentacle detach " + self.whoAmI));
 					self.HitEffect();
+					Vector2 distToProj = Main.npc[self.ai[3] > 0f ? (int)self.ai[3] - 1 : NPC.plantBoss].Center - self.Center;
+					float distance = distToProj.Length();
+					for(int i = 0; i < distance; i += 8) Dust.NewDust(self.Center + distToProj * (i / distance), 0, 0, 40);
 					self.active = false;
 					self.netUpdate = true;
 					return;
 				}
+				if(self.velocity == Vector2.Zero && self.ai[3] > 0f && NPC.plantBoss != (int)self.ai[3] - 1) self.Center = Main.npc[(int)self.ai[3] - 1].Center;
 				bool ftw = Main.getGoodWorld;
-				Main.getGoodWorld = true;
+				Main.getGoodWorld = Main.npc[NPC.plantBoss].ai[1] > 780f;
 				orig(self);
+				self.rotation = (Main.npc[self.ai[3] > 0f ? (int)self.ai[3] - 1 : NPC.plantBoss].Center - self.Center).ToRotation() + MathHelper.PiOver2 * (self.spriteDirection + 1);
 				Main.getGoodWorld = ftw;
 			}
 			else orig(self);
@@ -45,6 +50,7 @@ namespace Synergia.Common.GlobalNPCs.AI
 					else if(npc.ai[0] == 1080f) Projectile.NewProjectile(npc.GetSource_FromAI(), npc.Center, Vector2.Zero, ModContent.ProjectileType<PlanteraScream>(), 0, 0f, Main.myPlayer, 20f, 1f);
 				}
 				if(npc.ai[0] > 1080f) npc.velocity *= 1f - (npc.ai[0] - 1080f) / 120f;
+				else npc.velocity += target.velocity * 0.01f;
 				npc.localAI[1] = 0f;
 			}
 			else if(npc.life <= npc.lifeMax / 2) if(++npc.ai[1] > 900) npc.ai[1] = (int)MathHelper.Lerp(600f, 0f, (float)npc.life / (float)npc.lifeMax * 2);
@@ -57,9 +63,27 @@ namespace Synergia.Common.GlobalNPCs.AI
 				npc.localAI[1] = 0f;
 			}
 			else if(npc.ai[1] == 780f) {
+				npc.ai[2] = 0f;
 				npc.localAI[0] = 1f;
 				SoundEngine.PlaySound(SoundID.Zombie125, npc.Center);
 				if(Main.netMode != NetmodeID.MultiplayerClient) Projectile.NewProjectile(npc.GetSource_FromAI(), npc.Center, Vector2.Zero, ModContent.ProjectileType<PlanteraScream>(), 0, 0f, Main.myPlayer, 20f, 2f);
+			}
+			else if(npc.ai[1] < 780f && npc.life < npc.lifeMax / 4) {
+				if(npc.ai[2] >= 90f && npc.ai[1] == 779f) npc.ai[1]--;
+				if(++npc.ai[2] > 150f) npc.ai[2] = (int)MathHelper.Lerp(75f, 0f, npc.life * 4f / npc.lifeMax);
+				if(npc.ai[2] == 120) {
+					npc.velocity = Vector2.Normalize(targetPos - npc.Center) * MathHelper.Lerp(24f, 12f, npc.life * 4f / npc.lifeMax);
+					SoundEngine.PlaySound(SoundID.Item46, npc.Center);
+				}
+				if(npc.ai[2] >= 120) {
+					for(int i = 0; i < 2; i++) Main.dust[Dust.NewDust(npc.position, npc.width, npc.height, 40, npc.velocity.X, npc.velocity.Y)].noGravity = true;
+					if(npc.ai[2] >= 145f) npc.velocity = Vector2.Lerp(npc.velocity.SafeNormalize(npc.oldVelocity), Vector2.Normalize(targetPos - npc.Center), (npc.ai[2] - 145f) * 0.1f) * npc.velocity.Length() * 0.8f;
+					else if(npc.ai[2] >= 140f) npc.velocity *= 0.9f;
+					else npc.velocity += Vector2.Normalize(targetPos - npc.Center);
+					npc.rotation = npc.velocity.ToRotation() + MathHelper.PiOver2;
+				}
+				else if(npc.ai[2] > 90) npc.velocity *= 0.9f;
+				npc.localAI[1] = 0f;
 			}
 			Lighting.AddLight(npc.Center, (npc.life >= npc.lifeMax / 2 ? Color.HotPink : Color.Lime).ToVector3());
 		}
