@@ -1,4 +1,4 @@
-﻿using Terraria;
+using Terraria;
 using Terraria.ModLoader;
 using Terraria.ID;
 using Microsoft.Xna.Framework;
@@ -9,6 +9,10 @@ public class NoxYoyo : GlobalProjectile
     public override bool InstancePerEntity => true;
 
     private int ringIndex = -1;
+
+    public override bool AppliesToEntity(Projectile projectile, bool lateInstatiation) => projectile.ModProjectile != null &&
+            projectile.ModProjectile.Mod.Name == "Avalon" &&
+            projectile.ModProjectile.Name == "NoxiousProj";
 
     public override void AI(Projectile projectile)
     {
@@ -34,7 +38,7 @@ public class NoxYoyo : GlobalProjectile
 
     public class NoxiousRing : ModProjectile
     {
-        public override string Texture => "Synergia/Assets/Textures/Ring";
+        public override string Texture => "Synergia/Assets/Textures/Ring"; 
 
         public override void SetDefaults()
         {
