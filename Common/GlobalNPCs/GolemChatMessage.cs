@@ -5,27 +5,29 @@ using Microsoft.Xna.Framework;
 using Terraria.Chat;
 using Terraria.Localization;
 
-namespace Synergia.GlobalNPCs
+namespace Synergia.Common.GlobalNPCs
 {
     public class GolemChatMessage : GlobalNPC
     {
         private static bool hellishMessageShown = false;
+        
+        public override bool AppliesToEntity(NPC npc, bool lateInstatiation) => npc.type == NPCID.Golem;
 
         public override void OnKill(NPC npc)
         {
 
-            if (npc.type == NPCID.Golem && !hellishMessageShown)
+            if (!hellishMessageShown)
             {
                 hellishMessageShown = true;
 
                 if (Main.netMode == NetmodeID.SinglePlayer)
                 {
-                    Main.NewText("Hellish creatures have grown stronger!", Color.OrangeRed);
+                    Main.NewText(Language.GetTextValue("Mods.Synergia.GolemDefeat"), Color.OrangeRed);
                 }
                 else if (Main.netMode == NetmodeID.Server)
                 {
                     ChatHelper.BroadcastChatMessage(
-                        NetworkText.FromLiteral("Hellish creatures have grown stronger!"),
+                        NetworkText.FromLiteral(Language.GetTextValue("Mods.Synergia.GolemDefeat")),
                         Color.OrangeRed
                     );
                 }
