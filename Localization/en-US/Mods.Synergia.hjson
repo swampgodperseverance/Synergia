@@ -1,4 +1,5 @@
 DamageClasses.ThrowingDamage.DisplayName: Throwing Damage
+GolemDefeat: Hellish creatures have grown stronger!
 
 Items: {
 	OstaraHat.Tooltip: 11% Increased throwing damage and crit chance by 5%
@@ -926,12 +927,12 @@ Projectiles: {
 	UnderwaterAuraProjectile.DisplayName: Underwater Aura Projectile
 	UnderwaterAura.DisplayName: Underwater Aura
 	HellMark.DisplayName: Hell Mark
-	HellStalactite3.DisplayName: Hell Stalactite3
-	HellStalactite2.DisplayName: Hell Stalactite2
-	HellStalactite1.DisplayName: Hell Stalactite1
-	HellMeteor3.DisplayName: Hell Meteor3
-	HellMeteor2.DisplayName: Hell Meteor2
-	HellMeteor1.DisplayName: Hell Meteor1
+	HellStalactite3.DisplayName: Hell Stalactite
+	HellStalactite2.DisplayName: Hell Stalactite
+	HellStalactite1.DisplayName: Hell Stalactite
+	HellMeteor3.DisplayName: Hell Meteor
+	HellMeteor2.DisplayName: Hell Meteor
+	HellMeteor1.DisplayName: Hell Meteor
 	BlasphemousHeavensProj.DisplayName: Blasphemous Heavens Proj
 	LightningStrike.DisplayName: Lightning Strike
 	IfritScythe.DisplayName: Ifrit Scythe
@@ -1092,27 +1093,27 @@ Projectiles: {
 	WaternadoFriendly.DisplayName: Waternado Friendly
 	MagicClawRework.DisplayName: Magic Claw Rework
 	GloomRing.DisplayName: Gloom Ring
-	GloomRingAttack.DisplayName: Gloom Ring Attack
-	GloomR.DisplayName: Gloom R
-	GloomProj1.DisplayName: Gloom Proj1
-	GloomProj2.DisplayName: Gloom Proj2
+	GloomRingAttack.DisplayName: Gloom Ring
+	GloomR.DisplayName: Gloom
+	GloomProj1.DisplayName: Gloom
+	GloomProj2.DisplayName: Gloom
 	GloomProjOrbit.DisplayName: Gloom Proj Orbit
 	GloomScepeterHelper.DisplayName: Gloom Scepeter Helper
-	TarSpike2.DisplayName: Tar Spike2
-	TarSpike1.DisplayName: Tar Spike1
+	TarSpike2.DisplayName: Tar Spike
+	TarSpike1.DisplayName: Tar Spike
 	TarSpike.DisplayName: Tar Spike
-	ScissorsRework2.DisplayName: Scissors Rework2
+	ScissorsRework2.DisplayName: Scissors Rework
 	ScissorsRework.DisplayName: Scissors Rework
-	DerpYoyoP.DisplayName: Derp Yoyo P
-	EyeP.DisplayName: Eye P
-	FuryOfWatersRework.DisplayName: Fury Of Waters Rework
-	BlueP.DisplayName: Blue P
-	GreenP.DisplayName: Green P
-	PurpleP.DisplayName: Purple P
-	RedP.DisplayName: Red P
-	YellowP.DisplayName: Yellow P
+	DerpYoyoP.DisplayName: Derp Yoyo
+	EyeP.DisplayName: Eye
+	FuryOfWatersRework.DisplayName: Fury Of Waters
+	BlueP.DisplayName: Blue
+	GreenP.DisplayName: Green
+	PurpleP.DisplayName: Purple
+	RedP.DisplayName: Red
+	YellowP.DisplayName: Yellow
 	SunJavelinRework.DisplayName: Sun Javelin Rework
-	ThrowerInterface1.DisplayName: Thrower Interface1
+	ThrowerInterface1.DisplayName: Thrower Interface
 	StalloyMegascrew.DisplayName: Stalloy Megascrew
 	SnowballMega.DisplayName: Snowball Mega
 	EverIceSlash.DisplayName: Ever Ice Slash
@@ -1121,7 +1122,7 @@ Projectiles: {
 	GiantSnow.DisplayName: Giant Snow
 	FeroziumBladeRework.DisplayName: Ferozium Blade Rework
 	FriendlyStar.DisplayName: Friendly Star
-	WaterGunBubble2.DisplayName: Water Gun Bubble2
+	WaterGunBubble2.DisplayName: Water Gun Bubble
 	WaterGunBubble.DisplayName: Water Gun Bubble
 	SunRework.DisplayName: Sun Rework
 	TriArrow.DisplayName: Tri Arrow
@@ -1140,7 +1141,7 @@ Projectiles: {
 	ThunderjabProj.DisplayName: Thunderjab Proj
 	ThunderSpike.DisplayName: Thunder Spike
 	ThunderChakramProj.DisplayName: Thunder Chakram Proj
-	ThunderSigilProj1.DisplayName: Thunder Sigil Proj1
+	ThunderSigilProj1.DisplayName: Thunder Sigil Proj
 	ThunderSigilProj.DisplayName: Thunder Sigil Proj
 	BatBatRework.DisplayName: Bat Bat Rework
 	GreatDrumstickRework.DisplayName: Great Drumstick Rework
@@ -1163,45 +1164,45 @@ Projectiles: {
 	YellowPresentProj.DisplayName: Yellow Present Proj
 	SparkyTrail.DisplayName: Sparky Trail
 	Shockwave.DisplayName: Shockwave
-	AdamantiteDagger2.DisplayName: Adamantite Dagger2
+	AdamantiteDagger2.DisplayName: Adamantite Dagger
 	AdamantiteRocket.DisplayName: Adamantite Rocket
 	Aeglos2.DisplayName: Aeglos2
 	BlackScarletGungnir.DisplayName: Black Scarlet Gungnir
-	BlazingSaws2.DisplayName: Blazing Saws2
+	BlazingSaws2.DisplayName: Blazing Saws
 	BloodySpike.DisplayName: Bloody Spike
-	CrystallGranade2.DisplayName: Crystall Granade2
-	Garlic2.DisplayName: Garlic2
+	CrystallGranade2.DisplayName: Crystall Granade
+	Garlic2.DisplayName: Garlic
 	MiniLancea.DisplayName: Mini Lancea
-	NanoStar1.DisplayName: Nano Star1
-	NanoStar2.DisplayName: Nano Star2
-	ScarletGungnir2.DisplayName: Scarlet Gungnir2
-	ThrowingAxe2.DisplayName: Throwing Axe2
-	TitaniumWarhammer2.DisplayName: Titanium Warhammer2
+	NanoStar1.DisplayName: Nano Star
+	NanoStar2.DisplayName: Nano Star
+	ScarletGungnir2.DisplayName: Scarlet Gungnir
+	ThrowingAxe2.DisplayName: Throwing Axe
+	TitaniumWarhammer2.DisplayName: Titanium Warhammer
 	TitaniumWarhammerReturn.DisplayName: Titanium Warhammer Return
 	TMicroHammer.DisplayName: T Micro Hammer
-	SkelegonProj1.DisplayName: Skelegon Proj1
-	SkelegonProj2.DisplayName: Skelegon Proj2
-	SkelegonProj3.DisplayName: Skelegon Proj3
+	SkelegonProj1.DisplayName: Skelegon
+	SkelegonProj2.DisplayName: Skelegon
+	SkelegonProj3.DisplayName: Skelegon
 	Sludge.DisplayName: Sludge
 	Anchor2.DisplayName: Anchor2
 	AnchorJunk.DisplayName: Anchor Junk
-	Flamarang2.DisplayName: Flamarang2
+	Flamarang2.DisplayName: Flamarang
 	FlamarangProjectile.DisplayName: Flamarang Projectile
-	FleshGrinder2.DisplayName: Flesh Grinder2
-	FleshGrinderProj.DisplayName: Flesh Grinder Proj
+	FleshGrinder2.DisplayName: Flesh Grinder
+	FleshGrinderProj.DisplayName: Flesh Grinder
 	IcePieces.DisplayName: Ice Pieces
-	NightGlaive2.DisplayName: Night Glaive2
-	NightGlaiveProj.DisplayName: Night Glaive Proj
+	NightGlaive2.DisplayName: Night Glaive
+	NightGlaiveProj.DisplayName: Night Glaive
 	OrichalcumKama2.DisplayName: Orichalcum Kama2
-	SnowGlaive2.DisplayName: Snow Glaive2
+	SnowGlaive2.DisplayName: Snow Glaive
 	RingFlash.DisplayName: Ring Flash
-	CrystalDagger2.DisplayName: Crystal Dagger2
+	CrystalDagger2.DisplayName: Crystal Dagger
 	ChlorophytePiercer2.DisplayName: Chlorophyte Piercer2
 	BigBobLaser.DisplayName: Big Bob Laser
 	ScorcherHeldItemProj.DisplayName: Scorcher Held Item Proj
-	MythrilJavelin2.DisplayName: Mythril Javelin2
+	MythrilJavelin2.DisplayName: Mythril Javelin
 	MythrilKnife.DisplayName: Mythril Knife
-	NaturalSelection2.DisplayName: Natural Selection2
+	NaturalSelection2.DisplayName: Natural Selection
 	SunJavelin2.DisplayName: Sun Javelin2
 	SunJavelinProj.DisplayName: Sun Javelin Proj
 	Gut.DisplayName: Gut
@@ -1209,43 +1210,43 @@ Projectiles: {
 	AshenCopy.DisplayName: Ashen Copy
 	ValhalliteKnightIceProj.DisplayName: Valhallite Knight Ice Proj
 	EnferBoom.DisplayName: Enfer Boom
-	LavaRune1.DisplayName: Lava Rune1
-	LavaRune2.DisplayName: Lava Rune2
-	LavaRune3.DisplayName: Lava Rune3
-	LavaRune4.DisplayName: Lava Rune4
+	LavaRune1.DisplayName: Lava Rune
+	LavaRune2.DisplayName: Lava Rune
+	LavaRune3.DisplayName: Lava Rune
+	LavaRune4.DisplayName: Lava Rune
 	AquaBoom.DisplayName: Aqua Boom
 	AquaRework.DisplayName: Aqua Rework
 	AquaSmall.DisplayName: Aqua Small
-	AzraelsHeartstopper2.DisplayName: Azraels Heartstopper2
+	AzraelsHeartstopper2.DisplayName: Azraels Heartstopper
 	CupidJavelin.DisplayName: Cupid Javelin
-	Pulsar2.DisplayName: Pulsar2
-	Shroomerang2.DisplayName: Shroomerang2
+	Pulsar2.DisplayName: Pulsar
+	Shroomerang2.DisplayName: Shroomerang
 	NoxiousRing.DisplayName: Noxious Ring
 	ScorcherMuzzleFlash.DisplayName: Scorcher Muzzle Flash
 	BurningAura.DisplayName: Burning Aura
 	BurningExplosion.DisplayName: Burning Explosion
 	BurningScream.DisplayName: Burning Scream
-	SinlordFireBreath.DisplayName: Sinlord Fire Breath
+	SinlordFireBreath.DisplayName: Hellfire Breath
 	Tree.DisplayName: Tree
-	FaceMace2.DisplayName: Face Mace2
-	AirflowProjectile2.DisplayName: Airflow Projectile2
-	CactusStar2.DisplayName: Cactus Star2
-	EverwoodJavelin2.DisplayName: Everwood Javelin2
-	FlarionProj3.DisplayName: Flarion Proj3
+	FaceMace2.DisplayName: Face Mace
+	AirflowProjectile2.DisplayName: Airflow Projectile
+	CactusStar2.DisplayName: Cactus Star
+	EverwoodJavelin2.DisplayName: Everwood Javelin
+	FlarionProj3.DisplayName: Flarion
 	OmegaDiscRework.DisplayName: Omega Disc Rework
 	OmegaDiscSmall.DisplayName: Omega Disc Small
-	ThornChakram2.DisplayName: Thorn Chakram2
-	DarkRework2.DisplayName: Dark Rework2
-	FreezeBoltRework.DisplayName: Freeze Bolt Rework
+	ThornChakram2.DisplayName: Thorn Chakram
+	DarkRework2.DisplayName: Dark Rework
+	FreezeBoltRework.DisplayName: Freeze Bolt
 	FreezeSpawn.DisplayName: Freeze Spawn
 	GranitburProjectile.DisplayName: Granitbur Projectile
 	GranitburRework.DisplayName: Granitbur Rework
 	ShadowBeamRework.DisplayName: Shadow Beam Rework
-	LifesAura.DisplayName: Lifes Aura
+	LifesAura.DisplayName: Life's Aura
 	BloodProjectile.DisplayName: Blood Projectile
 	TurretBronze.DisplayName: Turret Bronze
 	BronzeDrillProj.DisplayName: Bronze Drill Proj
-	SinlordFireEruption.DisplayName: Sinlord Fire Eruption
+	SinlordFireEruption.DisplayName: Hellfire Eruption
 	SinlordEffects.DisplayName: Sinlord Effects
 	SinlordDash.DisplayName: Sinlord Dash
 	FireWhirl.DisplayName: Fire Whirl
@@ -1256,25 +1257,28 @@ Projectiles: {
 	BurningBeam.DisplayName: Burning Beam
 	Hellheart.DisplayName: Hellheart
 	HellheartFlame.DisplayName: Hellheart Flame
-	SinlordFireProminence.DisplayName: Sinlord Fire Prominence
+	SinlordFireProminence.DisplayName: Fire Prominence
 	LavaInfernalGlow.DisplayName: Lava Infernal Glow
 	SwizzardHand.DisplayName: Swizzard Hand
-	FadingHellFrostburnShieldExplosion.DisplayName: Fading Hell Frostburn Shield Explosion
-	FadingHellHeldItem.DisplayName: Fading Hell Held Item
+	FadingHellFrostburnShieldExplosion.DisplayName: Shield Explosion
+	FadingHellHeldItem.DisplayName: Fading Hell
 	ShadowPlayerGore.DisplayName: Shadow Player Gore
-	GolemFireBreath.DisplayName: Golem Fire Breath
-	GolemFireCharge.DisplayName: Golem Fire Charge
 	Hellfire.DisplayName: Hellfire
 	HellFireExplosion.DisplayName: Hell Fire Explosion
-	RoyalBlast.DisplayName: Royal Blast
-	BrainofCthulhu.DisplayName: Brainof Cthulhu
-	BrainWaves.DisplayName: Brain Waves
-	Tornado.DisplayName: Tornado
-	SuperboltWarning.DisplayName: Superbolt Warning
-	Superbolt.DisplayName: Superbolt
-	IceMist.DisplayName: Ice Mist
-	FallingStar.DisplayName: Falling Star
 	HellishAirRune.DisplayName: Hellish Air Rune
+	GolemFireBreath.DisplayName: Fire Breath
+	GolemFireCharge.DisplayName: Golem Fire Charge
+	RoyalBlast.DisplayName: Royal Blast
+	IceMist.DisplayName: Ice Mist
+	Tornado.DisplayName: Tornado
+	BrainofCthulhu.DisplayName: Brain of Cthulhu
+	BrainWaves.DisplayName: Brain Waves
+	FallingStar.DisplayName: Falling Star
+	Superbolt.DisplayName: Superbolt
+	SuperboltWarning.DisplayName: Superbolt
+	FlowerPow.DisplayName: Flower Pow
+	PlanterasTentacle.DisplayName: Plantera's Tentacle
+	PlanteraScream.DisplayName: Plantera Scream
 }
 
 Buffs: {
@@ -1421,3 +1425,5 @@ BaseLoc: {
 	DeactiveTime: increases the combo action time {0}
 	SynergiaThrowing: increases the combo action time {0} and increases the combo action time {1}
 }
+
+

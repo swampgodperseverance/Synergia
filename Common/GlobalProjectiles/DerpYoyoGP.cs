@@ -1,4 +1,4 @@
-﻿using Terraria;
+using Terraria;
 using Synergia.Content.Projectiles.Reworks.Reworks2;
 
 namespace Synergia.Common.GlobalProjectiles
@@ -12,6 +12,8 @@ namespace Synergia.Common.GlobalProjectiles
         private int burstInterval = 5;    // Интервал между выстрелами
         private int burstTotal = 0;       
         private bool shootingBurst = false;
+
+        public override bool AppliesToEntity(Projectile projectile, bool lateInstatiation) => projectile.ModProjectile != null && projectile.ModProjectile.Mod.Name == "ValhallaMod" && projectile.ModProjectile.Name == "Derpfling";
 
         public override void AI(Projectile projectile)
         {

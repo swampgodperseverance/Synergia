@@ -1,12 +1,14 @@
-﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using Terraria.ModLoader.IO;
 using System;
+using System.IO;
 using System.Collections.Generic;
 
-namespace Synergia.Common.GlobalNPCs
+namespace Synergia.Common.GlobalNPCs.AI
 {
     public class InfernalBoneSerpent : GlobalNPC
     {
@@ -15,7 +17,23 @@ namespace Synergia.Common.GlobalNPCs
         private int dashCooldown;
         private int chargeTimer;
         private bool charging;
-        private bool dashing;
+        bool dashing;
+
+        public override void SendExtraAI(NPC npc, BitWriter bitWriter, BinaryWriter binaryWriter) {
+            if(Main.netMode == 0) return;
+            bitWriter.WriteBit(charging);
+            bitWriter.WriteBit(dashing);
+            binaryWriter.Write(dashCooldown);
+            binaryWriter.Write(chargeTimer);
+        }
+        public override void ReceiveExtraAI(NPC npc, BitReader bitReader, BinaryReader binaryReader) {
+            if(Main.netMode == 0) return;
+            charging = bitReader.ReadBit();
+            dashing = bitReader.ReadBit();
+            dashCooldown = binaryReader.ReadInt32();
+            chargeTimer = binaryReader.ReadInt32();
+        }
+        public override bool AppliesToEntity(NPC npc, bool lateInstatiation) => npc.type == NPCID.BoneSerpentHead || npc.type == NPCID.BoneSerpentBody || npc.type == NPCID.BoneSerpentTail;
 
         public override void AI(NPC npc)
         {
@@ -42,6 +60,9 @@ namespace Synergia.Common.GlobalNPCs
 
             if (charging)
             {
+                Vector2 direction = target.Center - npc.Center;
+                direction.Normalize();
+                npc.velocity += direction * (chargeTimer / 40f);
                 npc.velocity *= 0.9f;
                 chargeTimer--;
 
@@ -52,9 +73,7 @@ namespace Synergia.Common.GlobalNPCs
                     charging = false;
                     dashing = true;
 
-                    Vector2 direction = target.Center - npc.Center;
-                    direction.Normalize();
-                    npc.velocity = direction * 22f;
+                    npc.velocity = npc.oldVelocity = direction * 22f;
 
                     dashCooldown = 220;
                 }
@@ -62,7 +81,8 @@ namespace Synergia.Common.GlobalNPCs
 
             if (dashing)
             {
-                npc.velocity *= 0.99f;
+                npc.oldVelocity *= 0.98f;
+                npc.velocity = npc.oldVelocity;
 
                 if (Main.rand.NextBool(2))
                 {
@@ -83,35 +103,19 @@ namespace Synergia.Common.GlobalNPCs
             }
         }
 
-        public override bool PreDraw(NPC npc, SpriteBatch spriteBatch, Vector2 screenPos, Color drawColor)
+        public override void PostDraw(NPC npc, SpriteBatch spriteBatch, Vector2 screenPos, Color drawColor)
         {
-            if (npc.type == NPCID.BoneSerpentHead && dashing)
+            if (npc.type == NPCID.BoneSerpentHead ? dashing : npc.realLife > -1 && Main.npc[npc.realLife].GetGlobalNPC<InfernalBoneSerpent>().dashing)
             {
                 Texture2D texture = Terraria.GameContent.TextureAssets.Npc[npc.type].Value;
                 Vector2 origin = texture.Size() / 2f;
 
-                for (int i = 0; i < 5; i++)
-                {
-                    Vector2 afterPos = npc.Center - npc.velocity * i * 0.5f;
+                Color lavaColor = Color.Lerp(Color.OrangeRed, Color.Yellow, 0.5f) with { A = 0 };
 
-                    Color lavaColor = Color.Lerp(Color.OrangeRed, Color.Yellow, 0.5f)
-                        * (0.5f - i * 0.08f);
+                lavaColor *= MathHelper.Clamp(((npc.type == NPCID.BoneSerpentHead ? npc : Main.npc[npc.realLife]).velocity.Length() - 5f) / 5f, 0f, 1f);
 
-                    spriteBatch.Draw(
-                        texture,
-                        afterPos - screenPos,
-                        npc.frame,
-                        lavaColor,
-                        npc.rotation,
-                        origin,
-                        npc.scale,
-                        SpriteEffects.None,
-                        0f
-                    );
-                }
+                for (int i = 0; i < 2; i++) spriteBatch.Draw(texture, npc.Center - Vector2.UnitY * 4 - screenPos, npc.frame, lavaColor, npc.rotation, origin, npc.scale, SpriteEffects.None, 0f);
             }
-
-            return true;
         }
     }
 
@@ -120,14 +124,14 @@ namespace Synergia.Common.GlobalNPCs
     {
         public override bool InstancePerEntity => true;
 
+        public override bool AppliesToEntity(NPC npc, bool lateInstatiation) => npc.type == NPCID.Demon || npc.type == NPCID.VoodooDemon || npc.type == NPCID.RedDevil || npc.type == ModLoader.GetMod("Consolaria").Find<ModNPC>("ArchDemon").Type;
+
         private int teleportCooldown = 300;
 
         public override void AI(NPC npc)
         {
-            if (npc.type != NPCID.Demon && npc.type != NPCID.VoodooDemon)
-                return;
 
-            if (teleportCooldown > 0)
+            if (npc.type != NPCID.RedDevil && teleportCooldown > 0)
             {
                 teleportCooldown--;
                 return;
@@ -136,19 +140,39 @@ namespace Synergia.Common.GlobalNPCs
             Player target = Main.player[npc.target];
             if (!target.active || target.dead)
                 return;
-
-            if (Main.rand.NextBool(600))
+            else if(npc.type == NPCID.RedDevil)
+            {
+                if(npc.ai[0] == 180f) TeleportDemon(npc, target);
+                else if(npc.ai[0] < 180f) npc.velocity *= 0.8f;
+                if(npc.ai[0] > 220f) {
+                    npc.velocity = npc.oldVelocity;
+                    npc.direction = npc.oldDirection;
+                    Dust d = Dust.NewDustDirect(npc.position, npc.width, npc.height, DustID.Shadowflame);
+                    d.velocity = npc.velocity;
+                    d.scale = Main.rand.NextFloat(1.2f, 1.8f);
+                    d.noGravity = true;
+                }
+                else if(npc.ai[0] == 220f) npc.velocity = Vector2.Normalize(target.Center - npc.Center) * 10f;
+            }
+            else if (Main.rand.NextBool(npc.life + 200) && (npc.type == NPCID.Demon || npc.type == NPCID.VoodooDemon ? npc.ai[0] > 100f : npc.dontTakeDamage))
             {
                 TeleportDemon(npc, target);
                 teleportCooldown = 180;
             }
         }
 
+        public override void SendExtraAI(NPC npc, BitWriter bitWriter, BinaryWriter binaryWriter) {
+            if(Main.netMode > 0) binaryWriter.Write(teleportCooldown);
+        }
+        public override void ReceiveExtraAI(NPC npc, BitReader bitReader, BinaryReader binaryReader) {
+            if(Main.netMode > 0) teleportCooldown = binaryReader.ReadInt32();
+        }
+
         private void TeleportDemon(NPC npc, Player target)
         {
             for (int i = 0; i < 30; i++)
             {
-                Dust d = Dust.NewDustDirect(npc.position, npc.width, npc.height, DustID.Shadowflame);
+                Dust d = Dust.NewDustDirect(npc.position, npc.width, npc.height, npc.type == NPCID.Demon || npc.type == NPCID.VoodooDemon || npc.type == NPCID.RedDevil ? DustID.Shadowflame : DustID.FlameBurst);
                 d.velocity = new Vector2(Main.rand.NextFloat(-6f, 6f), Main.rand.NextFloat(-6f, 6f));
                 d.scale = Main.rand.NextFloat(1.5f, 2.5f);
                 d.noGravity = true;
@@ -171,7 +195,7 @@ namespace Synergia.Common.GlobalNPCs
                 if (WorldGen.InWorld(tilePos.X, tilePos.Y))
                 {
                     Tile tile = Main.tile[tilePos.X, tilePos.Y];
-                    if (tile == null || !tile.HasTile || !Main.tileSolid[tile.TileType])
+                    if ((tile == null || !tile.HasTile || !Main.tileSolid[tile.TileType]) && tile.LiquidAmount == 0)
                     {
                         validPosition = true;
                     }
@@ -187,7 +211,7 @@ namespace Synergia.Common.GlobalNPCs
 
                 for (int i = 0; i < 40; i++)
                 {
-                    Dust d = Dust.NewDustDirect(npc.position, npc.width, npc.height, DustID.Shadowflame);
+                    Dust d = Dust.NewDustDirect(npc.position, npc.width, npc.height, npc.type == NPCID.Demon || npc.type == NPCID.VoodooDemon || npc.type == NPCID.RedDevil ? DustID.Shadowflame : DustID.FlameBurst);
                     d.velocity = new Vector2(Main.rand.NextFloat(-4f, 4f), Main.rand.NextFloat(-4f, 4f));
                     d.scale = Main.rand.NextFloat(1.8f, 2.8f);
                     d.noGravity = true;
@@ -196,7 +220,7 @@ namespace Synergia.Common.GlobalNPCs
 
                 for (int i = 0; i < 15; i++)
                 {
-                    Dust d = Dust.NewDustDirect(npc.position, npc.width, npc.height, DustID.PurpleTorch);
+                    Dust d = Dust.NewDustDirect(npc.position, npc.width, npc.height, npc.type == NPCID.Demon || npc.type == NPCID.VoodooDemon || npc.type == NPCID.RedDevil ? DustID.PurpleTorch : DustID.Torch);
                     d.velocity = new Vector2(Main.rand.NextFloat(-3f, 3f), Main.rand.NextFloat(-3f, 3f));
                     d.scale = Main.rand.NextFloat(1.2f, 1.8f);
                     d.noGravity = true;

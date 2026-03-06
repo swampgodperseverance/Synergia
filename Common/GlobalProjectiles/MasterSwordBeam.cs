@@ -3,14 +3,13 @@ using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ModLoader;
 
-namespace Synergia.Common
+namespace Synergia.Common.GlobalProjectiles
 {
     public class MasterSwordGlobalProjectiles : GlobalProjectile
     {
+        public override bool AppliesToEntity(Projectile projectile, bool lateInstatiation) => projectile.type == ModContent.ProjectileType<MasterSwordBeam>();
         public override void PostAI(Projectile projectile)
         {
-            if (projectile.type == ModContent.ProjectileType<MasterSwordBeam>())
-            {
                 float homingRange = 400f; 
                 float lerpStrength = 0.1f;
 
@@ -35,7 +34,6 @@ namespace Synergia.Common
                     Vector2 desiredVelocity = (target.Center - projectile.Center).SafeNormalize(Vector2.Zero) * projectile.velocity.Length();
                     projectile.velocity = Vector2.Lerp(projectile.velocity, desiredVelocity, lerpStrength);
                 }
-            }
         }
     }
 }

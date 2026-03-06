@@ -1,4 +1,4 @@
-﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.Audio;
 using Terraria.ID;
@@ -11,23 +11,12 @@ namespace Synergia.Content.GlobalProjectiles
     {
         public override bool InstancePerEntity => true;
 
-        private bool IsWidowsWhip(Projectile projectile)
-        {
-            return projectile.ModProjectile != null &&
-                   projectile.ModProjectile.Mod?.Name == "ValhallaMod" &&
-                   projectile.ModProjectile.Name == "WidowsWhip";
-        }
-
-        public override void AI(Projectile projectile)
-        {
-            if (!IsWidowsWhip(projectile))
-                return;
-        }
+        public override bool AppliesToEntity(Projectile projectile, bool lateInstatiation) => projectile.ModProjectile != null &&
+              projectile.ModProjectile.Mod?.Name == "ValhallaMod" &&
+              projectile.ModProjectile.Name == "WidowsWhip";
 
         public override void OnHitNPC(Projectile projectile, NPC target, NPC.HitInfo hit, int damageDone)
         {
-            if (!IsWidowsWhip(projectile))
-                return;
 
             Player owner = Main.player[projectile.owner];
 

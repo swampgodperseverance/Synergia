@@ -1,4 +1,4 @@
-﻿using Terraria;
+using Terraria;
 using Terraria.ModLoader;
 using Terraria.ID;
 using Microsoft.Xna.Framework;
@@ -9,6 +9,10 @@ public class HeliosYoyo : GlobalProjectile
     public override bool InstancePerEntity => true;
 
     private int shootTimer = 0;
+
+    public override bool AppliesToEntity(Projectile projectile, bool lateInstatiation) => projectile.ModProjectile != null &&
+            projectile.ModProjectile.Mod.Name == "ValhallaMod" &&
+            projectile.ModProjectile.Name == "SolarYoyo";
 
     public override void AI(Projectile projectile)
     {
