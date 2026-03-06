@@ -8,7 +8,7 @@ using System;
 using System.IO;
 using System.Collections.Generic;
 
-namespace Synergia.Common.GlobalNPCs
+namespace Synergia.Common.GlobalNPCs.AI
 {
     public class InfernalBoneSerpent : GlobalNPC
     {
