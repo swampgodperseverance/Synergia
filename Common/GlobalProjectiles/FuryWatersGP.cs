@@ -1,4 +1,4 @@
-﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;
 using Terraria.ModLoader;
@@ -14,20 +14,15 @@ namespace Synergia.Common.GlobalProjectiles
         private PrimDrawer trailDrawer;
         private bool initialized = false;
 
+        public override bool AppliesToEntity(Projectile projectile, bool lateInstatiation) => projectile.type == ModContent.ProjectileType<Bismuth.Content.Projectiles.FuryOfWatersP>();
+
         public override void AI(Projectile projectile)
         {
-            if (!initialized && IsCorrectProjectile(projectile))
+            if (!initialized)
             {
                 InitializeTrail();
                 initialized = true;
             }
-        }
-
-        
-        private bool IsCorrectProjectile(Projectile projectile)
-        {
-        
-            return projectile.type == ModContent.ProjectileType<Bismuth.Content.Projectiles.FuryOfWatersP>();
         }
 
         private void InitializeTrail()
@@ -44,7 +39,7 @@ namespace Synergia.Common.GlobalProjectiles
 
         public override void PostDraw(Projectile projectile, Color lightColor)
         {
-            if (!IsCorrectProjectile(projectile) || trailDrawer == null)
+            if (trailDrawer == null)
                 return;
 
             DrawTrail(projectile);
