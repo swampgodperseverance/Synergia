@@ -105,7 +105,7 @@ namespace Synergia.Common.GlobalNPCs.AI
 
         public override void PostDraw(NPC npc, SpriteBatch spriteBatch, Vector2 screenPos, Color drawColor)
         {
-            if (npc.type == NPCID.BoneSerpentHead ? dashing : Main.npc[npc.realLife].GetGlobalNPC<InfernalBoneSerpent>().dashing)
+            if (npc.type == NPCID.BoneSerpentHead ? dashing : npc.realLife > -1 && Main.npc[npc.realLife].GetGlobalNPC<InfernalBoneSerpent>().dashing)
             {
                 Texture2D texture = Terraria.GameContent.TextureAssets.Npc[npc.type].Value;
                 Vector2 origin = texture.Size() / 2f;
