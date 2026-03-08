@@ -25,6 +25,7 @@ namespace Synergia
             #endregion
             Instance = this;
             LoadMod();
+            //Fixes a post setup crash caused by TRAE Project
             On_ItemSorting.SetupWhiteLists += (orig) => {
                try {
                  orig();
