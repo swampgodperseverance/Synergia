@@ -25,6 +25,13 @@ namespace Synergia
             #endregion
             Instance = this;
             LoadMod();
+            On_ItemSorting.SetupWhiteLists += (orig) => {
+               try {
+                 orig();
+               }
+               catch(System.Exception e) {
+               }
+            };
             Init(Assets);
         }
         public override void PostSetupContent() {
