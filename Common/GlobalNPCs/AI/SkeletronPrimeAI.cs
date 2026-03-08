@@ -1,88 +1,89 @@
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using Terraria;
 using Terraria.Audio;
 using Terraria.ID;
 using Terraria.ModLoader;
-using Terraria.ModLoader.IO;
-using System.IO;
 
 namespace Synergia.Content.NPCs
 {
-    public class SkeletronPrimeArmlessAttack : GlobalNPC
-    {
-        private int nextThreshold = 100;
-        public override bool InstancePerEntity => true;
-
-        public override bool AppliesToEntity(NPC npc, bool lateInstantiation)
-            => npc.type == NPCID.SkeletronPrime;
-
-        public override void SendExtraAI(NPC npc, BitWriter bitWriter, BinaryWriter binaryWriter) {
-            if(Main.netMode > 0) binaryWriter.Write(nextThreshold);
-        }
-        public override void ReceiveExtraAI(NPC npc, BitReader bitReader, BinaryReader binaryReader) {
-            if(Main.netMode > 0) nextThreshold = binaryReader.ReadInt32();
-        }
-
-        public override void OnSpawn(NPC npc, Terraria.DataStructures.IEntitySource source)
-        {
-            nextThreshold = 100;
-        }
-
-        public override void PostAI(NPC npc)
-        {
-            if (npc.type != NPCID.SkeletronPrime || npc.lifeMax <= 0 || npc.life <= 0)
-                return;
-
-            for (int i = 0; i < Main.npc.Length; i++)
-            {
-                if (Main.npc[i].active && (
-                    Main.npc[i].type == NPCID.PrimeCannon ||
-                    Main.npc[i].type == NPCID.PrimeLaser ||
-                    Main.npc[i].type == NPCID.PrimeSaw ||
-                    Main.npc[i].type == NPCID.PrimeVice ||
-                    Main.npc[i].ModNPC?.Name == "PrimeLauncher" ||
-                    Main.npc[i].ModNPC?.Name == "PrimeMace" ||
-                    Main.npc[i].ModNPC?.Name == "PrimeRail"))
-                {
-                    return;
-                }
-            }
-
-            int hpPct = (int)System.Math.Ceiling(npc.life * 100f / npc.lifeMax);
-
-            if(npc.ai[1] == 0f) if(--nextThreshold <= 0) {
-                FireSkulls(npc);
-                nextThreshold = hpPct * 3;
-            }
-        }
-
-        private void FireSkulls(NPC npc)
-        {
-            if (Main.netMode == NetmodeID.MultiplayerClient)
-                return;
-
-            Player target = Main.player[npc.target];
-            if (!target.active || target.dead)
-                target = Main.player[Player.FindClosest(npc.Center, 1, 1)];
-
-            Vector2 baseDir = npc.DirectionTo(target.Center);
-            if (baseDir == Vector2.Zero) baseDir = new Vector2(0f, -1f);
-
-            float speed = 10f;
-            int damage = 30;
-            int knockback = 2;
-            int type = ModContent.ProjectileType<Content.Projectiles.Hostile.PrimeSkull>();
-
-            Projectile.NewProjectile(
-                npc.GetSource_FromAI(),
-                npc.Center,
-                baseDir * speed,
-                type,
-                damage,
-                knockback
-            );
-            if (Main.netMode != NetmodeID.Server)
-                SoundEngine.PlaySound(SoundID.NPCHit8, npc.Center);
-        }
-    }
+	public class SkeletronPrimeAI : GlobalNPC
+	{
+		public override bool AppliesToEntity(NPC npc, bool lateInstantiation) => npc.type == NPCID.SkeletronPrime || npc.type == NPCID.PrimeCannon || npc.type == NPCID.PrimeLaser;
+		public override void AI(NPC npc) {
+			if(npc.type == NPCID.PrimeLaser) {
+				if(npc.localAI[0] >= (npc.ai[2] == 1f ? 30f : 180f)) {
+					Vector2 shootDir = Vector2.UnitY.RotatedBy(npc.rotation);
+					Vector2 spawnPos = npc.Center + shootDir * npc.height;
+					if(Main.netMode != 1) Projectile.NewProjectile(npc.GetSource_FromAI(), spawnPos, shootDir * (10f + npc.ai[2] * 4f), ProjectileID.DeathLaser, 35, 1f, Main.myPlayer);
+					npc.localAI[0] = 0;
+					npc.localAI[1] = 10f;
+					npc.velocity -= shootDir * 4f;
+					SoundEngine.PlaySound(SoundID.Item61, npc.position);
+				}
+				if(npc.localAI[1] > 0f) npc.localAI[1]--;
+				return;
+			}
+			if(npc.type == NPCID.PrimeCannon && npc.ai[2] == 1f) {
+				if(npc.localAI[0] >= 30f) {
+					Vector2 shootDir = Vector2.UnitY.RotatedBy(npc.rotation);
+					Vector2 spawnPos = npc.Center + shootDir * npc.height;
+					if(Main.netMode != 1) Projectile.NewProjectile(npc.GetSource_FromAI(), spawnPos, shootDir, ProjectileID.RocketSkeleton, 25, 1f, Main.myPlayer);
+					npc.localAI[0] = 0;
+					npc.velocity -= shootDir * 4f;
+					for(int i = -1; i <= 1; i++) for(int j = 0; j < (10 - System.Math.Abs(i) * 6) * 3; j++) {
+						int d = Dust.NewDust(spawnPos - shootDir * npc.height / 2, 0, 0, DustID.Torch, 0, 0, 0, default(Color), npc.scale * 1 + (10 - j) * 0.2f);
+						Main.dust[d].noGravity = true;
+						Main.dust[d].velocity = shootDir.RotatedBy(MathHelper.PiOver2 * i) * (i == 0 ? j / 2f : j / 3f);
+					}
+					SoundEngine.PlaySound(SoundID.Item61, npc.position);
+				}
+				return;
+			}
+			if(npc.type != NPCID.SkeletronPrime || npc.lifeMax <= 0 || npc.life <= 0 || npc.ai[1] > 0f) return;
+			foreach(NPC arm in Main.ActiveNPCs) if(arm.type == NPCID.PrimeCannon || arm.type == NPCID.PrimeLaser || arm.type == NPCID.PrimeSaw || arm.type == NPCID.PrimeVice || arm.ModNPC?.Name == "PrimeLauncher" || arm.ModNPC?.Name == "PrimeMace" || arm.ModNPC?.Name == "PrimeRail") return;
+			if(npc.life < npc.lifeMax / 2) {
+				if(npc.ai[2] % 90 == 0f) FireLasers(npc);
+				if(npc.ai[2] % 240 == 0f) FireSkulls(npc);
+			}
+			else if(npc.ai[2] % 120 == 0f) FireSkulls(npc);
+		}
+		public override void PostDraw(NPC npc, SpriteBatch sprite, Vector2 screenPos, Color lightColor) {
+			if(npc.type == NPCID.PrimeLaser && npc.localAI[1] > 0f) {
+				Vector2 center = npc.Center + Vector2.UnitY.RotatedBy(npc.rotation) * npc.height * 0.415f * npc.scale - Vector2.UnitY * 2 - screenPos;
+				float glowTime = (float)System.Math.Sin(npc.localAI[1] * 0.1f * MathHelper.Pi);
+				for(int i = 1; i < 3; i++) {
+					Texture2D texture = (Texture2D)ModContent.Request<Texture2D>("Synergia/Assets/Textures/LightTrail_" + i);
+					sprite.Draw(texture, center, null, new Color(175, 0, 0, 25) * glowTime, npc.rotation, texture.Size() * 0.5f, new Vector2(glowTime * (i == 1 ? 1.1f : 0.8f), (i != 1 ? 1.1f : 0.8f) * glowTime) * 1.2f, SpriteEffects.None, 0);
+				}
+				for(int i = 1; i < 3; i++) {
+					Texture2D texture = (Texture2D)ModContent.Request<Texture2D>("Synergia/Assets/Textures/LightTrail_" + i);
+					sprite.Draw(texture, center, null, new Color(200, 200, 200, 0) * glowTime, npc.rotation, texture.Size() * 0.5f, new Vector2(glowTime * (i == 1 ? 1.1f : 0.8f), (i != 1 ? 1.1f : 0.8f) * glowTime) * 0.8f, SpriteEffects.None, 0);
+				}
+			}
+		}
+		private static void FireSkulls(NPC npc) {
+			if(Main.netMode == NetmodeID.MultiplayerClient) return;
+			Player target = Main.player[npc.target];
+			if(!target.active || target.dead) target = Main.player[Player.FindClosest(npc.Center, 1, 1)];
+			Vector2 baseDir = npc.DirectionTo(target.Center);
+			if(baseDir == Vector2.Zero) baseDir = new Vector2(0f, -1f);
+			float speed = 10f;
+			int damage = 30;
+			int knockback = 2;
+			int type = ModContent.ProjectileType<Content.Projectiles.Hostile.PrimeSkull>();
+			for(int i = -1; i <= 1; i++) Projectile.NewProjectile(npc.GetSource_FromAI(), npc.Center, baseDir.RotatedBy(i * MathHelper.PiOver2) * speed, type, damage, knockback);
+			if(Main.netMode != NetmodeID.Server) SoundEngine.PlaySound(SoundID.NPCHit8, npc.Center);
+		}
+		private static void FireLasers(NPC npc) {
+			if(Main.netMode == NetmodeID.MultiplayerClient) return;
+			Player target = Main.player[npc.target];
+			if(!target.active || target.dead) target = Main.player[Player.FindClosest(npc.Center, 1, 1)];
+			float speed = 8f;
+			int damage = 25;
+			int knockback = 2;
+			int type = ProjectileID.DeathLaser;
+			for(int i = -1; i <= 1; i += 2) Projectile.NewProjectile(npc.GetSource_FromAI(), npc.Center - new Vector2(0f, 16f * npc.scale) - new Vector2(i * 16f, 20f).RotatedBy(npc.rotation) * npc.scale, Vector2.Normalize(npc.Center - new Vector2(0f, 16f * npc.scale) - new Vector2(i * -16f, 20f).RotatedBy(npc.rotation) * npc.scale - target.Center) * -speed, type, damage, knockback);
+		}
+	}
 }
