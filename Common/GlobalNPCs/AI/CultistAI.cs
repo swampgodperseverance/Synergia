@@ -16,6 +16,10 @@ namespace Synergia.Common.GlobalNPCs.AI
 			npc.defDefense += 10;
 		}
 		public override void PostAI(NPC npc) {
+			if(npc.life < npc.lifeMax / 2) foreach(NPC n in Main.ActiveNPCs) if(n.type == 523 && npc.whoAmI == n.ai[0] && n.ai[3] != 0f) {
+				n.Center = Main.player[npc.target].Center + Vector2.UnitY.RotatedBy(MathHelper.ToRadians(n.ai[1] * n.ai[3]) + n.ai[2]) * 240f;
+				n.ai[3] *= 0.99f;
+			}
 			if(npc.ai[0] == 1f) npc.ai[2] = 0f;
 			else if(npc.ai[0] == 2f) {
 				if(npc.ai[2] == 0f) foreach(Projectile p in Main.ActiveProjectiles) if(p.type == 464) {
@@ -35,17 +39,16 @@ namespace Synergia.Common.GlobalNPCs.AI
 					npc.netUpdate = true;
 				}
 				npc.direction = npc.spriteDirection = System.Math.Sign(npc.ai[2].ToRotationVector2().X);
-				if(npc.ai[1] > 0f && npc.ai[1] < 60f && npc.ai[1] % 5 == 0) {
+				if(npc.ai[1] >= 0f && npc.ai[1] <= 60f && npc.ai[1] % 5 == 0) {
 					SoundEngine.PlaySound(SoundID.Item28, npc.Center);
 					if(Main.netMode != 1) for(int i = -1; i <= 1; i += 2) Projectile.NewProjectile(npc.GetSource_FromAI(), npc.Center + new Vector2(npc.direction * 30f, 12f), Vector2.UnitY.RotatedBy(npc.ai[2]) * i * 2f, ModContent.ProjectileType<IceMist>(), 45, 10f, Main.myPlayer, 0f, 60f, npc.ai[2] + MathHelper.ToRadians(160f - npc.ai[1] * 2.6f) * i);
 				}
-				if(npc.ai[1] > (int)npc.ai[1]) foreach(Projectile p in Main.ActiveProjectiles) if(p.type == 467 && p.timeLeft == 3600) {
-					p.velocity = npc.ai[2].ToRotationVector2() * Main.rand.Next(6, 8) + Main.rand.NextVector2Circular(1f, 1f);
+				foreach(Projectile p in Main.ActiveProjectiles) if(p.type == 467 && p.timeLeft == 3600) {
+					p.velocity = npc.ai[2].ToRotationVector2() * 8 + Main.rand.NextVector2Circular(1f, 1f);
 					p.Center = npc.Center + new Vector2(npc.direction * 30f, 12f);
 					p.tileCollide = false;
 					p.netUpdate = true;
 				}
-				npc.ai[1]++;
 			}
 			else if(npc.ai[0] == 4f) {
 				if(npc.ai[2] == 0f) foreach(Projectile p in Main.ActiveProjectiles) if(p.type == 465) {
@@ -60,6 +63,16 @@ namespace Synergia.Common.GlobalNPCs.AI
 					}
 					npc.ai[2] = 2f;
 				}
+			}
+			else if(npc.ai[0] == 8f) foreach(NPC n in Main.ActiveNPCs) if(n.type == 523 && n.ai[0] == npc.whoAmI && n.ai[1] < 2f && n.ai[3] == 0f) {
+				float offset = Main.rand.NextFloat(MathHelper.Pi);
+				bool leftOrRight = Main.rand.NextBool();
+				if(Main.netMode != 1) for(int i = 0; i < 3; i++) {
+					Vector2 fromTargetCenter = Main.player[npc.target].Center + Vector2.UnitY.RotatedBy(offset + i * MathHelper.TwoPi / 3f) * 240f;
+					NPC.NewNPC(npc.GetSource_FromAI(), (int)fromTargetCenter.X, (int)fromTargetCenter.Y, n.type, 0, n.ai[0], 0f, offset + i * MathHelper.TwoPi / 3f, leftOrRight ? 1f : -1f, 255);
+				}
+				n.StrikeInstantKill();
+				break;
 			}
 			else if(npc.ai[0] == 5f && npc.ai[1] > 90f && Main.expertMode) {
 				Projectile ritual = Main.projectile[(int)npc.ai[2]];
