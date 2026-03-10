@@ -55,7 +55,7 @@ namespace Synergia.Common.GlobalNPCs.AI
 			}
 			else if(npc.life <= npc.lifeMax / 2) if(++npc.ai[1] > 900) npc.ai[1] = (int)MathHelper.Lerp(600f, 0f, (float)npc.life / (float)npc.lifeMax * 2);
 			else if(npc.ai[1] > 780) {
-				if(Main.masterMode && Main.netMode != NetmodeID.MultiplayerClient && npc.ai[1] % 30 == 0) for(int i = -1; i <= 1; i++) {
+				if(Main.getGoodWorld && Main.netMode != NetmodeID.MultiplayerClient && npc.ai[1] % 30 == 0) for(int i = -1; i <= 1; i++) {
 					Vector2 shootDir = Vector2.Normalize(targetPos - npc.Center);
 					Projectile.NewProjectile(npc.GetSource_FromAI(), npc.Center + shootDir * 32f, shootDir.RotatedBy(i * MathHelper.PiOver4) * 7f, ProjectileID.PoisonSeedPlantera, 40, 0f, Main.myPlayer);
 				}
@@ -83,6 +83,10 @@ namespace Synergia.Common.GlobalNPCs.AI
 					npc.rotation = npc.velocity.ToRotation() + MathHelper.PiOver2;
 				}
 				else if(npc.ai[2] > 90) npc.velocity *= 0.9f;
+				else if(npc.ai[2] % 25 == 0 && Main.expertMode && Main.netMode != NetmodeID.MultiplayerClient) {
+					Vector2 shootDir = Vector2.Normalize(targetPos - npc.Center);
+					Projectile.NewProjectile(npc.GetSource_FromAI(), npc.Center + shootDir * 32f, shootDir * 7f, ProjectileID.PoisonSeedPlantera, 40, 0f, Main.myPlayer);
+				}
 				npc.localAI[1] = 0f;
 			}
 			Lighting.AddLight(npc.Center, (npc.life >= npc.lifeMax / 2 ? Color.HotPink : Color.Lime).ToVector3());

@@ -24,33 +24,46 @@ namespace Synergia.Content.NPCs
 				if(npc.localAI[1] > 0f) npc.localAI[1]--;
 				return;
 			}
-			if(npc.type == NPCID.PrimeCannon && npc.ai[2] == 1f) {
-				if(npc.localAI[0] >= 30f) {
+			if(npc.type == NPCID.PrimeCannon) {
+				if(npc.localAI[0] >= (npc.ai[2] == 1f ? 30f : 120f)) {
 					Vector2 shootDir = Vector2.UnitY.RotatedBy(npc.rotation);
 					Vector2 spawnPos = npc.Center + shootDir * npc.height;
-					if(Main.netMode != 1) Projectile.NewProjectile(npc.GetSource_FromAI(), spawnPos, shootDir, ProjectileID.RocketSkeleton, 25, 1f, Main.myPlayer);
-					npc.localAI[0] = 0;
+					if(Main.netMode != 1) Projectile.NewProjectile(npc.GetSource_FromAI(), spawnPos, shootDir * (npc.ai[2] == 1f ? 1f : 12f), npc.ai[2] == 1f ? ProjectileID.RocketSkeleton : ProjectileID.BombSkeletronPrime, 35, 1f, Main.myPlayer);
+					npc.localAI[0] = 0f;
+					npc.localAI[1] = 6f;
 					npc.velocity -= shootDir * 4f;
-					for(int i = -1; i <= 1; i++) for(int j = 0; j < (10 - System.Math.Abs(i) * 6) * 3; j++) {
-						int d = Dust.NewDust(spawnPos - shootDir * npc.height / 2, 0, 0, DustID.Torch, 0, 0, 0, default(Color), npc.scale * 1 + (10 - j) * 0.2f);
-						Main.dust[d].noGravity = true;
-						Main.dust[d].velocity = shootDir.RotatedBy(MathHelper.PiOver2 * i) * (i == 0 ? j / 2f : j / 3f);
-					}
 					SoundEngine.PlaySound(SoundID.Item61, npc.position);
 				}
+				if(npc.localAI[1] > 0f) npc.localAI[1]--;
 				return;
 			}
-			if(npc.type != NPCID.SkeletronPrime || npc.lifeMax <= 0 || npc.life <= 0 || npc.ai[1] > 0f) return;
-			foreach(NPC arm in Main.ActiveNPCs) if(arm.type == NPCID.PrimeCannon || arm.type == NPCID.PrimeLaser || arm.type == NPCID.PrimeSaw || arm.type == NPCID.PrimeVice || arm.ModNPC?.Name == "PrimeLauncher" || arm.ModNPC?.Name == "PrimeMace" || arm.ModNPC?.Name == "PrimeRail") return;
-			if(npc.life < npc.lifeMax / 2) {
-				if(npc.ai[2] % 90 == 0f) FireLasers(npc);
-				if(npc.ai[2] % 240 == 0f) FireSkulls(npc);
+			if(npc.type != NPCID.SkeletronPrime || npc.ai[1] > 0f) {
+				if(npc.localAI[1] > 0f) npc.localAI[1]--;
+				return;
 			}
-			else if(npc.ai[2] % 120 == 0f) FireSkulls(npc);
+			bool cannon = false;
+			bool laser = false;
+			foreach(NPC arm in Main.ActiveNPCs) if(arm.type == NPCID.PrimeCannon || arm.ModNPC?.Name == "PrimeLauncher") cannon = true;
+			else if(arm.type == NPCID.PrimeLaser || arm.ModNPC?.Name == "PrimeRail") laser = true;
+			else if(cannon && laser) return;
+			if(!cannon) if(npc.frame.Y > 0 ? npc.localAI[2] % 2 != 0 : npc.localAI[2] % 2 == 0) if(++npc.localAI[2] > (Main.expertMode && npc.life < npc.lifeMax / 2 ? 24f : 9f)) {
+				if(npc.localAI[2] > 24f) FireSkulls(npc);
+				else if(Main.netMode != 1) Projectile.NewProjectile(npc.GetSource_FromAI(), npc.Center - new Vector2(0f, 16f * npc.scale) + new Vector2(0f, 28f * npc.scale).RotatedBy(npc.rotation), npc.velocity, ProjectileID.BombSkeletronPrime, 35, 1f, Main.myPlayer);
+				npc.localAI[2] = 0f;
+			}
+			if(!laser && ++npc.localAI[3] > 60f) {
+				FireLasers(npc);
+				npc.localAI[1] = 10f;
+				npc.localAI[3] = 0f;
+			}
+			if(npc.localAI[1] > 0f) npc.localAI[1]--;
 		}
 		public override void PostDraw(NPC npc, SpriteBatch sprite, Vector2 screenPos, Color lightColor) {
-			if(npc.type == NPCID.PrimeLaser && npc.localAI[1] > 0f) {
-				Vector2 center = npc.Center + Vector2.UnitY.RotatedBy(npc.rotation) * npc.height * 0.415f * npc.scale - Vector2.UnitY * 2 - screenPos;
+			int frameHeight = Terraria.GameContent.TextureAssets.Npc[npc.type].Height() / Main.npcFrameCount[npc.type];
+			if(npc.type == NPCID.SkeletronPrime && npc.localAI[1] > 0f) for(int k = -1; k <= 1; k += 2) {
+				Vector2 center = npc.Bottom - screenPos;
+				center.Y += -frameHeight * npc.scale + 4f + frameHeight / 2 * npc.scale;
+				center += -new Vector2(k * 16f, 8f).RotatedBy(npc.rotation) * npc.scale;
 				float glowTime = (float)System.Math.Sin(npc.localAI[1] * 0.1f * MathHelper.Pi);
 				for(int i = 1; i < 3; i++) {
 					Texture2D texture = (Texture2D)ModContent.Request<Texture2D>("Synergia/Assets/Textures/LightTrail_" + i);
@@ -60,6 +73,27 @@ namespace Synergia.Content.NPCs
 					Texture2D texture = (Texture2D)ModContent.Request<Texture2D>("Synergia/Assets/Textures/LightTrail_" + i);
 					sprite.Draw(texture, center, null, new Color(200, 200, 200, 0) * glowTime, npc.rotation, texture.Size() * 0.5f, new Vector2(glowTime * (i == 1 ? 1.1f : 0.8f), (i != 1 ? 1.1f : 0.8f) * glowTime) * 0.8f, SpriteEffects.None, 0);
 				}
+			}
+			else if(npc.type == NPCID.PrimeLaser && npc.localAI[1] > 0f) {
+				Vector2 center = npc.Bottom - screenPos;
+				center.Y += -frameHeight * npc.scale + 4f + frameHeight / 2 * npc.scale;
+				center += Vector2.UnitY.RotatedBy(npc.rotation) * npc.height * 0.415f * npc.scale;
+				float glowTime = (float)System.Math.Sin(npc.localAI[1] * 0.1f * MathHelper.Pi);
+				for(int i = 1; i < 3; i++) {
+					Texture2D texture = (Texture2D)ModContent.Request<Texture2D>("Synergia/Assets/Textures/LightTrail_" + i);
+					sprite.Draw(texture, center, null, new Color(175, 0, 0, 25) * glowTime, npc.rotation, texture.Size() * 0.5f, new Vector2(glowTime * (i == 1 ? 1.1f : 0.8f), (i != 1 ? 1.1f : 0.8f) * glowTime) * 1.2f, SpriteEffects.None, 0);
+				}
+				for(int i = 1; i < 3; i++) {
+					Texture2D texture = (Texture2D)ModContent.Request<Texture2D>("Synergia/Assets/Textures/LightTrail_" + i);
+					sprite.Draw(texture, center, null, new Color(200, 200, 200, 0) * glowTime, npc.rotation, texture.Size() * 0.5f, new Vector2(glowTime * (i == 1 ? 1.1f : 0.8f), (i != 1 ? 1.1f : 0.8f) * glowTime) * 0.8f, SpriteEffects.None, 0);
+				}
+			}
+			else if(npc.type == NPCID.PrimeCannon && npc.localAI[1] > 0f && npc.localAI[1] < 6f) {
+				Texture2D texture = (Texture2D)ModContent.Request<Texture2D>("Synergia/Assets/Textures/FieryMuzzleFlash");
+				Vector2 center = npc.Bottom - screenPos;
+				center.Y += -frameHeight * npc.scale + 4f + frameHeight / 2 * npc.scale;
+				center += new Vector2(4, npc.height - 16).RotatedBy(npc.rotation) * npc.scale;
+				Main.EntitySpriteDraw(texture, center, new Rectangle(0, (texture.Height / 6) * (int)(6 - npc.localAI[1]), texture.Width, texture.Height / 6), Color.White, npc.rotation + MathHelper.PiOver2, new Vector2(0, texture.Height / 6) * 0.5f, npc.scale * 1.25f, SpriteEffects.None, 0);
 			}
 		}
 		private static void FireSkulls(NPC npc) {
@@ -72,7 +106,7 @@ namespace Synergia.Content.NPCs
 			int damage = 30;
 			int knockback = 2;
 			int type = ModContent.ProjectileType<Content.Projectiles.Hostile.PrimeSkull>();
-			for(int i = -1; i <= 1; i++) Projectile.NewProjectile(npc.GetSource_FromAI(), npc.Center, baseDir.RotatedBy(i * MathHelper.PiOver2) * speed, type, damage, knockback);
+			for(int i = -1; i <= 1; i++) Projectile.NewProjectile(npc.GetSource_FromAI(), npc.Center - new Vector2(0f, 16f * npc.scale) + new Vector2(0f, 28f * npc.scale).RotatedBy(npc.rotation), baseDir.RotatedBy(i * MathHelper.PiOver2) * speed, type, damage, knockback);
 			if(Main.netMode != NetmodeID.Server) SoundEngine.PlaySound(SoundID.NPCHit8, npc.Center);
 		}
 		private static void FireLasers(NPC npc) {
@@ -83,7 +117,7 @@ namespace Synergia.Content.NPCs
 			int damage = 25;
 			int knockback = 2;
 			int type = ProjectileID.DeathLaser;
-			for(int i = -1; i <= 1; i += 2) Projectile.NewProjectile(npc.GetSource_FromAI(), npc.Center - new Vector2(0f, 16f * npc.scale) - new Vector2(i * 16f, 20f).RotatedBy(npc.rotation) * npc.scale, Vector2.Normalize(npc.Center - new Vector2(0f, 16f * npc.scale) - new Vector2(i * -16f, 20f).RotatedBy(npc.rotation) * npc.scale - target.Center) * -speed, type, damage, knockback);
+			for(int i = -1; i <= 1; i += 2) Projectile.NewProjectile(npc.GetSource_FromAI(), npc.Center - new Vector2(0f, 16f * npc.scale) - new Vector2(i * 16f, 20f).RotatedBy(npc.rotation) * npc.scale + Vector2.Normalize(npc.Center - new Vector2(0f, 16f * npc.scale) - new Vector2(i * -16f, 20f).RotatedBy(npc.rotation) * npc.scale - target.Center) * -speed * 2f, Vector2.Normalize(npc.Center - new Vector2(0f, 16f * npc.scale) - new Vector2(i * -16f, 20f).RotatedBy(npc.rotation) * npc.scale - target.Center) * -speed, type, damage, knockback);
 		}
 	}
 }
