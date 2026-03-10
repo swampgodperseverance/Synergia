@@ -4,7 +4,6 @@ using Starforgedclassic.Content.Weapons.Solarang;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.ID;
-using TRAEBossRework.NewContent.Items.DreadItems.ShellSpinner;
 using ValhallaMod.Items.Garden;
 using ValhallaMod.Items.Weapons.Melee.Boomerangs;
 using ValhallaMod.Items.Weapons.Melee.Glaives;
@@ -70,9 +69,6 @@ namespace Synergia.Common.GlobalItems
 			ItemType<CorrodeShuriken>(),
 			ItemType<CactusKnife>(),
 			ItemType<CactusStar>(),
-
-			//TRAE
-			ItemType<ShellSpinner>(),
 		};
 
 		private static Mod avalon = ModLoader.GetMod("Avalon");
@@ -121,4 +117,5 @@ namespace Synergia.Common.GlobalItems
 
 		}
 	}
+
 }

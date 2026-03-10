@@ -1,4 +1,5 @@
 displayName = Synergia
 author = Synergia Crew
 version = 1.0
-modReferences = starforgedclassic, RoA, Consolaria, ValhallaMod, TRAEBossRework, NewHorizons, Avalon, Bismuth, ParticleLibrary 
+
+modReferences = starforgedclassic, RoA, Consolaria, ValhallaMod, NewHorizons, Avalon, Bismuth, ParticleLibrary 

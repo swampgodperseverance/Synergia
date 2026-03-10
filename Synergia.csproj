@@ -44,9 +44,6 @@
       <Reference Include="StructureHelper">
         <HintPath>..\..\ModReader\StructureHelper\StructureHelper.dll</HintPath>
       </Reference>
-      <Reference Include="TRAEBossRework">
-        <HintPath>..\..\ModReader\TRAEBossRework\TRAEBossRework.dll</HintPath>
-      </Reference>
       <Reference Include="TRAEProject">
         <HintPath>..\..\ModReader\TRAEProject\TRAEProject.dll</HintPath>
       </Reference>
@@ -63,6 +60,7 @@
     <ProjectExtensions><VisualStudio><UserProperties /></VisualStudio></ProjectExtensions>
 
     <!-- References -->
+
 
 
 </Project>
