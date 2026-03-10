@@ -13,6 +13,7 @@ using ValhallaMod.Items.Weapons.Magic.Staffs;
 using ValhallaMod.Items.Weapons.Melee.Glaives;
 using ValhallaMod.Items.Weapons.Melee.Spears;
 using ValhallaMod.Items.Weapons.Melee.Swords;
+using ValhallaMod.Items.Weapons.Ranged.Bows;
 
 namespace Synergia.Common.GlobalItems.Changes
 {
@@ -103,6 +104,10 @@ namespace Synergia.Common.GlobalItems.Changes
                 {
                     item.mana += 4;
                     item.damage -= 6;
+                },
+                [ModContent.ItemType<IluminantBatbow>()] = item =>
+                {
+                    item.damage += 26;
                 },
 
             };
