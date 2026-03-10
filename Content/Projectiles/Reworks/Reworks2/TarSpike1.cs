@@ -12,7 +12,7 @@ using Terraria.Graphics.Shaders;
 using Synergia.Trails;
 
 namespace Synergia.Content.Projectiles.Reworks.Reworks2
-{  //id like to make something similar to the falling rocks from light and darkness mod, i didnt use any of their code, just was inspired but code mine
+{  //id like to make something similar to the falling rocks from light and darkness mod, i didnt use any of their code, just was inspired but code is mine
 	public class TarSpike1 : ModProjectile
 	{
 		private int tickCounter;
@@ -121,27 +121,50 @@ namespace Synergia.Content.Projectiles.Reworks.Reworks2
 			}
 		}
 
-		public override void OnKill(int timeLeft)
-		{
-			SoundEngine.PlaySound(SoundID.Item14, Projectile.position);
-			for (int i = 0; i < 20; i++)
-			{
-				int d = Dust.NewDust(
-					Projectile.position,
-					Projectile.width,
-					Projectile.height,
-					DustID.Dirt,
-					Main.rand.NextFloat(-2f, 2f),
-					Main.rand.NextFloat(-2f, 2f),
-					150,
-					default,
-					1.2f
-				);
-				Main.dust[d].noGravity = true;
-			}
-		}
+        public override void OnKill(int timeLeft)
+        {
+            SoundEngine.PlaySound(SoundID.Item14, Projectile.position);
 
-		public override bool PreDraw(ref Color lightColor)
+            Projectile.NewProjectile(
+                Projectile.GetSource_Death(),
+                Projectile.Center,
+                Vector2.Zero,
+                ModContent.ProjectileType<TarSpikeFlash>(),
+                0,
+                0,
+                Projectile.owner
+            );
+
+            for (int i = 0; i < 20; i++)
+            {
+                int d = Dust.NewDust(
+                    Projectile.position,
+                    Projectile.width,
+                    Projectile.height,
+                    DustID.Dirt,
+                    Main.rand.NextFloat(-2f, 2f),
+                    Main.rand.NextFloat(-2f, 2f),
+                    150,
+                    default,
+                    1.2f
+                );
+                Main.dust[d].noGravity = true;
+            }
+        }
+        public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
+        {
+            Projectile.NewProjectile(
+                Projectile.GetSource_OnHit(target),
+                Projectile.Center,
+                Vector2.Zero,
+                ModContent.ProjectileType<TarSpikeFlash>(),
+                0,
+                0,
+                Projectile.owner
+            );
+        }
+
+        public override bool PreDraw(ref Color lightColor)
 		{
 			if (visualTrail != null)
 			{
@@ -163,4 +186,45 @@ namespace Synergia.Content.Projectiles.Reworks.Reworks2
 			return false;
 		}
 	}
+    public class TarSpikeFlash : ModProjectile
+    {
+        public override string Texture => "Synergia/Assets/Textures/Star";
+
+        public override void SetDefaults()
+        {
+            Projectile.width = 120;
+            Projectile.height = 120;
+            Projectile.timeLeft = 8;
+            Projectile.penetrate = -1;
+            Projectile.tileCollide = false;
+            Projectile.hostile = false;
+            Projectile.friendly = false;
+        }
+
+        public override void AI()
+        {
+            Projectile.scale += 0.15f;
+            Projectile.alpha += 30;
+        }
+
+        public override bool PreDraw(ref Color lightColor)
+        {
+            Texture2D tex = TextureAssets.Projectile[Projectile.type].Value;
+
+            Color c = new Color(255, 200, 120, 0) * (1f - Projectile.alpha / 255f);
+
+            Main.EntitySpriteDraw(
+                tex,
+                Projectile.Center - Main.screenPosition,
+                null,
+                c,
+                0f,
+                tex.Size() / 2f,
+                Projectile.scale,
+                SpriteEffects.None
+            );
+
+            return false;
+        }
+    }
 }

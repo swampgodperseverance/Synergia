@@ -9,6 +9,7 @@ using NewHorizons.Content.Items.Weapons.Throwing;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using ValhallaMod.Items.Weapons.Magic.Staffs;
 using ValhallaMod.Items.Weapons.Melee.Glaives;
 using ValhallaMod.Items.Weapons.Melee.Spears;
 using ValhallaMod.Items.Weapons.Melee.Swords;
@@ -89,7 +90,7 @@ namespace Synergia.Common.GlobalItems.Changes
                 },
                 [ModContent.ItemType<StarWand>()] = item =>
                 {
-                    item.useAnimation -= 10;
+                    item.useAnimation += 10;
                     item.useTime += 10;
                     item.mana += 1;
                 },
@@ -97,6 +98,11 @@ namespace Synergia.Common.GlobalItems.Changes
                 {
                     item.mana += 2;
                     item.damage -= 2;
+                },
+                [ModContent.ItemType<SporeStaff>()] = item =>
+                {
+                    item.mana += 4;
+                    item.damage -= 6;
                 },
 
             };

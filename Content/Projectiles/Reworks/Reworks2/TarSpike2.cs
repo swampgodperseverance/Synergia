@@ -121,27 +121,50 @@ namespace Synergia.Content.Projectiles.Reworks.Reworks2
 			}
 		}
 
-		public override void OnKill(int timeLeft)
-		{
-			SoundEngine.PlaySound(SoundID.Item14, Projectile.position);
-			for (int i = 0; i < 20; i++)
-			{
-				int d = Dust.NewDust(
-					Projectile.position,
-					Projectile.width,
-					Projectile.height,
-					DustID.Dirt,
-					Main.rand.NextFloat(-2f, 2f),
-					Main.rand.NextFloat(-2f, 2f),
-					150,
-					default,
-					1.2f
-				);
-				Main.dust[d].noGravity = true;
-			}
-		}
+        public override void OnKill(int timeLeft)
+        {
+            SoundEngine.PlaySound(SoundID.Item14, Projectile.position);
 
-		public override bool PreDraw(ref Color lightColor)
+            Projectile.NewProjectile(
+                Projectile.GetSource_Death(),
+                Projectile.Center,
+                Vector2.Zero,
+                ModContent.ProjectileType<TarSpikeFlash>(),
+                0,
+                0,
+                Projectile.owner
+            );
+
+            for (int i = 0; i < 20; i++)
+            {
+                int d = Dust.NewDust(
+                    Projectile.position,
+                    Projectile.width,
+                    Projectile.height,
+                    DustID.Dirt,
+                    Main.rand.NextFloat(-2f, 2f),
+                    Main.rand.NextFloat(-2f, 2f),
+                    150,
+                    default,
+                    1.2f
+                );
+                Main.dust[d].noGravity = true;
+            }
+        }
+        public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
+        {
+            Projectile.NewProjectile(
+                Projectile.GetSource_OnHit(target),
+                Projectile.Center,
+                Vector2.Zero,
+                ModContent.ProjectileType<TarSpikeFlash>(),
+                0,
+                0,
+                Projectile.owner
+            );
+        }
+
+        public override bool PreDraw(ref Color lightColor)
 		{
 			if (visualTrail != null)
 			{

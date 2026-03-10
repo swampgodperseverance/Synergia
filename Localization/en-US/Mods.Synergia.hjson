@@ -1291,6 +1291,7 @@ Projectiles: {
 	PlanteraScream.DisplayName: Plantera Scream
 	BaseShortswordCommon.DisplayName: Base Shortsword Common
 	DamasqueProj.DisplayName: Damasque Proj
+	TarSpikeFlash.DisplayName: Tar Spike Flash
 }
 
 Buffs: {
