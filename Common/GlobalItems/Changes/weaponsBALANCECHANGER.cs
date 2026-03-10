@@ -1,7 +1,10 @@
 using System;
 using System.Collections.Generic;
+using Avalon.Items.Weapons.Magic.PreHardmode.Smogscreen;
 using Avalon.Items.Weapons.Melee.Hardmode.CraniumCrusher;
 using Avalon.Items.Weapons.Ranged.PreHardmode.EggCannon;
+using Bismuth.Content.Items.Weapons.Magical;
+using NewHorizons.Content.Items.Weapons.Magic;
 using NewHorizons.Content.Items.Weapons.Throwing;
 using Terraria;
 using Terraria.ID;
@@ -78,6 +81,24 @@ namespace Synergia.Common.GlobalItems.Changes
                     item.useAnimation += 2;
                     item.useTime += 2;
                 },
+                [ModContent.ItemType<Smogscreen>()] = item =>
+                {
+                    item.useAnimation += 8;
+                    item.useTime += 8;
+                    item.mana += 6;
+                },
+                [ModContent.ItemType<StarWand>()] = item =>
+                {
+                    item.useAnimation -= 10;
+                    item.useTime += 10;
+                    item.mana += 1;
+                },
+                [ModContent.ItemType<WoodenStaff>()] = item =>
+                {
+                    item.mana += 2;
+                    item.damage -= 2;
+                },
+
             };
         }
 
