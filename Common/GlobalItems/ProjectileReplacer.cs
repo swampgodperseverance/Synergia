@@ -34,6 +34,9 @@ namespace Synergia.Common.GlobalItems
                         case "GlacierStaff":
                             item.shoot = ModContent.ProjectileType<Content.Projectiles.Reworks.Reworks2.GlacierBallRework>();
                             break;
+                        case "ChaosTome":
+                            item.shoot = ModContent.ProjectileType<Content.Projectiles.Reworks.Reworks2.ShadowBeamRework>();
+                            break;
                     }
                 }
                 if (item.ModItem != null &&

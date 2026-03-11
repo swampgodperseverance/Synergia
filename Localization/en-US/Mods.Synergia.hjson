@@ -1299,6 +1299,8 @@ Projectiles: {
 	DestroyerPulse.DisplayName: Destroyer Pulse
 	DestroyerMissile.DisplayName: Destroyer Missile
 	DestroyerBomb.DisplayName: Destroyer Bomb
+	ShadowChain.DisplayName: Shadow Chain
+	ShadowBeamRework2.DisplayName: Shadow Beam Rework2
 }
 
 Buffs: {

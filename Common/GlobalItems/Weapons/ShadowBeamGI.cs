@@ -28,7 +28,7 @@ namespace Synergia.Common.GlobalItems.Weapons
             item.reuseDelay = 0;
             item.mana = 11;     
             item.shootSpeed = 9f;
-            item.shoot = ModContent.ProjectileType<ShadowBeamRework>();
+            item.shoot = ModContent.ProjectileType<ShadowBeamRework2>();
             item.noMelee = true;
             item.autoReuse = true;
         }

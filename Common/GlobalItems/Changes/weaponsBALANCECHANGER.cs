@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Avalon.Items.Weapons.Magic.PreHardmode.ChaosTome;
 using Avalon.Items.Weapons.Magic.PreHardmode.Smogscreen;
 using Avalon.Items.Weapons.Melee.Hardmode.CraniumCrusher;
 using Avalon.Items.Weapons.Ranged.PreHardmode.EggCannon;
@@ -25,6 +26,9 @@ namespace Synergia.Common.GlobalItems.Changes
         {
             int chemicalPrisonerType =
                 ModLoader.GetMod("RoA")?.Find<ModItem>("ChemicalPrisoner")?.Type ?? 0;
+            int arterialSptayType =
+                ModLoader.GetMod("RoA")?.Find<ModItem>("ArterialSpray")?.Type ?? 0;
+
 
             Changes = new()
             {
@@ -108,6 +112,25 @@ namespace Synergia.Common.GlobalItems.Changes
                 [ModContent.ItemType<IluminantBatbow>()] = item =>
                 {
                     item.damage += 26;
+                },
+                [ModContent.ItemType<Tarrifier>()] = item =>
+                {
+                    item.mana += 4;
+                },
+                [ModContent.ItemType<GraniteCharger>()] = item =>
+                {
+                    item.mana += 4;
+                    item.damage += 10;
+                },
+                [ModContent.ItemType<ChaosTome>()] = item =>
+                {
+                    item.useAnimation += 5;
+                    item.useTime += 5;
+                },
+                [arterialSptayType] = item =>
+                {
+                    item.useAnimation += 3;
+                    item.useTime += 3;
                 },
 
             };
