@@ -10,6 +10,8 @@ namespace Synergia.Content.Projectiles.Boss.SinlordWyrm
 {
     public class BurningScream : ModProjectile
     {
+        public override string Texture => "Synergia/Assets/Textures/FancyShockwave";
+        
         public override void SetStaticDefaults() => ProjectileID.Sets.DrawScreenCheckFluff[Type] = 2048;
 
         public override void SetDefaults()
@@ -45,3 +47,4 @@ namespace Synergia.Content.Projectiles.Boss.SinlordWyrm
             => overWiresUI.Add(index);
     }
 }
+
