@@ -1292,6 +1292,13 @@ Projectiles: {
 	BaseShortswordCommon.DisplayName: Base Shortsword Common
 	DamasqueProj.DisplayName: Damasque Proj
 	TarSpikeFlash.DisplayName: Tar Spike Flash
+	GlacierFlash.DisplayName: Glacier Flash
+	GlacierBallRework.DisplayName: Glacier Ball Rework
+	PlasmaExplosion.DisplayName: Plasma Explosion
+	PlasmaBeam.DisplayName: Plasma Beam
+	DestroyerPulse.DisplayName: Destroyer Pulse
+	DestroyerMissile.DisplayName: Destroyer Missile
+	DestroyerBomb.DisplayName: Destroyer Bomb
 }
 
 Buffs: {

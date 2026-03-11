@@ -3,6 +3,7 @@ using Avalon.Items.Accessories.PreHardmode;
 using Avalon.Items.Material.Bars;
 using Avalon.Items.Material.Ores;
 using Avalon.Items.Material.Shards;
+using NewHorizons.Content.Items.Ammo;
 using NewHorizons.Content.Items.Weapons.Magic;
 using NewHorizons.Content.Items.Weapons.Ranged;
 using NewHorizons.Content.Items.Weapons.Summon;
@@ -24,10 +25,14 @@ namespace Synergia.Common.ModSystems.RecipeSystem.ChangesRecipe.HorizonsChanges
             AddIngredient(recipe, ItemType<HandicraftedBlunderbuss>(), 1, new Item(ItemType<LegalGunParts>(), 1));
             AddIngredient(recipe, ItemType<HandicraftedFlamethrower>(), 1, new Item(ItemType<LegalGunParts>(), 1));
             AddLotIngredient(recipe, ItemType<RopeWhip>(), (ModContent.ItemType<ElasticCord>(), 1));
+            AddLotIngredient(recipe, ItemType<FlareCannon>(), (ModContent.ItemType<FireShard>(), 3));
+            AddLotIngredient(recipe, ItemType<Scorcher>(), (ModContent.ItemType<FireShard>(), 3));
+            AddLotIngredient(recipe, ItemType<MoltenDagger>(), (ModContent.ItemType<FireShard>(), 1));
+            AddLotIngredient(recipe, ItemType<FlamingFlare>(), (ModContent.ItemType<FireShard>(), 1));
             AddIngredient(recipe, ItemType<RopeWhip>(), 1, new Item(ItemID.Wood, 12));
             AddIngredient(recipe, ItemType<Carnwennan>(), 1, new Item(ItemType<PureGoldChunk>(), 10));
             AddIngredient(recipe, ItemType<DarkVolley>(), 1, new Item(ItemType<WickedShard>(), 5));
-
+            AddIngredient(recipe, ItemType<IncendiaryGrenade>(), 0, new Item(RoAItem("FlamingFabric"), 1));
 
         }
         public override void PostRecipe()

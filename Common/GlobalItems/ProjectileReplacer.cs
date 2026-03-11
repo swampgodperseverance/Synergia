@@ -31,6 +31,9 @@ namespace Synergia.Common.GlobalItems
                         case "CaesiumPike":
                             item.shoot = ModContent.ProjectileType<Content.Projectiles.Reworks.CaesiumSpear>();
                             break;
+                        case "GlacierStaff":
+                            item.shoot = ModContent.ProjectileType<Content.Projectiles.Reworks.Reworks2.GlacierBallRework>();
+                            break;
                     }
                 }
                 if (item.ModItem != null &&
