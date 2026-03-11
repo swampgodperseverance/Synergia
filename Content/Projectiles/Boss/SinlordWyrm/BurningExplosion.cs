@@ -9,7 +9,7 @@ namespace Synergia.Content.Projectiles.Boss.SinlordWyrm
 	public class BurningExplosion : ModProjectile
 	{
 		public override string Texture => "Terraria/Images/Projectile_85";
-		public override string GlowTexture => "Synergia/Content/Projectiles/Boss/SinlordWyrm/BurningScream";
+		public override string GlowTexture => "Synergia/Assets/Textures/FancyShockwave";
 		public override void SetStaticDefaults() => Main.projFrames[Type] = 7;
 		public override void SetDefaults() {
 			if(ModLoader.TryGetMod("CalamityMod", out Mod calamity)) calamity.Call("SetDefenseDamageProjectile", Projectile, true);
@@ -126,4 +126,5 @@ namespace Synergia.Content.Projectiles.Boss.SinlordWyrm
 		}
 		public override bool? CanDamage() => Projectile.ai[0] > 0f ? false : null;
 	}
+
 }
