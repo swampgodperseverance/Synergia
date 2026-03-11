@@ -6,12 +6,12 @@ using Terraria.ModLoader;
 using System.Collections.Generic;
 using Synergia.Common.GlobalPlayer;
 
-namespace Synergia.Content.Projectiles.Boss.SinlordWyrm
+namespace Synergia.Content.Projectiles.Boss.DestroyerBuff
 {
-    public class BurningScream : ModProjectile
+    public class DestroyerPulse : ModProjectile
     {
         public override string Texture => "Synergia/Assets/Textures/FancyShockwave";
-        
+
         public override void SetStaticDefaults() => ProjectileID.Sets.DrawScreenCheckFluff[Type] = 2048;
 
         public override void SetDefaults()
@@ -33,7 +33,7 @@ namespace Synergia.Content.Projectiles.Boss.SinlordWyrm
 
         public override bool PreDraw(ref Color lightColor)
         {
-            lightColor = Color.OrangeRed * ((float)Projectile.timeLeft / 90f);
+            lightColor = Color.DarkRed * ((float)Projectile.timeLeft / 90f);
             lightColor.A = 0;
             Texture2D texture = (Texture2D)ModContent.Request<Texture2D>(Texture);
             Main.EntitySpriteDraw(texture, Projectile.Center - Main.screenPosition, null, lightColor, Main.rand.NextFloat(MathHelper.TwoPi), texture.Size() / 2, Projectile.ai[0] / 2f * ((float)(30 - Projectile.timeLeft) / 30f), SpriteEffects.None, 0);
@@ -47,4 +47,3 @@ namespace Synergia.Content.Projectiles.Boss.SinlordWyrm
             => overWiresUI.Add(index);
     }
 }
-

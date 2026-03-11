@@ -4,9 +4,9 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Synergia.Content.Projectiles.Boss.SinlordWyrm
+namespace Synergia.Content.Projectiles.Boss.DestroyerBuff
 {
-	public class BurningExplosion : ModProjectile
+	public class PlasmaExplosion : ModProjectile
 	{
 		public override string Texture => "Terraria/Images/Projectile_85";
 		public override string GlowTexture => "Synergia/Assets/Textures/FancyShockwave";
@@ -39,15 +39,15 @@ namespace Synergia.Content.Projectiles.Boss.SinlordWyrm
 			}
 			else {
 				for(int i = 0; i < 3; i++) {
-					int l = Dust.NewDust(Projectile.Center + Main.rand.NextVector2Circular(15, 15), 0, 0, 6);
+					int l = Dust.NewDust(Projectile.Center + Main.rand.NextVector2Circular(15, 15), 0, 0, 182);
 					Main.dust[l].noGravity = true;
-					Main.dust[l].scale *= i + 1;
+					Main.dust[l].scale *= (i + 1) * 0.5f;
 					Main.dust[l].velocity = Main.dust[l].position - Projectile.Center;
 					Main.dust[l].position += Main.dust[l].velocity * 0.1f;
 				}
 				Color color = Color.White;
-				if(Projectile.timeLeft < 3) color = Color.Lerp(Color.Black, Color.Orange, (float)Projectile.timeLeft / 3f);
-				else  color = Color.Lerp(Color.Orange, Color.OrangeRed, (float)System.Math.Sqrt((float)(Projectile.timeLeft - 3) / 3f));
+				if(Projectile.timeLeft < 3) color = Color.Lerp(Color.Black, Color.DarkRed, (float)Projectile.timeLeft / 3f);
+				else  color = Color.Lerp(Color.DarkRed, Color.Red, (float)System.Math.Sqrt((float)(Projectile.timeLeft - 3) / 3f));
 				Lighting.AddLight(Projectile.Center, color.ToVector3());
 			}
 			if(Projectile.ai[1] < Main.projFrames[Projectile.type]) if(++Projectile.frameCounter >= (Projectile.ai[1] > 2 ? 1 : 2)) {
@@ -114,10 +114,11 @@ namespace Synergia.Content.Projectiles.Boss.SinlordWyrm
 				Main.EntitySpriteDraw(texture, Projectile.Center - Main.screenPosition, null, Color.DarkOrange with {A = 0} * 0.1f * Projectile.Opacity, Main.rand.NextFloat(MathHelper.TwoPi), texture.Size() / 2, 0.6f * Projectile.scale, SpriteEffects.None, 0);
 				return false;
 			}
-			if(Projectile.timeLeft < 3) lightColor = Color.Lerp(Color.Black, Color.Orange, (float)Projectile.timeLeft / 3f);
-			else lightColor = Color.Lerp(Color.Orange, Color.OrangeRed, (float)System.Math.Sqrt((float)(Projectile.timeLeft - 3) / 6f));
+			if(Projectile.timeLeft < 3) lightColor = Color.Lerp(Color.Black, Color.DarkRed, (float)Projectile.timeLeft / 3f);
+			else lightColor = Color.Lerp(Color.DarkRed, Color.Red, (float)System.Math.Sqrt((float)(Projectile.timeLeft - 3) / 6f));
 			texture = (Texture2D)ModContent.Request<Texture2D>(Texture);
-			Main.EntitySpriteDraw(texture, Projectile.Center - Main.screenPosition, new Rectangle(0, texture.Height / Main.projFrames[Projectile.type] * Projectile.frame, texture.Width, texture.Height / Main.projFrames[Projectile.type]), lightColor, 0f, new Vector2(texture.Width, texture.Height / Main.projFrames[Projectile.type]) / 2, Projectile.scale, SpriteEffects.None, 0);
+			for(int i = 0; i < 4; i++) Main.EntitySpriteDraw(texture, Projectile.Center + Vector2.UnitX.RotatedBy(i * MathHelper.PiOver2) * 2f - Main.screenPosition, new Rectangle(0, texture.Height / Main.projFrames[Projectile.type] * Projectile.frame, texture.Width, texture.Height / Main.projFrames[Projectile.type]), lightColor with {A = 0}, 0f, new Vector2(texture.Width, texture.Height / Main.projFrames[Projectile.type]) / 2, Projectile.scale * 0.9f, SpriteEffects.None, 0);
+			Main.EntitySpriteDraw(texture, Projectile.Center - Main.screenPosition, new Rectangle(0, texture.Height / Main.projFrames[Projectile.type] * Projectile.frame, texture.Width, texture.Height / Main.projFrames[Projectile.type]), Color.Lerp(lightColor, Color.White, 0.5f) with {A = 0}, 0f, new Vector2(texture.Width, texture.Height / Main.projFrames[Projectile.type]) / 2, Projectile.scale * 0.9f, SpriteEffects.None, 0);
 			lightColor *= 0.5f;
 			lightColor.A = 0;
 			texture = (Texture2D)ModContent.Request<Texture2D>(GlowTexture);
@@ -126,5 +127,4 @@ namespace Synergia.Content.Projectiles.Boss.SinlordWyrm
 		}
 		public override bool? CanDamage() => Projectile.ai[0] > 0f ? false : null;
 	}
-
 }
