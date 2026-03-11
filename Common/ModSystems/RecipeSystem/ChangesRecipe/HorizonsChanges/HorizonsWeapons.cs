@@ -23,8 +23,8 @@ namespace Synergia.Common.ModSystems.RecipeSystem.ChangesRecipe.HorizonsChanges
 
             AddIngredient(recipe, ItemType<HandicraftedBlunderbuss>(), 1, new Item(ItemType<LegalGunParts>(), 1));
             AddIngredient(recipe, ItemType<HandicraftedFlamethrower>(), 1, new Item(ItemType<LegalGunParts>(), 1));
-            AddIngredient(recipe, ItemType<RopeWhip>(), 1, new Item(ItemID.Wood, 12));
             AddLotIngredient(recipe, ItemType<RopeWhip>(), (ModContent.ItemType<ElasticCord>(), 1));
+            AddIngredient(recipe, ItemType<RopeWhip>(), 1, new Item(ItemID.Wood, 12));
             AddIngredient(recipe, ItemType<Carnwennan>(), 1, new Item(ItemType<PureGoldChunk>(), 10));
             AddIngredient(recipe, ItemType<DarkVolley>(), 1, new Item(ItemType<WickedShard>(), 5));
 
