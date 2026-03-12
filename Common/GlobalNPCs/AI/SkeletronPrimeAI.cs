@@ -5,12 +5,14 @@ using Terraria.Audio;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Synergia.Content.NPCs
+namespace Synergia.Common.GlobalNPCs.AI
 {
 	public class SkeletronPrimeAI : GlobalNPC
 	{
+		internal static bool Disabled = false;
 		public override bool AppliesToEntity(NPC npc, bool lateInstantiation) => npc.type == NPCID.SkeletronPrime || npc.type == NPCID.PrimeCannon || npc.type == NPCID.PrimeLaser;
 		public override void AI(NPC npc) {
+			if(Disabled) return;
 			if(npc.type == NPCID.PrimeLaser) {
 				if(npc.localAI[0] >= (npc.ai[2] == 1f ? 30f : 180f)) {
 					Vector2 shootDir = Vector2.UnitY.RotatedBy(npc.rotation);
@@ -59,6 +61,7 @@ namespace Synergia.Content.NPCs
 			if(npc.localAI[1] > 0f) npc.localAI[1]--;
 		}
 		public override void PostDraw(NPC npc, SpriteBatch sprite, Vector2 screenPos, Color lightColor) {
+			if(Disabled) return;
 			int frameHeight = Terraria.GameContent.TextureAssets.Npc[npc.type].Height() / Main.npcFrameCount[npc.type];
 			if(npc.type == NPCID.SkeletronPrime && npc.localAI[1] > 0f) for(int k = -1; k <= 1; k += 2) {
 				Vector2 center = npc.Bottom - screenPos;
