@@ -9,6 +9,7 @@ namespace Synergia.Common.GlobalNPCs.AI
 {
 	public class CultistAI : GlobalNPC
 	{
+		internal static bool Disabled = false;
 		public override bool AppliesToEntity(NPC npc, bool lateInstantiation) => npc.type == NPCID.CultistBoss;
 		public override void SetDefaults(NPC npc)  {
 			npc.lifeMax = (int)(npc.lifeMax * 1.25f);
@@ -16,6 +17,7 @@ namespace Synergia.Common.GlobalNPCs.AI
 			npc.defDefense += 10;
 		}
 		public override void PostAI(NPC npc) {
+			if(Disabled) return;
 			if(npc.life < npc.lifeMax / 2) foreach(NPC n in Main.ActiveNPCs) if(n.type == 523 && npc.whoAmI == n.ai[0] && n.ai[3] != 0f) {
 				n.Center = Main.player[npc.target].Center + Vector2.UnitY.RotatedBy(MathHelper.ToRadians(n.ai[1] * n.ai[3]) + n.ai[2]) * 240f;
 				n.ai[3] *= 0.99f;
