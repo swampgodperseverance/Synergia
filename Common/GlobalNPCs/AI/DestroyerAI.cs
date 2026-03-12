@@ -8,13 +8,14 @@ using Synergia.Content.Projectiles.Boss.DestroyerBuff;
 using System.Collections.Generic;
 using System;
 
-namespace Synergia.Content.NPCs.AI
+namespace Synergia.Common.GlobalNPCs.AI
 {
 	public class DestroyerAI : GlobalNPC
 	{
+		internal static bool Disabled = false;
 		public override bool AppliesToEntity(NPC npc, bool lateInstantiation) => npc.type == NPCID.Probe || npc.aiStyle == 37;
 		public override void Load() => On_NPC.AI_037_Destroyer += (orig, npc) => {
-			if(NPC.IsMechQueenUp) {
+			if(NPC.IsMechQueenUp || Disabled) {
 				orig(npc);
 				return;
 			}
@@ -88,7 +89,10 @@ namespace Synergia.Content.NPCs.AI
 						}
 					break;
 					case 2:
-						if(npc.ai[1] == 120f && Main.netMode != 1) Projectile.NewProjectile(npc.GetSource_FromAI(), npc.Center, Vector2.Zero, ModContent.ProjectileType<DestroyerPulse>(), 0, 0f, Main.myPlayer, 30f);
+						if(npc.ai[1] == 120f) {
+							if(Main.netMode != 1) Projectile.NewProjectile(npc.GetSource_FromAI(), npc.Center, Vector2.Zero, ModContent.ProjectileType<DestroyerPulse>(), 0, 0f, Main.myPlayer, 30f);
+							SoundEngine.PlaySound(SoundID.Zombie66, npc.position);
+						}
 						else if(npc.ai[1] > 120f && npc.ai[1] < 240f && Main.netMode != 1) {
 							List<NPC> segments = new();
 							foreach(NPC body in Main.ActiveNPCs) if(body.whoAmI != npc.whoAmI && body.realLife == npc.whoAmI && body.aiStyle == npc.aiStyle) segments.Add(body);
@@ -116,10 +120,15 @@ namespace Synergia.Content.NPCs.AI
 						}
 					break;
 					case 3:
-						if(npc.ai[1] == 120f && Main.netMode != 1) Projectile.NewProjectile(npc.GetSource_FromAI(), npc.Center, Vector2.Zero, ModContent.ProjectileType<DestroyerPulse>(), 0, 0f, Main.myPlayer, 30f);
-						else if(npc.ai[1] >= 120f && npc.ai[1] <= 240f && Main.netMode != 1) {
-							if(npc.ai[1] % 40 == 0) foreach(NPC segment in Main.ActiveNPCs) if(segment.whoAmI != npc.whoAmI && segment.realLife == npc.whoAmI && segment.aiStyle == npc.aiStyle) Projectile.NewProjectile(segment.GetSource_FromAI(), segment.Center, segment.ai[2] == 1f ? Main.rand.NextVector2CircularEdge(12f, 12f) : Vector2.UnitX.RotatedBy(npc.rotation + Main.rand.NextFloat(-MathHelper.PiOver4, MathHelper.PiOver4) * 0.4f) * (Main.rand.NextBool() ? 1f : -1f), segment.ai[2] == 1f ? ModContent.ProjectileType<DestroyerMissile>() : ModContent.ProjectileType<PlasmaBeam>(), 40, 0f, Main.myPlayer, segment.ai[2] == 1f ? 60f : segment.whoAmI + 1);
+						if(npc.ai[1] == 120f) {
+							if(Main.netMode != 1) Projectile.NewProjectile(npc.GetSource_FromAI(), npc.Center, Vector2.Zero, ModContent.ProjectileType<DestroyerPulse>(), 0, 0f, Main.myPlayer, 30f);
+							SoundEngine.PlaySound(SoundID.Zombie66, npc.position);
 						}
+						else if(npc.ai[1] % 40 == 0 && npc.ai[1] >= 120f && npc.ai[1] <= 240f) {
+							if(Main.netMode != 1) foreach(NPC segment in Main.ActiveNPCs) if(segment.whoAmI != npc.whoAmI && segment.realLife == npc.whoAmI && segment.aiStyle == npc.aiStyle) Projectile.NewProjectile(segment.GetSource_FromAI(), segment.Center, segment.ai[2] == 1f ? Main.rand.NextVector2CircularEdge(12f, 12f) : Vector2.UnitX.RotatedBy(npc.rotation + Main.rand.NextFloat(-MathHelper.PiOver4, MathHelper.PiOver4) * 0.4f) * (Main.rand.NextBool() ? 1f : -1f), segment.ai[2] == 1f ? ModContent.ProjectileType<DestroyerMissile>() : ModContent.ProjectileType<PlasmaBeam>(), 40, 0f, Main.myPlayer, segment.ai[2] == 1f ? 60f : segment.whoAmI + 1);
+							SoundEngine.PlaySound(SoundID.Item15, targetPos);
+						}
+						else if((npc.ai[1] - 30f) % 40 == 0 && (npc.ai[1] - 30f) >= 120f && (npc.ai[1] - 30f) <= 240f && Main.netMode != 1) SoundEngine.PlaySound(SoundID.NPCDeath56, targetPos);
 						if(npc.ai[1] < 120f) {
 							if(npc.velocity.Length() > 1f) npc.velocity += Vector2.UnitY.RotatedBy(npc.rotation);
 							float lerp = npc.ai[1] / 120f;
@@ -157,7 +166,7 @@ namespace Synergia.Content.NPCs.AI
 			}
 		};
 		public override void AI(NPC npc) {
-			if(NPC.IsMechQueenUp || npc.type != NPCID.Probe) return;
+			if(NPC.IsMechQueenUp || npc.type != NPCID.Probe || Disabled) return;
 			npc.localAI[0] = 0f;
 			if(npc.ai[1] > 0f) if(--npc.ai[1] == 5f) {
 				if(Main.netMode != 1) Projectile.NewProjectile(npc.GetSource_FromAI(), npc.Center + npc.rotation.ToRotationVector2() * npc.width * 0.5f * npc.spriteDirection, npc.rotation.ToRotationVector2() * 8f * npc.spriteDirection, ProjectileID.DeathLaser, 27, 0f, Main.myPlayer);
@@ -171,7 +180,7 @@ namespace Synergia.Content.NPCs.AI
 			}
 		}
 		public override void PostDraw(NPC npc, SpriteBatch sprite, Vector2 screenPos, Color lightColor) {
-			if(NPC.IsMechQueenUp) return;
+			if(NPC.IsMechQueenUp || Disabled) return;
 			int frameHeight = Terraria.GameContent.TextureAssets.Npc[npc.type].Height() / Main.npcFrameCount[npc.type];
 			Vector2 center = npc.Bottom - screenPos;
 			center.Y += -frameHeight * npc.scale + 4f + frameHeight / 2 * npc.scale;
