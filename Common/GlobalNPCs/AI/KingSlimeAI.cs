@@ -10,6 +10,7 @@ namespace Synergia.Common.GlobalNPCs.AI
 {
 	public class KingSlimeAI : GlobalNPC
 	{
+		internal static bool Disabled = false;
 		public static Vector2 GetJewelPos(NPC npc, int which = 0) {
 			Vector2 center = new Vector2(npc.Center.X, npc.position.Y + npc.height - (float)npc.height * npc.scale * 0.5f);
 			float offset = 0f;
@@ -53,6 +54,7 @@ namespace Synergia.Common.GlobalNPCs.AI
 		public static int GetTeleportTime(NPC npc) => (int)MathHelper.Lerp(6f, 12f, (float)npc.life / (float)npc.lifeMax) * (Main.getGoodWorld ? 5 : 10);
 		public override bool AppliesToEntity(NPC npc, bool lateInstatiation) => npc.type == 50;
 		public override bool PreAI(NPC npc) {
+			if(Disabled) return true;
 			npc.defense = 5;
 			if(npc.target < 0 || npc.target == 255 || Main.player[npc.target].dead || !Main.player[npc.target].active) {
 				npc.TargetClosest();
@@ -290,6 +292,7 @@ namespace Synergia.Common.GlobalNPCs.AI
 			return false;
 		}
 		public override bool PreDraw(NPC npc, SpriteBatch sprite, Vector2 screenPosition, Color lightColor) {
+			if(Disabled) return true;
 			Texture2D texture = (Texture2D)ModContent.Request<Texture2D>("Terraria/Images/NPC_50");
 			Vector2 center = new Vector2(npc.Center.X, npc.position.Y + npc.height + 2) - screenPosition;
 			sprite.Draw(texture, center, npc.frame, lightColor, 0f, new Vector2(texture.Width * 0.5f, texture.Height / Main.npcFrameCount[npc.type]), npc.scale, SpriteEffects.None, 0);
