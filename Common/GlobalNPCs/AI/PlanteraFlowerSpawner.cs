@@ -10,8 +10,9 @@ namespace Synergia.Common.GlobalNPCs.AI
 {
 	public class PlanteraFlowerSpawner : GlobalNPC
 	{
+		internal static bool Disabled = false;
 		public override void Load() => On_NPC.AI += (orig, self) => {
-			if(self.type == NPCID.PlanterasTentacle && NPC.plantBoss > -1) {
+			if(!Disabled && self.type == NPCID.PlanterasTentacle && NPC.plantBoss > -1) {
 				if(Main.npc[NPC.plantBoss].ai[1] >= 900f) {
 					if(Main.netMode != NetmodeID.MultiplayerClient) {
 						Projectile.NewProjectile(self.GetSource_FromAI(), self.Center, self.rotation.ToRotationVector2() * 15f * self.spriteDirection, ModContent.ProjectileType<PlanterasTentacle>(), 40, 0f, Main.myPlayer);
@@ -38,6 +39,7 @@ namespace Synergia.Common.GlobalNPCs.AI
 		};
 		public override bool AppliesToEntity(NPC npc, bool lateInstatiation) => npc.type == NPCID.Plantera;
 		public override void AI(NPC npc) {
+			if(Disabled) return;
 			Player target = Main.player[npc.target];
 			Vector2 targetPos = target.Center;
 			if(npc.life >= npc.lifeMax / 2) {
