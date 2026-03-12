@@ -14,6 +14,7 @@ namespace Synergia.Common.GlobalNPCs.AI
 	{
 		public override bool AppliesToEntity(NPC npc, bool lateInstatiation) => npc.type == NPCID.GolemHeadFree;
 		public override void AI(NPC npc) {
+			if(GolemExtraAttack.Disabled) return;
 			npc.localAI[1]++;
 			if(npc.aiStyle == 48 && npc.localAI[1] > 300f) {
 				npc.localAI[0] = 0f;
@@ -109,6 +110,7 @@ namespace Synergia.Common.GlobalNPCs.AI
 			if(npc.ai[3] > 0f) npc.ai[3]--;
 		}
 		public override void PostDraw(NPC npc, SpriteBatch sprite, Vector2 screenPos, Color lightColor) {
+			if(GolemExtraAttack.Disabled) return;
 			int frameHeight = Terraria.GameContent.TextureAssets.Npc[npc.type].Height() / Main.npcFrameCount[npc.type];
 			if(npc.ai[3] > 0f) for(int k = -1; k <= 1; k += 2) {
 				Vector2 center = npc.Bottom - screenPos;
