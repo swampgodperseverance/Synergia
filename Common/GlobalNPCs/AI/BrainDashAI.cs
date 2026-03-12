@@ -19,6 +19,8 @@ namespace Synergia.Common.GlobalNPCs.AI
 
 		private bool spawnBrainWaves = false;
 
+		internal static bool Disabled = false;
+
 		public override bool AppliesToEntity(NPC npc, bool lateInstatiation) => npc.type == NPCID.BrainofCthulhu;
 
 		public override void SendExtraAI(NPC npc, BitWriter bitWriter, BinaryWriter binaryWriter) {
@@ -34,6 +36,7 @@ namespace Synergia.Common.GlobalNPCs.AI
 			dashCooldown = binaryReader.ReadInt32();
 		}
 		public override bool PreAI(NPC npc) {
+			if(Disabled) return true;
 			if(spawnBrainWaves && npc.ai[0] == -1) {
 				SoundEngine.PlaySound(SoundID.Item20 with { Pitch = -0.4f }, npc.Center);
 				if(Main.netMode != 1) for(int i = -(int)npc.localAI[2]; i <= (int)npc.localAI[2]; i++) Projectile.NewProjectile(npc.GetSource_FromAI(), npc.Center, Vector2.Normalize(Main.player[npc.target].Center - npc.Center).RotatedBy(i * MathHelper.PiOver4 * 0.8f) * 10f, ModContent.ProjectileType<BrainWaves>(), 25, 0f, Main.myPlayer);
@@ -64,7 +67,7 @@ namespace Synergia.Common.GlobalNPCs.AI
 			return true;
 		}
 		public override void ModifyIncomingHit(NPC npc, ref NPC.HitModifiers modifiers) {
-			if(dashing) modifiers.Knockback *= 0f;
+			if(dashing && !Disabled) modifiers.Knockback *= 0f;
 		}
 	}
 }
