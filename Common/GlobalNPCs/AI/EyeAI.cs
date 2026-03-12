@@ -10,9 +10,10 @@ namespace Synergia.Common.GlobalNPCs.AI
 {
 	public class EyeAI : GlobalNPC
 	{
+		internal static bool Disabled = false;
 		public override bool AppliesToEntity(NPC npc, bool lateInstatiation) => npc.type == NPCID.EyeofCthulhu;
 		public override bool PreAI(NPC npc) {
-			if(!Main.masterMode || npc.despawnEncouraged) return true;
+			if(!Main.masterMode || npc.despawnEncouraged || Disabled) return true;
 			bool autoSnap = true;
 			bool suppressAI = false;
 			float rotation = npc.rotation;
