@@ -1,3 +1,4 @@
+using Avalon.Items.Material.Bars;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
@@ -17,4 +18,12 @@ sealed class BronzeAcolyteJacket : ModItem {
         Item.value = Item.sellPrice(0, 0, 7, 50);
     }
     public override void UpdateEquip(Player player) => player.statManaMax2 += 40;
+    public override void AddRecipes()
+    {
+        CreateRecipe()
+            .AddIngredient(ModContent.ItemType<BronzeBar>(), 10)
+            .AddIngredient(ItemID.Leather, 8)
+            .AddTile(TileID.Anvils)
+            .Register();
+    }
 }

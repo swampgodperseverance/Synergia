@@ -1,24 +1,24 @@
 DwarfUI: {
 	WeaponsSlotInfo: Insert weapon here
-	PriceSlotInfo: Insert Sinstone Magma([i:ValhallaMod/SinstoneMagma])
+	PriceSlotInfo: Insert  Magma Sinstone([i:ValhallaMod/SinstoneMagma])
 	Info:
 		'''
-		Upgrade Hellstone items on this 
+		Upgrade Underworld items on this 
 		anvil with Magma Sinstone
 		'''
-	IsGood: Item improved!
+	IsGood: Item is ready!
 	IsNotGood: Item is broken!
 }
 
-DwarfChat.NoQuest: I not quest for you
+DwarfChat.NoQuest: I don't have quests for you yet.
 
 ChatsMsg: {
 	tPacer: You have {0}, pls disable mod or disable in config <{1}>
-	EmptyStruct: This world doesn't contain any structures from the mod {0}, please recreate the world.
+	EmptyStruct: Seems like world doesn't contain any structures from the mod {0}, please recreate the world.
 }
 
 LuceatUI: {
-	Lake: Teleport you in bridge
-	Village: Teleport you in village
-	Hell: Teleport you in arena
+	Lake: Teleport to the Collapsed Bridge
+	Village: Teleport to the Village
+	Hell: Teleport to the Beast Cave
 }

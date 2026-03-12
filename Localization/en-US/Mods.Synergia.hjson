@@ -121,6 +121,8 @@ Items: {
 	BismuthumBreastplate.Tooltip: Damage is increased by 5%
 	BismuthumLeggings.Tooltip: Movement speed is increased by 25%
 	BerserksRing.Tooltip: Item use speed inreased by 30%, but damage decreased by 20%
+	KillersHood.Tooltip: Magic critical strike chance is increased by 8%
+	KillersJacket.Tooltip: Magic damage is increased by 10%
 
 	EverwoodJavelin: {
 		DisplayName: Everwood Javelin
@@ -1301,6 +1303,7 @@ Projectiles: {
 	DestroyerBomb.DisplayName: Destroyer Bomb
 	ShadowChain.DisplayName: Shadow Chain
 	ShadowBeamRework2.DisplayName: Shadow Beam Rework2
+	ShadowBeamFlash.DisplayName: Shadow Beam Flash
 }
 
 Buffs: {

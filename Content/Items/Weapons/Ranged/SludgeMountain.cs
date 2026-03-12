@@ -1,12 +1,14 @@
-﻿using Microsoft.Xna.Framework;
+﻿using Avalon.Common;
+using Avalon.Common.Extensions;
+using Avalon.Items.Material.Shards;
+using Avalon.Items.Weapons.Ranged.PreHardmode.Blunderblight;
+using Microsoft.Xna.Framework;
+using Synergia.Content.Projectiles.RangedProjectiles;
 using Terraria;
 using Terraria.Audio;
 using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
-using Synergia.Content.Projectiles.RangedProjectiles;
-using Avalon.Common;
-using Avalon.Common.Extensions;
 
 namespace Synergia.Content.Items.Weapons.Ranged
 {
@@ -100,5 +102,13 @@ namespace Synergia.Content.Items.Weapons.Ranged
 		{
 			return new Vector2(-10, -1);
 		}
+        public override void AddRecipes()
+        {
+            CreateRecipe()
+                .AddIngredient(ModContent.ItemType<Blunderblight>(), 1)
+                .AddIngredient(ItemID.SoulofNight, 15)
+                .AddTile(TileID.MythrilAnvil)
+                .Register();
+        }
     }
 }

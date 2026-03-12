@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework;
 using Synergia.Common.GlobalPlayer;
 using Terraria;
 using Terraria.Audio;
+using Terraria.DataStructures;
 using Terraria.GameContent;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -174,408 +175,261 @@ namespace Synergia.Content.Projectiles.Reworks.Reworks2
 {
     public class ShadowBeamRework2 : ModProjectile
     {
-        private ref float Timer => ref Projectile.ai[0];
-        private ref float ChargeLevel => ref Projectile.ai[1]; 
+        private const float FADE_IN_TIME = 24f;
+        private const float TOTAL_LIFETIME = 120f;
+        private const float LAUNCH_DELAY = FADE_IN_TIME;
 
-        public override string GlowTexture => "Synergia/Assets/Textures/Star";
+        private ref float Timer => ref Projectile.ai[0];
+        private ref float State => ref Projectile.ai[1]; 
+
+        private static readonly Color BeamColor = new(180, 80, 255);
+        private static readonly Color BeamColorDim = BeamColor * 0.65f;
+
+        public override void SetStaticDefaults()
+        {
+            ProjectileID.Sets.TrailCacheLength[Type] = 16;
+            ProjectileID.Sets.TrailingMode[Type] = 2;
+        }
 
         public override void SetDefaults()
         {
-            Projectile.friendly = true;
-            Projectile.hostile = false;
-            Projectile.DamageType = DamageClass.Magic;
-            Projectile.penetrate = 3; 
-            Projectile.timeLeft = 300; 
             Projectile.width = 22;
             Projectile.height = 22;
-            Projectile.alpha = 50; 
-            Projectile.extraUpdates = 2; 
-            Projectile.tileCollide = true;
-            Projectile.scale = 1.2f;
-            Lighting.AddLight(Projectile.Center, 0.3f, 0.1f, 0.4f);
+            Projectile.friendly = true;
+            Projectile.DamageType = DamageClass.Magic;
+            Projectile.penetrate = 6;
+            Projectile.timeLeft = (int)TOTAL_LIFETIME;
+            Projectile.tileCollide = false;
+            Projectile.ignoreWater = true;
+            Projectile.alpha = 60;
+            Projectile.scale = 0.01f;
+            Projectile.usesLocalNPCImmunity = true;
+            Projectile.localNPCHitCooldown = 12;
         }
 
         public override void AI()
         {
+            Player owner = Main.player[Projectile.owner];
+
+            Lighting.AddLight(Projectile.Center, BeamColor.ToVector3() * 0.7f);
+
             Timer++;
 
-            if (ChargeLevel < 3f)
-                ChargeLevel += 0.02f;
-            Projectile.velocity *= 0.992f;
-            Projectile.rotation = Projectile.velocity.ToRotation();
-            float pulseScale = 1f + (float)Math.Sin(Timer * 0.2f) * 0.1f * ChargeLevel;
-            Projectile.scale = 1.2f * pulseScale;
-            SpawnShadowflameTrail();
-            SpawnOrbitingFlames();
-            SpawnChargedParticles();
-            if (Timer % 18 == 0)
-                ShadowPulse();
-            if (Timer % 12 == 0)
-                SpawnDecayField();
-            float lightMult = 0.5f + ChargeLevel * 0.3f;
-            Lighting.AddLight(Projectile.Center, 0.4f * lightMult, 0.1f * lightMult, 0.6f * lightMult);
+            if (Timer <= LAUNCH_DELAY)
+            {
+                UpdateAimingPhase(owner);
+            }
+            else
+            {
+                if (Timer == LAUNCH_DELAY + 1)
+                {
+                    LaunchProjectile(owner);
+                }
+
+                UpdateFlyingPhase();
+            }
+
+            SpawnVisualEffects();
         }
 
-        private void SpawnShadowflameTrail()
+        private void UpdateAimingPhase(Player owner)
         {
-            for (int i = 0; i < 2; i++)
-            {
-                int dust = Dust.NewDust(
-                    Projectile.position - Projectile.velocity * i,
-                    Projectile.width,
-                    Projectile.height,
-                    DustID.Shadowflame,
-                    Projectile.velocity.X * 0.2f,
-                    Projectile.velocity.Y * 0.2f,
-                    100,
-                    default,
-                    1.4f + ChargeLevel * 0.3f
-                );
+            Vector2 direction = owner.DirectionTo(Main.MouseWorld).SafeNormalize(Vector2.Zero);
+            Projectile.Center = owner.Center + direction * 54f;
+            Projectile.velocity = Vector2.Zero;
+            Projectile.rotation = direction.ToRotation() + MathHelper.PiOver2;
 
-                Main.dust[dust].noGravity = true;
-                Main.dust[dust].velocity *= 0.3f;
-                if (Main.rand.NextBool(3))
-                {
-                    int spark = Dust.NewDust(
-                        Projectile.Center,
-                        0, 0,
-                        DustID.PurpleTorch,
-                        Projectile.velocity.X * 0.1f,
-                        Projectile.velocity.Y * 0.1f,
-                        80,
-                        default,
-                        0.8f
-                    );
-                    Main.dust[spark].noGravity = true;
-                }
+            float progress = Timer / LAUNCH_DELAY;
+            Projectile.scale = MathHelper.Lerp(0.2f, 1.1f, progress);
+            Projectile.alpha = (int)(180 * (1f - progress));
+        }
+
+        private void LaunchProjectile(Player owner)
+        {
+            Projectile.tileCollide = true;
+
+            Vector2 direction = owner.DirectionTo(Main.MouseWorld).SafeNormalize(Vector2.Zero);
+            float shootSpeed = owner.HeldItem.shootSpeed * 1.15f; 
+            Projectile.velocity = direction * shootSpeed;
+
+            Projectile.NewProjectile(
+                Projectile.GetSource_FromThis(),
+                Projectile.Center,
+                Vector2.Zero,
+                ModContent.ProjectileType<ShadowBeamFlash>(),
+                0, 0, Projectile.owner
+            );
+
+            SoundEngine.PlaySound(SoundID.Item125 with { Volume = 0.65f, PitchVariance = 0.12f }, Projectile.Center);
+        }
+
+        private void UpdateFlyingPhase()
+        {
+            Projectile.rotation = Projectile.velocity.ToRotation() + MathHelper.PiOver2;
+
+            if (Timer > TOTAL_LIFETIME * 0.7f)
+            {
+                Projectile.velocity *= 0.985f;
             }
         }
 
-        private void SpawnOrbitingFlames()
+        private void SpawnVisualEffects()
         {
-            float speed = Timer * 0.2f;
-            float radius = 16f + ChargeLevel * 4f;
-
-            for (int i = 0; i < 3; i++)
+            // Orbiting particles
+            if (Main.rand.NextBool(2 + (int)(Timer / 40f)))
             {
-                float rot = speed + MathHelper.TwoPi * i / 3f;
-                Vector2 offset = new Vector2(0f, radius).RotatedBy(rot);
-
-                int dust = Dust.NewDust(
+                float angle = Timer * 0.22f + Main.rand.NextFloat(-0.4f, 0.4f);
+                Vector2 offset = new Vector2(0f, Main.rand.NextFloat(8f, 14f)).RotatedBy(angle);
+                var dust = Dust.NewDustPerfect(
                     Projectile.Center + offset,
-                    2, 2,
                     DustID.Shadowflame,
-                    0f, 0f,
-                    120,
-                    default,
-                    1.1f + ChargeLevel * 0.2f
+                    Vector2.Zero,
+                    140,
+                    BeamColor,
+                    Main.rand.NextFloat(0.9f, 1.25f)
                 );
-
-                Main.dust[dust].velocity = Vector2.Zero;
-                Main.dust[dust].noGravity = true;
-
-                if (ChargeLevel > 1.5f)
-                {
-                    offset = new Vector2(0f, radius * 0.6f).RotatedBy(-rot * 1.5f);
-
-                    int dust2 = Dust.NewDust(
-                        Projectile.Center + offset,
-                        2, 2,
-                        DustID.Shadowflame,
-                        0f, 0f,
-                        100,
-                        default,
-                        0.9f
-                    );
-                    Main.dust[dust2].noGravity = true;
-                    Main.dust[dust2].alpha = 150;
-                }
+                dust.noGravity = true;
             }
-        }
 
-        private void SpawnChargedParticles()
-        {
             if (Main.rand.NextBool(3))
             {
-                Vector2 pos = Projectile.Center + Main.rand.NextVector2Circular(8f, 8f);
-
-                int dust = Dust.NewDust(
-                    pos, 0, 0,
-                    DustID.Shadowflame,
-                    0f, 0f,
-                    50,
-                    default,
-                    1.8f
-                );
-                Main.dust[dust].noGravity = true;
-                Main.dust[dust].velocity = Projectile.velocity * 0.1f + Main.rand.NextVector2Circular(1f, 1f);
-            }
-        }
-
-        private void ShadowPulse()
-        {
-            int count = 8 + (int)(ChargeLevel * 4);
-            float strength = 2f + ChargeLevel * 1.5f;
-
-            for (int i = 0; i < count; i++)
-            {
-                Vector2 vel = Main.rand.NextVector2Circular(strength, strength);
-
-                int dust = Dust.NewDust(
-                    Projectile.Center,
-                    0, 0,
-                    DustID.Shadowflame,
-                    vel.X,
-                    vel.Y,
-                    80,
-                    default,
-                    1.6f + ChargeLevel * 0.4f
-                );
-
-                Main.dust[dust].noGravity = true;
-            }
-
-            if (ChargeLevel > 2f && Timer % 36 == 0)
-            {
-                SoundEngine.PlaySound(SoundID.Item9 with { Volume = 0.3f, Pitch = -0.5f }, Projectile.Center);
-            }
-        }
-
-        private void SpawnDecayField()
-        {
-            Vector2 backPos = Projectile.Center - Projectile.velocity.SafeNormalize(Vector2.Zero) * 30f;
-
-            int dust = Dust.NewDust(
-                backPos - new Vector2(16, 16),
-                32, 32,
-                DustID.Shadowflame,
-                0f, 0f,
-                150,
-                default,
-                0.8f
-            );
-            Main.dust[dust].noGravity = true;
-            Main.dust[dust].alpha = 200;
-            Main.dust[dust].velocity = -Projectile.velocity * 0.1f + Main.rand.NextVector2Circular(1f, 1f);
-
-            if (Main.rand.NextBool(4))
-            {
-                int rift = Dust.NewDust(
-                    backPos - new Vector2(8, 8),
-                    16, 16,
-                    DustID.Shadowflame,
-                    0f, 0f,
+                var trailDust = Dust.NewDustPerfect(
+                    Projectile.Center + Main.rand.NextVector2Circular(6f, 6f),
+                    DustID.ShadowbeamStaff,
+                    Projectile.velocity * Main.rand.NextFloat(-0.15f, -0.05f),
                     100,
-                    default,
-                    1.2f
+                    BeamColor * 0.9f,
+                    Main.rand.NextFloat(1f, 1.4f)
                 );
-                Main.dust[rift].noGravity = true;
-                Main.dust[rift].alpha = 100;
-                Main.dust[rift].scale = 1.5f;
-            }
-        }
-
-        public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
-        {
-            target.AddBuff(BuffID.ShadowFlame, 240 + (int)(60 * ChargeLevel)); 
-
-            HitCircleEffect(ChargeLevel);
-
-            if (ChargeLevel > 2f)
-            {
-                target.velocity += Projectile.velocity.SafeNormalize(Vector2.Zero) * 3f;
-            }
-
-            Projectile.velocity *= 0.6f;
-
-            SoundEngine.PlaySound(SoundID.DD2_SkeletonHurt with { Volume = 0.8f, Pitch = -0.3f }, Projectile.Center);
-
-            if (ChargeLevel > 2f)
-            {
-                SpawnShadowChains(target);
-            }
-        }
-
-        private void HitCircleEffect(float charge)
-        {
-            int count = 20 + (int)(charge * 10);
-            float radius = 24f + charge * 8f;
-            float strength = 3f + charge * 2f;
-
-            for (int i = 0; i < count; i++)
-            {
-                float angle = MathHelper.TwoPi * i / count;
-                Vector2 dir = angle.ToRotationVector2();
-
-                int dust = Dust.NewDust(
-                    Projectile.Center + dir * radius,
-                    0, 0,
-                    DustID.Shadowflame,
-                    dir.X * strength,
-                    dir.Y * strength,
-                    120,
-                    default,
-                    1.6f + charge * 0.3f
-                );
-
-                Main.dust[dust].noGravity = true;
-            }
-
-            for (int i = 0; i < count / 2; i++)
-            {
-                float angle = Main.rand.NextFloat(MathHelper.TwoPi);
-                Vector2 dir = angle.ToRotationVector2();
-                float dist = Main.rand.NextFloat(radius * 0.3f);
-
-                int dust = Dust.NewDust(
-                    Projectile.Center + dir * dist,
-                    0, 0,
-                    DustID.Shadowflame,
-                    dir.X * strength * 0.7f,
-                    dir.Y * strength * 0.7f,
-                    100,
-                    default,
-                    1.2f + charge * 0.2f
-                );
-
-                Main.dust[dust].noGravity = true;
-                Main.dust[dust].alpha = 100;
-            }
-        }
-
-        private void SpawnShadowChains(NPC target)
-        {
-            if (Main.myPlayer != Projectile.owner) return;
-
-            float range = 200f;
-            int chainDamage = (int)(Projectile.damage * 0.6f);
-
-            for (int i = 0; i < Main.maxNPCs; i++)
-            {
-                NPC npc = Main.npc[i];
-                if (npc.active && !npc.friendly && npc.whoAmI != target.whoAmI &&
-                    npc.Distance(target.Center) < range && Collision.CanHitLine(target.Center, 0, 0, npc.Center, 0, 0))
-                {
-                    for (int d = 0; d < 15; d++)
-                    {
-                        float progress = d / 15f;
-                        Vector2 pos = Vector2.Lerp(target.Center, npc.Center, progress) +
-                                     Main.rand.NextVector2Circular(8f, 8f);
-
-                        int dust = Dust.NewDust(
-                            pos, 0, 0,
-                            DustID.Shadowflame,
-                            0f, 0f,
-                            80,
-                            default,
-                            1.1f
-                        );
-                        Main.dust[dust].noGravity = true;
-                        Main.dust[dust].velocity = (npc.Center - target.Center) * 0.05f + Main.rand.NextVector2Circular(1f, 1f);
-                    }
-
-                    if (Main.rand.NextBool(3)) 
-                    {
-                        Projectile.NewProjectile(
-                            Projectile.GetSource_OnHit(target),
-                            target.Center,
-                            (npc.Center - target.Center).SafeNormalize(Vector2.Zero) * 10f,
-                            ModContent.ProjectileType<ShadowChain>(), 
-                            chainDamage,
-                            0f,
-                            Projectile.owner
-                        );
-                    }
-                }
+                trailDust.noGravity = true;
             }
         }
 
         public override void OnKill(int timeLeft)
         {
-            SoundEngine.PlaySound(SoundID.Item100 with { Volume = 1.2f, Pitch = -0.3f }, Projectile.Center);
-            SoundEngine.PlaySound(SoundID.Item62, Projectile.Center);
+            Projectile.NewProjectile(
+                Projectile.GetSource_Death(),
+                Projectile.Center,
+                Vector2.Zero,
+                ModContent.ProjectileType<ShadowBeamFlash>(),
+                0, 0, Projectile.owner
+            );
 
-            for (int i = 0; i < 30 + (int)(ChargeLevel * 10); i++)
+            for (int i = 0; i < 14; i++)
             {
-                Vector2 vel = Main.rand.NextVector2Circular(6f + ChargeLevel * 2f, 6f + ChargeLevel * 2f);
-
-                int dust = Dust.NewDust(
+                var dust = Dust.NewDustPerfect(
                     Projectile.Center,
-                    0, 0,
-                    DustID.Shadowflame,
-                    vel.X,
-                    vel.Y,
-                    100,
-                    default,
-                    1.8f + ChargeLevel * 0.5f
+                    DustID.ShadowbeamStaff,
+                    Main.rand.NextVector2Circular(3.2f, 3.2f),
+                    80,
+                    BeamColor,
+                    1.3f + Main.rand.NextFloat(0.4f)
                 );
-
-                Main.dust[dust].noGravity = true;
-
-                if (Main.rand.NextBool(3))
-                {
-                    int spark = Dust.NewDust(
-                        Projectile.Center,
-                        0, 0,
-                        DustID.PurpleTorch,
-                        vel.X * 0.5f,
-                        vel.Y * 0.5f,
-                        80,
-                        default,
-                        1.2f
-                    );
-                    Main.dust[spark].noGravity = true;
-                }
+                dust.noGravity = true;
             }
 
-            for (int i = 0; i < 2; i++)
+            SoundEngine.PlaySound(SoundID.Item74 with { Volume = 0.5f, Pitch = -0.3f }, Projectile.Center);
+        }
+
+        public override bool PreDraw(ref Color lightColor)
+        {
+            var texture = TextureAssets.Projectile[Type].Value;
+            var origin = texture.Size() / 2f;
+
+            for (int i = 0; i < Projectile.oldPos.Length; i++)
             {
-                float radius = 40f;
-                for (int a = 0; a < 40; a++)
-                {
-                    float angle = MathHelper.TwoPi * a / 40;
-                    Vector2 pos = Projectile.Center + angle.ToRotationVector2() * radius;
+                if (Projectile.oldPos[i] == Vector2.Zero) continue;
 
-                    int dust = Dust.NewDust(
-                        pos, 0, 0,
-                        DustID.Shadowflame,
-                        0f, 0f,
-                        120,
-                        default,
-                        1.5f
-                    );
-                    Main.dust[dust].noGravity = true;
-                    Main.dust[dust].velocity = angle.ToRotationVector2() * 4f;
-                }
+                float progress = (Projectile.oldPos.Length - i) / (float)Projectile.oldPos.Length;
+                Vector2 pos = Projectile.oldPos[i] + Projectile.Size / 2f - Main.screenPosition;
+
+                Color trailColor = BeamColorDim * progress * 0.85f;
+                float trailScale = Projectile.scale * (0.7f + progress * 0.6f);
+
+                Main.EntitySpriteDraw(
+                    texture, pos, null,
+                    trailColor, Projectile.rotation,
+                    origin, trailScale, SpriteEffects.None, 0
+                );
             }
+
+            Color mainColor = BeamColor * (Projectile.alpha / 255f * -1f + 1f);
+            Main.EntitySpriteDraw(
+                texture,
+                Projectile.Center - Main.screenPosition,
+                null,
+                mainColor,
+                Projectile.rotation,
+                origin,
+                Projectile.scale,
+                SpriteEffects.None,
+                0
+            );
+
+            return false;
         }
     }
-    public class ShadowChain : ModProjectile
+    public class ShadowBeamFlash : ModProjectile
     {
+        public override string Texture => "Synergia/Assets/Textures/Glow";
+
+        private const float DESIRED_MAX_SCALE = 0.30f;   
+
         public override void SetDefaults()
         {
-            Projectile.friendly = true;
-            Projectile.hostile = false;
-            Projectile.DamageType = DamageClass.Magic;
-            Projectile.penetrate = 1;
-            Projectile.timeLeft = 30;
-            Projectile.width = 8;
-            Projectile.height = 8;
-            Projectile.alpha = 255;
+            Projectile.width = 80;
+            Projectile.height = 80;
+            Projectile.timeLeft = 20;
             Projectile.tileCollide = false;
-            Projectile.extraUpdates = 3;
+            Projectile.penetrate = -1;
+            Projectile.alpha = 0;
+            Projectile.scale = 0.01f;         
+        }
+
+        public override void OnSpawn(IEntitySource source)
+        {
+            Projectile.scale = 0.01f;           
+            Projectile.alpha = 0;
         }
 
         public override void AI()
         {
-            int dust = Dust.NewDust(Projectile.Center, 0, 0, DustID.Shadowflame, 0, 0, 80, default, 1f);
-            Main.dust[dust].noGravity = true;
-            Main.dust[dust].velocity *= 0.1f;
+            float progress = 1f - (float)Projectile.timeLeft / 20f;
+            progress = MathHelper.Clamp(progress, 0f, 1f);
+
+            if (progress < 0.3f)
+            {
+                Projectile.scale = MathHelper.Lerp(0.01f, DESIRED_MAX_SCALE, progress / 0.3f);
+            }
+            else
+            {
+                float remain = (progress - 0.3f) / 0.7f;
+                float eased = MathF.Pow(1f - remain, 1.4f);
+                Projectile.scale = DESIRED_MAX_SCALE * eased;
+            }
+
+            Projectile.alpha = (int)(255 * MathF.Pow(progress, 0.7f));
+
+            Projectile.scale = MathHelper.Clamp(Projectile.scale, 0.01f, DESIRED_MAX_SCALE * 1.15f);
         }
 
-        public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
+        public override bool PreDraw(ref Color lightColor)
         {
-            target.AddBuff(BuffID.ShadowFlame, 120);
+            var tex = TextureAssets.Projectile[Type].Value;
+            var color = new Color(210, 140, 255, 255) * (1f - Projectile.alpha / 255f) * 0.92f; 
+            Main.EntitySpriteDraw(
+                tex,
+                Projectile.Center - Main.screenPosition,
+                null,
+                color,
+                0f,
+                tex.Size() / 2f,
+                Projectile.scale,
+                SpriteEffects.None,
+                0
+            );
+
+            return false;
         }
     }
 }

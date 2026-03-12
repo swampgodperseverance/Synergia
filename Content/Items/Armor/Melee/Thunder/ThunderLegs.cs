@@ -1,6 +1,8 @@
+using Avalon.Items.Weapons.Ranged.PreHardmode.Blunderblight;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
+using ValhallaMod.Items.Material.Bar;
 
 namespace Synergia.Content.Items.Armor.Melee.Thunder;
 
@@ -16,5 +18,12 @@ public class ThunderLegs : ModItem {
     public override void UpdateEquip(Player player) {
         player.GetAttackSpeed(DamageClass.Melee) += 0.08f;
         player.moveSpeed += 0.12f;
+    }
+    public override void AddRecipes()
+    {
+        CreateRecipe()
+            .AddIngredient(ModContent.ItemType<ThunderBar>(), 18)
+            .AddTile(TileID.MythrilAnvil)
+            .Register();
     }
 }

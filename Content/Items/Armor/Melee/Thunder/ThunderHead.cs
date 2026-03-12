@@ -2,6 +2,7 @@
 using Synergia.Common.SUtils;
 using Terraria;
 using Terraria.ID;
+using ValhallaMod.Items.Material.Bar;
 
 namespace Synergia.Content.Items.Armor.Melee.Thunder;
 
@@ -24,5 +25,12 @@ public sealed class ThunderHead : ModItem {
         player.setBonus = LocUtil.ItemTooltip(LocUtil.ARM, "ThunderSetBonus");
         player.GetDamage(DamageClass.Melee) += 0.10f;
         player.GetModPlayer<ArmorPlayers>().thunderSet = true;
+    }
+    public override void AddRecipes()
+    {
+        CreateRecipe()
+            .AddIngredient(ModContent.ItemType<ThunderBar>(), 12)
+            .AddTile(TileID.MythrilAnvil)
+            .Register();
     }
 }

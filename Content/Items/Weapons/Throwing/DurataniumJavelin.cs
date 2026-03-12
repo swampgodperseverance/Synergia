@@ -1,8 +1,11 @@
+using Avalon.Items.Material.Bars;
+using Avalon.Items.Material.Shards;
 using Microsoft.Xna.Framework;
+using Synergia.Content.Projectiles.Friendly;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using Synergia.Content.Projectiles.Friendly;
+using ValhallaMod.Items.Material;
 
 namespace Synergia.Content.Items.Weapons.Throwing
 {
@@ -31,5 +34,12 @@ namespace Synergia.Content.Items.Weapons.Throwing
 			item.noUseGraphic = true;
 			item.noMelee = true;
 		}
-	}
+        public override void AddRecipes()
+        {
+            CreateRecipe()
+                .AddIngredient(ModContent.ItemType<DurataniumBar>(), 10)
+                .AddTile(TileID.Anvils)
+                .Register();
+        }
+    }
 }

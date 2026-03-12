@@ -28,6 +28,12 @@ namespace Synergia.Common.GlobalItems.Changes
                 ModLoader.GetMod("RoA")?.Find<ModItem>("ChemicalPrisoner")?.Type ?? 0;
             int arterialSptayType =
                 ModLoader.GetMod("RoA")?.Find<ModItem>("ArterialSpray")?.Type ?? 0;
+            int ravensEyeType =
+                ModLoader.GetMod("RoA")?.Find<ModItem>("RavensEye")?.Type ?? 0;
+            int RodStreamType =
+                ModLoader.GetMod("RoA")?.Find<ModItem>("RodOfTheStream")?.Type ?? 0;
+            int RodShockType =
+                ModLoader.GetMod("RoA")?.Find<ModItem>("RodOfTheShock")?.Type ?? 0;
 
 
             Changes = new()
@@ -116,6 +122,7 @@ namespace Synergia.Common.GlobalItems.Changes
                 [ModContent.ItemType<Tarrifier>()] = item =>
                 {
                     item.mana += 4;
+                    item.damage += 4;
                 },
                 [ModContent.ItemType<GraniteCharger>()] = item =>
                 {
@@ -131,6 +138,24 @@ namespace Synergia.Common.GlobalItems.Changes
                 {
                     item.useAnimation += 3;
                     item.useTime += 3;
+                },
+                [RodStreamType] = item =>
+                {
+                    item.useAnimation += 6;
+                    item.useTime += 6;
+                    item.mana += 15;
+                    item.damage -= 6;
+                },
+                [RodShockType] = item =>
+                {
+                    item.mana += 5;
+                },
+                [ModContent.ItemType<Scorcher>()] = item =>
+                {
+                    item.useAnimation -= 3;
+                    item.useTime -= 3;
+                    item.damage -= 5;
+                    item.mana += 5;
                 },
 
             };

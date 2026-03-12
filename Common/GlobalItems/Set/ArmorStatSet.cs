@@ -214,6 +214,14 @@ namespace Synergia.Common.GlobalItems.Set
 				{
 					player.GetDamage(DamageClass.Generic) -= 0.10f;
 				}
+				if (item.type == bismuth.Find<ModItem>("KillersHood").Type)
+				{
+                    player.GetCritChance(DamageClass.Magic) += 8;
+                }
+				if (item.type == bismuth.Find<ModItem>("KillersJacket").Type)
+				{
+                    player.GetDamage(DamageClass.Magic) += 0.10f;
+                }
 
 			}
 		}
@@ -266,7 +274,10 @@ namespace Synergia.Common.GlobalItems.Set
 
 			Add("Bismuth", "BismuthumLeggings", "Items.BismuthumLeggings.Tooltip");
 			Add("Bismuth", "BismuthumBreastplate", "Items.BismuthumBreastplate.Tooltip");
-		}
+
+            Add("Bismuth", "KillersHood", "Items.KillersHood.Tooltip");
+            Add("Bismuth", "KillersJacket", "Items.KillersJacket.Tooltip");
+        }
 
 		private void ReplaceTooltip(List<TooltipLine> tooltips, string tooltipName, string newText)
 		{

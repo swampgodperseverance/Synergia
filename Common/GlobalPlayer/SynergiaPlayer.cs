@@ -5,6 +5,7 @@ using Synergia.Content.Achievements;
 using Synergia.Content.Buffs;
 using Synergia.Content.Buffs.Debuff;
 using Synergia.Helpers;
+using RoA.Common.NPCs;
 using Terraria;
 using Terraria.ID;
 using Terraria.Localization;
@@ -17,11 +18,14 @@ namespace Synergia.Common.GlobalPlayer {
 
         public int useSulfuricAcid;
 
+        public bool downedLothorBossAddon = false;
         public override void SaveData(TagCompound tag) {
             tag["useSulfuricAcid"] = useSulfuricAcid;
+            tag["downedLothorBossAddon"] = downedLothorBossAddon;
         }
         public override void LoadData(TagCompound tag) {
             useSulfuricAcid = tag.GetInt("useSulfuricAcid");
+            downedLothorBossAddon = tag.GetBool("downedLothorBossAddon");
         }
         public override void ResetEffects() {
             IsEquippedUprateLavaCharm = false;
@@ -42,8 +46,27 @@ namespace Synergia.Common.GlobalPlayer {
                 Player.ClearBuff(BuffID.WaterWalking);
                 Player.ClearBuff(BuffID.Gravitation);
             }
-            if (!NPC.downedBoss3 && Player.ZoneUnderworldHeight) {
-                Player.AddBuff(BuffType<HellishAir>(), 2);
+            if (!downedLothorBossAddon)
+            {
+                bool lothorAlive = false;
+                foreach (NPC npc in Main.npc)
+                {
+                    if (npc.active && npc.type == ModLoader.GetMod("RoA")?.Find<ModNPC>("LothorNPC")?.Type)
+                    {
+                        lothorAlive = true;
+                        break;
+                    }
+                }
+
+                if (!lothorAlive)
+                {
+                    downedLothorBossAddon = true; 
+                }
+            }
+
+            if (!downedLothorBossAddon && Player.ZoneUnderworldHeight)
+            {
+                Player.AddBuff(ModContent.BuffType<HellishAir>(), 2);
             }
         }
         public override bool CanBeTeleportedTo(Vector2 teleportPosition, string context) {

@@ -1,6 +1,7 @@
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
+using ValhallaMod.Items.Material.Bar;
 
 namespace Synergia.Content.Items.Armor.Melee.Thunder;
 
@@ -17,5 +18,12 @@ public class ThunderBody : ModItem {
     public override void UpdateEquip(Player player) {
         player.GetDamage(DamageClass.Melee) += 0.20f;
         player.GetAttackSpeed(DamageClass.Melee) += 0.08f;
+    }
+    public override void AddRecipes()
+    {
+        CreateRecipe()
+            .AddIngredient(ModContent.ItemType<ThunderBar>(), 24)
+            .AddTile(TileID.MythrilAnvil)
+            .Register();
     }
 }

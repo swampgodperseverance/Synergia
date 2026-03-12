@@ -1,8 +1,10 @@
+using Avalon.Items.Material.Bars;
 using Microsoft.Xna.Framework;
+using Synergia.Content.Projectiles.Friendly;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using Synergia.Content.Projectiles.Friendly;
+using ValhallaMod.Items.Material;
 
 namespace Synergia.Content.Items.Weapons.Throwing
 {
@@ -28,6 +30,14 @@ namespace Synergia.Content.Items.Weapons.Throwing
             Item.autoReuse = true;
             Item.noUseGraphic = true;
             Item.noMelee = true;
+        }
+        public override void AddRecipes()
+        {
+            CreateRecipe()
+                .AddIngredient(ModContent.ItemType<JadeFragment>(), 12)
+                .AddIngredient(ModContent.ItemType<JadeCloth>(), 4)
+                .AddTile(TileID.MythrilAnvil)
+                .Register();
         }
     }
 }

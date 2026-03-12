@@ -1,8 +1,9 @@
+using Avalon.Items.Material.Bars;
 using Microsoft.Xna.Framework;
+using Synergia.Content.Projectiles.Friendly;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using Synergia.Content.Projectiles.Friendly;
 
 namespace Synergia.Content.Items.Weapons.Throwing
 {
@@ -31,5 +32,12 @@ namespace Synergia.Content.Items.Weapons.Throwing
 			item.noUseGraphic = true;
 			item.noMelee = true;
 		}
-	}
+        public override void AddRecipes()
+        {
+            CreateRecipe()
+                .AddIngredient(ModContent.ItemType<NaquadahBar>(), 10)
+                .AddTile(TileID.MythrilAnvil)
+                .Register();
+        }
+    }
 }

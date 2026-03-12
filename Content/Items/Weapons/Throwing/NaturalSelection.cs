@@ -1,7 +1,9 @@
+using Avalon.Items.Material;
+using Avalon.Items.Material.Bars;
+using Synergia.Content.Projectiles.Friendly;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using Synergia.Content.Projectiles.Friendly;
 
 namespace Synergia.Content.Items.Weapons.Throwing
 {
@@ -25,6 +27,14 @@ namespace Synergia.Content.Items.Weapons.Throwing
             Item.autoReuse = true;
             Item.shoot = ModContent.ProjectileType<NaturalSelectionProj>();
             Item.shootSpeed = 12f;
+        }
+        public override void AddRecipes()
+        {
+            CreateRecipe()
+                .AddIngredient(ModContent.ItemType<BacciliteBar>(), 10)
+                .AddIngredient(ModContent.ItemType<YuckyBit>(), 6)
+                .AddTile(TileID.Anvils)
+                .Register();
         }
     }
 }    

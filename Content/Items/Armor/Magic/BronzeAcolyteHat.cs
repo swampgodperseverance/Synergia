@@ -1,7 +1,9 @@
-﻿using Microsoft.Xna.Framework;
+﻿using Avalon.Items.Material.Bars;
+using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.Localization;
+using ValhallaMod.Items.Material.Bar;
 
 namespace Synergia.Content.Items.Armor.Magic
 {
@@ -30,6 +32,14 @@ namespace Synergia.Content.Items.Armor.Magic
             if (player.statMana <= 40) {
                 player.GetDamage(DamageClass.Magic) += 0.4f;
             }
+        }
+        public override void AddRecipes()
+        {
+            CreateRecipe()
+                .AddIngredient(ModContent.ItemType<BronzeBar>(), 8)
+                .AddIngredient(ItemID.Leather, 5)
+                .AddTile(TileID.Anvils)
+                .Register();
         }
     }
 }

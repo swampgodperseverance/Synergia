@@ -1,3 +1,4 @@
+using Avalon.Items.Material.Bars;
 using Microsoft.Xna.Framework;
 
 using Terraria;
@@ -23,6 +24,13 @@ sealed class BronzeAcolyteLeggings : ModItem {
 
         Item.value = Item.sellPrice(0, 0, 6, 50);
     }
-
     public override void UpdateEquip(Player player) => player.GetCritChance(DamageClass.Magic) += 8;
+    public override void AddRecipes()
+    {
+        CreateRecipe()
+            .AddIngredient(ModContent.ItemType<BronzeBar>(), 6)
+            .AddIngredient(ItemID.Leather, 5)
+            .AddTile(TileID.Anvils)
+            .Register();
+    }
 }

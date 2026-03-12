@@ -1,10 +1,11 @@
+using Avalon.Items.Material.Bars;
 using Microsoft.Xna.Framework;
+using Synergia.Common.GlobalPlayer;
+using Synergia.Content.Projectiles.Friendly;
 using Terraria;
+using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
-using Terraria.DataStructures;
-using Synergia.Content.Projectiles.Friendly;
-using Synergia.Common.GlobalPlayer;
 
 namespace Synergia.Content.Items.Weapons.Throwing
 {
@@ -45,10 +46,7 @@ namespace Synergia.Content.Items.Weapons.Throwing
 
 				for (int i = -1; i <= 1; i++)
 				{
-					// rotate on 30°
 					Vector2 perturbedVelocity = velocity.RotatedBy(MathHelper.ToRadians(i * 30f)) * 0.7f;
-
-					// move horizontally
 					Vector2 spawnOffset = new Vector2(i * 8f, 0);
 
 					Projectile.NewProjectile(
@@ -87,5 +85,6 @@ namespace Synergia.Content.Items.Weapons.Throwing
 
 			return false;
 		}
-	}
+
+    }
 }

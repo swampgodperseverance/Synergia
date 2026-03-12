@@ -3,6 +3,8 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Synergia.Content.Projectiles.Friendly;
+using Avalon.Items.Material.Shards;
+using ValhallaMod.Items.Material;
 
 namespace Synergia.Content.Items.Weapons.Throwing
 {
@@ -56,6 +58,15 @@ namespace Synergia.Content.Items.Weapons.Throwing
                     }
                 }
             }
+        }
+        public override void AddRecipes()
+        {
+            CreateRecipe()
+                .AddIngredient(ModContent.ItemType<Airflow>(), 1)
+                .AddIngredient(ModContent.ItemType<TornadoShard>(), 8)
+                .AddIngredient(ModContent.ItemType<BrokenGlaive>(), 1)
+                .AddTile(TileID.MythrilAnvil)
+                .Register();
         }
     }
 }

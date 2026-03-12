@@ -5,6 +5,7 @@ using Terraria.ModLoader;
 using Terraria.DataStructures;
 using System.Linq;
 using Synergia.Content.Projectiles.Friendly;
+using starforgedclassic.Content.Placeables.AzuriteBar;
 
 namespace Synergia.Content.Items.Weapons.Throwing
 {
@@ -55,5 +56,12 @@ namespace Synergia.Content.Items.Weapons.Throwing
 			);
 			return false;
 		}
-	}
+        public override void AddRecipes()
+        {
+            CreateRecipe()
+             //   .AddIngredient(Mod.Find<ModItem>("AzuriteBarItem").Type, 10)
+                .AddTile(TileID.Anvils)
+                .Register();
+        }
+    }
 }
