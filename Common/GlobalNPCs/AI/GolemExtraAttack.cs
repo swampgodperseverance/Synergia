@@ -6,12 +6,13 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace Synergia.Common.GlobalNPCs.AI
 {
-	public class GolemExtraAttacks : GlobalNPC
+	public class GolemExtraAttack : GlobalNPC
 	{
+		internal static bool Disabled = false;
 		public override bool AppliesToEntity(NPC npc, bool lateInstatiation) => npc.type >= NPCID.Golem && npc.type <= NPCID.GolemHeadFree;
 		public override void SetDefaults(NPC npc) => npc.trapImmune = true;
 		public override void AI(NPC npc) {
-			if(NPC.golemBoss < 0) return;
+			if(Disabled || NPC.golemBoss < 0) return;
 			if(npc.type == NPCID.GolemHead) {
 				if(npc.ai[3] > 0f) npc.ai[3]--;
 				if(npc.ai[2] == 0f) npc.ai[3] = 10f;
@@ -23,7 +24,7 @@ namespace Synergia.Common.GlobalNPCs.AI
 			}
 		}
 		public override void PostDraw(NPC npc, SpriteBatch sprite, Vector2 screenPos, Color lightColor) {
-			if(npc.type != NPCID.GolemHead) return;
+			if(Disabled || npc.type != NPCID.GolemHead) return;
 			int frameHeight = Terraria.GameContent.TextureAssets.Npc[npc.type].Height() / Main.npcFrameCount[npc.type];
 			if(npc.ai[3] <= 0f || npc.ai[3] > 10f) return;
 			float glowTime = (float)System.Math.Sin(npc.ai[3] * 0.1f * MathHelper.Pi);
