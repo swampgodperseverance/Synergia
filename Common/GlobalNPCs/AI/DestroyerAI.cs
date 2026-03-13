@@ -128,7 +128,10 @@ namespace Synergia.Common.GlobalNPCs.AI
 							if(Main.netMode != 1) foreach(NPC segment in Main.ActiveNPCs) if(segment.whoAmI != npc.whoAmI && segment.realLife == npc.whoAmI && segment.aiStyle == npc.aiStyle) Projectile.NewProjectile(segment.GetSource_FromAI(), segment.Center, segment.ai[2] == 1f ? Main.rand.NextVector2CircularEdge(12f, 12f) : Vector2.UnitX.RotatedBy(npc.rotation + Main.rand.NextFloat(-MathHelper.PiOver4, MathHelper.PiOver4) * 0.4f) * (Main.rand.NextBool() ? 1f : -1f), segment.ai[2] == 1f ? ModContent.ProjectileType<DestroyerMissile>() : ModContent.ProjectileType<PlasmaBeam>(), 40, 0f, Main.myPlayer, segment.ai[2] == 1f ? 60f : segment.whoAmI + 1);
 							SoundEngine.PlaySound(SoundID.Item15, targetPos);
 						}
-						else if((npc.ai[1] - 30f) % 40 == 0 && (npc.ai[1] - 30f) >= 120f && (npc.ai[1] - 30f) <= 240f && Main.netMode != 1) SoundEngine.PlaySound(SoundID.NPCDeath56, targetPos);
+						else if((npc.ai[1] - 30f) % 40 == 0 && (npc.ai[1] - 30f) >= 120f && (npc.ai[1] - 30f) <= 240f) {
+							SoundEngine.PlaySound(SoundID.NPCDeath56, targetPos);
+							Main.LocalPlayer.GetModPlayer<Common.GlobalPlayer.ScreenShakePlayer>().TriggerShake(6, 0.8f);
+						}
 						if(npc.ai[1] < 120f) {
 							if(npc.velocity.Length() > 1f) npc.velocity += Vector2.UnitY.RotatedBy(npc.rotation);
 							float lerp = npc.ai[1] / 120f;

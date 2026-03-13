@@ -16,6 +16,7 @@ namespace Synergia.CompatibilityPatches
 			EyeAI.Disabled = mustDisable;
 			SkeletronPrimeAI.Disabled = mustDisable;
 			DestroyerAI.Disabled = mustDisable;
+			TwinsAI.Disabled = mustDisable;
 			BrainDashAI.Disabled = mustDisable;
 			CultistAI.Disabled = mustDisable;
 		}
@@ -26,6 +27,7 @@ namespace Synergia.CompatibilityPatches
 			EyeAI.Disabled = false;
 			SkeletronPrimeAI.Disabled = false;
 			DestroyerAI.Disabled = false;
+			TwinsAI.Disabled = false;
 			BrainDashAI.Disabled = false;
 			CultistAI.Disabled = false;
 		}

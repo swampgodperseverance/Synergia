@@ -31,7 +31,10 @@ namespace Synergia.Content.Projectiles.Boss.DestroyerBuff
 				Projectile.timeLeft = 9;
 				return;
 			}
-			if(Projectile.timeLeft == 8) Terraria.Audio.SoundEngine.PlaySound(SoundID.Item14, Projectile.Center);
+			if(Projectile.timeLeft == 8) {
+				Main.player[Projectile.owner].GetModPlayer<Common.GlobalPlayer.ScreenShakePlayer>().TriggerShake(6, 0.8f);
+				Terraria.Audio.SoundEngine.PlaySound(SoundID.Item14, Projectile.Center);
+			}
 			Projectile.alpha = 0;
 			if(Projectile.localAI[0] == 0) {
 				Projectile.localAI[0]++;
