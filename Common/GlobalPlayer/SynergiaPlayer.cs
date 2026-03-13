@@ -51,7 +51,7 @@ namespace Synergia.Common.GlobalPlayer {
                 bool lothorAlive = false;
                 foreach (NPC npc in Main.npc)
                 {
-                    if (npc.active && npc.type == ModLoader.GetMod("RoA")?.Find<ModNPC>("LothorNPC")?.Type)
+                    if (npc.active && npc.type == ModLoader.GetMod("RoA")?.Find<ModNPC>("Lothor")?.Type)
                     {
                         lothorAlive = true;
                         break;
