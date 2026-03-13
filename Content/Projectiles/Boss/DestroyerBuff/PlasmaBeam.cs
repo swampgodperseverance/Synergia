@@ -31,7 +31,7 @@ namespace Synergia.Content.Projectiles.Boss.DestroyerBuff
 			if(Projectile.timeLeft <= 10 && Projectile.localAI[0] < 5f) Projectile.localAI[0]++;
 		}
 		public override bool? Colliding(Rectangle projHitbox, Rectangle targetHitbox) {
-			if(Projectile.timeLeft > 0) return false;
+			if(Projectile.timeLeft > 10) return false;
 			float point = 0f;
 			return Collision.CheckAABBvLineCollision(targetHitbox.TopLeft(), targetHitbox.Size(), Projectile.Center, Projectile.Center + Vector2.UnitX.RotatedBy(Projectile.rotation) * 2400f, 8 * Projectile.scale, ref point);
 		}
@@ -53,4 +53,5 @@ namespace Synergia.Content.Projectiles.Boss.DestroyerBuff
 		}
 		public override bool ShouldUpdatePosition() => false;
 	}
+
 }
