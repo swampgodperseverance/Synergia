@@ -1,4 +1,5 @@
-﻿using Avalon.Items.Material.Bars;
+﻿using Avalon.Items.Armor.PreHardmode;
+using Avalon.Items.Material.Bars;
 using Avalon.Items.Material.Herbs;
 using Avalon.Items.Material.Ores;
 using Microsoft.Xna.Framework;
@@ -94,6 +95,6 @@ namespace Synergia.Content.Items.Misc {
         public class AlchemicFlower : BaseNULLItem {
             public override int CloneItem => ItemID.Deathweed;
             public override List<int> AnimationList => [ItemID.Deathweed, ItemType<Bloodberry>(), ItemType<Barfbush>()];
-        } 
+        }
     }
 }

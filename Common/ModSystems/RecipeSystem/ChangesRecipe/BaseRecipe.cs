@@ -12,6 +12,7 @@ namespace Synergia.Common.ModSystems.RecipeSystem.ChangesRecipe {
                     Ingredient(recipe);
                     RemoveIngredient(recipe);
                     Tiles(recipe);
+                    PostPostRecipe(recipe);
                 }
                 PostRecipe();
             }
@@ -27,6 +28,7 @@ namespace Synergia.Common.ModSystems.RecipeSystem.ChangesRecipe {
         public virtual void Tiles(Recipe recipe) { }
         public virtual void Recipes() { }
         public virtual void PostRecipe() { }
+        public virtual void PostPostRecipe(Recipe recipe) { }
         /// <summary>
         /// Тут и так понятно, но я напишу. Этот метод отключает рецепт, если он создает предмет, который мы передаем в параметре target. 
         /// Второй метод отключает рецепт, если он создает предмет target и имеет в ингредиентах предмет targetIngredient. 
@@ -148,6 +150,28 @@ namespace Synergia.Common.ModSystems.RecipeSystem.ChangesRecipe {
                 foreach (var (type, stack) in ingredients)
                 {
                     recipe.AddIngredient(type, stack);
+                }
+            }
+        }
+        protected static void AddRecipeGroup(Recipe recipe, params RecipeGroupStruct[] recipeGroups) {
+            foreach (RecipeGroupStruct recipeGroup in recipeGroups) {
+                if (!recipeGroup.Target.Contains(recipe.createItem.type)) { return; }
+                foreach (int material in recipeGroup.ItemType) {
+                    if (!recipe.HasIngredient(material)) { continue; }
+                    recipe.DisableRecipe();
+                }
+                Recipe newRecipe = Recipe.Create(recipe.createItem.type);
+                foreach (Item item in recipe.requiredItem) {
+                    if (item.type == recipeGroup.ItemType[0]) {
+                        newRecipe.AddRecipeGroup(recipeGroup.RecipeGroupName, recipeGroup.Stack);
+                    }
+                    else { newRecipe.AddIngredient(item.type, item.stack); }
+                }
+                foreach (int tile in recipe.requiredTile) { newRecipe.AddTile(tile); }
+                foreach (Item item in recipe.requiredItem) {
+                    if (item.type == recipeGroup.ItemType[0]) {
+                        newRecipe.Register();
+                    }
                 }
             }
         }

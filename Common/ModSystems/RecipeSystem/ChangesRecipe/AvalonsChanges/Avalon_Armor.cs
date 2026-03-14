@@ -1,9 +1,11 @@
 ﻿using Avalon.Items.Armor.Hardmode;
+using Avalon.Items.Armor.PreHardmode;
 using Avalon.Items.Armor.Superhardmode;
 using Avalon.Items.Material;
 using Avalon.Tiles;
 using NewHorizons.Content.Items.Armor.NeutronArmor;
 using NewHorizons.Content.Items.Materials;
+using System.Collections.Generic;
 using Terraria;
 using Terraria.ID;
 using static Synergia.Common.ModSystems.RecipeSystem.RecipeGroups;

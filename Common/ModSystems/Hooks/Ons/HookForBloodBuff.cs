@@ -86,6 +86,7 @@ namespace Synergia.Common.ModSystems.Hooks.Ons {
             }
             if (info.Leveled != 10) {
                 float infoScale = !drawShiftTooltips ? 30 : 60; infoScale -= drawCtrlTooltips ? 30 : 0;
+                if (info.Leveled == 0) { infoScale -= 60; }
                 DrawTooltips(new Vector2(posTooltips.X, posTooltips.Y + maxScale + infoScale), "Info", color: Color.PaleVioletRed); // Plum // PaleVioletRed // DarkCyan // DeepPink
             }
         }
