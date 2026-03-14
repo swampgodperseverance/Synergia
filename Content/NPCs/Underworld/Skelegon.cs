@@ -27,7 +27,7 @@ namespace Synergia.Content.NPCs.Underworld
             NPC.aiStyle = NPCAIStyleID.Fighter;
             AIType = NPCID.UndeadMiner;
             AnimationType = -1;
-            NPC.scale = 1.4f;
+            NPC.scale = 1.2f;
             NPC.HitSound = SoundID.NPCHit2;
             NPC.DeathSound = new SoundStyle("Synergia/Assets/Sounds/BrokenBone");
             NPC.lavaImmune = Main.expertMode;

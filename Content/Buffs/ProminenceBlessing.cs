@@ -14,7 +14,6 @@ namespace Synergia.Content.Buffs
 
         public override void Update(Player player, ref int buffIndex)
         {
-            // Если у игрока есть проджи этого типа — продлеваем бафф
             if (player.ownedProjectileCounts[ModContent.ProjectileType<ProminenceProjectile>()] > 0)
             {
                 player.buffTime[buffIndex] = 18000;
