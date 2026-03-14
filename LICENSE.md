@@ -1,7 +1,7 @@
 # Synergia License
 
 **Source Code**  
-All source code associated with Synergia is provided for free use, modification, and redistribution (including in commercial projects), provided that you clearly credit the Synergia team or Coders(Unowen, Cleo, Aeris, Bimba)in a visible manner (e.g. in code, about page, or documentation).
+All source code associated with Synergia is provided for free use, modification, and redistribution (including in commercial projects), provided that you clearly credit the Synergia team or Coders(Unowen, Swampgod, Aeris, Bimba)in a visible manner (e.g. in code, about page, or documentation).
 
 **Visual Assets (sprites, artwork, UI elements, etc.)**  
 Synergia team - All Rights Reserved for commercial use.  
