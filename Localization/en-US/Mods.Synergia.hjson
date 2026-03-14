@@ -1318,6 +1318,8 @@ Projectiles: {
 	RetinazerPulse.DisplayName: Retinazer Pulse
 	RetinaRay.DisplayName: Retina Ray
 	EyeFire.DisplayName: Eye Fire
+	MinotaurWaraxeRework.DisplayName: Minotaur Waraxe Rework
+	MinotaursWaraxeRework.DisplayName: Minotaurs Waraxe Rework
 }
 
 Buffs: {

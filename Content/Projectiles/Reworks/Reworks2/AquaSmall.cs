@@ -5,7 +5,7 @@ using Terraria;
 using Terraria.GameContent;
 using Terraria.ID;
 using Terraria.ModLoader;
-using Synergia.Helpers; // предполагаю, что EaseFunctions оттуда
+using Synergia.Helpers; 
 
 namespace Synergia.Content.Projectiles.Reworks.Reworks2
 {
@@ -128,17 +128,13 @@ namespace Synergia.Content.Projectiles.Reworks.Reworks2
             Lighting.AddLight(Projectile.Center, 0.06f, 0.28f, 0.4f);
         }
 
-        // ← Вот здесь самое важное — красивая смерть
         public override void OnKill(int timeLeft)
         {
-            // Вспышка маленьких океанических дастов при смерти
-            int dustCount = Main.rand.Next(8, 15); // 8–14 частиц
+            int dustCount = Main.rand.Next(8, 15);
 
             for (int i = 0; i < dustCount; i++)
             {
-                // Можно использовать либо ванильный DustID, либо твой GlowDust
-                int dustType = DustID.WaterCandle; // очень голубой и красивый
-                // или твой кастомный: dustType = ModContent.DustType<GlowDust>();
+                int dustType = DustID.WaterCandle; 
 
                 Dust d = Dust.NewDustPerfect(
                     Projectile.Center,
@@ -149,15 +145,13 @@ namespace Synergia.Content.Projectiles.Reworks.Reworks2
 
                 d.noGravity = true;
                 d.noLight = false;
-                d.color = new Color(80, 180, 255); // яркий океанический голубой
-                d.alpha = 80; // чуть прозрачный
-                d.fadeIn = 0.8f; // плавное появление (важно для GlowDust)
+                d.color = new Color(80, 180, 255);
+                d.alpha = 80; 
+                d.fadeIn = 0.8f; 
 
-                // Если используешь GlowDust — можно ещё сильнее кастомизировать цвет
-                // d.color = new Color(100, 220, 255) * 1.2f;
+
             }
 
-            // Дополнительно — лёгкая вспышка света
             Lighting.AddLight(Projectile.Center, 0.4f, 0.7f, 1.1f);
         }
 
