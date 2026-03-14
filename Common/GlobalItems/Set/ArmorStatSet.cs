@@ -222,8 +222,28 @@ namespace Synergia.Common.GlobalItems.Set
 				{
                     player.GetDamage(DamageClass.Magic) += 0.10f;
                 }
+                if (item.type == bismuth.Find<ModItem>("RivetedHood").Type)
+                {
+                    player.GetCritChance(DamageClass.Ranged) += 8;
+                }
+                if (item.type == bismuth.Find<ModItem>("RivetedJacket").Type)
+                {
+                    player.GetDamage(DamageClass.Ranged) += 0.08f;
+                }
+                if (item.type == bismuth.Find<ModItem>("NomadsHood").Type)
+                {
+                    player.GetDamage(DamageClass.Throwing) += 0.07f;
+                }
+                if (item.type == bismuth.Find<ModItem>("NomadsJacket").Type)
+                {
+                    player.GetDamage(DamageClass.Throwing) += 0.11f;
+                }
+                if (item.type == bismuth.Find<ModItem>("NomadsBoots").Type)
+                {
+                    player.GetDamage(DamageClass.Throwing) += 0.07f;
+                }
 
-			}
+            }
 		}
 
 		public override void ModifyTooltips(Item item, List<TooltipLine> tooltips)
@@ -277,6 +297,22 @@ namespace Synergia.Common.GlobalItems.Set
 
             Add("Bismuth", "KillersHood", "Items.KillersHood.Tooltip");
             Add("Bismuth", "KillersJacket", "Items.KillersJacket.Tooltip");
+
+            Add("Bismuth", "RivetedHood", "Items.RivetedHood.Tooltip");
+            Add("Bismuth", "RivetedJacket", "Items.RivetedJacket.Tooltip");
+
+            Add("Bismuth", "NomadsHood", "Items.NomadsHood.Tooltip");
+            Add("Bismuth", "NomadsJacket", "Items.NomadsJacket.Tooltip");
+
+            if (item.type != ModContent.Find<ModItem>("Bismuth/NomadsBoots").Type)
+                return;
+
+            tooltips.RemoveAll(line =>
+                line.Mod == "Terraria" &&
+                line.Name.StartsWith("Tooltip")
+            );
+            string newTooltip = Language.GetTextValue("Mods.Synergia.Items.NomadsBoots.Tooltip");
+            tooltips.Add(new TooltipLine(Mod, "NomadsBootsTooltip", newTooltip));
         }
 
 		private void ReplaceTooltip(List<TooltipLine> tooltips, string tooltipName, string newText)
