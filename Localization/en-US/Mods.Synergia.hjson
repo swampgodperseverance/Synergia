@@ -1320,6 +1320,16 @@ Projectiles: {
 	EyeFire.DisplayName: Eye Fire
 	MinotaurWaraxeRework.DisplayName: Minotaur Waraxe Rework
 	MinotaursWaraxeRework.DisplayName: Minotaurs Waraxe Rework
+	UnstableJadeShard.DisplayName: Unstable Jade Shard
+	JadePulse.DisplayName: Jade Pulse
+	JadeNova.DisplayName: Jade Nova
+	JadeLightningWarning.DisplayName: Jade Lightning Warning
+	JadeLightning.DisplayName: Jade Lightning
+	JadeGreaterJavelin.DisplayName: Jade Greater Javelin
+	JadeExplosion.DisplayName: Jade Explosion
+	JadeBlast.DisplayName: Jade Blast
+	JadeBeam.DisplayName: Jade Beam
+	BrightJadeShard.DisplayName: Bright Jade Shard
 }
 
 Buffs: {

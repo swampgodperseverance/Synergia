@@ -5,66 +5,81 @@ using Terraria.Audio;
 using Terraria.ID;
 using Terraria.ModLoader;
 using System;
+
 namespace Synergia.Content.Projectiles.Reworks
 {
     public class ProminenceProjectile : ModProjectile
     {
-        private float passiveRotationSpeed = 0.05f;
-        private float activeRotationSpeed = 0.2f;
-        private float chargeRotationSpeed = 0.3f;
-        private float idleBobAmount = 0.1f;
-        private float idleBobSpeed = 0.1f;
+        private float passiveRotationSpeed = 0.042f;
+        private float activeRotationSpeed = 0.24f;
+        private float chargeRotationSpeed = 0.35f;
+
         private int dashTimer = 0;
-        private int dashCooldown = 45;
-        private int maxDashTime = 20;
+        private int dashCooldown = 48;
+        private int maxDashTime = 22;
+
         private Vector2 dashTarget;
         private NPC targetNPC;
-        private bool isCharging = false;
         private int chargeTimer = 0;
-        private const int CHARGE_TIME = 25;
+        private const int CHARGE_TIME = 26;
+
+        private int deathTimer = 0;
+        private const int DEATH_TIME = 38;
+
         private enum ProjectileState
         {
             Idle,
             Charging,
             Dashing,
-            Returning
+            Returning,
+            Dying
         }
         private ProjectileState currentState = ProjectileState.Idle;
+
         public override void SetStaticDefaults()
         {
             Main.projPet[Projectile.type] = true;
             ProjectileID.Sets.MinionSacrificable[Projectile.type] = true;
             ProjectileID.Sets.CultistIsResistantTo[Projectile.type] = true;
             ProjectileID.Sets.MinionTargettingFeature[Projectile.type] = true;
+            ProjectileID.Sets.TrailCacheLength[Projectile.type] = 14;
+            ProjectileID.Sets.TrailingMode[Projectile.type] = 2;
         }
+
         public override void SetDefaults()
         {
-            Projectile.width = 24;
-            Projectile.height = 24;
+            Projectile.width = 26;
+            Projectile.height = 26;
             Projectile.tileCollide = false;
             Projectile.friendly = true;
             Projectile.minion = true;
             Projectile.minionSlots = 1f;
             Projectile.penetrate = -1;
             Projectile.usesLocalNPCImmunity = true;
-            Projectile.localNPCHitCooldown = 20;
+            Projectile.localNPCHitCooldown = 18;
             Projectile.DamageType = DamageClass.Summon;
+            Projectile.extraUpdates = 1;
         }
-        public override bool? CanCutTiles()
-        {
-            return false;
-        }
-        public override bool MinionContactDamage()
-        {
-            return currentState == ProjectileState.Dashing;
-        }
+
+        public override bool? CanCutTiles() => false;
+        public override bool MinionContactDamage() => currentState == ProjectileState.Dashing;
+
         public override void AI()
         {
             Player player = Main.player[Projectile.owner];
+
             if (!CheckActive(player))
                 return;
+
             int minionIndex = GetMinionIndex(player);
             targetNPC = FindTarget(player);
+
+            if (currentState == ProjectileState.Dying)
+            {
+                HandleDyingState();
+                return;
+            }
+
             switch (currentState)
             {
                 case ProjectileState.Idle:
@@ -73,10 +88,10 @@ namespace Synergia.Content.Projectiles.Reworks
                     {
                         currentState = ProjectileState.Charging;
                         chargeTimer = CHARGE_TIME;
-                        isCharging = true;
                     }
-                    dashTimer--;
+                    if (dashTimer > 0) dashTimer--;
                     break;
+
                 case ProjectileState.Charging:
                     HandleChargingState(player, minionIndex);
                     chargeTimer--;
@@ -84,190 +99,290 @@ namespace Synergia.Content.Projectiles.Reworks
                     {
                         currentState = ProjectileState.Dashing;
                         dashTimer = maxDashTime;
-                        dashTarget = targetNPC.Center;
+                        dashTarget = targetNPC?.Center ?? Projectile.Center;
                         SoundEngine.PlaySound(SoundID.Item45, Projectile.position);
                         SpawnChargeEffects();
                     }
                     break;
+
                 case ProjectileState.Dashing:
                     HandleDashingState();
                     dashTimer--;
                     if (dashTimer <= 0 || targetNPC == null || !targetNPC.active)
-                    {
                         currentState = ProjectileState.Returning;
-                    }
                     break;
+
                 case ProjectileState.Returning:
                     HandleReturningState(player, minionIndex);
-                    if (Vector2.Distance(Projectile.Center, GetIdlePosition(player, minionIndex)) < 50f)
+                    if (Vector2.Distance(Projectile.Center, GetIdlePosition(player, minionIndex)) < 55f)
                     {
                         currentState = ProjectileState.Idle;
                         dashTimer = dashCooldown;
                     }
                     break;
             }
+
             Projectile.rotation += GetCurrentRotationSpeed();
-            Lighting.AddLight(Projectile.Center, Color.Orange.ToVector3() * 0.8f);
+            Lighting.AddLight(Projectile.Center, 1.15f, 0.65f, 0.25f);
         }
+
         private void HandleIdleState(Player player, int minionIndex)
         {
-            Vector2 idlePosition = GetIdlePosition(player, minionIndex);
-            idlePosition += new Vector2(
-            (float)Math.Sin(Main.timeForVisualEffects * idleBobSpeed + minionIndex) * idleBobAmount * 20,
-            (float)Math.Cos(Main.timeForVisualEffects * idleBobSpeed + minionIndex) * idleBobAmount * 20
-            );
-            Projectile.velocity = Vector2.Lerp(Projectile.velocity, (idlePosition - Projectile.Center) * 0.05f, 0.1f);
-            if (Projectile.velocity.Length() > 5f)
-                Projectile.velocity = Vector2.Normalize(Projectile.velocity) * 5f;
+            Vector2 idlePos = GetIdlePosition(player, minionIndex);
+            Vector2 toIdle = idlePos - Projectile.Center;
+            float speed = toIdle.Length() * 0.085f;
+            if (speed > 11f) speed = 11f;
+
+            Projectile.velocity = Vector2.Lerp(Projectile.velocity, Vector2.Normalize(toIdle) * speed, 0.22f);
+
+            Projectile.scale = 1f + (float)Math.Sin(Main.timeForVisualEffects * 0.13f + minionIndex) * 0.035f;
+
+            if (Main.rand.NextBool(7))
+            {
+                Dust d = Dust.NewDustDirect(Projectile.position, Projectile.width, Projectile.height, DustID.OrangeTorch, 0f, 0f, 80, default, 1.1f);
+                d.noGravity = true;
+                d.velocity *= 0.6f;
+            }
         }
+
         private void HandleChargingState(Player player, int minionIndex)
         {
-            Vector2 idlePosition = GetIdlePosition(player, minionIndex);
-            if (targetNPC != null)
-            {
-                Vector2 directionToTarget = targetNPC.Center - Projectile.Center;
-                Projectile.velocity = Vector2.Lerp(Projectile.velocity, directionToTarget * 0.02f, 0.05f);
-                Projectile.scale = 1f + (float)Math.Sin(chargeTimer * 0.5f) * 0.1f;
-                if (Main.rand.NextBool(3))
-                {
-                    Dust.NewDust(Projectile.position, Projectile.width, Projectile.height,
-                    DustID.OrangeTorch, 0f, 0f, 100, default, 1.2f);
-                }
-            }
-            else
+            if (targetNPC == null || !targetNPC.active)
             {
                 currentState = ProjectileState.Returning;
+                return;
+            }
+
+            Vector2 dir = targetNPC.Center - Projectile.Center;
+            Projectile.velocity = Vector2.Lerp(Projectile.velocity, dir * 0.04f, 0.15f);
+            Projectile.scale = 1f + (float)Math.Sin(chargeTimer * 0.7f) * 0.14f;
+
+            if (Main.rand.NextBool(2))
+            {
+                Dust.NewDustDirect(Projectile.position, Projectile.width, Projectile.height, DustID.OrangeTorch, 0, 0, 100, default, 1.5f);
             }
         }
+
         private void HandleDashingState()
         {
             if (targetNPC != null && targetNPC.active)
-            {
                 dashTarget = targetNPC.Center;
-            }
-            Vector2 direction = dashTarget - Projectile.Center;
-            if (direction.Length() > 10f)
+
+            Vector2 dir = dashTarget - Projectile.Center;
+            if (dir.Length() > 14f)
             {
-                direction.Normalize();
-                Projectile.velocity = direction * 25f;
+                dir.Normalize();
+                Projectile.velocity = dir * 28f;
             }
+
             for (int i = 0; i < 3; i++)
             {
-                Dust.NewDust(Projectile.position, Projectile.width, Projectile.height,
-                DustID.Torch, -Projectile.velocity.X * 0.5f, -Projectile.velocity.Y * 0.5f, 100, default, 1.5f);
+                Dust d = Dust.NewDustDirect(Projectile.position, Projectile.width, Projectile.height,
+                    DustID.Torch, -Projectile.velocity.X * 0.55f, -Projectile.velocity.Y * 0.55f, 70, default, 1.7f);
+                d.noGravity = true;
             }
+            if (Main.rand.NextBool(4))
+                Dust.NewDustDirect(Projectile.Center, 4, 4, DustID.Torch, -Projectile.velocity.X * 0.35f, -Projectile.velocity.Y * 0.35f, 80, default, 1.4f);
         }
+
         private void HandleReturningState(Player player, int minionIndex)
         {
-            Vector2 idlePosition = GetIdlePosition(player, minionIndex);
-            Projectile.velocity = (idlePosition - Projectile.Center) * 0.15f;
-            if (Main.rand.NextBool(3))
-            {
-                Dust.NewDust(Projectile.position, Projectile.width, Projectile.height,
-                DustID.OrangeTorch, 0f, 0f, 100, default, 1f);
-            }
+            Vector2 idlePos = GetIdlePosition(player, minionIndex);
+            Projectile.velocity = (idlePos - Projectile.Center) * 0.21f;
+
+            if (Main.rand.NextBool(4))
+                Dust.NewDustDirect(Projectile.position, Projectile.width, Projectile.height, DustID.OrangeTorch, 0, 0, 100, default, 1.1f);
         }
+
+        private void HandleDyingState()
+        {
+            deathTimer--;
+            float progress = deathTimer / (float)DEATH_TIME;
+
+            Projectile.scale = progress * 1.25f;
+            Projectile.alpha = (int)(255 * (1f - progress));
+
+            Projectile.velocity *= 0.93f;
+            Projectile.rotation += 0.42f;
+
+            if (Main.rand.NextBool(2))
+            {
+                Dust d = Dust.NewDustDirect(Projectile.position, Projectile.width, Projectile.height,
+                    DustID.OrangeTorch, Main.rand.NextFloat(-5f, 5f), Main.rand.NextFloat(-5f, 5f), 90, default, 1.7f);
+                d.noGravity = true;
+            }
+
+            if (deathTimer <= 0)
+                Projectile.Kill();
+        }
+
         private float GetCurrentRotationSpeed()
         {
-            switch (currentState)
+            return currentState switch
             {
-                case ProjectileState.Charging:
-                    return chargeRotationSpeed;
-                case ProjectileState.Dashing:
-                    return activeRotationSpeed * 3f;
-                case ProjectileState.Returning:
-                    return activeRotationSpeed;
-                default:
-                    return passiveRotationSpeed;
-            }
+                ProjectileState.Charging => chargeRotationSpeed,
+                ProjectileState.Dashing => activeRotationSpeed * 3.5f,
+                ProjectileState.Returning => activeRotationSpeed * 1.5f,
+                ProjectileState.Dying => 0.45f,
+                _ => passiveRotationSpeed
+            };
         }
+
         private Vector2 GetIdlePosition(Player player, int minionIndex)
         {
-            float offsetX = (minionIndex - GetTotalMinions(player) / 2f) * 40f;
-            float offsetY = -50f - (float)Math.Sin(Main.timeForVisualEffects * 0.02f + minionIndex) * 10f;
-            return player.Center + new Vector2(offsetX, offsetY);
+            int total = GetTotalMinions(player);
+            if (total == 0) total = 1;
+
+            float baseAngle = Main.GameUpdateCount * 0.026f + minionIndex * 0.7f;
+            float wave1 = (float)Math.Sin(Main.GameUpdateCount * 0.033f + minionIndex) * 0.18f;
+            float wave2 = (float)Math.Sin(Main.GameUpdateCount * 0.071f + minionIndex * 1.3f) * 0.09f;
+
+            float angle = baseAngle + wave1 + wave2;
+
+            float radius = 68f + (minionIndex % 3) * 13f + (float)Math.Sin(Main.GameUpdateCount * 0.04f + minionIndex) * 6f;
+
+            return player.Center + new Vector2(
+                (float)Math.Cos(angle) * radius,
+                (float)Math.Sin(angle) * radius * 0.64f - 57f
+            );
         }
+
         private int GetMinionIndex(Player player)
         {
             int index = 0;
             for (int i = 0; i < Main.maxProjectiles; i++)
             {
-                Projectile proj = Main.projectile[i];
-                if (proj.active && proj.owner == player.whoAmI && proj.type == Projectile.type)
+                Projectile p = Main.projectile[i];
+                if (p.active && p.owner == player.whoAmI && p.type == Projectile.type)
                 {
-                    if (proj.whoAmI == Projectile.whoAmI)
-                        return index;
+                    if (p.whoAmI == Projectile.whoAmI) return index;
                     index++;
                 }
             }
             return 0;
         }
+
         private int GetTotalMinions(Player player)
         {
             int count = 0;
             for (int i = 0; i < Main.maxProjectiles; i++)
-            {
-                Projectile proj = Main.projectile[i];
-                if (proj.active && proj.owner == player.whoAmI && proj.type == Projectile.type)
-                {
+                if (Main.projectile[i].active && Main.projectile[i].owner == player.whoAmI && Main.projectile[i].type == Projectile.type)
                     count++;
-                }
-            }
             return count;
         }
+
         private NPC FindTarget(Player player)
         {
-            NPC target = null;
-            float maxDistance = 600f;
+            NPC best = null;
+            float bestDist = 640f;
+
             for (int i = 0; i < Main.maxNPCs; i++)
             {
                 NPC npc = Main.npc[i];
                 if (npc.active && npc.CanBeChasedBy(this) && !npc.friendly)
                 {
-                    float distance = Vector2.Distance(Projectile.Center, npc.Center);
-                    if (distance < maxDistance)
+                    float d = Vector2.Distance(Projectile.Center, npc.Center);
+                    if (d < bestDist)
                     {
-                        maxDistance = distance;
-                        target = npc;
+                        bestDist = d;
+                        best = npc;
                     }
                 }
             }
-            return target;
+            return best;
         }
+
         private bool CheckActive(Player player)
         {
             if (player.dead || !player.active)
             {
                 player.ClearBuff(ModContent.BuffType<Buffs.ProminenceBlessing>());
-                return false;
+                StartDying();
+                return true;
             }
-            if (player.HasBuff(ModContent.BuffType<Buffs.ProminenceBlessing>()))
+
+            if (!player.HasBuff(ModContent.BuffType<Buffs.ProminenceBlessing>()))
             {
-                Projectile.timeLeft = 2;
+                StartDying();
+                return true;
             }
+
+            Projectile.timeLeft = 2;
             return true;
         }
-        private void SpawnChargeEffects()
+
+        private void StartDying()
         {
-            for (int i = 0; i < 10; i++)
+            if (currentState != ProjectileState.Dying)
             {
-                Dust.NewDust(Projectile.position, Projectile.width, Projectile.height,
-                DustID.OrangeTorch, 0f, 0f, 100, default, 1.5f);
+                currentState = ProjectileState.Dying;
+                deathTimer = DEATH_TIME;
+                Projectile.velocity *= 0.35f;
             }
         }
+
+        private void SpawnChargeEffects()
+        {
+            for (int i = 0; i < 18; i++)
+            {
+                Dust d = Dust.NewDustDirect(Projectile.position, Projectile.width, Projectile.height,
+                    DustID.OrangeTorch, Main.rand.NextFloat(-6f, 6f), Main.rand.NextFloat(-6f, 6f), 80, default, 1.75f);
+                d.noGravity = true;
+            }
+        }
+
+        public override void OnKill(int timeLeft)
+        {
+            for (int i = 0; i < 28; i++)
+            {
+                Dust d = Dust.NewDustDirect(Projectile.Center, 4, 4, DustID.OrangeTorch,
+                    Main.rand.NextFloat(-8f, 8f), Main.rand.NextFloat(-8f, 8f), 60, default, 2.1f);
+                d.noGravity = true;
+            }
+            SoundEngine.PlaySound(SoundID.Item14, Projectile.position);
+        }
+
         public override bool PreDraw(ref Color lightColor)
         {
-            Texture2D texture = ModContent.Request<Texture2D>(Texture).Value;
-            Vector2 origin = new Vector2(texture.Width * 0.5f, texture.Height * 0.5f);
-            Color glowColor = Color.Orange * 0.5f;
-            glowColor.A = 0;
-            if (currentState != ProjectileState.Idle)
+            Texture2D tex = ModContent.Request<Texture2D>(Texture).Value;
+            Vector2 origin = tex.Size() * 0.5f;
+            Vector2 drawPos = Projectile.Center - Main.screenPosition;
+
+            Color glow = new Color(255, 145, 35) * 0.85f;
+            glow.A = 0;
+
+            float alphaMult = 1f - Projectile.alpha / 255f;
+
+            if (currentState != ProjectileState.Idle && currentState != ProjectileState.Dying)
             {
-                Main.spriteBatch.Draw(texture, Projectile.position - Main.screenPosition + origin,
-                null, glowColor, Projectile.rotation, origin, Projectile.scale * 1.2f, SpriteEffects.None, 0);
+                for (int i = 0; i < 4; i++)
+                {
+                    Main.EntitySpriteDraw(tex, drawPos, null, glow * (0.7f - i * 0.18f),
+                        Projectile.rotation, origin, Projectile.scale * (1.2f + i * 0.15f), SpriteEffects.None, 0);
+                }
             }
-            Main.spriteBatch.Draw(texture, Projectile.position - Main.screenPosition + origin,
-            null, lightColor, Projectile.rotation, origin, Projectile.scale, SpriteEffects.None, 0);
+            else if (currentState == ProjectileState.Idle)
+            {
+                Main.EntitySpriteDraw(tex, drawPos, null, glow * 0.35f,
+                    Projectile.rotation, origin, Projectile.scale * 1.15f, SpriteEffects.None, 0);
+            }
+
+            if (currentState == ProjectileState.Dashing)
+            {
+                for (int i = 0; i < Projectile.oldPos.Length; i++)
+                {
+                    float prog = 1f - (float)i / Projectile.oldPos.Length;
+                    Color trailCol = glow * prog * 0.65f;
+                    float scale = Projectile.scale * (0.75f + prog * 0.45f);
+
+                    Main.EntitySpriteDraw(tex, Projectile.oldPos[i] + Projectile.Size * 0.5f - Main.screenPosition, null,
+                        trailCol, Projectile.oldRot[i], origin, scale, SpriteEffects.None, 0);
+                }
+            }
+
+            Main.EntitySpriteDraw(tex, drawPos, null, lightColor * alphaMult,
+                Projectile.rotation, origin, Projectile.scale, SpriteEffects.None, 0);
+
             return false;
         }
     }
