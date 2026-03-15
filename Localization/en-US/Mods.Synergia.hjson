@@ -910,6 +910,26 @@ Items: {
 		DisplayName: Damasque
 		Tooltip: ""
 	}
+
+	RoyalInk: {
+		Tooltip: ""
+		DisplayName: Royal Ink
+	}
+
+	Pandemonium: {
+		Tooltip: ""
+		DisplayName: Pandemonium
+	}
+
+	LothorSkull: {
+		Tooltip: ""
+		DisplayName: Lothor Skull
+	}
+
+	BottomlessEvil: {
+		Tooltip: ""
+		DisplayName: Bottomless Evil
+	}
 }
 
 Projectiles: {
