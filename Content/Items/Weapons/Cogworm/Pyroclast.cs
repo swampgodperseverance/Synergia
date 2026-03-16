@@ -11,10 +11,10 @@ namespace Synergia.Content.Items.Weapons.Cogworm
 {
     public class Pyroclast : ModItem
     {
+        private bool hasSpawnedFireballs = false; 
+
         public override void SetStaticDefaults()
         {
-            // DisplayName.SetDefault("Firestorm Bow");
-            // Tooltip.SetDefault("Shoots three fireballs at once\nSets the wielder on fire");
         }
 
         public override void SetDefaults()
@@ -35,7 +35,7 @@ namespace Synergia.Content.Items.Weapons.Cogworm
             Item.useAmmo = AmmoID.Arrow;
             Item.UseSound = SoundID.Item5;
             Item.useAnimation = 20;
-            Item.useTime = 4; // one third of useAnimation
+            Item.useTime = 4; 
             Item.reuseDelay = 70;
             Item.consumeAmmoOnLastShotOnly = true;
             Item.noMelee = true;
@@ -48,7 +48,6 @@ namespace Synergia.Content.Items.Weapons.Cogworm
 
         public override void ModifyShootStats(Player player, ref Vector2 position, ref Vector2 velocity, ref int type, ref int damage, ref float knockback)
         {
-            // Заменяем деревянные стрелы на кастомные
             if (type == ProjectileID.WoodenArrowFriendly)
             {
                 type = ModContent.ProjectileType<PyroclastShoot>();
@@ -60,15 +59,43 @@ namespace Synergia.Content.Items.Weapons.Cogworm
             int numProjectiles = Main.rand.Next(1, 6);
             for (int p = 0; p < numProjectiles; p++)
             {
-                // Rotate the velocity randomly by 30 degrees at max.
                 Vector2 newVelocity = velocity.RotatedByRandom(MathHelper.ToRadians(10));
                 newVelocity *= 1f - Main.rand.NextFloat(0.3f);
-                
-                // Создаем снаряд с правильным типом
                 Projectile.NewProjectileDirect(source, position, newVelocity, type, damage, knockback, player.whoAmI);
             }
 
+            if (player.HasBuff(ModContent.BuffType<Hellborn>()) && !hasSpawnedFireballs)
+            {
+                for (int i = 0; i < 3; i++)
+                {
+                    Vector2 fireballVelocity = velocity.RotatedByRandom(MathHelper.ToRadians(15)) * Main.rand.NextFloat(0.8f, 1.2f);
+
+                    Vector2 fireballPosition = position + new Vector2(
+                        Main.rand.Next(-20, 21),
+                        Main.rand.Next(-20, 21)
+                    );
+
+                    Projectile.NewProjectileDirect(
+                        source,
+                        fireballPosition,
+                        fireballVelocity,
+                        ModContent.ProjectileType<FireballProjectile>(),
+                        damage * 2, 
+                        knockback,
+                        player.whoAmI
+                    );
+                }
+
+                hasSpawnedFireballs = true; 
+            }
+
             return false;
+        }
+
+        public override bool CanUseItem(Player player)
+        {
+            hasSpawnedFireballs = false;
+            return base.CanUseItem(player);
         }
     }
 }
