@@ -6,6 +6,7 @@ using Avalon.Items.Weapons.Melee.Hardmode.CraniumCrusher;
 using Avalon.Items.Weapons.Ranged.PreHardmode.EggCannon;
 using Bismuth.Content.Items.Weapons.Magical;
 using NewHorizons.Content.Items.Weapons.Magic;
+using NewHorizons.Content.Items.Weapons.Ranged;
 using NewHorizons.Content.Items.Weapons.Throwing;
 using Terraria;
 using Terraria.ID;
@@ -156,6 +157,11 @@ namespace Synergia.Common.GlobalItems.Changes
                     item.useTime -= 3;
                     item.damage -= 5;
                     item.mana += 5;
+                },
+                [ModContent.ItemType<HandicraftedBlunderbuss>()] = item =>
+                {
+                    item.useAnimation += 8;
+                    item.useTime += 8;
                 },
 
             };

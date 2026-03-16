@@ -109,7 +109,6 @@ namespace Synergia.Content.Projectiles.Reworks
         }
         public override bool? Colliding(Rectangle projHitbox, Rectangle targetHitbox)
         {
-            // Используем прямоугольный хитбокс самого Projectile
             Rectangle hitbox = new Rectangle(
                 (int)Projectile.position.X,
                 (int)Projectile.position.Y,
@@ -117,7 +116,6 @@ namespace Synergia.Content.Projectiles.Reworks
                 Projectile.height
             );
 
-            // Проверяем пересечение с хитбоксом цели
             return hitbox.Intersects(targetHitbox);
         }
 
