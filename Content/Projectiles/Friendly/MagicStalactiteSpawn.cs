@@ -53,13 +53,13 @@ namespace Synergia.Content.Projectiles.Friendly
                 {
                     var EntitySource = Projectile.GetSource_FromThis();
 
-                    if (Main.rand.NextBool(12)) // реже
+                    if (Main.rand.NextBool(12)) 
                     {
                         Projectile.NewProjectile(EntitySource, Projectile.Center.X + Main.rand.Next(-50, 50), Projectile.Center.Y + Main.rand.Next(-50, 50),
                             StartVelocity.X, StartVelocity.Y, ModContent.ProjectileType<MagicStalactite>(), (int)(Projectile.damage * 1.2f), 1, Projectile.owner);
                     }
 
-                    if (Main.rand.NextBool(5)) // реже
+                    if (Main.rand.NextBool(5)) 
                     {
                         Projectile.NewProjectile(EntitySource, Projectile.Center.X + Main.rand.Next(-50, 50), Projectile.Center.Y + Main.rand.Next(-50, 50),
                             StartVelocity.X, StartVelocity.Y, ModContent.ProjectileType<MagicStalactite>(), (int)(Projectile.damage * 1.2f), 1, Projectile.owner);
@@ -101,7 +101,7 @@ namespace Synergia.Content.Projectiles.Friendly
 
         public override Color? GetAlpha(Color lightColor)
         {
-            return new Color(255, 100, 0, 255); // Лавово-оранжевый
+            return new Color(255, 100, 0, 255); 
         }
 
         public override bool PreDraw(ref Color lightColor)
@@ -137,7 +137,6 @@ namespace Synergia.Content.Projectiles.Friendly
 
         public override void PostDraw(Color lightColor)
         {
-            // Более яркое лавовое свечение
             Lighting.AddLight(Projectile.Center, Color.OrangeRed.ToVector3() * 2.4f * Main.essScale);
         }
     }

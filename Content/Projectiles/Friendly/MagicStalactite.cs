@@ -14,6 +14,7 @@ namespace Synergia.Content.Projectiles.Friendly
     {
         private const int DustSpawnRate = 10;
         private bool initialized;
+        private float randomScale;
 
         public override void SetStaticDefaults()
         {
@@ -43,6 +44,7 @@ namespace Synergia.Content.Projectiles.Friendly
             if (!initialized)
             {
                 initialized = true;
+
                 if (player.whoAmI == Main.myPlayer)
                 {
                     Vector2 direction = Main.MouseWorld - player.Center;
@@ -51,12 +53,21 @@ namespace Synergia.Content.Projectiles.Friendly
                     Projectile.velocity = direction;
                     Projectile.netUpdate = true;
                 }
+
+                randomScale = Main.rand.NextFloat(0.85f, 1.25f);
+
+                if (Main.rand.NextBool(6))
+                    randomScale *= 1.4f;
             }
 
             Projectile.velocity *= 1.02f;
 
             if (Projectile.velocity.Length() > 0.1f)
                 Projectile.rotation = Projectile.velocity.ToRotation() + MathHelper.PiOver2;
+
+            Projectile.scale = randomScale;
+            float pulse = (float)Math.Sin(Main.GlobalTimeWrappedHourly * 8f) * 0.05f;
+            Projectile.scale += pulse;
 
             if (Main.rand.NextBool(DustSpawnRate))
                 SpawnTravelDust();
@@ -130,16 +141,33 @@ namespace Synergia.Content.Projectiles.Friendly
 
                 float rotation;
                 if (k + 1 >= Projectile.oldPos.Length || Projectile.oldPos[k + 1] == Vector2.Zero)
-                {
                     rotation = (Projectile.position - Projectile.oldPos[k]).ToRotation() + MathHelper.PiOver2;
-                }
                 else
-                {
                     rotation = (Projectile.oldPos[k + 1] - Projectile.oldPos[k]).ToRotation() + MathHelper.PiOver2;
-                }
 
                 float scale = Projectile.scale * (0.7f + 0.3f * progress);
                 spriteBatch.Draw(texture, drawPos, null, color, rotation, drawOrigin, scale, effects, 0f);
+            }
+
+            Color glowColor = Color.Lerp(Color.OrangeRed, Color.Red, 0.5f);
+            glowColor.A = 0;
+
+            for (int i = 0; i < 4; i++)
+            {
+                float angle = MathHelper.TwoPi * i / 4f;
+                Vector2 offset = angle.ToRotationVector2() * 2f;
+
+                spriteBatch.Draw(
+                    texture,
+                    Projectile.Center - Main.screenPosition + offset,
+                    null,
+                    glowColor * 0.6f,
+                    Projectile.rotation,
+                    drawOrigin,
+                    Projectile.scale * 1.1f,
+                    effects,
+                    0f
+                );
             }
 
             Color outlineColor = Color.Lerp(Color.OrangeRed, Color.Yellow, 0.5f);
