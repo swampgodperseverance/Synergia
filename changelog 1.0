@@ -129,6 +129,7 @@ New sword swing system.
 New reforging system by SerNik was added.
 New recipes builder system by SerNik.
 New recipes modification system by SerNik.
+New DownedLothor Boolean was added dut to accessibility settings of the original code.
 Bloodbound buff tier system y SerNik was added.
 Bloodthirsty Thrower subclass was added.
 Combo Thrower subclass was added.
@@ -374,17 +375,34 @@ Orcish Javelin was resprited
 Star Aura Staff was resprited
 Orcish Chest can be opened only if Lothor has been defeated
 Unowen gives Papuan wizard GN, Skeletron Prime GN, Ifrit GN, Lothor GN, Eye of Chtulhu GN, Cold father GN code a clean
+Plantera has new attack.
 Post Golem chat messages are localizable now.
+Airflow has a normal recipe now. (Before it hasn't)
+Blasphemous Heavens have a normal recipe now. (Before it hasn't)
+Duratanium Javelin has a normal recipe now. (Before it hasn't)
+Troxinium throwing knife has a normal recipe now. (Before it hasn't)
+Naquadax Jaavelin has a normal recipe now. (Before it hasn't)
+Everwood Javelin has a normal recipe now. (Before it hasn't)
+Jade Glaive has a normal recipe now. (Before it hasn't)
+Natural Selection has a normal recipe now. (Before it hasn't)
+Blitzkrieg has a normal recipe now. (Before it hasn't)
 COMPATIBILITY/BALANCE/RECIPES/ OLD WILL BE INCLUDED
 Terra Blade damage was decreased by 20
 Illuminant Batbow damage was increased by 23
 Radiance damage  was increased by 23(Valhalla)
+Tarrifier Mana Usage was increased by 4(Valhalla)
 Terra Spear  damage was decreased by 40, Use Spead and Use Animation was increased by 15(Valhalla)
 Terra Glaive  damage was decreased by 10, crit chance was decreased by 8%, Use Spead and Use Animation was increased by 20(Valhalla)
 Nano Star damage was decreased by 24, Use Spead and Use Animation was increased by 10(Horizons)
+Granite Charger damage was increased by 10 and mana usage was increased by 4(Horizons)
+Scorcher damage was decreased by 5 and mana usage was increased by 5. Use Spead and Use Animation was decreased by 3 (Horizons)
 Cranium Crasher damage was decreased by 34, Use Spead and Use Animation was increased by 10(Avalon)
+Chaos Tome Use Spead and Use Animation was increased by 5(Avalon)
 Beesting damage was decreased by 28, Use Spead and Use Animation was increased by 5 (Valhalla)
 Chemical Prisoner damage was decreased by 5, Use Spead and Use Animation was increased by 4(Rise of Ages)
+Arterial Spray Use Spead and Use Animation was increased by 3(Rise of Ages)
+Rod of the Stream damage was decreased by 6 and mana usage was increased by 15. Use Spead and Use Animation was increased by 6 (Rise of Ages)
+Rod of the Shock mana usage was increased by 5(Rise of Ages)
 Smogscreen mana usage was increased by 6, Use Spead and Use Animation was increased by 8(Avalon)
 Star Wand damage was increased by 1, Use Spead and Use Animation was increased by 10(Horizons)
 Spore Staff mana usage was increased by 4, damage was decreased by 5(Valhalla)
@@ -469,6 +487,15 @@ Mercurium nugget has a recipe with Yucki Bit now.
 Sentinel Helmet is a direct update of Feral Helmet from Bismuth now.
 Sentinel Breastplate is a direct update of Feral Breastplate from Bismuth now.
 Sentinel Leggings are a direct update of Feral Leggings from Bismuth now.
+Ashen Shroud requires 4 Fire Shards for crafting now.
+Ashen Leggings requires 4 Fire Shards for crafting now.
+Ashen Breastplate requires 6 Fire Shards for crafting now.
+Pyromancer Hat requires 4 Fire Shards for crafting now.
+Pyromancer Legwear requires 4 Fire Shards for crafting now.
+Pyromancer Breastplate requires 6 Fire Shards for crafting now.
+Sky Hood requires 2 Breeze Shards and 6 white threads for crafting now.
+Sky Cape requires 6 Breeze Shards and 12 white threads for crafting now.
+Sky Pants requires 4 Breeze Shards and 8 white threads for crafting now.
 Ashwalker Hood has a recipe similar to the Ashen Hood from Horizon now.
 Ashwalker Robe has a recipe similar to the Ashen Breastplate from Horizon now.
 Ashwalker Leggings have a recipe similar to the Ashen Leggings from Horizon now.
