@@ -16,7 +16,7 @@ New enemy Frog Rider was added.
 New enemy Mischiveous Duo was added.
 Frost legion event was reworked.
 New background was added for the Frost Legion
-3 new types of presents were added, each with unique effects. 
+3 new types of presents were added, each with unique effects.
 New weapon Belphegor was added.
 New weapon Seaborn was added.
 New weapon Damasque was added.
@@ -72,13 +72,14 @@ Glooming buff was added.
 Starlord buff was added.
 Prominence Blessing buff  was added.
 Peaceful Snow Village buff was added.
-Hateful Bones buff was added. 
+Hateful Bones buff was added.
 Bloodbound buff was added.
 Gloom debuff was added.
 Banshee curse debuff was added.
 The Underworld cant be visited until Lothor the Wild has been defeated.
 Lava in The Underworld emits orange steam now, which deals damage to the player.
 Demons can teleport on short range now.
+Red Devils AI was reworked
 Bone Serpents can make dashes now.
 New interface for every vanilla event.
 Whispering Reed quest item was added.
@@ -97,6 +98,10 @@ New Lunatic Cultist rework.
 New King Slime rework.
 New Twins rework.
 New Destroyer rework.
+Jade Emperor rework.
+Wyverns AI now more passive.
+Harpy AI was changed.
+Snow Golem new visuals.
 Hell Luceat was added.
 New material Bronze Cog was added. Avalon Alt to the Valhalla's tin and copper content
 Banner for the Swampling was added.
@@ -158,7 +163,7 @@ Rising Tide from Valhalla was changed.(Attack Rework or Visual upgrade)
 Helios from Valhalla was changed.(Attack Rework or Visual upgrade)
 Derpfling Yo Yo from Valhalla was changed.(Attack Rework or Visual upgrade)
 Widows Whip from Valhalla was changed.(Attack Rework or Visual upgrade)
-Jungle Spores related content from Valhalla was changed.(Visual upgrade)  
+Jungle Spores related content from Valhalla was changed.(Visual upgrade)
 Laser Scissors from Valhalla were changed.(Attack Rework or Visual upgrade)
 Ice Slicer from Valhalla was changed.(Attack Rework or Visual upgrade)
 Paradox Sword from Valhalla was changed.(Attack Rework or Visual upgrade)
@@ -173,6 +178,26 @@ Dwarven Battle Axe from Bismuth was changed.(Attack Rework or Visual upgrade)
 Solar Wind from Bismuth was changed.(Attack Rework or Visual upgrade)
 Prominence from Bismuth was changed to the summon class.
 Prominence from Bismuth was changed.(Attack Rework or Visual upgrade)
+SoulEater from Bismuth was changed to the melee class.
+Baselard from Bismuth was changed to the melee class.
+Sting from Bismuth was changed to the melee class.
+Snakes Fang from Bismuth was changed to the melee class.
+Angrist from Bismuth was changed to the melee class.
+Misericorde from Bismuth was changed to the melee class.
+Breakwater from Bismuth was changed to the melee class.
+ManGosh from Bismuth was changed to the melee class.
+Sacrificial Dagger from Bismuth was changed to the melee class.
+Stiletto from Bismuth was changed to the melee class.
+Whirlpool from Bismuth was changed to the melee class.
+Aluminum Blade from Bismuth was changed to the melee class.
+Parazonium from Bismuth was changed to the melee class.
+Killers Hood from Bismuth was changed to the magic class.
+Killers Jacket from Bismuth was changed to the magic class.
+Riveted Hood from Bismuth was changed to the ranged class.
+Riveted Jacket from Bismuth was changed to the ranged class.
+Nomads Hood from Bismuth was changed to the throwing class.
+Nomads Jacket from Bismuth was changed to the throwing class.
+Nomads Boots from Bismuth were changed to the throwing class.
 Moonlight Staff from Bismuth was changed to the summon class.
 Moonlight Staff from Bismuth was changed.(Attack Rework or Visual upgrade)
 Evil Narsil from Bismuth was changed.(Attack Rework or Visual upgrade)
@@ -192,6 +217,7 @@ Aqua Impact effects were changed.(Avalon)
 Glacier Staff from Avalon was changed.(Visual upgrade)
 Chaos Tome from Avalon was changed.(Visual upgrade)
 Hellfire from Avalon was changed(Attack Rework or Visual upgrade)
+Ice Lyre from Avalon was changed(Shoot Rework)
 Sunstorm sprite was changed.(Avalon)
 Sunstorm effects were changed.(Avalon)
 Noxious Yo Yo from Avalon was changed.(Attack Rework or Visual upgrade)
@@ -235,40 +261,40 @@ Star of the Dunedain from Bismuth is a bloodthirsty weapon now.
 Adamantite Javelin from Bismuth is a bloodthirsty weapon now.
 Solar Disk from Bismuth is a bloodthirsty weapon now.
 Tar Blade from Valhalla is a bloodthirsty weapon now.
-Demonite Glaive from Valhalla is a bloodthirsty weapon now. 
+Demonite Glaive from Valhalla is a bloodthirsty weapon now.
 Night Glaive from Valhalla is a bloodthirsty weapon now.
 True Night Glaive from Valhalla is a bloodthirsty weapon now.
 Chlorophyle Glaive from Valhalla is a bloodthirsty weapon now.
-Mekurabe from Valhalla is a bloodthirsty weapon now. 
-Terra Glaive from Valhalla is a bloodthirsty weapon now. 
+Mekurabe from Valhalla is a bloodthirsty weapon now.
+Terra Glaive from Valhalla is a bloodthirsty weapon now.
 True Light Disc from Valhalla is a bloodthirsty weapon now.
 Sufferang from Valhalla is a bloodthirsty weapon now.
 Corrode Shuriken from Valhalla is a bloodthirsty weapon now.
-Cluster Grenade from Valhalla is a bloodthirsty weapon now. 
+Cluster Grenade from Valhalla is a bloodthirsty weapon now.
 Big BeeNade from Valhalla is a bloodthirsty weapon now.
 Carrot Dagger from Valhalla is a bloodthirsty weapon now.
-Cactus Knife from Valhalla is a bloodthirsty weapon now. 
-Spider Knife from Valhalla is a bloodthirsty weapon now. 
-Tooth Knife from Valhalla is a bloodthirsty weapon now. 
+Cactus Knife from Valhalla is a bloodthirsty weapon now.
+Spider Knife from Valhalla is a bloodthirsty weapon now.
+Tooth Knife from Valhalla is a bloodthirsty weapon now.
 Virulent Scythe from Avalon is a bloodthirsty weapon now.
-Enchanted Shuriken from Avalon is a bloodthirsty weapon now. 
-Crystal Tomahawk from Avalon is a bloodthirsty weapon now. 
-Icicle from Avalon is a bloodthirsty weapon now. 
+Enchanted Shuriken from Avalon is a bloodthirsty weapon now.
+Crystal Tomahawk from Avalon is a bloodthirsty weapon now.
+Icicle from Avalon is a bloodthirsty weapon now.
 Tetanus Chakram from Avalon is a bloodthirsty weapon now.
-Shurikerang from Avalon is a bloodthirsty weapon now. 
-Solarang From Starforged is a bloodthirsty weapon now. 
-Valhallite Javelin is a bloodthirsty weapon now. 
-Duratanium Javelin is a bloodthirsty weapon now. 
-Naquadah Javelin is a bloodthirsty weapon now. 
+Shurikerang from Avalon is a bloodthirsty weapon now.
+Solarang From Starforged is a bloodthirsty weapon now.
+Valhallite Javelin is a bloodthirsty weapon now.
+Duratanium Javelin is a bloodthirsty weapon now.
+Naquadah Javelin is a bloodthirsty weapon now.
 Bloody Scythe is a bloodthirsty weapon now.
-Decayed Scythe is a bloodthirsty weapon now. 
-Thunder Chakram is a bloodthirsty weapon now. 
-Jade Glaive is a bloodthirsty weapon now. 
+Decayed Scythe is a bloodthirsty weapon now.
+Thunder Chakram is a bloodthirsty weapon now.
+Jade Glaive is a bloodthirsty weapon now.
 Infamous Flame is a bloodthirsty weapon now.
-Blasphemous Heavens is a bloodthirsty weapon now. 
-Blazes is a bloodthirsty weapon now. 
-Oculith Shard is a bloodthirsty weapon now. 
-Gold Glove is a bloodthirsty weapon now. 
+Blasphemous Heavens is a bloodthirsty weapon now.
+Blazes is a bloodthirsty weapon now.
+Oculith Shard is a bloodthirsty weapon now.
+Gold Glove is a bloodthirsty weapon now.
 Troxinium Knife is a bloodthirsty weapon now.
 Trimarang is a Combo Charging weapon now.
 Flamarang is a Combo Charging weapon now.
@@ -308,7 +334,7 @@ Scarlet Gungnir from Horizonsis a Combo Charging weapon now.
 Blazing Saws from Horizons is a Combo Charging weapon now.
 Nano Star from Horizons is a Combo Charging weapon now.
 Crystal Grenade from Valhalla is a Combo Charging weapon now.
-Banshee Head was greatly nerfed. 
+Banshee Head was greatly nerfed.
 Scroll of Chunin was completely reworked to the combo Accessory.
 Scroll of Genin was completely reworked to the combo Accessory.
 Scroll of Jonin was completely reworked to the combo Accessory.
@@ -317,7 +343,8 @@ Sky Chest loot conditions was changed.
 Orcish Chest loot conditions was changed.
 Orcish Invasion was moved to the post-Lothor.
 Desert Beak was moved to the post-Lothor but still can be fought before.
-Hell Dying Debuff was moved to the post-Lothor.
+Hellish Air Debuff was moved to the post-Lothor.
+Hellish Air Debuff was reworked.
 Valhallite Anvil was removed from the Frozen Dwarven's shop.
 Lancea was removed from the Imperial Warrior shop.
 Blunderbussin was added to the Arms Dealer shop after plantera's death.
@@ -346,9 +373,11 @@ Almost all long spears projs resprited, those are:
 Orcish Javelin was resprited
 Star Aura Staff was resprited
 Orcish Chest can be opened only if Lothor has been defeated
-Unowen gives Papuan wizard GN, Skeletron Prime GN, Ifrit GN, Lothor GN, Eye of Chtulhu GN, Cold father GN code a clean 
+Unowen gives Papuan wizard GN, Skeletron Prime GN, Ifrit GN, Lothor GN, Eye of Chtulhu GN, Cold father GN code a clean
+Post Golem chat messages are localizable now.
 COMPATIBILITY/BALANCE/RECIPES/ OLD WILL BE INCLUDED
 Terra Blade damage was decreased by 20
+Illuminant Batbow damage was increased by 23
 Radiance damage  was increased by 23(Valhalla)
 Terra Spear  damage was decreased by 40, Use Spead and Use Animation was increased by 15(Valhalla)
 Terra Glaive  damage was decreased by 10, crit chance was decreased by 8%, Use Spead and Use Animation was increased by 20(Valhalla)
@@ -356,6 +385,10 @@ Nano Star damage was decreased by 24, Use Spead and Use Animation was increased 
 Cranium Crasher damage was decreased by 34, Use Spead and Use Animation was increased by 10(Avalon)
 Beesting damage was decreased by 28, Use Spead and Use Animation was increased by 5 (Valhalla)
 Chemical Prisoner damage was decreased by 5, Use Spead and Use Animation was increased by 4(Rise of Ages)
+Smogscreen mana usage was increased by 6, Use Spead and Use Animation was increased by 8(Avalon)
+Star Wand damage was increased by 1, Use Spead and Use Animation was increased by 10(Horizons)
+Spore Staff mana usage was increased by 4, damage was decreased by 5(Valhalla)
+Wooden Staff mana usage was increased by 2, damage was increased by 2(Bismuth)
 Egg Cannon damage was decreased by 6, Use Spead and Use Animation was increased by 2(Avalon)
 Base Terraria Zombie max life was increased by 20, contact damage was increased by 10 and defense was increased by 4.
 Base Terraria Demon max life was increased by 80, contact damage was increased by 10 and defense was increased by 4.
@@ -407,8 +440,9 @@ Dionosus Amulet requires Souls of Blight for crafting now.
 Dulling Totem requires Diamond Amulet and Necro Buckler for crafting now.
 Reflex Shield requires Riot Shield, Sky Shield and Luminite Bars for crafting now.
 Flankers Tome requires Hardened Glass for crafting now.
+Glass Eye requires Cinnabar for crafting now.
 Goblin Army Knife requires Magnet Horsehoe and Necro Buckler for crafting now.
-Hades Cross requires Sinstone for crafting now.  
+Hades Cross requires Sinstone for crafting now.
 Love Up and Down requires Nature's Heart and Soul of Blight for crafting now.
 Mediations Flame requires Beetroor for crafting now.
 Misty Peach Blossoms requires Damaged Book and Miracle Mint for crafting now.
@@ -421,17 +455,17 @@ Tome of Distance requires Damaged book for crafting now.
 Tome of the River Spirits requires Damaged book for crafting now.
 Tomorrows Phoenix requires Sap and Galipot for crafting now.
 Underestimated resolve requires Miracle Mint for crafting now.
-Alchemical skull recipe remade: Alchemical Skull from RoA, Necro Buckler, 10 Sinstone, Mystical Claw. 
+Alchemical skull recipe remade: Alchemical Skull from RoA, Necro Buckler, 10 Sinstone, Mystical Claw.
 Gift of Starpower recipe remade: Natures Endowment, Sorcerer Emblem, Condensed Knowledge, 10 Nebula Fragments.
-Windshield  recipe remade:  GlassShield, 5 Breeze Shards, 10 Crystal Shards. 
+Windshield  recipe remade:  GlassShield, 5 Breeze Shards, 10 Crystal Shards.
 All tear 1 Wreathes have shards in their recipes now (For example Feneth's Blazing wreath now requires fire shard for crafting)
 Bloodlust and Death Ward potions now requires Bottled Lava instead of Bottle of Water for crafting.
 Death Ward potion is a Post-Plantera potion and require Life Dew for crafting now.
 Prismatic potion requires Chaos Dust for crafting now.
-Weakness potion has a recipe with contagion blocks now. 
+Weakness potion has a recipe with contagion blocks now.
 Tappers: Galipot should be crafted with Sap from Valhalla Mod now. Tappers no longer have recipe.
 All Slippery content (Bombs etc.) should be crafted with Sap now.
-Mercurium nugget has a recipe with Yucki Bit now. 
+Mercurium nugget has a recipe with Yucki Bit now.
 Sentinel Helmet is a direct update of Feral Helmet from Bismuth now.
 Sentinel Breastplate is a direct update of Feral Breastplate from Bismuth now.
 Sentinel Leggings are a direct update of Feral Leggings from Bismuth now.
@@ -443,17 +477,24 @@ Worshipper Mantle requires 15 Ancient Scrap for crafting now.
 Worshipper Garb requires 12 Ancient Scrap for crafting now.
 Flametracker Hat requires 6 Peat Powder for crafting now.
 Flametracker Jacket requires 10 Peat Powder for crafting now.
-Flametracker Pamts requires 8 Peat Powder for crafting now.  
-Starfusion requires a Meteoric Edge for crafting now.  
-Pastoral Rod requires an Elastic Cord for crafting now.  
+Flametracker Pamts requires 8 Peat Powder for crafting now.
+Starfusion requires a Meteoric Edge for crafting now.
+Pastoral Rod requires an Elastic Cord for crafting now.
 Tectonic Cane requires a Fire Shard for crafting now.
 Thorny Claws require a Toxin Shard for crafting now.
 Hellfire Claws require a Fire Shard for crafting now.
 Feather in a Bottle requires a Breeze Shard for crafting now.
 Cosmic Hat requires a Manastone for crafting now.
-Royal Quality Honey requires a Heartstone for crafting now. 
+Royal Quality Honey requires a Heartstone for crafting now.
 Rod of the Pyre and others have alternative recipes with Bismuth Bars now.
+Handicrafted Blunderbuss requires Legal Gun Parts for crafting now.
+Handicrafted Flamethrower requires Legal Gun Parts for crafting now.
+Rope Whip requires 12 wood and Elastic Cord for crafting now.
+Carnwennan requires 10 Pure Gold Chunks for crafting now.
+Dark Volley requires 5 Wicked Shards for crafting now.
+The Sea Beast now has a new recipe: Loose Cannon, The Galleon, Shotgun, Soul of Sight, Soul of Fright, Soul of Might
+The Sea Beast now has an alternative recipe with Naquadah and Bronze
 Add some wetness compatibility:
 1) Player gets less damage in hell when player has 75-100
 2) Water Fighter, Aqua Impact, Water Aura staff, Underwater aura staff, Underwater Scythe, Urchin Uppercutter, Typhoon deal more damage when player has 75-100
-Key of the Sun 
+Key of the Sun
