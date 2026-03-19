@@ -93,15 +93,14 @@ sealed class Menace : ModItem {
         }
         else
         {
-            int bursts = 3; // Количество выстрелов в очереди
-            int burstDelay = 5; // Задержка между выстрелами в тиках (1/60 секунды)
-            int shotsPerBurst = 3; // Количество снарядов за выстрел
+            int bursts = 3;
+            int burstDelay = 5; 
+            int shotsPerBurst = 3; 
 
             for (int burst = 0; burst < bursts; burst++)
             {
                 for (int shot = 0; shot < shotsPerBurst; shot++)
                 {
-                    // Небольшое отклонение для снарядов в очереди
                     Vector2 burstVelocity = velocity.RotatedByRandom(0.1f) * Main.rand.NextFloat(0.9f, 1.1f);
 
                     Vector2 spawnPos = new Vector2(
@@ -109,7 +108,6 @@ sealed class Menace : ModItem {
                         player.Center.Y + Main.rand.NextFloat(-40f, 30f)
                     );
 
-                    // Создаем проектiles с задержкой
                     Projectile.NewProjectile(
                         source,
                         spawnPos,
@@ -118,7 +116,7 @@ sealed class Menace : ModItem {
                         damage,
                         knockback,
                         player.whoAmI,
-                        ai0: burst * burstDelay // Используем ai0 для синхронизации задержки
+                        ai0: burst * burstDelay 
                     );
                 }
             }

@@ -930,6 +930,16 @@ Items: {
 		Tooltip: ""
 		DisplayName: Bottomless Evil
 	}
+
+	Ghalihieri: {
+		Tooltip: ""
+		DisplayName: Ghalihieri
+	}
+
+	TimeContinuum: {
+		Tooltip: ""
+		DisplayName: Time Continuum
+	}
 }
 
 Projectiles: {

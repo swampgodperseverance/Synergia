@@ -1,4 +1,5 @@
-﻿using NVorbis;
+﻿using Avalon.Items.Weapons.Magic.Hardmode.DevilsScythe;
+using NVorbis;
 using Synergia.Content.Buffs.Debuff.FadingHellFires;
 using System;
 using System.Collections.Generic;
@@ -37,7 +38,7 @@ namespace Synergia.Common.GlobalItems
 
         internal static readonly List<List<int>> SuitableItem = new List<List<int>>()
         {
-            new(){ ItemID.WandofSparking, ItemID.FlowerofFire, ItemID.Flamelash, ItemID.InfernoFork },
+            new(){ ItemID.WandofSparking, ItemID.FlowerofFire, ItemID.Flamelash, ItemID.InfernoFork, ModContent.ItemType<DevilsScythe>() },
             new(){ ItemID.CursedFlames, ItemID.ClingerStaff },
             new(){ ItemID.FlowerofFrost, ItemID.WandofFrosting, ItemID.FrostStaff },
             new(){ ItemID.UnholyTrident, ItemID.ShadowFlameHexDoll }
