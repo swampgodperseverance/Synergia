@@ -6,7 +6,7 @@ using MonoMod.Cil;
 using MonoMod.RuntimeDetour;
 using Terraria.ModLoader;
 
-namespace YourModName // замени на имя твоего мода
+namespace Synergia.Common.ModSystems.Hooks.ILs
 {
     public class ValhallaBossChecklistFix : ModSystem
     {
@@ -40,8 +40,6 @@ namespace YourModName // замени на имя твоего мода
         private void EditBossWeights(ILContext il)
         {
             var c = new ILCursor(il);
-
-            // old emperor's weight
             while (c.TryGotoNext(MoveType.Before, i => i.MatchLdcR4(8.96f)))
             {
                 c.Remove();                // removing the old one

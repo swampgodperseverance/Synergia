@@ -940,6 +940,26 @@ Items: {
 		Tooltip: ""
 		DisplayName: Time Continuum
 	}
+
+	RustyBook: {
+		Tooltip: ""
+		DisplayName: Rusty Book
+	}
+
+	OldDwarvenHelmet: {
+		Tooltip: ""
+		DisplayName: Old Dwarven Helmet
+	}
+
+	FeneathsBrush: {
+		Tooltip: ""
+		DisplayName: Feneaths Brush
+	}
+
+	BoneyRidge: {
+		Tooltip: ""
+		DisplayName: Boney Ridge
+	}
 }
 
 Projectiles: {
@@ -1360,6 +1380,8 @@ Projectiles: {
 	JadeBlast.DisplayName: Jade Blast
 	JadeBeam.DisplayName: Jade Beam
 	BrightJadeShard.DisplayName: Bright Jade Shard
+	GhalihieriProj.DisplayName: Ghalihieri Proj
+	Ghalihieri2.DisplayName: Ghalihieri2
 }
 
 Buffs: {
