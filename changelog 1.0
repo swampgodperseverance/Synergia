@@ -400,6 +400,19 @@ Everwood Javelin has a normal recipe now. (Before it hasn't)
 Jade Glaive has a normal recipe now. (Before it hasn't)
 Natural Selection has a normal recipe now. (Before it hasn't)
 Blitzkrieg has a normal recipe now. (Before it hasn't)
+Throwing weapon classification system was reworked and unified across multiple mods
+All vanilla boomerangs and similar weapons were converted to Throwing damage class
+Enchanted Boomerang, Wooden Boomerang, Ice Boomerang, Fruitcake Chakram, Thorn Chakram, Bloody Machete, Flamarang, Light Disc, Bananarang, Possessed Hatchet, Scourge of the Corruptor, Anchor, Trimarang, Shroomerang, Flying Knife, Shadowflame Knife, Combat Wrench, Paper Airplanes and Bouncing Shield now use Throwing damage
+Albino Mandible and Spicy Sauce from Consolaria now use Throwing damage
+Solarang from Starforged Classic now uses Throwing damage
+Multiple Valhalla weapons (Glaives, Discs, Knives, Shurikens, Explosives and Throwables) now use Throwing damage
+Tetanus Chakram now uses Throwing damage
+Shurikerang now uses Throwing damage
+Enchanted Shuriken now uses Throwing damage
+Rotten Apple now uses Throwing damage
+Crystal Tomahawk now uses Throwing damage
+Icicle now uses Throwing damage
+Virulent Scythe now uses Throwing damage
 COMPATIBILITY/BALANCE/RECIPES/ OLD WILL BE INCLUDED
 Terra Blade damage was decreased by 20
 Illuminant Batbow damage was increased by 23
@@ -539,3 +552,61 @@ Add some wetness compatibility:
 1) Player gets less damage in hell when player has 75-100
 2) Water Fighter, Aqua Impact, Water Aura staff, Underwater aura staff, Underwater Scythe, Urchin Uppercutter, Typhoon deal more damage when player has 75-100
 Key of the Sun
+NPC drop system was fully reworked and expanded
+Arch Imp, Firebird, Heater, Winged Heater, Lava Jellyfish, Spore Slinger and Spore Smasher now drop Vortex (1% chance)
+Cacodemon now drops Vortex (5% chance) and Bloody Whetstone (≈3% chance)
+Ifrit now drops Vortex (10% chance)
+Charging Spearbones, Centurions, Geomancer, Shaft Sentinel, Skeleton Trapper, Dragon Skull, Vampire Miner and Archdruid now drop Soulless Locket (1% chance)
+Hunter now drops Hidden Blade (10% chance)
+Flesh Mummy and Shadow Mummy now drop Hidden Blade (1% chance)
+Flesh Slime and Flesh Axe now drop Golden Shield (1% chance)
+Zombie Tactical, Coldmando, Mister Shotty and Snowman Trasher now drop Ammo Magazine (1% chance)
+Orb of Corruption, Shadow Slime and Shadow Hammer now drop Greek Extinguisher (1% chance)
+Radiators now drop Six Hundred Watt Lightbulb (1% chance)
+Spectral Gastropod and Spectral Mummy now drop Arcane Shard (12.5% chance) and Rubber Boot (1% chance)
+Dragon Hornet now drops Strong Venom (≈14% chance)
+Skeleton Bat now drops Rubybead Herb and Mystical Claw (≈14% each) and Breeze Shard (10% chance, 1–2)
+Fleder, Gargoyle, Demonic Spirit and Valkyrie now drop Mystical Claw (≈14% chance)
+Infected Man, Frozen Nimbus, Frozen Soul and Giant Albino Charger now drop Element Dust (≈14% chance)
+Flesh Slime, Shadow Slime, Sludger and Tiny Toxic Sludge now drop Dew of Herbs (≈14% chance)
+Vile Decomposer and Dragon Snatcher now drop Dew Orb (≈14% chance)
+Wyverns now drop Mystical Totem (≈14% chance) and Breeze Shards
+Backwoods Raven, Fleder, Gargoyle, Valkyrie, Frozen Nimbus and Wyverns now drop Breeze Shards (10% chance, 1–2)
+Wyverns additionally drop Wyvern Fur
+Corrupt enemies (slimes, mummies, axes, corruption constructs) now drop Corrupt Shards (25% chance, 1–2)
+Fire-type enemies (Cacodemon, Arch Demon, Arch Imp, Heater, Ifrit) now drop Fire Shards (50% chance, 2–4)
+Frost enemies (Draug variants, Frozen enemies, Cold Father) now drop Frost Shards (10% chance, 1–2)
+Toxic enemies (Infected Man, Dragon Snatcher, Dragon Hornet) now drop Toxin Shards (10% chance, 1–2)
+Queen Bee now drops Toxin Shards (25% chance, 2–6)
+Undead enemies (Radiant Bones, Skeletons, Dungeon mobs) now drop Undead Shards (10% chance, 1–2)
+Water creatures (Orca) now drop Water Shards (25% chance, 1–2)
+Temple Golem now drops Sun’s Shadow (10% chance)
+Ent now drops Verdant Staff (10% chance)
+Hog now drops Suspicious Bag (≈11% chance)
+Archdruid now drops Broken Dice (≈11% chance)
+Spectral Elemental and Albino Antlion now drop Suspicious Bag
+Sap Slime now drops Sap (20% chance)
+Cold Father now drops Soul of Ice (guaranteed, 3–6)
+Irate Bones now drop Ancient Scrap (≈14% chance)
+Blaze now drops Blazes (25% chance)
+All tactical and special zombies now drop Rotten Flesh (10% chance, 1–2) these enemies also have a chance to drop Soulless Locket
+Mothron now drops Broken Glaive and Broken Spear (25% chance each)
+Valid enemies now drop Rough Leather or Animal Leather (12.5% chance) like in RoA
+Deer Skull, Bone Fish and Dragon Skull now drop Necro Buckler (10% chance)
+Spectral Elemental now drops Chaos Flicker (4% chance)
+Lihzahrd Trickster now drops Chaos Flicker (2% chance)
+Spectral Elemental now additionally drops Arcane Shard
+Not Direct dependencies balance and compatibility:
+Now, when Unowen's Mods (Mech Reworks, Jungle Reworks etc), TRAE are enabled, Synergia rebalances some content.
+Laser Star damage was decreased by 16, Use Spead and Use Animation was increased by 6(Mech Reworks)
+Finis damage was decreased by 31, Use Spead and Use Animation was increased by 6(Mech Reworks)
+Exitium damage was decreased by 18, Use Spead and Use Animation was increased by 8(Mech Reworks)
+Repurposed Brain Remote damage was decreased by 23(Mech Reworks)
+Plasma Pistol damage was decreased by 14, Use Spead and Use Animation was increased by 8(Mech Reworks)
+Bottomless Evil has all mechanical souls except mechanical WoF
+TRAE enemies (Beholder, Oni Ronin, Salamander, etc.) now drop Fire Shards with increased rates
+REMOVALS
+Sinstone Lyre was removed
+Decahedron of the Unfortunate was removed
+Bloody Scythe was removed
+Decayed Scythe was removed
