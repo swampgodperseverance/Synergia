@@ -1,6 +1,7 @@
 //Code by SerNik
 using Avalon.Tiles;
 using Avalon.Tiles.Furniture.ResistantWood;
+using Synergia.Content.Items.QuestItem;
 using Synergia.Helpers;
 using Terraria;
 using Terraria.ID;
@@ -435,7 +436,14 @@ namespace Synergia.Common.ModSystems.WorldGens {
             return true;
         }
         static void ChestLoot(Item[] chestInventory, int chestIndex) {
+            WorldHelper.LootInContainers(chestInventory, ref chestIndex, ItemType<Pandemonium>());
+            WorldHelper.LootInContainers(chestInventory, ref chestIndex, ItemType<OldDwarvenHelmet>());
             WorldHelper.LootInContainers(chestInventory, ref chestIndex, Valhalla.Find<ModItem>("SinstoneMagma").Type, 25, 30);
+            WorldHelper.LootInContainers(chestInventory, ref chestIndex, ItemID.SuperHealingPotion, a, f);
+            WorldHelper.LootInContainers(chestInventory, ref chestIndex, ItemID.SuperManaPotion, a, f);
+            WorldHelper.RandomLootInCoutainer(chestInventory, ref chestIndex, 3, 5, 296, 295, 293, 288, 294, 297, 304, 2323);
+            WorldHelper.RandomLootInCoutainer(chestInventory, ref chestIndex, 3, 5, 305, 301, 302, 288, 300, 2361, 2348, 2345);
+            WorldHelper.LootInContainers(chestInventory, ref chestIndex, ItemID.GoldCoin, 15, 20);
         }
         static void GenCandelabraTile(byte x) {
             WorldGen.Place2x2(SynergiaGenVars.HellLakeX - 236 + x, SynergiaGenVars.HellLakeY - 106, (ushort)TileType<ResistantWoodCandelabra>(), 0);
