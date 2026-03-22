@@ -125,6 +125,9 @@ Items: {
 	KillersJacket.Tooltip: Magic damage is increased by 10%
 	RivetedHood.Tooltip: Ranged critical strike chance is increased by 8%
 	RivetedJacket.Tooltip: Ranged damage is increased by 8%
+	FeralHelmet.Tooltip: Throwing and ranged damage are increased by 5%
+	FeralBreastplate.Tooltip: Throwing damage is increased by 7%
+	FeralLeggings.Tooltip: Throwing critical strike chance is increased by 6%
 	NomadsHood.Tooltip: Throwing damage is increased by 7%
 	NomadsJacket.Tooltip: Throwing damage is increased by 11%, critical strike damage is increased by 30%
 	NomadsBoots.Tooltip:

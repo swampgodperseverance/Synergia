@@ -242,6 +242,22 @@ namespace Synergia.Common.GlobalItems.Set
                 {
                     player.GetDamage(DamageClass.Throwing) += 0.07f;
                 }
+                if (item.type == bismuth.Find<ModItem>("FeralLeggings").Type)
+                {
+                    player.GetCritChance(DamageClass.Throwing) += 0.06f;
+                    player.GetCritChance(DamageClass.Melee) -= 0.06f;
+                }
+                if (item.type == bismuth.Find<ModItem>("FeralBreastplate").Type)
+                {
+                    player.GetDamage(DamageClass.Throwing) += 0.07f;
+                    player.GetDamage(DamageClass.Melee) -= 0.07f;
+                }
+                if (item.type == bismuth.Find<ModItem>("FeralHelmet").Type)
+                {
+                    player.GetDamage(DamageClass.Throwing) += 0.05f;
+                    player.GetDamage(DamageClass.Ranged) += 0.05f;
+                    player.GetDamage(DamageClass.Melee) -= 0.05f;
+                }
 
             }
 		}
@@ -259,7 +275,7 @@ namespace Synergia.Common.GlobalItems.Set
 			Add("Consolaria", "OstaraJacket", "Items.OstaraJacket.Tooltip");
 			Add("Consolaria", "OstaraBoots", "Items.OstaraBoots.Tooltip");
 			Add("Consolaria", "WarlockHood", "Items.WarlockHood.Tooltip");
-			Add("Consolaria", "WarlockRobe", "Items.WarlockRobe.Tooltip");
+			Add("Consolaria", "WarlockRobe", "Items.WarlockRobe.Tooltip");	
 			Add("Consolaria", "WarlockLeggings", "Items.WarlockLeggings.Tooltip");
 			Add("Consolaria", "AncientWarlockHood", "Items.AncientWarlockHood.Tooltip");
 			Add("Consolaria", "AncientWarlockRobe", "Items.AncientWarlockRobe.Tooltip");
@@ -303,6 +319,10 @@ namespace Synergia.Common.GlobalItems.Set
 
             Add("Bismuth", "NomadsHood", "Items.NomadsHood.Tooltip");
             Add("Bismuth", "NomadsJacket", "Items.NomadsJacket.Tooltip");
+
+            Add("Bismuth", "FeralLeggings", "Items.FeralLeggings.Tooltip");
+            Add("Bismuth", "FeralBreastplate", "Items.FeralBreastplate.Tooltip");
+            Add("Bismuth", "FeralHelmet", "Items.FeralHelmet.Tooltip");
 
             if (item.type != ModContent.Find<ModItem>("Bismuth/NomadsBoots").Type)
                 return;

@@ -6,9 +6,12 @@ using Avalon.Items.Weapons.Melee.Hardmode.CraniumCrusher;
 using Avalon.Items.Weapons.Melee.PreHardmode.SanguineKatana;
 using Avalon.Items.Weapons.Ranged.PreHardmode.EggCannon;
 using Bismuth.Content.Items.Weapons.Magical;
+using Bismuth.Content.Items.Weapons.Melee;
 using NewHorizons.Content.Items.Weapons.Magic;
+using NewHorizons.Content.Items.Weapons.Melee;
 using NewHorizons.Content.Items.Weapons.Ranged;
 using NewHorizons.Content.Items.Weapons.Throwing;
+using NewHorizons.Content.Projectiles.Melee;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -37,6 +40,8 @@ namespace Synergia.Common.GlobalItems.Changes
                 ModLoader.GetMod("RoA")?.Find<ModItem>("RodOfTheStream")?.Type ?? 0;
             int RodShockType =
                 ModLoader.GetMod("RoA")?.Find<ModItem>("RodOfTheShock")?.Type ?? 0;
+            int StarFusionType =
+               ModLoader.GetMod("RoA")?.Find<ModItem>("StarFusion")?.Type ?? 0;
 
 
             Changes = new()
@@ -142,6 +147,10 @@ namespace Synergia.Common.GlobalItems.Changes
                     item.useAnimation += 3;
                     item.useTime += 3;
                 },
+                [StarFusionType] = item =>
+                {
+                    item.damage += 6;
+                },
                 [RodStreamType] = item =>
                 {
                     item.useAnimation += 6;
@@ -198,6 +207,16 @@ namespace Synergia.Common.GlobalItems.Changes
                     item.useAnimation -= 2;
                     item.useTime -= 2;
                     item.damage -= 6;
+                },
+                [ModContent.ItemType<Naginata>()] = item =>
+                {
+                    item.useAnimation -= 2;
+                    item.useTime -= 2;
+                    item.damage -= 13;
+                },
+                [ModContent.ItemType<Narsil>()] = item =>
+                {
+                    item.damage += 18;
                 },
             };
         }
