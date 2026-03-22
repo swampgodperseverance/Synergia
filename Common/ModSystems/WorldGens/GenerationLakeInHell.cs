@@ -439,8 +439,8 @@ namespace Synergia.Common.ModSystems.WorldGens {
             WorldHelper.LootInContainers(chestInventory, ref chestIndex, ItemType<Pandemonium>());
             WorldHelper.LootInContainers(chestInventory, ref chestIndex, ItemType<OldDwarvenHelmet>());
             WorldHelper.LootInContainers(chestInventory, ref chestIndex, Valhalla.Find<ModItem>("SinstoneMagma").Type, 25, 30);
-            WorldHelper.LootInContainers(chestInventory, ref chestIndex, ItemID.SuperHealingPotion, a, f);
-            WorldHelper.LootInContainers(chestInventory, ref chestIndex, ItemID.SuperManaPotion, a, f);
+            WorldHelper.LootInContainers(chestInventory, ref chestIndex, ItemID.GreaterHealingPotion, a, f);
+            WorldHelper.LootInContainers(chestInventory, ref chestIndex, ItemID.GreaterManaPotion, a, f);
             WorldHelper.RandomLootInCoutainer(chestInventory, ref chestIndex, 3, 5, 296, 295, 293, 288, 294, 297, 304, 2323);
             WorldHelper.RandomLootInCoutainer(chestInventory, ref chestIndex, 3, 5, 305, 301, 302, 288, 300, 2361, 2348, 2345);
             WorldHelper.LootInContainers(chestInventory, ref chestIndex, ItemID.GoldCoin, 15, 20);

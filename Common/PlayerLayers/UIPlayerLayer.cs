@@ -38,12 +38,20 @@ namespace Synergia.Common.PlayerLayers {
         static DrawData BloodUI(Vector2 pos, BloodPlayer bPlayer) {
             Texture2D barTextura = Request<Texture2D>(GetUIElementName("BloodUI")).Value;
             Texture2D fullBarTextura = Request<Texture2D>(GetUIElementName("BloodUIBar")).Value;
+            Texture2D fullBarTextura_Bg = Request<Texture2D>(GetUIElementName("BloodUIBa_Bg")).Value;
             Vector2 bloodPos = new(pos.X, pos.Y + 50);
+            float scale = 0;
+            if (bPlayer.activeBloodBuff) { 
+                barTextura = Request<Texture2D>(GetUIElementName("BloodUI_Blood")).Value;
+                scale = 2;
+            }
+            Main.spriteBatch.Draw(fullBarTextura_Bg, new(bloodPos.X, bloodPos.Y - scale), null, Color.White, 0f, fullBarTextura_Bg.Size() * 0.5f, Main.UIScale, SpriteEffects.None, 0);
             Main.spriteBatch.Draw(barTextura, bloodPos, null, Color.White, 0f, barTextura.Size() * 0.5f, Main.UIScale, SpriteEffects.None, 0);
             float progress = (float)BloodPlayer.hitForActiveBloodBuff <= 0 ? 1f : (float)bPlayer.currentHit / (float)BloodPlayer.hitForActiveBloodBuff;
             progress = MathHelper.Clamp(progress, 0f, 1f);
             int barWidth = (int)(fullBarTextura.Width * progress);
-            return new(fullBarTextura, bloodPos, new Rectangle(0, 0, barWidth, fullBarTextura.Height), Color.White, 0f, fullBarTextura.Size() * 0.5f, Main.UIScale, SpriteEffects.None, 0);
+
+            return new(fullBarTextura, new(bloodPos.X, bloodPos.Y - scale), new Rectangle(0, 0, barWidth, fullBarTextura.Height), Color.White, 0f, fullBarTextura.Size() * 0.5f, Main.UIScale, SpriteEffects.None, 0);
         }
     }
 }
