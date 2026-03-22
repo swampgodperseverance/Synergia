@@ -1,6 +1,15 @@
 ﻿using Avalon.Items.Weapons.Magic.Hardmode.DevilsScythe;
+using Avalon.Items.Weapons.Magic.Hardmode.FreezeBolt;
+using Avalon.Items.Weapons.Magic.Hardmode.Outbreak;
+using Avalon.Items.Weapons.Magic.PreHardmode.ChaosTome;
+using Avalon.Items.Weapons.Magic.PreHardmode.FrozenLyre;
+using Avalon.Items.Weapons.Magic.PreHardmode.GlacierStaff;
+using Consolaria.Content.Items.Weapons.Magic;
+using NewHorizons.Content.Items.Weapons.Magic;
 using NVorbis;
 using Synergia.Content.Buffs.Debuff.FadingHellFires;
+using Synergia.Content.Items.Weapons.Cogworm;
+using Synergia.Content.Items.Weapons.Mage;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,6 +17,10 @@ using System.Text;
 using System.Threading.Tasks;
 using Terraria;
 using Terraria.ID;
+using ValhallaMod.Items.Weapons.Magic.Gloves;
+using ValhallaMod.Items.Weapons.Magic.Lanterns;
+using ValhallaMod.Items.Weapons.Magic.Staffs;
+using ValhallaMod.Items.Weapons.Magic.Tomes;
 
 namespace Synergia.Common.GlobalItems
 {
@@ -38,10 +51,10 @@ namespace Synergia.Common.GlobalItems
 
         internal static readonly List<List<int>> SuitableItem = new List<List<int>>()
         {
-            new(){ ItemID.WandofSparking, ItemID.FlowerofFire, ItemID.Flamelash, ItemID.InfernoFork, ModContent.ItemType<DevilsScythe>() },
-            new(){ ItemID.CursedFlames, ItemID.ClingerStaff },
-            new(){ ItemID.FlowerofFrost, ItemID.WandofFrosting, ItemID.FrostStaff },
-            new(){ ItemID.UnholyTrident, ItemID.ShadowFlameHexDoll }
+            new(){ ItemID.WandofSparking, ItemID.FlowerofFire, ItemID.Flamelash, ItemID.InfernoFork, ModContent.ItemType<DevilsScythe>(), ModContent.ItemType<ScorcherRequiem>(), ModContent.ItemType<Menace>(), ModContent.ItemType<Scorcher>() },
+            new(){ ItemID.CursedFlames, ItemID.ClingerStaff, ModContent.ItemType<Outbreak>(), ModContent.ItemType<OcramsEye>()  },
+            new(){ ItemID.FlowerofFrost, ItemID.WandofFrosting, ItemID.FrostStaff, ModContent.ItemType<HandCooler>(), ModContent.ItemType<FrostBowlingStaff>(),ModContent.ItemType<FreezeBolt>(), ModContent.ItemType<GlacierStaff>(),ModContent.ItemType<FrozenLyre>()  },
+            new(){ ItemID.UnholyTrident, ItemID.ShadowFlameHexDoll, ModContent.ItemType<Unlighter>(), ModContent.ItemType<DarkVolley>(), ModContent.ItemType<ShadowBolt>(), ModContent.ItemType<ChaosTome>() }
         };
         public static FadingHellFireData? GetFireData(FireType fireType)
         {

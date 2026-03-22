@@ -1,10 +1,13 @@
 using Consolaria.Content.Items.Weapons.Melee;
 using Consolaria.Content.Items.Weapons.Ranged;
+using Consolaria.Content.Items.Weapons.Throwing;
+using NewHorizons.Content.Items.Weapons.Ranged;
 using Starforgedclassic.Content.Weapons.Solarang;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.ID;
 using ValhallaMod.Items.Garden;
+using ValhallaMod.Items.Weapons.Blood;
 using ValhallaMod.Items.Weapons.Melee.Boomerangs;
 using ValhallaMod.Items.Weapons.Melee.Glaives;
 using ValhallaMod.Items.Weapons.Ranged.Javelins;
@@ -38,10 +41,17 @@ namespace Synergia.Common.GlobalItems
 			ItemID.PaperAirplaneA,
 			ItemID.PaperAirplaneB,
 			ItemID.BouncingShield,
+			ItemID.Grenade,
+            ItemID.BouncyGrenade,
+			ItemID.PartyGirlGrenade,
+			ItemID.StickyGrenade,
+			ItemID.Beenade,	
+
 
 			//Consolaria
 			ItemType<AlbinoMandible>(),
 			ItemType<SpicySauce>(),
+			ItemType<Squib>(),
 
 			//Starforged Classic
 			ItemType<Solarang>(),
@@ -69,12 +79,24 @@ namespace Synergia.Common.GlobalItems
 			ItemType<CorrodeShuriken>(),
 			ItemType<CactusKnife>(),
 			ItemType<CactusStar>(),
-		};
+            ItemType<ChitinShuriken>(),
+            ItemType<ValhallaMod.Items.Weapons.Ranged.Thrown.IncendiaryGrenade>(),
+            ItemType<TeethBreaker>(),
+            ItemType<HuskarJavelin>(),
+            ItemType<AzraelsHeartstopper>(),
+            ItemType<Sufferang>(),
+            ItemType<Pumpkinade>(),
+
+			//Horizon
+			ItemType<NewHorizons.Content.Items.Weapons.Ranged.IncendiaryGrenade>(),
+            ItemType<CrystalGrenade>(),
+        };
 
 		private static Mod avalon = ModLoader.GetMod("Avalon");
 		private static Mod bismuth = ModLoader.GetMod("Bismuth");
+        private static Mod roa = ModLoader.GetMod("RoA");
 
-		public override void SetDefaults(Item item)
+        public override void SetDefaults(Item item)
 		{
 			if (VanillaBoomerangs.Contains(item.type))
 			{
@@ -86,7 +108,11 @@ namespace Synergia.Common.GlobalItems
 			{
 				item.DamageType = DamageClass.Throwing;
 			}
-			if (avalon != null && item.type == avalon.Find<ModItem>("Shurikerang").Type)
+            if (roa != null && item.type == roa.Find<ModItem>("SlipperyGrenade").Type)
+            {
+                item.DamageType = DamageClass.Throwing;
+            }
+            if (avalon != null && item.type == avalon.Find<ModItem>("Shurikerang").Type)
 			{
 				item.DamageType = DamageClass.Throwing;
 			}

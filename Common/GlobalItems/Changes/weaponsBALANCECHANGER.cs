@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Avalon.Items.Weapons.Magic.PreHardmode.ChaosTome;
 using Avalon.Items.Weapons.Magic.PreHardmode.Smogscreen;
 using Avalon.Items.Weapons.Melee.Hardmode.CraniumCrusher;
+using Avalon.Items.Weapons.Melee.PreHardmode.SanguineKatana;
 using Avalon.Items.Weapons.Ranged.PreHardmode.EggCannon;
 using Bismuth.Content.Items.Weapons.Magical;
 using NewHorizons.Content.Items.Weapons.Magic;
@@ -13,6 +14,7 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using ValhallaMod.Items.Weapons.Magic.Staffs;
 using ValhallaMod.Items.Weapons.Melee.Glaives;
+using ValhallaMod.Items.Weapons.Melee.Shortswords;
 using ValhallaMod.Items.Weapons.Melee.Spears;
 using ValhallaMod.Items.Weapons.Melee.Swords;
 using ValhallaMod.Items.Weapons.Ranged.Bows;
@@ -163,7 +165,40 @@ namespace Synergia.Common.GlobalItems.Changes
                     item.useAnimation += 8;
                     item.useTime += 8;
                 },
-
+                [ModContent.ItemType<PaintRoller>()] = item =>
+                {
+                    item.useAnimation -= 3;
+                    item.useTime -= 3;
+                    item.damage -= 5;
+                },
+                [ModContent.ItemType<ValhalliteSword>()] = item =>
+                {
+                    item.damage -= 8;
+                },
+                [ItemID.TentacleSpike] = item =>
+                {
+                    item.useAnimation -= 3;
+                    item.useTime -= 3;
+                    item.damage -= 12;
+                },
+                [ItemID.ThunderSpear] = item =>
+                {
+                    item.useAnimation -= 2;
+                    item.useTime -= 2;
+                    item.damage -= 5;
+                },
+                [ModContent.ItemType<Bulbasword>()] = item =>
+                {
+                    item.useAnimation -= 3;
+                    item.useTime -= 3;
+                    item.damage -= 8;
+                },
+                [ModContent.ItemType<SanguineKatana>()] = item =>
+                {
+                    item.useAnimation -= 2;
+                    item.useTime -= 2;
+                    item.damage -= 6;
+                },
             };
         }
 

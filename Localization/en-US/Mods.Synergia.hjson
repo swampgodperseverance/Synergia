@@ -960,6 +960,11 @@ Items: {
 		Tooltip: ""
 		DisplayName: Boney Ridge
 	}
+
+	Malebolge: {
+		DisplayName: Malebolge
+		Tooltip: ""
+	}
 }
 
 Projectiles: {
@@ -1382,6 +1387,10 @@ Projectiles: {
 	BrightJadeShard.DisplayName: Bright Jade Shard
 	GhalihieriProj.DisplayName: Ghalihieri Proj
 	Ghalihieri2.DisplayName: Ghalihieri2
+	TheseusSword.DisplayName: Theseus Sword
+	MalebolgeProj.DisplayName: Malebolge Proj
+	MalebolgeMeteor.DisplayName: Malebolge Meteor
+	MalebolgeBoom.DisplayName: Malebolge Boom
 }
 
 Buffs: {

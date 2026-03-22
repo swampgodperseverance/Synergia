@@ -52,8 +52,8 @@ namespace Synergia.Content.Projectiles.Reworks.Reworks2
             {
                 yellowShader.UseImage1("Images/Misc/noise");
                 yellowShader.UseOpacity(0.9f);
-                yellowShader.UseColor(new Color(255, 230, 50));          
-                yellowShader.UseSecondaryColor(new Color(255, 255, 150)); 
+                yellowShader.UseColor(new Color(255, 230, 50));
+                yellowShader.UseSecondaryColor(new Color(255, 255, 150));
             }
 
             trailDrawer = new PrimDrawer(
@@ -90,7 +90,7 @@ namespace Synergia.Content.Projectiles.Reworks.Reworks2
                 Projectile.velocity = Vector2.Lerp(Projectile.velocity, vector * 11.2f, 0.1f);
             }
 
-    
+
             if (Main.rand.NextBool(2))
             {
                 int dust = Dust.NewDust(Projectile.position, Projectile.width, Projectile.height, DustID.GoldFlame, 0f, 0f, 150, default, 1.3f);

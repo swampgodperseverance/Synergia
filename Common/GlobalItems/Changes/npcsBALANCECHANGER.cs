@@ -69,6 +69,11 @@ namespace Synergia.Common.GlobalNPCs.Changes
                     npc.lifeMax += 110;
                     npc.damage += 10;
                 },
+                [ModContent.NPCType<Banshee>()] = npc =>
+                {
+                    npc.lifeMax += 150;
+                    npc.damage += 4;
+                },
 
                 [ModContent.NPCType<OrcDefender>()] = npc =>
                 {

@@ -1,11 +1,18 @@
-﻿using Bismuth.Content.Items.Other;
+﻿using Avalon.Items.Armor.Hardmode;
+using Bismuth.Content.Items.Other;
 using NewHorizons.Content.Items.Weapons.Magic;
+using NewHorizons.Content.Items.Weapons.Throwing;
 using ReLogic.Graphics;
 using Synergia.Common.GlobalPlayer;
+using Synergia.Content.Items.Armor.Magic.FadingHell;
+using Synergia.Content.Items.Armor.Summon;
 using Synergia.Content.Items.Misc;
+using Synergia.Content.Items.QuestItem;
 using Synergia.Content.Items.Tools;
 using Synergia.Content.Items.Weapons.Mage;
+using Synergia.Content.Items.Weapons.Melee;
 using Synergia.Content.Items.Weapons.Ranged;
+using Synergia.Content.Items.Weapons.Throwing;
 using Synergia.Content.NPCs;
 using Synergia.Dataset;
 using System.Collections.Generic;
@@ -17,6 +24,7 @@ using Terraria.Localization;
 using Terraria.UI;
 using Terraria.UI.Chat;
 using ValhallaMod.Items.Placeable.Blocks;
+using static Synergia.Helpers.ItemHelper;
 using static Synergia.Helpers.UIHelper;
 
 namespace Synergia.UIs;
@@ -28,6 +36,15 @@ public class DwarfUI : UIState {
         {ItemID.MoltenPickaxe, ItemType<CoreburnedPickaxe>()},
         {ItemID.PhoenixBlaster, ItemType<PhoenixDownfall>()},
         {ItemID.MoltenFury, ItemType<Enfer>()},
+        {ItemID.FieryGreatsword, ItemType<Malebolge>()},
+        {ItemID.Paintbrush, ItemType<FeneathsBrush>()},
+        {ItemType<FleshCap>(), ItemType<Gutshelmet>()},
+        {ItemType<FleshPants>(), ItemType<Gutslegs>()},
+        {ItemType<FleshWrappings>(), ItemType<Gutsplate>()},
+        {GetRoAItem("FlametrackerHat"), ItemType<FadingHellHat>()},
+        {GetRoAItem("FlametrackerJacket"), ItemType<FadingHellChestplate>()},
+        {GetRoAItem("FlametrackerPants"), ItemType<FadingHellPants>()},
+        {ItemType<MoltenDagger>(), ItemType<Ghalihieri>()},
         {ItemType<Scorcher>(), ItemType<ScorcherRequiem>()},
         {ItemType<Luceat>(), ItemType<HellLuceat>()},
     };
