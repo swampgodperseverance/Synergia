@@ -1,6 +1,6 @@
 Dwarf: {
 	QuestName: Dwarven Anvil
-	QuestDescription: Somewhere deep within the winter biome lies an ancient Dwarven Anvil.
+	QuestDescription: Somewhere deep within the frozen reaches of the winter biome lies an ancient Dwarven Anvil, half-buried beneath layers of ice and time. Forged in an age when dwarven forges still burned bright beneath the mountains, it hums faintly with forgotten power.
 	QuestStage: Collect Anvil
 	QuestProgress0: Thanks for the Anvil!
 	QuestProgress1:
@@ -10,33 +10,33 @@ Dwarf: {
 		dragging giant anvils that stayed there forever, 
 		could you bring me one? And I'll give you some ore
 		'''
-	QuestProgress2: I know it's kinda hard to find but if you do I would be incredibly gratefu
+	QuestProgress2: I know it's kinda hard to find but if you do I would be incredibly grateful!
 	QuestButton: Accept
 	QuestButtonGive: Give away
 	QuestCompleted:
 		'''
 		I can't believe that i see it again.. My father used it last 
-		time when he was alive.. Nevermind, there's reward
+		time when he was alive.. Nevermind, there's a reward.
 		'''
 	QuestCompletedFalse: You don't have an anvil yet.
 }
 
 Hunter: {
-	QuestName: Whisperig Reed
-	QuestDescription: Can be caught in a Backwoods.
-	QuestStage: Collect Whisperig Reed
-	QuestProgress0: Thanks for the Whisperig Reed!
-	QuestProgress1: I heard stories about Backwoods waters. They say something down there sings when the moon is high Bring me a Whispering Reed, if you dare.
-	QuestProgress2: Still searching, huh? The Backwoods don't give up their secrets easily. Listen for the hum thats how you'll know you're close.
+	QuestName: Whispering Reed
+	QuestDescription: In the damp stillness of the swamps grows a peculiar plant known as the Whispering Reed. Its thin stalks sway even when the air is unmoving, as if stirred by voices no one else can hear. 	Travelers often speak of faint murmurs echoing through the marsh at dusk. Secrets carried by the reeds themselves. Some believe they are remnants of lost souls, others say it is simply the swamplings lurking.
+	QuestStage: Collect Whispering Reed
+	QuestProgress0: Thanks for the Whispering Reed!
+	QuestProgress1: I heard stories about swamps. They say something down there sings when the moon is high. Bring me a Whispering Reed, if you dare.
+	QuestProgress2: Still searching, huh? Swamps don't give up their secrets easily. Listen for the hum thats how you'll know you're close.
 	QuestButton: Accept
-	QuestButtonGive: Give fish
-	QuestCompleted: So you found it's The Whispering Reed. You can almost hear their voices, can't you? Keep it close - it remembers those who listen.
-	QuestCompletedFalse: You don't have an Whisperig Reed.
+	QuestButtonGive: Give Whispering Reed
+	QuestCompleted: So you found it, The Whispering Reed. You can almost hear their voices, can't you? Keep it close - it remembers those who listen.
+	QuestCompletedFalse: You don't have a Whispering Reed.
 }
 
 Artist: {
 	QuestName: Red Husk.
-	QuestDescription: Can be caught in a Caven.
+	QuestDescription: Red Husk grows quietly in the depths of the caves, clinging to stone where little else survives. Its dry and crimson shell feels fragile, almost like it could crumble at a touch. It doesn’t seem fully dead, but not alive either, just something left behind. Miners tend to ignore it, aldthough some say it appears more often in places where the air feels heavier than usual.
 	QuestStage: Collect Red Husk.
 	QuestProgress0: Thanks for the Red Husk!
 	QuestProgress1: Have you ever seen the color that bleeds between dusk and fire? They call it Red Husk. I need it - no, I ache for it. Bring me that hue from the deep caves.
@@ -44,12 +44,12 @@ Artist: {
 	QuestButton: Accept
 	QuestButtonGive: Give husk
 	QuestCompleted: Look at it - that living crimson! With this, my painting will finally breathe. You've given me more than pigment… you've given me a heartbeat.
-	QuestCompletedFalse: You don't have an Red Husk.
+	QuestCompletedFalse: You don't have a Red Husk.
 }
 
 Ninja: {
 	QuestName: Carrot
-	QuestDescription: Can be caught in a Forest.
+	QuestDescription: A simple carrot. Bright, crisp, and reliable. Not much to look at, but always useful when you need it.
 	QuestStage: Collect Carrot.
 	QuestProgress0: Thanks for the Carrot!
 	QuestProgress1: After long durance i need… a carrot. Sounds stupid? Maybe. But that holds power for my arms- and I want it.
@@ -57,7 +57,7 @@ Ninja: {
 	QuestButton: Accept
 	QuestButtonGive: Give Carrot
 	QuestCompleted: Power hidden in a vegetable - perfect disguise. You did well, shadow friend.
-	QuestCompletedFalse: You don't have an Carrot.
+	QuestCompletedFalse: You don't have a Carrot.
 }
 
 Farmer: {
@@ -74,16 +74,16 @@ Farmer: {
 }
 
 Librarian: {
-	QuestName: Tom
-	QuestDescription: Collect Tom.
-	QuestStage: Collect Tom.
-	QuestProgress0: Thanks for the Tom!
+	QuestName: Tome
+	QuestDescription: Create damaged book, that can describe everything it experienced between its lines.
+	QuestStage: Collect Tome.
+	QuestProgress0: Thanks!
 	QuestProgress1: My first quest for you will be damaged tome. I wanna try my skills on it. Who knows, what can i create
 	QuestProgress2: Why are you staring at me? Run and find the book and you'll get a bonus.
 	QuestButton: Accept
-	QuestButtonGive: Give Tom
-	QuestCompleted: Oh yeah, that's it. Finally my plans become true. Here is small trinket for you.
-	QuestCompletedFalse: You don't have an Tom.
+	QuestButtonGive: Give a book
+	QuestCompleted: Oh yeah, that's it. Finally my plans can become true. Here is small trinket for you.
+	QuestCompletedFalse: You don't have a tome, bruh.
 }
 
 Dwarf2.QuestName: ""
