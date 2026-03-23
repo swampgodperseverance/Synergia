@@ -1,5 +1,4 @@
-﻿using Synergia.Common.GlobalPlayer.Armor;
-using Synergia.Content.Projectiles.Friendly;
+﻿using Synergia.Content.Projectiles.Friendly;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,9 +7,9 @@ using System.Threading.Tasks;
 using Terraria;
 using static Synergia.Common.GlobalItems.FadingHellData;
 
-namespace Synergia.Common.GlobalProjectiles
+namespace Synergia.Common.GlobalPlayer.Armor
 {
-    public class FadingHellOnHitEffect : GlobalProjectile
+    public class FadingHellOnFireEffect : GlobalProjectile
     {
         public override void OnHitNPC(Projectile projectile, NPC target, NPC.HitInfo hit, int damageDone)
         {

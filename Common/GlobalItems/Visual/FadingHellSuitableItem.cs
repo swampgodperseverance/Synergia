@@ -1,4 +1,5 @@
 ﻿using Microsoft.CodeAnalysis;
+using ParticleLibrary.Utilities;
 using ReLogic.Content;
 using SteelSeries.GameSense;
 using Synergia.Common.GlobalPlayer.Armor;
@@ -6,6 +7,7 @@ using Synergia.Content.Buffs.Debuff.FadingHellFires;
 using Synergia.Trails;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -100,6 +102,33 @@ namespace Synergia.Common.GlobalItems.Visual
             }
 
             return false;
+        }
+        public override bool PreDrawTooltipLine(Item item, DrawableTooltipLine line, ref int yOffset)
+        {
+            if (line.Name != "InflictFireType")
+                return true;
+
+            Vector2 linePosition = new Vector2(line.X, line.Y);
+            Vector2 lineOffset;
+            ulong seed = (ulong)(Main.GlobalTimeWrappedHourly * 12);
+            for(int i = 0; i < 4; i++)
+            {
+                lineOffset = Vector2.UnitX.RotatedBy(Utils.RandomFloat(ref seed) * MathHelper.TwoPi) * 3f;
+                Main.spriteBatch.DrawText(line.Text, linePosition + lineOffset, line.OverrideColor.Value.WithAlpha(0) * 0.4f);
+            }
+
+            return true;
+        }
+        public override void ModifyTooltips(Item item, List<TooltipLine> tooltips)
+        {
+            Player player = Main.LocalPlayer;
+            FireType fireType = player.GetModPlayer<FadingHellPlayer>().currentFireType;
+            if (!(player.GetModPlayer<FadingHellPlayer>().isSetBonus && IsSuitableItem(item, ref fireType)))
+                return;
+            FadingHellFireData fireData = GetFireData(fireType).Value;
+            TooltipLine line = new TooltipLine(Mod, "InflictFireType", ItemTooltip("Weapons", $"FireType_{Enum.GetName(typeof(FireType), fireType)}"));
+            line.OverrideColor = fireData.Color;
+            tooltips.Insert(tooltips.FindIndex(x => x.Name == "ItemName") + 1, line);
         }
     }
 }

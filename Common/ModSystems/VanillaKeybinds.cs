@@ -9,8 +9,8 @@ namespace Synergia.Common.ModSystems
 
         public override void Load()
         {
-            ToggleAuraModeKeybind = KeybindLoader.RegisterKeybind(Mod, "Toggle Aura Mode", "J");
-            ArmorSetBonusActivation = KeybindLoader.RegisterKeybind(Mod, "Armor Set Bonus Activate", "K");
+            ToggleAuraModeKeybind = KeybindLoader.RegisterKeybind(Mod, "ToggleAuraMode", "J");
+            ArmorSetBonusActivation = KeybindLoader.RegisterKeybind(Mod, "ArmorSetBonusActivate", "K");
         }
 
         public override void Unload()

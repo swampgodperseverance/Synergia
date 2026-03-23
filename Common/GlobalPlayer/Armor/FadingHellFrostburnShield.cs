@@ -1,5 +1,7 @@
 ﻿
 using ReLogic.Content;
+using Synergia.Common.ModSystems.Netcode;
+using Synergia.Common.ModSystems.Netcode.Packets;
 using Terraria;
 using Terraria.Audio;
 using Terraria.DataStructures;
@@ -17,7 +19,7 @@ namespace Synergia.Common.GlobalPlayer.Armor
         public readonly int ShieldMaxProgress = 12 * 60;
         public int ShieldProgress = 0;
 
-        public readonly float DashSpeed = 35f;
+        public readonly float DashSpeed = 20f;
         public readonly int DashCooldown = 45;
         public readonly int DashDuration = 50;
         public int DashDirection = 0;
@@ -53,7 +55,7 @@ namespace Synergia.Common.GlobalPlayer.Armor
 
             Player.dash = 0;
             Player.dashTime = -1;
-            if (DashDirection != 0 && DashDelay == 0 && !Player.mount.Active)
+            if (Main.myPlayer == Player.whoAmI && DashDirection != 0 && DashDelay == 0 && !Player.mount.Active)
             {
                 Vector2 newVelocity = Player.velocity;
                 if (Player.velocity.X > -DashSpeed || Player.velocity.X < DashSpeed)
@@ -63,9 +65,7 @@ namespace Synergia.Common.GlobalPlayer.Armor
                 else
                     return;
 
-                DashDelay = DashCooldown;
-                DashTimer = DashDuration;
-                Player.velocity = newVelocity;
+                Dash(newVelocity);
             }
             if (DashDelay > 0)
                 DashDelay--;
@@ -158,6 +158,42 @@ namespace Synergia.Common.GlobalPlayer.Armor
             {
                 Dust.NewDust(Player.position, Player.width, Player.height, DustID.IceTorch, 0, 0, 180, default, 2f);
             }
+        }
+
+        public override void CopyClientState(ModPlayer targetCopy)
+        {
+            FadingHellFrostburnShield target = (FadingHellFrostburnShield)targetCopy;
+            target.IsActive = IsActive;
+            target.ShieldProgress = ShieldProgress;
+            target.DashDelay = DashDelay;
+            target.DashTimer = DashTimer;
+        }
+        public override void SendClientChanges(ModPlayer clientPlayer)
+        {
+            FadingHellFrostburnShield target = (FadingHellFrostburnShield)clientPlayer;
+
+            if (target.IsActive != IsActive || target.ShieldProgress != ShieldProgress || target.DashDelay != DashDelay || target.DashTimer != DashTimer)
+                SyncPlayer(-1, Main.myPlayer, false);
+        }
+        public override void SyncPlayer(int toWho, int fromWho, bool newPlayer)
+        {
+            MultiplayerSystem.SendPacket(new FrostburnShieldSyncDataPacket(Player, IsActive, ShieldProgress, DashDelay, DashTimer), toWho, fromWho);
+        }
+        public void ReceivePacket(bool isActive, int shieldProgression, int dashDelay, int dashTimer)
+        {
+            IsActive = isActive;
+            ShieldProgress = shieldProgression;
+            DashDelay = dashDelay;
+            DashTimer = dashTimer;
+        }
+        public void Dash(Vector2 newVelocity)
+        {
+            DashDelay = DashCooldown;
+            DashTimer = DashDuration;
+            Player.velocity = newVelocity;
+
+            if (Main.myPlayer == Player.whoAmI && Main.netMode != NetmodeID.SinglePlayer)
+                MultiplayerSystem.SendPacket(new FrostburnShieldDashPacket(Player, newVelocity), ignoreClient: Main.myPlayer);
         }
     }
     public class FadingHellFrostburnShieldExplosion : ModProjectile

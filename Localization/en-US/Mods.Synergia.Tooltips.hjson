@@ -23,12 +23,10 @@ Armors: {
 		'''
 	FadingHellSetBonus:
 		'''
-		Double tap {ToggleArmorSetBonusKey} to inflict fire on yourself
-		Fire type depends on which item you hold when inflict fire
+		Press {0} with marked item to inflict fire on yourself
 		On fire, you gain significant stat boosts and unique effects based on fire type
-		However, you start taking continuous damage that can kill you
-		You can't be healed by Nurse during fire
-		Your fire extinguishes over time or immediately in water
+		However, you start taking continuous damage that can't be healed by Nurse
+		Your fire extinguishes in water
 		'''
 }
 
@@ -42,4 +40,8 @@ Weapons: {
 	SadTooltips: I bequeath this mod as a legacy for you
 	Shift: Press Left shift to see more information
 	Aeris: Aeris, Aeris, Aeris, Aeris, Aeris, Aeris, Aeris and others
+	FireType_OnFire: On Fire
+	FireType_CursedInferno: Cursed Inferno
+	FireType_Frostburn: Frostburn
+	FireType_Shadowflame: Shadowflame
 }

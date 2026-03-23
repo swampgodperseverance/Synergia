@@ -33,8 +33,7 @@ namespace Synergia.Content.Buffs.Debuff.FadingHellFires
         {
             if (player.wet && !player.lavaWet)
             {
-                if (Main.netMode != NetmodeID.MultiplayerClient)
-                    player.DelBuff(buffIndex);
+                player.DelBuff(buffIndex);
                 return;
             }
 

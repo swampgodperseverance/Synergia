@@ -23,7 +23,7 @@ Dwarf: {
 
 Hunter: {
 	QuestName: Whispering Reed
-	QuestDescription: In the damp stillness of the swamps grows a peculiar plant known as the Whispering Reed. Its thin stalks sway even when the air is unmoving, as if stirred by voices no one else can hear. 	Travelers often speak of faint murmurs echoing through the marsh at dusk. Secrets carried by the reeds themselves. Some believe they are remnants of lost souls, others say it is simply the swamplings lurking.
+	QuestDescription: '''In the damp stillness of the swamps grows a peculiar plant known as the Whispering Reed. Its thin stalks sway even when the air is unmoving, as if stirred by voices no one else can hear. 	Travelers often speak of faint murmurs echoing through the marsh at dusk. Secrets carried by the reeds themselves. Some believe they are remnants of lost souls, others say it is simply the swamplings lurking.'''
 	QuestStage: Collect Whispering Reed
 	QuestProgress0: Thanks for the Whispering Reed!
 	QuestProgress1: I heard stories about swamps. They say something down there sings when the moon is high. Bring me a Whispering Reed, if you dare.

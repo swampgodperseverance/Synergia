@@ -36,7 +36,7 @@ namespace Synergia.Common.GlobalPlayer.Armor
             PartsCount = 0;
             PrevPartsCount = 0;
         }
-        public override void UpdateEquips()
+        public override void PostUpdateEquips()
         {
             if (!IsActive) return;
 
@@ -56,7 +56,7 @@ namespace Synergia.Common.GlobalPlayer.Armor
         public override bool FreeDodge(Player.HurtInfo info)
         {
             if (!IsActive) return false;
-            //if (!Main.rand.NextBool(4)) return false;
+            if (!Main.rand.NextBool(3)) return false;
 
             DodgeEffect();
             Vector2 velocity;
@@ -88,6 +88,7 @@ namespace Synergia.Common.GlobalPlayer.Armor
     public class ShadowPlayerGore : ModProjectile
     {
         internal const int ExtraUpdates = 10;
+        internal readonly float[] DustOffsetY = { -12f, 0f, 12f };
         public ref float ArmorType => ref Projectile.ai[0];
         public ref float X => ref Projectile.ai[1];
         public ref float Y => ref Projectile.ai[2];
@@ -128,8 +129,14 @@ namespace Synergia.Common.GlobalPlayer.Armor
                 return;
             }
 
-            if(Projectile.timeLeft % 3 == 0)
-                ParticleSystem.AddParticle(new ShadowflameParticle(), Projectile.Center, Main.rand.NextVector2Unit() * 2f, Color.Black, Main.rand.NextFloat(0.8f, 1.2f));
+            if(Projectile.timeLeft % 5 == 0)
+                ParticleSystem.AddParticle(
+                    new ShadowflameParticle(),
+                    Projectile.Center + new Vector2(0f, DustOffsetY[(int)ArmorType]).RotatedBy(Projectile.rotation),
+                    Main.rand.NextVector2Unit() * 2f,
+                    Color.Black,
+                    Main.rand.NextFloat(0.8f, 1.2f)
+                );
             float progress = 1f - Projectile.timeLeft / 20f / ExtraUpdates;
             Projectile.Center = Vector2.Lerp(new Vector2(X, Y), player.Center, EaseFunctions.EaseInCubic(progress));
         }
@@ -142,13 +149,14 @@ namespace Synergia.Common.GlobalPlayer.Armor
         {
             Texture2D texture = ArmorType switch
             {
-                //1 => ModContent.Request<Texture2D>("Synergia/Content/Items/Armor/Magic/FadingHell/FadingHellChestplate_Body").Value,
-                1 => ModContent.Request<Texture2D>("Synergia/Content/Items/Armor/Magic/FadingHell/FadingHellPants_Legs").Value,
-                2 => ModContent.Request<Texture2D>("Synergia/Content/Items/Armor/Magic/FadingHell/FadingHellPants_Legs").Value,
-                _ => ModContent.Request<Texture2D>("Synergia/Content/Items/Armor/Magic/FadingHell/FadingHellHat_Head").Value,
+                1 => ModContent.Request<Texture2D>("Synergia/Content/Items/Armor/Magic/FadingHell/FadingHellChestplate_Body2").Value,
+                2 => ModContent.Request<Texture2D>("Synergia/Content/Items/Armor/Magic/FadingHell/FadingHellPants_LegsCursed").Value,
+                _ => ModContent.Request<Texture2D>("Synergia/Content/Items/Armor/Magic/FadingHell/FadingHellHat_HeadCursed").Value,
             };
             Vector2 position = Projectile.Center - Main.screenPosition;
             int frameHeight = texture.Height / 20;
+            if (ArmorType == 1)
+                frameHeight = texture.Height;
             Rectangle frame = new Rectangle(0, 0, texture.Width, frameHeight);
             Vector2 origin = frame.Size() / 2f;
             Color color = Color.Lerp(lightColor, Color.Black, 1f - Projectile.Opacity);

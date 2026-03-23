@@ -5,6 +5,8 @@ using ParticleLibrary.Utilities;
 using ReLogic.Content;
 using Synergia.Common.ModSystems;
 using Synergia.Content.Buffs.Debuff.FadingHellFires;
+using Synergia.Content.Items.Armor.Magic.FadingHell;
+using Synergia.Trails;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -66,6 +68,9 @@ namespace Synergia.Common.GlobalPlayer.Armor
             else
             {
                 Lighting.AddLight(Player.Center + new Vector2(0f, -20f), GetFireData(currentFireType).Value.Color.WithAlpha(1f).ToVector3());
+                Player.GetDamage(DamageClass.Magic) += 0.25f;
+                Player.GetCritChance(DamageClass.Magic) += 20f;
+                Player.manaCost -= 0.14f;
                 switch (currentFireType)
                 {
                     case FireType.Frostburn:
@@ -74,9 +79,18 @@ namespace Synergia.Common.GlobalPlayer.Armor
                     case FireType.Shadowflame:
                         Player.GetModPlayer<FadingHellShadowflameDodge>().IsActive = true;
                         break;
+                    case FireType.CursedInferno:
+                        Player.GetModPlayer<FadingHellCursedFireEffect>().IsActive = true;
+                        break;
                 }
             }
             CheckOtherFireDebuffs();
+        }
+        public override void PostUpdateMiscEffects()
+        {
+            if (!isOnFire) return;
+
+            Player.moveSpeed += 0.2f;
         }
         public override void UpdateBadLifeRegen()
         {
@@ -108,9 +122,6 @@ namespace Synergia.Common.GlobalPlayer.Armor
         }
         public void ClearFire()
         {
-            if (Main.netMode == NetmodeID.MultiplayerClient)
-                return;
-
             FadingHellFireData? fireData = GetFireData(currentFireType);
             int? buff = fireData?.ModdedDebuffID;
             if (!buff.HasValue) return;
@@ -118,9 +129,6 @@ namespace Synergia.Common.GlobalPlayer.Armor
         }
         private void CheckOtherFireDebuffs()
         {
-            if (Main.netMode == NetmodeID.MultiplayerClient)
-                return;
-
             FireType fireType = FireType.None;
 
             if (Player.HasBuff(BuffID.OnFire))
@@ -176,6 +184,7 @@ namespace Synergia.Common.GlobalPlayer.Armor
             if (isCastingFire)
                 PlayerDrawLayers.HeldItem.Hide();
         }
+        public bool ShouldFireBeDrawn() => isOnFire || Player.armor[10].type == ModContent.ItemType<FadingHellHat>() || Main.gameMenu;
     }
     public class FadingHellHeldItem : ModProjectile
     {

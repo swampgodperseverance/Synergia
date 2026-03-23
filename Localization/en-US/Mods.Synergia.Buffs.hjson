@@ -29,26 +29,39 @@ BloodBuff: {
 }
 
 FadingHellEffect_Shadowflame: {
-	Description: Mods.Synergia.Buffs.FadingHellEffect_Shadowflame.Description
-	DisplayName: Fading Hell Effect_ Shadowflame
+	Description: 33% to dodge incoming attack.
+	DisplayName: Shadowflame?
 }
 
 FadingHellEffect_OnFire: {
-	Description: Mods.Synergia.Buffs.FadingHellEffect_OnFire.Description
-	DisplayName: Fading Hell Effect_ On Fire
+	Description: Enemies can spawn Hellfire on hit that aimes at nearby enemy and explodes.
+	DisplayName: On Fire?
 }
 
 FadingHellEffect_Frostburn: {
-	Description: Mods.Synergia.Buffs.FadingHellEffect_Frostburn.Description
-	DisplayName: Fading Hell Effect_ Frostburn
+	Description:
+		'''
+		You gain frost shield that grows over time and reduces incoming damage.
+		With fully grown shield, you can dash into enemies to deal massive damage.
+		'''
+	DisplayName: Frostburn?
 }
 
 FadingHellEffect_CursedInferno: {
-	Description: Mods.Synergia.Buffs.FadingHellEffect_CursedInferno.Description
-	DisplayName: Fading Hell Effect_ Cursed Inferno
+	Description:
+		'''
+		Attacked enemies become weaker and more vulnerable to damage.
+		The more damage you deal, the more weak enemy becomes.
+		'''
+	DisplayName: Cursed Inferno?
 }
 
 FadingHellEffect_Base: {
-	Description: Mods.Synergia.Buffs.FadingHellEffect_Base.Description
-	DisplayName: Fading Hell Effect_ Base
+	Description: no
+	DisplayName: no
+}
+
+CurseOfDemise: {
+	DisplayName: Curse Of Demise
+	Description: You doomed to death.
 }

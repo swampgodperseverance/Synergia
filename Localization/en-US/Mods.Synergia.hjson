@@ -891,17 +891,30 @@ Items: {
 
 	FadingHellChestplate: {
 		DisplayName: Fading Hell Chestplate
-		Tooltip: ""
+		Tooltip:
+			'''
+			8% increased magic damage
+			10% critical strike chance
+			'''
 	}
 
 	FadingHellHat: {
 		DisplayName: Fading Hell Hat
-		Tooltip: ""
+		Tooltip:
+			'''
+			Increases maximum mana by 40 and 20% reduced mana cost
+			9% increased magic damage
+			9% critical strike chance
+			'''
 	}
 
 	FadingHellPants: {
 		DisplayName: Fading Hell Pants
-		Tooltip: ""
+		Tooltip:
+			'''
+			6% increased magic damage
+			12% increased movement speed
+			'''
 	}
 
 	EvilBar: {
@@ -1504,8 +1517,8 @@ Buffs: {
 }
 
 Keybinds: {
-	"Toggle Aura Mode.DisplayName": Toggle  Aura  Mode
-	"Armor Set Bonus Activate.DisplayName": Armor  Set  Bonus  Activate
+	ToggleAuraMode.DisplayName: Toggle Aura Mode
+	ArmorSetBonusActivate.DisplayName: Armor Set Bonus Activate
 }
 
 SinlordSummon: Use Hellworm scale in the underworld
