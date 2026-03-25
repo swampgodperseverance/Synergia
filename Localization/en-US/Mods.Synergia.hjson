@@ -106,7 +106,7 @@ Items: {
 		+13% Aura radius when linked on the player
 		+4% Minion damage
 		'''
-	LivingWoodCrown.Tooltip: +12% aura radius and +1 minion slot
+	LivingWoodCrown.Tooltip: +6% aura radius and +1 minion slot
 	NightMageHat.Tooltip:
 		'''
 		+18% Magic damage and 13% reduced mana cost
@@ -134,6 +134,12 @@ Items: {
 		'''
 		Movement speed is increased by 25%
 		Throwing damage is increased by 7%
+		'''
+	PikemansLeggings.Tooltip: Melee critical strike chance is increased by 6%
+	PikemansBreastplate.Tooltip:
+		'''
+		Movement speed is decreased by 12%
+		Throwing damage is increased by 10%
 		'''
 
 	EverwoodJavelin: {
@@ -696,7 +702,7 @@ Items: {
 
 	WhisperigReed: {
 		Tooltip: ""
-		DisplayName: Whisperig Reed
+		DisplayName: Whispering Reed
 	}
 
 	Tribow: {
@@ -845,17 +851,17 @@ Items: {
 	}
 
 	Gutshelmet: {
-		DisplayName: Gutshelmet
+		DisplayName: Viscera Helmet
 		Tooltip: ""
 	}
 
 	Gutslegs: {
-		DisplayName: Gutslegs
+		DisplayName: Viscera Leggings
 		Tooltip: ""
 	}
 
 	Gutsplate: {
-		DisplayName: Gutsplate
+		DisplayName: Viscera Chestplate
 		Tooltip: ""
 	}
 
@@ -870,8 +876,8 @@ Items: {
 	}
 
 	CogBronze: {
-		DisplayName: Cog Bronze
-		Tooltip: ""
+		DisplayName: Bronze Mechanism
+		Tooltip: Don't put your hands in there!
 	}
 
 	BronzeDrill: {
@@ -881,7 +887,11 @@ Items: {
 
 	TurretToolBronze: {
 		DisplayName: Turret Tool Bronze
-		Tooltip: ""
+		Tooltip:
+			'''
+			Summons a Sentry
+			Summons a Bronze Turret that can shoot horizontally.
+			'''
 	}
 
 	Lavinator: {
@@ -948,38 +958,53 @@ Items: {
 	}
 
 	Ghalihieri: {
-		Tooltip: ""
-		DisplayName: Ghalihieri
+		Tooltip: Launches high velocity, flaming blade and a hot needle
+		DisplayName: Sodomist
 	}
 
 	TimeContinuum: {
-		Tooltip: ""
+		Tooltip:
+			'''
+			The book that owns time.
+			Broken item that breaks enemies behaviour and freezes time either in the middle of the day or in the middle of the night
+			'''
 		DisplayName: Time Continuum
 	}
 
 	RustyBook: {
-		Tooltip: ""
+		Tooltip: Inscriptions that are completely rotten through.
 		DisplayName: Rusty Book
 	}
 
 	OldDwarvenHelmet: {
-		Tooltip: ""
+		Tooltip: Old and rusty.
 		DisplayName: Old Dwarven Helmet
 	}
 
 	FeneathsBrush: {
-		Tooltip: ""
+		Tooltip: Paint, my brush, as if hell were the last picture.
 		DisplayName: Feneaths Brush
 	}
 
 	BoneyRidge: {
-		Tooltip: ""
+		Tooltip: It's...quite dry.
 		DisplayName: Boney Ridge
 	}
 
 	Malebolge: {
 		DisplayName: Malebolge
+		Tooltip:
+			'''
+			'There is no greater sorrow than to recall happiness in times of misery.' 
+			Enormous blade, forged to cut down sinners in the craters of volcanoes.
+			Each hit creates explosion that deal damage. 
+			After successful combo summons meteors.
+			'''
+	}
+
+	Echelonis: {
 		Tooltip: ""
+		DisplayName: Echelonis
 	}
 }
 
@@ -1407,6 +1432,10 @@ Projectiles: {
 	MalebolgeProj.DisplayName: Malebolge Proj
 	MalebolgeMeteor.DisplayName: Malebolge Meteor
 	MalebolgeBoom.DisplayName: Malebolge Boom
+	ProdigyLava.DisplayName: Prodigy Lava
+	ProdigyGold.DisplayName: Prodigy Gold
+	ProdigyAshen.DisplayName: Prodigy Ashen
+	ProdigalSeraph.DisplayName: Prodigal Seraph
 }
 
 Buffs: {
@@ -1442,7 +1471,7 @@ Buffs: {
 
 	HellishAir: {
 		DisplayName: ""
-		Description: You can't breathe in Hell before Skeletron is defeated...
+		Description: Underworld was cursed by powerful druidic magic...
 	}
 
 	SynergiaStarving: {
@@ -1456,7 +1485,7 @@ Buffs: {
 	}
 
 	ProminenceBlessing: {
-		Description: Mods.Synergia.Buffs.ProminenceBlessing.Description
+		Description: The Blades of Helios protect you
 		DisplayName: Prominence Blessing
 	}
 
@@ -1511,7 +1540,7 @@ Buffs: {
 	}
 
 	BloodBuff: {
-		DisplayName: Blood Buff
+		DisplayName: Bloodthirsty
 		Description: Mods.Synergia.Buffs.BloodBuff.Description
 	}
 }
@@ -1531,12 +1560,12 @@ Tiles: {
 Biomes: {
 	SnowVillage: {
 		TownNPCDialogueName: the Snow Village
-		DisplayName: Snow Village
+		DisplayName: Frostholm Village
 	}
 
 	NewHell: {
-		TownNPCDialogueName: the New Hell
-		DisplayName: New Hell
+		TownNPCDialogueName: the Frontier
+		DisplayName: Frontier
 	}
 }
 

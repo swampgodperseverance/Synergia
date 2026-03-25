@@ -180,7 +180,7 @@ namespace Synergia.Common.GlobalItems.Set
 			{
 				if (item.type == horizons.Find<ModItem>("LivingWoodCrown").Type)
 				{
-					auraPlayer.bonusAuraRadius += 0.12f;
+					auraPlayer.bonusAuraRadius += 0.06f;
 				}
 				if (item.type == horizons.Find<ModItem>("NightMageHat").Type)
 				{
@@ -258,6 +258,24 @@ namespace Synergia.Common.GlobalItems.Set
                     player.GetDamage(DamageClass.Ranged) += 0.05f;
                     player.GetDamage(DamageClass.Melee) -= 0.05f;
                 }
+                if (item.type == bismuth.Find<ModItem>("PikemansHelmet").Type)
+                {
+                    item.defense += 2;
+                }
+                if (item.type == bismuth.Find<ModItem>("PikemansBreastplate").Type)//Add localization 
+                {
+                    player.GetDamage(DamageClass.Throwing) -= 0.12f;
+                    player.GetDamage(DamageClass.Melee) += 0.10f;
+                    player.moveSpeed -= 0.12f;
+                    item.defense += 5;
+                }
+                if (item.type == bismuth.Find<ModItem>("PikemansLeggings").Type)
+                {
+
+                    player.GetCritChance(DamageClass.Melee) += 0.06f;
+                    player.moveSpeed -= 0.08f;
+                    item.defense += 3;
+                }
 
             }
 		}
@@ -323,6 +341,10 @@ namespace Synergia.Common.GlobalItems.Set
             Add("Bismuth", "FeralLeggings", "Items.FeralLeggings.Tooltip");
             Add("Bismuth", "FeralBreastplate", "Items.FeralBreastplate.Tooltip");
             Add("Bismuth", "FeralHelmet", "Items.FeralHelmet.Tooltip");
+
+
+            Add("Bismuth", "PikemansLeggings", "Items.PikemansLeggings.Tooltip");
+            Add("Bismuth", "PikemansBreastplate", "Items.PikemansBreastplate.Tooltip");
 
             if (item.type != ModContent.Find<ModItem>("Bismuth/NomadsBoots").Type)
                 return;

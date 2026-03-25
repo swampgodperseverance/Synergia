@@ -65,3 +65,8 @@ CurseOfDemise: {
 	DisplayName: Curse Of Demise
 	Description: You doomed to death.
 }
+
+ProdigyBuff: {
+	Description: Mods.Synergia.Buffs.ProdigyBuff.Description
+	DisplayName: Prodigy Buff
+}
