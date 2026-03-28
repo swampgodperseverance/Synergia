@@ -10,9 +10,11 @@ namespace Synergia.CompatibilityPatches
 		public void Load(Mod mod) {
 			var c = ModContent.GetInstance<EvilBossesRework.ReworkConfig>();
 			BrainDashAI.Disabled = c.boc;
+			BacteriumPrimeAI.Disabled = c.bac;
 		}
 		public void Unload() {
 			BrainDashAI.Disabled = false;
+			BacteriumPrimeAI.Disabled = false;
 		}
 	}
 }
