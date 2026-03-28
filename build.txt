@@ -1,6 +1,6 @@
 displayName = Synergia
 author = Synergia Crew
 version = 1.0
-weakReferences = PrimeRework, EvilBossesRework, GolemRework
+weakReferences = PrimeRework, EvilBossesRework, GolemRework, BloodMoonEnemiesRework
 modReferences = starforgedclassic, RoA, Consolaria, ValhallaMod, NewHorizons, Avalon, Bismuth, ParticleLibrary 
 
