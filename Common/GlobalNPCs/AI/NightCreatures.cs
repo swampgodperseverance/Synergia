@@ -11,8 +11,10 @@ namespace Synergia.Common.GlobalNPCs.AI
 {
 	public class BloodEel : GlobalNPC 
 	{
+		internal static bool Disabled = false;
 		public override bool AppliesToEntity(NPC npc, bool lateInstatiation) => npc.type >= NPCID.BloodEelHead && npc.type <= NPCID.BloodEelTail;
 		public override void AI(NPC npc) {
+			if(Disabled) return;
 			if(npc.type != NPCID.BloodEelHead) {
 				NPC body = Main.npc[(int)npc.ai[1]];
 				npc.target = body.target;
