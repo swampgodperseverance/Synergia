@@ -4,8 +4,8 @@ using Terraria.ModLoader.IO;
 using Terraria.ID;
 using Microsoft.Xna.Framework;
 using Terraria.Audio;
-using Avalon.Projectiles.Hostile.TuhrtlOutpost;
 using Avalon.Projectiles.Hostile.BacteriumPrime;
+using Synergia.Content.Projectiles.Hostile;
 using Synergia.Common.GlobalPlayer;
 using Synergia.Common.ModConfigs; 
 using System.IO;
@@ -23,26 +23,31 @@ namespace Synergia.Common.GlobalNPCs.AI
         private int gasAttackTimer = 0;
         private int gasAttackPhase = 0; 
         private int gasShotsLeft = 0;
+        private int sporeAttackTimer = 0;
 
         public override bool AppliesToEntity(NPC npc, bool lateInstatiation) => npc.type == ModContent.NPCType<Avalon.NPCs.Bosses.PreHardmode.BacteriumPrime>();
 
         public override void SendExtraAI(NPC npc, BitWriter bitWriter, BinaryWriter binaryWriter) {
-            if(Main.netMode == 0) return;
+            if(Main.netMode == 0 || Disabled) return;
             bitWriter.WriteBit(isGasAttackActive);
             binaryWriter.Write(phase1Timer);
             binaryWriter.Write(phase2Timer);
             binaryWriter.Write(gasAttackTimer);
             binaryWriter.Write(gasAttackPhase);
             binaryWriter.Write(gasShotsLeft);
+            binaryWriter.Write(sporeAttackTimer);
+            for(int i = 0; i < npc.localAI.Length; i++) binaryWriter.Write(npc.localAI[i]);
         }
         public override void ReceiveExtraAI(NPC npc, BitReader bitReader, BinaryReader binaryReader) {
-            if(Main.netMode == 0) return;
+            if(Main.netMode == 0 || Disabled) return;
             isGasAttackActive = bitReader.ReadBit();
             phase1Timer = binaryReader.ReadInt32();
             phase2Timer = binaryReader.ReadInt32();
             gasAttackTimer = binaryReader.ReadInt32();
             gasAttackPhase = binaryReader.ReadInt32();
             gasShotsLeft = binaryReader.ReadInt32();
+            sporeAttackTimer = binaryReader.ReadInt32();
+            for(int i = 0; i < npc.localAI.Length; i++) npc.localAI[i] = binaryReader.ReadSingle();
         }
 
         //hard
@@ -52,6 +57,7 @@ namespace Synergia.Common.GlobalNPCs.AI
         private const int ExtraProjectiles = 2;
 
         private static bool BuffEnabled => ModContent.GetInstance<BossConfig>().BacteriumPrimeBuffEnabled;
+        internal static bool Disabled = false;
 
         public override void SetDefaults(NPC npc)
         {
@@ -60,7 +66,8 @@ namespace Synergia.Common.GlobalNPCs.AI
 
         public override void AI(NPC npc)
         {
-
+            if(Disabled) return;
+            if(npc.ai[3] > 0f && npc.ai[3] < 60f) return;
             Player target = Main.player[npc.target];
             bool inPhaseTwo = npc.localAI[0] == 1f;
 
@@ -168,6 +175,20 @@ namespace Synergia.Common.GlobalNPCs.AI
                     phase2Timer = 0;
                 }
             }
+
+            if (!BacteriumPrimeBuff.Enabled)
+                return;
+
+
+            if (npc.velocity.Length() > 0.1f)
+            {
+                npc.velocity = Vector2.Normalize(npc.velocity) *
+                               MathHelper.Clamp(npc.velocity.Length() * BacteriumPrimeBuff.SpeedMultiplier, 0, BacteriumPrimeBuff.MaxSpeed);
+            }
+            KeepBossNearTarget(npc);
+            BuffPhase1Attacks(npc);
+            BuffPhase2Attacks(npc);
+            BuffSporeSeedAttack(npc);
         }
 
         private void StartGasAttack()
@@ -198,6 +219,14 @@ namespace Synergia.Common.GlobalNPCs.AI
                     Main.myPlayer);
             }
         }
+
+	public override void ModifyHitByProjectile(NPC npc, Projectile projectile, ref NPC.HitModifiers modifiers)
+	{
+		if(projectile.ModProjectile is PoisonGasTrap) {
+			modifiers.FinalDamage *= 0f;
+			modifiers.FinalDamage.Flat--;
+		}
+	}
 
         private void DoPhaseTwoAttack(NPC npc, Player target)
         {
@@ -230,6 +259,174 @@ namespace Synergia.Common.GlobalNPCs.AI
             }
 
             npc.velocity = Vector2.Zero;
+        }
+
+        private void BuffSporeSeedAttack(NPC npc)
+        {
+            // below 50% hp
+            if (npc.life >= npc.lifeMax * 0.5f)
+            {
+                sporeAttackTimer = 0;
+                return;
+            }
+
+            if (sporeAttackTimer > 0)
+            {
+                sporeAttackTimer--;
+                return;
+            }
+
+            Player target = Main.player[npc.target];
+            if (!target.active || target.dead) return;
+
+            if (Main.netMode != NetmodeID.MultiplayerClient)
+            {
+                Vector2 baseDirection = npc.DirectionTo(target.Center);
+                float spreadAngle = MathHelper.ToRadians(70);
+                for (int i = 0; i < 7; i++)
+                {
+                    float angle = MathHelper.Lerp(-spreadAngle / 2, spreadAngle / 2, i / 6f);
+                    Vector2 velocity = baseDirection.RotatedBy(angle) * 8f;
+            
+                    Projectile.NewProjectile(
+                        npc.GetSource_FromAI(),
+                        npc.Center,
+                        velocity,
+                        ModContent.ProjectileType<SporeSeed>(),
+                        (int)(npc.damage * 0.7f * BacteriumPrimeBuff.DamageMultiplier),
+                        0,
+                        -1
+                    );
+                }
+            }
+
+            sporeAttackTimer = Main.rand.Next(BacteriumPrimeBuff.SporeAttackCooldownMin, BacteriumPrimeBuff.SporeAttackCooldownMax);
+        }
+
+        private void KeepBossNearTarget(NPC npc)
+        {
+            Player target = Main.player[npc.target];
+            if (!target.active || target.dead || npc.ai[0] > 600 / BacteriumPrimeBuff.AttackRateMultiplier) return;
+
+            float distance = Vector2.Distance(npc.Center, target.Center);
+
+            if (distance > BacteriumPrimeBuff.MaxDistance)
+            {
+                Vector2 direction = npc.DirectionTo(target.Center);
+                npc.velocity = Vector2.Lerp(npc.velocity, direction * MathHelper.Min(12f, distance), 0.1f);
+
+                npc.Center = Vector2.Lerp(npc.Center, target.Center, 0.02f);
+            }
+        }
+
+        private void BuffPhase1Attacks(NPC npc)
+        {
+            if (npc.ai[3] == 0)
+            {
+                if (npc.ai[0] % (15 / BacteriumPrimeBuff.AttackRateMultiplier) == 0 && Main.netMode != NetmodeID.MultiplayerClient)
+                {
+                    for (int i = 0; i < 3; i++)
+                    {
+                        Projectile.NewProjectile(
+                            npc.GetSource_FromAI(),
+                            npc.Center + Main.rand.NextVector2Circular(npc.width * 0.7f, npc.height * 0.7f),
+                            Main.rand.NextVector2Circular(3f, 3f),
+                            ModContent.ProjectileType<BacteriumGas>(),
+                            (int)(12 * BacteriumPrimeBuff.DamageMultiplier),
+                            0,
+                            -1,
+                            1
+                        );
+                    }
+                }
+
+                if (npc.ai[0] > 600 / BacteriumPrimeBuff.AttackRateMultiplier)
+                {
+                    npc.velocity = npc.Center.DirectionTo(Main.player[npc.target].Center).RotatedBy(npc.localAI[0]) *
+                                   MathHelper.Min(npc.Center.Distance(Main.player[npc.target].Center) * 0.04f, 10);
+                }
+            }
+        }
+
+        private void BuffPhase2Attacks(NPC npc)
+        {
+            if (npc.ai[3] == 60)
+            {
+                Player target = Main.player[npc.target];
+                if (!target.active || target.dead) return;
+
+                if (npc.ai[1] > 150 / BacteriumPrimeBuff.AttackRateMultiplier && npc.ai[1] % (15 / BacteriumPrimeBuff.AttackRateMultiplier) == 0)
+                {
+                    if (Main.netMode != NetmodeID.MultiplayerClient)
+                    {
+                        for (int i = 0; i < 10; i++) 
+                        {
+                            Vector2 velocity = npc.Center.DirectionTo(target.Center)
+                                .RotatedByRandom(0.4f) * Main.rand.NextFloat(6f, 11f);
+
+                            Projectile.NewProjectile(
+                                npc.GetSource_FromAI(),
+                                npc.Center,
+                                velocity,
+                                ModContent.ProjectileType<CorrosiveMucus>(),
+                                (int)(npc.damage * 0.6f * BacteriumPrimeBuff.DamageMultiplier), 
+                                0,
+                                -1
+                            );
+                        }
+                    }
+                }
+
+                if (npc.localAI[0] <= 0)
+                {
+                    for (int i = 0; i < 10; i++) 
+                    {
+                        Projectile.NewProjectile(
+                            npc.GetSource_FromAI(),
+                            npc.Center,
+                            new Vector2(Main.rand.NextFloat(6f, 10f), 0)
+                                .RotatedBy(npc.Center.DirectionTo(target.Center).ToRotation() +
+                                           MathHelper.Pi / (10 * 2) - (i * MathHelper.Pi / (10 * 2))),
+                            ModContent.ProjectileType<BouncyBoogerBall>(),
+                            (int)(20 * BacteriumPrimeBuff.DamageMultiplier), 
+                            0,
+                            -1
+                        );
+                    }
+
+                    npc.localAI[0] = 360; 
+                }
+                else
+                {
+                    npc.localAI[0]--;
+                }
+                if (npc.localAI[1] <= 0)
+                {
+                    Vector2 dashVelocity = npc.DirectionTo(target.Center) * 18f; 
+                    npc.velocity = dashVelocity;
+                    if (Main.netMode != NetmodeID.MultiplayerClient)
+                    {
+                        for (int i = 0; i < 5; i++) 
+                        {
+                            Projectile.NewProjectile(
+                                npc.GetSource_FromAI(),
+                                npc.Center + Main.rand.NextVector2Circular(20f, 20f),
+                                Main.rand.NextVector2Circular(3f, 3f),
+                                ModContent.ProjectileType<BouncyBoogerBall>(),
+                                (int)(15 * BacteriumPrimeBuff.DamageMultiplier),
+                                0,
+                                -1
+                            );
+                        }
+                    }
+
+                    npc.localAI[1] = 420; 
+                }
+                else
+                {
+                    npc.localAI[1]--;
+                }
+            }
         }
     }
 }
