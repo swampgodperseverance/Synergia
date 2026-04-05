@@ -1436,6 +1436,7 @@ Projectiles: {
 	ProdigyGold.DisplayName: Prodigy Gold
 	ProdigyAshen.DisplayName: Prodigy Ashen
 	ProdigalSeraph.DisplayName: Prodigal Seraph
+	PoisonGasTrap.DisplayName: Poison Gas Trap
 }
 
 Buffs: {
