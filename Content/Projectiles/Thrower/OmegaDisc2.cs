@@ -16,7 +16,7 @@ using ValhallaMod.Visual;
 
 namespace Synergia.Content.Projectiles.Thrower
 {
-    public class OmegaDiscRework : ValhallaGlaive
+    public class OmegaDiscRework : GlaiveAI
     {
         private OmegaDisc trail1 = new OmegaDisc();
         private OmegaDisc2 trail2 = new OmegaDisc2();
@@ -30,8 +30,9 @@ namespace Synergia.Content.Projectiles.Thrower
             ProjectileID.Sets.TrailingMode[Projectile.type] = 3;
         }
 
-        public override void SetDefaults()
+        public new void SetDefaults()
         {
+            base.SetDefaults();
             Projectile.width = 34;
             Projectile.height = 34;
             Projectile.aiStyle = 0;
@@ -43,15 +44,12 @@ namespace Synergia.Content.Projectiles.Thrower
             extraUpdatesHoming = 1;
             extraUpdatesComingBack = 1;
             rotationSpeed = 0.5f;
-            bounces = 0;
             tileBounce = true;
             timeFlying = 20;
             speedHoming = 17.5f;
-            speedFlying = 17.5f;
             speedComingBack = 15f;
             homingDistanceMax = 320f;
             homingStyle = 0;
-            homingStart = false;
             homingIgnoreTile = false;
         }
 
@@ -251,7 +249,6 @@ namespace Synergia.Content.Projectiles.Thrower
 
             Vector2 drawPos = Projectile.Center - Main.screenPosition;
 
-            // Внешнее кольцо (медленнее, чуть больше)
             Main.spriteBatch.Draw(
                 ringTex,
                 drawPos,
@@ -264,7 +261,6 @@ namespace Synergia.Content.Projectiles.Thrower
                 0f
             );
 
-            // Внутреннее кольцо (быстрее, меньше, ярче)
             Main.spriteBatch.Draw(
                 ringTex,
                 drawPos,

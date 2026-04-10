@@ -10,7 +10,7 @@ using ValhallaMod.Projectiles.AI;
 namespace Synergia.Content.Projectiles.Thrower
 {
 	// Token: 0x020001F4 RID: 500
-	public class TeethBreakerMega : ValhallaGlaive
+	public class TeethBreakerMega : GlaiveAI
 	{
 		// Token: 0x06000955 RID: 2389 RVA: 0x00012DA5 File Offset: 0x00010FA5
 		public override void SetStaticDefaults()
@@ -19,10 +19,11 @@ namespace Synergia.Content.Projectiles.Thrower
 			ProjectileID.Sets.TrailingMode[base.Projectile.type] = 0;
 		}
 
-		// Token: 0x06000956 RID: 2390 RVA: 0x0005B780 File Offset: 0x00059980
-		public override void SetDefaults()
-		{
-			base.Projectile.width = 22;
+        // Token: 0x06000956 RID: 2390 RVA: 0x0005B780 File Offset: 0x00059980
+        public new void SetDefaults()
+        {
+            base.SetDefaults();
+            base.Projectile.width = 22;
 			base.Projectile.height = 22;
 			base.Projectile.friendly = true;
 			base.Projectile.DamageType = DamageClass.Throwing;
@@ -31,16 +32,12 @@ namespace Synergia.Content.Projectiles.Thrower
 			base.Projectile.scale = 1f;
 			base.Projectile.tileCollide = true;
 			base.Projectile.extraUpdates = 1;
-			this.glaive = true;
-			this.bounces = 0;
 			this.timeFlying = 30;
 			this.speedHoming = 9f;
-			this.speedFlying = 10f;
 			this.speedComingBack = 24f;
 			this.homingDistanceMax = 200f;
-			this.homingStyle = 2;
-			this.homingStart = false;
-			this.tileBounce = true;
+            this.homingStyle = HomingStyle.Hatchet;
+            this.tileBounce = true;
 			this.rotationSpeed = 0.20f;
 		}
 

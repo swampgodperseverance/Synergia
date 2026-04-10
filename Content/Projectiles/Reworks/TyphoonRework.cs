@@ -10,7 +10,7 @@ using Bismuth.Content.Projectiles;
 
 namespace Synergia.Content.Projectiles.Reworks
 {
-    public class TyphoonRework : ValhallaGlaive
+    public class TyphoonRework : GlaiveAI
     {
         private int trailCounter = 0;
         private const int TrailInterval = 3; 
@@ -20,9 +20,10 @@ namespace Synergia.Content.Projectiles.Reworks
             ProjectileID.Sets.TrailCacheLength[Projectile.type] = 4; 
             ProjectileID.Sets.TrailingMode[Projectile.type] = 2; 
         }
-        
-        public override void SetDefaults()
+
+        public new void SetDefaults()
         {
+            base.SetDefaults();
             Projectile.width = 40;
             DrawOffsetX = 4;
             Projectile.height = 48;
@@ -36,15 +37,12 @@ namespace Synergia.Content.Projectiles.Reworks
             Projectile.extraUpdates = 1;
             Projectile.aiStyle = -1;
             
-            bounces = 1;
             timeFlying = 26;
             speedHoming = 29f;
-            speedFlying = 40f;
-            speedComingBack = 200f;
+               speedComingBack = 200f;
             homingDistanceMax = 600f;
             homingStyle = HomingStyle.BasicGlaive;
-            homingStart = true;
-            homingIgnoreTile = true;
+               homingIgnoreTile = true;
         }
         
         public override void AI()
