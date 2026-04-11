@@ -40,6 +40,8 @@ Armors: {
 		However, you start taking continuous damage that can't be healed by Nurse
 		Your fire extinguishes in water
 		'''
+	ActiveBonus: Press {0} to active set bonus
+	ValhallaBonus: Swamp Help
 }
 
 Weapons: {

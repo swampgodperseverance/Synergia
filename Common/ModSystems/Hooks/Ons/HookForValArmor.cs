@@ -1,5 +1,4 @@
-﻿using Microsoft.Xna.Framework;
-using Synergia.Content.Projectiles.Armor;
+﻿using Synergia.Content.Projectiles.Armor;
 using System;
 using Terraria;
 using ValhallaMod.Items.Armor;
@@ -14,6 +13,8 @@ namespace Synergia.Common.ModSystems.Hooks.Ons
         public override int ArmorType => ItemType<ValhalliteHead>();
         public override void NewLogicForSetBonus(Orig_SetBonus orig, ModItem item, Player player) {
             orig(item, player);
+            string keyname = VanillaKeybinds.ArmorSetBonusActivation.GetAssignedKeys().Count > 0 ? VanillaKeybinds.ArmorSetBonusActivation.GetAssignedKeys()[0] : "UNBOUND";
+            player.setBonus += "\n" + string.Format(ItemTooltip(ARM, "ActiveBonus"), keyname) + "\n" + ItemTooltip(ARM, "ValhallaBonus");
             cooldownTimer++;
             if (cooldownTimer > 1800) {
                 cooldownTimer = 1800;
