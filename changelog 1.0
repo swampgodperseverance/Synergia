@@ -19,8 +19,9 @@ New background was added for the Frost Legion
 3 new types of presents were added, each with unique effects.
 New weapon Belphegor was added.
 New weapon Seaborn was added.
-New weapon Gluttony was added.
-New weapon Ghalihieri was added.
+New weapon Malebolge was added.
+New weapon Echelonis was added.
+New weapon Sodomist was added.
 New weapon Orcish Swungo was added.
 New weapon Blunderbussin was added.
 New weapon Sludge Mountain was added as an alternative to the Valhalla's evil guns.
@@ -103,6 +104,7 @@ New King Slime rework.
 New Twins rework.
 New Destroyer rework.
 Jade Emperor rework.
+New Bacterium Prime rework that was added into an Evil Bosses Rework mod.
 Wyverns AI now more passive.
 Harpy AI was changed.
 Snow Golem new visuals.
@@ -154,7 +156,8 @@ New Soundtrack "Peaceful Town" by Gojisturba was added.
 New Soundtrack "Gehenna" by Gojisturba was added.
 New Soundtrack "Sinlord Presence" by Mumb was added.
 CHANGES/REWORKS/RESPRITES
-Golem AIs changes were remade.
+Golem changes were remade.
+Lothor the Wild changes were remade.
 Brain of Chtulhu changes were remade.
 Added compatibility to the Unowen's Jungle and Evil bosses reworks. When player has these mods boss Ais are replaced by theirs
 Beast Bow from RoA was changed.(Attack Rework or Visual upgrade)
@@ -190,6 +193,7 @@ Jade spear from Valhalla was changed.(Attack Rework or Visual upgrade)
 Typhoon from Bismuth was changed.(Attack Rework or Visual upgrade)
 Fury of Waters from Bismuth was changed.(Attack Rework or Visual upgrade)
 Dwarven Battle Axe from Bismuth was changed.(Attack Rework or Visual upgrade)
+Theseus Sword from Bismuth was changed.(Attack Rework or Visual upgrade)
 Solar Wind from Bismuth was changed.(Attack Rework or Visual upgrade)
 Prominence from Bismuth was changed to the summon class.
 Prominence from Bismuth was changed.(Attack Rework or Visual upgrade)
@@ -213,6 +217,9 @@ Riveted Jacket from Bismuth was changed to the ranged class.
 Nomads Hood from Bismuth was changed to the throwing class.
 Nomads Jacket from Bismuth was changed to the throwing class.
 Nomads Boots from Bismuth were changed to the throwing class.
+Feral Helmet from Bismuth is a Thrower-Ranged armor now.
+Feral Breastplate from Bismuth is a Thrower-Ranged armor now.
+Feral Leggings from Bismuth is a Thrower-Ranged armor now.
 Moonlight Staff from Bismuth was changed to the summon class.
 Moonlight Staff from Bismuth was changed.(Attack Rework or Visual upgrade)
 Evil Narsil from Bismuth was changed.(Attack Rework or Visual upgrade)
@@ -423,17 +430,26 @@ Terra Glaive  damage was decreased by 10, crit chance was decreased by 8%, Use S
 Nano Star damage was decreased by 24, Use Spead and Use Animation was increased by 10(Horizons)
 Granite Charger damage was increased by 10 and mana usage was increased by 4(Horizons)
 Scorcher damage was decreased by 5 and mana usage was increased by 5. Use Spead and Use Animation was decreased by 3 (Horizons)
+Naginata damage was decreased by 12, Use Spead and Use Animation was decreased by 2(Horizons)
 Cranium Crasher damage was decreased by 34, Use Spead and Use Animation was increased by 10(Avalon)
 Chaos Tome Use Spead and Use Animation was increased by 5(Avalon)
 Beesting damage was decreased by 28, Use Spead and Use Animation was increased by 5 (Valhalla)
+Paint Roller damage was decreased by 5, Use Spead and Use Animation was decreased by 3(Valhalla)
+Bulbasword damage was decreased by 8, Use Spead and Use Animation was decreased by 3(Valhalla)
+Sanquine Katana damage was decreased by 6, Use Spead and Use Animation was decreased by 2(Avalon)
+Tentacle Spike damage was decreased by 12, Use Spead and Use Animation was decreased by 3(Terraria)
+Thunder Spear damage was decreased by 12, Use Spead and Use Animation was decreased by 3(Terraria)
+Valhallite Sword damage was decreased by 8(Valhalla)
 Chemical Prisoner damage was decreased by 5, Use Spead and Use Animation was increased by 4(Rise of Ages)
 Arterial Spray Use Spead and Use Animation was increased by 3(Rise of Ages)
+Starfusion damage was increased by 6(Rise of Ages)
 Rod of the Stream damage was decreased by 6 and mana usage was increased by 15. Use Spead and Use Animation was increased by 6 (Rise of Ages)
 Rod of the Shock mana usage was increased by 5(Rise of Ages)
 Smogscreen mana usage was increased by 6, Use Spead and Use Animation was increased by 8(Avalon)
 Star Wand damage was increased by 1, Use Spead and Use Animation was increased by 10(Horizons)
 Spore Staff mana usage was increased by 4, damage was decreased by 5(Valhalla)
 Wooden Staff mana usage was increased by 2, damage was increased by 2(Bismuth)
+Narsil damage was increased by 12(Bismuth)
 Egg Cannon damage was decreased by 6, Use Spead and Use Animation was increased by 2(Avalon)
 Base Terraria Zombie max life was increased by 20, contact damage was increased by 10 and defense was increased by 4.
 Base Terraria Demon max life was increased by 80, contact damage was increased by 10 and defense was increased by 4.
@@ -445,6 +461,7 @@ Orc max life was increased by 110 and defense was increased by 10(Bismuth)
 Orc Defender max life was increased by 140, contact damage was increased by 15 and defense was increased by 12(Bismuth)
 Orc Wizard max life was increased by 160, damage was increased by 10 and defense was increased by 5(Bismuth)
 Rhino Orc max life was increased by 500, contact damage was increased by 25 and defense was increased by 10(Bismuth)
+Banshee max life was increased by 150, damage was increased by 4(Bismuth)
 Orcish Portal max life was increased by 1100 and defense was increased by 15(Bismuth)
 Caesium Armor set crafting station was changed to the Caesium Heavy Anvil.
 Caesium Weapons crafting station was changed to the Caesium Heavy Anvil(Mace/Crossbow/Scimitar).
@@ -463,12 +480,15 @@ Warlock Armor set crafting station was changed to the Caesium Heavy Anvil.
 Titan Armor set crafting station was changed to the Caesium Heavy Anvil.
 Tonbogiri recipe tweaks: needs a terra spear for craft yet. Also crafting station was changed to the Caesium Heavy Anvil.
 Sparkly Wings crafting station was changed to the Caesium Heavy Anvil.
+Ferozium Pickaxe crafting station was changed to the Caesium Heavy Anvil.
+Ferozium Waraxe crafting station was changed to the Caesium Heavy Anvil.
 Suspicious Looking Skull crafting station was changed to the Caesium Heavy Anvil.
 Volcanic Reapeater crafting station was changed to the Caesium Heavy Anvil.
 Frigid Shard now requires Ice Crystal from Bismuth for crafting.
 Venom Spikes from Avalon now requires Vial of Venom for crafting.
 All Post-Desert Beak bars can be recrafted to each other now.
 Caesium Forge can be crafted with caesium chunks now.
+Magic granade recipe was removed, and it can be obtained from pirates now
 Gauntlet Potion recipe was recreated.
 Aura Potion from Avalon requires Flaming Fabric for crafting now.
 Clover Potion from Avalon requires Miracle Mint for crafting now.
@@ -548,6 +568,10 @@ Carnwennan requires 10 Pure Gold Chunks for crafting now.
 Dark Volley requires 5 Wicked Shards for crafting now.
 The Sea Beast now has a new recipe: Loose Cannon, The Galleon, Shotgun, Soul of Sight, Soul of Fright, Soul of Might
 The Sea Beast now has an alternative recipe with Naquadah and Bronze
+Ferozium Icesword has a big crafting tree now:  Blue Slice + Skadis Wrath + Adamantite Bars + Frost Core + Soul of Blight
+Blue Slice now has a Frigid Shard in craft.
+Skadis Wrath new recipe: Everliving Ice + Soul of Ice + Soul of Sight + Soul of Fright + Soul of Might
+Everliving Ice new recipe: Valhallite Sword + Osmium Bar + Frost Shard + Ice Crystal
 Add some wetness compatibility:
 1) Player gets less damage in hell when player has 75-100
 2) Water Fighter, Aqua Impact, Water Aura staff, Underwater aura staff, Underwater Scythe, Urchin Uppercutter, Typhoon deal more damage when player has 75-100
