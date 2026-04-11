@@ -1,5 +1,4 @@
-﻿using Bismuth.Utilities;
-using MonoMod.RuntimeDetour;
+﻿using MonoMod.RuntimeDetour;
 using System;
 using System.Collections.Generic;
 using System.Reflection;
