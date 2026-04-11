@@ -10,7 +10,7 @@ using ValhallaMod.Projectiles.Ranged.Thrown;
 
 namespace Synergia.Content.Projectiles.Thrower
 {
-    public class ThornChakram2 : ValhallaGlaive
+    public class ThornChakram2 : GlaiveAI
     {
         private bool stopping;
         private bool stopped;
@@ -29,8 +29,9 @@ namespace Synergia.Content.Projectiles.Thrower
             ProjectileID.Sets.TrailingMode[Projectile.type] = 0;
         }
 
-        public override void SetDefaults()
+        public new void SetDefaults()
         {
+            base.SetDefaults();
             Projectile.width = 34;
             Projectile.height = 34;
             Projectile.aiStyle = 0;
@@ -42,16 +43,14 @@ namespace Synergia.Content.Projectiles.Thrower
             extraUpdatesHoming = 1;
             extraUpdatesComingBack = 1;
             rotationSpeed = 0.4f;
-            bounces = 0;
             tileBounce = true;
             timeFlying = 22;
             speedHoming = 18f;
-            speedFlying = 18f;
+  
             speedComingBack = 20f;
             homingDistanceMax = 100f;
             homingStyle = 0;
-            homingStart = false;
-            homingIgnoreTile = false;
+              homingIgnoreTile = false;
         }
 
         public override void AI()

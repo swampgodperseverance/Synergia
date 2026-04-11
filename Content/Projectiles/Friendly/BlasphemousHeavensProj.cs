@@ -8,13 +8,15 @@ using System;
 
 namespace Synergia.Content.Projectiles.Friendly
 {
-    public class BlasphemousHeavensProj : ValhallaGlaive
+    public class BlasphemousHeavensProj : GlaiveAI
     {
         private int trailCounter = 0;
-        private const int TrailInterval = 3; 
-        
-        public override void SetDefaults()
+        private const int TrailInterval = 3;
+
+        public new void SetDefaults()
         {
+            base.SetDefaults();      
+
             Projectile.width = 30;
             DrawOffsetX = 4;
             Projectile.height = 30;
@@ -27,15 +29,13 @@ namespace Synergia.Content.Projectiles.Friendly
             Projectile.tileCollide = false;
             Projectile.extraUpdates = 1;
             Projectile.aiStyle = -1;
-            
-            bounces = 8;
+
             timeFlying = 30;
             speedHoming = 17f;
-            speedFlying = 17f;
+            timeFlying = 17;
             speedComingBack = 28f;
             homingDistanceMax = 600f;
             homingStyle = HomingStyle.BasicGlaive;
-            homingStart = true;
             homingIgnoreTile = true;
         }
 

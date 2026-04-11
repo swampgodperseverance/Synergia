@@ -9,7 +9,7 @@ using System;
 
 namespace Synergia.Content.Projectiles.Thrower
 {
-    public class ThunderChakramProj : ValhallaGlaive
+    public class ThunderChakramProj : GlaiveAI
     {
         public override void SetStaticDefaults()
         {
@@ -17,8 +17,9 @@ namespace Synergia.Content.Projectiles.Thrower
             ProjectileID.Sets.TrailingMode[Projectile.type] = 2;
         }
 
-        public override void SetDefaults()
+        public new void SetDefaults()
         {
+            base.SetDefaults();
             Projectile.width = 40;
             Projectile.height = 40;
 
@@ -34,14 +35,13 @@ namespace Synergia.Content.Projectiles.Thrower
             Projectile.extraUpdates = 1;
             Projectile.aiStyle = -1;
 
-            bounces = 1;
             timeFlying = 20;
             speedHoming = 17f;
-            speedFlying = 17f;
+
             speedComingBack = 28f;
             homingDistanceMax = 200f;
             homingStyle = HomingStyle.BasicGlaive;
-            homingStart = true;
+
             homingIgnoreTile = true;
         }
 

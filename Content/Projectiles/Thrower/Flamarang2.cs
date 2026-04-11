@@ -11,7 +11,7 @@ using Synergia.Trails;
 
 namespace Synergia.Content.Projectiles.Thrower
 {
-    public class Flamarang2 : ValhallaGlaive
+    public class Flamarang2 : GlaiveAI
     {
         private LavaRainbowRod lavaTrail = new LavaRainbowRod();
 
@@ -21,8 +21,9 @@ namespace Synergia.Content.Projectiles.Thrower
             ProjectileID.Sets.TrailingMode[Projectile.type] = 2;
         }
 
-        public override void SetDefaults()
+        public new void SetDefaults()
         {
+            base.SetDefaults();
             Projectile.width = 34;
             Projectile.height = 34;
             Projectile.aiStyle = 0;
@@ -34,15 +35,12 @@ namespace Synergia.Content.Projectiles.Thrower
             extraUpdatesHoming = 1;
             extraUpdatesComingBack = 1;
             rotationSpeed = 0.4f;
-            bounces = 0;
             tileBounce = true;
             timeFlying = 22;
             speedHoming = 18f;
-            speedFlying = 18f;
             speedComingBack = 20f;
             homingDistanceMax = 100f;
-            homingStyle = 0;
-            homingStart = false;
+            homingStyle = HomingStyle.Breaker;
             homingIgnoreTile = false;
         }
 

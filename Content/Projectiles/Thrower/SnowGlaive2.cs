@@ -12,7 +12,7 @@ using Synergia.Content.Projectiles.Thrower;
 
 namespace Synergia.Content.Projectiles.Thrower
 {
-    public class SnowGlaive2 : ValhallaGlaive
+    public class SnowGlaive2 : GlaiveAI
     {
         private bool shot;
         private int shootTimer;
@@ -24,8 +24,9 @@ namespace Synergia.Content.Projectiles.Thrower
             ProjectileID.Sets.TrailingMode[Type] = 2;
         }
 
-        public override void SetDefaults()
+        public new void SetDefaults()
         {
+            base.SetDefaults();
             Projectile.width = 30;
             Projectile.height = 30;
             DrawOffsetX = 4;
@@ -36,17 +37,14 @@ namespace Synergia.Content.Projectiles.Thrower
             Projectile.penetrate = 102;
             Projectile.scale = 0.9f;
 
-            bounces = 2;
             quickComeBack = true;
             timeFlying = 30;
 
-            speedFlying = 15f;
             speedHoming = 15f;
             speedComingBack = 20f;
 
             homingDistanceMax = 400f;
-            homingStyle = 1;
-            homingStart = false;
+            homingStyle = 0;
             homingIgnoreTile = false;
         }
 
