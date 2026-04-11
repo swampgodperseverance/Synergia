@@ -11,6 +11,9 @@
       <Reference Include="Bismuth">
         <HintPath>..\..\ModReader\Bismuth\Bismuth.dll</HintPath>
       </Reference>
+      <Reference Include="BloodMoonEnemiesRework">
+        <HintPath>lib\BloodMoonEnemiesRework.dll</HintPath>
+      </Reference>
       <Reference Include="Consolaria">
         <HintPath>..\..\ModReader\Consolaria\Consolaria.dll</HintPath>
       </Reference>
