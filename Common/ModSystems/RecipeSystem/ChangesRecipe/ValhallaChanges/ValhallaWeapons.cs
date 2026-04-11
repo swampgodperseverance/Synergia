@@ -40,6 +40,7 @@ namespace Synergia.Common.ModSystems.RecipeSystem.ChangesRecipe.AvalonsChanges {
         static void CreateEverIce()
         {
             Recipe recipe = Recipe.Create(ItemType<EverlivingIce>());
+            recipe.AddIngredient(ItemType<ValhalliteSword>(), 1);
             recipe.AddIngredient(ItemType<OsmiumBar>(), 10);
             recipe.AddIngredient(ItemType<FrostShard>(), 5);
             recipe.AddIngredient(ItemType<IceCrystal>(), 5);

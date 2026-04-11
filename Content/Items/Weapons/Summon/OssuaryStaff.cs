@@ -28,7 +28,7 @@ namespace Synergia.Content.Items.Weapons.Summon
             Item.useTime = 30;
             Item.useAnimation = 30;
 
-            Item.useStyle = ItemUseStyleID.Shoot; 
+            Item.useStyle = 1;
             Item.noUseGraphic = false;
             Item.staff[Item.type] = true;
 

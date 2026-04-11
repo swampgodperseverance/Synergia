@@ -36,7 +36,7 @@ namespace Synergia.Content.Projectiles.Thrower
 			this.speedHoming = 9f;
 			this.speedComingBack = 24f;
 			this.homingDistanceMax = 200f;
-            this.homingStyle = HomingStyle.Hatchet;
+            this.homingStyle = HomingStyle.Breaker;
             this.tileBounce = true;
 			this.rotationSpeed = 0.20f;
 		}

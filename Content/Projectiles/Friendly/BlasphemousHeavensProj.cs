@@ -32,7 +32,6 @@ namespace Synergia.Content.Projectiles.Friendly
 
             timeFlying = 30;
             speedHoming = 17f;
-            timeFlying = 17;
             speedComingBack = 28f;
             homingDistanceMax = 600f;
             homingStyle = HomingStyle.BasicGlaive;
