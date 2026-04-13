@@ -1,174 +1,298 @@
-﻿using Terraria;
-using Terraria.Audio;
-using Terraria.GameContent;
+﻿using System;
+using System.Collections.Generic;
+using ReLogic.Content;
+using Synergia.Helpers;
+using Terraria;
 using Terraria.ID;
 
 namespace Synergia.Content.Projectiles.Armor
 {
     public class AquaRework : ModProjectile
     {
-        private const float OrbitDistance = 52f;
-        private const float LerpSpeed = 0.16f;
-        private const float PulseSpeed = 0.08f;
-        private const int MaxShields = 4;
-        private const float DamageReduction = 0.15f;
+        private const float OrbitDuration = 140f;
+        private const float OrbitRadius = 42f;
+        private const float InitialAngularSpeed = 0.28f;
+        private const float FinalAngularSpeed = 0.015f;
 
-        public override void SetStaticDefaults()
+        private float currentAngle = 0f;
+        private float angularSpeed = InitialAngularSpeed;
+        private float timer = 0f;
+        private Vector2 targetDirection;
+        private float randomOffset;
+        private float rayRandomSeed;
+        private float[] rayRotations;
+        private float[] rayScaleX;
+        private float[] rayScaleY;
+        private float[] rayPulseSpeed;
+        private float[] rayAppearDelay;
+
+        private HashSet<int> affectedProjectiles = new HashSet<int>();
+
+        private static Asset<Texture2D> rayTexture;
+
+        public override void Load()
         {
-            ProjectileID.Sets.TrailCacheLength[Type] = 8;
-            ProjectileID.Sets.TrailingMode[Type] = 2;
+            rayTexture = ModContent.Request<Texture2D>("Synergia/Assets/Textures/Ray");
+        }
+
+        public override void Unload()
+        {
+            rayTexture = null;
         }
 
         public override void SetDefaults()
         {
-            Projectile.width = 22;
-            Projectile.height = 26;
+            Projectile.width = 32;
+            Projectile.height = 32;
             Projectile.friendly = true;
+            Projectile.DamageType = DamageClass.Magic;
+            Projectile.penetrate = 1;
             Projectile.tileCollide = false;
-            Projectile.timeLeft = 2;
-            Projectile.penetrate = -1;
-            Projectile.aiStyle = -1;
-            Projectile.extraUpdates = 1;
-            Projectile.usesLocalNPCImmunity = true;
-            Projectile.localNPCHitCooldown = 10;
+            Projectile.ignoreWater = true;
+            Projectile.timeLeft = 600;
+            Projectile.alpha = 255;
+            Projectile.light = 0.65f;
         }
 
         public override void AI()
         {
-            Player player = Main.player[Projectile.owner];
-            if (!player.active || player.dead)
+            Player owner = Main.player[Projectile.owner];
+            if (!owner.active)
             {
                 Projectile.Kill();
                 return;
             }
 
-            Projectile.timeLeft = 2;
-
-            if (Projectile.localAI[0] < 0f)
+            if (timer == 0)
             {
-                Projectile.localAI[0] = FindFreeSlot();
-            }
+                randomOffset = Main.rand.NextFloat(MathHelper.TwoPi);
+                rayRandomSeed = Main.rand.NextFloat(100f);
+                rayRotations = new float[6];
+                rayScaleX = new float[6];
+                rayScaleY = new float[6];
+                rayPulseSpeed = new float[6];
+                rayAppearDelay = new float[6];
 
-            int slot = (int)Projectile.localAI[0];
-            Vector2 targetOffset = GetSlotOffset(slot);
-            Vector2 targetPos = player.Center + targetOffset;
-
-            Projectile.Center = Vector2.Lerp(Projectile.Center, targetPos, LerpSpeed);
-            Projectile.velocity *= 0.92f;
-            Projectile.rotation = targetOffset.ToRotation() + MathHelper.PiOver2;
-
-            Projectile.localAI[1] += 0.02f;
-            float pulse = (float)System.Math.Sin(Projectile.localAI[1] * PulseSpeed * 2f) * 0.15f;
-            Projectile.scale = 1f + pulse;
-
-            if (Main.rand.NextBool(20))
-            {
-                Dust d = Dust.NewDustPerfect(Projectile.Center, DustID.WaterCandle,
-                    Vector2.UnitY * -1f, Scale: Projectile.scale * 1.2f);
-                d.noGravity = true;
-                d.velocity *= 0.2f;
-            }
-
-            ReduceHostileDamage(player);
-        }
-
-        private int FindFreeSlot()
-        {
-            bool[] occupied = new bool[MaxShields];
-
-            for (int i = 0; i < Main.maxProjectiles; i++)
-            {
-                Projectile other = Main.projectile[i];
-                if (other.active && other.type == Type && other.owner == Projectile.owner)
+                for (int i = 0; i < 6; i++)
                 {
-                    if (other.localAI[0] >= 0 && other.localAI[0] < MaxShields)
-                    {
-                        occupied[(int)other.localAI[0]] = true;
-                    }
+                    rayRotations[i] = Main.rand.NextFloat(-0.2f, 0.2f);
+                    rayScaleX[i] = Main.rand.NextFloat(0.4f, 0.6f);
+                    rayScaleY[i] = Main.rand.NextFloat(0.7f, 1.0f);
+                    rayPulseSpeed[i] = Main.rand.NextFloat(1.2f, 2.0f);
+                    rayAppearDelay[i] = Main.rand.NextFloat(0f, 8f);
                 }
+                Projectile.position += Main.rand.NextVector2Circular(8f, 8f);
             }
 
-            for (int slot = 0; slot < MaxShields; slot++)
+            timer++;
+
+            if (timer <= OrbitDuration)
             {
-                if (!occupied[slot])
-                    return slot;
+                float progress = timer / OrbitDuration;
+                float eased = EaseFunctions.EaseOutQuint(progress);
+                angularSpeed = MathHelper.Lerp(InitialAngularSpeed, FinalAngularSpeed, eased);
+
+                currentAngle += angularSpeed;
+
+                Vector2 offset = new Vector2(
+                    (float)Math.Cos(currentAngle + randomOffset) * OrbitRadius,
+                    (float)Math.Sin(currentAngle + randomOffset) * OrbitRadius
+                );
+
+                Projectile.Center = owner.Center + offset;
+                Projectile.rotation = 0f;
+
+                if (timer < 25)
+                    Projectile.alpha = (int)(255 * (1f - timer / 25f));
+                else
+                    Projectile.alpha = 0;
             }
-
-            return Main.rand.Next(MaxShields);
-        }
-
-        private Vector2 GetSlotOffset(int slot)
-        {
-            return slot switch
+            else
             {
-                0 => new Vector2(0, -OrbitDistance),
-                1 => new Vector2(OrbitDistance, 0),
-                2 => new Vector2(0, OrbitDistance),
-                3 => new Vector2(-OrbitDistance, 0),
-                _ => Vector2.Zero
-            };
-        }
-
-        private void ReduceHostileDamage(Player player)
-        {
-            Rectangle shieldHitbox = Projectile.Hitbox;
-
-            for (int i = 0; i < Main.maxProjectiles; i++)
-            {
-                Projectile proj = Main.projectile[i];
-
-                if (!proj.active || proj.damage <= 0 || proj.friendly)
-                    continue;
-
-                if (proj.owner == player.whoAmI || proj.owner == 255)
-                    continue;
-
-                if (Collision.CheckAABBvAABBCollision(shieldHitbox.TopLeft(), shieldHitbox.Size(),
-                    proj.Hitbox.TopLeft(), proj.Hitbox.Size()))
+                if (timer == OrbitDuration + 1)
                 {
-                    if (proj.localAI[1] != Projectile.whoAmI + 1)
-                    {
-                        proj.localAI[1] = Projectile.whoAmI + 1;
-                        proj.damage = (int)(proj.damage * (1f - DamageReduction));
+                    Vector2 toCursor = Main.MouseWorld - Projectile.Center;
+                    toCursor.Normalize();
+                    targetDirection = toCursor * (19f + Main.rand.NextFloat(-2f, 2f));
+                }
 
-                        for (int d = 0; d < 6; d++)
+                float flyProgress = (timer - OrbitDuration) / 50f;
+
+                if (flyProgress < 1f)
+                {
+                    float speedFactor = EaseFunctions.EaseOutCubic(flyProgress);
+                    Projectile.velocity = targetDirection * (1f - speedFactor * (0.88f + Main.rand.NextFloat(-0.05f, 0.05f)));
+                }
+                else
+                {
+                    Projectile.velocity *= 0.90f;
+                    Projectile.alpha += 6;
+                    if (Projectile.alpha >= 255)
+                        Projectile.Kill();
+                }
+
+                Projectile.rotation = Projectile.velocity.ToRotation() + MathHelper.PiOver2;
+            }
+
+            HandleProjectileInteraction();
+
+            Lighting.AddLight(Projectile.Center, 0.25f, 0.65f, 1.1f);
+        }
+
+        private void HandleProjectileInteraction()
+        {
+            bool canReflect = (timer > OrbitDuration && Projectile.timeLeft <= 30);
+
+            foreach (Projectile other in Main.projectile)
+            {
+                if (!other.active || other == Projectile) continue;
+                if (!other.hostile || other.damage <= 0) continue;
+                if (affectedProjectiles.Contains(other.whoAmI)) continue;
+
+                float distance = Vector2.Distance(Projectile.Center, other.Center);
+                float radius = Math.Max(Projectile.width, Projectile.height) / 2f + Math.Max(other.width, other.height) / 2f;
+
+                if (distance <= radius)
+                {
+                    if (canReflect)
+                    {
+                        other.velocity = Vector2.Reflect(other.velocity, Vector2.Normalize(other.Center - Projectile.Center));
+                        other.hostile = false;
+                        other.friendly = true;
+                        other.owner = Projectile.owner;
+
+                        for (int i = 0; i < 8; i++)
                         {
-                            Dust dust = Dust.NewDustPerfect(proj.Center, DustID.WaterCandle,
-                                Main.rand.NextVector2Circular(3f, 3f), Scale: 1.2f);
-                            dust.noGravity = true;
+                            Dust.NewDust(other.position, other.width, other.height, DustID.MagicMirror,
+                                other.velocity.X * 0.5f, other.velocity.Y * 0.5f, 100, Color.Cyan, 1.2f);
                         }
 
-                        SoundEngine.PlaySound(SoundID.Drip, Projectile.Center);
+                        affectedProjectiles.Add(other.whoAmI);
+                    }
+                    else
+                    {
+                        int newDamage = (int)(other.damage * 0.8f);
+                        if (newDamage < 1) newDamage = 1;
+                        other.damage = newDamage;
+
+                        for (int i = 0; i < 5; i++)
+                        {
+                            Dust.NewDust(other.position, other.width, other.height, DustID.BubbleBlock,
+                                other.velocity.X * 0.3f, other.velocity.Y * 0.3f, 80, Color.LightBlue, 0.8f);
+                        }
+
+                        affectedProjectiles.Add(other.whoAmI);
                     }
                 }
             }
         }
 
-        public override bool PreDraw(ref Color lightColor)
+        public override Color? GetAlpha(Color lightColor)
         {
-            return true;
+            return new Color(255, 255, 255, 255 - Projectile.alpha);
         }
 
         public override void PostDraw(Color lightColor)
         {
-            Texture2D texture = TextureAssets.Projectile[Projectile.type].Value;
-            Vector2 origin = texture.Size() / 2f;
+            if (rayTexture == null || !rayTexture.IsLoaded)
+                return;
+
+            Texture2D texture = ModContent.Request<Texture2D>(Texture).Value;
+            Vector2 drawOrigin = texture.Size() / 2f;
             Vector2 drawPos = Projectile.Center - Main.screenPosition;
 
-            float time = Main.GlobalTimeWrappedHourly * 2f;
-            float pulse1 = (float)System.Math.Sin(time + Projectile.whoAmI) * 0.5f + 0.5f;
-            float pulse2 = (float)System.Math.Cos(time * 0.7f + Projectile.whoAmI) * 0.4f + 0.6f;
+            for (int i = 0; i < 4; i++)
+            {
+                Vector2 offset = i switch
+                {
+                    0 => new Vector2(3, 0),
+                    1 => new Vector2(-3, 0),
+                    2 => new Vector2(0, 3),
+                    3 => new Vector2(0, -3),
+                    _ => Vector2.Zero
+                };
 
-            Color glow1 = new Color(0.2f, 0.5f + pulse1 * 0.3f, 1f, 0f) * 0.6f;
-            Main.EntitySpriteDraw(texture, drawPos, null, glow1, Projectile.rotation, origin,
-                Projectile.scale * 1.2f, SpriteEffects.None);
+                Color outline = new Color(60, 180, 255, (byte)(90 - Projectile.alpha / 3));
+                Main.EntitySpriteDraw(texture, drawPos + offset, null, outline,
+                    Projectile.rotation, drawOrigin, Projectile.scale * 1.15f, SpriteEffects.None, 0);
+            }
 
-            Color glow2 = new Color(0.3f, 0.8f, 1f, 0f) * (0.3f + pulse2 * 0.3f);
-            Main.EntitySpriteDraw(texture, drawPos, null, glow2, Projectile.rotation, origin,
-                Projectile.scale * 1.1f, SpriteEffects.None);
+            Color mainColor = new Color(140, 230, 255, (byte)(160 - Projectile.alpha / 2));
+            Main.EntitySpriteDraw(texture, drawPos, null, mainColor,
+                Projectile.rotation, drawOrigin, Projectile.scale * 1.05f, SpriteEffects.None, 0);
 
-            Main.EntitySpriteDraw(texture, drawPos, null, Projectile.GetAlpha(lightColor),
-                Projectile.rotation, origin, Projectile.scale, SpriteEffects.None);
+            if (timer > OrbitDuration)
+            {
+                float flyTime = timer - OrbitDuration;
+                float totalTime = 50f;
+
+                float rotationSpeed = 0.25f + rayRandomSeed * 0.008f;
+                float globalRotation = Main.GlobalTimeWrappedHourly * rotationSpeed;
+
+                Texture2D rayTex = rayTexture.Value;
+                Vector2 rayOrigin = new Vector2(rayTex.Width / 2f, rayTex.Height);
+
+                Main.spriteBatch.End();
+                Main.spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.Additive, SamplerState.LinearClamp,
+                    DepthStencilState.None, RasterizerState.CullNone, null, Main.GameViewMatrix.TransformationMatrix);
+
+                int rayCount = 6;
+
+                for (int i = 0; i < rayCount; i++)
+                {
+                    float appearStart = rayAppearDelay[i];
+                    float appearEnd = appearStart + 30f;
+                    float disappearStart = 70f;
+                    float disappearEnd = 85f;
+                    float appearProgress = MathHelper.Clamp((flyTime - appearStart) / (appearEnd - appearStart), 0f, 1f);
+                    float disappearProgress = MathHelper.Clamp((flyTime - disappearStart) / (disappearEnd - disappearStart), 0f, 1f);
+
+                    float intensityMultiplier = 1f;
+                    if (flyTime < appearEnd)
+                        intensityMultiplier = appearProgress;
+                    else if (flyTime > disappearStart)
+                        intensityMultiplier = 1f - disappearProgress;
+                    else
+                        intensityMultiplier = 1f;
+
+                    float rayIntensity = intensityMultiplier * (1f - Projectile.alpha / 255f);
+
+                    if (rayIntensity <= 0.02f) continue;
+
+                    float angle = MathHelper.TwoPi / rayCount * i + globalRotation + rayRotations[i];
+
+                    float pulseScale = 0.85f + (float)Math.Sin(Main.GlobalTimeWrappedHourly * rayPulseSpeed[i] + i) * 0.08f;
+
+                    float scaleMultiplier = MathHelper.Lerp(0.3f, 1f, appearProgress);
+                    if (flyTime > disappearStart)
+                        scaleMultiplier = MathHelper.Lerp(1f, 0.3f, disappearProgress);
+
+                    Color rayColor = new Color(90, 200, 255) * (rayIntensity * 0.6f);
+
+                    float scaleX = rayScaleX[i] * pulseScale * scaleMultiplier;
+                    float scaleY = rayScaleY[i] * (0.8f + rayIntensity * 0.2f) * scaleMultiplier;
+
+                    Main.EntitySpriteDraw(rayTex, drawPos, null, rayColor,
+                        angle, rayOrigin,
+                        new Vector2(scaleX, scaleY),
+                        SpriteEffects.None, 0);
+                }
+
+                Main.spriteBatch.End();
+                Main.spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.LinearClamp,
+                    DepthStencilState.None, RasterizerState.CullNone, null, Main.GameViewMatrix.TransformationMatrix);
+            }
+        }
+
+        public override void OnKill(int timeLeft)
+        {
+            for (int i = 0; i < 30; i++)
+            {
+                Dust d = Dust.NewDustDirect(Projectile.position, Projectile.width, Projectile.height, 172, Scale: 1.4f);
+                d.noGravity = true;
+                d.velocity *= 3.2f;
+                d.fadeIn = 1.3f;
+            }
         }
     }
 }
