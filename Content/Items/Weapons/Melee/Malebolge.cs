@@ -2,6 +2,7 @@ using System;
 using System.Diagnostics.Metrics;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Synergia.Content.Dusts;
 using Synergia.Content.Projectiles.Aura;
 using Synergia.Content.Projectiles.Other;
 using Synergia.Helpers;
@@ -95,6 +96,8 @@ namespace Synergia.Content.Items.Weapons.Melee
         public int hitCounter = 0;
         public float glowPulse = 0f;
         public float fade = 1f;
+        public int trailTimer = 0;
+
         public override void SetStaticDefaults()
         {
             ProjectileID.Sets.TrailCacheLength[Projectile.type] = 3;
@@ -114,6 +117,40 @@ namespace Synergia.Content.Items.Weapons.Melee
 
             float life = Projectile.timeLeft / 30f;
             fade = MathHelper.Clamp(life, 0f, 1f);
+
+            trailTimer++;
+            if (trailTimer >= 4)
+            {
+                trailTimer = 0;
+
+                var v = SynegiaHelper.PolarVector(15, (Projectile.Center - player.Center).ToRotation());
+                Vector2 trailPos = Projectile.Center - v;
+
+                for (int i = 0; i < Projectile.oldPos.Length; i++)
+                {
+                    if (Projectile.oldPos[i] == Vector2.Zero) continue;
+
+                    float intensity = 1f - (i / (float)Projectile.oldPos.Length);
+                    if (Main.rand.NextFloat() < intensity * 0.5f)
+                    {
+                        Vector2 oldPos = Projectile.oldPos[i] - v;
+                        Vector2 dustPos = oldPos + Main.rand.NextVector2Circular(Projectile.width * 0.3f, Projectile.height * 0.3f);
+
+                        Dust d = Dust.NewDustDirect(dustPos, 2, 2, ModContent.DustType<RingDust>());
+                        d.velocity = Main.rand.NextVector2Circular(1.2f, 1.2f);
+                        d.scale = Main.rand.NextFloat(0.1f, 0.3f) * intensity;
+                        d.color = new Color(255, 100 + Main.rand.Next(50), 40 + Main.rand.Next(30));
+                        d.noGravity = true;
+                        d.rotation = Main.rand.NextFloat(MathHelper.TwoPi);
+                        d.fadeIn = 0.2f;
+
+                        Dust d2 = Dust.NewDustDirect(dustPos, 2, 2, DustID.Torch);
+                        d2.velocity = Main.rand.NextVector2Circular(1.5f, 1.5f);
+                        d2.scale = Main.rand.NextFloat(0.8f, 1.2f) * intensity;
+                        d2.noGravity = true;
+                    }
+                }
+            }
 
             if (fade < 0.35f)
             {
@@ -150,6 +187,7 @@ namespace Synergia.Content.Items.Weapons.Melee
 
             base.PostAI();
         }
+
         public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
         {
             hitCounter++;
@@ -189,6 +227,7 @@ namespace Synergia.Content.Items.Weapons.Melee
                 }
             }
         }
+
         public override bool PreDraw(ref Color lightColor)
         {
             var player = Main.player[Projectile.owner];
@@ -244,6 +283,7 @@ namespace Synergia.Content.Items.Weapons.Melee
         {
             return base.PreKill(timeLeft);
         }
+
         public override void OnKill(int timeLeft)
         {
             var texture = TextureAssets.Projectile[Projectile.type].Value;

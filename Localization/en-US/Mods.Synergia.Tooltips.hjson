@@ -40,8 +40,10 @@ Armors: {
 		However, you start taking continuous damage that can't be healed by Nurse
 		Your fire extinguishes in water
 		'''
-	ActiveBonus: Press {0} to active set bonus
-	ValhallaBonus: Swamp Help
+	ActiveBonus: Press {0} to activate set bonus ability
+	ValhallaBonus: Summons a small Vallhalite Knight above the player's head that helps in the fight.
+	AshenBonus: Player becomes invincible and shows ashen copy which can distract enemies.
+	WaterBonus: Summons an Aqua Shield that can reflect projectiles and reduce their damage.
 }
 
 Weapons: {
