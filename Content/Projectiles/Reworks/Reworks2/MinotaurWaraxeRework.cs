@@ -2,7 +2,7 @@
 using System.IO;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using ReLogic.Content;                      // ← Add this for AssetRequestMode
+using ReLogic.Content;                      
 using Terraria;
 using Terraria.Audio;
 using Terraria.Graphics.CameraModifiers;
@@ -105,7 +105,7 @@ namespace Synergia.Content.Projectiles.Reworks.Reworks2
             }
 
             Projectile.Center = player.MountedCenter
-                - new Vector2(2f, 4f) * player.direction   // assuming Directions is typo / old name → use direction
+                - new Vector2(2f, 4f) * player.direction  
                 + armSwing.ToRotationVector2() * 12f
                 + swing.ToRotationVector2() * 28f * scaleMultiplier;
 
@@ -114,10 +114,6 @@ namespace Synergia.Content.Projectiles.Reworks.Reworks2
             player.compositeFrontArm.stretch = Player.CompositeArmStretchAmount.Full;
 
             Projectile.spriteDirection = player.direction;
-
-            // ────────────────────────────────────────────────────────────────
-            // Ground slam / flash logic (unchanged except syntax)
-            // ────────────────────────────────────────────────────────────────
 
             if (Collision.SolidCollision(
                 Projectile.Center + Projectile.rotation.ToRotationVector2() * scaleMultiplier * 24f - new Vector2(16f) * scaleMultiplier,
@@ -211,7 +207,6 @@ namespace Synergia.Content.Projectiles.Reworks.Reworks2
 
         public override bool PreDraw(ref Color lightColor)
         {
-            // Trail / afterimage effect (Extra_98 is usually the generic afterimage texture)
             Texture2D texTrail = ModContent.Request<Texture2D>("Terraria/Images/Extra_98", AssetRequestMode.ImmediateLoad).Value;
 
             Main.EntitySpriteDraw(
@@ -227,8 +222,6 @@ namespace Synergia.Content.Projectiles.Reworks.Reworks2
                 new Vector2(texTrail.Width / 2f, 0f),
                 scaleMultiplier * new Vector2(0.5f, Math.Abs(Projectile.oldRot[0] - Projectile.oldRot[1]) * 12f),
                 SpriteEffects.None, 0);
-
-            // Main texture
             Texture2D texMain = ModContent.Request<Texture2D>(Texture, AssetRequestMode.ImmediateLoad).Value;
 
             Main.EntitySpriteDraw(
@@ -241,8 +234,6 @@ namespace Synergia.Content.Projectiles.Reworks.Reworks2
                 scaleMultiplier,
                 Projectile.spriteDirection == 1 ? SpriteEffects.None : SpriteEffects.FlipHorizontally,
                 0);
-
-            // Glowmask (assuming you have a GlowTexture field/property defined somewhere)
             Texture2D texGlow = ModContent.Request<Texture2D>(GlowTexture, AssetRequestMode.ImmediateLoad).Value;
 
             Main.EntitySpriteDraw(
