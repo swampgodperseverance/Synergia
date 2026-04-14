@@ -7,6 +7,8 @@ using Terraria.ID;
 namespace Synergia.Common.GlobalItems
 {
     public class TrimarangGlobalItem : ThrowingGI {
+
+        public override string AbilityInfo => "TrimarangInfo";
         public override int ItemType => ItemID.Trimarang;
         public override bool NewBehavior(Item item, Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback) {
             velocity *= 1.5f;

@@ -51,8 +51,8 @@ Weapons: {
 	Inf: Although the item has a recipe, it is not possible to create it. This is done to clarify which item is needed for crafting.
 	BloodTooltips: Bloodthirsty Weapon
 	Cleaned: Cleaned
-	Info: Combo Weapon
-	BaseText: Weapons gain enhanced bonuses after 5 hits
+	Info: Barrageweaver Weapon
+	BaseText: After 5 successful hits unleashes an enhanced strikes.
 	SadTooltips: I bequeath this mod as a legacy for you
 	Shift: Press Left shift to see more information
 	Aeris: Aeris, Aeris, Aeris, Aeris, Aeris, Aeris, Aeris and others
@@ -61,4 +61,79 @@ Weapons: {
 	FireType_Frostburn: Frostburn
 	FireType_Shadowflame: Shadowflame
 	AdamantDaggerInfo: SSsssSs
+	ThornChakramInfo: A living thorn chakram that pauses mid-air to barrage enemies with spikes, then rapidly returns to the player.
+	AeglosInfo: A high velocity, piercing javelin.
+	AirflowInfo: A wind chakram that continuously spawns harpy feathers while flying.
+	AlbinoMandibleInfo: Shoots two mandibles instead of one.
+	AnchorInfo:
+		'''
+		A heavy iron anchor that slowly descends while shedding Junk.
+		Junk pierces multiple enemies on its way down.
+		'''
+	AzrealisInfo:
+		'''
+		A heart-piercing javelins that accelerate after a short delay.
+		Homes in on enemies, and heals the player on hit with a burst of loving energy
+		Even the sharpest arrow can mend a broken heart.
+		'''
+	BlazingSawsInfo: A spinning saw that sticks to enemies and leaps up to three times, leaving a trail of blood.
+	BoneInfo: Bunch of bones.
+	CactiStarInfo: A sharp and big cactus star that sticks to enemies.
+	AmericaShieldInfo: Shoots two shields instead of one.
+	CarnwennanInfo: Dark blade that creates a healing blood orb when it hits an enemy.
+	ChlorophytePiercerInfo:
+		'''
+		Sticks to enemies on hit, periodically releasing homing spore clouds that deal scaling damage.
+		Limits active sticks per target, glows with a pulsing green aura, and leaves behind a brief flash on impact.
+		'''
+	CDaggerInfo: Shoots three high-speed and short-living crystal daggers.
+	CGranadeInfo: Shoots a spinning shrapnel grenade.
+	EverwoodJavelinInfo: Shoots a high velocity javelin.
+	FlamarangInfo: Shoots a boomerang which releases melted lava copies.
+	FlarionInfo: Shoots a boomerang which releases 8 melted lava copies instead of 2 with higher speed.
+	FleshGrinderInfo:
+		'''
+		A flesh-hungry glaive.
+		It rips through enemies and spawns a blood shard on return.
+		'''
+	FruitcakeChakramInfo: Shoots three chakrams instead of one.
+	GarlicInfo: Shoots a Rotten Garlic that spreads gas.
+	IceGlaiveInfo: A frozen glaive that shatters into ice shards mid-flight, leaving a dazzling frost trail.
+	LanceaInfo: Shoots 3 high velocity mini-javelins.
+	MythJavInfo: Mythril javelin that calls down homing knives from the edges of the screen on every hit.
+	NanoStarInfo: Shoots a Nano Star that releases electrified copies on its way.
+	NaturalSelectionInfo: Shoots a boomerang that launches sludge on its way.
+	NightGlaiveInfo:
+		'''
+		A dark-hungry glaive.
+		It pauses mid-flight, erupts into four shadow blades, then returns.
+		'''
+	OmegaDiscInfo: An omega disc that detonates into two orbiting golden discs before returning.
+	PulsarInfo:
+		'''
+		Shoots 4 additional neon copies.
+		Pulsing with cyan light, these copies leave shadow bursts on its hits before fading into nothing.
+		'''
+	OrKaInfo: Releases 2 more ghosts copies on hit.
+	ShroomerangInfo: Shoots a boomerang that leaves mushrooms on its way.
+	TeethBreakerInfo: Shoots a high velocity pickaxe that can destroy tiles on its way.
+	StalloyScrewInfo: Shoots a big and powerful Stalloy Knife.
+	SJInfo:
+		'''
+		A solar javelin that calls down golden spears from the sky after impact.
+		Detonates when enough javelins stick into the same enemy.
+		'''
+	ScarletGungnirInfo:
+		'''
+		A cursed bloody spear that leaves a crimson ghost trail and gains supernatural speed during a blood moon.
+		Shoots two additional black copies.
+		'''
+	SnowballInfo: Shoots big snowball which releases smaller snowballs on its way
+	TitaniumWarhammerInfo:
+		'''
+		A heavy titanium hammer that explodes into mini hammers on impact.
+		They gather into a single returning hammer that grows stronger with each piece absorbed.
+		'''
+	WoodenBoomerangInfo: Shoots 2 boomerangs instead of 1.
+	TrimarangInfo: Shoots 2 high-velocity boomerangs instead of 1.
 }

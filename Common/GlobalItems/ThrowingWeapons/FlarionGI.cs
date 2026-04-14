@@ -11,6 +11,8 @@ namespace Synergia.Common.GlobalItems
 {
     public class FlaRIOMGlobalItem : ThrowingGI {
         public override int ItemType => ModContent.ItemType<Flarion>();
+
+        public override string AbilityInfo => "FlarionInfo";
         public override bool NewBehavior(Item item, Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback) {
             int newType = ModContent.ProjectileType<FlarionProj3>();
             velocity *= 1.2f;

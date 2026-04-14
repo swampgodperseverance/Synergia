@@ -9,6 +9,7 @@ namespace Synergia.Common.GlobalItems
 {
     public class BoneGlobalItem : ThrowingGI
     {
+        public override string AbilityInfo => "BoneInfo";
         public override int ItemType => ItemID.Bone;
 
         public override bool NewBehavior(Item item, Player player, EntitySource_ItemUse_WithAmmo source,

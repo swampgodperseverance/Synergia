@@ -12,7 +12,7 @@ namespace Synergia.Common.GlobalItems
     public class sgGlobalItem : ThrowingGI
     {
         public override int ItemType => ModContent.ItemType<ScarletGungnir>();
-
+        public override string AbilityInfo => "ScarletGungnirInfo";
         public override bool NewBehavior(
             Item item,
             Player player,

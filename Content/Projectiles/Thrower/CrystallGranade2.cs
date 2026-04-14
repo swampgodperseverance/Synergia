@@ -1,10 +1,11 @@
 ﻿using System;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
+using NewHorizons.Content.Projectiles.Ranged;
 using Terraria;
 using Terraria.Audio;
 using Terraria.ID;
 using Terraria.ModLoader;
-using NewHorizons.Content.Projectiles.Ranged;
 
 namespace Synergia.Content.Projectiles.Thrower
 {
@@ -19,6 +20,66 @@ namespace Synergia.Content.Projectiles.Thrower
             Projectile.DamageType = DamageClass.Throwing;
             Projectile.timeLeft = 80;
             Projectile.friendly = true;
+        }
+
+        public override bool PreDraw(ref Color lightColor)
+        {
+            Texture2D texture = ModContent.Request<Texture2D>(Texture).Value;
+            Vector2 origin = texture.Size() / 2f;
+            Vector2 screenPos = Projectile.Center - Main.screenPosition;
+
+            Main.spriteBatch.End();
+            Main.spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.Additive, Main.DefaultSamplerState, DepthStencilState.None, Main.Rasterizer, null, Main.GameViewMatrix.TransformationMatrix);
+
+            float pulse = 1f + 0.15f * (float)Math.Sin(Main.GlobalTimeWrappedHourly * 14f);
+
+            Color innerGlow = new Color(180, 230, 255, 140) * 0.9f;
+            Color outerGlow = new Color(100, 200, 255, 60) * 0.6f;
+
+            for (int i = 0; i < 8; i++)
+            {
+                Vector2 offset = (i * MathHelper.TwoPi / 8f).ToRotationVector2() * 5f;
+                Main.EntitySpriteDraw(
+                    texture,
+                    screenPos + offset,
+                    null,
+                    outerGlow,
+                    Projectile.rotation,
+                    origin,
+                    Projectile.scale * pulse * 1.15f,
+                    SpriteEffects.None
+                );
+            }
+            for (int i = 0; i < 6; i++)
+            {
+                Vector2 offset = (i * MathHelper.PiOver2 / 1.5f).ToRotationVector2() * 3f;
+                Main.EntitySpriteDraw(
+                    texture,
+                    screenPos + offset,
+                    null,
+                    innerGlow,
+                    Projectile.rotation,
+                    origin,
+                    Projectile.scale * pulse,
+                    SpriteEffects.None
+                );
+            }
+
+            Main.spriteBatch.End();
+            Main.spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, Main.DefaultSamplerState, DepthStencilState.None, Main.Rasterizer, null, Main.GameViewMatrix.TransformationMatrix);
+
+            Main.EntitySpriteDraw(
+                texture,
+                screenPos,
+                null,
+                lightColor,
+                Projectile.rotation,
+                origin,
+                Projectile.scale,
+                SpriteEffects.None
+            );
+
+            return false;
         }
 
         public override void OnKill(int timeLeft)
@@ -55,7 +116,7 @@ namespace Synergia.Content.Projectiles.Thrower
 
             if (Projectile.owner == Main.myPlayer)
             {
-                int count = Main.rand.Next(5, 8); // 5–7
+                int count = Main.rand.Next(5, 8);
                 float speed = 7f;
 
                 for (int i = 0; i < count; i++)

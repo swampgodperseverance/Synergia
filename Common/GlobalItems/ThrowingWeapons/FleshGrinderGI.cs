@@ -9,7 +9,8 @@ using Terraria.ID;
 namespace Synergia.Common.GlobalItems
 {
     public class FleshGrinderGlobalItem : ThrowingGI {
-        public override int ItemType => ModContent.ItemType<CrimiteGlaive>(); 
+        public override int ItemType => ModContent.ItemType<CrimiteGlaive>();
+        public override string AbilityInfo => "FleshGrinderInfo";
         public override bool NewBehavior(Item item, Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback) {
             int newType = ModContent.ProjectileType<FleshGrinder2>();
             velocity *= 1.2f;

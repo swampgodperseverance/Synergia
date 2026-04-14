@@ -10,7 +10,7 @@ namespace Synergia.Common.GlobalItems.ThrowingWeapons {
         public virtual string AbilityInfo => "BaseText";
         public sealed override bool AppliesToEntity(Item entity, bool lateInstantiation) => entity.type == ItemType;
         public sealed override bool Shoot(Item item, Player player, Terraria.DataStructures.EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback) {
-            if (player.GetModPlayer<ThrowingPlayer>().DoubleMode) { return NewBehavior(item, player, source, position, velocity, type, damage, knockback); }
+            if (player.GetModPlayer<ThrowingPlayer>().DoubleMode) { return NewBehavior(item, player, source, position, velocity, type, damage,  knockback); }
             return true;
         }
         public sealed override void OnHitNPC(Item item, Player player, NPC target, NPC.HitInfo hit, int damageDone) {

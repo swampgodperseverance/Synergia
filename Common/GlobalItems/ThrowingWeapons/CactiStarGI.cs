@@ -9,6 +9,7 @@ using ValhallaMod.Items.Weapons.Ranged.Thrown;
 namespace Synergia.Common.GlobalItems
 {
     public class cACTUSsTARgi : ThrowingGI {
+        public override string AbilityInfo => "CactiStarInfo";
         public override int ItemType => ModContent.ItemType<CactusStar>(); 
         public override bool NewBehavior(Item item, Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback) {
             int newType = ModContent.ProjectileType<CactusStar2>();

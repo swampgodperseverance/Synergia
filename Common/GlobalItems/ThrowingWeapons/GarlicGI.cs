@@ -9,6 +9,7 @@ using ValhallaMod.Items.Garden;
 namespace Synergia.Common.GlobalItems
 {
     public class GarlicGlobalItem : ThrowingGI {
+        public override string AbilityInfo => "GarlicInfo";
         public override int ItemType => ModContent.ItemType<Garlic>(); 
         public override bool NewBehavior(Item item, Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback) {
             int newType = ModContent.ProjectileType<Garlic2>();

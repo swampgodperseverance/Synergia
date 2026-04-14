@@ -11,6 +11,8 @@ using Terraria.ID;
 namespace Synergia.Common.GlobalItems
 {
     public class PulsarlobalItem : ThrowingGI {
+
+        public override string AbilityInfo => "PulsarInfo";
         public override int ItemType => ModContent.ItemType<Pulsar>();
         public override bool NewBehavior(Item item, Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback) {
             int pulsar2 = ModContent.ProjectileType<Pulsar2>();

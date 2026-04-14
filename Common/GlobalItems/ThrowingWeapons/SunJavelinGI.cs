@@ -9,6 +9,7 @@ using ValhallaMod.Items.Weapons.Ranged.Javelins;
 namespace Synergia.Common.GlobalItems
 {
     public class SJGlobalItem : ThrowingGI {
+        public override string AbilityInfo => "SJInfo";
         public override int ItemType => ModContent.ItemType<SunJavelin>(); 
         public override bool NewBehavior(Item item, Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback) {
             int newType = ModContent.ProjectileType<SunJavelin2>();

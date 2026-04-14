@@ -9,6 +9,8 @@ namespace Synergia.Common.GlobalItems
 {
     public class FlamarangGlobalItem : ThrowingGI {
         public override int ItemType => ItemID.Flamarang;
+
+        public override string AbilityInfo => "FlamarangInfo";
         public override bool NewBehavior(Item item, Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback) {
             int newType = ModContent.ProjectileType<Flamarang2>();
             velocity *= 1.2f;

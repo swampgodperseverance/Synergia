@@ -7,6 +7,8 @@ using Terraria.ID;
 namespace Synergia.Common.GlobalItems
 {
     public class WoodenBoomerangGlobalItem : ThrowingGI {
+
+        public override string AbilityInfo => "WoodenBoomerangInfo";
         public override int ItemType => ItemID.WoodenBoomerang;
         public override bool NewBehavior(Item item, Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback) {
             velocity *= 1.3f;

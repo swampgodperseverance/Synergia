@@ -8,6 +8,8 @@ using NewHorizons.Content.Items.Weapons.Throwing;
 namespace Synergia.Common.GlobalItems
 {
     public class BSGlobalItem : ThrowingGI {
+
+        public override string AbilityInfo => "BlazingSawsInfo";
         public override int ItemType => ModContent.ItemType<BlazingSaws>(); 
         public override bool NewBehavior(Item item, Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback) {
             int newType = ModContent.ProjectileType<BlazingSaws2>();
