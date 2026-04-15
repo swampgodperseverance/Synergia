@@ -38,6 +38,8 @@ public class DwarfUI : UIState {
         {ItemID.MoltenFury, ItemType<Enfer>()},
         {ItemID.FieryGreatsword, ItemType<Malebolge>()},
         {ItemID.Paintbrush, ItemType<FeneathsBrush>()},
+        {ItemID.Flamarang, ItemType<Flarion>()},
+        {ItemID.MoltenHamaxe, ItemType<CoreburnedAxe>()},
         {ItemType<FleshCap>(), ItemType<Gutshelmet>()},
         {ItemType<FleshPants>(), ItemType<Gutslegs>()},
         {ItemType<FleshWrappings>(), ItemType<Gutsplate>()},

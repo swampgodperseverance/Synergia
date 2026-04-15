@@ -1006,6 +1006,11 @@ Items: {
 		Tooltip: ""
 		DisplayName: Echelonis
 	}
+
+	CoreburnedAxe: {
+		DisplayName: Coreburned Axe
+		Tooltip: ""
+	}
 }
 
 Projectiles: {

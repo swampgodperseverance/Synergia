@@ -2,6 +2,7 @@
 using System.Linq;
 using Microsoft.Xna.Framework;
 using Synergia.Common.GlobalPlayer;
+using Synergia.Common.Rarities;
 using Synergia.Common.SUtils;
 using Terraria;
 using Terraria.ID;
@@ -18,7 +19,7 @@ namespace Synergia.Content.Items.Armor.Summon
         {
             Item.width = 26;
             Item.height = 20;
-            Item.rare = ItemRarityID.Red;
+            Item.rare = ModContent.RarityType<CoreburnedRarity>();
             Item.defense = 7;
             Item.value = Item.sellPrice(0, 5, 2, 10);
         }

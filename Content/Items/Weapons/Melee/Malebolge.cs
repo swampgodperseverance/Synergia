@@ -2,6 +2,7 @@ using System;
 using System.Diagnostics.Metrics;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Synergia.Common.Rarities;
 using Synergia.Content.Dusts;
 using Synergia.Content.Projectiles.Aura;
 using Synergia.Content.Projectiles.Other;
@@ -35,7 +36,8 @@ namespace Synergia.Content.Items.Weapons.Melee
             Item.useAnimation = 30;
             Item.knockBack = 0;
             Item.value = Item.sellPrice(0, 3, 50);
-            Item.rare = ItemRarityID.Pink;
+
+            Item.rare = ModContent.RarityType<CoreburnedRarity>();
             Item.autoReuse = false;
             Item.useTurn = false;
             Item.noMelee = true;

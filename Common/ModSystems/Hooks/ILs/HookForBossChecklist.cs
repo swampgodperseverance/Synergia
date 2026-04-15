@@ -82,12 +82,10 @@ namespace Synergia.Common.ModSystems.Hooks.ILs
 
             if (!c.TryGotoNext(MoveType.Before, i => i.MatchLdstr("RhinoOrcBoss")))
             {
-                Mod.Logger?.Warn("Bismuth hook: не нашли ldstr \"RhinoOrcBoss\"");
                 return;
             }
 
             int skips = 0;
-            bool found = false;
             float oldValue = 0f;
 
             while (c.TryGotoNext(MoveType.Before, i => i.MatchLdcR4(out oldValue)))
@@ -97,19 +95,10 @@ namespace Synergia.Common.ModSystems.Hooks.ILs
                 {
                     c.Remove();
                     c.Emit(OpCodes.Ldc_R4, 6.7f);
-                    found = true;
                     break;
                 }
             }
 
-            if (found)
-            {
-                Mod.Logger.Info($"Bismuth: заменили weight RhinoOrcBoss с {oldValue} → 6.7 (после {skips} ldc.r4)");
-            }
-            else
-            {
-                Mod.Logger.Warn("Bismuth: нашли имя, но не нашли ни одного ldc.r4 после него");
-            }
         }
 
     }

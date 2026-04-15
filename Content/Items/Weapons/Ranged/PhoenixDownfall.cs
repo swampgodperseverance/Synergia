@@ -1,13 +1,14 @@
-﻿using Microsoft.Xna.Framework;
+﻿using Avalon.Common;
+using Avalon.Common.Extensions;
+using Avalon.Common.Templates;
+using Avalon.Particles;
+using Microsoft.Xna.Framework;
+using Synergia.Common.Rarities;
+using Synergia.Content.Projectiles.RangedProjectiles;
 using Terraria;
 using Terraria.Audio;
 using Terraria.ID;
 using Terraria.ModLoader;
-using Avalon.Common;
-using Avalon.Common.Extensions;
-using Avalon.Common.Templates;
-using Avalon.Particles;
-using Synergia.Content.Projectiles.RangedProjectiles;
 
 namespace Synergia.Content.Items.Weapons.Ranged
 {
@@ -30,7 +31,7 @@ namespace Synergia.Content.Items.Weapons.Ranged
             Item.useStyle = ItemUseStyleID.Shoot;
             Item.noMelee = true;
             Item.value = Item.sellPrice(0, 5);
-            Item.rare = ItemRarityID.Yellow;
+            Item.rare = ModContent.RarityType<CoreburnedRarity>();
             Item.autoReuse = true;
             Item.shoot = ProjectileID.Bullet; 
             Item.shootSpeed = 10f;

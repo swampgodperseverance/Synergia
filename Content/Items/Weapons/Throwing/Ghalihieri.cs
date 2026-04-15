@@ -26,8 +26,9 @@ namespace Synergia.Content.Items.Weapons.Throwing
 			base.Item.useAnimation = 34;
 			base.Item.useTime = 34;
 			base.Item.noUseGraphic = true;
-			base.Item.rare = 4;
-			base.Item.shoot = ModContent.ProjectileType<GhalihieriProj>();
+
+            base.Item.rare = ModContent.RarityType<CoreburnedRarity>();
+            base.Item.shoot = ModContent.ProjectileType<GhalihieriProj>();
 			base.Item.value = Item.sellPrice(0, 1, 88, 0);
 		
 		}

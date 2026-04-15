@@ -1,6 +1,7 @@
 ﻿using System;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Synergia.Common.Rarities;
 using Synergia.Content.Projectiles.RangedProjectiles;
 using Terraria;
 using Terraria.Audio;
@@ -35,7 +36,8 @@ namespace Synergia.Content.Items.Weapons.Ranged
             Item.noMelee = true;
             Item.knockBack = 2.5f;
             Item.value = Item.buyPrice(0, 8, 50, 0);
-            Item.rare = ItemRarityID.Orange;
+
+            Item.rare = ModContent.RarityType<CoreburnedRarity>();
             Item.UseSound = SoundID.Item5;
             Item.autoReuse = false;
             Item.shoot = ModContent.ProjectileType<EnferArrow>();

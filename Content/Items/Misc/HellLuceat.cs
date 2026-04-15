@@ -1,7 +1,8 @@
-﻿using Microsoft.Xna.Framework;
+﻿using System;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Synergia.Common.Rarities;
 using Synergia.UIs;
-using System;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -14,7 +15,8 @@ namespace Synergia.Content.Items.Misc
         {
             Item.width = 20;
             Item.height = 20;
-            Item.rare = RarityType<Common.Rarities.LavaGradientRarity>();
+
+            Item.rare = ModContent.RarityType<CoreburnedRarity>();
             Item.useStyle = ItemUseStyleID.HoldUp;
             Item.useTime = 1;
             Item.useAnimation = 15;

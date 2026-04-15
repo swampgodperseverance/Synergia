@@ -1,4 +1,5 @@
 using Microsoft.Xna.Framework;
+using Synergia.Common.Rarities;
 using Terraria;
 using Terraria.ID;
 
@@ -10,7 +11,7 @@ public class Gutslegs : ModItem {
     public override void SetDefaults() {
         int width = 26; int height = 20;
         Item.Size = new Vector2(width, height);
-        Item.rare = ItemRarityID.Red;
+        Item.rare = ModContent.RarityType<CoreburnedRarity>();
         Item.defense = 8;
         Item.value = Item.sellPrice(0, 3, 9, 99);
     }

@@ -1,13 +1,14 @@
-﻿using ReLogic.Content;
-using Synergia.Common.GlobalItems;
-using Synergia.Common.GlobalPlayer.Armor;
-using Synergia.Common.SUtils;
-using Synergia.Trails;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ReLogic.Content;
+using Synergia.Common.GlobalItems;
+using Synergia.Common.GlobalPlayer.Armor;
+using Synergia.Common.Rarities;
+using Synergia.Common.SUtils;
+using Synergia.Trails;
 using Terraria;
 using Terraria.DataStructures;
 using Terraria.GameContent;
@@ -33,7 +34,7 @@ public sealed class FadingHellPants : ModItem
     {
         Item.width = 22;
         Item.height = 16;
-        Item.rare = ItemRarityID.Yellow;
+        Item.rare = ModContent.RarityType<CoreburnedRarity>();
         Item.defense = 9;
         Item.value = Item.sellPrice(0, 4, 0, 0);
     }

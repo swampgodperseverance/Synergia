@@ -7,6 +7,7 @@ using Avalon.Common.Templates;
 using Avalon.Particles;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Synergia.Common.Rarities;
 using Synergia.Helpers;
 using Terraria;
 using Terraria.Audio;
@@ -40,7 +41,8 @@ public class ScorcherRequiem : ModItem
         Item.shootSpeed = 10f;
         Item.autoReuse = true;
         Item.channel = true;
-        Item.rare = ItemRarityID.Lime;
+
+        Item.rare = ModContent.RarityType<CoreburnedRarity>();
         Item.value = Item.sellPrice(90, 4);
     }
 

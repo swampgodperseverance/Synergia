@@ -1,11 +1,12 @@
-﻿using rail;
+﻿using System;
+using System.Collections.Generic;
+using rail;
 using ReLogic.Content;
 using Synergia.Common.GlobalPlayer;
 using Synergia.Common.GlobalPlayer.Armor;
 using Synergia.Common.ModSystems;
+using Synergia.Common.Rarities;
 using Synergia.Common.SUtils;
-using System;
-using System.Collections.Generic;
 using Terraria;
 using Terraria.DataStructures;
 using Terraria.GameContent;
@@ -43,7 +44,8 @@ public sealed class FadingHellHat : ModItem {
     public override void SetDefaults() {
         Item.width = 26;
         Item.height = 20;
-        Item.rare = ItemRarityID.Yellow;
+
+        Item.rare = ModContent.RarityType<CoreburnedRarity>();
         Item.defense = 20;
         Item.value = Item.sellPrice(0, 6, 50, 0);
     }

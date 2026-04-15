@@ -4,6 +4,7 @@ using Avalon.Items.Accessories.Info;
 using Bismuth.Content.Items.Accessories;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Synergia.Common.Rarities;
 using Terraria;
 using Terraria.DataStructures;
 using Terraria.GameContent;
@@ -58,7 +59,8 @@ namespace Synergia.Content.Items.Weapons.Summon
             Item.buffType = ModContent.BuffType<Buffs.ProdigyBuff>();
             Item.shoot = ModContent.ProjectileType<Projectiles.Summon.ProdigalSeraph>();
             Item.shootSpeed = 0f;
-            Item.rare = ItemRarityID.Green;
+
+            Item.rare = ModContent.RarityType<CoreburnedRarity>();
             Item.value = Item.buyPrice(gold: 1, silver: 50);
         }
 
