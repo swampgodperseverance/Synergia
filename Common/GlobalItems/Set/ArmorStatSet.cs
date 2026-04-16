@@ -1,12 +1,13 @@
+using System.Collections.Generic;
+using Avalon.Buffs;
+using Synergia.Common.GlobalPlayer;
 using Terraria;
-using Terraria.ModLoader;
 using Terraria.ID;
 using Terraria.Localization;
-using System.Collections.Generic;
+using Terraria.ModLoader;
 using ValhallaMod; // AuraPlayer
 using ValhallaMod.Projectiles.AI;
 using static ValhallaMod.Projectiles.AI.AuraAI;
-using Avalon.Buffs;
 
 namespace Synergia.Common.GlobalItems.Set
 {
@@ -276,6 +277,24 @@ namespace Synergia.Common.GlobalItems.Set
                     player.moveSpeed -= 0.08f;
                     item.defense += 3;
                 }
+                if (item.type == bismuth.Find<ModItem>("WatersHelmet").Type)
+                {
+                    player.GetDamage(DamageClass.Magic) += 0.05f;
+                    player.manaRegenBonus += 8;
+                    item.defense += 5;
+                }
+                if (item.type == bismuth.Find<ModItem>("WatersBreastplate").Type)
+                {
+                    player.GetModPlayer<WaterPlayer>().waterAccessoryEquipped = true;
+                    player.GetCritChance(DamageClass.Magic) += 10f;
+                    item.defense += 13;
+                }
+                if (item.type == bismuth.Find<ModItem>("WatersLeggings").Type)
+                {
+                    player.GetDamage(DamageClass.Magic) += 0.08f;
+                    player.manaRegenBonus += 10;
+                    item.defense += 7;
+                }
 
             }
 		}
@@ -345,6 +364,10 @@ namespace Synergia.Common.GlobalItems.Set
 
             Add("Bismuth", "PikemansLeggings", "Items.PikemansLeggings.Tooltip");
             Add("Bismuth", "PikemansBreastplate", "Items.PikemansBreastplate.Tooltip");
+
+            Add("Bismuth", "WatersLeggings", "Items.WatersLeggings.Tooltip");
+            Add("Bismuth", "WatersBreastplate", "Items.WatersBreastplate.Tooltip");
+            Add("Bismuth", "WatersHelmet", "Items.WatersHelmet.Tooltip");
 
             if (item.type != ModContent.Find<ModItem>("Bismuth/NomadsBoots").Type)
                 return;

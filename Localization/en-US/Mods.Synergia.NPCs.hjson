@@ -38,15 +38,15 @@ HellDwarf: {
 	BestiaryInfo: Little is known other than that he can handle Sinstone Magma
 
 	Chat: {
-		Text: I think that lonely life not that bad. Sometimes I think i was kicked out for a reason and for better life. Better to be honest with yourself, than to live in a lie.
-		Text1: Interesting to hear all these lying stories. I hope you didn't believe'em
-		Text2: I don't truly know what's happening here, in this abandoned and collapsed place, but I feel confident that no one will disturb me.
-		Text3: On the one of the signs was written that here lived a race of people-demons. What you think, these stories are real?
-		Text4: But one thing I know for sure, there is enormous cave nearby. This cave is shelter of the Wyrm, those living here considered him a demigod, but he destroyed �em and their faith.
+		Text: Loneliness is not a curse for me. At the Inferno Frontier, the damned suffered together.. but remain alone. Exile was not punishment, looks like clarity
+		Text1: People cling to stories like sinners cling to hope. I hope you didn't believe'em
+		Text2: This place is silent, abandoned... yet it feels more honest than the world above. No lies and masks. Just ruins.
+		Text3: People-Demons, they say.. a whole race of them. Funny, isn’t it? In every tale, demons were once something else, even here
+		Text4: They worshipped the Wyrm as a demigod. Now, look around: ruins to the left, and a undivided cave to the right. You know, faith is fragile.. it only takes one truth to shatter it.
 		Text5: Interesting, what's hidden under this bridge? Monsters can't let me dive in, maybe I can find something?
-		Text6: The real reason why I was chased away that they think I'm a traitor.
-		Text7: But I'm not a traitor or a something. Heart of The Tundra, which was sealed in an ancient Ice Monument, was exchanged for protection and stolen by Jotunn
-		Text8: Heart of the Tundra is an ancient artifact which was protected by dwarves for decades
+		Text6: They called me a traitor. That's the reason, why i leaved the Frostholm. But tell me, is it betrayal to reject a lie?
+		Text7: They gave away the Heart of the Tundra for protection.. and called me a traitor for refusing to do the same. Jotunn knows the truth.
+		Text8: The dwarves guarded it. Not out of faith.. but fear of what happens when it’s gone.
 	}
 
 	TownNPCMood: {

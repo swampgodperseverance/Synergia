@@ -141,6 +141,28 @@ Items: {
 		Movement speed is decreased by 12%
 		Throwing damage is increased by 10%
 		'''
+	WatersBreastplate.Tooltip:
+		'''
+		More wetness - more damage and health regeneration
+		Increases magic critical strike chance by 10%
+		Underwater mana cost increased by 40%
+		10% increased damage resistance
+		10% increased movement speed
+		Lose 40 mana when hit
+		Damn that's wet
+		'''
+	WatersHelmet.Tooltip:
+		'''
+		More wetness - higher critical strike chance
+		Increases magic damage by 5%
+		Increases mana regeneration by 8
+		'''
+	WatersLeggings.Tooltip:
+		'''
+		More wetness - higher movement speed
+		Increases magic damage by 8%
+		Increases mana regeneration by 10
+		'''
 
 	EverwoodJavelin: {
 		DisplayName: Everwood Javelin
@@ -1003,13 +1025,17 @@ Items: {
 	}
 
 	Echelonis: {
-		Tooltip: ""
+		Tooltip:
+			'''
+			"If I created an angel, why does it feel closer to Hell than to Heaven?"
+			Summons a Prodigal Seraph to fight for you
+			'''
 		DisplayName: Echelonis
 	}
 
 	CoreburnedAxe: {
-		DisplayName: Coreburned Axe
 		Tooltip: ""
+		DisplayName: Coreburned Axe
 	}
 }
 

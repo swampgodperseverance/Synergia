@@ -68,4 +68,55 @@ namespace Synergia.Common.GlobalPlayer {
             return dust;
         }
     }
+    public class WaterPlayer : ModPlayer{
+        public bool waterAccessoryEquipped;
+
+        public override void ResetEffects(){
+            waterAccessoryEquipped = false;
+        }
+
+        public override void UpdateEquips(){
+            if (!waterAccessoryEquipped)
+                return;
+
+            Player.gills = true;
+            Player.endurance += 0.10f;
+            Player.moveSpeed += 0.10f;
+
+            if (Player.wet && !(Player.lavaWet || Player.honeyWet))
+            {
+                Player.manaCost += 0.40f;
+            }
+        }
+
+        public override void OnHitByNPC(NPC npc, Player.HurtInfo hurtInfo){
+            if (waterAccessoryEquipped && !hurtInfo.Dodgeable)
+            {
+                Player.statMana -= 40;
+
+                if (Player.statMana < 0)
+                    Player.statMana = 0;
+
+                if (Main.myPlayer == Player.whoAmI)
+                {
+                    NetMessage.SendData(MessageID.PlayerControls, -1, -1, null, Player.whoAmI);
+                }
+            }
+        }
+
+        public override void OnHitByProjectile(Projectile proj, Player.HurtInfo hurtInfo){
+            if (waterAccessoryEquipped && !hurtInfo.Dodgeable)
+            {
+                Player.statMana -= 40;
+
+                if (Player.statMana < 0)
+                    Player.statMana = 0;
+
+                if (Main.myPlayer == Player.whoAmI)
+                {
+                    NetMessage.SendData(MessageID.PlayerControls, -1, -1, null, Player.whoAmI);
+                }
+            }
+        }
+    }
 }

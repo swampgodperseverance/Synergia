@@ -6,11 +6,218 @@ Accessories: {
 		DivineEquipment: Divine Equipment
 
 		ArchmagesAmulet: {
-			Level1: +40 to maximum mana, -5% spell cost, +8 to magic critical strike chance, +8 to magic damage
-			Level2: +60 to maximum mana, -7% spell cost, +10 to magic critical strike chance, +10 to magic damage
-			Level3: +60 to maximum mana, -7% spell cost, +10 to magic critical strike chance, +10 to magic damage, magician's aura when your HP is under 25%
-			Level4: +60 to maximum mana, -10% spell cost, +12 to magic critical strike chance, +10 to magic damage, +10% mana regeneration, magician's aura when your HP is under 50%
-			Level5: +60 to maximum mana, -10% spell cost, +12 to magic critical strike chance, +10 to magic damage, +10% mana regeneration, magician's aura when your
+			Level1:
+				'''
+				Increases maximum mana by 40
+				5% reduced mana usage
+				8% increased magic critical strike chance
+				8% increased magic damage
+				'''
+			Level2:
+				'''
+				Increases maximum mana by 60
+				7% reduced mana usage
+				10% increased magic critical strike chance
+				10% increased magic damage
+				'''
+			Level3:
+				'''
+				Increases maximum mana by 60
+				7% reduced mana usage
+				10% increased magic critical strike chance
+				10% increased magic damage
+				Creates a Magician's Aura when below 25% health
+				'''
+			Level4:
+				'''
+				Increases maximum mana by 60
+				10% reduced mana usage
+				12% increased magic critical strike chance
+				10% increased magic damage
+				10% increased mana regeneration
+				Creates a Magician's Aura when below 50% health
+				'''
+			Level5:
+				'''
+				Increases maximum mana by 60
+				10% reduced mana usage
+				12% increased magic critical strike chance
+				10% increased magic damage
+				10% increased mana regeneration
+				Creates a Magician's Aura at all times
+				'''
+		}
+
+		AthenasShield: {
+			Level1:
+				'''
+				10% increased healing from potions
+				Reduces potion cooldown by 5 seconds
+				+10 defense when below 100 health
+				'''
+			Level2:
+				'''
+				15% increased healing from potions
+				Reduces potion cooldown by 5 seconds
+				+10 defense when below 150 health
+				'''
+			Level3:
+				'''
+				15% increased healing from potions
+				Reduces potion cooldown by 8 seconds
+				+10 defense when below 150 health
+				3% chance to reflect projectiles
+				'''
+			Level4:
+				'''
+				15% increased healing from potions
+				Reduces potion cooldown by 8 seconds
+				+18 defense when below 150 health
+				8% chance to reflect projectiles
+				'''
+			Level5:
+				'''
+				15% increased healing from potions
+				Reduces potion cooldown by 10 seconds
+				+25 defense when below 150 health
+				10% chance to reflect projectiles
+				15% increased damage reduction
+				'''
+		}
+
+		HeartOfDesert: {
+			Level1:
+				'''
+				In the desert player gets:
+				+10% movement speed
+				Increased life regeneration
+				+8% increased damage
+				'''
+			Level2:
+				'''
+				In the desert player gets:
+				+10% movement speed
+				Greatly increased life regeneration
+				+10% increased damage
+				+8 increased increased defense
+				Ignores the Sandstorm
+				'''
+			Level3:
+				'''
+				In the desert player gets:
+				+15% movement speed
+				Greatly increased life regeneration
+				+12% increased damage
+				+6% increased crit chance
+				+12 increased defense
+				Ignores the Sandstorm
+				'''
+			Level4:
+				'''
+				In the desert player gets:
+				+15% movement speed
+				Greatly increased life regeneration
+				+15% increased damage
+				+8% increased crit chance
+				+15 increased defense
+				+5% increased damage endurance
+				Ignores the Sandstorm
+				'''
+			Level5:
+				'''
+				In the desert player gets:
+				+20% movement speed
+				Significantly increased life regeneration
+				+18% increased damage
+				+10% increased crit chance
+				+20 increased defense
+				+10% increased damage endurance
+				Ignores the Sandstorm
+				'''
+		}
+
+		RingOfOmnipotence: {
+			Level1:
+				'''
+				+8% increased damage
+				+5% increased damage reduction
+				'''
+			Level2:
+				'''
+				+10% damage
+				+25 maximum life
+				+8% damage reduction
+				'''
+			Level3:
+				'''
+				+10% damage
+				+25 maximum life
+				+8% damage reduction
+				Low chance to dodge attacks
+				'''
+			Level4:
+				'''
+				+10% damage
+				+40 maximum life
+				+10% damage reduction
+				Small chance to dodge attacks
+				Returns damage to enemies when dodging
+				'''
+			Level5:
+				'''
+				+12% damage
+				+60 maximum life
+				+15% damage reduction
+				Small chance to dodge attacks
+				Returns triple damage to enemies when dodging
+				'''
+		}
+
+		HerosBoots: {
+			Level1:
+				'''
+				Allows walking on water and lava
+				Fast fall speed
+				'''
+			Level2:
+				'''
+				Allows walking on water and lava
+				Increased movement speed
+				Increased jump height
+				Negates fall damage
+				"Heroes don't look down"
+				'''
+			Level3:
+				'''
+				Allows walking on water and lava
+				Increased movement speed
+				Increased jump height
+				Negates fall damage
+				30% chance to dodge an attack while dashing
+				"Heroes don't look down"
+				'''
+			Level4:
+				'''
+				Grants immunity to lava
+				Allows walking on water and lava
+				Significantly increased movement speed
+				Greatly increased jump height
+				Negates fall damage
+				50% chance to dodge an attack while dashing
+				Increased regen while running
+				"Heroes don't look down"
+				'''
+			Level5:
+				'''
+				Grants immunity to lava
+				Allows walking on water and lava
+				Maximally increased movement speed
+				Incredible jump height
+				Negates fall damage
+				70% chance to dodge an attack while dashing
+				Good regen while running
+				"Heroes don't look down"
+				'''
 		}
 	}
 }
