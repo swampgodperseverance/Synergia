@@ -3,17 +3,18 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using Synergia.Content.Projectiles.Friendly;
 
 namespace Synergia.Content.Projectiles.Friendly
 {
     public class ValhalliteJavelinProj : ModProjectile
     {
+        private float glowPulse;
+
         public override void SetDefaults()
         {
             Projectile.width = 18;
             Projectile.height = 18;
-            Projectile.aiStyle = 113; 
+            Projectile.aiStyle = 113;
             Projectile.friendly = true;
             Projectile.penetrate = 3;
             Projectile.timeLeft = 600;
@@ -24,18 +25,24 @@ namespace Synergia.Content.Projectiles.Friendly
 
         public override void AI()
         {
-            if (Main.rand.NextBool(64)) 
+            if (glowPulse > 0f)
+                glowPulse *= 0.9f;
+
+            if (Main.rand.NextBool(64))
             {
                 int soul = Projectile.NewProjectile(
                     Projectile.GetSource_FromAI(),
                     Projectile.Center,
                     Vector2.Zero,
                     ModContent.ProjectileType<ValhalliteSoul>(),
-                    0, 
+                    0,
                     0,
                     Projectile.owner
                 );
+
                 Main.projectile[soul].ai[0] = Projectile.identity;
+
+                glowPulse = 1f;
             }
 
             Lighting.AddLight(Projectile.Center, 0.3f, 0.6f, 0.9f);
@@ -75,23 +82,34 @@ namespace Synergia.Content.Projectiles.Friendly
                 }
             }
 
-
-
             Lighting.AddLight(Projectile.Center, 0.8f, 1.0f, 1.2f);
         }
 
         public override bool PreDraw(ref Color lightColor)
         {
             var texture = Terraria.GameContent.TextureAssets.Projectile[Projectile.type].Value;
-            Vector2 drawOrigin = new Vector2(texture.Width * 0.5f, Projectile.height * 0.5f);
+            Vector2 origin = new Vector2(texture.Width * 0.5f, Projectile.height * 0.5f);
+            Vector2 basePos = Projectile.Center - Main.screenPosition;
+
+            float intensity = glowPulse * 0.5f;
+            Color glowColor = Color.Cyan * intensity;
+
+            for (int i = 0; i < 4; i++)
+            {
+                Vector2 offset = new Vector2(2f, 0f).RotatedBy(i * MathHelper.PiOver2);
+                Main.spriteBatch.Draw(texture, basePos + offset, null, glowColor, Projectile.rotation, origin, Projectile.scale, SpriteEffects.None, 0f);
+            }
 
             for (int k = 0; k < Projectile.oldPos.Length; k++)
             {
-                Vector2 drawPos = Projectile.oldPos[k] + drawOrigin - Main.screenPosition;
+                Vector2 drawPos = Projectile.oldPos[k] + origin - Main.screenPosition;
                 Color color = Projectile.GetAlpha(lightColor) * ((Projectile.oldPos.Length - k) / (float)Projectile.oldPos.Length);
-                Main.spriteBatch.Draw(texture, drawPos, null, color, Projectile.rotation, drawOrigin, Projectile.scale, SpriteEffects.None, 0f);
+                Main.spriteBatch.Draw(texture, drawPos, null, color, Projectile.rotation, origin, Projectile.scale, SpriteEffects.None, 0f);
             }
-            return true;
+
+            Main.spriteBatch.Draw(texture, basePos, null, lightColor, Projectile.rotation, origin, Projectile.scale, SpriteEffects.None, 0f);
+
+            return false;
         }
     }
 }

@@ -29,16 +29,17 @@ HellDwarf: {
 
 	Name: {
 		Skyzephire: Verge
-		Thorin: Thorfinnsson
-		Belegar: Belegar Hellhammer
+		Thorin: Thorfinnson
+		Belegar: Belegar
 		Dragan: Dragan
 		Wulfrik: Wulfrik Kerdo
+		Molk: Molk
 	}
 
 	BestiaryInfo: Little is known other than that he can handle Sinstone Magma
 
 	Chat: {
-		Text: Loneliness is not a curse for me. At the Inferno Frontier, the damned suffered together.. but remain alone. Exile was not punishment, looks like clarity
+		Text: Loneliness is not a curse for me. At the Inferno Frontier, the damned suffered together.. but remain alone. Exile wasn't a punishment, looks like clarity
 		Text1: People cling to stories like sinners cling to hope. I hope you didn't believe'em
 		Text2: This place is silent, abandoned... yet it feels more honest than the world above. No lies and masks. Just ruins.
 		Text3: People-Demons, they say.. a whole race of them. Funny, isn’t it? In every tale, demons were once something else, even here
@@ -47,6 +48,20 @@ HellDwarf: {
 		Text6: They called me a traitor. That's the reason, why i leaved the Frostholm. But tell me, is it betrayal to reject a lie?
 		Text7: They gave away the Heart of the Tundra for protection.. and called me a traitor for refusing to do the same. Jotunn knows the truth.
 		Text8: The dwarves guarded it. Not out of faith.. but fear of what happens when it’s gone.
+		Text9: Backwoods... Such an interesting place. A forest that forgot the sun. When I last time was there, this place was very unfriendly.
+		Text10: Lava shouldn’t breath, as you know. Those burning clouds are not smoke, but whispers of something trapped below.
+		Text11: '''I can't believe i let them went away. Last time i was on the surface was 	16 years ago.'''
+		Text12: I’ve seen the flames rise without heat. The fire itself is trying to escape its own prison. All the sinners behind this place were the same.
+		Text13: I still remember the Druid’s rage. I stopped blaming him a long time ago because i just used to it. The truth is worse people like him will always exist, waiting for a reason to justify it. That’s what I hate the most, not the curse, not the flames. The fact that humanity always finds a way to become the same thing.
+		Text14: Push kindness far enough, and it turns into hatred. Push hatred far enough, and it begins to resemble mercy. Most people will never see the difference.
+		Text15: Glimpses of harmlessness in eyes of demons, sometimes they much closer to god, than people themselves.
+		Text16: One life or many.. you choose, and nothing changes. Again. Like Sisyphus - but your stone bleeds.
+		Text17: Worse. Tired. Less than I was.
+		Text18: Magma Sinstone.. Havent heard about it for a while. Even fire hesitates to touch it.
+		ProdigyDialog: You think a Seraph makes you closer to the God? All it shows is that even something sacred can be broken.
+		SinlordDialog: I cant lie, im afraid of you. You and I are kin of similae, but you destroy those who destroyed others. Are you better than them?
+		FirstMeetDialog: I almost forgot what a human voice sounds like. This city died slowly ash by ash, soul by soul. Funny that I thought if I ever saw someone again, I’d feel relief. Turns out, it’s something closer to unease. Hope you won't cause any troubles.
+		MolkDialog: Tell me please, are you a fucking idiot? Shiiiiiiiiiiit That's why I'm calling you. Fuuuuuuuuuuuuuuuuuck. FUUUUUCK. Donkeyfuckers.
 	}
 
 	TownNPCMood: {

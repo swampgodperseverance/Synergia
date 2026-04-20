@@ -1,5 +1,4 @@
-﻿// Code by SerNik
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Bismuth.Content.Items.Materials;
 using Bismuth.Content.Items.Other;
 using Synergia.Common.ModSystems;
@@ -17,7 +16,7 @@ namespace Synergia.Content.NPCs {
     [AutoloadHead]
     public class HellDwarf : ModNPC {
         public override string LocalizationCategory => Category(CategoryName.NPC);
-        public override List<string> SetNPCNameList() => [this.GetLocalizedValue("Name.Skyzephire"), this.GetLocalizedValue("Name.Thorin"), this.GetLocalizedValue("Name.Belegar"), this.GetLocalizedValue("Name.Dragan"), this.GetLocalizedValue("Name.Wulfrik")];
+        public override List<string> SetNPCNameList() => [this.GetLocalizedValue("Name.Skyzephire"), this.GetLocalizedValue("Name.Thorin"), this.GetLocalizedValue("Name.Belegar"), this.GetLocalizedValue("Name.Dragan"), this.GetLocalizedValue("Name.Molk"), this.GetLocalizedValue("Name.Wulfrik")];
         public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry) {
             bestiaryEntry.Info.AddRange(
             [
@@ -67,19 +66,49 @@ namespace Synergia.Content.NPCs {
             else { return false; }
         }
         public override bool CanGoToStatue(bool toKingStatue) => toKingStatue;
-        public override string GetChat() {
-            return Main.rand.Next(maxValue: 9) switch {
-                0 => GetText("Text"),
-                1 => GetText("Text1"),
-                2 => GetText("Text2"),
-                3 => GetText("Text3"),
-                4 => GetText("Text4"),
-                5 => GetText("Text5"),
-                6 => GetText("Text6"),
-                7 => GetText("Text7"),
-                8 => GetText("Text8"),
-                _ => Language.GetTextValue("tModLoader.DefaultTownNPCChat"),
+        public override string GetChat(){
+            Player player = Main.LocalPlayer;
+
+            if (player.name == "Molk")
+            {
+                return GetText("MolkDialog");
+            }
+
+            if (NPC.localAI[0] == 0f)
+            {
+                NPC.localAI[0] = 1f;
+                return GetText("FirstMeetDialog");
+            }
+
+            List<string> chats = new(){
+                GetText("Text"),
+                GetText("Text1"),
+                GetText("Text2"),
+                GetText("Text3"),
+                GetText("Text4"),
+                GetText("Text5"),
+                GetText("Text6"),
+                GetText("Text7"),
+                GetText("Text8"),
+                GetText("Text9"),
+                GetText("Text10"),
+                GetText("Text11"),
+                GetText("Text12"),
+                GetText("Text13"),
+                GetText("Text14"),
+                GetText("Text15"),
+                GetText("Text16"),
+                GetText("Text17"),
+                GetText("Text18"),
             };
+
+            if (player.HasBuff(ModContent.BuffType<Buffs.ProdigyBuff>()))
+                chats.Add(GetText("ProdigyDialog"));
+
+            if (DownedBossSystem.DownedSinlordBoss)
+                chats.Add(GetText("SinlordDialog"));
+
+            return chats[Main.rand.Next(chats.Count)];
         }
         // TODO: add item for shop
         public override void AddShops()
@@ -113,8 +142,6 @@ namespace Synergia.Content.NPCs {
                 shopCustomPrice = Item.buyPrice(platinum: 1, gold: 50)
             }, condHardmode);
 
-            shop.Add(new Item(ItemID.HellfireArrow) { shopCustomPrice = Item.buyPrice(silver: 8, copper: 80) });
-            shop.Add(new Item(ItemType<ValhallaMod.Items.Placeable.Painting.MemoriesOfFire>()) { shopCustomPrice = Item.buyPrice(gold: 10) });
 
             shop.Add(new Item(ItemType<Avalon.Items.Material.Shards.FireShard>()) { shopCustomPrice = Item.buyPrice(silver: 35) }, wOF);
             shop.Add(new Item(ItemID.LavaAbsorbantSponge) { shopCustomPrice = Item.buyPrice(platinum: 1, gold: 50) }, wOF);
