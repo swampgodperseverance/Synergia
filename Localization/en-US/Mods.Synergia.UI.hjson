@@ -11,6 +11,7 @@ DwarfUI: {
 }
 
 DwarfChat.NoQuest: I don't have quests for you yet.
+BismuthBook.NoSupport: Synergia not support skill!
 
 ChatsMsg: {
 	tPacer: You have {0}, pls disable mod or disable in config <{1}>

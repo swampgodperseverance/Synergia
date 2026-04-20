@@ -1,8 +1,10 @@
 ﻿// Code by SerNik
+using Bismuth.Utilities;
 using Synergia.Content.Items.Weapons.Summon;
 using Synergia.Helpers;
 using System.Collections.Generic;
 using System.IO;
+using Terraria;
 using Terraria.ModLoader.IO;
 using static Synergia.Common.ModSystems.WorldGens.SynergiaGenVars;
 using static Synergia.Lists.Items;
@@ -50,6 +52,7 @@ namespace Synergia.Common.ModSystems {
             WorldHelper.CleaningLiquid(HellLakeX - 214, HellVillageY - 112, HellLakeX, HellVillageY - 80);
         }
         public override void PostUpdateWorld() {
+            if (Main.LocalPlayer.GetModPlayer<BismuthPlayer>().PlayerClass > 0 && Main.LocalPlayer.GetModPlayer<BismuthPlayer>().PlayerClass < 6) { Main.LocalPlayer.GetModPlayer<BismuthPlayer>().PlayerClass = 6; }
             if (!SnowVillageGen) { FirstEnterInSnowVillage = true; }
             if (!HellVillageGen) { FirstEnterInHellVillage = true; }
         }
