@@ -1,6 +1,5 @@
 ﻿using Bismuth;
 using Bismuth.Utilities;
-using log4net.Core;
 using MonoMod.RuntimeDetour;
 using System.Reflection;
 using Terraria;
@@ -37,24 +36,13 @@ namespace Synergia.Common.ModSystems.Hooks.Ons {
         }
 
         void NewQuestBook(orig_Quest_DrawBook orig, Quests quests, SpriteBatch sb) {
-            if (quests.Player.GetModPlayer<BismuthPlayer>().PlayerClass == 6) {
-                if (texture == null) {
-                    texture = quests.ActualPanel;
-                    flag = quests.treeflag;
-                }
-            }
             orig(quests, sb);
             if (Quests.currentpage == 4) {
-                if (quests.Player.GetModPlayer<BismuthPlayer>().PlayerClass == 6) {
-                    quests.treeflag = false;
-                    quests.ActualPanel = Request<Texture2D>("Synergia/Assets/Textures/Blank").Value;
-                    Vector2 textPos = new Vector2(Quests.bookcoord.X + 205, Quests.bookcoord.Y) + Request<Texture2D>("Bismuth/UI/AdventurersBookPageEmpty").Value.Size() / 2f;
-                    ChatManager.DrawColorCodedStringWithShadow(Main.spriteBatch, Bismuth.Bismuth.Adonais, SynergiaLocKey("UI.BismuthBook.NoSupport"), textPos, Color.White, 0f, FontAssets.MouseText.Value.MeasureString(SynergiaLocKey("UI.BismuthBook.NoSupport")) / 2f, Vector2.One);
-                }
-                else if (texture != null) {
-                    quests.ActualPanel = texture;
-                    quests.treeflag = flag;
-                }
+                quests.PlayerClass = "";
+                quests.treeflag = false;
+                quests.ActualPanel = Request<Texture2D>("Synergia/Assets/Textures/Blank").Value;
+                Vector2 textPos = new Vector2(Quests.bookcoord.X + 205, Quests.bookcoord.Y) + Request<Texture2D>("Bismuth/UI/AdventurersBookPageEmpty").Value.Size() / 2f;
+                ChatManager.DrawColorCodedStringWithShadow(Main.spriteBatch, Bismuth.Bismuth.Adonais, SynergiaLocKey("UI.BismuthBook.NoSupport"), textPos, Color.White, 0f, FontAssets.MouseText.Value.MeasureString(SynergiaLocKey("UI.BismuthBook.NoSupport")) / 2f, new(1.5f));
             }
         }
         void NewDrawLevel(orig_Levels_Draw orig, Levels level, SpriteBatch spriteBatch) {
