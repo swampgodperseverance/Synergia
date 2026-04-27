@@ -78,6 +78,38 @@ HellDwarf: {
 	Census.SpawnCondition: Conditions unknown
 }
 
+ImperianCommander: {
+	Class: {
+		Name: {
+			Class0: Warior
+			Class1: Ranged
+			Class2: Mage
+			Class3: Summon
+			Class4: Throwing
+			Class5: Druid
+		}
+
+		Display: {
+			Class0: Warior has big arrmor
+			Class1: Ranged has big arrmor
+			Class2: Mage has big arrmor
+			Class3: Summon has big arrmor
+			Class4: Throwing has big arrmor
+			Class5: Druid has big arrmor
+		}
+	}
+
+	Say: {
+		PreEp: Hey, recruit. I suppose you already know you can get your weapons here, so  what’ll it be?
+		PostEp: good choice, but now go see what you can do
+	}
+
+	Buttons: {
+		PreEp: I wish to receive weapons
+		EpText: I choose weapons on
+	}
+}
+
 Skelegon.DisplayName: Skelegon
 BigBob.DisplayName: Undertaken
 Sinlord.DisplayName: Sinlord Wyrm

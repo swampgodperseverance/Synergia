@@ -2,8 +2,11 @@
 using Synergia.Common.GlobalPlayer;
 using Synergia.Common.ModSystems;
 using Synergia.Common.ModSystems.WorldGens;
+using Synergia.Content.Buffs;
 using Synergia.Helpers;
+using System.IO;
 using Terraria;
+using Terraria.ModLoader.IO;
 
 namespace Synergia.Common.Biome {
     public class NewHell : ModBiome {
@@ -27,6 +30,25 @@ namespace Synergia.Common.Biome {
                 bPlayer.lakeBiome = false;
             }
             return false;
+        }
+        public class LothorDeadSystem : ModSystem {
+            public static bool LothorDead = false;
+            public override void OnWorldLoad() => LothorDead = false;
+            public override void SaveWorldData(TagCompound tag) => tag["LothorDead"] = LothorDead;
+            public override void LoadWorldData(TagCompound tag) => LothorDead = tag.GetBool("LothorDead");
+            public override void NetSend(BinaryWriter writer) => writer.Write(LothorDead);
+            public override void NetReceive(BinaryReader reader) => LothorDead = reader.ReadBoolean();
+            public override void ClearWorld() => LothorDead = false;
+        }
+        public class LothorNPC : GlobalNPC {
+            public override void OnKill(NPC npc) {
+                if (npc.type == ModList.Roa.Find<ModNPC>("Lothor").Type) { LothorDeadSystem.LothorDead = true; }
+            }
+        }
+        public class HellDebuff : ModPlayer {
+            public override void PostUpdate() {
+                if (Player.ZoneUnderworldHeight && !LothorDeadSystem.LothorDead) { Player.AddBuff(BuffType<HellishAir>(), 2); }
+            }
         }
     }
 }

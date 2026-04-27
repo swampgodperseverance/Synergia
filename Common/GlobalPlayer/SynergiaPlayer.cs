@@ -155,26 +155,6 @@ namespace Synergia.Common.GlobalPlayer
                 Player.ClearBuff(BuffID.WaterWalking);
                 Player.ClearBuff(BuffID.Gravitation);
             }
-            if (!downedLothorBossAddon)
-            {
-                bool lothorAlive = false;
-                foreach (NPC npc in Main.npc)
-                {
-                    if (npc.active && npc.type == ModLoader.GetMod("RoA")?.Find<ModNPC>("Lothor")?.Type)
-                    {
-                        lothorAlive = true;
-                        break;
-                    }
-                }
-                if (!lothorAlive)
-                {
-                    downedLothorBossAddon = true;
-                }
-            }
-            if (!downedLothorBossAddon && Player.ZoneUnderworldHeight)
-            {
-                Player.AddBuff(ModContent.BuffType<HellishAir>(), 2);
-            }
         }
 
         public override bool CanBeTeleportedTo(Vector2 teleportPosition, string context)
