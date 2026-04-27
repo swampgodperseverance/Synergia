@@ -11,15 +11,20 @@ namespace Synergia.Content.Projectiles.Reworks
 {
     public class RuneMinion : ModProjectile
     {
-        private const int TotalFrames = 7;
-        private const int IdleFrames = 3;
-        private const int AttackReadyFrames = 2;
+        private const int TotalFrames = 8;
+        private const int IdleFrames = 4;
+        private const int AttackReadyFrames = 4;
 
         private int attackTimer;
         private NPC targetNPC;
         private bool justSpawned = true;
         private const int FadeInTime = 20;
         private const int FadeOutTime = 20;
+
+        private float glowIntensity = 0f;
+        private bool isAttacking = false;
+        private int attackGlowTimer = 0;
+        private const int AttackGlowDuration = 10;
 
         public override void SetStaticDefaults()
         {
@@ -78,6 +83,18 @@ namespace Synergia.Content.Projectiles.Reworks
                 if (Projectile.alpha < 0) Projectile.alpha = 0;
             }
 
+            if (attackGlowTimer > 0)
+            {
+                attackGlowTimer--;
+                glowIntensity = MathHelper.Lerp(glowIntensity, 1f, 0.3f);
+                isAttacking = true;
+            }
+            else
+            {
+                isAttacking = false;
+                glowIntensity = MathHelper.Lerp(glowIntensity, 0.5f, 0.05f);
+            }
+
             FindTarget();
 
             if (targetNPC != null && targetNPC.active && !targetNPC.friendly)
@@ -105,7 +122,7 @@ namespace Synergia.Content.Projectiles.Reworks
             else if (Projectile.velocity.X < -0.5f)
                 Projectile.spriteDirection = 1;
 
-            Lighting.AddLight(Projectile.Center, 0.2f, 0.4f, 0.6f);
+            Lighting.AddLight(Projectile.Center, 0.2f + glowIntensity * 0.3f, 0.4f + glowIntensity * 0.6f, 0.6f + glowIntensity * 0.4f);
         }
 
         private void MoveIdle(Player player)
@@ -158,6 +175,8 @@ namespace Synergia.Content.Projectiles.Reworks
 
             if (attackTimer % 40 == 0 && Main.myPlayer == Projectile.owner)
             {
+                attackGlowTimer = AttackGlowDuration;
+
                 Vector2 direction = (target.Center - Projectile.Center).SafeNormalize(Vector2.Zero);
                 int proj = Projectile.NewProjectile(
                     Projectile.GetSource_FromThis(),
@@ -171,6 +190,18 @@ namespace Synergia.Content.Projectiles.Reworks
                 Main.projectile[proj].friendly = true;
                 Main.projectile[proj].hostile = false;
                 SoundEngine.PlaySound(SoundID.Item20, Projectile.position);
+                for (int i = 0; i < 15; i++)
+                {
+                    Dust d = Dust.NewDustPerfect(
+                        Projectile.Center,
+                        DustID.BlueTorch,
+                        direction * Main.rand.NextFloat(2f, 8f) + Main.rand.NextVector2Circular(2f, 2f),
+                        100,
+                        Color.Cyan,
+                        1.5f
+                    );
+                    d.noGravity = true;
+                }
             }
         }
 
@@ -197,8 +228,8 @@ namespace Synergia.Content.Projectiles.Reworks
                     {
                         Projectile.frameCounter = 0;
                         Projectile.frame++;
-                        if (Projectile.frame < 3) Projectile.frame = 3;
-                        if (Projectile.frame >= TotalFrames) Projectile.frame = 3;
+                        if (Projectile.frame < IdleFrames) Projectile.frame = IdleFrames;
+                        if (Projectile.frame >= TotalFrames - AttackReadyFrames) Projectile.frame = IdleFrames;
                     }
                 }
                 else
@@ -207,10 +238,8 @@ namespace Synergia.Content.Projectiles.Reworks
                     {
                         Projectile.frameCounter = 0;
                         Projectile.frame++;
-                        if (Projectile.frame < TotalFrames - AttackReadyFrames)
-                            Projectile.frame = TotalFrames - AttackReadyFrames;
-                        if (Projectile.frame >= TotalFrames)
-                            Projectile.frame = TotalFrames - AttackReadyFrames;
+                        if (Projectile.frame < TotalFrames - AttackReadyFrames) Projectile.frame = TotalFrames - AttackReadyFrames;
+                        if (Projectile.frame >= TotalFrames) Projectile.frame = TotalFrames - AttackReadyFrames;
                     }
                 }
             }
@@ -233,12 +262,72 @@ namespace Synergia.Content.Projectiles.Reworks
             Rectangle source = new Rectangle(0, Projectile.frame * frameHeight, texture.Width, frameHeight);
             Vector2 origin = source.Size() / 2f;
             SpriteEffects fx = Projectile.spriteDirection == 1 ? SpriteEffects.None : SpriteEffects.FlipHorizontally;
+            float alpha = 1f - Projectile.alpha / 255f;
+            Color outlineColor;
+            if (isAttacking)
+            {
+                outlineColor = Color.Lerp(Color.Cyan, Color.White, 0.5f);
+            }
+            else
+            {
+                outlineColor = Color.Lerp(Color.Blue, Color.Cyan, glowIntensity);
+            }
+            int outlineThickness = 3;
+            Vector2[] offsets = new Vector2[]
+            {
+                new Vector2(-outlineThickness, 0),
+                new Vector2(outlineThickness, 0),
+                new Vector2(0, -outlineThickness),
+                new Vector2(0, outlineThickness)
+            };
+            for (int layer = 0; layer < 2; layer++)
+            {
+                float layerAlpha = (layer == 0 ? 0.6f : 0.3f) * alpha * (isAttacking ? 1.2f : glowIntensity + 0.3f);
+                Color layerColor = outlineColor * layerAlpha;
 
+                foreach (Vector2 offset in offsets)
+                {
+                    Vector2 drawOffset = offset * (layer + 1);
+                    Main.EntitySpriteDraw(
+                        texture,
+                        Projectile.Center - Main.screenPosition + drawOffset,
+                        source,
+                        layerColor,
+                        Projectile.rotation,
+                        origin,
+                        1f,
+                        fx,
+                        0
+                    );
+                }
+            }
+            if (isAttacking)
+            {
+                Color attackGlowColor = Color.Cyan * 0.4f * alpha;
+                for (int i = 0; i < 8; i++)
+                {
+                    Vector2 offset = new Vector2(
+                        (float)Math.Cos(Main.GameUpdateCount * 0.1f + i) * 5f,
+                        (float)Math.Sin(Main.GameUpdateCount * 0.1f + i) * 5f
+                    );
+                    Main.EntitySpriteDraw(
+                        texture,
+                        Projectile.Center - Main.screenPosition + offset,
+                        source,
+                        attackGlowColor,
+                        Projectile.rotation,
+                        origin,
+                        1f,
+                        fx,
+                        0
+                    );
+                }
+            }
             Main.EntitySpriteDraw(
                 texture,
                 Projectile.Center - Main.screenPosition,
                 source,
-                lightColor * (1f - Projectile.alpha / 255f),
+                lightColor * alpha,
                 Projectile.rotation,
                 origin,
                 1f,

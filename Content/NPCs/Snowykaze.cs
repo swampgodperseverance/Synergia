@@ -30,7 +30,7 @@ namespace Synergia.Content.NPCs
 
 			NPC.damage = 50;
 			NPC.defense = 40;
-			NPC.lifeMax = 150;
+			NPC.lifeMax = 220;
 
 			NPC.knockBackResist = 0f;
 			NPC.value = 400f;

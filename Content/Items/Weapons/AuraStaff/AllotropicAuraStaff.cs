@@ -23,7 +23,7 @@ namespace Synergia.Content.Items.Weapons.AuraStaff
             Item.value = Item.sellPrice(0, 1, 0, 0);
             Item.rare = ItemRarityID.Green;
             Item.mana = 20;
-            Item.damage = 24;
+            Item.damage = 18;
             Item.shoot = ProjectileType<AllotropicAuraProjectile>();
             Item.shootSpeed = 1f;
         }

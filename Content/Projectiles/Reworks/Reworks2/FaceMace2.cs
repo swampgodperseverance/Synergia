@@ -24,7 +24,7 @@ namespace Synergia.Content.Projectiles.Reworks.Reworks2
             base.Projectile.usesLocalNPCImmunity = true;
             base.Projectile.localNPCHitCooldown = 10;
 
-            this.ChainTexturePath = "ValhallaMod/Projectiles/Flail/FaceMace_Chain";
+            this.ChainTexturePath = "ValhallaMod/Projectiles/Melee/Flails/FaceMace_Chain";
         }
 
         public override void AI()

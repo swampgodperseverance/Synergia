@@ -51,7 +51,7 @@ namespace Synergia.Content.Projectiles.Friendly
 
         public override bool OnTileCollide(Vector2 oldVelocity)
         {
-            Player player = Main.player[Projectile.owner];
+            Player player = Main.player[Projectile.owner]; 
             player.GetModPlayer<ScreenShakePlayer>().TriggerShake(10, 0.9f);
             SoundEngine.PlaySound(SoundID.Dig, Projectile.Center);
 

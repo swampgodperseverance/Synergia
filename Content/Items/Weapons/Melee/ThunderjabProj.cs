@@ -6,6 +6,7 @@ using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Synergia.Content.Projectiles.Friendly;
+using System;
 
 namespace Synergia.Content.Items.Weapons.Melee
 {
@@ -154,10 +155,6 @@ namespace Synergia.Content.Items.Weapons.Melee
             Timer++;
         }
 
-        // =========================
-        // ATTACK LOGIC
-        // =========================
-
         private void PrepareStrike()
         {
             Progress = MathHelper.Lerp(0.8f, 0f, Timer / PrepTime);
@@ -208,10 +205,6 @@ namespace Synergia.Content.Items.Weapons.Melee
                 Projectile.Kill();
         }
 
-        // =========================
-        // VISUALS
-        // =========================
-
         private void SpawnTopazDust()
         {
             if (Main.rand.NextBool(2))
@@ -231,10 +224,6 @@ namespace Synergia.Content.Items.Weapons.Melee
             }
         }
 
-        // =========================
-        // PROJECTILES
-        // =========================
-
         private void SpawnFanProjectiles()
         {
             if (spawnedProjectiles)
@@ -245,11 +234,9 @@ namespace Synergia.Content.Items.Weapons.Melee
             int count = CurrentAttack == AttackType.Spin ? 5 : 3;
             float spread = MathHelper.ToRadians(CurrentAttack == AttackType.Spin ? 40f : 25f);
 
-            // позиция — КОНЧИК МЕЧА
             Vector2 bladeDir = Projectile.rotation.ToRotationVector2();
             Vector2 spawnPos = Projectile.Center + bladeDir * 50f;
 
-            // НАПРАВЛЕНИЕ НА КУРСОР
             Vector2 cursorDir = Main.MouseWorld - spawnPos;
             if (cursorDir.LengthSquared() < 0.001f)
                 cursorDir = bladeDir;
@@ -275,7 +262,6 @@ namespace Synergia.Content.Items.Weapons.Melee
                     Owner.whoAmI
                 );
 
-                // увеличенный хитбокс
                 Projectile p = Main.projectile[proj];
                 p.width += 8;
                 p.height += 8;
@@ -284,11 +270,6 @@ namespace Synergia.Content.Items.Weapons.Melee
 
             SoundEngine.PlaySound(SoundID.Item122, spawnPos);
         }
-
-
-        // =========================
-        // POSITION / DRAW
-        // =========================
 
         private void UpdatePosition()
         {
@@ -320,6 +301,7 @@ namespace Synergia.Content.Items.Weapons.Melee
         public override bool PreDraw(ref Color lightColor)
         {
             Texture2D tex = ModContent.Request<Texture2D>(Texture).Value;
+            Texture2D glow = ModContent.Request<Texture2D>(Texture + "_Glow").Value;
 
             Vector2 origin = Projectile.spriteDirection == 1
                 ? new Vector2(0, Projectile.height)
@@ -335,11 +317,25 @@ namespace Synergia.Content.Items.Weapons.Melee
                 ? SpriteEffects.None
                 : SpriteEffects.FlipHorizontally;
 
+            float pulse = 0.6f + (float)Math.Sin(Main.GameUpdateCount * 0.2f) * 0.3f;
+
             Main.spriteBatch.Draw(
                 tex,
                 Projectile.Center - Main.screenPosition,
                 null,
                 lightColor,
+                Projectile.rotation + rotOffset,
+                origin,
+                Projectile.scale,
+                fx,
+                0f
+            );
+
+            Main.spriteBatch.Draw(
+                glow,
+                Projectile.Center - Main.screenPosition,
+                null,
+                Color.White * pulse,
                 Projectile.rotation + rotOffset,
                 origin,
                 Projectile.scale,

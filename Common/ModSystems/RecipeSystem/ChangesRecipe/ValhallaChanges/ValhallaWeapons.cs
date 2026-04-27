@@ -11,6 +11,7 @@ using Bismuth.Content.Items.Materials;
 using Consolaria.Content.Items.Materials;
 using NewHorizons.Content.Items.Materials;
 using NewHorizons.Content.Items.Weapons.Ranged;
+using starforgedclassic.Content.Placeables.AzuriteBar;
 using Starforgedclassic.Content.Accessories.SkyShield;
 using Terraria;
 using Terraria.ID;
@@ -21,6 +22,8 @@ using ValhallaMod.Items.Material;
 using ValhallaMod.Items.Material.Bar;
 using ValhallaMod.Items.Weapons.Melee.Swords;
 using ValhallaMod.Items.Weapons.Ranged.ProjectileGuns;
+using ValhallaMod.Items.Weapons.Summon.Auras;
+using ValhallaMod.Projectiles.Summon.Sentries;
 using static Terraria.ModLoader.ModContent;
 
 namespace Synergia.Common.ModSystems.RecipeSystem.ChangesRecipe.AvalonsChanges {
@@ -28,9 +31,12 @@ namespace Synergia.Common.ModSystems.RecipeSystem.ChangesRecipe.AvalonsChanges {
 
             public override void Ingredient(Recipe recipe) {
             AddLotIngredient(recipe, ItemType<BlueSlice>(), (ModContent.ItemType<FrigidShard>(), 3));
+            // AddIngredient(recipe, ItemType<StarAuraStaff>(), 0, starforgedclassic.Find<ModItem>("AzuriteBarItem"), 10);
 
-
-
+            AddLotIngredient(recipe, ItemType<ValhallaMod.Items.Weapons.Summon.Sentries.SnowPeashooterSentryStaff>(), (ModContent.ItemType<IceCrystal>(), 5 ));
+            AddLotIngredient(recipe, ItemType<ValhallaMod.Items.Weapons.Summon.Sentries.SnowPeashooterSentryStaff>(), (ModContent.ItemType<FrostShard>(), 1));
+            AddLotIngredient(recipe, ItemType<HellAuraStaff>(), (ModContent.ItemType<FireShard>(), 1));
+            AddLotIngredient(recipe, ItemType<ValhallaMod.Items.Weapons.Summon.Sentries.FirePeashooterSentryStaff>(), (ModContent.ItemType<FireShard>(), 1));
         }
         public override void PostRecipe()
         {

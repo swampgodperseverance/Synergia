@@ -36,7 +36,7 @@ namespace Synergia.Content.NPCs
             NPC.height = 64;
             NPC.damage = 30;
             NPC.defense = 20;
-            NPC.lifeMax = 1200;
+            NPC.lifeMax = 1600;
             NPC.HitSound = SoundID.NPCHit11;
             NPC.DeathSound = SoundID.NPCDeath15;
             NPC.value = 1000f;

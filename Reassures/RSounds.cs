@@ -5,6 +5,7 @@ namespace Synergia.Reassures {
         public static SoundStyle GetSongByName(string name) => new($"Synergia/Assets/Sounds/{name}");
         public static string GetSongByName2(string name) => $"Synergia/Assets/Sounds/{name}";
         public class RSounds {
+            public static readonly SoundStyle Heartbeat = new("Synergia/Assets/Sounds/Heartbeat");
             public static readonly SoundStyle BookOpenSound = new("Synergia/Assets/Sounds/BookOpen");
             public static readonly SoundStyle BookCloseSound = new("Synergia/Assets/Sounds/BookClose");
             public static readonly SoundStyle CragwormHit = new("Synergia/Assets/Sounds/CragwormHit");
