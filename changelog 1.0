@@ -4,9 +4,10 @@ ADDITIONS
 Frostholm city structure was added.
 Hoodlums Headquarter structure was added.
 Inferno Frontier structure was added.
+New main menu: The Beast Cave
 New enemy Skelegon was added.
 New enemy Overtaken was added.
-New enemy Sparky was added.
+Nw enemy Sparky was added.
 New town NPC Hell Dwarven was added.
 New enemy Snowykaze was added.
 New enemy Elder Snowman was added.
@@ -38,6 +39,8 @@ New weapon Thunderjab was added.
 New weapon Flarion was added.
 New weapon Thundernite Glaive was added.
 New tool Thundernite Hamaxe was added.
+New tool Thundernite Pickaxe was added.
+New tool Coreburned Pickaxe was added.
 New tool Coreburned Pickaxe was added.
 New tool Bronze Drill was added. Avalon Alt to the Valhalla's tin and copper content
 New accessory Thunder Sigil was added.
@@ -54,6 +57,9 @@ Hungry Mouths were added.
 Dread Carapace was added.
 Dread Hood was added.
 Dread Leggings were added.
+Coreburned Helm was added.
+Coreburned Breastplate was added.
+Coreburned Leggings were added.
 Fading Hell hat was added.
 Fading Hell hat: Shadow flame Version was added.
 Fading Hell hat: Frozen flame Version was added.
@@ -244,6 +250,7 @@ Sunstorm sprite was changed.(Avalon)
 Sunstorm effects were changed.(Avalon)
 Noxious Yo Yo from Avalon was changed.(Attack Rework or Visual upgrade)
 Ferozium IceSword from Avalon was completely reworked.
+Valhallite Javelin visuals were changed.
 Space cowboy from Horizon mod was changed.
 Shuriken is a bloodthirsty weapon now.
 Bloody Machete is a bloodthirsty weapon now.
@@ -318,44 +325,44 @@ Blazes is a bloodthirsty weapon now.
 Oculith Shard is a bloodthirsty weapon now.
 Gold Glove is a bloodthirsty weapon now.
 Troxinium Knife is a bloodthirsty weapon now.
-Trimarang is a Combo Charging weapon now.
-Flamarang is a Combo Charging weapon now.
-Bone is a Combo Charging weapon now.
-Shroomerang is a Combo Charging weapon now.
-Thorn Chakram is a Combo Charging weapon now.
-Anchor is a Combo Charging weapon now.
-Wooden Boomerang is a Combo Charging weapon now.
-Snowball is a Combo Charging weapon now.
-Fruitcake Chakram is a Combo Charging weapon now.
-Omega Disc from Valhalla is a Combo Charging weapon now.
-Flarion is a Combo Charging weapon now.
-Everwood Javelin is a Combo Charging weapon now.
-Pulsar from Horizons is a Combo Charging weapon now.
-Sun Javelin from Valhalla is a Combo Charging weapon now.
-Natural Selection is a Combo Charging weapon now.
-Albino Mandible from Consolaria is a Combo Charging weapon now.
-Stalloy Screw from Valhalla is a Combo Charging weapon now.
-Airflow is a Combo Charging weapon now.
-Titanium Warhammer from Horizons is a Combo Charging weapon now.
-Adamantite Dagger from Horizons is a Combo Charging weapon now.
-Teeth Breaker from Valhalla is a Combo Charging weapon now.
-Cactus Star from Valhalla is a Combo Charging weapon now.
-Azraels Heartstopper from Valhalla is a Combo Charging weapon now.
-Chlorophyte Javelin from Horizons is a Combo Charging weapon now.
-Night Glaive from Horizonsis a Combo Charging weapon now.
-Mythril Javelin from Horizonsis a Combo Charging weapon now.
-Crystal Dagger from Horizonsis a Combo Charging weapon now.
-Crimite Glaive from Valhalla is a Combo Charging weapon now.
-Snow Glaive from Valhalla is a Combo Charging weapon now.
-Orichalcum Kama from Horizonsis a Combo Charging weapon now.
-Carnwennan from Horizonsis a Combo Charging weapon now.
-Aeglos from Bismuth is a Combo Charging weapon now.
-Lancea from Bismuth is a Combo Charging weapon now.
-Garlic from Valhalla is a Combo Charging weapon now.
-Scarlet Gungnir from Horizonsis a Combo Charging weapon now.
-Blazing Saws from Horizons is a Combo Charging weapon now.
-Nano Star from Horizons is a Combo Charging weapon now.
-Crystal Grenade from Valhalla is a Combo Charging weapon now.
+Trimarang is a Barrageweaver weapon now.
+Flamarang is a Barrageweaver weapon now.
+Bone is a Barrageweaver weapon now.
+Shroomerang is a Barrageweaver weapon now.
+Thorn Chakram is a Barrageweaver weapon now.
+Anchor is a Barrageweaver weapon now.
+Wooden Boomerang is a Barrageweaver weapon now.
+Snowball is a Barrageweaver weapon now.
+Fruitcake Chakram is a Barrageweaver weapon now.
+Omega Disc from Valhalla is a Barrageweaver weapon now.
+Flarion is a Barrageweaver weapon now.
+Everwood Javelin is a Barrageweaver weapon now.
+Pulsar from Horizons is a Barrageweaver weapon now.
+Sun Javelin from Valhalla is a Barrageweaver weapon now.
+Natural Selection is a Barrageweaver weapon now.
+Albino Mandible from Consolaria is a Barrageweaver weapon now.
+Stalloy Screw from Valhalla is a Barrageweaver weapon now.
+Airflow is a Barrageweaver weapon now.
+Titanium Warhammer from Horizons is a Barrageweaver weapon now.
+Adamantite Dagger from Horizons is a Barrageweaver weapon now.
+Teeth Breaker from Valhalla is a Barrageweaver weapon now.
+Cactus Star from Valhalla is a Barrageweaver weapon now.
+Azraels Heartstopper from Valhalla is a Barrageweaver weapon now.
+Chlorophyte Javelin from Horizons is a Barrageweaver weapon now.
+Night Glaive from Horizonsis a Barrageweaver weapon now.
+Mythril Javelin from Horizonsis a Barrageweaver weapon now.
+Crystal Dagger from Horizonsis a Barrageweaver weapon now.
+Crimite Glaive from Valhalla is a Barrageweaver weapon now.
+Snow Glaive from Valhalla is a Barrageweaver weapon now.
+Orichalcum Kama from Horizonsis a Barrageweaver weapon now.
+Carnwennan from Horizonsis a Barrageweaver weapon now.
+Aeglos from Bismuth is a Barrageweaver weapon now.
+Lancea from Bismuth is a Barrageweaver weapon now.
+Garlic from Valhalla is a Barrageweaver weapon now.
+Scarlet Gungnir from Horizonsis a Barrageweaver weapon now.
+Blazing Saws from Horizons is a Barrageweaver weapon now.
+Nano Star from Horizons is a Barrageweaver weapon now.
+Crystal Grenade from Valhalla is a Barrageweaver weapon now.
 Banshee Head was greatly nerfed.
 Scroll of Chunin was completely reworked to the combo Accessory.
 Scroll of Genin was completely reworked to the combo Accessory.
@@ -420,6 +427,17 @@ Rotten Apple now uses Throwing damage
 Crystal Tomahawk now uses Throwing damage
 Icicle now uses Throwing damage
 Virulent Scythe now uses Throwing damage
+Whole divine equipment overhaul: New Tier system and all accessories were changed
+Athenas Shield was completely reworked.
+Hero Boots were completely reworked.
+Amulet of the Archmage was completely reworked.
+Ring of Omnipotence was completely reworked.
+Sand Amulet was completely reworked.
+Valhallite Armor set bonus was reworked.
+Ashen Armor set bonus was reworked.
+Water Armor set bonus was reworked.
+Added new Loc for all Barrageweaver weapons.
+Loc for all changed armors.
 COMPATIBILITY/BALANCE/RECIPES/ OLD WILL BE INCLUDED
 Terra Blade damage was decreased by 20
 Illuminant Batbow damage was increased by 23
@@ -620,17 +638,23 @@ Deer Skull, Bone Fish and Dragon Skull now drop Necro Buckler (10% chance)
 Spectral Elemental now drops Chaos Flicker (4% chance)
 Lihzahrd Trickster now drops Chaos Flicker (2% chance)
 Spectral Elemental now additionally drops Arcane Shard
+1 bismuth quest was completely reworked.
 Not Direct dependencies balance and compatibility:
 Now, when Unowen's Mods (Mech Reworks, Jungle Reworks etc), TRAE are enabled, Synergia rebalances some content.
 Laser Star damage was decreased by 16, Use Spead and Use Animation was increased by 6(Mech Reworks)
+Double Trouble damage was decreased by 14, Use Spead and Use Animation was increased by 3(Mech Reworks)
+Flinx Walkie Talkie damage was decreased by 20(Mech Reworks)
 Finis damage was decreased by 31, Use Spead and Use Animation was increased by 6(Mech Reworks)
 Exitium damage was decreased by 18, Use Spead and Use Animation was increased by 8(Mech Reworks)
 Repurposed Brain Remote damage was decreased by 23(Mech Reworks)
 Plasma Pistol damage was decreased by 14, Use Spead and Use Animation was increased by 8(Mech Reworks)
 Bottomless Evil has all mechanical souls except mechanical WoF
 TRAE enemies (Beholder, Oni Ronin, Salamander, etc.) now drop Fire Shards with increased rates
+The Emperor, Ocram, Orcish invasion and Desert Beak boss checklist weights were changed.
 REMOVALS
 Sinstone Lyre was removed
 Decahedron of the Unfortunate was removed
 Bloody Scythe was removed
 Decayed Scythe was removed
+Books of Progression were removed
+
