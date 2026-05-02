@@ -146,7 +146,7 @@ namespace Synergia.Common.GlobalItems.Set
 				}
 				if (item.type == avalon.Find<ModItem>("FleshCap").Type)
 				{
-					auraPlayer.bonusAuraRadius += 0.25f;
+					auraPlayer.bonusAuraRadius += 0.15f;
 				}
 				if (item.type == avalon.Find<ModItem>("FleshWrappings").Type)
 				{
@@ -294,6 +294,11 @@ namespace Synergia.Common.GlobalItems.Set
                     player.GetDamage(DamageClass.Magic) += 0.08f;
                     player.manaRegenBonus += 10;
                     item.defense += 7;
+                }
+                if (item.type == bismuth.Find<ModItem>("NecromancersRobe").Type)
+                {
+                    player.maxMinions -= 1;
+
                 }
 
             }

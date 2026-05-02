@@ -5,6 +5,8 @@ using Avalon.Items.Weapons.Magic.PreHardmode.Smogscreen;
 using Avalon.Items.Weapons.Melee.Hardmode.CraniumCrusher;
 using Avalon.Items.Weapons.Melee.PreHardmode.SanguineKatana;
 using Avalon.Items.Weapons.Ranged.PreHardmode.EggCannon;
+using Avalon.Items.Weapons.Summon.Hardmode.Gastropod;
+using Bismuth.Content.Items.Weapons.Assassin;
 using Bismuth.Content.Items.Weapons.Magical;
 using Bismuth.Content.Items.Weapons.Melee;
 using NewHorizons.Content.Items.Weapons.Magic;
@@ -21,6 +23,9 @@ using ValhallaMod.Items.Weapons.Melee.Shortswords;
 using ValhallaMod.Items.Weapons.Melee.Spears;
 using ValhallaMod.Items.Weapons.Melee.Swords;
 using ValhallaMod.Items.Weapons.Ranged.Bows;
+using ValhallaMod.Items.Weapons.Summon.Minions;
+using ValhallaMod.Items.Weapons.Summon.Sentries;
+using ValhallaMod.Items.Weapons.Summon.Whips;
 
 namespace Synergia.Common.GlobalItems.Changes
 {
@@ -32,6 +37,9 @@ namespace Synergia.Common.GlobalItems.Changes
         {
             int chemicalPrisonerType =
                 ModLoader.GetMod("RoA")?.Find<ModItem>("ChemicalPrisoner")?.Type ?? 0;
+
+            int ZapperType =
+                ModLoader.GetMod("RoA")?.Find<ModItem>("MercuriumZipper")?.Type ?? 0;
             int arterialSptayType =
                 ModLoader.GetMod("RoA")?.Find<ModItem>("ArterialSpray")?.Type ?? 0;
             int ravensEyeType =
@@ -162,6 +170,10 @@ namespace Synergia.Common.GlobalItems.Changes
                 {
                     item.mana += 5;
                 },
+                [ZapperType] = item =>
+                {
+                    item.damage -= 5;
+                },
                 [ModContent.ItemType<Scorcher>()] = item =>
                 {
                     item.useAnimation -= 3;
@@ -169,6 +181,7 @@ namespace Synergia.Common.GlobalItems.Changes
                     item.damage -= 5;
                     item.mana += 5;
                 },
+
                 [ModContent.ItemType<HandicraftedBlunderbuss>()] = item =>
                 {
                     item.useAnimation += 8;
@@ -217,6 +230,42 @@ namespace Synergia.Common.GlobalItems.Changes
                 [ModContent.ItemType<Narsil>()] = item =>
                 {
                     item.damage += 18;
+                },
+                [ModContent.ItemType<NimbusStaff>()] = item =>
+                {
+                    item.useAnimation -= 3;
+                    item.useTime -= 3;
+                    item.damage -= 7;
+                },
+                [ModContent.ItemType<WidowsWhip>()] = item =>
+                {
+                    item.useAnimation += 3;
+                    item.useTime += 3;
+                    item.damage -= 28;
+                },
+                [ModContent.ItemType<GastropodStaff>()] = item =>
+                {
+                    item.useAnimation += 3;
+                    item.useTime += 3;
+                    item.damage -= 7;
+                },
+                [ModContent.ItemType<ParrotStaff>()] = item =>
+                {
+                     item.damage += 4;
+                },
+                [ModContent.ItemType<GastropodStaff>()] = item =>
+                {
+                    item.useAnimation += 3;
+                    item.useTime += 3;
+                    item.damage -= 7;
+                },
+                [ModContent.ItemType<GolemSentryStaff>()] = item =>
+                {
+                    item.damage -= 20;
+                },
+                [ModContent.ItemType<Prominence>()] = item =>
+                {
+                    item.damage -= 15;
                 },
             };
         }

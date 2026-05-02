@@ -72,7 +72,7 @@ Items: {
 		+8% Throwing damage 
 		Jump height greatly increased
 		'''
-	FleshCap.Tooltip: +25% Aura radius and +10% summon damage
+	FleshCap.Tooltip: +15% Aura radius and +10% summon damage
 	FleshWrappings.Tooltip:
 		'''
 		Enemies get debuff 'Bleeding' inside aura. 
@@ -349,8 +349,8 @@ Items: {
 	EnchantedRing: {
 		Tooltip:
 			'''
-			Aura radius increased by 17%
-			Players buffs remains 5 seconds after leaving the aura
+			Aura radius increased by 8%
+			Players buffs remains 3 seconds after leaving the aura
 			'''
 		DisplayName: Enchanted Ring
 	}
@@ -1037,6 +1037,11 @@ Items: {
 		Tooltip: ""
 		DisplayName: Coreburned Axe
 	}
+
+	ThundernitePickaxe: {
+		Tooltip: ""
+		DisplayName: Thundernite Pickaxe
+	}
 }
 
 Projectiles: {
@@ -1468,6 +1473,8 @@ Projectiles: {
 	ProdigyAshen.DisplayName: Prodigy Ashen
 	ProdigalSeraph.DisplayName: Prodigal Seraph
 	PoisonGasTrap.DisplayName: Poison Gas Trap
+	SolarDisc2.DisplayName: Solar Disc2
+	ThunderSpike2.DisplayName: Thunder Spike2
 }
 
 Buffs: {

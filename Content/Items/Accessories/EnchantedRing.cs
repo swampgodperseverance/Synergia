@@ -24,10 +24,9 @@ namespace Synergia.Content.Items.Accessories
         {
             var auraPlayer = player.GetModPlayer<AuraPlayer>();
 
-            // Increase aura radius by 10%
-            auraPlayer.bonusAuraRadius += 0.10f; // Green: +10% aura radius
+            auraPlayer.bonusAuraRadius += 0.08f; 
 
-            auraPlayer.auraBuffTime += 180; // Green: +3 seconds to aura buff time
+            auraPlayer.auraBuffTime += 180; 
         }
     }
 }

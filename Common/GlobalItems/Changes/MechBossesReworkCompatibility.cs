@@ -71,6 +71,22 @@ namespace Synergia.Common.GlobalItems.Changes
                     item.useTime += 8;
                 };
             }
+            if (primeRework.TryFind<ModItem>("DoubleTrouble", out ModItem DoubleTrouble))
+            {
+                Changes[DoubleTrouble.Type] = item =>
+                {
+                    item.useAnimation += 3;
+                    item.useTime += 3;
+                    item.damage -= 14;
+                };
+            }
+            if (primeRework.TryFind<ModItem>("FlinxForceWalkieTalkie", out ModItem FlinxForceWalkieTalkie))
+            {
+                Changes[FlinxForceWalkieTalkie.Type] = item =>
+                {
+                    item.damage -= 20;
+                };
+            }
         }
 
         public override void SetDefaults(Item item)

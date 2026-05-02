@@ -103,8 +103,8 @@ namespace Synergia.Content.Projectiles.Friendly
 
         private void SpawnBoneRain()
         {
-            Player player = Main.player[Projectile.owner];
-            player.GetModPlayer<ScreenShakePlayer>().TriggerShake(15, 1.2f);
+            Player player = Main.player[Projectile.owner]; 
+            player.GetModPlayer<ScreenShakePlayer>().TriggerShake(10, 0.9f);
             SoundEngine.PlaySound(SoundID.Item14, Projectile.Center);
 
             for (int i = 0; i < Main.rand.Next(12, 16); i++)

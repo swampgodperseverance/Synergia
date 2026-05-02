@@ -1,135 +1,205 @@
-﻿using Terraria;
-using Terraria.ModLoader;
-using Terraria.ID;
-using Avalon.Buffs.Debuffs;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using ValhallaMod.Projectiles.AI;
+using Terraria;
+using Terraria.ID;
+using Terraria.ModLoader;
+using Synergia.Helpers;
+using Terraria.Graphics;
+using Terraria.Graphics.Shaders;
 using System;
 
 namespace Synergia.Content.Projectiles.Thrower
 {
-    public class ThunderChakramProj : GlaiveAI
+    public sealed class ThunderChakramProj : ModProjectile
     {
+        private static VertexStrip _vertexStrip = new VertexStrip();
+
+        private bool hasSlowed = false;
+        private float initialSpeed = 8f;
+        private float slowStartTime = 60f;
+        private float glowIntensity = 0f;
+        private bool isGlowing = false;
+
         public override void SetStaticDefaults()
         {
-            ProjectileID.Sets.TrailCacheLength[Projectile.type] = 10;
+            ProjectileID.Sets.TrailCacheLength[Projectile.type] = 12;
             ProjectileID.Sets.TrailingMode[Projectile.type] = 2;
         }
 
-        public new void SetDefaults()
+        public override void SetDefaults()
         {
-            base.SetDefaults();
-            Projectile.width = 40;
-            Projectile.height = 40;
-
-            DrawOffsetX = 4;
-            DrawOriginOffsetY = 0;
-
             Projectile.friendly = true;
+            Projectile.hostile = false;
             Projectile.DamageType = DamageClass.Throwing;
-            Projectile.alpha = 0;
-            Projectile.penetrate = 106;
-            Projectile.scale = 0.9f;
-            Projectile.tileCollide = false;
+            Projectile.width = 28;
+            Projectile.height = 28;
+            Projectile.aiStyle = 0;
+            Projectile.tileCollide = true;
+            Projectile.penetrate = 3;
+            Projectile.timeLeft = 180;
             Projectile.extraUpdates = 1;
-            Projectile.aiStyle = -1;
+            Projectile.alpha = 0;
+        }
 
-            timeFlying = 20;
-            speedHoming = 17f;
+        public override bool PreDraw(ref Color lightColor)
+        {
+            var shader = GameShaders.Misc["LightDisc"];
+            float finalGlow = glowIntensity * 1.2f;
 
-            speedComingBack = 28f;
-            homingDistanceMax = 200f;
-            homingStyle = HomingStyle.BasicGlaive;
+            shader.UseSaturation(-2f);
+            shader.UseOpacity(0.8f + finalGlow);
+            shader.Apply(null);
 
-            homingIgnoreTile = true;
+            _vertexStrip.PrepareStripWithProceduralPadding(
+                Projectile.oldPos,
+                Projectile.oldRot,
+                StripColors,
+                StripWidth,
+                -Main.screenPosition + Projectile.Size / 2f,
+                false,
+                true
+            );
+            _vertexStrip.DrawTrail();
+            Main.pixelShader.CurrentTechnique.Passes[0].Apply();
+
+            Texture2D texture = ModContent.Request<Texture2D>(Texture).Value;
+            Vector2 origin = texture.Size() / 2f;
+            Vector2 screenPos = Projectile.Center - Main.screenPosition;
+
+            Main.spriteBatch.End();
+            Main.spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.Additive, Main.DefaultSamplerState, DepthStencilState.None, RasterizerState.CullNone, null, Main.GameViewMatrix.TransformationMatrix);
+
+            float glowSize = 1f + glowIntensity * 1.2f;
+
+            for (int i = 0; i < 6; i++)
+            {
+                float rot = i * MathHelper.PiOver2 + Main.GlobalTimeWrappedHourly * 2f;
+                Vector2 offset = new Vector2(2.5f, 0f).RotatedBy(rot);
+                Color glowColor = new Color(255, 215, 0, 80) * (0.4f + glowIntensity * 1.2f);
+
+                Main.EntitySpriteDraw(
+                    texture,
+                    screenPos + offset,
+                    null,
+                    glowColor,
+                    Projectile.rotation,
+                    origin,
+                    Projectile.scale * glowSize,
+                    SpriteEffects.None
+                );
+            }
+
+            Main.EntitySpriteDraw(
+                texture,
+                screenPos,
+                null,
+                Color.White,
+                Projectile.rotation,
+                origin,
+                Projectile.scale,
+                SpriteEffects.None
+            );
+
+            Main.spriteBatch.End();
+            Main.spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, Main.DefaultSamplerState, DepthStencilState.None, RasterizerState.CullNone, null, Main.GameViewMatrix.TransformationMatrix);
+
+            return false;
+        }
+
+        private Color StripColors(float progress)
+        {
+            float inv = 1f - progress;
+            Color startColor = new Color(255, 200, 50);
+            Color endColor = new Color(255, 140, 30);
+            Color color = Color.Lerp(startColor, endColor, progress);
+            return color * (inv * 1.1f);
+        }
+
+        private float StripWidth(float progress)
+        {
+            return 10f * (1f - progress);
+        }
+
+        public override void AI()
+        {
+            Projectile.rotation += 0.2f * Projectile.direction;
+
+            Lighting.AddLight(Projectile.Center, 1f, 0.7f, 0.2f);
+
+            if (!hasSlowed && Projectile.timeLeft < slowStartTime)
+            {
+                hasSlowed = true;
+                initialSpeed = Projectile.velocity.Length();
+            }
+
+            if (hasSlowed)
+            {
+                float slowProgress = 1f - (Projectile.timeLeft / (float)slowStartTime);
+                float eased = EaseFunctions.EaseOutQuad(slowProgress);
+                float currentSpeed = initialSpeed * (1f - eased * 0.9f);
+                if (currentSpeed < 1f) currentSpeed = 1f;
+
+                Projectile.velocity = Projectile.velocity.SafeNormalize(Vector2.Zero) * currentSpeed;
+
+                if (slowProgress > 0.8f && !isGlowing)
+                {
+                    isGlowing = true;
+                }
+
+                if (isGlowing)
+                {
+                    glowIntensity += 0.05f;
+                    if (glowIntensity > 1f) glowIntensity = 1f;
+                }
+            }
+
+            Projectile.spriteDirection = Projectile.direction;
+
+            if (Main.rand.NextBool(4))
+            {
+                int dust = Dust.NewDust(Projectile.position, Projectile.width, Projectile.height, DustID.GoldFlame, 0f, 0f, 100, default, 1f);
+                Main.dust[dust].velocity *= 0.2f;
+                Main.dust[dust].noGravity = true;
+            }
         }
 
         public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
         {
-          
-            target.AddBuff(ModContent.BuffType<Electrified>(), 180);
+            Projectile.velocity *= 0.85f;
 
-            for (int i = 0; i < 12; i++)
+            for (int i = 0; i < 5; i++)
             {
-                Vector2 velocity = Main.rand.NextVector2Circular(2.5f, 2.5f);
-
-                Dust dust = Dust.NewDustPerfect(
-                    target.Center,
-                    DustID.GemTopaz,
-                    velocity,
-                    150,
-                    default,
-                    1.1f
-                );
-
-                dust.noGravity = true;
+                Dust.NewDust(Projectile.position, Projectile.width, Projectile.height, DustID.GoldFlame, Main.rand.NextFloat(-1.5f, 1.5f), Main.rand.NextFloat(-1.5f, 1.5f), 100, default, 1f);
             }
         }
-        public override void AI()
+
+        public override void OnKill(int timeLeft)
         {
-            base.AI();
-
-
-            if (Main.rand.NextBool(2)) 
+            for (int i = 0; i < 25; i++)
             {
-                Vector2 offset = Main.rand.NextVector2Circular(4f, 4f);
-
-                Dust dust = Dust.NewDustPerfect(
-                    Projectile.Center + offset,
-                    DustID.GemTopaz,
-                    -Projectile.velocity * 0.2f,
-                    150,
-                    default,
-                    0.9f
-                );
-
-                dust.noGravity = true;
+                Dust.NewDust(Projectile.position, Projectile.width, Projectile.height, DustID.GoldFlame, Main.rand.NextFloat(-3f, 3f), Main.rand.NextFloat(-3f, 3f), 100, default, 1.5f);
             }
 
-            if (Main.rand.NextBool(6))
+            Vector2[] directions = new Vector2[]
             {
-                Dust spark = Dust.NewDustPerfect(
+                new Vector2(-1, 0),
+                new Vector2(1, 0),
+                new Vector2(0, -1),
+                new Vector2(0, 1)
+            };
+
+            for (int i = 0; i < 4; i++)
+            {
+                Projectile.NewProjectile(
+                    Projectile.GetSource_FromThis(),
                     Projectile.Center,
-                    DustID.GemTopaz,
-                    Main.rand.NextVector2Circular(1.5f, 1.5f),
-                    120,
-                    default,
-                    0.8f
-                );
-
-                spark.noGravity = true;
-            }
-        }
-
-
-
-        public override bool PreDraw(ref Color lightColor)
-        {
-            Texture2D texture = Terraria.GameContent.TextureAssets.Projectile[Projectile.type].Value;
-            Vector2 origin = texture.Size() / 2f;
-
-            for (int i = 0; i < Projectile.oldPos.Length; i++)
-            {
-                Vector2 drawPos = Projectile.oldPos[i] + Projectile.Size / 2f - Main.screenPosition;
-                float progress = 1f - i / (float)Projectile.oldPos.Length;
-
-                Color color = Color.MediumPurple * progress * 0.6f;
-
-                Main.spriteBatch.Draw(
-                    texture,
-                    drawPos,
-                    null,
-                    color,
-                    Projectile.rotation,
-                    origin,
-                    Projectile.scale,
-                    SpriteEffects.None,
-                    0f
+                    directions[i] * 7f,
+                    ModContent.ProjectileType<ThunderSpike2>(),
+                    Projectile.damage / 2,
+                    Projectile.knockBack * 0.8f,
+                    Projectile.owner
                 );
             }
-
-            return true; // рисуем сам проджектайл стандартно
         }
     }
 }

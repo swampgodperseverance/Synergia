@@ -14,6 +14,7 @@ namespace Synergia.Content.Projectiles.Summon
         private Vector2 stuckOffset;
         private float stuckRotation;
         private int damageTimer;
+        private float embedDepth;
 
         private const float IdleRadius = 100f;
         private const float SearchRange = 400f;
@@ -28,8 +29,8 @@ namespace Synergia.Content.Projectiles.Summon
 
         public override void SetDefaults()
         {
-            Projectile.width = 32;
-            Projectile.height = 32;
+            Projectile.width = 46;
+            Projectile.height = 18;
             Projectile.friendly = true;
             Projectile.minion = true;
             Projectile.minionSlots = 1f;
@@ -73,12 +74,14 @@ namespace Synergia.Content.Projectiles.Summon
 
             if (stuckInEnemy && stuckTarget != null && stuckTarget.active)
             {
-                Projectile.Center = stuckTarget.Center + stuckOffset;
+                Vector2 inward = (stuckTarget.Center - Projectile.Center).SafeNormalize(Vector2.Zero);
+                embedDepth = MathHelper.Lerp(embedDepth, 6f, 0.08f);
+                Projectile.Center = stuckTarget.Center + stuckOffset + inward * embedDepth;
                 Projectile.velocity = Vector2.Zero;
                 Projectile.rotation = stuckRotation;
 
                 damageTimer++;
-                if (damageTimer % 15 == 0)
+                if (damageTimer % 32 == 0)
                 {
                     stuckTarget.StrikeNPC(new NPC.HitInfo
                     {
@@ -88,17 +91,28 @@ namespace Synergia.Content.Projectiles.Summon
                         Crit = false
                     });
 
-                    Dust.NewDustPerfect(Projectile.Center + Main.rand.NextVector2Circular(16, 16),
-                        DustID.Blood, Vector2.Zero, 100, default, 1.4f).noGravity = true;
+                    for (int i = 0; i < 2; i++)
+                    {
+                        Dust.NewDustPerfect(
+                            Projectile.Center + Main.rand.NextVector2Circular(10, 10),
+                            DustID.Blood,
+                            Main.rand.NextVector2Circular(1.5f, 1.5f),
+                            100,
+                            default,
+                            1.2f
+                        ).noGravity = true;
+                    }
                 }
 
-                Lighting.AddLight(Projectile.Center, 0.6f, 0.6f, 0.6f);
-
+                Lighting.AddLight(Projectile.Center, 0.6f, 0.2f, 0.2f);
                 return;
             }
 
             if (stuckInEnemy && (stuckTarget == null || !stuckTarget.active))
+            {
                 stuckInEnemy = false;
+                embedDepth = 0f;
+            }
 
             NPC target = FindClosestNPC(SearchRange);
             if (target != null)
@@ -113,6 +127,7 @@ namespace Synergia.Content.Projectiles.Summon
                     stuckOffset = Projectile.Center - target.Center;
                     stuckRotation = Projectile.rotation;
                     Projectile.velocity = Vector2.Zero;
+                    embedDepth = 0f;
                     Projectile.netUpdate = true;
                     return;
                 }
@@ -140,7 +155,6 @@ namespace Synergia.Content.Projectiles.Summon
             }
 
             Lighting.AddLight(Projectile.Center, 0.6f, 0.6f, 0.6f);
-
         }
 
         private NPC FindClosestNPC(float maxDist)
@@ -198,6 +212,57 @@ namespace Synergia.Content.Projectiles.Summon
 
                 Main.EntitySpriteDraw(tex, pos, null, col, Projectile.oldRot[i], origin, scale, SpriteEffects.None, 0);
             }
+
+            if (stuckInEnemy)
+            {
+                Player player = Main.player[Projectile.owner];
+                int count = player.ownedProjectileCounts[Projectile.type];
+                float strength = MathHelper.Clamp(count * 0.35f, 0.4f, 2.5f);
+
+                float pulse = (float)System.Math.Sin(Main.GameUpdateCount * 0.18f) * 0.5f + 0.5f;
+
+                float intensity = (0.35f + pulse * 0.65f) * strength;
+
+                Color glowColor = new Color(220, 40, 40, 0) * intensity;
+
+                Vector2 drawPos = Projectile.Center - Main.screenPosition;
+
+                int layers = 5 + (int)(strength * 3f);
+
+                for (int i = 0; i < layers; i++)
+                {
+                    float angle = MathHelper.TwoPi * i / layers;
+
+                    float radius = 2.5f + pulse * 3.5f * strength;
+
+                    Vector2 offset = angle.ToRotationVector2() * radius;
+
+                    Main.EntitySpriteDraw(
+                        tex,
+                        drawPos + offset,
+                        null,
+                        glowColor,
+                        Projectile.rotation,
+                        origin,
+                        Projectile.scale * (1.1f + pulse * 0.25f * strength),
+                        SpriteEffects.None,
+                        0
+                    );
+                }
+
+                Main.EntitySpriteDraw(
+                    tex,
+                    drawPos,
+                    null,
+                    new Color(255, 80, 80, 0) * (0.25f * strength),
+                    Projectile.rotation,
+                    origin,
+                    Projectile.scale * (1.2f + pulse * 0.2f),
+                    SpriteEffects.None,
+                    0
+                );
+            }
+
             return true;
         }
     }
