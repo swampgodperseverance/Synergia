@@ -1,4 +1,6 @@
 ﻿using Avalon.NPCs.TownNPCs;
+using Bismuth;
+using Bismuth.Content.NPCs;
 using NewHorizons.Content.NPCs.Town;
 using Synergia.Common.ModSystems.Hooks.Ons;
 using Synergia.Content.NPCs;
@@ -37,11 +39,6 @@ public partial class QuestSystem {
                     HookForQuest.NpcQuestKeys[NPCType<Ninja>()] = new QuestData(NINJA, 0, 1, true);
                 }
             }
-            //if (!quest.FarmerQuest) {
-            //    if (!HookForQuest.NpcQuestKeys.ContainsKey(NPCType<Farmer>())) {
-            //        HookForQuest.NpcQuestKeys[NPCType<Farmer>()] = new QuestData(FARMER, 0, 1, true, FoodID);
-            //    }
-            //}
             if (!quest.LibrarianQuest) {
                 if (!HookForQuest.NpcQuestKeys.ContainsKey(NPCType<Librarian>())) {
                     HookForQuest.NpcQuestKeys[NPCType<Librarian>()] = new QuestData(LIBRARIAN, 0, 1, true);
@@ -50,6 +47,11 @@ public partial class QuestSystem {
             if (!quest.HellDwarfQuest) {
                 if (!HookForQuest.NpcQuestKeys.ContainsKey(NPCType<HellDwarf>())) {
                     HookForQuest.NpcQuestKeys[NPCType<HellDwarf>()] = new QuestData(HELLDWARF, 0, 1, true);
+                }
+            }
+            if (!quest.ImperianConsulQuest) {
+                if (!HookForQuest.NpcQuestKeys.ContainsKey(NPCType<ImperianConsul>())) {
+                    HookForQuest.NpcQuestKeys[NPCType<ImperianConsul>()] = new QuestData("ImperianConsul", 0, 1, true);
                 }
             }
             for (int i = 0; i < ItemLoader.ItemCount; i++) {
@@ -74,19 +76,16 @@ public partial class QuestSystem {
             if (quest.NinjaQuest) {
                 AddQuest(NPCType<Ninja>(), NINJA);
             }
-            if (quest.FarmerQuest) {
-                //if (Player.talkNPC == -1 || Main.npc[Player.talkNPC].type != NPCType<Farmer>()) {
-                //    if (!HookForQuest.NpcQuestKeys.ContainsKey(NPCType<Farmer>())) {
-                //        HookForQuest.NpcQuestKeys[NPCType<Farmer>()] = new QuestData(NINJA, 0, 1, true, FoodID);
-                //    }
-                //}
-            }
             if (quest.LibrarianQuest) {
                 AddQuest(NPCType<Librarian>(), LIBRARIAN);
             }
             if (quest.HellDwarfQuest) {
                 AddQuest(NPCType<HellDwarf>(), HELLDWARF);
             }
+            if (quest.ImperianConsulQuest) {
+                AddQuest(NPCType<ImperianConsul>(), "ImperianConsul");
+            }
+            if (Player.GetModPlayer<Quests>().EquipmentQuest == 0) { Player.GetModPlayer<Quests>().EquipmentQuest = -1; }
         }
         void MultiQuest(bool quest1, bool quest2, int npcType, string questKey) {
             if (quest1) {

@@ -1,4 +1,5 @@
 ﻿using Bismuth;
+using Bismuth.Content.NPCs;
 using Bismuth.Utilities;
 using MonoMod.RuntimeDetour;
 using System.Reflection;
@@ -12,6 +13,7 @@ namespace Synergia.Common.ModSystems.Hooks.Ons {
         Hook book;
         Hook drawLevel;
         Hook levelUP;
+        Hook draw;
 
         Texture2D texture = null;
         Vector2 vector2 = Vector2.Zero;
@@ -26,6 +28,9 @@ namespace Synergia.Common.ModSystems.Hooks.Ons {
         delegate void orig_Levels_LevelUP(Levels level);
         delegate void new_Levels_LevelUP(orig_Levels_LevelUP orig, Levels level);
 
+        delegate void orig_ImperianConsul_PostDraw(ImperianConsul consul, SpriteBatch spriteBatch, Vector2 screenPos, Color drawColor);
+        delegate void new_ImperianConsul_PostDraw(orig_ImperianConsul_PostDraw orig, ImperianConsul consul, SpriteBatch spriteBatch, Vector2 screenPos, Color drawColor);
+
         public override void Load() {
             MethodInfo info = typeof(Quests).GetMethod(nameof(Quests.DrawBook));
             book = new(info, (new_Quest_DrawBook)NewQuestBook);
@@ -33,6 +38,8 @@ namespace Synergia.Common.ModSystems.Hooks.Ons {
             drawLevel = new(info, (new_Levels_Draw)NewDrawLevel);
             info = typeof(Levels).GetMethod(nameof(Levels.LEVELUP));
             levelUP = new(info, (new_Levels_LevelUP)NewLevelUP);
+            info = typeof(ImperianConsul).GetMethod(nameof(ImperianConsul.PostDraw));
+            draw = new(info, (new_ImperianConsul_PostDraw)NewPostDraw);
         }
 
         void NewQuestBook(orig_Quest_DrawBook orig, Quests quests, SpriteBatch sb) {
@@ -54,6 +61,9 @@ namespace Synergia.Common.ModSystems.Hooks.Ons {
             //if (level.Player.GetModPlayer<BismuthPlayer>().PlayerClass == 6) { return; }
             //else { orig(level); }
             return;
+        }
+        void NewPostDraw(orig_ImperianConsul_PostDraw orig, ImperianConsul consul, SpriteBatch spriteBatch, Vector2 screenPos, Color drawColor) {
+
         }
 
         public override void Unload() {

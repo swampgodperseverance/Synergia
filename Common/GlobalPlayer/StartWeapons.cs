@@ -1,4 +1,6 @@
-﻿using Bismuth.Content.Items.Accessories;
+﻿using Bismuth;
+using Bismuth.Content.Items.Accessories;
+using Bismuth.Content.Items.Other;
 using Bismuth.Content.Items.Weapons.Magical;
 using Bismuth.Content.Items.Weapons.Melee;
 using Bismuth.Content.Items.Weapons.Ranged;
@@ -11,7 +13,6 @@ using Terraria.Audio;
 using Terraria.GameContent;
 using Terraria.GameInput;
 using Terraria.ID;
-using Terraria.Localization;
 using Terraria.ModLoader.IO;
 using Terraria.UI.Chat;
 using ValhallaMod.Items.Weapons.Summon.Whips;
@@ -21,22 +22,26 @@ namespace Synergia.Common.GlobalPlayer {
         public int start = 0;
         public int questProgress = 0;
 
-        public bool QuestComplite = false;
+        public bool ActiveQuest = false;
+        public bool EndQuest = false;
 
         public override void Initialize() {
             start = 0;
             questProgress = 0;
-            QuestComplite = false;
+            ActiveQuest = false;
+            EndQuest = false;
         }
         public override void SaveData(TagCompound tag) {
             tag["StartW"] = start;
             tag["questProgress"] = questProgress;
-            tag["QuestComplite"] = QuestComplite;
+            tag["QuestComplite"] = ActiveQuest;
+            tag["EndQuest"] = EndQuest;
         }
         public override void LoadData(TagCompound tag) {
             start = tag.GetInt("StartW");
             questProgress = tag.GetInt("questProgress");
-            QuestComplite = tag.GetBool("QuestComplite");
+            ActiveQuest = tag.GetBool("QuestComplite");
+            EndQuest = tag.GetBool("EndQuest");
         }
     }
     public class MicroQuest : ModSystem {
@@ -47,6 +52,18 @@ namespace Synergia.Common.GlobalPlayer {
         int QuestProgress {
             get { return Main.LocalPlayer is null ? 0 : Main.LocalPlayer.GetModPlayer<StartWeapons>().questProgress; }
             set { Main.LocalPlayer.GetModPlayer<StartWeapons>().questProgress = value; }
+        }
+        bool HasEmblem {
+            get {
+                bool has = false;
+                for (int i = 0; i < 58; i++) {
+                    if (Main.LocalPlayer.inventory[i].type == ItemType<ClassEngraving>() && Main.LocalPlayer.inventory[i].stack > 0) {
+                        has = true;
+                        break;
+                    }
+                }
+                return has;
+            }
         }
 
         readonly Dictionary<string, bool> buttonHoverPrev = [];
@@ -60,7 +77,7 @@ namespace Synergia.Common.GlobalPlayer {
             Player player = Main.LocalPlayer;
             NPC npc = Main.npc[player.talkNPC];
 
-            if (!Main.LocalPlayer.GetModPlayer<StartWeapons>().QuestComplite && npc.type == NPCType<Bismuth.Content.NPCs.ImperianCommander>()) {
+            if (Main.LocalPlayer.GetModPlayer<StartWeapons>().ActiveQuest && npc.type == NPCType<Bismuth.Content.NPCs.ImperianCommander>()) {
                 orig(superColor, chatColor, numLines, "", "");
                 if (npc == null || !npc.active) { return; }
 
@@ -89,24 +106,27 @@ namespace Synergia.Common.GlobalPlayer {
                 switch (QuestProgress) {
                     case 0: DrawButton(LocKey(CategoryName.NPC, "ImperianCommander.Buttons.PreEp"), hovers: out _); break;
                     case 1: {
-                        text = LocKey(CategoryName.NPC, "ImperianCommander.Buttons.EpText") + ": " + playerClassName[1];
-                        DrawButton(text.Replace(playerClassName[1], ""), hovers: out _, action: NextWeapon);
-                        index = player.GetModPlayer<StartWeapons>().start;
-                        chatText = LocKey(CategoryName.NPC, "ImperianCommander.Say.PreEp");
-                        string chatText2 = "";
-                        switch (index) {
-                            case 0: chatText2 = LocKey(CategoryName.NPC, "ImperianCommander.Class.Display.Class0"); break;
-                            case 1: chatText2 = LocKey(CategoryName.NPC, "ImperianCommander.Class.Display.Class1"); break;
-                            case 2: chatText2 = LocKey(CategoryName.NPC, "ImperianCommander.Class.Display.Class2"); break;
-                            case 3: chatText2 = LocKey(CategoryName.NPC, "ImperianCommander.Class.Display.Class3"); break;
-                            case 4: chatText2 = LocKey(CategoryName.NPC, "ImperianCommander.Class.Display.Class4"); break;
-                            case 5: chatText2 = LocKey(CategoryName.NPC, "ImperianCommander.Class.Display.Class5"); break;
+                        if (HasEmblem) {
+                            text = LocKey(CategoryName.NPC, "ImperianCommander.Buttons.EpText") + ": " + playerClassName[1];
+                            DrawButton(text.Replace(playerClassName[1], ""), hovers: out _, action: NextWeapon);
+                            index = player.GetModPlayer<StartWeapons>().start;
+                            chatText = LocKey(CategoryName.NPC, "ImperianCommander.Say.PreEp");
+                            string chatText2 = "";
+                            switch (index) {
+                                case 0: chatText2 = LocKey(CategoryName.NPC, "ImperianCommander.Class.Display.Class0"); break;
+                                case 1: chatText2 = LocKey(CategoryName.NPC, "ImperianCommander.Class.Display.Class1"); break;
+                                case 2: chatText2 = LocKey(CategoryName.NPC, "ImperianCommander.Class.Display.Class2"); break;
+                                case 3: chatText2 = LocKey(CategoryName.NPC, "ImperianCommander.Class.Display.Class3"); break;
+                                case 4: chatText2 = LocKey(CategoryName.NPC, "ImperianCommander.Class.Display.Class4"); break;
+                                case 5: chatText2 = LocKey(CategoryName.NPC, "ImperianCommander.Class.Display.Class5"); break;
+                            }
+                            chatText += " " + chatText2;
+                            x += ChatManager.GetStringSize(FontAssets.MouseText.Value, text, new(0.9f)).X;
+                            x += -20;
+                            pos = new(x, y);
+                            DrawButton(playerClassName[index], action: () => { QuestProgress = 2; }, start: playerClassColor[index], end: Color.Black, hovers: out _);
                         }
-                        chatText += " " + chatText2;
-                        x += ChatManager.GetStringSize(FontAssets.MouseText.Value, text, new(0.9f)).X;
-                        x += -20;
-                        pos = new(x, y);
-                        DrawButton(playerClassName[index], action: () => { QuestProgress = 2; }, start: playerClassColor[index], end: Color.Black, hovers: out _);
+                        else { chatText = string.Format(LocKey(CategoryName.NPC, "ImperianCommander.Emblem"), Lang.GetItemName(ItemType<ClassEngraving>())) + $" [i:{ItemType<ClassEngraving>()}]"; }
                         break;
                     }
                     case 2: chatText = LocKey(CategoryName.NPC, "ImperianCommander.Say.PostEp"); ; break;
@@ -168,10 +188,19 @@ namespace Synergia.Common.GlobalPlayer {
                     case 5: type = ModList.Roa.Find<ModItem>("PastoralRod").Type; break;
                 }
             }
-            if (Main.LocalPlayer.talkNPC == -1 && type != 0 && !Main.LocalPlayer.GetModPlayer<StartWeapons>().QuestComplite) {
+            if (Main.LocalPlayer.talkNPC == -1 && type != 0 && Main.LocalPlayer.GetModPlayer<StartWeapons>().ActiveQuest) {
+                for (int i = 0; i < 58; i++) {
+                    if (Main.LocalPlayer.inventory[i].type == ItemType<ClassEngraving>() && Main.LocalPlayer.inventory[i].stack > 0) {
+                        Main.LocalPlayer.inventory[i].stack = 0;
+                        break;
+                    }
+                }
                 SpawItem();
                 if (type == ItemType<Gladius>()) { type = ItemType<Scutum>(); SpawItem(); }
-                Main.LocalPlayer.GetModPlayer<StartWeapons>().QuestComplite = true;
+                Main.LocalPlayer.GetModPlayer<StartWeapons>().ActiveQuest = false;
+                Main.LocalPlayer.GetModPlayer<QuestBoolean>().ImperianConsulQuest = true;
+                Main.LocalPlayer.GetModPlayer<StartWeapons>().EndQuest = true;
+                Main.LocalPlayer.GetModPlayer<Quests>().EquipmentQuest = 11;
             }
             void SpawItem() => Item.NewItem(Main.LocalPlayer.GetSource_FromThis(), Main.LocalPlayer.position, type, 1, false, Main.rand.Next(0, 10));
         }
