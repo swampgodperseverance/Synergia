@@ -161,6 +161,7 @@ New config for enabling new recipes.
 New Soundtrack "Peaceful Town" by Gojisturba was added.
 New Soundtrack "Gehenna" by Gojisturba was added.
 New Soundtrack "Sinlord Presence" by Mumb was added.
+Bunch of new sounds were added.
 CHANGES/REWORKS/RESPRITES
 Golem changes were remade.
 Lothor the Wild changes were remade.
@@ -182,6 +183,7 @@ Illuminant Batbow from Valhalla was changed.(Attack Rework or Visual upgrade)
 Jade Hwacha from Valhalla was changed.(Attack Rework or Visual upgrade)
 Jade Shortsword from Valhalla was changed.(Attack Rework or Visual upgrade)
 Jade Magic from Valhalla was changed.(Attack Rework or Visual upgrade)
+Jade Glaive was fully reworked.
 Kamek's wand from Valhalla was changed.(Attack Rework or Visual upgrade)
 Rising Tide from Valhalla was changed.(Attack Rework or Visual upgrade)
 Helios from Valhalla was changed.(Attack Rework or Visual upgrade)
@@ -433,6 +435,7 @@ Hero Boots were completely reworked.
 Amulet of the Archmage was completely reworked.
 Ring of Omnipotence was completely reworked.
 Sand Amulet was completely reworked.
+Enchanted ring aura bonus was nerfed.
 Valhallite Armor set bonus was reworked.
 Ashen Armor set bonus was reworked.
 Water Armor set bonus was reworked.
@@ -449,6 +452,12 @@ Nano Star damage was decreased by 24, Use Spead and Use Animation was increased 
 Granite Charger damage was increased by 10 and mana usage was increased by 4(Horizons)
 Scorcher damage was decreased by 5 and mana usage was increased by 5. Use Spead and Use Animation was decreased by 3 (Horizons)
 Naginata damage was decreased by 12, Use Spead and Use Animation was decreased by 2(Horizons)
+Nimbus Staff use speed and use animation were decreased by 3, and damage was decreased by 7.(Valhalla)
+Widow's Whip use speed and use animation were increased by 3, and damage was decreased by 28.(Valhalla)
+Gastropod Staff use speed and use animation were increased by 3, and damage was decreased by 7.(Avalon)
+Parrot Staff damage was increased by 4.(Valhalla)
+Golem Sentry Staff damage was decreased by 20.(Valhalla)
+Prominence damage was decreased by 15.(Bismuth)
 Cranium Crasher damage was decreased by 34, Use Spead and Use Animation was increased by 10(Avalon)
 Chaos Tome Use Spead and Use Animation was increased by 5(Avalon)
 Beesting damage was decreased by 28, Use Spead and Use Animation was increased by 5 (Valhalla)
@@ -463,6 +472,7 @@ Arterial Spray Use Spead and Use Animation was increased by 3(Rise of Ages)
 Starfusion damage was increased by 6(Rise of Ages)
 Rod of the Stream damage was decreased by 6 and mana usage was increased by 15. Use Spead and Use Animation was increased by 6 (Rise of Ages)
 Rod of the Shock mana usage was increased by 5(Rise of Ages)
+Allotropic aura staff damage was decreased by 6.
 Smogscreen mana usage was increased by 6, Use Spead and Use Animation was increased by 8(Avalon)
 Star Wand damage was increased by 1, Use Spead and Use Animation was increased by 10(Horizons)
 Spore Staff mana usage was increased by 4, damage was decreased by 5(Valhalla)
@@ -481,6 +491,29 @@ Orc Wizard max life was increased by 160, damage was increased by 10 and defense
 Rhino Orc max life was increased by 500, contact damage was increased by 25 and defense was increased by 10(Bismuth)
 Banshee max life was increased by 150, damage was increased by 4(Bismuth)
 Orcish Portal max life was increased by 1100 and defense was increased by 15(Bismuth)
+Base Terraria Skeleton Archer max life was increased by 60 and defense was increased by 4.
+Base Terraria Armored Skeleton max life was increased by 60 and defense was increased by 4.
+Base Terraria Moss Hornet max life was increased by 60 and defense was increased by 4.
+Base Terraria Angry Trapper max life was increased by 60 and defense was increased by 4.
+Base Terraria Plantera max life was increased by 15000, damage was increased by 5 and defense was increased by 8.
+Base Terraria Plantera's Hook max life was increased by 150, damage was increased by 5 and defense was increased by 5.
+Base Terraria Plantera's Tentacle max life was increased by 150, damage was increased by 5 and defense was increased by 5.
+Base Terraria Giant Tortoise max life was increased by 60 and defense was increased by 4.
+Base Terraria Possessed Armor max life was increased by 200, damage was increased by 4 and defense was increased by 8.
+Base Terraria Skeletron Hand max life was increased by 200, damage was increased by 8 and defense was increased by 5.
+Base Terraria Goblin Summoner max life was increased by 1100, damage was increased by 8 and defense was increased by 5.
+Base Terraria Pirate Ship max life was increased by 1000 and defense was increased by 5.
+Base Terraria Pirate Ship Cannon max life was increased by 100.
+Base Terraria Snow Balla max life was increased by 120.
+Base Terraria Snowman Gangsta max life was increased by 150.
+Necromant defense was increased by 6.(Bismuth)
+Evil Baba Yaga max life was decreased by 500.(Bismuth)
+Desert Beak max life was increased by 600, damage was increased by 6 and defense was increased by 6  (Avalon)
+Cold Father max life was increased by 2000, damage was increased by 10 and defense was increased by 5 (Valhalla).
+Voodoo Cultist max life was increased by 200, damage was increased by 5 and defense was increased by 5 (Valhalla).
+Emperor max life was increased by 4000, damage was increased by 10 and defense was increased by 4 (Valhalla).
+Jade Orb max life was increased by 500 (Valhalla).
+Ink Slime max life was increased by 100 (Valhalla).
 Caesium Armor set crafting station was changed to the Caesium Heavy Anvil.
 Caesium Weapons crafting station was changed to the Caesium Heavy Anvil(Mace/Crossbow/Scimitar).
 Bismuthum Armor set crafting station was changed to the Caesium Heavy Anvil.
@@ -590,6 +623,9 @@ Ferozium Icesword has a big crafting tree now:  Blue Slice + Skadis Wrath + Adam
 Blue Slice now has a Frigid Shard in craft.
 Skadis Wrath new recipe: Everliving Ice + Soul of Ice + Soul of Sight + Soul of Fright + Soul of Might
 Everliving Ice new recipe: Valhallite Sword + Osmium Bar + Frost Shard + Ice Crystal
+Snow Peashooter requires Frost Shards and Ice Crystals for crafting now.
+Fire peashooter requires Fire Shards for crafting now.
+Hell aura staff requires Fire Shards for crafting now.
 Add some wetness compatibility:
 1) Player gets less damage in hell when player has 75-100
 2) Water Fighter, Aqua Impact, Water Aura staff, Underwater aura staff, Underwater Scythe, Urchin Uppercutter, Typhoon deal more damage when player has 75-100
@@ -639,6 +675,9 @@ Spectral Elemental now drops Chaos Flicker (4% chance)
 Lihzahrd Trickster now drops Chaos Flicker (2% chance)
 Spectral Elemental now additionally drops Arcane Shard
 1 bismuth quest was completely reworked.
+Flesh hat aura radius bonus was decreased to 15%
+Necromancers Robe -1 max minion, only +1 now
+Made hook that fixes conflict between RoA and Bismuth gens
 Not Direct dependencies balance and compatibility:
 Now, when Unowen's Mods (Mech Reworks, Jungle Reworks etc), TRAE are enabled, Synergia rebalances some content.
 Laser Star damage was decreased by 16, Use Spead and Use Animation was increased by 6(Mech Reworks)
@@ -646,6 +685,8 @@ Double Trouble damage was decreased by 14, Use Spead and Use Animation was incre
 Flinx Walkie Talkie damage was decreased by 20(Mech Reworks)
 Finis damage was decreased by 31, Use Spead and Use Animation was increased by 6(Mech Reworks)
 Exitium damage was decreased by 18, Use Spead and Use Animation was increased by 8(Mech Reworks)
+Double Trouble damage was decreased by 14, Use Spead and Use Animation was increased by 3(Mech Reworks)
+Flinx Force Walkie Talkie damage was decreased by 13(Mech Reworks)
 Repurposed Brain Remote damage was decreased by 23(Mech Reworks)
 Plasma Pistol damage was decreased by 14, Use Spead and Use Animation was increased by 8(Mech Reworks)
 Bottomless Evil has all mechanical souls except mechanical WoF
