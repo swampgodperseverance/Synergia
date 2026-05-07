@@ -1,13 +1,12 @@
-﻿using Avalon.Items.Dyes;
-using Bismuth.Utilities.ModSupport;
+﻿using Bismuth.Utilities.ModSupport;
+using Synergia.Content.NPCs;
 using Terraria;
 using Terraria.ID;
 using ValhallaMod.Items.Placeable.Blocks;
-using ValhallaMod.NPCs.TownNPCs;
 
 namespace Synergia.Content.Quests {
     public class HellDwarfQuest_First : BaseQuestLogic {
-        public override int QuestNPC => NPCType<Artist>();
+        public override int QuestNPC => NPCType<HellDwarf>();
         public override bool IsEndQuest => Main.LocalPlayer.GetModPlayer<QuestBoolean>().HellDwarfQuest1;
         public override string Key => "HellDwarfQuest_First";
         public override string DisplayName => LocQuestKey("HellDwarfQuest_First", "QuestName");

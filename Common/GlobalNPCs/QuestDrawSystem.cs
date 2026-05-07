@@ -1,4 +1,5 @@
 using Avalon.NPCs.TownNPCs;
+using Bismuth.Content.NPCs;
 using Bismuth.Utilities.ModSupport;
 using NewHorizons.Content.NPCs.Town;
 using Synergia.Content.NPCs;
@@ -11,7 +12,7 @@ using static Synergia.ModList;
 namespace Synergia.Common {
     public partial class QuestSystem {
         public class QuestDrawSystem : GlobalNPC {
-            public override bool AppliesToEntity(NPC npc, bool lateInstatiation) => npc.type == NPCType<Dwarf>() || npc.type == NPCID.TaxCollector || npc.type == Roa.Find<ModNPC>("Hunter").Type || npc.type == NPCType<Artist>() || npc.type == NPCType<Ninja>() || npc.type == NPCType<Librarian>() || npc.type == NPCType<HellDwarf>();
+            public override bool AppliesToEntity(NPC npc, bool lateInstatiation) => npc.type == NPCType<Dwarf>() || npc.type == NPCID.TaxCollector || npc.type == Roa.Find<ModNPC>("Hunter").Type || npc.type == NPCType<Artist>() || npc.type == NPCType<Ninja>() || npc.type == NPCType<Librarian>() || npc.type == NPCType<HellDwarf>() || npc.type == NPCType<ImperianConsul>();
             public static void DrawQuestIcon(NPC npc, SpriteBatch spriteBatch, int npcType, string name) {
                 if (npc.type != npcType) return;
                 Player player = Main.LocalPlayer;
@@ -30,6 +31,7 @@ namespace Synergia.Common {
                 DrawQuestIcon(npc, spriteBatch, NPCType<Ninja>(), NINJA);
                 DrawQuestIcon(npc, spriteBatch, NPCType<Librarian>(), LIBRARIAN);
                 DrawQuestIcon(npc, spriteBatch, NPCType<HellDwarf>(), HELLDWARF);
+                DrawQuestIcon(npc, spriteBatch, NPCType<ImperianConsul>(), "ImperianConsul");
             }
         }
     }

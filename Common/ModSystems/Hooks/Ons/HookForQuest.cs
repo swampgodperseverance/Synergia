@@ -1,4 +1,5 @@
-﻿using Bismuth.Utilities.ModSupport;
+﻿using Bismuth.Content.NPCs;
+using Bismuth.Utilities.ModSupport;
 using MonoMod.RuntimeDetour;
 using ReLogic.Graphics;
 using Synergia.Dataset;
@@ -83,6 +84,7 @@ namespace Synergia.Common.ModSystems.Hooks.Ons
             else {
                 text = Language.GetTextValue($"Mods.Synergia.Quests.BaseButton");
             }
+        
 
             Vector2 vector3 = new(0.9f);
             Vector2 pos = new(x - questData.X, y);
@@ -141,7 +143,7 @@ namespace Synergia.Common.ModSystems.Hooks.Ons
             }
             if (hover && Main.mouseLeft && Main.mouseLeftRelease) {
                 if (questData.Progress < questData.MaxProgress) {
-                    Main.npcChatText = quest?.GetChat(npc, player) ?? "";
+                    Main.npcChatText = quest?.GetChat(npc, player);
                     questData.Progress++;
                     NpcQuestKeys[npc.type] = questData;
                     npcNewTextButton = true;

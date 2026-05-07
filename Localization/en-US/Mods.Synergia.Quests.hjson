@@ -205,3 +205,18 @@ DwarfQuest_Second: {
 	QuestCompleted: How do you know what he looks like? That's suspicious.. But ok, thanks
 	QuestCompletedFalse: You don't have an Flaming Fabric
 }
+
+ImperianConsul: {
+	QuestName: Start Weapons
+	QuestDescription: Сhoose a {0} starting weapon
+	QuestDescription2: Share your successes {0}
+	QuestStage: Get your starting weapon
+	QuestStage2: Go back to {0}
+	QuestProgress0: Thanks for the Luck Potion!
+	QuestProgress1: I guess since you are new, you should go to the {0} and take some weapons!
+	QuestProgress2: Are you ready to set out on a journey?
+	QuestButton: Accept
+	QuestButtonGive: I'm ready
+	QuestCompleted: Now you're ready to hit the road
+	QuestCompletedFalse: You don't even have equipment, how can you be ready for anything?
+}

@@ -16,8 +16,6 @@ using Terraria.UI;
 using Terraria.UI.Chat;
 using ValhallaMod.Items.Placeable;
 using static Synergia.Common.ModSystems.Hooks.Ons.HookForQuest;
-using static Synergia.Common.QuestSystem;
-using static Synergia.Common.SUtils.LocUtil;
 using static Synergia.Helpers.SynegiaHelper;
 using static Terraria.Main;
 

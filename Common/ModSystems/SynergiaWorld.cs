@@ -1,4 +1,5 @@
 ﻿// Code by SerNik
+using Bismuth;
 using Bismuth.Utilities;
 using Synergia.Content.Items.Weapons.Summon;
 using Synergia.Helpers;
@@ -52,7 +53,6 @@ namespace Synergia.Common.ModSystems {
             WorldHelper.CleaningLiquid(HellLakeX - 214, HellVillageY - 112, HellLakeX, HellVillageY - 80);
         }
         public override void PostUpdateWorld() {
-            if (Main.LocalPlayer.GetModPlayer<BismuthPlayer>().PlayerClass > 0 && Main.LocalPlayer.GetModPlayer<BismuthPlayer>().PlayerClass < 6) { Main.LocalPlayer.GetModPlayer<BismuthPlayer>().PlayerClass = 6; }
             if (!SnowVillageGen) { FirstEnterInSnowVillage = true; }
             if (!HellVillageGen) { FirstEnterInHellVillage = true; }
         }

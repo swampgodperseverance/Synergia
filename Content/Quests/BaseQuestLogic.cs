@@ -11,8 +11,8 @@ public abstract class BaseQuestLogic : BaseQuest, ILoadable, IPostSetup {
     public abstract string Key { get; }
     public static Dictionary<int, List<BaseQuestLogic>> AllQuest { get; private set; } = [];
     public sealed override string UniqueKey => Key;
-    public string BaseGetChat(Player player, string npcName, string npcKey, string npcKey2, string npcKey3) {
-        Main.npcChatCornerItem = CornerItem;
+    public string BaseGetChat(Player player, string npcName, string npcKey, string npcKey2, string npcKey3, bool item = true) {
+        if (item) { Main.npcChatCornerItem = CornerItem; }
         QuestPlayer q = player.GetModPlayer<QuestPlayer>();
         bool defeated = HasDefeated(PostBossRequirement);
         if (q.CompletedQuests.Contains(UniqueKey) && defeated) {
