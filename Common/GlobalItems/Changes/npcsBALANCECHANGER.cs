@@ -142,7 +142,7 @@ namespace Synergia.Common.GlobalNPCs.Changes
                 {
                     npc.lifeMax += 120;
                 },
-                [NPCID.SnowBalla] = npc =>
+                [NPCID.SnowmanGangsta] = npc =>
                 {
                     npc.lifeMax += 150;
                 },

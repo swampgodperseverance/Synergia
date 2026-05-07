@@ -253,12 +253,8 @@ namespace Synergia.Common.GlobalItems.Changes
                 {
                      item.damage += 4;
                 },
-                [ModContent.ItemType<GastropodStaff>()] = item =>
-                {
-                    item.useAnimation += 3;
-                    item.useTime += 3;
-                    item.damage -= 7;
-                },
+
+                
                 [ModContent.ItemType<GolemSentryStaff>()] = item =>
                 {
                     item.damage -= 20;

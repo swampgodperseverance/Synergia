@@ -14,8 +14,8 @@ namespace Synergia.Content.Items.Weapons.Throwing
             Item.DamageType = DamageClass.Throwing;
             Item.width = 24;
             Item.height = 25;
-            Item.useTime = 10;
-            Item.useAnimation = 10;
+            Item.useTime = 47;
+            Item.useAnimation = 47;
             Item.knockBack = 2;
             Item.value = Item.buyPrice(gold: 3);
             Item.shootSpeed = 14f;

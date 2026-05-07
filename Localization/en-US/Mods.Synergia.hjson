@@ -1042,6 +1042,11 @@ Items: {
 		Tooltip: ""
 		DisplayName: Thundernite Pickaxe
 	}
+
+	Rhabdomyolysis: {
+		DisplayName: Rhabdomyolysis
+		Tooltip: ""
+	}
 }
 
 Projectiles: {
@@ -1475,6 +1480,11 @@ Projectiles: {
 	PoisonGasTrap.DisplayName: Poison Gas Trap
 	SolarDisc2.DisplayName: Solar Disc2
 	ThunderSpike2.DisplayName: Thunder Spike2
+	RhabdomyolysisProjectile.DisplayName: Rhabdomyolysis Projectile
+	Meatknife1.DisplayName: Meatknife1
+	Meatknife2.DisplayName: Meatknife2
+	Meatknife3.DisplayName: Meatknife3
+	MeatknifeManager.DisplayName: Meatknife Manager
 }
 
 Buffs: {
