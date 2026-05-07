@@ -3,6 +3,8 @@ using Avalon.Items.Accessories.PreHardmode;
 using Avalon.Items.Material.Bars;
 using Avalon.Items.Material.Ores;
 using Avalon.Items.Material.Shards;
+using Avalon.Items.Placeable.Tile;
+using NewHorizons.Content.Items;
 using NewHorizons.Content.Items.Ammo;
 using NewHorizons.Content.Items.Weapons.Magic;
 using NewHorizons.Content.Items.Weapons.Ranged;
@@ -39,6 +41,8 @@ namespace Synergia.Common.ModSystems.RecipeSystem.ChangesRecipe.HorizonsChanges
         {
             CreateSeaBeast();
             CreateSpaceCowboy();
+            CreateWandMana1();
+            CreateWandMana2();
         }
         static void CreateSeaBeast()
         {
@@ -60,6 +64,22 @@ namespace Synergia.Common.ModSystems.RecipeSystem.ChangesRecipe.HorizonsChanges
             recipe.AddIngredient(ItemType<NaquadahBar>(), 2);
             recipe.AddIngredient(ItemType<BronzeBar>(), 4);
             recipe.AddTile(TileID.MythrilAnvil);
+            recipe.Register();
+        }
+        static void CreateWandMana1()
+        {
+            Recipe recipe = Recipe.Create(ItemType<WandOfMana>());
+            recipe.AddIngredient(ItemType<DuskplateBlock>(), 14);
+            recipe.AddIngredient(ItemID.ManaCrystal, 1);
+            recipe.AddTile(TileID.Anvils);
+            recipe.Register();
+        }
+        static void CreateWandMana2()
+        {
+            Recipe recipe = Recipe.Create(ItemType<WandOfMana>());
+            recipe.AddIngredient(ItemType<MoonplateBlock>(), 14);
+            recipe.AddIngredient(ItemID.ManaCrystal, 1);
+            recipe.AddTile(TileID.Anvils);
             recipe.Register();
         }
 
