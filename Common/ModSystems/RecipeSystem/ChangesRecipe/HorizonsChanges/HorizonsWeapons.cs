@@ -15,14 +15,17 @@ using Terraria;
 using Terraria.ID;
 using ValhallaMod.Items.Material;
 using ValhallaMod.Items.Material.Bar;
+using ValhallaMod.Items.Weapons.Ranged.Guns;
 using ValhallaMod.Items.Weapons.Ranged.ProjectileGuns;
 using static Terraria.ModLoader.ModContent;
 
 namespace Synergia.Common.ModSystems.RecipeSystem.ChangesRecipe.HorizonsChanges
 {
-        public class HorizonsWeapons : BaseRecipe {
+    public class HorizonsWeapons : BaseRecipe
+    {
 
-            public override void Ingredient(Recipe recipe) {
+        public override void Ingredient(Recipe recipe)
+        {
 
             AddIngredient(recipe, ItemType<HandicraftedBlunderbuss>(), 1, new Item(ItemType<LegalGunParts>(), 1));
             AddIngredient(recipe, ItemType<HandicraftedFlamethrower>(), 1, new Item(ItemType<LegalGunParts>(), 1));
@@ -34,7 +37,10 @@ namespace Synergia.Common.ModSystems.RecipeSystem.ChangesRecipe.HorizonsChanges
             AddIngredient(recipe, ItemType<RopeWhip>(), 1, new Item(ItemID.Wood, 12));
             AddIngredient(recipe, ItemType<Carnwennan>(), 1, new Item(ItemType<PureGoldChunk>(), 10));
             AddIngredient(recipe, ItemType<DarkVolley>(), 1, new Item(ItemType<WickedShard>(), 5));
+            AddIngredient(recipe, ItemType<DarkVolley>(), 1, new Item(ItemType<WickedShard>(), 5));
             AddIngredient(recipe, ItemType<IncendiaryGrenade>(), 0, new Item(RoAItem("FlamingFabric"), 1));
+            AddIngredient(recipe, ItemType<Repeater>(), 0, new Item(ItemType<Clocklock>(), 1));
+            AddLotIngredient(recipe, ItemType<ClockworkShotgun>(), (ModContent.ItemType<Clocklock>(), 1));
 
         }
         public override void PostRecipe()
@@ -43,6 +49,7 @@ namespace Synergia.Common.ModSystems.RecipeSystem.ChangesRecipe.HorizonsChanges
             CreateSpaceCowboy();
             CreateWandMana1();
             CreateWandMana2();
+            CreateGungnir();
         }
         static void CreateSeaBeast()
         {
@@ -56,6 +63,7 @@ namespace Synergia.Common.ModSystems.RecipeSystem.ChangesRecipe.HorizonsChanges
             recipe.AddTile(TileID.MythrilAnvil);
             recipe.Register();
         }
+
         static void CreateSpaceCowboy()
         {
             Recipe recipe = Recipe.Create(ItemType<SpaceCowboy>());
@@ -82,7 +90,18 @@ namespace Synergia.Common.ModSystems.RecipeSystem.ChangesRecipe.HorizonsChanges
             recipe.AddTile(TileID.Anvils);
             recipe.Register();
         }
+        static void CreateGungnir()
+        {
+            Recipe recipe = Recipe.Create(ItemType<ScarletGungnir>());
+            recipe.AddIngredient(ItemType<TroxiniumBar>(), 12);
+            recipe.AddIngredient(ItemID.SoulofNight, 10);
+            recipe.AddIngredient(ItemID.SoulofSight, 6);
+            recipe.AddIngredient(ItemID.SoulofFright, 6);
+            recipe.AddIngredient(ItemID.SoulofMight, 6);
+            recipe.AddTile(TileID.MythrilAnvil);
+            recipe.Register();
 
+        }
     }
     
 }

@@ -33,7 +33,7 @@ namespace Synergia.Content.Items.Weapons.Ranged
                 Volume = 0.9f,
                 PitchVariance = 0.5f
             });
-            Item.damage = 25;
+            Item.damage = 45;
             Item.knockBack = 3.5f;
             Item.shootSpeed = 12f;
 
