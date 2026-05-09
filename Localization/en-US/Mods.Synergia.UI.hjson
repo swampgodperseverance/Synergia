@@ -23,3 +23,8 @@ LuceatUI: {
 	Village: Teleport to the Village
 	Hell: Teleport to the Beast Cave
 }
+
+ShopUI: {
+	Base: Base Price
+	Custom: Sell Price
+}

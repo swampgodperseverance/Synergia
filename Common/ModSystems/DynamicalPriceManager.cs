@@ -1,18 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
 using Terraria;
 using Terraria.GameContent;
 using Terraria.ID;
-using Terraria.ModLoader;
 
 namespace Synergia.Core.PriceSystem
 {
     public class DynamicPriceManager : ModSystem
     {
         public static DynamicPriceManager Instance;
-        private readonly Dictionary<int, ItemPriceData> _priceData = new();
+        private readonly Dictionary<int, ItemPriceData> _priceData = [];
+
+        public Dictionary<int, Price> OrigPrice = [];
 
         private const int RECOVERY_SECONDS = 25 * 60 * 20 * 20 * 20 * 10;
         private const float MIN_MULTIPLIER = 0.3f;
@@ -24,6 +23,12 @@ namespace Synergia.Core.PriceSystem
             public int LastSellTime;
             public int BaseValue;
             public bool HasBeenSold = false;
+        }
+        public class Price(long p, long g, long s, long c) {
+            public long Platinum = p;
+            public long Gold = g;
+            public long Silver = s;
+            public long Copper = c;
         }
 
         public override void Load() => Instance = this;
@@ -94,22 +99,47 @@ namespace Synergia.Core.PriceSystem
 
         private int UnixNow() => (int)DateTimeOffset.UtcNow.ToUnixTimeSeconds();
 
-        public static string FormatPrice(int value)
-        {
-            if (value <= 0) return "0 c";
-            int p = value / 1000000;
-            int g = (value % 1000000) / 10000;
-            int s = (value % 10000) / 100;
-            int c = value % 100;
-
-            string txt = "";
-            if (p > 0) txt += p + "p ";
-            if (g > 0) txt += g + "g ";
-            if (s > 0) txt += s + "s ";
-            txt += c + "c";
-            return txt.Trim();
+        public static string GetValue() {
+            string text = "";
+            long num6 = 0L;
+            long num7 = 0L;
+            long num8 = 0L;
+            long num9 = 0L;
+            Main.LocalPlayer.GetItemExpectedPrice(Main.HoverItem, out long calcForSelling, out long calcForBuying);
+            long num5 = ((Main.HoverItem.isAShopItem || Main.HoverItem.buyOnce) ? calcForBuying : calcForSelling);
+            long num10 = num5;
+            if (!Main.HoverItem.buy) {
+                num10 = num5 / 5;
+                if (num10 < 1) { num10 = 1L; }
+            }
+            if (num10 < 1) { num10 = 1L; }
+            if (num10 >= 1000000) {
+                num6 = num10 / 1000000;
+                num10 -= num6 * 1000000;
+            }
+            if (num10 >= 10000) {
+                num7 = num10 / 10000;
+                num10 -= num7 * 10000;
+            }
+            if (num10 >= 100) {
+                num8 = num10 / 100;
+                num10 -= num8 * 100;
+            }
+            if (num10 >= 1) { num9 = num10; }
+            if (num6 > 0) { text = text + num6 + " " + Lang.inter[15].Value + " "; }
+            if (num7 > 0) { text = text + num7 + " " + Lang.inter[16].Value + " "; }
+            if (num8 > 0) { text = text + num8 + " " + Lang.inter[17].Value + " "; }
+            if (num9 > 0) { text = text + num9 + " " + Lang.inter[18].Value + " "; }
+            return text;
         }
-
+        public static string GetOrigValue(Price price) {
+            string text = "";
+            if (price.Copper > 0) { text = text + price.Copper + " " + Lang.inter[15].Value + " "; }
+            if (price.Silver > 0) { text = text + price.Silver + " " + Lang.inter[16].Value + " "; }
+            if (price.Gold > 0) { text = text + price.Gold + " " + Lang.inter[17].Value + " "; }
+            if (price.Platinum > 0) { text = text + price.Platinum + " " + Lang.inter[18].Value + " "; }
+            return text;
+        }
         public int GetBaseValue(int itemType)
         {
             if (itemType <= ItemID.None) return 0;
@@ -154,6 +184,7 @@ namespace Synergia.Core.PriceSystem
     {
         public override void ModifyActiveShop(NPC npc, string shopName, Item[] items)
         {
+            
         }
     }
 
@@ -178,7 +209,7 @@ namespace Synergia.Core.PriceSystem
 
         public override void PostDrawInterface(SpriteBatch sb)
         {
-            if (!Main.playerInventory || Main.HoverItem == null || Main.HoverItem.IsAir)
+            if (!Main.playerInventory || Main.HoverItem == null || Main.HoverItem.IsAir || Main.HoverItem.shopCustomPrice != null)
             {
                 opacity = Math.Max(0f, opacity - 0.05f);
                 colorTransition = Math.Max(0f, colorTransition - 0.03f);
@@ -272,13 +303,14 @@ namespace Synergia.Core.PriceSystem
             Rectangle rect = new Rectangle((int)pos.X - 12, (int)pos.Y - 32, 270, 78);
             float borderAlpha = 0.6f * opacity;
             DrawBorder(sb, borderTex, rect, Color.Goldenrod * borderAlpha);
+            DynamicPriceManager.Instance.OrigPrice.TryGetValue(item.type, out DynamicPriceManager.Price value);
 
             Utils.DrawBorderStringFourWay(sb, FontAssets.MouseText.Value,
-                $"Base Price: {DynamicPriceManager.FormatPrice(originalBaseValue)}",
+                $"{LocUIKey("ShopUI", "Base")}: {DynamicPriceManager.GetOrigValue(value)}",
                 pos.X, pos.Y - 26, Color.LightGray * opacity, Color.Black * opacity, Vector2.Zero, 0.78f);
 
             Utils.DrawBorderStringFourWay(sb, FontAssets.MouseText.Value,
-                $"Sell Price: {DynamicPriceManager.FormatPrice(currentValue)}",
+                $"{LocUIKey("ShopUI", "Custom")}: {DynamicPriceManager.GetValue()}",
                 pos.X, pos.Y + 2, textColor, Color.Black * opacity, Vector2.Zero, 0.85f);
 
             if (percentDisplayTimer > 0.05f || discountPercent > 0)
@@ -312,6 +344,35 @@ namespace Synergia.Core.PriceSystem
                 opacity = Math.Max(0f, opacity - 0.08f);
                 colorTransition = Math.Max(0f, colorTransition - 0.05f);
                 percentDisplayTimer = Math.Max(0f, percentDisplayTimer - 0.04f);
+            }
+
+            if (Main.npcShop > 0) {
+                long num6 = 0L;
+                long num7 = 0L;
+                long num8 = 0L;
+                long num9 = 0L;
+                Main.LocalPlayer.GetItemExpectedPrice(Main.HoverItem, out var calcForSelling, out var calcForBuying);
+                long num5 = ((Main.HoverItem.isAShopItem || Main.HoverItem.buyOnce) ? calcForBuying : calcForSelling);
+                long num10 = num5;
+                if (!Main.HoverItem.buy) {
+                    num10 = num5 / 5;
+                    if (num10 < 1) { num10 = 1L; }
+                }
+                if (num10 < 1) { num10 = 1L; }
+                if (num10 >= 1000000) {
+                    num6 = num10 / 1000000;
+                    num10 -= num6 * 1000000;
+                }
+                if (num10 >= 10000) {
+                    num7 = num10 / 10000;
+                    num10 -= num7 * 10000;
+                }
+                if (num10 >= 100) {
+                    num8 = num10 / 100;
+                    num10 -= num8 * 100;
+                }
+                if (num10 >= 1) { num9 = num10; }
+                DynamicPriceManager.Instance.OrigPrice.TryAdd(Main.HoverItem.type, new(num9, num8, num7, num6));
             }
         }
     }
