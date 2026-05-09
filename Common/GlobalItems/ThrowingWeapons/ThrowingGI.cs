@@ -23,4 +23,6 @@ namespace Synergia.Common.GlobalItems.ThrowingWeapons {
             tooltips.Add(new TooltipLine(Mod, "ActiveAbility", ItemTooltip(WEP, AbilityInfo)) { OverrideColor = color });
         }
     }
+
+
 }

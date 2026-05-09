@@ -84,7 +84,7 @@ namespace Synergia.Common.GlobalItems.Changes
             {
                 Changes[FlinxForceWalkieTalkie.Type] = item =>
                 {
-                    item.damage -= 20;
+                    item.damage -= 13;
                 };
             }
         }

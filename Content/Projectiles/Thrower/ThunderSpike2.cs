@@ -66,7 +66,8 @@ namespace Synergia.Content.Projectiles.Thrower
         {
             Projectile.friendly = true;
             Projectile.hostile = false;
-            Projectile.width = Projectile.height = 14;
+            Projectile.width = 22;
+            Projectile.height = 14;
             Projectile.aiStyle = 0;
             Projectile.tileCollide = false;
             Projectile.extraUpdates = 1;
