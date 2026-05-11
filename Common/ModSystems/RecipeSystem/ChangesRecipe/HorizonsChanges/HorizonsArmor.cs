@@ -1,11 +1,15 @@
 ﻿using Avalon.Items.Material.Bars;
 using Avalon.Items.Material.Shards;
+using Avalon.Items.Placeable.Painting;
 using Avalon.Items.Weapons.Melee.Hardmode.FeroziumIceSword;
+using Bismuth.Content.Items.Placeable;
 using Consolaria.Content.Items.Materials;
 using NewHorizons.Content.Items.Armor.AshenArmor;
+using NewHorizons.Content.Items.Armor.BeastArmor;
 using NewHorizons.Content.Items.Armor.LightMageArmor;
 using NewHorizons.Content.Items.Armor.NightMageArmor;
 using NewHorizons.Content.Items.Armor.PyroArmor;
+using NewHorizons.Content.Items.Armor.RottenArmor;
 using NewHorizons.Content.Items.Armor.SkyArmor;
 using NewHorizons.Content.Items.Armor.WyvernHunterArmor;
 using NewHorizons.Content.Items.Materials;
@@ -24,6 +28,12 @@ namespace Synergia.Common.ModSystems.RecipeSystem.ChangesRecipe.HorizonsChanges
             DisableRecipe(recipe, ItemType<NightMagePants>());
             DisableRecipe(recipe, ItemType<NightMageHat>());
             DisableRecipe(recipe, ItemType<NightMageCape>());
+            DisableRecipe(recipe, ItemType<RottenCloak>());
+            DisableRecipe(recipe, ItemType<RottenLeggings>());
+            DisableRecipe(recipe, ItemType<RottenScarf>());
+            DisableRecipe(recipe, ItemType<BeastHelmet>());
+            DisableRecipe(recipe, ItemType<BeastLeggings>());
+            DisableRecipe(recipe, ItemType<BeastBreastplate>());
         }
 
         public override void Ingredient(Recipe recipe)
@@ -60,6 +70,12 @@ namespace Synergia.Common.ModSystems.RecipeSystem.ChangesRecipe.HorizonsChanges
             CreateLightHead();
             CreateLightBody();
             CreateLightLegs();
+            CreateBeastHead();
+            CreateBeastBody();
+            CreateBeastLegs();
+            CreateRottenHead();
+            CreateRottenBody();
+            CreateRottenLegs();
         }
         static void CreateWywernHead()
         {
@@ -82,7 +98,7 @@ namespace Synergia.Common.ModSystems.RecipeSystem.ChangesRecipe.HorizonsChanges
         static void CreateWywernLegs()
         {
             Recipe recipe = Recipe.Create(ItemType<WyvernHunterPants>());
-            recipe.AddIngredient(ItemType<TroxiniumBar>(), 10);
+            recipe.AddIngredient(ItemType<TroxiniumBar>(), 12);
             recipe.AddIngredient(ItemType<WyvernFur>(), 1);
             recipe.AddIngredient(ItemType<TornadoShard>(), 4);
             recipe.AddTile(TileID.MythrilAnvil);
@@ -113,6 +129,60 @@ namespace Synergia.Common.ModSystems.RecipeSystem.ChangesRecipe.HorizonsChanges
             recipe.AddIngredient(ItemType<WhiteThread>(), 14);
             recipe.AddIngredient(ItemType<ArcaneShard>(), 6);
             recipe.AddTile(TileID.MythrilAnvil);
+            recipe.Register();
+        }
+        static void CreateBeastHead()
+        {
+            Recipe recipe = Recipe.Create(ItemType<BeastHelmet>());
+            recipe.AddIngredient(ItemType<AluminiumBar>(), 10);
+            recipe.AddIngredient(ItemID.TissueSample, 8);
+            recipe.AddIngredient(ItemType<CorruptShard>(), 6);
+            recipe.AddTile(TileID.Anvils);
+            recipe.Register();
+        }
+        static void CreateBeastBody()
+        {
+            Recipe recipe = Recipe.Create(ItemType<BeastBreastplate>());
+            recipe.AddIngredient(ItemType<AluminiumBar>(), 15);
+            recipe.AddIngredient(ItemID.TissueSample, 10);
+            recipe.AddIngredient(ItemType<CorruptShard>(), 8);
+            recipe.AddTile(TileID.Anvils);
+            recipe.Register();
+        }
+        static void CreateBeastLegs()
+        {
+            Recipe recipe = Recipe.Create(ItemType<BeastLeggings>());
+            recipe.AddIngredient(ItemType<AluminiumBar>(), 10);
+            recipe.AddIngredient(ItemID.TissueSample, 8);
+            recipe.AddIngredient(ItemType<CorruptShard>(), 6);
+            recipe.AddTile(TileID.Anvils);
+            recipe.Register();
+        }
+        static void CreateRottenHead()
+        {
+            Recipe recipe = Recipe.Create(ItemType<RottenScarf>());
+            recipe.AddIngredient(ItemType<AluminiumBar>(), 10);
+            recipe.AddIngredient(ItemID.ShadowScale, 8);
+            recipe.AddIngredient(ItemType<CorruptShard>(), 6);
+            recipe.AddTile(TileID.Anvils);
+            recipe.Register();
+        }
+        static void CreateRottenBody()
+        {
+            Recipe recipe = Recipe.Create(ItemType<RottenCloak>());
+            recipe.AddIngredient(ItemType<AluminiumBar>(), 15);
+            recipe.AddIngredient(ItemID.ShadowScale, 10);
+            recipe.AddIngredient(ItemType<CorruptShard>(), 8);
+            recipe.AddTile(TileID.Anvils);
+            recipe.Register();
+        }
+        static void CreateRottenLegs()
+        {
+            Recipe recipe = Recipe.Create(ItemType<RottenLeggings>());
+            recipe.AddIngredient(ItemType<AluminiumBar>(), 10);
+            recipe.AddIngredient(ItemID.ShadowScale, 8);
+            recipe.AddIngredient(ItemType<CorruptShard>(), 6);
+            recipe.AddTile(TileID.Anvils);
             recipe.Register();
         }
     }

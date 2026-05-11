@@ -40,6 +40,7 @@ namespace Synergia.Common.ModSystems.RecipeSystem.ChangesRecipe.HorizonsChanges
             AddIngredient(recipe, ItemType<DarkVolley>(), 1, new Item(ItemType<WickedShard>(), 5));
             AddIngredient(recipe, ItemType<IncendiaryGrenade>(), 0, new Item(RoAItem("FlamingFabric"), 1));
             AddIngredient(recipe, ItemType<Repeater>(), 0, new Item(ItemType<Clocklock>(), 1));
+            AddIngredient(recipe, ItemType<Graverobber>(), 1, new Item(ItemType<UndeadShard>(), 5));
             AddLotIngredient(recipe, ItemType<ClockworkShotgun>(), (ModContent.ItemType<Clocklock>(), 1));
 
         }

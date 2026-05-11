@@ -33,7 +33,7 @@ namespace Synergia.Content.Items.Weapons.Ranged
 			
 		    Item.value = Item.buyPrice(gold: 15);
 			Item.DamageType = DamageClass.Ranged;
-			Item.damage = 38;
+			Item.damage = 33;
 		}
 			public override bool Shoot(
 				Player player,
@@ -44,7 +44,7 @@ namespace Synergia.Content.Items.Weapons.Ranged
 				int damage,
 				float knockback)
 			{
-				int bulletAmount = Main.rand.Next(3, 6);
+				int bulletAmount = Main.rand.Next(2, 4);
 
 				for (int i = 0; i < bulletAmount; i++)
 				{

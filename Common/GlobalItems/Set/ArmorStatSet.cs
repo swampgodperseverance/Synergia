@@ -75,16 +75,16 @@ namespace Synergia.Common.GlobalItems.Set
 			{
 				if (item.type == roa.Find<ModItem>("SentinelHelmet").Type)
 				{
-					player.GetDamage(DamageClass.Throwing) += 0.15f;
+					player.GetDamage(DamageClass.Throwing) += 0.08f;
 					player.GetCritChance(DamageClass.Throwing) += 5;
 				}
 				if (item.type == roa.Find<ModItem>("SentinelBreastplate").Type)
 				{
-					player.GetAttackSpeed(DamageClass.Throwing) += 0.1f;
+					player.GetAttackSpeed(DamageClass.Throwing) += 0.07f;
 				}
 				if (item.type == roa.Find<ModItem>("SentinelLeggings").Type)
 				{
-					player.moveSpeed += 0.2f;
+					player.moveSpeed += 0.12f;
 				}
 			}
 
@@ -233,15 +233,16 @@ namespace Synergia.Common.GlobalItems.Set
                 }
                 if (item.type == bismuth.Find<ModItem>("NomadsHood").Type)
                 {
-                    player.GetDamage(DamageClass.Throwing) += 0.07f;
+                    player.GetDamage(DamageClass.Ranged) += 0.05f;
                 }
                 if (item.type == bismuth.Find<ModItem>("NomadsJacket").Type)
                 {
-                    player.GetDamage(DamageClass.Throwing) += 0.11f;
+                    player.GetAttackSpeed(DamageClass.Ranged) += 0.10f;
                 }
                 if (item.type == bismuth.Find<ModItem>("NomadsBoots").Type)
                 {
-                    player.GetDamage(DamageClass.Throwing) += 0.07f;
+                    player.GetDamage(DamageClass.Ranged) += 0.07f;
+                    player.moveSpeed -= 0.1f;
                 }
                 if (item.type == bismuth.Find<ModItem>("FeralLeggings").Type)
                 {

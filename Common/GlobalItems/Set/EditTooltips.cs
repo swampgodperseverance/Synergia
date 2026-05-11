@@ -1,9 +1,10 @@
-﻿using Avalon.Items.Accessories.Hardmode;
+﻿using System;
+using System.Collections.Generic;
+using System.Reflection;
+using Avalon.Items.Accessories.Hardmode;
 using Avalon.Items.Material.TomeMats;
 using Bismuth.Content.Items.Accessories;
 using NewHorizons.Content.Items.Accessories;
-using System;
-using System.Collections.Generic;
 using Terraria;
 using static Synergia.Common.SUtils.LocUtil;
 using static Synergia.Helpers.ItemHelper;
@@ -39,6 +40,7 @@ namespace Synergia.Common.GlobalItems.Set {
             if (item.type == ItemType<CarbonSteel>()) {
                 tooltips.RemoveAll(line => line.Mod == "Terraria" && line.Name == "Tooltip0");
             }
+
         }
     }
 }

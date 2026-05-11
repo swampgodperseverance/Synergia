@@ -35,21 +35,25 @@ Items: {
 		+10% Aura radius and +10% aura radius when linked on the player
 		Increases your max number of minions by 1
 		'''
-	SentinelHelmet.Tooltip: 15% Increased throwing damage and crit chance by 5%
-	SentinelBreastplate.Tooltip: Throwing speed increased by 10%
-	SentinelLeggings.Tooltip: Running speed increased by 20%
+	SentinelHelmet.Tooltip: Increases throwing damage by 15% and crit chance by 5%
+	SentinelBreastplate.Tooltip:
+		'''
+		Increases throwing speed by 7%
+		Increases ranged damage by 7%
+		'''
+	SentinelLeggings.Tooltip: Increases running speed by 12%
 	GreediestHead.Tooltip: 14% more damage resistance and 25% throwing damage
 	GreediestBody.Tooltip: 13% more damage resistance and +8 crit
 	GreediestLegs.Tooltip: +9% throwing speed
 	EvilHead.Tooltip:
 		'''
 		Increases your max numbers of minions by 4
-		+20% minion damage
+		Increases minion damage by +20%
 		'''
 	SniperBody.Tooltip:
 		'''
-		Increases your ranged crit chance and penetration by 20%
-		+5% ranged damage
+		Increases ranged crit chance and penetration by 20%
+		Increases ranged damage by +5% 
 		'''
 	SniperHead.Tooltip: 26% increased ranged damage and 20% increased critical strike chance
 	SniperLegs.Tooltip:
@@ -128,12 +132,16 @@ Items: {
 	FeralHelmet.Tooltip: Throwing and ranged damage are increased by 5%
 	FeralBreastplate.Tooltip: Throwing damage is increased by 7%
 	FeralLeggings.Tooltip: Throwing critical strike chance is increased by 6%
-	NomadsHood.Tooltip: Throwing damage is increased by 7%
-	NomadsJacket.Tooltip: Throwing damage is increased by 11%, critical strike damage is increased by 30%
+	NomadsHood.Tooltip: Increases Ranged damage by 7%
+	NomadsJacket.Tooltip:
+		'''
+		Increases ranged shoot speed by 11%
+		Increases critical strike damage by 10%
+		'''
 	NomadsBoots.Tooltip:
 		'''
-		Movement speed is increased by 25%
-		Throwing damage is increased by 7%
+		Increases movement speed by 15%
+		Increases ranged damage by 7%
 		'''
 	PikemansLeggings.Tooltip: Melee critical strike chance is increased by 6%
 	PikemansBreastplate.Tooltip:
@@ -162,6 +170,15 @@ Items: {
 		More wetness - higher movement speed
 		Increases magic damage by 8%
 		Increases mana regeneration by 10
+		'''
+	AriadnesTangle.Tooltip: Increased yoyo range
+	MarbleMask.Tooltip: Increases ranged damage by 5%
+	PendantOfBlood.Tooltip: Slightly increases endurance and regeneration
+	DraculasCover.Tooltip: Lets you transform into a bat when you are a vimpire
+	SignOfUndead.Tooltip:
+		'''
+		Increases maximum life by 140
+		Removes any regeneration except healing potions 
 		'''
 
 	EverwoodJavelin: {
@@ -1485,6 +1502,7 @@ Projectiles: {
 	Meatknife2.DisplayName: Meatknife2
 	Meatknife3.DisplayName: Meatknife3
 	MeatknifeManager.DisplayName: Meatknife Manager
+	GalvornPiece.DisplayName: Galvorn Piece
 }
 
 Buffs: {

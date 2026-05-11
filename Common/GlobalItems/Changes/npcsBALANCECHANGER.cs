@@ -9,6 +9,7 @@ using ValhallaMod.NPCs.Snowman;
 using ValhallaMod.NPCs.Emperor;
 using ValhallaMod.NPCs.Pirate;
 using ValhallaMod.NPCs.Jungle;
+using Synergia.Common.GlobalNPCs.AI;
 
 namespace Synergia.Common.GlobalNPCs.Changes
 {
@@ -18,6 +19,18 @@ namespace Synergia.Common.GlobalNPCs.Changes
 
         public override void Load()
         {
+            int lothorType =
+                 ModLoader.GetMod("RoA")?.Find<ModNPC>("Lothor")?.Type ?? 0;
+
+            int GrimType =
+                 ModLoader.GetMod("RoA")?.Find<ModNPC>("GrimDruid")?.Type ?? 0;
+
+            int ravencallerType =
+                 ModLoader.GetMod("RoA")?.Find<ModNPC>("Ravencaller")?.Type ?? 0;
+
+            int lumberjackType =
+                 ModLoader.GetMod("RoA")?.Find<ModNPC>("Lumberjack")?.Type ?? 0;
+
             Changes = new()
             {
                 [NPCID.Zombie] = npc =>
@@ -193,11 +206,11 @@ namespace Synergia.Common.GlobalNPCs.Changes
                 {
                     npc.lifeMax += 600;
                     npc.damage += 6;
-                    npc.defense += 6;
+                    npc.defense += 2;
                 },
                 [ModContent.NPCType<ColdFather>()] = npc =>
                 {
-                    npc.lifeMax += 2000;
+                    npc.lifeMax += 3000;
                     npc.damage += 10;
                     npc.defense += 5;
                 },
@@ -209,9 +222,9 @@ namespace Synergia.Common.GlobalNPCs.Changes
                 },
                [ModContent.NPCType<Emperor>()] = npc =>
                 {
-                    npc.lifeMax += 4000;
+                    npc.lifeMax += 6000;
                     npc.damage += 10;
-                    npc.defense += 4;
+                    npc.defense -= 15;
                 },
                [ModContent.NPCType<JadeOrb>()] = npc =>
                 {
@@ -242,6 +255,22 @@ namespace Synergia.Common.GlobalNPCs.Changes
                     npc.lifeMax += 2000;
                     //npc.damage += 10;
                     npc.defense += 6;
+                },
+                [lothorType] = npc =>
+                {
+                    npc.lifeMax += 500;
+                },
+                [GrimType] = npc =>
+                {
+                    npc.lifeMax += 50;
+                },
+                [ravencallerType] = npc =>
+                {
+                    npc.lifeMax += 50;
+                },
+                [lumberjackType] = npc =>
+                {
+                    npc.lifeMax += 50;
                 },
 
             };

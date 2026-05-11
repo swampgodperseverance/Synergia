@@ -4,11 +4,13 @@ using Avalon.Items.Weapons.Magic.PreHardmode.ChaosTome;
 using Avalon.Items.Weapons.Magic.PreHardmode.Smogscreen;
 using Avalon.Items.Weapons.Melee.Hardmode.CraniumCrusher;
 using Avalon.Items.Weapons.Melee.PreHardmode.SanguineKatana;
+using Avalon.Items.Weapons.Ranged.PreHardmode.Boompipe;
 using Avalon.Items.Weapons.Ranged.PreHardmode.EggCannon;
 using Avalon.Items.Weapons.Summon.Hardmode.Gastropod;
 using Bismuth.Content.Items.Weapons.Assassin;
 using Bismuth.Content.Items.Weapons.Magical;
 using Bismuth.Content.Items.Weapons.Melee;
+using Consolaria.Content.Items.Weapons.Ranged;
 using NewHorizons.Content.Items.Weapons.Magic;
 using NewHorizons.Content.Items.Weapons.Melee;
 using NewHorizons.Content.Items.Weapons.Ranged;
@@ -23,6 +25,9 @@ using ValhallaMod.Items.Weapons.Melee.Shortswords;
 using ValhallaMod.Items.Weapons.Melee.Spears;
 using ValhallaMod.Items.Weapons.Melee.Swords;
 using ValhallaMod.Items.Weapons.Ranged.Bows;
+using ValhallaMod.Items.Weapons.Ranged.DartGuns;
+using ValhallaMod.Items.Weapons.Ranged.Guns;
+using ValhallaMod.Items.Weapons.Ranged.Longbows;
 using ValhallaMod.Items.Weapons.Summon.Minions;
 using ValhallaMod.Items.Weapons.Summon.Sentries;
 using ValhallaMod.Items.Weapons.Summon.Whips;
@@ -103,7 +108,7 @@ namespace Synergia.Common.GlobalItems.Changes
                     item.useAnimation += 4;
                     item.useTime += 4;
                 },
-                [ModContent.ItemType<EggCannon>()] = item =>
+                [ModContent.ItemType<Avalon.Items.Weapons.Ranged.PreHardmode.EggCannon.EggCannon>()] = item =>
                 {
                     item.damage -= 6;
                     item.useAnimation += 2;
@@ -133,7 +138,7 @@ namespace Synergia.Common.GlobalItems.Changes
                 },
                 [ModContent.ItemType<IluminantBatbow>()] = item =>
                 {
-                    item.damage += 26;
+                    item.damage += 20;
                 },
                 [ModContent.ItemType<Tarrifier>()] = item =>
                 {
@@ -263,6 +268,52 @@ namespace Synergia.Common.GlobalItems.Changes
                 {
                     item.damage -= 15;
                 },
+                [ModContent.ItemType<Graverobber>()] = item =>
+                {
+                    item.useAnimation += 3;
+                    item.useTime += 3;
+                    item.damage -= 1;
+                },
+                [ModContent.ItemType<Graverobber>()] = item =>
+                {
+                    item.reuseDelay -= 5;
+                },
+                [ModContent.ItemType<HuntressBow>()] = item =>
+                {
+                    item.damage -= 9;
+                },
+                [ModContent.ItemType<Sharanga>()] = item =>
+                {
+                    item.useAnimation += 10;
+                    item.useTime += 10;
+                },
+                [ModContent.ItemType<BoneDartgun>()] = item =>
+                {
+                    item.damage += 4;
+                },
+                [ModContent.ItemType<Boompipe>()] = item =>
+                {
+                    item.damage += 9;
+                },
+                [ModContent.ItemType<CorrodeLongbow>()] = item =>
+                {
+                    item.damage += 8;
+                },
+                [ModContent.ItemType<Rifle76>()] = item =>
+                {
+                    item.damage += 8;
+                },
+                [ModContent.ItemType<Scarabine>()] = item =>
+                {
+                    item.damage += 6;
+                },
+                [ModContent.ItemType<PlagueRifleH>()] = item =>
+                {
+                    item.damage -= 6;
+                    item.useAnimation += 2;
+                    item.useTime += 2;
+                },
+
             };
         }
 
