@@ -318,7 +318,7 @@ namespace Synergia.Content.Items.Weapons.Melee
 
         public override void SetStaticDefaults()
         {
-            ProjectileID.Sets.TrailCacheLength[Projectile.type] = 12;
+            ProjectileID.Sets.TrailCacheLength[Projectile.type] = 4;
             ProjectileID.Sets.TrailingMode[Projectile.type] = 0;
         }
 
@@ -413,47 +413,46 @@ namespace Synergia.Content.Items.Weapons.Melee
         public override bool PreDraw(ref Color lightColor)
         {
             SpriteBatch spriteBatch = Main.spriteBatch;
-            Texture2D texture = ModContent.Request<Texture2D>(Texture).Value;
-            Texture2D glow = ModContent.Request<Texture2D>(GlowTexture).Value;
-            Vector2 drawOrigin = texture.Size() * 0.5f;
-            SpriteEffects effects = Projectile.spriteDirection == -1 ? SpriteEffects.None : SpriteEffects.FlipHorizontally;
-            for (int k = 0; k < Projectile.oldPos.Length; k++)
+            Texture2D texture = (Texture2D)ModContent.Request<Texture2D>("Consolaria/Assets/Textures/Projectiles/LightTrail_1");
+            Vector2 drawOrigin = new Vector2(texture.Width * 0.5f, texture.Height * 0.5f);
+            SpriteEffects effects = (Projectile.spriteDirection == -1) ? SpriteEffects.FlipHorizontally : SpriteEffects.None;
+            for (int k = 0; k < Projectile.oldPos.Length - 1; k++)
             {
-                Vector2 drawPos = Projectile.oldPos[k] + Projectile.Size / 2f - Main.screenPosition;
-                float progress = (Projectile.oldPos.Length - k) / (float)Projectile.oldPos.Length;
+                Vector2 drawPos = Projectile.oldPos[k] + new Vector2(Projectile.width, Projectile.height) / 2f + Vector2.UnitY * Projectile.gfxOffY - Main.screenPosition;
 
-                Color color = Color.BlueViolet * 0.2f * progress;
+                float progress = k / (float)Projectile.oldPos.Length;
 
-                float rotation;
-                if (k + 1 >= Projectile.oldPos.Length)
-                    rotation = (Projectile.position - Projectile.oldPos[k]).ToRotation() + MathHelper.PiOver2;
-                else
-                    rotation = (Projectile.oldPos[k + 1] - Projectile.oldPos[k]).ToRotation() + MathHelper.PiOver2;
+                Color color = Color.Lerp(
+                    new Color(255, 90, 0, 0),
+                    new Color(40, 0, 0, 0),
+                    progress
+                );
 
-                spriteBatch.Draw(texture, drawPos, null, color, rotation, drawOrigin, Projectile.scale * progress, effects, 0f);
+                spriteBatch.Draw(
+                    texture,
+                    drawPos,
+                    null,
+                    color * 0.6f,
+                    Projectile.oldRot[k] + MathF.PI / 2,
+                    drawOrigin,
+                    Projectile.scale - progress,
+                    effects,
+                    0f
+                );
+
+                spriteBatch.Draw(
+                    texture,
+                    drawPos - Projectile.oldPos[k] * 0.5f + Projectile.oldPos[k + 1] * 0.5f,
+                    null,
+                    color * 0.45f,
+                    Projectile.oldRot[k] * 0.5f + Projectile.oldRot[k + 1] * 0.5f + MathF.PI / 2,
+                    drawOrigin,
+                    Projectile.scale - progress,
+                    effects,
+                    0f
+                );
             }
-
-            spriteBatch.Draw(texture,
-                Projectile.Center - Main.screenPosition,
-                null,
-                lightColor,
-                Projectile.rotation,
-                drawOrigin,
-                Projectile.scale,
-                effects,
-                0f);
-
-            spriteBatch.Draw(glow,
-                Projectile.Center - Main.screenPosition,
-                null,
-                Color.White,
-                Projectile.rotation,
-                glow.Size() * 0.5f,
-                Projectile.scale,
-                effects,
-                0f);
-
-            return false;
+            return true;
         }
     }
     public class MalebolgeBoom : ModProjectile
