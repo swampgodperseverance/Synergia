@@ -29,6 +29,7 @@ using ValhallaMod.Items.Weapons.Melee.Swords;
 using ValhallaMod.Items.Weapons.Ranged.Bows;
 using ValhallaMod.Items.Weapons.Ranged.DartGuns;
 using ValhallaMod.Items.Weapons.Ranged.Guns;
+using ValhallaMod.Items.Weapons.Ranged.Launchers;
 using ValhallaMod.Items.Weapons.Ranged.Longbows;
 using ValhallaMod.Items.Weapons.Ranged.RocketLaunchers;
 using ValhallaMod.Items.Weapons.Summon.Minions;
@@ -349,6 +350,10 @@ namespace Synergia.Common.GlobalItems.Changes
                 [ModContent.ItemType<VolcanicRepeater>()] = item =>
                 {
                     item.damage -= 35;
+                },
+                [ModContent.ItemType<Splatterink>()] = item =>
+                {
+                    item.shootSpeed -= 6;
                 },
 
             };

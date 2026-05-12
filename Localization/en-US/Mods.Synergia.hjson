@@ -1510,6 +1510,7 @@ Projectiles: {
 	Meatknife3.DisplayName: Meatknife3
 	MeatknifeManager.DisplayName: Meatknife Manager
 	GalvornPiece.DisplayName: Galvorn Piece
+	SplutterinkRework.DisplayName: Splutterink Rework
 }
 
 Buffs: {
