@@ -8,6 +8,8 @@ using Avalon.Items.Material.TomeMats;
 using Avalon.Items.Potions.Buff;
 using Avalon.Items.Tomes.PreHardmode;
 using Avalon.Items.Tools.Hardmode;
+using Avalon.Items.Weapons.Melee.PreHardmode.MarrowMasher;
+using Avalon.Items.Weapons.Melee.PreHardmode.UrchinMace;
 using Avalon.Items.Weapons.Ranged.PreHardmode.Thompson;
 using Bismuth.Content.Items.Materials;
 using Bismuth.Content.Items.Placeable;
@@ -61,6 +63,8 @@ namespace Synergia.Common.ModSystems.RecipeSystem.ChangesRecipe.AvalonsChanges {
             // AddIngredient(recipe, ItemType<StarAuraStaff>(), 0, starforgedclassic.Find<ModItem>("AzuriteBarItem"), 10);
             AddIngredient(recipe, ItemType<SpiderEgg>(), 1, new Item(ItemID.Grenade, 33));
             AddIngredient(recipe, ItemType<Scarabine>(), 0, new Item(ModContent.ItemType<Thompson>(), 1));
+            AddIngredient(recipe, ItemType<Forfeiter>(), 0, new Item(ModContent.ItemType<Scarabine>(), 1));
+            AddIngredient(recipe, ItemType<Forfeiter>(), 3, new Item(ModContent.ItemType<GalvornBar>(), 10));
             AddLotIngredient(recipe, ItemType<ValhallaMod.Items.Weapons.Summon.Sentries.SnowPeashooterSentryStaff>(), (ModContent.ItemType<IceCrystal>(), 5 ));
             AddLotIngredient(recipe, ItemType<ValhallaMod.Items.Weapons.Summon.Sentries.SnowPeashooterSentryStaff>(), (ModContent.ItemType<FrostShard>(), 4));
             AddLotIngredient(recipe, ItemType<HellAuraStaff>(), (ModContent.ItemType<FireShard>(), 4));
@@ -96,6 +100,7 @@ namespace Synergia.Common.ModSystems.RecipeSystem.ChangesRecipe.AvalonsChanges {
             CreateHuntersHunch3();
             CreateHurbringerDawn();
             CreateScarabine();
+            CreateReptile();
         }
 
         static void CreateHeavensSeal()
@@ -330,6 +335,14 @@ namespace Synergia.Common.ModSystems.RecipeSystem.ChangesRecipe.AvalonsChanges {
             recipe.AddIngredient(ItemType<Consolaria.Content.Items.Materials.SoulofBlight>(), 10);
             recipe.AddIngredient(ItemID.LunarTabletFragment, 10);
             recipe.AddTile(TileType<CaesiumHeavyAnvilTile>());
+            recipe.Register();
+        }
+        static void CreateReptile()
+        {
+            Recipe recipe = Recipe.Create(ItemType<ReptileRavager>());
+            recipe.AddIngredient(ItemType<UrchinMace>(), 1);
+            recipe.AddIngredient(ItemType<MarrowMasher>(), 1); 
+            recipe.AddTile(TileID.Anvils);
             recipe.Register();
         }
 
