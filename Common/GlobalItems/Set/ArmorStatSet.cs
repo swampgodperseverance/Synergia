@@ -125,8 +125,26 @@ namespace Synergia.Common.GlobalItems.Set
 					player.GetDamage(DamageClass.Ranged) += 0.05f;
 					player.GetDamage(DamageClass.Melee) -= 0.11f;
 				}
-				
-			}
+                if (item.type == valhalla.Find<ModItem>("JadeLegs").Type)
+                {
+                    player.GetCritChance(DamageClass.Generic) += 0.07f;
+                    player.moveSpeed += 0.07f;
+                }
+                if (item.type == valhalla.Find<ModItem>("JadeHead").Type)
+                {
+                    player.blackBelt = true;
+                    item.defense -= 4;
+                }
+                if (item.type == valhalla.Find<ModItem>("JadeMask").Type)
+                {
+                    player.GetDamage(DamageClass.Generic) += 0.06f;
+                }
+                if (item.type == valhalla.Find<ModItem>("JadeBody").Type)
+                {
+                    item.defense += 5;
+                }
+
+            }
 
 			// Avalon
 			if (avalon != null)
@@ -335,6 +353,9 @@ namespace Synergia.Common.GlobalItems.Set
 			Add("ValhallaMod", "SniperBody", "Items.SniperBody.Tooltip");
 			Add("ValhallaMod", "SniperHead", "Items.SniperHead.Tooltip");
 			Add("ValhallaMod", "SniperLegs", "Items.SniperLegs.Tooltip");
+			Add("ValhallaMod", "JadeMask", "Items.JadeMask.Tooltip");
+			Add("ValhallaMod", "JadeHead", "Items.JadeHead.Tooltip");
+			Add("ValhallaMod", "JadeLegs", "Items.JadeLegs.Tooltip");
 
 			Add("Avalon", "EarthsplitterChestpiece", "Items.EarthsplitterChestpiece.Tooltip");
 			Add("Avalon", "EarthsplitterHelm", "Items.EarthsplitterHelm.Tooltip");

@@ -13,6 +13,7 @@ using Bismuth.Content.Items.Materials;
 using Bismuth.Content.Items.Placeable;
 using Bismuth.Content.Items.Weapons.Ranged;
 using Consolaria.Content.Items.Materials;
+using Consolaria.Content.Items.Weapons.Ranged;
 using NewHorizons.Content.Items.Armor.NightMageArmor;
 using NewHorizons.Content.Items.Materials;
 using NewHorizons.Content.Items.Weapons.Ranged;
@@ -21,6 +22,7 @@ using starforgedclassic.Content.Placeables.AzuriteBar;
 using starforgedclassic.Content.Weapons.PlumeShot;
 using Starforgedclassic.Content.Accessories.SkyShield;
 using Synergia.Content.Items.Materials;
+using Synergia.Content.Items.Misc;
 using Terraria;
 using Terraria.ID;
 using ValhallaMod.Items.Accessory;
@@ -38,6 +40,7 @@ using ValhallaMod.Items.Weapons.Ranged.Bows;
 using ValhallaMod.Items.Weapons.Ranged.Darts;
 using ValhallaMod.Items.Weapons.Ranged.Guns;
 using ValhallaMod.Items.Weapons.Ranged.ProjectileGuns;
+using ValhallaMod.Items.Weapons.Ranged.RocketLaunchers;
 using ValhallaMod.Items.Weapons.Ranged.Thrown;
 using ValhallaMod.Items.Weapons.Summon.Auras;
 using ValhallaMod.Items.Weapons.Summon.Whips;
@@ -88,6 +91,10 @@ namespace Synergia.Common.ModSystems.RecipeSystem.ChangesRecipe.AvalonsChanges {
             CreateHeavensSeal();
             CreateRifle76();
             CreateMacEleven();
+            CreateHuntersHunch1();
+            CreateHuntersHunch2();
+            CreateHuntersHunch3();
+            CreateHurbringerDawn();
             CreateScarabine();
         }
 
@@ -286,6 +293,43 @@ namespace Synergia.Common.ModSystems.RecipeSystem.ChangesRecipe.AvalonsChanges {
             recipe.AddIngredient(ItemID.HallowedBar, 10);
             recipe.AddIngredient(ItemID.FossilOre, 18);
             recipe.AddTile(TileID.MythrilAnvil);
+            recipe.Register();
+        }
+        static void CreateHuntersHunch1()
+        {
+            Recipe recipe = Recipe.Create(ItemType<HuntersHunch>());
+            recipe.AddIngredient(ItemType<TroxiniumBar>(), 10);
+            recipe.AddIngredient(ItemType<GalvornBar>(), 10);
+            recipe.AddRecipeGroup(RecipeGroupID.Wood);
+            recipe.AddTile(TileID.MythrilAnvil);
+            recipe.Register();
+        }
+        static void CreateHuntersHunch2()
+        {
+            Recipe recipe = Recipe.Create(ItemType<HuntersHunch>());
+            recipe.AddIngredient(ItemID.AdamantiteBar, 10);
+            recipe.AddIngredient(ItemType<GalvornBar>(), 10);
+            recipe.AddRecipeGroup(RecipeGroupID.Wood);
+            recipe.AddTile(TileID.MythrilAnvil);
+            recipe.Register();
+        }
+        static void CreateHuntersHunch3()
+        {
+            Recipe recipe = Recipe.Create(ItemType<HuntersHunch>());
+            recipe.AddIngredient(ItemID.TitaniumBar, 10);
+            recipe.AddIngredient(ItemType<GalvornBar>(), 10);
+            recipe.AddRecipeGroup(RecipeGroupID.Wood);
+            recipe.AddTile(TileID.MythrilAnvil);
+            recipe.Register();
+        }
+        static void CreateHurbringerDawn()
+        {
+            Recipe recipe = Recipe.Create(ItemType<HarbingerOfDawn>());
+            recipe.AddIngredient(ItemType<Sharanga>(), 1);
+            recipe.AddIngredient(ItemType<Heat>(), 1);
+            recipe.AddIngredient(ItemType<Consolaria.Content.Items.Materials.SoulofBlight>(), 10);
+            recipe.AddIngredient(ItemID.LunarTabletFragment, 10);
+            recipe.AddTile(TileType<CaesiumHeavyAnvilTile>());
             recipe.Register();
         }
 

@@ -180,6 +180,13 @@ Items: {
 		Increases maximum life by 140
 		Removes any regeneration except healing potions 
 		'''
+	JadeHead.Tooltip:
+		'''
+		10% increased movement speed
+		Player have a chance to dodge attacks.
+		'''
+	JadeMask.Tooltip: "              10% Increased damage"
+	JadeLegs.Tooltip: 10% increased movement speed and critical strike
 
 	EverwoodJavelin: {
 		DisplayName: Everwood Javelin

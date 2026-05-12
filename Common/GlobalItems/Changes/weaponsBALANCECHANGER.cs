@@ -10,6 +10,8 @@ using Avalon.Items.Weapons.Summon.Hardmode.Gastropod;
 using Bismuth.Content.Items.Weapons.Assassin;
 using Bismuth.Content.Items.Weapons.Magical;
 using Bismuth.Content.Items.Weapons.Melee;
+using Bismuth.Content.Items.Weapons.Ranged;
+using Consolaria.Content.Items.Weapons.Ammo;
 using Consolaria.Content.Items.Weapons.Ranged;
 using NewHorizons.Content.Items.Weapons.Magic;
 using NewHorizons.Content.Items.Weapons.Melee;
@@ -28,6 +30,7 @@ using ValhallaMod.Items.Weapons.Ranged.Bows;
 using ValhallaMod.Items.Weapons.Ranged.DartGuns;
 using ValhallaMod.Items.Weapons.Ranged.Guns;
 using ValhallaMod.Items.Weapons.Ranged.Longbows;
+using ValhallaMod.Items.Weapons.Ranged.RocketLaunchers;
 using ValhallaMod.Items.Weapons.Summon.Minions;
 using ValhallaMod.Items.Weapons.Summon.Sentries;
 using ValhallaMod.Items.Weapons.Summon.Whips;
@@ -282,6 +285,15 @@ namespace Synergia.Common.GlobalItems.Changes
                 {
                     item.damage -= 9;
                 },
+                [ModContent.ItemType<Heat>()] = item =>
+                {
+                    item.reuseDelay += 10;
+                },
+                [ModContent.ItemType<TheSeaBeast>()] = item =>
+                {
+                    item.reuseDelay += 5;
+                    item.damage -= 1;
+                },
                 [ModContent.ItemType<Sharanga>()] = item =>
                 {
                     item.useAnimation += 10;
@@ -312,6 +324,31 @@ namespace Synergia.Common.GlobalItems.Changes
                     item.damage -= 6;
                     item.useAnimation += 2;
                     item.useTime += 2;
+                },
+                [ModContent.ItemType<JadeBalista>()] = item =>
+                {
+                    item.damage += 21;
+                    item.useAnimation -= 3;
+                    item.useTime -= 3;
+                    item.reuseDelay -= 10;
+                },
+                [ModContent.ItemType<HuntersHunch>()] = item =>
+                {
+                    item.damage += 15;
+                },
+                [ModContent.ItemType<Beepeater>()] = item =>
+                {
+                    item.damage -= 12;
+                },
+                [ModContent.ItemType<HarbingerOfDawn>()] = item =>
+                {
+                    item.damage += 60;
+                    item.useAnimation -= 5;
+                    item.useTime -= 5;
+                },
+                [ModContent.ItemType<VolcanicRepeater>()] = item =>
+                {
+                    item.damage -= 35;
                 },
 
             };

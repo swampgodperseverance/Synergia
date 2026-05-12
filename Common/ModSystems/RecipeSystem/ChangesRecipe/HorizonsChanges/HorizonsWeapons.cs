@@ -11,6 +11,7 @@ using NewHorizons.Content.Items.Weapons.Ranged;
 using NewHorizons.Content.Items.Weapons.Summon;
 using NewHorizons.Content.Items.Weapons.Throwing;
 using Starforgedclassic.Content.Accessories.SkyShield;
+using Synergia.Content.Items.Weapons.Ranged;
 using Terraria;
 using Terraria.ID;
 using ValhallaMod.Items.Material;
@@ -57,7 +58,7 @@ namespace Synergia.Common.ModSystems.RecipeSystem.ChangesRecipe.HorizonsChanges
             Recipe recipe = Recipe.Create(ItemType<TheSeaBeast>());
             recipe.AddIngredient(ItemType<LooseCannon>(), 1);
             recipe.AddIngredient(ItemType<TheGalleon>(), 1);
-            recipe.AddIngredient(ItemID.Shotgun, 1);
+            recipe.AddIngredient(ItemType<Blunderbussin>(), 1);
             recipe.AddIngredient(ItemID.SoulofSight, 1);
             recipe.AddIngredient(ItemID.SoulofFright, 1);
             recipe.AddIngredient(ItemID.SoulofMight, 1);

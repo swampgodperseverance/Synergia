@@ -79,7 +79,7 @@ namespace Synergia.Common.GlobalNPCs.Changes
                 },
                 [NPCID.Plantera] = npc =>
                 {
-                    npc.lifeMax += 15000;
+                    npc.lifeMax += 20000;
                     npc.defense += 8;
                     npc.damage += 5;
                 },
@@ -222,7 +222,7 @@ namespace Synergia.Common.GlobalNPCs.Changes
                 },
                [ModContent.NPCType<Emperor>()] = npc =>
                 {
-                    npc.lifeMax += 6000;
+                    npc.lifeMax += 3000;
                     npc.damage += 10;
                     npc.defense -= 15;
                 },
