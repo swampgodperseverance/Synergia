@@ -7,24 +7,23 @@ using NewHorizons.Content.Projectiles.Melee;
 namespace Synergia.Content.Projectiles.Reworks.Reworks2
 {
     // Token: 0x0200004A RID: 74
-    public class TheseusSword : SlashKatana
+    public class GladiusBismuth : SlashKatana
     {
         // Token: 0x0600019D RID: 413 RVA: 0x000091C4 File Offset: 0x000073C4
         public override void SetStaticDefaults()
         {
             ProjectileID.Sets.TrailingMode[base.Projectile.type] = 2;
-            ProjectileID.Sets.TrailCacheLength[base.Projectile.type] = 6;
+            ProjectileID.Sets.TrailCacheLength[base.Projectile.type] = 3;
         }
 
         // Token: 0x0600019E RID: 414 RVA: 0x0000E23F File Offset: 0x0000C43F
         public override void SetDefaults()
         {
             base.SetDefaults();
-            base.Projectile.hide = false;
-            base.Projectile.width = 52;
-            base.Projectile.height = 58;
+            base.Projectile.width = 44;
+            base.Projectile.height = 44;
             base.Projectile.scale = 1f;
-            this.AttackAI[0] = 32f;
+            this.AttackAI[0] = 30f;
         }
 
         // Token: 0x0600019F RID: 415 RVA: 0x0000E280 File Offset: 0x0000C480
@@ -53,15 +52,7 @@ namespace Synergia.Content.Projectiles.Reworks.Reworks2
             }
             base.Attack();
         }
-        public override void Update()
-        {
-            Projectile.Center = Player.Center;
-            Projectile.spriteDirection = Player.direction;
-            Projectile.rotation += AttackAI[3];
-            Projectile.velocity = (Projectile.rotation - 0.785f).ToRotationVector2();
-            Projectile.rotation = Projectile.velocity.ToRotation() + 0.785f;
-            Projectile.position += Projectile.velocity * AttackAI[0] * Projectile.scale;
-        }
+
         // Token: 0x060001A1 RID: 417 RVA: 0x0000E35A File Offset: 0x0000C55A
         public override void AttackPro()
         {

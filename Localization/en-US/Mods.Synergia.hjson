@@ -1511,6 +1511,7 @@ Projectiles: {
 	MeatknifeManager.DisplayName: Meatknife Manager
 	GalvornPiece.DisplayName: Galvorn Piece
 	SplutterinkRework.DisplayName: Splutterink Rework
+	GladiusBismuth.DisplayName: Gladius Bismuth
 }
 
 Buffs: {
