@@ -18,8 +18,8 @@ namespace Synergia.Content.Projectiles.Friendly
 
         public override void SetStaticDefaults()
         {
-            ProjectileID.Sets.TrailCacheLength[Projectile.type] = 8;
-            ProjectileID.Sets.TrailingMode[Projectile.type] = 0;
+            ProjectileID.Sets.TrailCacheLength[Projectile.type] = 5;
+            ProjectileID.Sets.TrailingMode[Projectile.type] = 2;
         }
 
         public override void SetDefaults()
@@ -126,91 +126,46 @@ namespace Synergia.Content.Projectiles.Friendly
         public override bool PreDraw(ref Color lightColor)
         {
             SpriteBatch spriteBatch = Main.spriteBatch;
-            Texture2D texture = (Texture2D)ModContent.Request<Texture2D>(Texture);
-            Vector2 drawOrigin = new Vector2(texture.Width * 0.5f, Projectile.height * 0.5f);
-            SpriteEffects effects = (Projectile.spriteDirection == -1) ? SpriteEffects.None : SpriteEffects.FlipHorizontally;
-
-            for (int k = 0; k < Projectile.oldPos.Length; k++)
+            Texture2D texture = (Texture2D)ModContent.Request<Texture2D>("Consolaria/Assets/Textures/Projectiles/LightTrail_1");
+            Vector2 drawOrigin = new Vector2(texture.Width * 0.5f, texture.Height * 0.5f);
+            SpriteEffects effects = (Projectile.spriteDirection == -1) ? SpriteEffects.FlipHorizontally : SpriteEffects.None;
+            for (int k = 0; k < Projectile.oldPos.Length - 1; k++)
             {
-                if (Projectile.oldPos[k] == Vector2.Zero)
-                    continue;
+                Vector2 drawPos = Projectile.oldPos[k] + new Vector2(Projectile.width, Projectile.height) / 2f + Vector2.UnitY * Projectile.gfxOffY - Main.screenPosition;
 
-                Vector2 drawPos = Projectile.oldPos[k] - Main.screenPosition + drawOrigin + new Vector2(0f, Projectile.gfxOffY);
-                float progress = (float)k / Projectile.oldPos.Length;
-                Color color = Color.Orange * (0.4f * (1f - progress));
+                float progress = k / (float)Projectile.oldPos.Length;
 
-                float rotation;
-                if (k + 1 >= Projectile.oldPos.Length || Projectile.oldPos[k + 1] == Vector2.Zero)
-                    rotation = (Projectile.position - Projectile.oldPos[k]).ToRotation() + MathHelper.PiOver2;
-                else
-                    rotation = (Projectile.oldPos[k + 1] - Projectile.oldPos[k]).ToRotation() + MathHelper.PiOver2;
-
-                float scale = Projectile.scale * (0.7f + 0.3f * progress);
-                spriteBatch.Draw(texture, drawPos, null, color, rotation, drawOrigin, scale, effects, 0f);
-            }
-
-            Color glowColor = Color.Lerp(Color.OrangeRed, Color.Red, 0.5f);
-            glowColor.A = 0;
-
-            for (int i = 0; i < 4; i++)
-            {
-                float angle = MathHelper.TwoPi * i / 4f;
-                Vector2 offset = angle.ToRotationVector2() * 2f;
+                Color color = Color.Lerp(
+                    new Color(255, 90, 0, 0),
+                    new Color(40, 0, 0, 0),
+                    progress
+                );
 
                 spriteBatch.Draw(
                     texture,
-                    Projectile.Center - Main.screenPosition + offset,
+                    drawPos,
                     null,
-                    glowColor * 0.6f,
-                    Projectile.rotation,
+                    color * 0.6f,
+                    Projectile.oldRot[k] + MathF.PI / 2,
                     drawOrigin,
-                    Projectile.scale * 1.1f,
+                    Projectile.scale - progress,
+                    effects,
+                    0f
+                );
+
+                spriteBatch.Draw(
+                    texture,
+                    drawPos - Projectile.oldPos[k] * 0.5f + Projectile.oldPos[k + 1] * 0.5f,
+                    null,
+                    color * 0.45f,
+                    Projectile.oldRot[k] * 0.5f + Projectile.oldRot[k + 1] * 0.5f + MathF.PI / 2,
+                    drawOrigin,
+                    Projectile.scale - progress,
                     effects,
                     0f
                 );
             }
-
-            Color outlineColor = Color.Lerp(Color.OrangeRed, Color.Yellow, 0.5f);
-            outlineColor.A = 150;
-
-            for (int i = 0; i < 3; i++)
-            {
-                float outlineOffset = (i + 1) * 0.6f;
-                Vector2 offset = Vector2.Zero;
-
-                switch (i)
-                {
-                    case 0: offset = new Vector2(-outlineOffset, 0); break;
-                    case 1: offset = new Vector2(outlineOffset, 0); break;
-                    case 2: offset = new Vector2(0, -outlineOffset); break;
-                }
-
-                spriteBatch.Draw(
-                    texture,
-                    Projectile.position - Main.screenPosition + drawOrigin + offset,
-                    null,
-                    outlineColor * 0.3f,
-                    Projectile.rotation,
-                    drawOrigin,
-                    Projectile.scale,
-                    effects,
-                    0f
-                );
-            }
-
-            spriteBatch.Draw(
-                texture,
-                Projectile.position - Main.screenPosition + drawOrigin,
-                null,
-                Color.White,
-                Projectile.rotation,
-                drawOrigin,
-                Projectile.scale,
-                effects,
-                0f
-            );
-
-            return false;
+            return true;
         }
     }
 }
