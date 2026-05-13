@@ -22,6 +22,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 using ValhallaMod.Items.Weapons.Magic.Staffs;
+using ValhallaMod.Items.Weapons.Melee.ChannelMelee;
 using ValhallaMod.Items.Weapons.Melee.Glaives;
 using ValhallaMod.Items.Weapons.Melee.Shortswords;
 using ValhallaMod.Items.Weapons.Melee.Spears;
@@ -166,7 +167,7 @@ namespace Synergia.Common.GlobalItems.Changes
                 },
                 [StarFusionType] = item =>
                 {
-                    item.damage += 6;
+                    item.damage += 2;
                 },
                 [RodStreamType] = item =>
                 {
@@ -354,6 +355,10 @@ namespace Synergia.Common.GlobalItems.Changes
                 [ModContent.ItemType<Splatterink>()] = item =>
                 {
                     item.shootSpeed -= 6;
+                },
+                [ModContent.ItemType<ScissorsKnives>()] = item =>
+                {
+                    item.damage -= 13;
                 },
 
             };

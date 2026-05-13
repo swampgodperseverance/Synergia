@@ -101,6 +101,7 @@ namespace Synergia.Common.ModSystems.RecipeSystem.ChangesRecipe.AvalonsChanges {
             CreateHurbringerDawn();
             CreateScarabine();
             CreateReptile();
+            CreateLaserScissors();
         }
 
         static void CreateHeavensSeal()
@@ -342,6 +343,15 @@ namespace Synergia.Common.ModSystems.RecipeSystem.ChangesRecipe.AvalonsChanges {
             Recipe recipe = Recipe.Create(ItemType<ReptileRavager>());
             recipe.AddIngredient(ItemType<UrchinMace>(), 1);
             recipe.AddIngredient(ItemType<MarrowMasher>(), 1); 
+            recipe.AddTile(TileID.Anvils);
+            recipe.Register();
+        }
+        static void CreateLaserScissors()
+        {
+            Recipe recipe = Recipe.Create(ItemType<ScissorsKnives>());
+            recipe.AddIngredient(ItemType<EnchantedBar>(), 10);
+            recipe.AddIngredient(ItemType<BrokenHiltPiece>(), 6);
+            recipe.AddIngredient(ItemID.Bone, 10);
             recipe.AddTile(TileID.Anvils);
             recipe.Register();
         }
