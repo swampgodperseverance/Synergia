@@ -42,7 +42,7 @@ namespace Synergia.Content.NPCs.Boss.SinlordWyrm
 			NPC.npcSlots = 6f;
 			NPC.Size = new Vector2(80f * NPC.scale);
 			NPC.scale = 1.3f;
-			NPC.HitSound = new SoundStyle($"{Mod.Name}/Assets/Sounds/CragwormHit2");
+			NPC.HitSound = new SoundStyle("Synergia/Assets/Sounds/CragwormHit") with {MaxInstances = 15};
 			NPC.aiStyle = -1;
 		}
 		public override void ApplyDifficultyAndPlayerScaling(int numPlayers, float balance, float bossAdjustment) {
@@ -75,16 +75,16 @@ namespace Synergia.Content.NPCs.Boss.SinlordWyrm
 				Projectile.NewProjectile(NPC.GetSource_FromAI(), NPC.Center, Vector2.Zero, ModContent.ProjectileType<BurningExplosion>(), 0, 0f, Main.myPlayer);
 				foreach(int i in segments) if(Main.npc[i].active) Projectile.NewProjectile(NPC.GetSource_FromAI(), Main.npc[i].Center, Vector2.Zero, ModContent.ProjectileType<BurningExplosion>(), 0, 0f, Main.myPlayer);
 			}
-			NPC.SetEventFlagCleared(ref Synergia.Common.ModSystems.SynergiaWorld.SinlordDead, -1);
+			NPC.SetEventFlagCleared(ref Common.ModSystems.SynergiaWorld.SinlordDead, -1);
 		}
-        public override void HitEffect(NPC.HitInfo hit) {
-            if(NPC.ai[0] == -1f && NPC.life <= 0 && !Main.dedServ)  {
-                var source = NPC.GetSource_Death();
-                Gore.NewGore(source, NPC.position, NPC.velocity, Mod.Find<ModGore>("SinlordGore3").Type);
-                Gore.NewGore(source, NPC.position, NPC.velocity, Mod.Find<ModGore>("SinlordGore2").Type);
-                Gore.NewGore(source, NPC.position, NPC.velocity, Mod.Find<ModGore>("SinlordGore1").Type);
-            }
-        }
+		public override void HitEffect(NPC.HitInfo hit) {
+			if(NPC.ai[0] == -1f && NPC.life <= 0 && !Main.dedServ)  {
+				var source = NPC.GetSource_Death();
+				Gore.NewGore(source, NPC.position, NPC.velocity, Mod.Find<ModGore>("SinlordGore3").Type);
+				Gore.NewGore(source, NPC.position, NPC.velocity, Mod.Find<ModGore>("SinlordGore2").Type);
+				Gore.NewGore(source, NPC.position, NPC.velocity, Mod.Find<ModGore>("SinlordGore1").Type);
+			}
+		}
 		public override void AI() {
 			bool masterMode = Main.masterMode;
 			bool legendaryMode = Main.getGoodWorld;
@@ -205,7 +205,7 @@ namespace Synergia.Content.NPCs.Boss.SinlordWyrm
 						NPC.velocity *= 0.95f;
 					}
 					else if(NPC.ai[1] > 30f) {
-						if(NPC.ai[1] == 60f) SoundEngine.PlaySound(SoundID.NPCDeath10 with { SoundLimitBehavior = SoundLimitBehavior.ReplaceOldest, Pitch = -0.4f }, NPC.Center);
+						if(NPC.ai[1] == 60f) SoundEngine.PlaySound(new SoundStyle("Synergia/Assets/Sounds/SinlordWyrmScream"), NPC.Center);
 						NPC.velocity += shootDir.SafeNormalize(NPC.velocity) * (1f - (NPC.ai[1] - 30f) / 30f);
 						NPC.velocity *= 0.95f;
 					}
@@ -227,6 +227,7 @@ namespace Synergia.Content.NPCs.Boss.SinlordWyrm
 						NPC.velocity = Vector2.Normalize(shootDir).RotatedBy(MathHelper.ToRadians(MathHelper.Min(90f, NPC.ai[1] * 3f) - MathHelper.Min(1f, NPC.ai[1] / 30f) * offset) * NPC.ai[2]) * MathHelper.Min(NPC.ai[1] / 4f + 4f, 16f);
 					}
 					else if(NPC.ai[1] < actualAttackTime + 30f) {
+						if(NPC.ai[1] == actualAttackTime) SoundEngine.PlaySound(new SoundStyle("Synergia/Assets/Sounds/SinlordWyrmDash") with {Volume = 4f}, NPC.Center);
 						playScreenshake = false;
 						allowPhaseTransition = NPC.ai[3] < 3f;
 						openMouth = (int)(NPC.ai[1] / 6) % 2 == 0;
@@ -287,6 +288,7 @@ namespace Synergia.Content.NPCs.Boss.SinlordWyrm
 					playScreenshake = false;
 					openMouth = NPC.ai[1] > 90f && NPC.ai[1] < 150f;
 					if(!openMouth) {
+						if(NPC.ai[1] == 90f) SoundEngine.PlaySound(new SoundStyle(!phase2 || NPC.ai[3] < 2f ? "Synergia/Assets/Sounds/SinlordHitHead" : "Synergia/Assets/Sounds/SinlordHitBody"), NPC.Center);
 						allowPhaseTransition = !phase2 || NPC.ai[3] < 2f;
 						if(phase2 && NPC.ai[3] == 2f) if(NPC.ai[1] <= 90f) {
 							NPC.localAI[0] = NPC.ai[1] / 90f;
@@ -421,7 +423,7 @@ namespace Synergia.Content.NPCs.Boss.SinlordWyrm
 						NPC.velocity *= 0.95f;
 					}
 					else if(NPC.ai[1] > 30f) {
-						if(NPC.ai[1] == 60f) SoundEngine.PlaySound(SoundID.NPCDeath10 with { SoundLimitBehavior = SoundLimitBehavior.ReplaceOldest, Pitch = -0.4f }, NPC.Center);
+						if(NPC.ai[1] == 60f) SoundEngine.PlaySound(new SoundStyle("Synergia/Assets/Sounds/SinlordWyrmScream"), NPC.Center);
 						NPC.velocity += shootDir.SafeNormalize(NPC.velocity) * (1f - (NPC.ai[1] - 30f) / 30f);
 						NPC.velocity *= 0.95f;
 					}
@@ -464,6 +466,7 @@ namespace Synergia.Content.NPCs.Boss.SinlordWyrm
 					if(NPC.ai[1] < 0f) NPC.ai[1] = 0f;
 					allowPhaseTransition = false;
 					if(NPC.ai[1] < 30f) {
+						if(NPC.ai[1] == 0f) SoundEngine.PlaySound(new SoundStyle("Synergia/Assets/Sounds/SinlordWyrmDash") with {Volume = 4f}, NPC.Center);
 						openMouth = (int)(NPC.ai[1] / 6) % 2 == 0;
 						NPC.localAI[0] = NPC.ai[1] / 30f;
 						NPC.velocity = Vector2.Normalize(shootDir).RotatedBy(MathHelper.ToRadians(MathHelper.SmoothStep(90f - MathHelper.Clamp(shootDir.Length() - 480f, -10f, 10f), 0f, MathHelper.Min(1f, NPC.ai[1] / 30f))) * NPC.ai[2]) * (16f - MathHelper.Min(NPC.ai[1] / 2f, 12f));
@@ -522,7 +525,7 @@ namespace Synergia.Content.NPCs.Boss.SinlordWyrm
 						NPC.velocity *= 0.94f;
 					}
 					else if(NPC.ai[1] == 90f) {
-						SoundEngine.PlaySound(SoundID.Item46 with { SoundLimitBehavior = SoundLimitBehavior.ReplaceOldest, Pitch = -0.4f, Volume = 4f }, NPC.Center);
+						SoundEngine.PlaySound(new SoundStyle("Synergia/Assets/Sounds/SinlordWyrmDash"), NPC.Center);
 						NPC.velocity = (NPC.ai[2] > 0f ? Math.Sign(shootDir.X) * Vector2.UnitX : Math.Sign(shootDir.Y) * Vector2.UnitY) * 48f;
 						if(Main.netMode != 1) {
 							Projectile.NewProjectile(NPC.GetSource_FromAI(), new Vector2(NPC.ai[2] > 0f ? targetPos.X - Math.Sign(shootDir.X) * 1200f : NPC.Center.X, NPC.ai[2] < 0f ? targetPos.Y - Math.Sign(shootDir.Y) * 1200f : NPC.Center.Y), NPC.velocity, ModContent.ProjectileType<SinlordDash>(), 0, 0f, Main.myPlayer);
@@ -804,4 +807,3 @@ namespace Synergia.Content.NPCs.Boss.SinlordWyrm
 		public override bool CheckActive() => !NPC.active || NPC.target < 0 || Main.player[NPC.target].dead;
 	}
 }
-
