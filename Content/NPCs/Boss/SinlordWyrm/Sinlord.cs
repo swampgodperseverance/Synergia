@@ -75,9 +75,10 @@ namespace Synergia.Content.NPCs.Boss.SinlordWyrm
 				Projectile.NewProjectile(NPC.GetSource_FromAI(), NPC.Center, Vector2.Zero, ModContent.ProjectileType<BurningExplosion>(), 0, 0f, Main.myPlayer);
 				foreach(int i in segments) if(Main.npc[i].active) Projectile.NewProjectile(NPC.GetSource_FromAI(), Main.npc[i].Center, Vector2.Zero, ModContent.ProjectileType<BurningExplosion>(), 0, 0f, Main.myPlayer);
 			}
+			NPC.SetEventFlagCleared(ref Synergia.Common.ModSystems.SynergiaWorld.SinlordDead, -1);
 		}
         public override void HitEffect(NPC.HitInfo hit) {
-            if(NPC.life <= 0 && !Main.dedServ)  {
+            if(NPC.ai[0] == -1f && NPC.life <= 0 && !Main.dedServ)  {
                 var source = NPC.GetSource_Death();
                 Gore.NewGore(source, NPC.position, NPC.velocity, Mod.Find<ModGore>("SinlordGore3").Type);
                 Gore.NewGore(source, NPC.position, NPC.velocity, Mod.Find<ModGore>("SinlordGore2").Type);
