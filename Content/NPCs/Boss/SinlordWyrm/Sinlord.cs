@@ -42,8 +42,12 @@ namespace Synergia.Content.NPCs.Boss.SinlordWyrm
 			NPC.npcSlots = 6f;
 			NPC.Size = new Vector2(80f * NPC.scale);
 			NPC.scale = 1.3f;
-			NPC.HitSound = new SoundStyle("Synergia/Assets/Sounds/CragwormHit") with {MaxInstances = 15};
-			NPC.aiStyle = -1;
+            NPC.HitSound = new SoundStyle("Synergia/Assets/Sounds/CragwormHit")
+            {
+                MaxInstances = 15,
+                Volume = 0.6f // we can use these for volume isnt it?
+            };
+            NPC.aiStyle = -1;
 		}
 		public override void ApplyDifficultyAndPlayerScaling(int numPlayers, float balance, float bossAdjustment) {
 			if(ModLoader.TryGetMod("CalamityMod", out Mod Calamity)) if((bool)Calamity.Call("GetDifficultyActive", "BossRush")) {
@@ -205,8 +209,17 @@ namespace Synergia.Content.NPCs.Boss.SinlordWyrm
 						NPC.velocity *= 0.95f;
 					}
 					else if(NPC.ai[1] > 30f) {
-						if(NPC.ai[1] == 60f) SoundEngine.PlaySound(new SoundStyle("Synergia/Assets/Sounds/SinlordWyrmScream"), NPC.Center);
-						NPC.velocity += shootDir.SafeNormalize(NPC.velocity) * (1f - (NPC.ai[1] - 30f) / 30f);
+                            if (NPC.ai[1] == 60f)
+                            {
+                                SoundEngine.PlaySound(
+                                    new SoundStyle("Synergia/Assets/Sounds/SinlordWyrmScream")
+                                    {
+                                        Volume = 0.5f
+                                    },
+                                    NPC.Center
+                                );
+                            }
+                            NPC.velocity += shootDir.SafeNormalize(NPC.velocity) * (1f - (NPC.ai[1] - 30f) / 30f);
 						NPC.velocity *= 0.95f;
 					}
 					allowPhaseTransition = false;
@@ -423,8 +436,17 @@ namespace Synergia.Content.NPCs.Boss.SinlordWyrm
 						NPC.velocity *= 0.95f;
 					}
 					else if(NPC.ai[1] > 30f) {
-						if(NPC.ai[1] == 60f) SoundEngine.PlaySound(new SoundStyle("Synergia/Assets/Sounds/SinlordWyrmScream"), NPC.Center);
-						NPC.velocity += shootDir.SafeNormalize(NPC.velocity) * (1f - (NPC.ai[1] - 30f) / 30f);
+                            if (NPC.ai[1] == 60f)
+                            {
+                                SoundEngine.PlaySound(
+                                    new SoundStyle("Synergia/Assets/Sounds/SinlordWyrmScream")
+                                    {
+                                        Volume = 0.5f
+                                    },
+                                    NPC.Center
+                                );
+                            }
+                            NPC.velocity += shootDir.SafeNormalize(NPC.velocity) * (1f - (NPC.ai[1] - 30f) / 30f);
 						NPC.velocity *= 0.95f;
 					}
 				break;

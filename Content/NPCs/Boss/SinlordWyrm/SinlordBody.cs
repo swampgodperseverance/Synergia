@@ -27,8 +27,12 @@ namespace Synergia.Content.NPCs.Boss.SinlordWyrm
 			NPC.defense = 125;
 			NPC.noTileCollide = true;
 			NPC.noGravity = true;
-			NPC.HitSound = new SoundStyle("Synergia/Assets/Sounds/CragwormHit") with {MaxInstances = 15};
-			NPC.knockBackResist = 0f;
+            NPC.HitSound = new SoundStyle("Synergia/Assets/Sounds/CragwormHit")
+            {
+                MaxInstances = 15,
+                Volume = 0.6f // we can use these for volume isnt it?
+            };
+            NPC.knockBackResist = 0f;
 			NPC.scale = 1.3f;
 			NPC.npcSlots = 6f;
 			NPC.Size = new Vector2(60f * NPC.scale);
