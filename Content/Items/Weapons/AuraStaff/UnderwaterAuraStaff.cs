@@ -28,4 +28,5 @@ namespace Synergia.Content.Items.Weapons.AuraStaff
             Item.shootSpeed = 1f;
         }
     }
+
 }

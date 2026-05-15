@@ -34,9 +34,13 @@ using ValhallaMod.Items.Weapons.Ranged.ProjectileGuns;
 using ValhallaMod.Items.Weapons.Summon.Auras;
 using ValhallaMod.Items.Weapons.Summon.Whips;
 using ValhallaMod.Projectiles.Summon.Sentries;
+using Synergia.Common.ModSystems.RecipeSystem;
 using static Terraria.ModLoader.ModContent;
+using static Synergia.Common.ModSystems.RecipeSystem.RecipeGroups;
+
 
 namespace Synergia.Common.ModSystems.RecipeSystem.ChangesRecipe.AvalonsChanges {
+
         public class ValhallaAccessories : BaseRecipe {
 
             public override void Ingredient(Recipe recipe) {
@@ -45,6 +49,7 @@ namespace Synergia.Common.ModSystems.RecipeSystem.ChangesRecipe.AvalonsChanges {
         public override void PostRecipe()
         {
             CreateGlassShield();
+            CreatePotionBeltSmall();
         }
         static void CreateGlassShield()
         {
@@ -52,6 +57,16 @@ namespace Synergia.Common.ModSystems.RecipeSystem.ChangesRecipe.AvalonsChanges {
             recipe.AddIngredient(ItemType<HardenedGlass>(), 12);
             recipe.AddIngredient(ItemType<Booger>(), 8);
             recipe.AddTile(TileID.GlassKiln);
+            recipe.Register();
+        }
+        static void CreatePotionBeltSmall()
+        {
+            Recipe recipe = Recipe.Create(ItemType<PotionBelt>());
+            recipe.AddIngredient(ItemType<LesserPotionBelt>(), 1);
+            recipe.AddIngredient(ItemID.Deathweed, 3);
+            recipe.AddIngredient(ItemID.StrangeBrew, 5);
+            recipe.AddIngredient(ItemType<BacciliteBar>(), 5);
+            recipe.AddTile(TileID.Bottles);
             recipe.Register();
         }
 

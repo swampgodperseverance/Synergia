@@ -4,10 +4,6 @@ using Avalon.Items.Material;
 using Avalon.Items.Material.Bars;
 using Avalon.Items.Material.Ores;
 using Avalon.Items.Material.Shards;
-using Avalon.Items.Material.TomeMats;
-using Avalon.Items.Potions.Buff;
-using Avalon.Items.Tomes.PreHardmode;
-using Avalon.Items.Tools.Hardmode;
 using Avalon.Items.Weapons.Melee.PreHardmode.MarrowMasher;
 using Avalon.Items.Weapons.Melee.PreHardmode.UrchinMace;
 using Avalon.Items.Weapons.Ranged.PreHardmode.Thompson;
@@ -18,13 +14,12 @@ using Consolaria.Content.Items.Materials;
 using Consolaria.Content.Items.Weapons.Ranged;
 using NewHorizons.Content.Items.Armor.NightMageArmor;
 using NewHorizons.Content.Items.Materials;
-using NewHorizons.Content.Items.Weapons.Ranged;
-using NewHorizons.Content.Items.Weapons.Throwing;
 using starforgedclassic.Content.Placeables.AzuriteBar;
 using starforgedclassic.Content.Weapons.PlumeShot;
 using Starforgedclassic.Content.Accessories.SkyShield;
 using Synergia.Content.Items.Materials;
 using Synergia.Content.Items.Misc;
+using Synergia.Content.Items.Weapons.Melee;
 using Terraria;
 using Terraria.ID;
 using ValhallaMod.Items.Accessory;
@@ -37,6 +32,7 @@ using ValhallaMod.Items.Tools;
 using ValhallaMod.Items.Weapons.Magic.Gloves;
 using ValhallaMod.Items.Weapons.Melee.ChannelMelee;
 using ValhallaMod.Items.Weapons.Melee.Knives;
+using ValhallaMod.Items.Weapons.Melee.Shortswords;
 using ValhallaMod.Items.Weapons.Melee.Swords;
 using ValhallaMod.Items.Weapons.Ranged.Bows;
 using ValhallaMod.Items.Weapons.Ranged.Darts;
@@ -102,6 +98,7 @@ namespace Synergia.Common.ModSystems.RecipeSystem.ChangesRecipe.AvalonsChanges {
             CreateScarabine();
             CreateReptile();
             CreateLaserScissors();
+            CreateCrescento();
         }
 
         static void CreateHeavensSeal()
@@ -353,6 +350,16 @@ namespace Synergia.Common.ModSystems.RecipeSystem.ChangesRecipe.AvalonsChanges {
             recipe.AddIngredient(ItemType<BrokenHiltPiece>(), 6);
             recipe.AddIngredient(ItemID.Bone, 10);
             recipe.AddTile(TileID.Anvils);
+            recipe.Register();
+        }
+        static void CreateCrescento()
+        {
+            Recipe recipe = Recipe.Create(ItemType<ShortNight>());
+            recipe.AddIngredient(ItemType<Snotknife>(), 1);
+            recipe.AddIngredient(ItemType<WaveHarvester>(), 1);
+            recipe.AddIngredient(ItemType<Bulbasword>(), 1);
+            recipe.AddIngredient(ItemType<SparkingShortsword>(), 1);
+            recipe.AddTile(TileID.DemonAltar);
             recipe.Register();
         }
 
