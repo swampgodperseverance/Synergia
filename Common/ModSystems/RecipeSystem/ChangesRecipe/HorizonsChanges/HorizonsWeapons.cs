@@ -4,8 +4,10 @@ using Avalon.Items.Material.Bars;
 using Avalon.Items.Material.Ores;
 using Avalon.Items.Material.Shards;
 using Avalon.Items.Placeable.Tile;
+using Bismuth.Content.Items.Placeable;
 using NewHorizons.Content.Items;
 using NewHorizons.Content.Items.Ammo;
+using NewHorizons.Content.Items.Weapons;
 using NewHorizons.Content.Items.Weapons.Magic;
 using NewHorizons.Content.Items.Weapons.Ranged;
 using NewHorizons.Content.Items.Weapons.Summon;
@@ -42,6 +44,9 @@ namespace Synergia.Common.ModSystems.RecipeSystem.ChangesRecipe.HorizonsChanges
             AddIngredient(recipe, ItemType<IncendiaryGrenade>(), 0, new Item(RoAItem("FlamingFabric"), 1));
             AddIngredient(recipe, ItemType<Repeater>(), 0, new Item(ItemType<Clocklock>(), 1));
             AddIngredient(recipe, ItemType<Graverobber>(), 1, new Item(ItemType<UndeadShard>(), 5));
+            AddIngredient(recipe, ItemType<GelCanister>(), 1, new Item(ItemType<HardenedGlass>(), 1));
+            AddIngredient(recipe, ItemType<HymnOfProtection>(), 0, new Item(ItemType<TatteredBook>(), 1));
+            AddIngredient(recipe, ItemType<HymnOfProtection>(), 2, new Item(ItemType<AluminiumBar>(), 5));
             AddLotIngredient(recipe, ItemType<ClockworkShotgun>(), (ModContent.ItemType<Clocklock>(), 1));
 
         }
@@ -72,7 +77,7 @@ namespace Synergia.Common.ModSystems.RecipeSystem.ChangesRecipe.HorizonsChanges
             recipe.AddIngredient(ItemID.Revolver, 1);
             recipe.AddIngredient(ItemID.SpaceGun, 1);
             recipe.AddIngredient(ItemType<NaquadahBar>(), 2);
-            recipe.AddIngredient(ItemType<BronzeBar>(), 4);
+            recipe.AddIngredient(ItemType<Avalon.Items.Material.Bars.BronzeBar>(), 4);
             recipe.AddTile(TileID.MythrilAnvil);
             recipe.Register();
         }

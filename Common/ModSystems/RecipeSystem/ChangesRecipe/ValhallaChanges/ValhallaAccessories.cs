@@ -45,6 +45,8 @@ namespace Synergia.Common.ModSystems.RecipeSystem.ChangesRecipe.AvalonsChanges {
 
             public override void Ingredient(Recipe recipe) {
             AddIngredient(recipe, ItemType<BlessedHeroShield>(), 2, new Item(ItemType<ForsakenCross>(), 1));
+            AddIngredient(recipe, ItemType<MagnetHorseshoe>(), 2, new Item(ItemType<Starstone>(), 10));
+            AddIngredient(recipe, ItemType<MagnetHorseshoe>(), 3, new Item(ItemType<Heartstone>(), 10));
         }
         public override void PostRecipe()
         {

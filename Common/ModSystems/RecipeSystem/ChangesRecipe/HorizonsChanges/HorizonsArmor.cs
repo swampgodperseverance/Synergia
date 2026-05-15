@@ -7,6 +7,7 @@ using Consolaria.Content.Items.Materials;
 using NewHorizons.Content.Items.Armor.AshenArmor;
 using NewHorizons.Content.Items.Armor.BeastArmor;
 using NewHorizons.Content.Items.Armor.LightMageArmor;
+using NewHorizons.Content.Items.Armor.NanotechArmor;
 using NewHorizons.Content.Items.Armor.NightMageArmor;
 using NewHorizons.Content.Items.Armor.PyroArmor;
 using NewHorizons.Content.Items.Armor.RottenArmor;
@@ -59,7 +60,9 @@ namespace Synergia.Common.ModSystems.RecipeSystem.ChangesRecipe.HorizonsChanges
             AddIngredient(recipe, ItemType<LightMageHat>(), 2, new Item(ItemType<ArcaneShard>(), 6));
             AddIngredient(recipe, ItemType<LightMagePants>(),2, new Item(ItemType<ArcaneShard>(), 8));
             AddIngredient(recipe, ItemType<LightMageRobe>(), 2, new Item(ItemType<ArcaneShard>(), 10));
-
+            AddIngredient(recipe, ItemType<NanotechBoots>(), 0, new Item(ItemType<AluminiumBar>(), 10));
+            AddIngredient(recipe, ItemType<NanotechBreastplate>(), 0, new Item(ItemType<AluminiumBar>(), 12));
+            AddIngredient(recipe, ItemType<NanotechHelmet>(), 0, new Item(ItemType<AluminiumBar>(), 8));
 
         }
         public override void PostRecipe()

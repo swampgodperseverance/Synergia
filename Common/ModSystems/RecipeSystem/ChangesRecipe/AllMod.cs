@@ -5,8 +5,10 @@ using Avalon.Items.Material.Bars;
 using Avalon.Items.Material.Herbs;
 using Avalon.Items.Material.Shards;
 using Avalon.Items.Placeable.Tile;
+using Consolaria.Content.Items.Materials;
 using Consolaria.Content.Items.Weapons.Ranged;
 using NewHorizons.Content.Items.Armor.BeastArmor;
+using NewHorizons.Content.Items.Armor.NanotechArmor;
 using NewHorizons.Content.Items.Armor.NightMageArmor;
 using NewHorizons.Content.Items.Armor.RottenArmor;
 using NewHorizons.Content.Items.Armor.WyvernHunterArmor;
@@ -29,6 +31,7 @@ namespace Synergia.Common.ModSystems.RecipeSystem.ChangesRecipe {
             AddLotIngredient(recipe, ItemID.VenomBullet, (ModContent.ItemType<VenomShard>(), 1));
             AddLotIngredient(recipe, ItemID.FlaskofVenom, (ModContent.ItemType<VenomShard>(), 1));
             AddLotIngredient(recipe, ItemType<VenomSpike>(), (ModContent.ItemType<VenomShard>(), 1));
+            AddIngredient(recipe, ItemType<WhiteThread>(), 0, new Item(ItemID.Cobweb, 2));
         }
         public override void PostPostRecipe(Recipe recipe) {
             List<int> potion = [ItemID.ThornsPotion];
