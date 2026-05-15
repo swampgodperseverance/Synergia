@@ -1,15 +1,16 @@
-﻿using Microsoft.Xna.Framework.Audio;
-using Synergia.Common;
-using Synergia.Content.Dusts;
-using Synergia.Content.Projectiles.Hostile;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.Xna.Framework.Audio;
+using Synergia.Common;
+using Synergia.Content.Dusts;
+using Synergia.Content.Projectiles.Hostile;
 using Terraria;
 using Terraria.Audio;
 using Terraria.GameContent;
+using Terraria.GameContent.Bestiary;
 using Terraria.GameContent.ItemDropRules;
 using Terraria.ID;
 using ValhallaMod.Items.Material;
@@ -59,6 +60,19 @@ namespace Synergia.Content.NPCs.Dungeon
         public override void SetStaticDefaults()
         {
             Main.npcFrameCount[Type] = 3;
+            NPCID.Sets.NPCBestiaryDrawModifiers value = new NPCID.Sets.NPCBestiaryDrawModifiers
+            {
+                Velocity = 1f
+            };
+            NPCID.Sets.NPCBestiaryDrawOffset.Add(base.Type, value);
+        }
+        public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry)
+        {
+            bestiaryEntry.Info.AddRange(new IBestiaryInfoElement[]
+            {
+                BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Biomes.TheDungeon,
+                new FlavorTextBestiaryInfoElement("Who knows who hold this soul..")
+            });
         }
         public override void FindFrame(int frameHeight)
         {

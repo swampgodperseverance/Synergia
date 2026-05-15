@@ -3,6 +3,7 @@ using Synergia.Content.Items.Placeable.Banners;
 using Synergia.Helpers;
 using Terraria;
 using Terraria.Audio;
+using Terraria.GameContent.Bestiary;
 using Terraria.GameContent.ItemDropRules;
 using Terraria.ID;
 
@@ -11,10 +12,15 @@ namespace Synergia.Content.NPCs.Underworld
     public class Skelegon : ModNPC
     {
         public override string LocalizationCategory => Category(CategoryName.NPC);
-
+        
         public override void SetStaticDefaults() {
             Main.npcFrameCount[NPC.type] = 8;
             Lists.NPCs.NewHellNPCs.Add(Type);
+            NPCID.Sets.NPCBestiaryDrawModifiers value = new NPCID.Sets.NPCBestiaryDrawModifiers
+            {
+                Velocity = 1f
+            };
+            NPCID.Sets.NPCBestiaryDrawOffset.Add(base.Type, value);
         }
         public override void SetDefaults() {
             NPC.width = 56;
@@ -32,6 +38,14 @@ namespace Synergia.Content.NPCs.Underworld
             NPC.DeathSound = new SoundStyle("Synergia/Assets/Sounds/BrokenBone");
             NPC.lavaImmune = Main.expertMode;
             this.AddBanner(ItemType<HellDog>());
+        }
+        public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry)
+        {
+            bestiaryEntry.Info.AddRange(new IBestiaryInfoElement[]
+            {
+                BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Biomes.TheUnderworld,
+                new FlavorTextBestiaryInfoElement("Bunch of bones.")
+            });
         }
         public override void AI() {
             NPC.TargetClosest(false);

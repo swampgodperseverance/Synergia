@@ -1,14 +1,15 @@
-﻿using Synergia.Content.Items.Placeable.Banners;
-using Synergia.Content.Projectiles.Hostile;
-using System;
+﻿using System;
 using System.IO;
+using Synergia.Content.Items.Placeable.Banners;
+using Synergia.Content.Projectiles.Hostile;
+using Synergia.Helpers;
 using Terraria;
 using Terraria.Audio;
 using Terraria.DataStructures;
 using Terraria.GameContent;
+using Terraria.GameContent.Bestiary;
 using Terraria.ID;
 using static Synergia.Common.SUtils.LocUtil;
-using Synergia.Helpers;
 
 namespace Synergia.Content.NPCs
 {
@@ -47,7 +48,15 @@ namespace Synergia.Content.NPCs
             NPC.netAlways = true;
             this.AddBanner(ItemType<ElderSnowmanBannerItem>());
         }
-
+        public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry)
+        {
+            bestiaryEntry.Info.AddRange(new IBestiaryInfoElement[]
+            {
+                BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Invasions.FrostLegion,
+                BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Biomes.Snow,
+                new FlavorTextBestiaryInfoElement("Dangerous snowman with a powerful icy magic.")
+            });
+        }
         public override void HitEffect(NPC.HitInfo hit) {
             if (NPC.life > 0) {
                 for (int i = 0; (double)i < hit.Damage / (double)NPC.lifeMax * 100.0; i++) {

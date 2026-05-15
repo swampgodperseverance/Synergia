@@ -1,7 +1,8 @@
-﻿using Synergia.Common.GlobalPlayer;
-using System.IO;
+﻿using System.IO;
+using Synergia.Common.GlobalPlayer;
 using Terraria;
 using Terraria.Audio;
+using Terraria.GameContent.Bestiary;
 using Terraria.GameContent.ItemDropRules;
 using Terraria.ID;
 
@@ -28,6 +29,11 @@ namespace Synergia.Content.NPCs.Underworld {
             NPCID.Sets.MPAllowedEnemies[Type] = true;
             NPCID.Sets.CantTakeLunchMoney[Type] = false;
             Lists.NPCs.NewHellNPCs.Add(Type);
+            NPCID.Sets.NPCBestiaryDrawModifiers value = new NPCID.Sets.NPCBestiaryDrawModifiers
+            {
+                Velocity = 1f
+            };
+            NPCID.Sets.NPCBestiaryDrawOffset.Add(base.Type, value);
         }
         public override void SetDefaults() {
             NPC.width = 50;
@@ -44,6 +50,14 @@ namespace Synergia.Content.NPCs.Underworld {
             NPC.lavaImmune = true;
             NPC.stepSpeed = 2f;
             NPC.HitSound = SoundID.NPCHit14;
+        }
+        public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry)
+        {
+            bestiaryEntry.Info.AddRange(new IBestiaryInfoElement[]
+            {
+                BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Biomes.TheUnderworld,
+                new FlavorTextBestiaryInfoElement("Big creature with a mouth on the stomach..")
+            });
         }
         public override void AI() {
             NPC.TargetClosest();
