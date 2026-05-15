@@ -4,6 +4,7 @@ using Avalon.Items.Material.Bars;
 using Avalon.Items.Weapons.Melee.PreHardmode.Snotsabre;
 using Microsoft.Xna.Framework;
 using Terraria;
+using Terraria.Audio;
 using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -12,37 +13,30 @@ using ValhallaMod.Projectiles.AI;
 namespace Synergia.Content.Items.Weapons.Melee {
 
     public class Snotknife : ModItem {
-        private bool hasHit;
 
         public override void SetStaticDefaults()
             => Item.ResearchUnlockCount = 1;
 
-        public override void SetDefaults() {
-            int width = 30; int height = width;
-            Item.Size = new Vector2(width, height);
-
-            Item.useStyle = ItemUseStyleID.Swing;
-            Item.useTime = Item.useAnimation = 29;
-
-            Item.noMelee = true;
-            Item.autoReuse = true;
-            Item.shootsEveryUse = true;
-
-            Item.DamageType = DamageClass.Melee;
-            Item.damage = 20;
-            Item.knockBack = 5;
-
-            Item.value = Item.buyPrice(gold: 1, silver: 50);
-            Item.rare = ItemRarityID.Green;
-            Item.UseSound = SoundID.Item1;
-
-            Item.shoot = ModContent.ProjectileType<SnotknifeP>();
-            Item.shootSpeed = 14f;
-        }
-        public override void UseAnimation(Player player)
+        public override void SetDefaults()
         {
-            hasHit = false;
+            base.Item.damage = 21;
+            base.Item.knockBack = 5f;
+            base.Item.useAnimation = 18;
+            base.Item.useTime = 9;
+            base.Item.useStyle = 13;
+            base.Item.width = 32;
+            base.Item.height = 32;
+            base.Item.UseSound = new SoundStyle?(SoundID.Item1);
+            base.Item.DamageType = DamageClass.MeleeNoSpeed;
+            base.Item.autoReuse = true;
+            base.Item.noUseGraphic = true;
+            base.Item.noMelee = true;
+            base.Item.rare = 1;
+            base.Item.value = Item.sellPrice(0, 0, 25, 0);
+            base.Item.shoot = ModContent.ProjectileType<SnotknifeP>();
+            base.Item.shootSpeed = 3f;
         }
+
         public override void AddRecipes()
         {
             base.CreateRecipe(1).AddIngredient(ModContent.ItemType<BacciliteBar>(), 7).AddTile(TileID.Anvils).Register();
