@@ -1,7 +1,9 @@
-﻿using Terraria;
+﻿using Avalon.Items.Material.Bars;
+using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 using ValhallaMod;
+using ValhallaMod.Items.Material.Bar;
 
 namespace Synergia.Content.Items.Accessories
 {
@@ -27,6 +29,13 @@ namespace Synergia.Content.Items.Accessories
             auraPlayer.bonusAuraRadius += 0.08f; 
 
             auraPlayer.auraBuffTime += 180; 
+        }
+        public override void AddRecipes()
+        {
+            CreateRecipe()
+                .AddIngredient(ModContent.ItemType<EnchantedBar>(), 12)
+                .AddTile(TileID.Anvils)
+                .Register();
         }
     }
 }

@@ -61,7 +61,6 @@ namespace Synergia.Common.GlobalItems.Changes
                     item.damage -= 23;
                 };
             }
-
             if (primeRework.TryFind<ModItem>("PlasmaPistol", out ModItem plasmaPistol))
             {
                 Changes[plasmaPistol.Type] = item =>
@@ -69,6 +68,15 @@ namespace Synergia.Common.GlobalItems.Changes
                     item.damage -= 14;
                     item.useAnimation += 8;
                     item.useTime += 8;
+                };
+            }   
+            if (primeRework.TryFind<ModItem>("SublimeStellarSling", out ModItem SSS))
+            {
+                Changes[SSS.Type] = item =>
+                {
+                    item.damage -= 15;
+                    item.useAnimation += 4;
+                    item.useTime += 4;
                 };
             }
             if (primeRework.TryFind<ModItem>("DoubleTrouble", out ModItem DoubleTrouble))
@@ -100,6 +108,55 @@ namespace Synergia.Common.GlobalItems.Changes
             Changes?.Clear();
             Changes = null;
             primeRework = null;
+        }
+    }
+    public class MechBossChanges : GlobalNPC
+    {
+        private static Mod primeRework;
+
+        public override void Load()
+        {
+            ModLoader.TryGetMod("PrimeRework", out primeRework);
+        }
+
+        public override void SetDefaults(NPC npc)
+        {
+            if (!ValhallaMod.Systems.DownedBossSystem.downedEmperorBoss)
+                return;
+
+            bool isMechBoss =
+                npc.type == NPCID.TheDestroyer ||
+                npc.type == NPCID.TheDestroyerBody ||
+                npc.type == NPCID.TheDestroyerTail ||
+                npc.type == NPCID.Retinazer ||
+                npc.type == NPCID.Spazmatism ||
+                npc.type == NPCID.SkeletronPrime;
+
+            if (primeRework != null)
+            {
+                string[] moddedMechs =
+                {
+                    "Caretaker",
+                    "TheTerminator",
+                    "SiegeEngine",
+                    "Mechclops"
+                };
+
+                foreach (string name in moddedMechs)
+                {
+                    if (primeRework.TryFind<ModNPC>(name, out var modNpc) &&
+                        npc.type == modNpc.Type)
+                    {
+                        isMechBoss = true;
+                        break;
+                    }
+                }
+            }
+
+            if (isMechBoss)
+            {
+                npc.lifeMax = (int)(npc.lifeMax * 1.15f);
+            }
         }
     }
 }

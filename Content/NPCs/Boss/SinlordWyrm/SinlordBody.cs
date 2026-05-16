@@ -27,8 +27,12 @@ namespace Synergia.Content.NPCs.Boss.SinlordWyrm
 			NPC.defense = 125;
 			NPC.noTileCollide = true;
 			NPC.noGravity = true;
-			NPC.HitSound = new SoundStyle($"{Mod.Name}/Assets/Sounds/CragwormHit2");
-			NPC.knockBackResist = 0f;
+            NPC.HitSound = new SoundStyle("Synergia/Assets/Sounds/CragwormHit")
+            {
+                MaxInstances = 15,
+                Volume = 0.6f // we can use these for volume isnt it?
+            };
+            NPC.knockBackResist = 0f;
 			NPC.scale = 1.3f;
 			NPC.npcSlots = 6f;
 			NPC.Size = new Vector2(60f * NPC.scale);
@@ -81,23 +85,15 @@ namespace Synergia.Content.NPCs.Boss.SinlordWyrm
 			if(NPC.life < head.life) head.life = NPC.life;
 			else if(NPC.life > head.life) NPC.life = head.life;
 		}
-        public override void HitEffect(NPC.HitInfo hit)
-        {
-
-            if (NPC.life <= 0)
-            {
-                if (!Main.dedServ)
-                {
-                    var source = NPC.GetSource_Death();
-
-                    Gore.NewGore(source, NPC.position, NPC.velocity, Mod.Find<ModGore>("SinlordGore4").Type);
-                    Gore.NewGore(source, NPC.position, NPC.velocity, Mod.Find<ModGore>("SinlordGore5").Type);
-                    Gore.NewGore(source, NPC.position, NPC.velocity, Mod.Find<ModGore>("SinlordGore6").Type);
-                }
-            }
-        }
-
-        public override bool PreDraw(SpriteBatch sprite, Vector2 screenPosition, Color lightColor) {
+		public override void HitEffect(NPC.HitInfo hit)  {
+			if(NPC.life <= 0 && !Main.dedServ) {
+				var source = NPC.GetSource_Death();
+				Gore.NewGore(source, NPC.position, NPC.velocity, Mod.Find<ModGore>("SinlordGore4").Type);
+				Gore.NewGore(source, NPC.position, NPC.velocity, Mod.Find<ModGore>("SinlordGore5").Type);
+				Gore.NewGore(source, NPC.position, NPC.velocity, Mod.Find<ModGore>("SinlordGore6").Type);
+			}
+		}
+		public override bool PreDraw(SpriteBatch sprite, Vector2 screenPosition, Color lightColor) {
 			lightColor = NPC.GetNPCColorTintedByBuffs(lightColor);
 			Texture2D texture = (Texture2D)ModContent.Request<Texture2D>(Texture);
 			sprite.Draw(texture, NPC.Center - screenPosition, null, lightColor, NPC.rotation + MathHelper.PiOver2, texture.Size() * 0.5f, NPC.scale, SpriteEffects.None, 0);

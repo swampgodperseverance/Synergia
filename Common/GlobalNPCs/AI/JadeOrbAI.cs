@@ -1,8 +1,9 @@
-using Terraria;
-using Terraria.ModLoader;
+using System;
+using System.Linq;
 using Microsoft.Xna.Framework;
 using Synergia.Content.Projectiles.Hostile;
-using System.Linq;
+using Terraria;
+using Terraria.ModLoader;
 
 namespace Synergia.Common.GlobalNPCs.AI
 {
@@ -41,4 +42,5 @@ namespace Synergia.Common.GlobalNPCs.AI
             if (Main.netMode != 1) for (int i = 0; i < 3; i++) Projectile.NewProjectile(npc.GetSource_Death(), npc.Center, Main.rand.NextVector2Circular(3f, 3f), ModContent.ProjectileType<MicroOrb>(), npc.damage / 4, 0f, Main.myPlayer);
         }
     }
+   
 }

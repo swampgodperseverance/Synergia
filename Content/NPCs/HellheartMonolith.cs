@@ -1,13 +1,16 @@
-﻿using Terraria;
-using Terraria.ID;
-using Terraria.ModLoader;
+﻿using System;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using Terraria.GameContent;
 using ReLogic.Content;
-using System;
 using Synergia.Common.GlobalPlayer;
+using Synergia.Common.ModSystems.WorldGens;
+using Terraria;
 using Terraria.Audio;
+using Terraria.DataStructures;
+using Terraria.GameContent;
+using Terraria.GameContent.Bestiary;
+using Terraria.ID;
+using Terraria.ModLoader;
 
 namespace Synergia.Content.NPCs
 {
@@ -66,7 +69,14 @@ namespace Synergia.Content.NPCs
             NPC.lavaImmune = true;
             NPC.chaseable = false;
         }
-
+        public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry)
+        {
+            bestiaryEntry.Info.AddRange(new IBestiaryInfoElement[]
+            {
+                BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Biomes.TheUnderworld,
+                new FlavorTextBestiaryInfoElement("A heartbeat is heard from the depths of this monolith.")
+            });
+        }
         public override void AI()
         {
             float lifeRatio = (float)NPC.life / NPC.lifeMax;

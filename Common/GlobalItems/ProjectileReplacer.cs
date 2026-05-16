@@ -1,4 +1,5 @@
-﻿using Terraria;
+﻿using Synergia.Content.Projectiles.Reworks.Reworks2;
+using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -94,6 +95,9 @@ namespace Synergia.Common.GlobalItems
                             break;
                          case "AzraelsHeartstopper":
                             item.shoot = ModContent.ProjectileType<Content.Projectiles.Thrower.AzraelsHeartstopper2>();
+                            break;
+                        case "Splatterink":
+                            item.shoot = ModContent.ProjectileType<SplutterinkRework>();
                             break;
                     }
                 }

@@ -1,12 +1,11 @@
-﻿using Avalon.Items.Material.Shards;
-using Avalon.Items.Potions.Buff;
+﻿
 using Bismuth.Content.Items.Armor;
+using Bismuth.Content.Items.Placeable;
 using Consolaria.Content.Items.Materials;
-using NewHorizons.Content.Items.Armor.AshenArmor;
-using NewHorizons.Content.Items.Armor.PyroArmor;
-using NewHorizons.Content.Items.Armor.SkyArmor;
+using NewHorizons.Content.Items.Armor.NanotechArmor;
 using Terraria;
 using Terraria.ID;
+using VitalityMod.Items.Placeable.Candles;
 
 namespace Synergia.Common.ModSystems.RecipeSystem.ChangesRecipe.HorizonsChanges
 {
@@ -17,11 +16,25 @@ namespace Synergia.Common.ModSystems.RecipeSystem.ChangesRecipe.HorizonsChanges
             DisableRecipe(recipe, ItemType<PikemansHelmet>());
             DisableRecipe(recipe, ItemType<PikemansLeggings>());
             DisableRecipe(recipe, ItemType<PikemansBreastplate>());
+            DisableRecipe(recipe, ItemType<AdamantiteHat>());
+            DisableRecipe(recipe, ItemType<AdamantiteHeadpiece>());
+            DisableRecipe(recipe, ItemType<MythrilHeadgear>());
+            DisableRecipe(recipe, ItemType<MythrilHeadpiece>());
+            DisableRecipe(recipe, ItemType<OrichalcumHat>());
+            DisableRecipe(recipe, ItemType<OrichalcumHeadpiece>());
+            DisableRecipe(recipe, ItemType<TitaniumHat>());
+            DisableRecipe(recipe, ItemType<TitaniumHood>());
+            DisableRecipe(recipe, ItemType<PalladiumHat>());
+            DisableRecipe(recipe, ItemType<PalladiumHood>());
+            DisableRecipe(recipe, ItemType<CobaltHeadgear>());
+            DisableRecipe(recipe, ItemType<CobaltHeadpiece>());
         }
         public override void Ingredient(Recipe recipe)
         {
 
-
+            AddIngredient(recipe, ItemType<FeralBreastplate>(), 0, new Item(ItemType<WhiteThread>(), 14));
+            AddIngredient(recipe, ItemType<FeralLeggings>(), 0, new Item(ItemType<WhiteThread>(), 12));
+            AddIngredient(recipe, ItemType<FeralHelmet>(), 0, new Item(ItemType<WhiteThread>(), 12));
 
         }
         public override void PostRecipe()
@@ -29,7 +42,9 @@ namespace Synergia.Common.ModSystems.RecipeSystem.ChangesRecipe.HorizonsChanges
             CreatePikemansHelmet();
             CreatePikemansBreastplate();
             CreatePikemansLeggings();
-
+            CreateRivetedHood();
+            CreateRivetedBreast();
+            CreateRivetedLeggings();
         }
         static void CreatePikemansHelmet()
         {
@@ -52,6 +67,30 @@ namespace Synergia.Common.ModSystems.RecipeSystem.ChangesRecipe.HorizonsChanges
             Recipe recipe = Recipe.Create(ItemType<PikemansLeggings>());
             recipe.AddIngredient(ItemID.Silk, 8);
             recipe.AddIngredient(RoAItem("MercuriumNugget"), 14);
+            recipe.AddTile(TileID.Anvils);
+            recipe.Register();
+        }
+        static void CreateRivetedHood()
+        {
+            Recipe recipe = Recipe.Create(ItemType<RivetedHood>());
+            recipe.AddIngredient(RoAItem("AnimalLeather"), 8);
+            recipe.AddIngredient(ItemType<AluminiumBar>(), 8);
+            recipe.AddTile(TileID.Anvils);
+            recipe.Register();
+        }
+        static void CreateRivetedLeggings()
+        {
+            Recipe recipe = Recipe.Create(ItemType<RivetedBoots>());
+            recipe.AddIngredient(RoAItem("AnimalLeather"), 8);
+            recipe.AddIngredient(ItemType<AluminiumBar>(), 8);
+            recipe.AddTile(TileID.Anvils);
+            recipe.Register();
+        }
+        static void CreateRivetedBreast()
+        {
+            Recipe recipe = Recipe.Create(ItemType<RivetedJacket>());
+            recipe.AddIngredient(RoAItem("AnimalLeather"), 12);
+            recipe.AddIngredient(ItemType<AluminiumBar>(), 12);
             recipe.AddTile(TileID.Anvils);
             recipe.Register();
         }

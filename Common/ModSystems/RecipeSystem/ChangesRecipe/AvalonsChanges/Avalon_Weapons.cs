@@ -7,12 +7,17 @@ using Avalon.Items.Tools.Hardmode;
 using Avalon.Items.Weapons.Magic.Hardmode.MagicGrenade;
 using Avalon.Items.Weapons.Magic.PreHardmode.GlassEye;
 using Avalon.Items.Weapons.Melee.Hardmode.FeroziumIceSword;
+using Avalon.Items.Weapons.Ranged.PreHardmode.Boompipe;
+using Avalon.Items.Weapons.Ranged.PreHardmode.Moonforce;
+using Avalon.Items.Weapons.Ranged.PreHardmode.OsmiumTierLongbows;
 using Bismuth.Content.Items.Materials;
 using Consolaria.Content.Items.Materials;
 using Synergia.Content.Items.Misc;
 using Terraria;
 using Terraria.ID;
 using ValhallaMod.Items.Weapons.Melee.Swords;
+using ValhallaMod.Items.Weapons.Ranged.Longbows;
+using ValhallaMod.Items.Weapons.Summon.Auras;
 using static Synergia.Common.ModSystems.RecipeSystem.RecipeGroups;
 
 namespace Synergia.Common.ModSystems.RecipeSystem.ChangesRecipe.AvalonsChanges {
@@ -21,12 +26,17 @@ namespace Synergia.Common.ModSystems.RecipeSystem.ChangesRecipe.AvalonsChanges {
         public override void DisableRecipe(Recipe recipe) {
             DisableRecipe(recipe, ItemType<FeroziumIceSword>());
             DisableRecipe(recipe, ItemType<MagicGrenade>());
+            DisableRecipe(recipe, ItemType<Boompipe>());
         }
         public override void Ingredient(Recipe recipe) {
 
             AddIngredient(recipe, ItemType<GlassEye>(), 1, new Item(ItemType<Cinnabar>(), 1));
             ForeachIngredient(recipe, ItemType<FeroziumPickaxe>(), new Item(ItemType<SoulofBlight>(), 10));
             ForeachIngredient(recipe, ItemType<FeroziumWaraxe>(), new Item(ItemType<SoulofBlight>(), 10));
+            ForeachIngredient(recipe, ItemType<Moonforce>(), new Item(ItemType<ValhalliteLongbow>(), 1));
+            AddLotIngredient(recipe, ItemType<RhodiumLongbow>(), (ModContent.ItemType<RopeLongbow>(), 1));
+            AddLotIngredient(recipe, ItemType<IridiumLongbow>(), (ModContent.ItemType<RopeLongbow>(), 1));
+            AddLotIngredient(recipe, ItemType<OsmiumLongbow>(), (ModContent.ItemType<RopeLongbow>(), 1));
         }
         public override void Recipes() {
         }

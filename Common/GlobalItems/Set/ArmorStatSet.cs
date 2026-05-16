@@ -75,16 +75,16 @@ namespace Synergia.Common.GlobalItems.Set
 			{
 				if (item.type == roa.Find<ModItem>("SentinelHelmet").Type)
 				{
-					player.GetDamage(DamageClass.Throwing) += 0.15f;
+					player.GetDamage(DamageClass.Throwing) += 0.08f;
 					player.GetCritChance(DamageClass.Throwing) += 5;
 				}
 				if (item.type == roa.Find<ModItem>("SentinelBreastplate").Type)
 				{
-					player.GetAttackSpeed(DamageClass.Throwing) += 0.1f;
+					player.GetAttackSpeed(DamageClass.Throwing) += 0.07f;
 				}
 				if (item.type == roa.Find<ModItem>("SentinelLeggings").Type)
 				{
-					player.moveSpeed += 0.2f;
+					player.moveSpeed += 0.12f;
 				}
 			}
 
@@ -125,8 +125,26 @@ namespace Synergia.Common.GlobalItems.Set
 					player.GetDamage(DamageClass.Ranged) += 0.05f;
 					player.GetDamage(DamageClass.Melee) -= 0.11f;
 				}
-				
-			}
+                if (item.type == valhalla.Find<ModItem>("JadeLegs").Type)
+                {
+                    player.GetCritChance(DamageClass.Generic) += 0.07f;
+                    player.moveSpeed += 0.07f;
+                }
+                if (item.type == valhalla.Find<ModItem>("JadeHead").Type)
+                {
+                    player.blackBelt = true;
+                    item.defense -= 4;
+                }
+                if (item.type == valhalla.Find<ModItem>("JadeMask").Type)
+                {
+                    player.GetDamage(DamageClass.Generic) += 0.06f;
+                }
+                if (item.type == valhalla.Find<ModItem>("JadeBody").Type)
+                {
+                    item.defense += 5;
+                }
+
+            }
 
 			// Avalon
 			if (avalon != null)
@@ -233,15 +251,16 @@ namespace Synergia.Common.GlobalItems.Set
                 }
                 if (item.type == bismuth.Find<ModItem>("NomadsHood").Type)
                 {
-                    player.GetDamage(DamageClass.Throwing) += 0.07f;
+                    player.GetDamage(DamageClass.Ranged) += 0.05f;
                 }
                 if (item.type == bismuth.Find<ModItem>("NomadsJacket").Type)
                 {
-                    player.GetDamage(DamageClass.Throwing) += 0.11f;
+                    player.GetAttackSpeed(DamageClass.Ranged) += 0.10f;
                 }
                 if (item.type == bismuth.Find<ModItem>("NomadsBoots").Type)
                 {
-                    player.GetDamage(DamageClass.Throwing) += 0.07f;
+                    player.GetDamage(DamageClass.Ranged) += 0.07f;
+                    player.moveSpeed -= 0.1f;
                 }
                 if (item.type == bismuth.Find<ModItem>("FeralLeggings").Type)
                 {
@@ -334,6 +353,9 @@ namespace Synergia.Common.GlobalItems.Set
 			Add("ValhallaMod", "SniperBody", "Items.SniperBody.Tooltip");
 			Add("ValhallaMod", "SniperHead", "Items.SniperHead.Tooltip");
 			Add("ValhallaMod", "SniperLegs", "Items.SniperLegs.Tooltip");
+			Add("ValhallaMod", "JadeMask", "Items.JadeMask.Tooltip");
+			Add("ValhallaMod", "JadeHead", "Items.JadeHead.Tooltip");
+			Add("ValhallaMod", "JadeLegs", "Items.JadeLegs.Tooltip");
 
 			Add("Avalon", "EarthsplitterChestpiece", "Items.EarthsplitterChestpiece.Tooltip");
 			Add("Avalon", "EarthsplitterHelm", "Items.EarthsplitterHelm.Tooltip");

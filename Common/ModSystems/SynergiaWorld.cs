@@ -15,12 +15,14 @@ namespace Synergia.Common.ModSystems {
         public static bool FirstEnterInSnowVillage { get; internal set; }
         public static bool FirstEnterInHellVillage { get; internal set; }
         public static bool SpawnDwarf { get; internal set; }
-        public static bool SpawnCristal { get; set; } 
+        public static bool SinlordDead { get; internal set; }
+        public static bool SpawnCristal { get; set; }
 
         public override void ClearWorld() {
             FirstEnterInSnowVillage = false;
             FirstEnterInHellVillage = false;
             SpawnDwarf = false;
+            SinlordDead = false;
             SpawnCristal = false;
         }
         public override void OnWorldLoad() {
@@ -33,11 +35,13 @@ namespace Synergia.Common.ModSystems {
             tag["FirstEnterInSnowVillage"] = FirstEnterInSnowVillage;
             tag["FirstEnterInHellVillage"] = FirstEnterInHellVillage;
             tag["SpawnDwarf"] = SpawnDwarf;
+            tag["SinlordDead"] = SinlordDead;
         }
         public override void LoadWorldData(TagCompound tag) {
             FirstEnterInSnowVillage = tag.GetBool("FirstEnterInSnowVillage");
             FirstEnterInHellVillage = tag.GetBool("FirstEnterInHellVillage");
             SpawnDwarf = tag.GetBool("SpawnDwarf");
+            SinlordDead = tag.GetBool("SinlordDead");
         }
         sealed public override void NetSend(BinaryWriter writer) {
             writer.Write(FirstEnterInSnowVillage);

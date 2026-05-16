@@ -4,21 +4,27 @@ using Avalon.Items.Material;
 using Avalon.Items.Material.Bars;
 using Avalon.Items.Material.Ores;
 using Avalon.Items.Material.Shards;
-using Avalon.Items.Material.TomeMats;
-using Avalon.Items.Potions.Buff;
-using Avalon.Items.Tomes.PreHardmode;
-using Avalon.Items.Tools.Hardmode;
+using Avalon.Items.Weapons.Melee.PreHardmode.MarrowMasher;
+using Avalon.Items.Weapons.Melee.PreHardmode.UrchinMace;
+using Avalon.Items.Weapons.Ranged.PreHardmode.Thompson;
 using Bismuth.Content.Items.Materials;
+using Bismuth.Content.Items.Placeable;
+using Bismuth.Content.Items.Weapons.Ranged;
 using Consolaria.Content.Items.Materials;
+using Consolaria.Content.Items.Weapons.Ranged;
+using NewHorizons.Content.Items.Armor.NightMageArmor;
 using NewHorizons.Content.Items.Materials;
-using NewHorizons.Content.Items.Weapons.Ranged;
 using starforgedclassic.Content.Placeables.AzuriteBar;
+using starforgedclassic.Content.Weapons.PlumeShot;
 using Starforgedclassic.Content.Accessories.SkyShield;
 using Synergia.Content.Items.Materials;
+using Synergia.Content.Items.Misc;
+using Synergia.Content.Items.Weapons.Melee;
 using Terraria;
 using Terraria.ID;
 using ValhallaMod.Items.Accessory;
 using ValhallaMod.Items.Accessory.Shield;
+using ValhallaMod.Items.Consumable;
 using ValhallaMod.Items.Garden;
 using ValhallaMod.Items.Material;
 using ValhallaMod.Items.Material.Bar;
@@ -26,10 +32,14 @@ using ValhallaMod.Items.Tools;
 using ValhallaMod.Items.Weapons.Magic.Gloves;
 using ValhallaMod.Items.Weapons.Melee.ChannelMelee;
 using ValhallaMod.Items.Weapons.Melee.Knives;
+using ValhallaMod.Items.Weapons.Melee.Shortswords;
 using ValhallaMod.Items.Weapons.Melee.Swords;
 using ValhallaMod.Items.Weapons.Ranged.Bows;
+using ValhallaMod.Items.Weapons.Ranged.Darts;
 using ValhallaMod.Items.Weapons.Ranged.Guns;
 using ValhallaMod.Items.Weapons.Ranged.ProjectileGuns;
+using ValhallaMod.Items.Weapons.Ranged.RocketLaunchers;
+using ValhallaMod.Items.Weapons.Ranged.Thrown;
 using ValhallaMod.Items.Weapons.Summon.Auras;
 using ValhallaMod.Items.Weapons.Summon.Whips;
 using ValhallaMod.Projectiles.Summon.Sentries;
@@ -37,14 +47,24 @@ using static Terraria.ModLoader.ModContent;
 
 namespace Synergia.Common.ModSystems.RecipeSystem.ChangesRecipe.AvalonsChanges {
         public class ValhallaWeapons : BaseRecipe {
-
-            public override void Ingredient(Recipe recipe) {
+        public override void DisableRecipe(Recipe recipe)
+        {
+            DisableRecipe(recipe, ItemType<HarpyBow>());
+            DisableRecipe(recipe, ItemType<HarpyGreatbow>());
+            DisableRecipe(recipe, ItemType<PlagueRifleV>());
+            DisableRecipe(recipe, ItemType<HeavensSeal>());
+        }
+        public override void Ingredient(Recipe recipe) {
             AddLotIngredient(recipe, ItemType<BlueSlice>(), (ModContent.ItemType<FrigidShard>(), 3));
             // AddIngredient(recipe, ItemType<StarAuraStaff>(), 0, starforgedclassic.Find<ModItem>("AzuriteBarItem"), 10);
-
+            AddIngredient(recipe, ItemType<SpiderEgg>(), 1, new Item(ItemID.Grenade, 33));
+            AddIngredient(recipe, ItemType<Scarabine>(), 0, new Item(ModContent.ItemType<Thompson>(), 1));
+            AddIngredient(recipe, ItemType<Forfeiter>(), 0, new Item(ModContent.ItemType<Scarabine>(), 1));
+            AddIngredient(recipe, ItemType<Forfeiter>(), 3, new Item(ModContent.ItemType<GalvornBar>(), 10));
             AddLotIngredient(recipe, ItemType<ValhallaMod.Items.Weapons.Summon.Sentries.SnowPeashooterSentryStaff>(), (ModContent.ItemType<IceCrystal>(), 5 ));
             AddLotIngredient(recipe, ItemType<ValhallaMod.Items.Weapons.Summon.Sentries.SnowPeashooterSentryStaff>(), (ModContent.ItemType<FrostShard>(), 4));
             AddLotIngredient(recipe, ItemType<HellAuraStaff>(), (ModContent.ItemType<FireShard>(), 4));
+            AddLotIngredient(recipe, ItemType<VenomDart>(), (ModContent.ItemType<VenomShard>(), 1));
             AddLotIngredient(recipe, ItemType<ValhallaMod.Items.Weapons.Summon.Sentries.FirePeashooterSentryStaff>(), (ModContent.ItemType<FireShard>(), 4));
             ForeachIngredient(recipe, ItemType<FrostDaggers>(), new Item(ItemType<FrigidShard>(), 3));
         }
@@ -59,9 +79,36 @@ namespace Synergia.Common.ModSystems.RecipeSystem.ChangesRecipe.AvalonsChanges {
             CreateGlassCrossbow();
             CreateGlassPickaxe();
             CreateGlassHamaxe();
-            CreateGlassCrossbow();
             CreateWallnut();
             CreateClocklock();
+            CreateHarpyBow();
+            CreateGreateHarpyBow();
+            CreateLittleFriend();
+            CreateHuntressBow1();
+            CreateHuntressBow2();
+            CreateHuntressBow3();
+            CreatePlagueRifleV();
+            CreateHeavensSeal();
+            CreateRifle76();
+            CreateMacEleven();
+            CreateHuntersHunch1();
+            CreateHuntersHunch2();
+            CreateHuntersHunch3();
+            CreateHurbringerDawn();
+            CreateScarabine();
+            CreateReptile();
+            CreateLaserScissors();
+            CreateCrescento();
+        }
+
+        static void CreateHeavensSeal()
+        {
+            Recipe recipe = Recipe.Create(ItemType<HeavensSeal>());
+            recipe.AddIngredient(ItemID.HallowedBar, 1);
+            recipe.AddIngredient(ItemID.FallenStar, 1);
+            recipe.AddIngredient(ItemID.SoulofFlight, 3);
+            recipe.AddTile(TileID.MythrilAnvil);
+            recipe.Register();
         }
         static void CreateEverIce()
         {
@@ -112,17 +159,17 @@ namespace Synergia.Common.ModSystems.RecipeSystem.ChangesRecipe.AvalonsChanges {
         static void CreateGlassCannon()
         {
             Recipe recipe = Recipe.Create(ItemType<GlassCannon>());
-            recipe.AddIngredient(ItemType<HardenedGlass>(), 9);
-            recipe.AddIngredient(ItemType<Booger>(), 5);
+            recipe.AddIngredient(ItemType<HardenedGlass>(), 13);
+            recipe.AddIngredient(ItemType<LegalGunParts>(), 1);
+            recipe.AddIngredient(ItemType<DurataniumBar>(), 5);
             recipe.AddTile(TileID.MythrilAnvil);
             recipe.Register();
         }
         static void CreateGlassCrossbow()
         {
             Recipe recipe = Recipe.Create(ItemType<GlassCrossbow>());
-            recipe.AddIngredient(ItemType<HardenedGlass>(), 13);
-            recipe.AddIngredient(ItemType<LegalGunParts>(), 1);
-            recipe.AddIngredient(ItemType<DurataniumBar>(), 5);
+            recipe.AddIngredient(ItemType<HardenedGlass>(), 9);
+            recipe.AddIngredient(ItemType<Booger>(), 5);
             recipe.AddTile(TileID.GlassKiln);
             recipe.Register();
         }
@@ -136,7 +183,7 @@ namespace Synergia.Common.ModSystems.RecipeSystem.ChangesRecipe.AvalonsChanges {
         }
         static void CreateGlassHamaxe()
         {
-            Recipe recipe = Recipe.Create(ItemType<GlassPickaxe>());
+            Recipe recipe = Recipe.Create(ItemType<GlassHamaxe>());
             recipe.AddIngredient(ItemType<HardenedGlass>(), 12);
             recipe.AddIngredient(ItemType<Booger>(), 5);
             recipe.AddTile(TileID.GlassKiln);
@@ -157,6 +204,162 @@ namespace Synergia.Common.ModSystems.RecipeSystem.ChangesRecipe.AvalonsChanges {
             recipe.AddIngredient(ItemType<CogBronze>(), 2);
             recipe.AddIngredient(ItemID.FlintlockPistol, 1);
             recipe.AddTile(TileID.Anvils);
+            recipe.Register();
+        }
+        static void CreateHarpyBow()
+        {
+            Recipe recipe = Recipe.Create(ItemType<HarpyBow>());
+            recipe.AddIngredient(ItemType<AluminiumBow>(), 1);
+            recipe.AddIngredient(ItemID.Feather, 10);
+            recipe.AddTile(TileID.Anvils);
+            recipe.Register();
+        }
+        static void CreateGreateHarpyBow()
+        {
+            Recipe recipe = Recipe.Create(ItemType<HarpyGreatbow>());
+            recipe.AddIngredient(ItemType<HarpyBow>(), 1);
+            recipe.AddIngredient(ItemType<PlumeShot>(), 1);
+            recipe.AddIngredient(ItemType<TornadoShard>(), 5);
+            recipe.AddIngredient(ItemID.SoulofFright, 5);
+            recipe.AddTile(TileID.MythrilAnvil);
+            recipe.Register();
+        }
+        static void CreateLittleFriend()
+        {
+            Recipe recipe = Recipe.Create(ItemType<LittleFriend>());
+            recipe.AddIngredient(ItemType<AluminiumBar>(), 20);
+            recipe.AddIngredient(ItemType<BigLens>(), 1);
+            recipe.AddIngredient(ItemType<PeatPowder>(), 10);
+            recipe.AddTile(TileID.Anvils);
+            recipe.Register();
+        }
+        static void CreateHuntressBow1()
+        {
+            Recipe recipe = Recipe.Create(ItemType<HuntressBow>());
+            recipe.AddIngredient(ItemType<AluminiumBow>(), 1);
+            recipe.AddIngredient(ItemType<Starstone>(), 10);
+            recipe.AddIngredient(ItemType<BacciliteBar>(), 10);
+            recipe.AddTile(TileID.Anvils);
+            recipe.Register();
+        }
+        static void CreateHuntressBow2()
+        {
+            Recipe recipe = Recipe.Create(ItemType<HuntressBow>());
+            recipe.AddIngredient(ItemType<AluminiumBow>(), 1);
+            recipe.AddIngredient(ItemType<Starstone>(), 10);
+            recipe.AddIngredient(ItemID.CrimtaneBar, 10);
+            recipe.AddTile(TileID.Anvils);
+            recipe.Register();
+        }
+        static void CreateHuntressBow3()
+        {
+            Recipe recipe = Recipe.Create(ItemType<HuntressBow>());
+            recipe.AddIngredient(ItemType<AluminiumBow>(), 1);
+            recipe.AddIngredient(ItemType<Starstone>(), 10);
+            recipe.AddIngredient(ItemID.DemoniteBar, 10);
+            recipe.AddTile(TileID.Anvils);
+            recipe.Register();
+        }
+        static void CreatePlagueRifleV()
+        {
+            Recipe recipe = Recipe.Create(ItemType<PlagueRifleV>());
+            recipe.AddIngredient(ItemType<PlagueRifle>(), 1);
+            recipe.AddIngredient(RoAItem("ChemicalPrisoner"), 1);
+            recipe.AddIngredient(ItemID.VialofVenom, 10);
+            recipe.AddIngredient(ItemType<VenomShard>(), 5);
+            recipe.AddTile(TileID.MythrilAnvil);
+            recipe.Register();
+        }
+        static void CreateRifle76()
+        {
+            Recipe recipe = Recipe.Create(ItemType<Rifle76>());
+            recipe.AddIngredient(ItemType<PlagueRifle>(), 1);
+            recipe.AddIngredient(ItemType<AluminiumBar>(), 15);
+            recipe.AddIngredient(ItemID.SoulofSight, 8);
+            recipe.AddTile(TileID.MythrilAnvil);
+            recipe.Register();
+        }
+        static void CreateMacEleven()
+        {
+            Recipe recipe = Recipe.Create(ItemType<MacEleven>());
+            recipe.AddIngredient(ItemID.IllegalGunParts, 1);
+            recipe.AddIngredient(ItemID.HallowedBar, 5);
+            recipe.AddIngredient(ItemID.HellstoneBar, 10);
+            recipe.AddIngredient(ItemType<BlastShard>(), 8);
+            recipe.AddTile(TileID.MythrilAnvil);
+            recipe.Register();
+        }
+        static void CreateScarabine()
+        {
+            Recipe recipe = Recipe.Create(ItemType<Scarabine>());
+            recipe.AddIngredient(ItemID.Boomstick, 1);
+            recipe.AddIngredient(ItemID.HallowedBar, 10);
+            recipe.AddIngredient(ItemID.FossilOre, 18);
+            recipe.AddTile(TileID.MythrilAnvil);
+            recipe.Register();
+        }
+        static void CreateHuntersHunch1()
+        {
+            Recipe recipe = Recipe.Create(ItemType<HuntersHunch>());
+            recipe.AddIngredient(ItemType<TroxiniumBar>(), 10);
+            recipe.AddIngredient(ItemType<GalvornBar>(), 10);
+            recipe.AddRecipeGroup(RecipeGroupID.Wood);
+            recipe.AddTile(TileID.MythrilAnvil);
+            recipe.Register();
+        }
+        static void CreateHuntersHunch2()
+        {
+            Recipe recipe = Recipe.Create(ItemType<HuntersHunch>());
+            recipe.AddIngredient(ItemID.AdamantiteBar, 10);
+            recipe.AddIngredient(ItemType<GalvornBar>(), 10);
+            recipe.AddRecipeGroup(RecipeGroupID.Wood);
+            recipe.AddTile(TileID.MythrilAnvil);
+            recipe.Register();
+        }
+        static void CreateHuntersHunch3()
+        {
+            Recipe recipe = Recipe.Create(ItemType<HuntersHunch>());
+            recipe.AddIngredient(ItemID.TitaniumBar, 10);
+            recipe.AddIngredient(ItemType<GalvornBar>(), 10);
+            recipe.AddRecipeGroup(RecipeGroupID.Wood);
+            recipe.AddTile(TileID.MythrilAnvil);
+            recipe.Register();
+        }
+        static void CreateHurbringerDawn()
+        {
+            Recipe recipe = Recipe.Create(ItemType<HarbingerOfDawn>());
+            recipe.AddIngredient(ItemType<Sharanga>(), 1);
+            recipe.AddIngredient(ItemType<Heat>(), 1);
+            recipe.AddIngredient(ItemType<Consolaria.Content.Items.Materials.SoulofBlight>(), 10);
+            recipe.AddIngredient(ItemID.LunarTabletFragment, 10);
+            recipe.AddTile(TileType<CaesiumHeavyAnvilTile>());
+            recipe.Register();
+        }
+        static void CreateReptile()
+        {
+            Recipe recipe = Recipe.Create(ItemType<ReptileRavager>());
+            recipe.AddIngredient(ItemType<UrchinMace>(), 1);
+            recipe.AddIngredient(ItemType<MarrowMasher>(), 1); 
+            recipe.AddTile(TileID.Anvils);
+            recipe.Register();
+        }
+        static void CreateLaserScissors()
+        {
+            Recipe recipe = Recipe.Create(ItemType<ScissorsKnives>());
+            recipe.AddIngredient(ItemType<EnchantedBar>(), 10);
+            recipe.AddIngredient(ItemType<BrokenHiltPiece>(), 6);
+            recipe.AddIngredient(ItemID.Bone, 10);
+            recipe.AddTile(TileID.Anvils);
+            recipe.Register();
+        }
+        static void CreateCrescento()
+        {
+            Recipe recipe = Recipe.Create(ItemType<ShortNight>());
+            recipe.AddIngredient(ItemType<Snotknife>(), 1);
+            recipe.AddIngredient(ItemType<WaveHarvester>(), 1);
+            recipe.AddIngredient(ItemType<Bulbasword>(), 1);
+            recipe.AddIngredient(ItemType<SparkingShortsword>(), 1);
+            recipe.AddTile(TileID.DemonAltar);
             recipe.Register();
         }
 

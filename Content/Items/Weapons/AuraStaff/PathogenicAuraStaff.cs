@@ -1,7 +1,9 @@
+using Avalon.Items.Material;
+using Avalon.Items.Material.Bars;
+using Synergia.Content.Projectiles.Aura;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using Synergia.Content.Projectiles.Aura;
 using static Terraria.ModLoader.ModContent;
 
 namespace Synergia.Content.Items.Weapons.AuraStaff
@@ -37,5 +39,13 @@ namespace Synergia.Content.Items.Weapons.AuraStaff
 			//typeScythe = ProjectileType<SuperAuraScytheCut>();
 			//scytheDamageScale = 1f;
 		}
-	}
+        public override void AddRecipes()
+        {
+            CreateRecipe()
+                .AddIngredient(ModContent.ItemType<Pathogen>(), 12)
+                                .AddIngredient(ItemID.SoulofNight, 15)
+                .AddTile(TileID.MythrilAnvil)
+                .Register();
+        }
+    }
 }

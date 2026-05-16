@@ -26,6 +26,7 @@ namespace Synergia.Common.ModSystems.RecipeSystem.ChangesRecipe.AvalonsChanges {
             AddLotIngredient(recipe, RoAItem("TectonicCane"), (ModContent.ItemType<FireShard>(), 3));
             AddLotIngredient(recipe, RoAItem("ThornyClaws"), (ModContent.ItemType<ToxinShard>(), 3));
             AddLotIngredient(recipe, RoAItem("HellfireClaws"), (ModContent.ItemType<FireShard>(), 3));
+            AddLotIngredient(recipe, RoAItem("StarFusion"), (ModContent.ItemType<AncientScrap>(), 10));
         }
             public override void PostRecipe()
             {

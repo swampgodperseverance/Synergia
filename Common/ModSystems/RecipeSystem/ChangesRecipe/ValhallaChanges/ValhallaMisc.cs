@@ -37,14 +37,16 @@ using static Terraria.ModLoader.ModContent;
 
 namespace Synergia.Common.ModSystems.RecipeSystem.ChangesRecipe.AvalonsChanges {
         public class ValhallaMisc : BaseRecipe {
-
+            
+            
             public override void Ingredient(Recipe recipe) {
             ForeachIngredient(recipe, ItemType<GreaterPotionBelt>(), new Item(ItemType<HeliosSoul>(), 1));
         }
+
         public override void PostRecipe()
         {
             CreateGreaterPotionBelt();
-            CreateHeavensSeal();
+            
         }
         static void CreateGreaterPotionBelt()
         {
@@ -56,15 +58,7 @@ namespace Synergia.Common.ModSystems.RecipeSystem.ChangesRecipe.AvalonsChanges {
             recipe.AddTile(TileID.Bottles);
             recipe.Register();
         }
-        static void CreateHeavensSeal()
-        {
-            Recipe recipe = Recipe.Create(ItemType<HeavensSeal>());
-            recipe.AddIngredient(ItemType<DurataniumBar>(), 3);
-            recipe.AddIngredient(ItemID.FallenStar, 1);
-            recipe.AddIngredient(ItemID.SoulofFlight, 3);
-            recipe.AddTile(TileID.MythrilAnvil);
-            recipe.Register();
-        }
+
 
     }
     
