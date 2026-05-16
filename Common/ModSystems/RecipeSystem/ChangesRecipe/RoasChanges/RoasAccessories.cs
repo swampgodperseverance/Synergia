@@ -5,6 +5,7 @@ using Avalon.Items.Material.Shards;
 using Avalon.Items.Material.TomeMats;
 using Avalon.Items.Potions.Buff;
 using Avalon.Items.Tomes.PreHardmode;
+using Bismuth.Content.Items.Materials;
 using Consolaria.Content.Items.Materials;
 using NewHorizons.Content.Items.Materials;
 using Starforgedclassic.Content.Accessories.SkyShield;
@@ -24,7 +25,7 @@ namespace Synergia.Common.ModSystems.RecipeSystem.ChangesRecipe.AvalonsChanges {
 
             public override void Ingredient(Recipe recipe) {
                 AddLotIngredient(recipe, RoAItem("FenethsBlazingWreath"), (ModContent.ItemType<FireShard>(), 1));
-                AddLotIngredient(recipe, RoAItem("FeathersInABottle"), (ModContent.ItemType<BreezeShard>(), 3));
+                AddLotIngredient(recipe, RoAItem("FeathersInABottle"), (ModContent.ItemType<AirEssence>(), 3));
                 AddLotIngredient(recipe, RoAItem("SnowWreath"), (ModContent.ItemType<FrostShard>(), 1));
                 AddLotIngredient(recipe, RoAItem("ForestWreath"), (ModContent.ItemType<EarthShard>(), 1));
                 AddLotIngredient(recipe, RoAItem("JungleWreath"), (ModContent.ItemType<ToxinShard>(), 1));

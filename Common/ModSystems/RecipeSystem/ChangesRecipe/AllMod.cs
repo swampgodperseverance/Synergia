@@ -5,6 +5,7 @@ using Avalon.Items.Material.Bars;
 using Avalon.Items.Material.Herbs;
 using Avalon.Items.Material.Shards;
 using Avalon.Items.Placeable.Tile;
+using Bismuth.Content.Items.Materials;
 using Consolaria.Content.Items.Materials;
 using Consolaria.Content.Items.Weapons.Ranged;
 using NewHorizons.Content.Items.Armor.BeastArmor;
@@ -13,6 +14,7 @@ using NewHorizons.Content.Items.Armor.NightMageArmor;
 using NewHorizons.Content.Items.Armor.RottenArmor;
 using NewHorizons.Content.Items.Armor.WyvernHunterArmor;
 using NewHorizons.Content.Items.Materials;
+using Synergia.Content.Items.Weapons.AuraStaff;
 using Terraria;
 using Terraria.ID;
 using ValhallaMod.Items.Weapons.Ranged.Bows;
@@ -41,7 +43,7 @@ namespace Synergia.Common.ModSystems.RecipeSystem.ChangesRecipe {
         public override void PostRecipe()
         {
             CreateSharanga();
-
+            CreateUnderwaterAuraStaff();
         }
         static void CreateSharanga()
         {
@@ -49,6 +51,14 @@ namespace Synergia.Common.ModSystems.RecipeSystem.ChangesRecipe {
             recipe.AddIngredient(ItemType<HuntressBow>(), 1);
             recipe.AddIngredient(ItemType<WildRootBow>(), 1);
             recipe.AddIngredient(ItemID.Bone, 10);
+            recipe.AddTile(TileID.Anvils);
+            recipe.Register();
+        }
+        static void CreateUnderwaterAuraStaff()
+        {
+            Recipe recipe = Recipe.Create(ItemType<UnderwaterAuraStaff>());
+            recipe.AddIngredient(ItemID.Seashell, 10);
+            recipe.AddIngredient(ItemType<WaterEssence>(), 3);
             recipe.AddTile(TileID.Anvils);
             recipe.Register();
         }

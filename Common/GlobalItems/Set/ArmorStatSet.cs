@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Avalon.Buffs;
+using Bismuth;
 using Synergia.Common.GlobalPlayer;
 using Terraria;
 using Terraria.ID;
@@ -280,39 +281,33 @@ namespace Synergia.Common.GlobalItems.Set
                 }
                 if (item.type == bismuth.Find<ModItem>("PikemansHelmet").Type)
                 {
-                    item.defense += 2;
                 }
                 if (item.type == bismuth.Find<ModItem>("PikemansBreastplate").Type)//Add localization 
                 {
                     player.GetDamage(DamageClass.Throwing) -= 0.12f;
                     player.GetDamage(DamageClass.Melee) += 0.10f;
                     player.moveSpeed -= 0.12f;
-                    item.defense += 5;
                 }
                 if (item.type == bismuth.Find<ModItem>("PikemansLeggings").Type)
                 {
 
                     player.GetCritChance(DamageClass.Melee) += 0.06f;
                     player.moveSpeed -= 0.08f;
-                    item.defense += 3;
                 }
                 if (item.type == bismuth.Find<ModItem>("WatersHelmet").Type)
                 {
                     player.GetDamage(DamageClass.Magic) += 0.05f;
                     player.manaRegenBonus += 8;
-                    item.defense += 5;
                 }
                 if (item.type == bismuth.Find<ModItem>("WatersBreastplate").Type)
                 {
                     player.GetModPlayer<WaterPlayer>().waterAccessoryEquipped = true;
                     player.GetCritChance(DamageClass.Magic) += 10f;
-                    item.defense += 13;
                 }
                 if (item.type == bismuth.Find<ModItem>("WatersLeggings").Type)
                 {
                     player.GetDamage(DamageClass.Magic) += 0.08f;
                     player.manaRegenBonus += 10;
-                    item.defense += 7;
                 }
                 if (item.type == bismuth.Find<ModItem>("NecromancersRobe").Type)
                 {
@@ -419,4 +414,41 @@ namespace Synergia.Common.GlobalItems.Set
 			}
 		}
 	}
+    public class DefenseExp : GlobalItem
+    {
+
+        private static Mod bismuth = ModLoader.GetMod("Bismuth");
+        public override void SetDefaults(Item item)
+        {
+            if (item.type == bismuth.Find<ModItem>("WatersHelmet").Type)
+            {
+                item.defense = 5;
+            }
+
+            if (item.type == bismuth.Find<ModItem>("WatersBreastplate").Type)
+            {
+                item.defense = 13;
+            }
+
+            if (item.type == bismuth.Find<ModItem>("WatersLeggings").Type)
+            {
+                item.defense = 7;
+            }
+
+            if (item.type == bismuth.Find<ModItem>("PikemansHelmet").Type)
+            {
+                item.defense = 2;
+            }
+
+            if (item.type == bismuth.Find<ModItem>("PikemansBreastplate").Type)
+            {
+                item.defense = 5;
+            }
+
+            if (item.type == bismuth.Find<ModItem>("PikemansLeggings").Type)
+            {
+                item.defense = 3;
+            }
+        }
+    }
 }

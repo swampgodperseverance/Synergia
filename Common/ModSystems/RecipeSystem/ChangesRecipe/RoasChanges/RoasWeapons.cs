@@ -4,6 +4,7 @@ using Avalon.Items.Material.Bars;
 using Avalon.Items.Material.Shards;
 using Avalon.Items.Material.TomeMats;
 using Avalon.Items.Tomes.PreHardmode;
+using Bismuth.Content.Items.Materials;
 using Consolaria.Content.Items.Materials;
 using NewHorizons.Content.Items.Materials;
 using Starforgedclassic.Content.Accessories.SkyShield;
@@ -23,7 +24,7 @@ namespace Synergia.Common.ModSystems.RecipeSystem.ChangesRecipe.AvalonsChanges {
             public override void Ingredient(Recipe recipe) {
             AddIngredient(recipe, RoAItem("StarFusion"), 0, new Item(ItemType<MeteoricEdge>(), 1));
             AddIngredient(recipe, RoAItem("PastoralRod"), 1, new Item(ItemType<ElasticCord>(), 1));
-            AddLotIngredient(recipe, RoAItem("TectonicCane"), (ModContent.ItemType<FireShard>(), 3));
+            AddLotIngredient(recipe, RoAItem("TectonicCane"), (ModContent.ItemType<FireEssence>(), 3));
             AddLotIngredient(recipe, RoAItem("ThornyClaws"), (ModContent.ItemType<ToxinShard>(), 3));
             AddLotIngredient(recipe, RoAItem("HellfireClaws"), (ModContent.ItemType<FireShard>(), 3));
             AddLotIngredient(recipe, RoAItem("StarFusion"), (ModContent.ItemType<AncientScrap>(), 10));

@@ -1,11 +1,12 @@
 ﻿
+using Avalon.Items.Material.Shards;
 using Bismuth.Content.Items.Armor;
 using Bismuth.Content.Items.Placeable;
 using Consolaria.Content.Items.Materials;
+using NewHorizons.Content.Items.Ammo;
 using NewHorizons.Content.Items.Armor.NanotechArmor;
 using Terraria;
 using Terraria.ID;
-using VitalityMod.Items.Placeable.Candles;
 
 namespace Synergia.Common.ModSystems.RecipeSystem.ChangesRecipe.HorizonsChanges
 {
@@ -35,7 +36,18 @@ namespace Synergia.Common.ModSystems.RecipeSystem.ChangesRecipe.HorizonsChanges
             AddIngredient(recipe, ItemType<FeralBreastplate>(), 0, new Item(ItemType<WhiteThread>(), 14));
             AddIngredient(recipe, ItemType<FeralLeggings>(), 0, new Item(ItemType<WhiteThread>(), 12));
             AddIngredient(recipe, ItemType<FeralHelmet>(), 0, new Item(ItemType<WhiteThread>(), 12));
-
+            AddIngredient(recipe, ItemType<WatersBreastplate>(), 1, new Item(ItemType<TorrentShard>(), 8));
+            AddIngredient(recipe, ItemType<WatersHelmet>(), 1, new Item(ItemType<TorrentShard>(), 6));
+            AddIngredient(recipe, ItemType<WatersLeggings>(), 1, new Item(ItemType<TorrentShard>(), 6));
+            AddLotIngredient(recipe, ItemType<WatersBreastplate>(), (ItemID.SoulofMight, 5));
+            AddLotIngredient(recipe, ItemType<WatersBreastplate>(), (ItemID.SoulofSight, 5));
+            AddLotIngredient(recipe, ItemType<WatersBreastplate>(), (ItemID.SoulofFright, 5));
+            AddLotIngredient(recipe, ItemType<WatersHelmet>(), (ItemID.SoulofMight, 5));
+            AddLotIngredient(recipe, ItemType<WatersHelmet>(), (ItemID.SoulofSight, 5));
+            AddLotIngredient(recipe, ItemType<WatersHelmet>(), (ItemID.SoulofFright, 5));
+            AddLotIngredient(recipe, ItemType<WatersLeggings>(), (ItemID.SoulofMight, 5));
+            AddLotIngredient(recipe, ItemType<WatersLeggings>(), (ItemID.SoulofSight, 5));
+            AddLotIngredient(recipe, ItemType<WatersLeggings>(), (ItemID.SoulofFright, 5));
         }
         public override void PostRecipe()
         {
