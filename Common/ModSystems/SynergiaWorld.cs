@@ -1,7 +1,6 @@
 ﻿// Code by SerNik
-using Bismuth;
-using Bismuth.Utilities;
 using Synergia.Content.Items.Weapons.Summon;
+using Synergia.Content.NPCs;
 using Synergia.Helpers;
 using System.Collections.Generic;
 using System.IO;
@@ -16,17 +15,21 @@ namespace Synergia.Common.ModSystems {
         public static bool FirstEnterInSnowVillage { get; internal set; }
         public static bool FirstEnterInHellVillage { get; internal set; }
         public static bool SpawnDwarf { get; internal set; }
-        internal static bool SinlordDead = false;
+        public static bool SinlordDead;
+        public static bool SpawnCristal { get; set; }
+
         public override void ClearWorld() {
             FirstEnterInSnowVillage = false;
             FirstEnterInHellVillage = false;
             SpawnDwarf = false;
-            SinlordDead = false; //Do not put this on world load or net sync, it breaks
+            SinlordDead = false;
+            SpawnCristal = false;
         }
         public override void OnWorldLoad() {
             FirstEnterInSnowVillage = false;
             FirstEnterInHellVillage = false;
             SpawnDwarf = false;
+            SpawnCristal = false;
         }
         public override void SaveWorldData(TagCompound tag) {
             tag["FirstEnterInSnowVillage"] = FirstEnterInSnowVillage;
@@ -44,11 +47,13 @@ namespace Synergia.Common.ModSystems {
             writer.Write(FirstEnterInSnowVillage);
             writer.Write(FirstEnterInHellVillage);
             writer.Write(SpawnDwarf);
+            writer.Write(SpawnCristal);
         }
         sealed public override void NetReceive(BinaryReader reader) {
             FirstEnterInSnowVillage = reader.ReadBoolean();
             FirstEnterInHellVillage = reader.ReadBoolean();
             SpawnDwarf = reader.ReadBoolean();
+            SpawnCristal = reader.ReadBoolean();
         }
         public override void PostWorldGen() {
             WorldHelper.AddContainersLoot(13, 3, SkyChest, ItemType<Starcaller>());
@@ -58,6 +63,10 @@ namespace Synergia.Common.ModSystems {
         public override void PostUpdateWorld() {
             if (!SnowVillageGen) { FirstEnterInSnowVillage = true; }
             if (!HellVillageGen) { FirstEnterInHellVillage = true; }
+            if (NPC.downedGolemBoss && !DownedBossSystem.DownedSinlordBoss && !SpawnCristal) {
+                SynegiaHelper.SpawnNPC((HellArenaPositionX - 198 + 110) * 16, (HellArenaPositionY - 28) * 16, NPCType<HellheartMonolith>());
+                SpawnCristal = true;
+            }
         }
     }
 }
