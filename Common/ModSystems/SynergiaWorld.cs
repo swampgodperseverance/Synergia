@@ -15,7 +15,7 @@ namespace Synergia.Common.ModSystems {
         public static bool FirstEnterInSnowVillage { get; internal set; }
         public static bool FirstEnterInHellVillage { get; internal set; }
         public static bool SpawnDwarf { get; internal set; }
-        public static bool SinlordDead { get; internal set; }
+        public static bool SinlordDead;
         public static bool SpawnCristal { get; set; }
 
         public override void ClearWorld() {
