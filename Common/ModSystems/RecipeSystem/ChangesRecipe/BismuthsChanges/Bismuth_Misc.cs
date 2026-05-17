@@ -16,5 +16,6 @@ namespace Synergia.Common.ModSystems.RecipeSystem.ChangesRecipe {
             NewBronzeRecipe.AddConsumeIngredientCallback(OnCraft.SulphurConsumeIngredientCallback);
             NewBronzeRecipe.Register();
         }
+
     }
 }

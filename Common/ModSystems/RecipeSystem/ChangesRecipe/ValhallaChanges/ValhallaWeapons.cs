@@ -1,49 +1,53 @@
-﻿using Avalon.Items.Accessories.Hardmode;
-using Avalon.Items.Accessories.PreHardmode;
+﻿
 using Avalon.Items.Material;
 using Avalon.Items.Material.Bars;
 using Avalon.Items.Material.Ores;
 using Avalon.Items.Material.Shards;
+using Avalon.Items.Tools.Hardmode;
+using Avalon.Items.Weapons.Magic.Hardmode.EnergyRevolver;
+using Avalon.Items.Weapons.Melee.Hardmode.DarklightLance;
 using Avalon.Items.Weapons.Melee.PreHardmode.MarrowMasher;
 using Avalon.Items.Weapons.Melee.PreHardmode.UrchinMace;
 using Avalon.Items.Weapons.Ranged.PreHardmode.Thompson;
 using Bismuth.Content.Items.Materials;
 using Bismuth.Content.Items.Placeable;
 using Bismuth.Content.Items.Weapons.Ranged;
-using Consolaria.Content.Items.Materials;
 using Consolaria.Content.Items.Weapons.Ranged;
-using NewHorizons.Content.Items.Armor.NightMageArmor;
 using NewHorizons.Content.Items.Materials;
-using starforgedclassic.Content.Placeables.AzuriteBar;
+using NewHorizons.Content.Items.Weapons.Magic;
+using starforgedclassic;
 using starforgedclassic.Content.Weapons.PlumeShot;
-using Starforgedclassic.Content.Accessories.SkyShield;
 using Synergia.Content.Items.Materials;
 using Synergia.Content.Items.Misc;
 using Synergia.Content.Items.Weapons.Melee;
 using Terraria;
 using Terraria.ID;
-using ValhallaMod.Items.Accessory;
-using ValhallaMod.Items.Accessory.Shield;
 using ValhallaMod.Items.Consumable;
-using ValhallaMod.Items.Garden;
+using ValhallaMod.Items.Garden.PlantPots;
 using ValhallaMod.Items.Material;
 using ValhallaMod.Items.Material.Bar;
 using ValhallaMod.Items.Tools;
+using ValhallaMod.Items.Weapons.Hybrid.Swords;
 using ValhallaMod.Items.Weapons.Magic.Gloves;
+using ValhallaMod.Items.Weapons.Magic.Guns;
+using ValhallaMod.Items.Weapons.Magic.Staffs;
+using ValhallaMod.Items.Weapons.Magic.Tomes;
 using ValhallaMod.Items.Weapons.Melee.ChannelMelee;
+using ValhallaMod.Items.Weapons.Melee.Glaives;
 using ValhallaMod.Items.Weapons.Melee.Knives;
 using ValhallaMod.Items.Weapons.Melee.Shortswords;
+using ValhallaMod.Items.Weapons.Melee.Spears;
 using ValhallaMod.Items.Weapons.Melee.Swords;
 using ValhallaMod.Items.Weapons.Ranged.Bows;
+using ValhallaMod.Items.Weapons.Ranged.DartGuns;
 using ValhallaMod.Items.Weapons.Ranged.Darts;
 using ValhallaMod.Items.Weapons.Ranged.Guns;
-using ValhallaMod.Items.Weapons.Ranged.ProjectileGuns;
 using ValhallaMod.Items.Weapons.Ranged.RocketLaunchers;
 using ValhallaMod.Items.Weapons.Ranged.Thrown;
 using ValhallaMod.Items.Weapons.Summon.Auras;
 using ValhallaMod.Items.Weapons.Summon.Whips;
-using ValhallaMod.Projectiles.Summon.Sentries;
 using static Terraria.ModLoader.ModContent;
+using static Synergia.ModList;
 
 namespace Synergia.Common.ModSystems.RecipeSystem.ChangesRecipe.AvalonsChanges {
         public class ValhallaWeapons : BaseRecipe {
@@ -53,10 +57,12 @@ namespace Synergia.Common.ModSystems.RecipeSystem.ChangesRecipe.AvalonsChanges {
             DisableRecipe(recipe, ItemType<HarpyGreatbow>());
             DisableRecipe(recipe, ItemType<PlagueRifleV>());
             DisableRecipe(recipe, ItemType<HeavensSeal>());
+            DisableRecipe(recipe, ItemType<TerraSpear>());
+            DisableRecipe(recipe, ItemType<BladeEvil>());
         }
         public override void Ingredient(Recipe recipe) {
             AddLotIngredient(recipe, ItemType<BlueSlice>(), (ModContent.ItemType<FrigidShard>(), 3));
-            // AddIngredient(recipe, ItemType<StarAuraStaff>(), 0, starforgedclassic.Find<ModItem>("AzuriteBarItem"), 10);
+            AddIngredient(recipe, ItemType<StarAuraStaff>(), 0, new Item(ModList.StarforgedClassic.Find<ModItem>("AzuriteBarItem").Type)); 
             AddIngredient(recipe, ItemType<SpiderEgg>(), 1, new Item(ItemID.Grenade, 33));
             AddIngredient(recipe, ItemType<Scarabine>(), 0, new Item(ModContent.ItemType<Thompson>(), 1));
             AddIngredient(recipe, ItemType<Forfeiter>(), 0, new Item(ModContent.ItemType<Scarabine>(), 1));
@@ -67,6 +73,15 @@ namespace Synergia.Common.ModSystems.RecipeSystem.ChangesRecipe.AvalonsChanges {
             AddLotIngredient(recipe, ItemType<VenomDart>(), (ModContent.ItemType<VenomShard>(), 1));
             AddLotIngredient(recipe, ItemType<ValhallaMod.Items.Weapons.Summon.Sentries.FirePeashooterSentryStaff>(), (ModContent.ItemType<FireShard>(), 4));
             ForeachIngredient(recipe, ItemType<FrostDaggers>(), new Item(ItemType<FrigidShard>(), 3));
+            AddLotIngredient(recipe, ItemType<ChlorophyteShortsword>(), (ModContent.ItemType<VenomShard>(), 1));
+            AddLotIngredient(recipe, ItemType<LeafShield>(), (ModContent.ItemType<VenomShard>(), 1));
+            AddLotIngredient(recipe, ItemType<ShellStaff>(), (ModContent.ItemType<VenomShard>(), 1));
+            AddLotIngredient(recipe, ItemType<ChlorophyleGlaive>(), (ModContent.ItemType<VenomShard>(), 1));
+            AddLotIngredient(recipe, ItemType<SpiderSabre2>(), (ModContent.ItemType<VenomShard>(), 1));
+            AddLotIngredient(recipe, ItemType<SparkingShortsword>(), (ModContent.ItemType<FireShard>(), 1));
+            AddLotIngredient(recipe, ItemType<Cerberus>(), (ModContent.ItemType<FireShard>(), 1));
+            AddLotIngredient(recipe, ItemType<SporePlantPot>(), (ModContent.ItemType<ToxinShard>(), 1));
+            AddLotIngredient(recipe, ItemType<Bulbasword>(), (ModContent.ItemType<ToxinShard>(), 1));
         }
         public override void PostRecipe()
         {
@@ -99,6 +114,13 @@ namespace Synergia.Common.ModSystems.RecipeSystem.ChangesRecipe.AvalonsChanges {
             CreateReptile();
             CreateLaserScissors();
             CreateCrescento();
+            CreateBambooWhip();
+            CreateHyperthermia();
+            CreateTerraSpear1();
+            CreateTerraSpear2();
+            CreateBladeEvil();
+            CreateMarbleBreaker();
+            CreateOlympusSlasher();
         }
 
         static void CreateHeavensSeal()
@@ -362,7 +384,65 @@ namespace Synergia.Common.ModSystems.RecipeSystem.ChangesRecipe.AvalonsChanges {
             recipe.AddTile(TileID.DemonAltar);
             recipe.Register();
         }
-
+        static void CreateBambooWhip()
+        {
+            Recipe recipe = Recipe.Create(ItemType<BambooWhip>());
+            recipe.AddIngredient(ItemID.BambooBlock, 16);
+            recipe.AddIngredient(ItemType<NewHorizons.Content.Items.Weapons.Summon.RopeWhip>(), 1);
+            recipe.AddTile(TileID.WorkBenches);
+            recipe.Register();
+        }
+        static void CreateHyperthermia()
+        {
+            Recipe recipe = Recipe.Create(ItemType<Hyperthermia>());
+            recipe.AddIngredient(ItemType<GraniteCharger>(), 1);
+            recipe.AddIngredient(ItemType<EnergyRevolver>(), 1);
+            recipe.AddIngredient(ItemID.HeatRay, 1);
+            recipe.AddTile(TileType<CaesiumHeavyAnvilTile>());
+            recipe.Register();
+        }
+        static void CreateTerraSpear1()
+        {
+            Recipe recipe = Recipe.Create(ItemType<TerraSpear>());
+            recipe.AddIngredient(ItemType<TrueDarkLance>(), 1);
+            recipe.AddIngredient(ItemType<TrueGungnir>(), 1);
+            recipe.AddIngredient(ItemType<BrokenSpear>(), 1);
+            recipe.AddTile(TileID.MythrilAnvil);
+            recipe.Register();
+        }
+        static void CreateTerraSpear2()
+        {
+            Recipe recipe = Recipe.Create(ItemType<TerraSpear>());
+            recipe.AddIngredient(ItemType<TrueDarkLance>(), 1);
+            recipe.AddIngredient(ItemType<DarklightLance>(), 1);
+            recipe.AddIngredient(ItemType<BrokenSpear>(), 1);
+            recipe.AddTile(TileID.MythrilAnvil);
+            recipe.Register();
+        }
+        static void CreateBladeEvil()
+        {
+            Recipe recipe = Recipe.Create(ItemType<BladeEvil>());
+            recipe.AddIngredient(ItemType<CaesiumBar>(), 10);
+            recipe.AddIngredient(ItemType<EvilIngot>(), 1);
+            recipe.AddTile(ModContent.TileType<CaesiumHeavyAnvilTile>());
+            recipe.Register();
+        }
+        static void CreateMarbleBreaker()
+        {
+            Recipe recipe = Recipe.Create(ItemType<MarbleShieldBreaker>());
+            recipe.AddIngredient(ItemID.Marble, 30); 
+            recipe.AddIngredient(ItemID.HallowedBar, 10); 
+            recipe.AddTile(TileID.MythrilAnvil);
+            recipe.Register();
+        }
+        static void CreateOlympusSlasher()
+        {
+            Recipe recipe = Recipe.Create(ItemType<OlimpusSlasher>());
+            recipe.AddIngredient(ItemID.Marble, 30);
+            recipe.AddIngredient(ItemID.HallowedBar, 10);
+            recipe.AddTile(TileID.MythrilAnvil);
+            recipe.Register();
+        }
     }
     
 }

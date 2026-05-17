@@ -4,6 +4,7 @@ using Avalon.Items.Placeable.Painting;
 using Avalon.Items.Weapons.Melee.Hardmode.FeroziumIceSword;
 using Bismuth.Content.Items.Placeable;
 using Consolaria.Content.Items.Materials;
+using NewHorizons.Content.Items.Accessories;
 using NewHorizons.Content.Items.Armor.AshenArmor;
 using NewHorizons.Content.Items.Armor.BeastArmor;
 using NewHorizons.Content.Items.Armor.LightMageArmor;
@@ -63,6 +64,7 @@ namespace Synergia.Common.ModSystems.RecipeSystem.ChangesRecipe.HorizonsChanges
             AddIngredient(recipe, ItemType<NanotechBoots>(), 0, new Item(ItemType<AluminiumBar>(), 10));
             AddIngredient(recipe, ItemType<NanotechBreastplate>(), 0, new Item(ItemType<AluminiumBar>(), 12));
             AddIngredient(recipe, ItemType<NanotechHelmet>(), 0, new Item(ItemType<AluminiumBar>(), 8));
+            AddIngredient(recipe, ItemType<NanoJetpack>(), 0, new Item(ItemType<AluminiumBar>(), 12));
 
         }
         public override void PostRecipe()

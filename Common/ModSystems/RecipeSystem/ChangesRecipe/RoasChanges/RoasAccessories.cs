@@ -36,7 +36,7 @@ namespace Synergia.Common.ModSystems.RecipeSystem.ChangesRecipe.AvalonsChanges {
                 AddIngredient(recipe, RoAItem("BeachWreath2"), 1, new Item(ItemType<WaterShard>(), 3));
                 AddIngredient(recipe, RoAItem("CosmicHat"), 2, new Item(ItemType<Starstone>(), 5));
                 AddIngredient(recipe, RoAItem("RoyalQualityHoney"), 1, new Item(ItemType<Heartstone>(), 5));
-
+                AddIngredient(recipe, RoAItem("Herbarium"), 0, new Item(ItemType<TatteredBook>(), 1));
 
         }
 

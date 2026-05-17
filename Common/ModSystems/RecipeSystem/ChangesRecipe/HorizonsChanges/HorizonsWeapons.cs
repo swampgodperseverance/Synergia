@@ -6,6 +6,7 @@ using Avalon.Items.Material.Shards;
 using Avalon.Items.Placeable.Tile;
 using Bismuth.Content.Items.Placeable;
 using NewHorizons.Content.Items;
+using NewHorizons.Content.Items.Accessories;
 using NewHorizons.Content.Items.Ammo;
 using NewHorizons.Content.Items.Weapons;
 using NewHorizons.Content.Items.Weapons.Magic;
@@ -20,6 +21,7 @@ using ValhallaMod.Items.Material;
 using ValhallaMod.Items.Material.Bar;
 using ValhallaMod.Items.Weapons.Ranged.Guns;
 using ValhallaMod.Items.Weapons.Ranged.ProjectileGuns;
+using ValhallaMod.Items.Weapons.Summon.Whips;
 using static Terraria.ModLoader.ModContent;
 
 namespace Synergia.Common.ModSystems.RecipeSystem.ChangesRecipe.HorizonsChanges
@@ -32,12 +34,12 @@ namespace Synergia.Common.ModSystems.RecipeSystem.ChangesRecipe.HorizonsChanges
 
             AddIngredient(recipe, ItemType<HandicraftedBlunderbuss>(), 1, new Item(ItemType<LegalGunParts>(), 1));
             AddIngredient(recipe, ItemType<HandicraftedFlamethrower>(), 1, new Item(ItemType<LegalGunParts>(), 1));
-            AddLotIngredient(recipe, ItemType<RopeWhip>(), (ModContent.ItemType<ElasticCord>(), 1));
+            AddLotIngredient(recipe, ItemType<NewHorizons.Content.Items.Weapons.Summon.RopeWhip>(), (ModContent.ItemType<ElasticCord>(), 1));
             AddLotIngredient(recipe, ItemType<FlareCannon>(), (ModContent.ItemType<FireShard>(), 3));
             AddLotIngredient(recipe, ItemType<Scorcher>(), (ModContent.ItemType<FireShard>(), 3));
             AddLotIngredient(recipe, ItemType<MoltenDagger>(), (ModContent.ItemType<FireShard>(), 1));
             AddLotIngredient(recipe, ItemType<FlamingFlare>(), (ModContent.ItemType<FireShard>(), 1));
-            AddIngredient(recipe, ItemType<RopeWhip>(), 1, new Item(ItemID.Wood, 12));
+            AddIngredient(recipe, ItemType<NewHorizons.Content.Items.Weapons.Summon.RopeWhip>(), 1, new Item(ItemID.Wood, 12));
             AddIngredient(recipe, ItemType<Carnwennan>(), 1, new Item(ItemType<PureGoldChunk>(), 10));
             AddIngredient(recipe, ItemType<DarkVolley>(), 1, new Item(ItemType<WickedShard>(), 5));
             AddIngredient(recipe, ItemType<DarkVolley>(), 1, new Item(ItemType<WickedShard>(), 5));
@@ -48,7 +50,11 @@ namespace Synergia.Common.ModSystems.RecipeSystem.ChangesRecipe.HorizonsChanges
             AddIngredient(recipe, ItemType<HymnOfProtection>(), 0, new Item(ItemType<TatteredBook>(), 1));
             AddIngredient(recipe, ItemType<HymnOfProtection>(), 2, new Item(ItemType<AluminiumBar>(), 5));
             AddLotIngredient(recipe, ItemType<ClockworkShotgun>(), (ModContent.ItemType<Clocklock>(), 1));
-
+            AddIngredient(recipe, ItemType<CrimerasTongue>(), 1, new Item(ItemType<BambooWhip>(), 1));
+            AddIngredient(recipe, ItemType<HungryWorm>(), 1, new Item(ItemType<BambooWhip>(), 1));
+            AddIngredient(recipe, ItemType<NanoStar>(), 0, new Item(ItemType<AluminiumBar>(), 8));
+            AddIngredient(recipe, ItemType<ScarletGungnir>(), 1, new Item(ItemType<WickedShard>(), 5));
+            AddLotIngredient(recipe, ItemType<ChlorophyteJavelin>(), (ModContent.ItemType<VenomShard>(), 1));
         }
         public override void PostRecipe()
         {

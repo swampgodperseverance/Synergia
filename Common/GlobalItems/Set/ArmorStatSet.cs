@@ -422,17 +422,17 @@ namespace Synergia.Common.GlobalItems.Set
         {
             if (item.type == bismuth.Find<ModItem>("WatersHelmet").Type)
             {
-                item.defense = 5;
+                item.defense = 12;
             }
 
             if (item.type == bismuth.Find<ModItem>("WatersBreastplate").Type)
             {
-                item.defense = 13;
+                item.defense = 15;
             }
 
             if (item.type == bismuth.Find<ModItem>("WatersLeggings").Type)
             {
-                item.defense = 7;
+                item.defense = 10;
             }
 
             if (item.type == bismuth.Find<ModItem>("PikemansHelmet").Type)

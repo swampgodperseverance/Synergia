@@ -3,7 +3,10 @@ using Avalon.Items.Accessories.PreHardmode;
 using Avalon.Items.Material.Shards;
 using Avalon.Items.Material.TomeMats;
 using Avalon.Items.Tomes.PreHardmode;
+using Bismuth.Content.Items.Accessories;
+using Bismuth.Content.Items.Materials;
 using Consolaria.Content.Items.Materials;
+using NewHorizons.Content.Items.Accessories;
 using NewHorizons.Content.Items.Materials;
 using Starforgedclassic.Content.Accessories.SkyShield;
 using Terraria;
@@ -13,6 +16,7 @@ using ValhallaMod.Items.Accessory.Shield;
 using ValhallaMod.Items.Garden;
 using ValhallaMod.Items.Material;
 using ValhallaMod.Items.Material.Bar;
+using ValhallaMod.Items.Weapons.Hybrid.Swords;
 using static Terraria.ModLoader.ModContent;
 
 namespace Synergia.Common.ModSystems.RecipeSystem.ChangesRecipe.AvalonsChanges {
@@ -23,6 +27,7 @@ namespace Synergia.Common.ModSystems.RecipeSystem.ChangesRecipe.AvalonsChanges {
                 DisableRecipe(recipe, CloakofAssists, ItemID.BeeCloak);
                 DisableRecipe(recipe, CloakofAssists, ItemID.PanicNecklace);
                 DisableRecipe(recipe, GiftofStarpower);
+                DisableRecipe(recipe, ItemType<ApollosQuiver>());
             }
             public override void Ingredient(Recipe recipe) {
                 AddIngredient(recipe, ItemType<AdventuresandMishaps>(), 0, new Item(RoAItem("AnimalLeather")));
@@ -59,9 +64,13 @@ namespace Synergia.Common.ModSystems.RecipeSystem.ChangesRecipe.AvalonsChanges {
                 AddIngredient(recipe, TomorrowsPhoenix, 2, new Item(RoAItem("Galipot")));
                 AddIngredient(recipe, TomorrowsPhoenix, 0, new Item(ItemType<Sap>(), 5));
                 AddIngredient(recipe, ItemType<UnderestimatedResolve>(), 0, new Item(RoAItem("MiracleMint")));
+                AddIngredient(recipe, ItemType<RingofReplenishment>(), 0, new Item(ItemType<RestorationRose>(), 1));
+                AddIngredient(recipe, ItemType<ThornHeartAmulet>(), 2, new Item(ItemType<FishTooth>(), 5));
+                AddIngredient(recipe, ItemType<BannerBelt>(), 0, new Item(ItemType<AnimalSkin>(), 5));
             }
             public override void RemoveIngredient(Recipe recipe) {
                 RemoveIngredient(recipe, CreatorsTome, 6);
+                RemoveIngredient(recipe, ItemType<RingofReplenishment>(), 3);
                 RemoveIngredient(recipe, CreatorsTome, 5);
                 RemoveIngredient(recipe, GoblinArmyKnife, 6);
                 RemoveIngredient(recipe, LoveUpandDown, 6);
@@ -69,12 +78,39 @@ namespace Synergia.Common.ModSystems.RecipeSystem.ChangesRecipe.AvalonsChanges {
                 RemoveIngredient(recipe, MistyPeachBlossoms, 3);
             }
             public override void Tiles(Recipe recipe) {
-                Tiles(recipe, ItemType<BacchusBoots>(), LCS);
+                 
             }
-            public override void Recipes() {
+            public override void Recipes() {    
                 Recipes4(AlchemicalSkull, RoAItem("AlchemicalSkull"), NecroBuckler, Sinstone, ItemType<MysticalClaw>(), TileID.Hellforge, count3: 10);
                 Recipes4(GiftofStarpower, ItemType<NaturesEndowment>(), ItemID.SorcererEmblem, ItemType<CondensedKnowledge>(), ItemID.FragmentNebula, LCS, count4: 10);
                 Recipes3(Windshield, ItemType<GlassShield>(), ItemType<BreezeShard>(), ItemID.CrystalShard, tileType: TileID.MythrilAnvil, count2: 5, count3: 10);
+            }
+            public override void PostRecipe()
+            {
+                CreateGiftofStarpower();
+                CreateApollosQuiver();
+            }
+            static void CreateGiftofStarpower()
+            {
+                Recipe recipe = Recipe.Create(ItemType<GiftofStarpower>());
+                recipe.AddIngredient(ItemType<NaturesEndowment>(), 1);
+                recipe.AddIngredient(ItemType<CondensedKnowledge>(), 1);
+                recipe.AddIngredient(ItemID.SorcererEmblem, 1);
+                recipe.AddIngredient(ItemID.FragmentNebula, 10);
+                recipe.AddTile(TileID.LunarCraftingStation);
+                recipe.Register();
+            }
+            static void CreateApollosQuiver()
+            {
+                Recipe recipe = Recipe.Create(ItemType<ApollosQuiver>());
+                recipe.AddIngredient(ItemType<LostPegleg>(), 1);
+                recipe.AddIngredient(ItemType<LeatherQuiver>(), 1);
+                recipe.AddIngredient(ItemType<TribalQuiver>(), 1);
+                recipe.AddIngredient(ItemID.DestroyerEmblem, 1);
+                recipe.AddIngredient(ItemID.MagicQuiver, 1); ;
+                recipe.AddIngredient(ItemID.FragmentVortex, 10);
+                recipe.AddTile(TileID.LunarCraftingStation);
+                recipe.Register();
             }
         }
     }

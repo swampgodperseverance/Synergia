@@ -29,6 +29,9 @@ namespace Synergia.Common.ModSystems.RecipeSystem.ChangesRecipe.HorizonsChanges
             DisableRecipe(recipe, ItemType<PalladiumHood>());
             DisableRecipe(recipe, ItemType<CobaltHeadgear>());
             DisableRecipe(recipe, ItemType<CobaltHeadpiece>());
+            DisableRecipe(recipe, ItemType<ChlorophyteHeadpiece>());
+            DisableRecipe(recipe, ItemType<HallowedHeadpiece>());
+            DisableRecipe(recipe, ItemType<HallowedFaceShield>());
         }
         public override void Ingredient(Recipe recipe)
         {

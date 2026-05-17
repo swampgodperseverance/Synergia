@@ -20,6 +20,7 @@ using Avalon.Items.Weapons.Ranged.Hardmode.CaesiumCrossbow;
 using Avalon.Items.Weapons.Melee.Hardmode.CaesiumScimitar;
 using Avalon.Items.Weapons.Melee.Hardmode.CaesiumMace;
 using Avalon.Items.Tools.Hardmode;
+using ValhallaMod.Items.Armor;
 
 namespace Synergia.Common.ModSystems.RecipeSystem.ChangesRecipe {
     public class CaesiumHeavyAnvilTileChanger : BaseRecipe {
@@ -66,8 +67,10 @@ namespace Synergia.Common.ModSystems.RecipeSystem.ChangesRecipe {
                 ItemType<CaesiumScimitar>(),
                 ItemType<CaesiumMace>(),
                 ItemType<FeroziumPickaxe>(),
-                ItemType<FeroziumWaraxe>()
-
+                ItemType<FeroziumWaraxe>(),
+                ItemType<GreediestLegs>(),
+                ItemType<GreediestHead>(),
+                ItemType<GreediestBody>()
             );
         }
     }

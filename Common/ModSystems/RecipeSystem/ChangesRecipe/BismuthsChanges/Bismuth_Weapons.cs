@@ -1,22 +1,32 @@
 ﻿using Avalon.Items.Material.Bars;
+using Avalon.Items.Material.Ores;
 using Avalon.Items.Material.Shards;
 using Avalon.Items.Potions.Buff;
 using Bismuth.Content.Items.Armor;
 using Bismuth.Content.Items.Materials;
+using Bismuth.Content.Items.Other;
 using Bismuth.Content.Items.Placeable;
 using Bismuth.Content.Items.Weapons.Magical;
 using Bismuth.Content.Items.Weapons.Melee;
 using Bismuth.Content.Tiles;
 using Consolaria.Content.Items.Materials;
+using NewHorizons.Content.Items.Ammo;
 using NewHorizons.Content.Items.Armor.AshenArmor;
 using NewHorizons.Content.Items.Armor.PyroArmor;
 using NewHorizons.Content.Items.Armor.SkyArmor;
+using NewHorizons.Content.Items.Weapons;
+using NewHorizons.Content.Items.Weapons.Magic;
+using NewHorizons.Content.Items.Weapons.Ranged;
+using NewHorizons.Content.Items.Weapons.Throwing;
 using Synergia.Content.Items.Misc;
 using Synergia.Content.Items.Weapons.AuraStaff;
 using Synergia.Content.Items.Weapons.Melee;
 using Terraria;
 using Terraria.ID;
+using ValhallaMod.Items.Material;
+using ValhallaMod.Items.Material.Bar;
 using ValhallaMod.Items.Weapons.Ranged.Bows;
+using ValhallaMod.Items.Weapons.Ranged.Guns;
 
 namespace Synergia.Common.ModSystems.RecipeSystem.ChangesRecipe.HorizonsChanges
 {
@@ -32,8 +42,12 @@ namespace Synergia.Common.ModSystems.RecipeSystem.ChangesRecipe.HorizonsChanges
         public override void Ingredient(Recipe recipe)
         {
 
-
-
+            AddIngredient(recipe, ItemType<KeyOfTheSun>(), 1, new Item(ItemType<ThunderBar>(), 1));
+            AddLotIngredient(recipe, ItemType<TruePhilosopherStone>(), (ModContent.ItemType<ZincOre>(), 30));
+            AddLotIngredient(recipe, ItemType<TruePhilosopherStone>(), (ModContent.ItemType<BismuthOre>(), 30));
+            AddLotIngredient(recipe, ItemType<TruePhilosopherStone>(), (ModContent.ItemType<BronzeOre>(), 30));
+            AddLotIngredient(recipe, ItemType<TruePhilosopherStone>(), (ModContent.ItemType<NickelOre>(), 30));
+            AddLotIngredient(recipe, ItemType<ChlorophyteJavelin>(), (ModContent.ItemType<VenomShard>(), 1));
         }
         public override void PostRecipe()
         {

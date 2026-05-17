@@ -4,39 +4,14 @@ using Avalon.Items.Material;
 using Avalon.Items.Material.Bars;
 using Avalon.Items.Material.Ores;
 using Avalon.Items.Material.Shards;
-using Avalon.Items.Material.TomeMats;
-using Avalon.Items.Potions.Buff;
-using Avalon.Items.Tomes.PreHardmode;
-using Avalon.Items.Tools.Hardmode;
-using Bismuth.Content.Items.Materials;
-using Consolaria.Content.Items.Materials;
-using NewHorizons.Content.Items.Armor.SkyArmor;
-using NewHorizons.Content.Items.Materials;
-using NewHorizons.Content.Items.Weapons.Magic;
-using NewHorizons.Content.Items.Weapons.Ranged;
-using starforgedclassic.Content.Placeables.AzuriteBar;
-using Starforgedclassic.Content.Accessories.SkyShield;
-using Synergia.Content.Items.Misc;
 using Terraria;
 using Terraria.ID;
 using ValhallaMod.Items.Accessory;
 using ValhallaMod.Items.Accessory.Active;
 using ValhallaMod.Items.Accessory.Shield;
-using ValhallaMod.Items.Consumable;
-using ValhallaMod.Items.Garden;
-using ValhallaMod.Items.Material;
 using ValhallaMod.Items.Material.Bar;
-using ValhallaMod.Items.Weapons.Magic.Gloves;
-using ValhallaMod.Items.Weapons.Melee.ChannelMelee;
-using ValhallaMod.Items.Weapons.Melee.Knives;
-using ValhallaMod.Items.Weapons.Melee.Swords;
-using ValhallaMod.Items.Weapons.Ranged.ProjectileGuns;
-using ValhallaMod.Items.Weapons.Summon.Auras;
-using ValhallaMod.Items.Weapons.Summon.Whips;
-using ValhallaMod.Projectiles.Summon.Sentries;
-using Synergia.Common.ModSystems.RecipeSystem;
-using static Terraria.ModLoader.ModContent;
 using static Synergia.Common.ModSystems.RecipeSystem.RecipeGroups;
+using static Terraria.ModLoader.ModContent;
 
 
 namespace Synergia.Common.ModSystems.RecipeSystem.ChangesRecipe.AvalonsChanges {
@@ -46,12 +21,19 @@ namespace Synergia.Common.ModSystems.RecipeSystem.ChangesRecipe.AvalonsChanges {
             public override void Ingredient(Recipe recipe) {
             AddIngredient(recipe, ItemType<BlessedHeroShield>(), 2, new Item(ItemType<ForsakenCross>(), 1));
             AddIngredient(recipe, ItemType<MagnetHorseshoe>(), 2, new Item(ItemType<Starstone>(), 10));
-            AddIngredient(recipe, ItemType<MagnetHorseshoe>(), 3, new Item(ItemType<Heartstone>(), 10));
+            AddIngredient(recipe, ItemType<MagnetHorseshoe>(), 3, new Item(ItemType<Heartstone>(), 10)); 
+            AddLotIngredient(recipe, ItemType<RestorationRose>(), (ModContent.ItemType<RestorationBand>(), 1));
+            AddIngredient(recipe, ItemType<SquareRoot>(), 2, new Item(ItemType<CoreShard>(), 3));
+            AddLotIngredient(recipe, ItemType<TrueSight>(), (ModContent.ItemType<Tourmaline>(), 1));
+            AddLotIngredient(recipe, ItemType<TrueSight>(), (ModContent.ItemType<Peridot>(), 1));
+            AddLotIngredient(recipe, ItemType<TrueSight>(), (ModContent.ItemType<Zircon>(), 1));
         }
         public override void PostRecipe()
         {
             CreateGlassShield();
             CreatePotionBeltSmall();
+            CreateLesserPotionBelt();
+            CreateCondensedKnowledge();
         }
         static void CreateGlassShield()
         {
@@ -69,6 +51,24 @@ namespace Synergia.Common.ModSystems.RecipeSystem.ChangesRecipe.AvalonsChanges {
             recipe.AddIngredient(ItemID.StrangeBrew, 5);
             recipe.AddIngredient(ItemType<BacciliteBar>(), 5);
             recipe.AddTile(TileID.Bottles);
+            recipe.Register();
+        }
+        static void CreateLesserPotionBelt()
+        {
+            Recipe recipe = Recipe.Create(ItemType<LesserPotionBelt>());
+            recipe.AddIngredient(ItemID.Daybloom, 2);
+            recipe.AddIngredient(ItemType<BronzeBar>(), 5);
+            recipe.AddIngredient(ItemID.StrangeBrew, 5);
+            recipe.AddTile(TileID.Bottles);
+            recipe.Register();
+        }
+        static void CreateCondensedKnowledge()
+        {
+            Recipe recipe = Recipe.Create(ItemType<LesserPotionBelt>());
+            recipe.AddIngredient(ItemID.Book, 3);
+            recipe.AddIngredient(ItemType<Starstone>(), 5);
+            recipe.AddIngredient(ItemID.ManaFlower, 1);
+            recipe.AddTile(TileID.Bookcases);
             recipe.Register();
         }
 
