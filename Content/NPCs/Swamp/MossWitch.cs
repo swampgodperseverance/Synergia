@@ -71,8 +71,8 @@ namespace Synergia.Content.NPCs.Swamp
             minDistance = float.MaxValue;
             foreach (Player player in Main.ActivePlayers)
             {
+                if (player.dead || player.ghost) continue;
                 distanceSqr = Vector2.DistanceSquared(player.Center, NPC.Center);
-                //Main.NewText($"{distanceSqr} - {attackMaxRangeSqr}");
                 if (distanceSqr > attackMaxRangeSqr) continue;
                 if (distanceSqr < minDistance)
                 {
@@ -107,6 +107,7 @@ namespace Synergia.Content.NPCs.Swamp
             List<Player> playersToAttack = new();
             foreach (Player player in Main.ActivePlayers)
             {
+                if (player.dead || player.ghost) continue; 
                 distanceSqr = Vector2.DistanceSquared(player.Center, NPC.Center);
                 if (distanceSqr <= attackMaxRangeSqr) playersToAttack.Add(player);
             }
@@ -132,7 +133,8 @@ namespace Synergia.Content.NPCs.Swamp
                         30,
                         0,
                         Main.myPlayer,
-                        ai1: i < SWAMPLINGS_SPAWN_PER_ATTACK ? 1 : 0
+                        ai1: i < SWAMPLINGS_SPAWN_PER_ATTACK ? 1 : 0,
+                        ai2: Main.rand.Next(0, 45)
                     );
                 }
             }
@@ -220,11 +222,11 @@ namespace Synergia.Content.NPCs.Swamp
         public const int DUST_CAST_AMOUNT = 5;
         public ref float FrameCounter => ref Projectile.ai[0];
         public ref float ShouldSpawnSwampling => ref Projectile.ai[1];
+        public ref float SpawnDelay => ref Projectile.ai[2];
 
         private readonly List<int> CanSpawnAfterDiggingUp = new List<int>() {
             ModContent.NPCType<Swamling>(), ModContent.NPCType<SwamplingWarrior>(), ModContent.NPCType<MischievousDuo>()
         };
-        private int maxTimeLeft;
         public override void SetDefaults()
         {
             Projectile.width = 16;
@@ -234,7 +236,6 @@ namespace Synergia.Content.NPCs.Swamp
             Projectile.ignoreWater = true;
             Projectile.tileCollide = false;
             Projectile.timeLeft = TELEGRAPH_DURATION_TICK + ATTACK_DURATION_TICK;
-            maxTimeLeft = Projectile.timeLeft;
             Projectile.penetrate = -1;
             Projectile.usesLocalNPCImmunity = true;
             Projectile.localNPCHitCooldown = -1;
@@ -248,12 +249,15 @@ namespace Synergia.Content.NPCs.Swamp
         public override void OnSpawn(IEntitySource source)
         {
             Projectile.position.Y -= Projectile.height / 2;
-            Projectile.timeLeft += Main.rand.Next(0, 45);
         }
         public override void AI()
         {
-            if(Projectile.timeLeft <= maxTimeLeft)
-                FrameCounter++;
+            if(SpawnDelay > 0)
+            {
+                SpawnDelay--;
+                return;
+            }
+            FrameCounter++;
             if(FrameCounter == TELEGRAPH_DURATION_TICK)
             {
                 SoundEngine.PlaySound(SoundID.DD2_MonkStaffGroundImpact, Projectile.position);
@@ -269,8 +273,8 @@ namespace Synergia.Content.NPCs.Swamp
             int npcToSpawn = CanSpawnAfterDiggingUp[Main.rand.Next(0, CanSpawnAfterDiggingUp.Count)];
             NPC npc = NPC.NewNPCDirect(
                 Projectile.GetSource_None(),
-                (int)(Projectile.Center.X),
-                (int)(Projectile.Center.Y),
+                (int)Projectile.Center.X,
+                (int)Projectile.Center.Y,
                 npcToSpawn
             );
             npc.velocity.Y = -12;
