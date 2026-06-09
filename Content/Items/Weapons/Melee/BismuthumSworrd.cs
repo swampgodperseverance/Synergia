@@ -62,7 +62,7 @@ namespace Synergia.Content.Items.Weapons.Melee
                 knockback,
                 player.whoAmI,
                 player.direction * player.gravDir,
-                player.itemAnimationMax * 2f,
+                player.itemAnimationMax * 1f,
                 adjustedItemScale
             );
 

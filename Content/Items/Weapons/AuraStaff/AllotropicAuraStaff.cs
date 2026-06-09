@@ -1,7 +1,9 @@
+using NewHorizons.Content.Items.Weapons.Throwing;
+using Synergia.Content.Items.Misc;
+using Synergia.Content.Projectiles.Aura;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using Synergia.Content.Projectiles.Aura;
 using static Terraria.ModLoader.ModContent;
 
 namespace Synergia.Content.Items.Weapons.AuraStaff
@@ -27,5 +29,6 @@ namespace Synergia.Content.Items.Weapons.AuraStaff
             Item.shoot = ProjectileType<AllotropicAuraProjectile>();
             Item.shootSpeed = 1f;
         }
+
     }
 }

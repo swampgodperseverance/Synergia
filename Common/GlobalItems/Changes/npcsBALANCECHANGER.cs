@@ -10,6 +10,7 @@ using ValhallaMod.NPCs.Emperor;
 using ValhallaMod.NPCs.Pirate;
 using ValhallaMod.NPCs.Jungle;
 using Synergia.Common.GlobalNPCs.AI;
+using Consolaria.Content.NPCs.Bosses.Ocram;
 
 namespace Synergia.Common.GlobalNPCs.Changes
 {
@@ -38,6 +39,10 @@ namespace Synergia.Common.GlobalNPCs.Changes
                     npc.lifeMax += 20;
                     npc.damage += 10;
                     npc.defense += 4;
+                },
+                [NPCID.CultistBoss] = npc =>
+                {
+                    npc.lifeMax += 10000;
                 },
                 [NPCID.VoodooDemon] = npc =>
                 {
@@ -159,6 +164,14 @@ namespace Synergia.Common.GlobalNPCs.Changes
                 {
                     npc.lifeMax += 150;
                 },
+                [ModContent.NPCType<PapuanWizard>()] = npc =>
+                {
+                    npc.lifeMax += 1200;
+                },
+                [ModContent.NPCType<RunicElemental>()] = npc =>
+                {
+                    npc.lifeMax += 250;
+                },
                 [ModContent.NPCType<Orc>()] = npc =>
                 {
                     npc.lifeMax += 110;
@@ -255,6 +268,12 @@ namespace Synergia.Common.GlobalNPCs.Changes
                     npc.lifeMax += 2000;
                     //npc.damage += 10;
                     npc.defense += 6;
+                },
+                [ModContent.NPCType<Ocram>()] = npc =>
+                {
+                    npc.lifeMax += 35000;
+                    npc.damage += 4;
+                    npc.defense += 3;
                 },
                 [lothorType] = npc =>
                 {

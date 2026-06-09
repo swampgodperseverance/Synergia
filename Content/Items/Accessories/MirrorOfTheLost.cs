@@ -2,6 +2,7 @@
 using Terraria.ID;
 using Terraria.ModLoader;
 using Synergia.Common.GlobalPlayer;
+using Consolaria.Content.Items.Materials;
 
 namespace Synergia.Content.Items.Accessories
 {
@@ -9,8 +10,7 @@ namespace Synergia.Content.Items.Accessories
     {
         public override void SetStaticDefaults()
         {
-            // DisplayName.SetDefault("Mirror of the Lost");
-            // Tooltip.SetDefault("+25% damage inside Valhalla aura\n-25% damage outside");
+
         }
 
         public override void SetDefaults()
@@ -21,7 +21,14 @@ namespace Synergia.Content.Items.Accessories
             Item.rare = ItemRarityID.Pink;
             Item.value = Item.sellPrice(gold: 5);
         }
-
+        public override void AddRecipes()
+        {
+            CreateRecipe()
+                .AddIngredient(ItemID.MagicMirror, 1)
+                .AddIngredient(ModContent.ItemType<SoulofBlight>(), 8)
+                .AddTile(TileID.Anvils)
+                .Register();
+        }
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
             player.GetModPlayer<MirrorOfTheLostPlayer>().mirrorEquipped = true;

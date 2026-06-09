@@ -48,6 +48,9 @@ using ValhallaMod.Items.Weapons.Summon.Auras;
 using ValhallaMod.Items.Weapons.Summon.Whips;
 using static Terraria.ModLoader.ModContent;
 using static Synergia.ModList;
+using ValhallaMod.Items.Weapons.Magic.Thrown;
+using Avalon.Items.Weapons.Magic.Hardmode.MagicGrenade;
+using Bismuth.Content.Items.Weapons.Magical;
 
 namespace Synergia.Common.ModSystems.RecipeSystem.ChangesRecipe.AvalonsChanges {
         public class ValhallaWeapons : BaseRecipe {
@@ -58,7 +61,8 @@ namespace Synergia.Common.ModSystems.RecipeSystem.ChangesRecipe.AvalonsChanges {
             DisableRecipe(recipe, ItemType<PlagueRifleV>());
             DisableRecipe(recipe, ItemType<HeavensSeal>());
             DisableRecipe(recipe, ItemType<TerraSpear>());
-            DisableRecipe(recipe, ItemType<BladeEvil>());
+            DisableRecipe(recipe, ItemType<ObsidianSeal>());
+            DisableRecipe(recipe, ItemType<GhostVenomStaff>());
         }
         public override void Ingredient(Recipe recipe) {
             AddLotIngredient(recipe, ItemType<BlueSlice>(), (ModContent.ItemType<FrigidShard>(), 3));
@@ -121,6 +125,11 @@ namespace Synergia.Common.ModSystems.RecipeSystem.ChangesRecipe.AvalonsChanges {
             CreateBladeEvil();
             CreateMarbleBreaker();
             CreateOlympusSlasher();
+            CreateGoldenBomb();
+            CreateArcaneBarrage();
+            CreateObsidianSeal();
+            CreateGhostVenomStaff();
+            CreateSparkOfSight();
         }
 
         static void CreateHeavensSeal()
@@ -422,9 +431,9 @@ namespace Synergia.Common.ModSystems.RecipeSystem.ChangesRecipe.AvalonsChanges {
         static void CreateBladeEvil()
         {
             Recipe recipe = Recipe.Create(ItemType<BladeEvil>());
-            recipe.AddIngredient(ItemType<CaesiumBar>(), 10);
+            recipe.AddIngredient(ItemType<TroxiniumBar>(), 10);
             recipe.AddIngredient(ItemType<EvilIngot>(), 1);
-            recipe.AddTile(ModContent.TileType<CaesiumHeavyAnvilTile>());
+            recipe.AddTile(TileID.MythrilAnvil);
             recipe.Register();
         }
         static void CreateMarbleBreaker()
@@ -439,8 +448,57 @@ namespace Synergia.Common.ModSystems.RecipeSystem.ChangesRecipe.AvalonsChanges {
         {
             Recipe recipe = Recipe.Create(ItemType<OlimpusSlasher>());
             recipe.AddIngredient(ItemID.Marble, 30);
-            recipe.AddIngredient(ItemID.HallowedBar, 10);
+            recipe.AddIngredient(ItemID.SoulofLight, 10);
             recipe.AddTile(TileID.MythrilAnvil);
+            recipe.Register();
+        }
+        static void CreateGoldenBomb()
+        {
+            Recipe recipe = Recipe.Create(ItemType<GoldenBomb>());
+            recipe.AddIngredient(ItemType<MagicGrenade>(), 1);
+            recipe.AddIngredient(ItemType<ValhallaMod.Items.Material.PureGoldChunk>(), 10);
+            recipe.AddIngredient(ItemType<Consolaria.Content.Items.Materials.SoulofBlight>(), 10);
+            recipe.AddTile(ModContent.TileType<CaesiumHeavyAnvilTile>());
+            recipe.Register();
+        }
+        static void CreateArcaneBarrage()
+        {
+            Recipe recipe = Recipe.Create(ItemType<ArcaneBarrage>());
+            recipe.AddIngredient(ItemType<TatteredBook>(), 1);
+            recipe.AddIngredient(ItemID.Amethyst, 10);
+            recipe.AddIngredient(ItemType<EnchantedBar>(), 6);
+            recipe.AddTile(TileID.Bookcases);
+            recipe.Register();
+        }
+        static void CreateObsidianSeal()
+        {
+            Recipe recipe = Recipe.Create(ItemType<ObsidianSeal>());
+            recipe.AddIngredient(ItemID.SpellTome, 1);
+            recipe.AddIngredient(ItemType<ArcaneBarrage>(), 1);
+            recipe.AddIngredient(ItemType<RainOfTears>(), 1);
+            recipe.AddIngredient(ItemID.Obsidian, 15);
+            recipe.AddIngredient(ItemType<EvilIngot>(), 1);
+            recipe.AddTile(TileID.Bookcases);
+            recipe.Register();
+        }
+        static void CreateGhostVenomStaff()
+        {
+            Recipe recipe = Recipe.Create(ItemType<GhostVenomStaff>());
+            recipe.AddIngredient(ItemID.VenomStaff, 1);
+            recipe.AddIngredient(RoAItem("MercuriumStaff"), 1);
+            recipe.AddIngredient(ItemID.SpectreStaff, 1);
+            recipe.AddIngredient(ItemType<VenomShard>(), 10);
+            recipe.AddTile(TileID.MythrilAnvil);
+            recipe.Register();
+        }
+        static void CreateSparkOfSight()
+        {
+            Recipe recipe = Recipe.Create(ItemType<SparkOfSight>());
+            recipe.AddIngredient(ItemType<GhostVenomStaff>(), 1);
+            recipe.AddIngredient(ItemType<ObsidianSeal>(), 1);
+            recipe.AddIngredient(ItemType<BismuthumBar>(), 10);
+            recipe.AddIngredient(ItemID.Ectoplasm, 10);
+            recipe.AddTile(ModContent.TileType<CaesiumHeavyAnvilTile>());
             recipe.Register();
         }
     }

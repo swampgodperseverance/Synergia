@@ -59,23 +59,40 @@ namespace Synergia.Common.ModSystems.Hooks
             float knockBack = 2f;
             int owner = Main.myPlayer;
 
+            float healthPercent = (float)npc.NPC.life / npc.NPC.lifeMax;
+
             if (currentphase == 2)
             {
-   
                 if (attackTimers[id] >= 90)
                 {
-                    for (int i = 0; i < 2; i++)
+                    int sphereCount = 1;
+
+                    if (healthPercent <= 0.4f && Main.rand.NextFloat() < 0.5f)
+                    {
+                        sphereCount = 2;
+                    }
+
+                    for (int i = 0; i < sphereCount; i++)
                     {
                         int projType = ModContent.ProjectileType<NecroSphere>();
+                        float xOffset = Main.rand.NextFloat(-20f, 20f);
+                        float yOffset = Main.rand.NextFloat(-10f, 10f);
+                        Vector2 spawnOffset = new Vector2(xOffset, yOffset);
+
                         Vector2 velocity = new Vector2(Main.rand.NextFloat(-4f, 4f), Main.rand.NextFloat(-8f, -5f));
-                        Projectile.NewProjectileDirect(npc.NPC.GetSource_FromAI(), spawnPos, velocity, projType, damage, knockBack, owner);
+
+                        if (sphereCount == 2 && i == 1)
+                        {
+                            velocity = new Vector2(Main.rand.NextFloat(-5f, 5f), Main.rand.NextFloat(-6f, -3f));
+                        }
+
+                        Projectile.NewProjectileDirect(npc.NPC.GetSource_FromAI(), spawnPos + spawnOffset, velocity, projType, damage, knockBack, owner);
                     }
                     attackTimers[id] = 0;
                 }
             }
             else if (currentphase == 3)
             {
-
                 if (attackTimers[id] >= 120)
                 {
                     int projType = ModContent.ProjectileType<NecroSkull>();
@@ -86,7 +103,6 @@ namespace Synergia.Common.ModSystems.Hooks
             }
             else
             {
- 
                 attackTimers[id] = 0;
             }
         }

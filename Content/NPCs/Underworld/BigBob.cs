@@ -34,6 +34,8 @@ namespace Synergia.Content.NPCs.Underworld {
                 Velocity = 1f
             };
             NPCID.Sets.NPCBestiaryDrawOffset.Add(base.Type, value);
+            NPCID.Sets.SpecificDebuffImmunity[Type][BuffID.OnFire] = true;
+            NPCID.Sets.SpecificDebuffImmunity[Type][BuffID.OnFire3] = true;
         }
         public override void SetDefaults() {
             NPC.width = 50;

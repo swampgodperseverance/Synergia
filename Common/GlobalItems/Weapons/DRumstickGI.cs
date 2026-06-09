@@ -12,22 +12,32 @@ namespace Synergia.Content.GlobalItems.Weapons
     {
         public override bool InstancePerEntity => true;
         private int swingDirection;
-        
+
         private class DrumstickPlayer : ModPlayer
         {
             public bool holdingDrumstick = false;
-            
+            private int wellFedTimer = 0;
+
             public override void ResetEffects()
             {
                 holdingDrumstick = false;
             }
-            
+
             public override void UpdateEquips()
             {
                 if (holdingDrumstick && !Player.dead)
                 {
-                  
-                    Player.AddBuff(BuffID.WellFed, 2); 
+                    wellFedTimer++;
+
+                    if (wellFedTimer >= 60)
+                    {
+                        wellFedTimer = 0;
+                        Player.AddBuff(BuffID.WellFed, 7200);
+                    }
+                }
+                else
+                {
+                    wellFedTimer = 0;
                 }
             }
         }

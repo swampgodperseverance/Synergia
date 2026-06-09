@@ -10,7 +10,7 @@ Cogworm: {
 
 	BossChecklistIntegration: {
 		EntryName: Sinlord Wyrm
-		SpawnInfo: Use [i:Synergia/HellwormScale] in the underworld
+		SpawnInfo: Broke the Hellheart Monolith in the Beast Cva
 	}
 }
 
@@ -58,9 +58,21 @@ HellDwarf: {
 		Text16: One life or many.. you choose, and nothing changes. Again. Like Sisyphus - but your stone bleeds.
 		Text17: Worse. Tired. Less than I was.
 		Text18: Magma Sinstone.. Havent heard about it for a while. Even fire hesitates to touch it.
+		Text19: Those thought that the Monolith was a source of power. A heart doesn’t exist to empower the body. The body exists to feed the heart.
+		Text20: Do you know what terrified me most? The calmness in the voices of soulless monsters.
+		Text21: The priest in the Imperial Town spoke of enlightenment. Strange word for something that hollowed people from within
+		Text22: They thought that their god - Wyrm, guarded the city, but the ruth is that the city guarded something beneath it. When fear really outweighed reason, they fed the beast with their own faith.
+		Text23: They make me sick.
+		Text24: The closer you stand to godlike creatures, the easier it becomes to forgive terrible things.
+		Text25: Monsters used to call it The Great Tragedy - a single moment when everything broke. The bridge collapsed when escape stopped being necessary. The ruins formed when memory stopped being trusted. And the Inferno Frontier became remains. People did not turn into demons. They become what they were already becoming.
+		PostGolemDialog1: Do you feel it? The [c/ff0000:Hellheart Monolith] is awaken now. The flames burn louder, and even silence feels heavier. This place has started breathing again.
+		PostGolemDialog2: I watch Inferno slowly change. Before, creatures here hunted from hunger and suffering. Now they watch... They scared of something, scared of unforgivable wrath.
+		PostGolemDialog3: Long ago, the [c/ff0000:Hellheart Monolith] was hidden after a Great Tragedy. The balance was broken again. The Inferno Frontier was never meant to survive without its killer.
+		PostSinlordDialog1: So... the Wyrm is finally dead. After all these years, I thought I would feel relief, but im not.
 		ProdigyDialog: You think a Seraph makes you closer to the God? All it shows is that even something sacred can be broken.
-		SinlordDialog: I cant lie, im afraid of you. You and I are kin of similae, but you destroy those who destroyed others. Are you better than them?
-		FirstMeetDialog: I almost forgot what a human voice sounds like. This city died slowly ash by ash, soul by soul. Funny that I thought if I ever saw someone again, I’d feel relief. Turns out, it’s something closer to unease. Hope you won't cause any troubles.
+		SinlordDialog: I cant lie, im afraid of you. You and I are kinf of similar, but you destroy those who destroyed others. Are you better than them?
+		FirstMeetDialog: I almost forgot what a human voice sounds like. This city died slowly ash by ash, soul by soul. Funny that I thought if I ever saw someone again, I’d feel relief. Turns out, it’s something closer to unease.
+		SerorkDialog: They tell in a one old druid tale... There's a place so dark that you can't see the end. Where stories lie and all hopes and dreams are forgotten. Where the lights betray him and he loses himself. Everyone deserves a peaceful death.
 		MolkDialog: Tell me please, are you a fucking idiot? Shiiiiiiiiiiit That's why I'm calling you. Fuuuuuuuuuuuuuuuuuck. FUUUUUCK. Donkeyfuckers.
 	}
 
@@ -75,7 +87,7 @@ HellDwarf: {
 		Princess_LovesNPC: I like {NPCName}.
 	}
 
-	Census.SpawnCondition: Conditions unknown
+	Census.SpawnCondition: Spawns upon world creation in the underworld.
 }
 
 ImperianCommander: {
@@ -125,3 +137,6 @@ Swizzard_MaskOff.DisplayName: Swizzard_ Mask Off
 Swizzard.DisplayName: Swizzard
 Nibbler.DisplayName: Nibbler
 MossWitch.DisplayName: Moss Witch
+TaintedSlime.DisplayName: Tainted Slime
+TaintedPickaxe.DisplayName: Tainted Pickaxe
+TaintedMummy.DisplayName: Tainted Mummy

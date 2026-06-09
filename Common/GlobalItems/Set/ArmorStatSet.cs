@@ -106,11 +106,6 @@ namespace Synergia.Common.GlobalItems.Set
 				{
 					player.GetAttackSpeed(DamageClass.Throwing) += 0.09f;
 				}
-				if (item.type == valhalla.Find<ModItem>("EvilHead").Type)
-				{
-					player.maxMinions += 2;
-					player.GetDamage(DamageClass.Summon) += 0.20f;
-				}
 				if (item.type == valhalla.Find<ModItem>("SniperBody").Type)
 				{
 					player.GetDamage(DamageClass.Ranged) += 0.11f;
@@ -344,7 +339,6 @@ namespace Synergia.Common.GlobalItems.Set
 			Add("ValhallaMod", "GreediestHead", "Items.GreediestHead.Tooltip");
 			Add("ValhallaMod", "GreediestBody", "Items.GreediestBody.Tooltip");
 			Add("ValhallaMod", "GreediestLegs", "Items.GreediestLegs.Tooltip");
-			Add("ValhallaMod", "EvilHead", "Items.EvilHead.Tooltip");
 			Add("ValhallaMod", "SniperBody", "Items.SniperBody.Tooltip");
 			Add("ValhallaMod", "SniperHead", "Items.SniperHead.Tooltip");
 			Add("ValhallaMod", "SniperLegs", "Items.SniperLegs.Tooltip");

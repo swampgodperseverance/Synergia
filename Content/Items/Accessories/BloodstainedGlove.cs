@@ -1,7 +1,9 @@
-using Terraria;
-using Terraria.ModLoader;
-using Terraria.ID;
 using Avalon.Buffs.Debuffs;
+using Avalon.Items.Accessories.Hardmode;
+using Synergia.Content.Items.Misc;
+using Terraria;
+using Terraria.ID;
+using Terraria.ModLoader;
 
 namespace Synergia.Content.Items.Accessories
 {[AutoloadEquip(EquipType.HandsOn, EquipType.HandsOff)]
@@ -21,8 +23,17 @@ namespace Synergia.Content.Items.Accessories
 			Item.value = Item.sellPrice(gold: 17);
 			Item.rare = ItemRarityID.Red;
 		}
+        public override void AddRecipes()
+        {
+            CreateRecipe(1)
+                .AddIngredient(ModContent.ItemType<FrostGauntlet>(), 1)
+                .AddIngredient(ModContent.ItemType<SlitthroatNecklace>(), 1)
+                .AddIngredient(ItemID.FragmentSolar, 10)
+                .AddTile(TileID.LunarCraftingStation)
+                .Register();
+        }
 
-		public override void UpdateAccessory(Player player, bool hideVisual)
+        public override void UpdateAccessory(Player player, bool hideVisual)
 		{
 			player.GetDamage(DamageClass.Melee) += 0.15f;
 			player.GetAttackSpeed(DamageClass.Melee) += 0.15f;

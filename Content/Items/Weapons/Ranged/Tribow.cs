@@ -1,15 +1,22 @@
-﻿using Microsoft.Xna.Framework;
+﻿using Avalon.Items.Accessories.Hardmode;
+using Bismuth.Content.Items.Weapons.Ranged;
+using Microsoft.Xna.Framework;
+using Synergia.Content.Projectiles.RangedProjectiles;
 using Terraria;
 using Terraria.Audio;
 using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
-using Synergia.Content.Projectiles.RangedProjectiles;
+using ValhallaMod.Items.Weapons.Ranged.Bows;
 
 namespace Synergia.Content.Items.Weapons.Ranged
 {
     public class Tribow : ModItem
     {
+        public override void SetStaticDefaults()
+        {
+            Item.ResearchUnlockCount = 1;
+        }
         public override void SetDefaults()
         {
             Item.damage = 32;
@@ -30,7 +37,15 @@ namespace Synergia.Content.Items.Weapons.Ranged
             Item.useAmmo = AmmoID.Arrow;
             Item.autoReuse = false;
         }
-
+        public override void AddRecipes()
+        {
+            CreateRecipe(1)
+                .AddIngredient(ModContent.ItemType<StarCrusader>(), 1)
+                .AddIngredient(ModContent.ItemType<HuntressBow>(), 1)
+                .AddIngredient(ModContent.ItemType<GalvornBow>(), 1)
+                .AddTile(TileID.WorkBenches)
+                .Register();
+        }
         public override bool CanConsumeAmmo(Item ammo, Player player)
         {
             return player.itemAnimation == player.itemAnimationMax;

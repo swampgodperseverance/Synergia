@@ -21,11 +21,11 @@ namespace Synergia.Common.GlobalPlayer
 
             if (IsInValhallaAura(Player))
             {
-                damage += 0.20f; // +20% damage inside aura
+                damage += 0.15f; // +20% damage inside aura
             }
             else
             {
-                damage -= 0.25f; // -25% damage outside aura
+                damage -= 0.20f; // -25% damage outside aura
             }
         }
 

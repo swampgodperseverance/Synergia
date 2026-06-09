@@ -16,7 +16,7 @@ namespace Synergia.Content.NPCs {
     [AutoloadHead]
     public class HellDwarf : ModNPC {
         public override string LocalizationCategory => Category(CategoryName.NPC);
-        public override List<string> SetNPCNameList() => [this.GetLocalizedValue("Name.Skyzephire"), this.GetLocalizedValue("Name.Thorin"), this.GetLocalizedValue("Name.Belegar"), this.GetLocalizedValue("Name.Dragan"), this.GetLocalizedValue("Name.Molk"), this.GetLocalizedValue("Name.Wulfrik")];
+        public override List<string> SetNPCNameList() => [this.GetLocalizedValue("Name.Skyzephire"), this.GetLocalizedValue("Name.Thorin"), this.GetLocalizedValue("Name.Belegar"), this.GetLocalizedValue("Name.Dragan"), this.GetLocalizedValue("Name.Prophet"), this.GetLocalizedValue("Name.Molk"), this.GetLocalizedValue("Name.Wulfrik")];
         public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry) {
             bestiaryEntry.Info.AddRange(
             [
@@ -66,13 +66,12 @@ namespace Synergia.Content.NPCs {
             else { return false; }
         }
         public override bool CanGoToStatue(bool toKingStatue) => toKingStatue;
-        public override string GetChat(){
+        public override string GetChat()
+        {
             Player player = Main.LocalPlayer;
 
             if (player.name == "Molk")
-            {
                 return GetText("MolkDialog");
-            }
 
             if (NPC.localAI[0] == 0f)
             {
@@ -80,7 +79,8 @@ namespace Synergia.Content.NPCs {
                 return GetText("FirstMeetDialog");
             }
 
-            List<string> chats = new(){
+            List<string> chats = new()
+            {
                 GetText("Text"),
                 GetText("Text1"),
                 GetText("Text2"),
@@ -100,13 +100,33 @@ namespace Synergia.Content.NPCs {
                 GetText("Text16"),
                 GetText("Text17"),
                 GetText("Text18"),
+                GetText("Text19"),
+                GetText("Text20"),
+                GetText("Text21"),
+                GetText("Text22"),
+                GetText("Text23"),
+                GetText("Text24"),
+                GetText("Text25"),
             };
+
+            if (NPC.downedGolemBoss)
+            {
+                chats.Add(GetText("PostGolemDialog1"));
+                chats.Add(GetText("PostGolemDialog2"));
+                chats.Add(GetText("PostGolemDialog3"));
+            }
+
+            if (DownedBossSystem.DownedSinlordBoss)
+            {
+                chats.Add(GetText("SinlordDialog"));
+                chats.Add(GetText("PostSinlordDialog1"));
+            }
 
             if (player.HasBuff(ModContent.BuffType<Buffs.ProdigyBuff>()))
                 chats.Add(GetText("ProdigyDialog"));
 
-            if (DownedBossSystem.DownedSinlordBoss)
-                chats.Add(GetText("SinlordDialog"));
+            if (player.name == "Serork")
+                chats.Add(GetText("SerorkDialog"));
 
             return chats[Main.rand.Next(chats.Count)];
         }

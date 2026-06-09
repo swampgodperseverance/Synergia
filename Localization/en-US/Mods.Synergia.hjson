@@ -256,8 +256,8 @@ Items: {
 		DisplayName: Cursed Throwing Emblem
 		Tooltip:
 			'''
-			25% increased throwing damage
-			Decreases аll other damage by 50%
+			15% increased throwing damage
+			Decreases аll other damage by 40%
 			'''
 	}
 
@@ -394,8 +394,8 @@ Items: {
 		DisplayName: Mirror Of The Lost
 		Tooltip:
 			'''
-			While inside aura player gets 20% damage, but..
-			Outside it loses 25% 
+			While inside aura player gets 15% damage, but..
+			Outside it loses 20% 
 			'''
 	}
 
@@ -538,7 +538,11 @@ Items: {
 	}
 
 	JadeGlaive: {
-		Tooltip: 3 bounces
+		Tooltip:
+			'''
+			Throw a spinning glaives that blow ups over time 
+			Right Click to turn them into sharp knives
+			'''
 		DisplayName: Jade Glaive
 	}
 
@@ -591,7 +595,6 @@ Items: {
 			Every 5 seconds spawn around the player jade orbs
 			Each orb gives +4% throwing damage
 			Orbs explode after taking damage
-			Revengeseekerz
 			'''
 		DisplayName: Ring of Vengeanceseeker
 	}
@@ -602,14 +605,14 @@ Items: {
 			Greatly increases defense when struck
 			Reduces health regeneration cooldown
 			Slows the effects of damage over time debuffs
-			+12% throwing damage
+			Increases throwing damage by 12%
 			'''
 		DisplayName: Corrode Omega Shield
 	}
 
 	EverwoodNecklace: {
 		DisplayName: Everwood Necklace
-		Tooltip: +9% throwing crit chance
+		Tooltip: Increases throwing crit chance by 9
 	}
 
 	Blazes: {
@@ -646,7 +649,7 @@ Items: {
 		DisplayName: Caesium Ring
 		Tooltip:
 			'''
-			+15% throwing damage
+			Increases throwing damage by +10% 
 			While moving, the player releases poisonous caesium clouds
 			'''
 	}
@@ -655,16 +658,15 @@ Items: {
 		DisplayName: Caesium Skull
 		Tooltip:
 			'''
-			+23% throwing damage, + 10% crit chance and +5% throwing speed 
-			While moving, the player releases poisonous caesium clouds
-			which break up into small ones when colliding
+			Increases throwing damage by +15%, crit chance by 10 and throwing speed by 5% 
+			While moving, the player releases poisonous caesium clouds which break up into small ones when colliding
 			After death player have +20% throwing speed for one minute
 			'''
 	}
 
 	SinstoneLyre: {
 		Tooltip: ""
-		DisplayName: Sinstone Lyre
+		DisplayName: Sinstone Lyre //Skip
 	}
 
 	Seaborn: {
@@ -727,7 +729,7 @@ Items: {
 	}
 
 	PhoenixDownfall: {
-		DisplayName: Hellaraiser
+		DisplayName: Hellix
 		Tooltip: ""
 	}
 
@@ -1033,7 +1035,7 @@ Items: {
 	}
 
 	BoneyRidge: {
-		Tooltip: It's...quite dry.
+		Tooltip: It's... quite dry.
 		DisplayName: Boney Ridge
 	}
 
@@ -1075,6 +1077,78 @@ Items: {
 	Snotknife: {
 		Tooltip: ""
 		DisplayName: Snotknife
+	}
+
+	CoreburnedLeggings: {
+		Tooltip: ""
+		DisplayName: Coreburned Leggings
+	}
+
+	CoreburnedHelmet: {
+		Tooltip: ""
+		DisplayName: Coreburned Helmet
+	}
+
+	CoreburnedBreastplate: {
+		Tooltip: ""
+		DisplayName: Coreburned Breastplate
+	}
+
+	Hades: {
+		Tooltip: ""
+		DisplayName: Hades
+	}
+
+	Anaconda: {
+		Tooltip: ""
+		DisplayName: Anaconda
+	}
+
+	TheMossWitchCrystal: {
+		Tooltip: ""
+		DisplayName: Moss Witch Amulet
+		Passive: Immunity to Swamp Water and Poisoned
+		Active: Clears the player from debuffs
+	}
+
+	StickyPad: {
+		Tooltip: ""
+		DisplayName: Sticky Pad
+		Passive: No fall damage!
+		Active: Mods.Synergia.Items.StickyPad.Active
+	}
+
+	RunicWard: {
+		Tooltip: ""
+		DisplayName: Runic Ward
+		Passive: Mods.Synergia.Items.RunicWard.Passive
+		Active: Mods.Synergia.Items.RunicWard.Active
+	}
+
+	CruelAmulet: {
+		Tooltip: ""
+		DisplayName: Cruel Amulet
+		Passive: Mods.Synergia.Items.CruelAmulet.Passive
+		Active: Mods.Synergia.Items.CruelAmulet.Active
+	}
+
+	StoneAge: {
+		DisplayName: Stone Age
+		Tooltip: ""
+	}
+
+	Justice: {
+		Passive: Mods.Synergia.Items.Justice.Passive
+		Active: Mods.Synergia.Items.Justice.Active
+		DisplayName: Justice
+		Tooltip: ""
+	}
+
+	EternalFire: {
+		Tooltip: ""
+		DisplayName: Eternal Fire
+		Active: Mods.Synergia.Items.EternalFire.Active
+		Passive: Mods.Synergia.Items.EternalFire.Passive
 	}
 }
 
@@ -1519,6 +1593,15 @@ Projectiles: {
 	GladiusBismuth.DisplayName: Gladius Bismuth
 	SnotknifeP.DisplayName: Snotknife P
 	MossArm.DisplayName: Moss Arm
+	PalladiumArmorRework.DisplayName: Palladium Armor Rework
+	GoldenBombRework.DisplayName: Golden Bomb Rework
+	ObsidianSealRework.DisplayName: Obsidian Seal Rework
+	HadesHeldItemProj.DisplayName: Hades Held Item Proj
+	HadesMuzzleFlash.DisplayName: Hades Muzzle Flash
+	AnacondaProj.DisplayName: Anaconda Proj
+	StoneAgeProj.DisplayName: Stone Age Proj
+	SpellClone.DisplayName: Spell Clone
+	SunBomb.DisplayName: Sun Bomb
 }
 
 Buffs: {

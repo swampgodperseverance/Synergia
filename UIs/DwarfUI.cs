@@ -1,10 +1,12 @@
 ﻿using Avalon.Items.Armor.Hardmode;
+using Avalon.Items.Weapons.Magic.Hardmode.DevilsScythe;
 using Bismuth.Content.Items.Other;
 using NewHorizons.Content.Items.Weapons.Magic;
 using NewHorizons.Content.Items.Weapons.Throwing;
 using ReLogic.Graphics;
 using Synergia.Common.GlobalPlayer;
 using Synergia.Content.Items.Armor.Magic.FadingHell;
+using Synergia.Content.Items.Armor.Melee.Coreburned;
 using Synergia.Content.Items.Armor.Summon;
 using Synergia.Content.Items.Misc;
 using Synergia.Content.Items.QuestItem;
@@ -12,6 +14,7 @@ using Synergia.Content.Items.Tools;
 using Synergia.Content.Items.Weapons.Mage;
 using Synergia.Content.Items.Weapons.Melee;
 using Synergia.Content.Items.Weapons.Ranged;
+using Synergia.Content.Items.Weapons.Summon;
 using Synergia.Content.Items.Weapons.Throwing;
 using Synergia.Content.NPCs;
 using Synergia.Dataset;
@@ -24,6 +27,8 @@ using Terraria.Localization;
 using Terraria.UI;
 using Terraria.UI.Chat;
 using ValhallaMod.Items.Placeable.Blocks;
+using ValhallaMod.Items.Weapons.Melee.Shortswords;
+using ValhallaMod.Items.Weapons.Ranged.DartGuns;
 using static Synergia.Helpers.ItemHelper;
 using static Synergia.Helpers.UIHelper;
 
@@ -34,12 +39,12 @@ public class DwarfUI : UIState {
     VanillaItemSlotWrapper itemSlotPrace;
     public Dictionary<int, int> Items { get; private set; } = new() {
         {ItemID.MoltenPickaxe, ItemType<CoreburnedPickaxe>()},
+        {ItemID.MoltenHamaxe, ItemType<CoreburnedAxe>()},
         {ItemID.PhoenixBlaster, ItemType<PhoenixDownfall>()},
         {ItemID.MoltenFury, ItemType<Enfer>()},
         {ItemID.FieryGreatsword, ItemType<Malebolge>()},
         {ItemID.Paintbrush, ItemType<FeneathsBrush>()},
         {ItemID.Flamarang, ItemType<Flarion>()},
-        {ItemID.MoltenHamaxe, ItemType<CoreburnedAxe>()},
         {ItemType<FleshCap>(), ItemType<Gutshelmet>()},
         {ItemType<FleshPants>(), ItemType<Gutslegs>()},
         {ItemType<FleshWrappings>(), ItemType<Gutsplate>()},
@@ -49,6 +54,13 @@ public class DwarfUI : UIState {
         {ItemType<MoltenDagger>(), ItemType<Ghalihieri>()},
         {ItemType<Scorcher>(), ItemType<ScorcherRequiem>()},
         {ItemType<Luceat>(), ItemType<HellLuceat>()},
+        {ItemType<SparkingShortsword>(), ItemType<Rhabdomyolysis>()},
+        {ItemType<Cerberus>(), ItemType<Hades>()},
+        {ItemID.DemonScythe, ItemType <Avalon.Items.Weapons.Magic.Hardmode.DevilsScythe.DevilsScythe>()},
+        {ItemID.ImpStaff, ItemType<Echelonis>()},
+        {ItemID.MoltenBreastplate, ItemType<CoreburnedBreastplate>()},
+        {ItemID.MoltenHelmet, ItemType<CoreburnedHelmet>()},
+        {ItemID.MoltenGreaves, ItemType<CoreburnedLeggings>()},
     };
     readonly SaveItemPlayer saveItem = Main.LocalPlayer.GetModPlayer<SaveItemPlayer>();
     Texture2D anvil;

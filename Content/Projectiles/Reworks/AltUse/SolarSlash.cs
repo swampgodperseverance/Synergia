@@ -1,10 +1,11 @@
-﻿using Microsoft.Xna.Framework;
+﻿using System;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;
-using Terraria.GameContent;
 using Terraria.DataStructures;
+using Terraria.GameContent;
+using Terraria.GameContent.Drawing;
 using Terraria.ID;
-using System;
 using Terraria.ModLoader;
 
 namespace Synergia.Content.Projectiles.Reworks.AltUse
@@ -12,13 +13,14 @@ namespace Synergia.Content.Projectiles.Reworks.AltUse
     public class SolarSlash : ModProjectile
     {
         private const int FadeInTime = 6;
-        private const int HoldTime = 4; 
+        private const int HoldTime = 4;
         private const int FadeOutTime = 20;
         private const int TotalTime = FadeInTime + HoldTime + FadeOutTime;
 
         private float squish;
         private Vector2 scaleMultiplier = Vector2.One;
         private bool mirrored;
+        private int particleCooldown; 
 
         public override void SetStaticDefaults()
         {
@@ -46,6 +48,7 @@ namespace Synergia.Content.Projectiles.Reworks.AltUse
         public override void OnSpawn(IEntitySource source)
         {
             mirrored = Main.LocalPlayer.GetModPlayer<SolarSlashMirrorPlayer>().ShouldMirror();
+            particleCooldown = Main.rand.Next(3); 
         }
 
         public override void AI()
@@ -93,6 +96,64 @@ namespace Synergia.Content.Projectiles.Reworks.AltUse
                     1.6f
                 );
                 d.noGravity = true;
+            }
+
+            particleCooldown--;
+            if (particleCooldown <= 0 && Projectile.alpha < 200)
+            {
+                particleCooldown = Main.rand.Next(2, 8);
+                int cornersToSpawn = Main.rand.Next(1, 4);
+
+                for (int i = 0; i < cornersToSpawn; i++)
+                {
+                    Vector2 randomCorner = Projectile.Center;
+
+                    int side = Main.rand.Next(4); 
+
+                    float offsetX = Projectile.width * 0.5f;
+                    float offsetY = Projectile.height * 0.5f;
+
+                    switch (side)
+                    {
+                        case 0: 
+                            randomCorner = new Vector2(
+                                Projectile.Left.X - Main.rand.NextFloat(-10f, 15f),
+                                Projectile.Top.Y - Main.rand.NextFloat(5f, 25f)
+                            );
+                            break;
+                        case 1:
+                            randomCorner = new Vector2(
+                                Projectile.Right.X - Main.rand.NextFloat(-15f, 10f),
+                                Projectile.Top.Y - Main.rand.NextFloat(5f, 25f)
+                            );
+                            break;
+                        case 2: 
+                            randomCorner = new Vector2(
+                                Projectile.Left.X - Main.rand.NextFloat(-10f, 15f),
+                                Projectile.Bottom.Y + Main.rand.NextFloat(5f, 25f)
+                            );
+                            break;
+                        case 3: 
+                            randomCorner = new Vector2(
+                                Projectile.Right.X - Main.rand.NextFloat(-15f, 10f),
+                                Projectile.Bottom.Y + Main.rand.NextFloat(5f, 25f)
+                            );
+                            break;
+                    }
+
+                    float particleScale = Main.rand.NextFloat(0.6f, 1f);
+
+                    ParticleOrchestrator.RequestParticleSpawn(
+                        true,
+                        ParticleOrchestraType.FlameWaders,
+                        new ParticleOrchestraSettings
+                        {
+                            PositionInWorld = randomCorner,
+                            MovementVector = Projectile.velocity * Main.rand.NextFloat(0.3f, 0.8f)
+                        },
+                        Projectile.owner
+                    );
+                }
             }
 
             Lighting.AddLight(

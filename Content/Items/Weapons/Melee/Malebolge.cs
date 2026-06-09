@@ -28,7 +28,7 @@ namespace Synergia.Content.Items.Weapons.Melee
 
         public override void SetDefaults()
         {
-            Item.damage = 84;
+            Item.damage = 98;
             Item.DamageType = DamageClass.Melee;
             Item.width = 102;
             Item.height = 118;

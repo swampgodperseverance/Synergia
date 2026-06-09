@@ -21,6 +21,8 @@ namespace Synergia.Content.NPCs.Underworld
                 Velocity = 1f
             };
             NPCID.Sets.NPCBestiaryDrawOffset.Add(base.Type, value);
+            NPCID.Sets.SpecificDebuffImmunity[Type][BuffID.OnFire] = true;
+            NPCID.Sets.SpecificDebuffImmunity[Type][BuffID.OnFire3] = true;
         }
         public override void SetDefaults() {
             NPC.width = 56;
@@ -44,7 +46,7 @@ namespace Synergia.Content.NPCs.Underworld
             bestiaryEntry.Info.AddRange(new IBestiaryInfoElement[]
             {
                 BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Biomes.TheUnderworld,
-                new FlavorTextBestiaryInfoElement("Bunch of bones.")
+                new FlavorTextBestiaryInfoElement("Mods.Synergia.NPCs.SkelegonBestiaryInfo")
             });
         }
         public override void AI() {

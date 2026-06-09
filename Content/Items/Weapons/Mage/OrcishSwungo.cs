@@ -1,4 +1,8 @@
-﻿using Microsoft.Xna.Framework;
+﻿using Avalon.Items.Material.Shards;
+using Bismuth.Content.Items.Weapons.Magical;
+using Microsoft.Xna.Framework;
+using NewHorizons.Content.Items.Weapons.Throwing;
+using Synergia.Content.Items.Misc;
 using Synergia.Content.Projectiles.Friendly;
 using Terraria;
 using Terraria.ID;
@@ -71,6 +75,15 @@ namespace Synergia.Content.Items.Weapons.Mage
             }
 
             return false;
+        }
+        public override void AddRecipes()
+        {
+            CreateRecipe(1)
+                .AddIngredient(ModContent.ItemType<WaveOfForce>(), 1)
+                .AddIngredient(ItemID.DemonScythe, 1)
+                .AddIngredient(ModContent.ItemType<CorruptShard>(), 1)
+                .AddTile(TileID.Bookcases)
+                .Register();
         }
     }
 }

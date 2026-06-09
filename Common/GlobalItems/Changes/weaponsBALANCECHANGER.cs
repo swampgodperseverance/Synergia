@@ -1,8 +1,12 @@
 using System;
 using System.Collections.Generic;
+using Avalon.Items.Weapons.Magic.Hardmode.MagicGrenade;
 using Avalon.Items.Weapons.Magic.PreHardmode.ChaosTome;
 using Avalon.Items.Weapons.Magic.PreHardmode.Smogscreen;
 using Avalon.Items.Weapons.Melee.Hardmode.CraniumCrusher;
+using Avalon.Items.Weapons.Melee.Hardmode.DarklightLance;
+using Avalon.Items.Weapons.Melee.Hardmode.Starstorm;
+using Avalon.Items.Weapons.Melee.PreHardmode.AeonsEternity;
 using Avalon.Items.Weapons.Melee.PreHardmode.SanguineKatana;
 using Avalon.Items.Weapons.Ranged.PreHardmode.Boompipe;
 using Avalon.Items.Weapons.Ranged.PreHardmode.EggCannon;
@@ -18,18 +22,22 @@ using NewHorizons.Content.Items.Weapons.Melee;
 using NewHorizons.Content.Items.Weapons.Ranged;
 using NewHorizons.Content.Items.Weapons.Throwing;
 using NewHorizons.Content.Projectiles.Melee;
+using Synergia.Content.Projectiles.Reworks.Reworks2;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 using ValhallaMod.Items.Weapons.Magic.Staffs;
+using ValhallaMod.Items.Weapons.Magic.Thrown;
 using ValhallaMod.Items.Weapons.Melee.ChannelMelee;
 using ValhallaMod.Items.Weapons.Melee.Glaives;
+using ValhallaMod.Items.Weapons.Melee.Knives;
 using ValhallaMod.Items.Weapons.Melee.Shortswords;
 using ValhallaMod.Items.Weapons.Melee.Spears;
 using ValhallaMod.Items.Weapons.Melee.Swords;
 using ValhallaMod.Items.Weapons.Ranged.Bows;
 using ValhallaMod.Items.Weapons.Ranged.DartGuns;
 using ValhallaMod.Items.Weapons.Ranged.Guns;
+using ValhallaMod.Items.Weapons.Ranged.Javelins;
 using ValhallaMod.Items.Weapons.Ranged.Launchers;
 using ValhallaMod.Items.Weapons.Ranged.Longbows;
 using ValhallaMod.Items.Weapons.Ranged.RocketLaunchers;
@@ -359,6 +367,40 @@ namespace Synergia.Common.GlobalItems.Changes
                 [ModContent.ItemType<ScissorsKnives>()] = item =>
                 {
                     item.damage -= 13;
+                },
+                [ModContent.ItemType<AeonsEternity>()] = item =>
+                {
+                    item.damage -= 14;
+                },
+                [ModContent.ItemType<ConiferousFan>()] = item =>
+                {
+                    item.useAnimation += 7;
+                    item.useTime += 7;
+                    item.damage -= 9;
+                },
+                [ModContent.ItemType<Starstorm>()] = item =>
+                {
+                    item.useAnimation += 5;
+                    item.useTime += 5;
+                    item.damage += 19;
+                },
+                [ModContent.ItemType<DarklightLance>()] = item =>
+                {
+                    item.useAnimation += 5;
+                    item.useTime += 5;
+                    item.damage -= 31;
+                },
+                [ModContent.ItemType<MagicGrenade>()] = item =>
+                {
+                    item.damage -= 30;
+                },
+                [ModContent.ItemType<GoldenBomb>()] = item =>
+                {
+                    item.damage += 30;
+                },
+                [ModContent.ItemType<JadeSpear>()] = item =>
+                {
+                    item.damage += 12;
                 },
 
             };

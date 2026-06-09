@@ -1,7 +1,12 @@
-﻿using Terraria;
-using Terraria.ModLoader;
-using Terraria.ID;
+﻿using Avalon.Items.Accessories.Hardmode;
+using Avalon.Items.Material;
+using Avalon.Items.Material.Bars;
 using Synergia.Content.Buffs;
+using Synergia.Content.Items.Misc;
+using Terraria;
+using Terraria.ID;
+using Terraria.ModLoader;
+using ValhallaMod.Items.Material.Bar;
 
 namespace Synergia.Content.Items.Accessories
 {[AutoloadEquip(EquipType.Shield)]
@@ -9,12 +14,29 @@ namespace Synergia.Content.Items.Accessories
     {
         public override void SetStaticDefaults()
         {
-            // DisplayName.SetDefault("Corrode Cross Shield");
-            /* Tooltip.SetDefault("+12% Throwing damage\n" +
-                               "When struck, increases defense and life regeneration for 10s\n" +
-                               "Also reduces the effect of damage-over-time debuffs"); */
-        }
 
+        }
+        public override void AddRecipes()
+        {
+            CreateRecipe()
+                .AddIngredient(ModContent.ItemType<DurataniumOmegaShield>(), 1)
+                .AddIngredient(ModContent.ItemType<CorrodeBar>(), 10)
+                .AddIngredient(ModContent.ItemType<LifeDew>(), 1)
+                .AddTile(TileID.MythrilAnvil)
+                .Register();
+            CreateRecipe()
+                .AddIngredient(ModContent.ItemType<CobaltOmegaShield>(), 1)
+    .AddIngredient(ModContent.ItemType<CorrodeBar>(), 10)
+    .AddIngredient(ModContent.ItemType<LifeDew>(), 1)
+    .AddTile(TileID.MythrilAnvil)
+    .Register();
+            CreateRecipe()
+    .AddIngredient(ModContent.ItemType<PalladiumOmegaShield>(), 1)
+    .AddIngredient(ModContent.ItemType<CorrodeBar>(), 10)
+    .AddIngredient(ModContent.ItemType<LifeDew>(), 1)
+    .AddTile(TileID.MythrilAnvil)
+    .Register();
+        }
         public override void SetDefaults()
         {
             Item.width = 34;

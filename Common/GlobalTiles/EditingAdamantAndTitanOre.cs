@@ -1,6 +1,10 @@
-﻿using Avalon.Tiles.Ores;
+﻿using Avalon.Items.Tools.Hardmode;
+using Avalon.Tiles.Ores;
+using Bismuth.Content.Items.Tools;
 using Microsoft.Xna.Framework;
+using NewHorizons.Content.Items.Tools;
 using Synergia.Common.GlobalPlayer;
+using Synergia.Content.Items.Tools;
 using Synergia.Helpers;
 using Synergia.Lists;
 using System.Collections.Generic;
@@ -38,19 +42,63 @@ namespace Synergia.Common.GlobalTiles {
                 }
             };
         }
-        public override bool CanKillTile(int i, int j, int type, ref bool blockDamaged) {
+        private static HashSet<int> GetPowerfulPickaxes()
+        {
+            HashSet<int> powerfulPickaxes = new HashSet<int>
+    {
+        ItemID.TitaniumPickaxe,
+        ItemID.AdamantitePickaxe,
+        ItemID.ChlorophytePickaxe,
+        ItemID.SpectrePickaxe,
+        ItemID.Picksaw,
+        ItemID.ShroomiteDiggingClaw,
+        ItemID.NebulaPickaxe,
+        ItemID.SolarFlarePickaxe,
+        ItemID.StardustPickaxe,
+        ItemID.VortexPickaxe,
+        
+        ItemID.PickaxeAxe,
+        ItemID.Drax,
+        
+        ModContent.ItemType<TroxiniumPickaxe>(),
+        ModContent.ItemType<NightPickaxe>(),
+        ModContent.ItemType<JadePickaxe>(),
+        ModContent.ItemType<FeroziumPickaxe>(),
+        ModContent.ItemType<CoreburnedPickaxe>(),
+        ModContent.ItemType<ThundernitePickaxe>(),
+        ModContent.ItemType<NeutronPickaxe>(),
+        ModContent.ItemType<BismuthumPickaxe>(),
+        ModContent.ItemType<BismuthumDrill>(),
+        ModContent.ItemType<NeutronDrill>()
+    };
+
+            return powerfulPickaxes;
+        }
+
+        public override bool CanKillTile(int i, int j, int type, ref bool blockDamaged)
+        {
             hitToDestroy.TryGetValue(new Point(i, j), out int currentHits);
             bool fixGen = !WorldGen.gen && !Main.dedServ && Main.netMode != NetmodeID.Server;
-            if (fixGen) {
-                Player player = Main.player[Player.FindClosest(new Vector2(i * 16, j * 16), 16, 16)]; // ?? Maine.LocalPlayer 
+
+            if (fixGen)
+            {
+                Player player = Main.player[Player.FindClosest(new Vector2(i * 16, j * 16), 16, 16)];
                 DebugPlayer.DebugText(currentHits);
-                if (PlayerHelpers.GetLocalItem(player).type == ModContent.ItemType<JadePickaxe>()) {
-                    if (type == ModContent.TileType<TroxiniumOre>()) {
+
+                bool hasPowerfulPickaxe = GetPowerfulPickaxes().Contains(PlayerHelpers.GetLocalItem(player).type);
+
+                if (hasPowerfulPickaxe)
+                {
+                    if (type == ModContent.TileType<TroxiniumOre>())
+                    {
                         return true;
                     }
-                    else {
-                        if (Tiles.VanillaTile.Contains(type)) {
-                            if (currentHits >= 3) {
+                    else
+                    {
+                        if (Tiles.VanillaTile.Contains(type))
+                        {
+                            if (currentHits >= 3)
+                            {
                                 WorldGen.KillTile(i, j);
                                 return true;
                             }
@@ -59,23 +107,31 @@ namespace Synergia.Common.GlobalTiles {
                         return true;
                     }
                 }
-                else if (type == ModContent.TileType<TroxiniumOre>() || Tiles.VanillaTile.Contains(type)) {
+                else if (type == ModContent.TileType<TroxiniumOre>() || Tiles.VanillaTile.Contains(type))
+                {
                     return false;
                 }
-                else {
+                else
+                {
                     return base.CanKillTile(i, j, type, ref blockDamaged);
                 }
             }
-            else {
+            else
+            {
                 return base.CanKillTile(i, j, type, ref blockDamaged);
             }
         }
-        public override bool CanReplace(int i, int j, int type, int tileTypeBeingPlaced) {
+
+        public override bool CanReplace(int i, int j, int type, int tileTypeBeingPlaced)
+        {
             Player player = Main.player[Player.FindClosest(new Vector2(i * 16, j * 16), 16, 16)];
-            if (type == ModContent.TileType<TroxiniumOre>() || Tiles.VanillaTile.Contains(type)) {
-                return PlayerHelpers.CheckItem(player, ModContent.ItemType<JadePickaxe>());
+
+            if (type == ModContent.TileType<TroxiniumOre>() || Tiles.VanillaTile.Contains(type))
+            {
+                return GetPowerfulPickaxes().Contains(PlayerHelpers.GetLocalItem(player).type);
             }
-            else {
+            else
+            {
                 return base.CanReplace(i, j, type, tileTypeBeingPlaced);
             }
         }

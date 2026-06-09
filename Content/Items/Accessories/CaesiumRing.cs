@@ -1,14 +1,25 @@
-﻿using Terraria;
-using Terraria.ModLoader;
-using Terraria.ID;
-using Terraria.DataStructures;
+﻿using Avalon.Items.Material.Bars;
+using Avalon.Items.Material.Shards;
+using Bismuth.Content.Items.Weapons.Magical;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Synergia.Content.Items.Misc;
+using Terraria;
+using Terraria.DataStructures;
+using Terraria.ID;
+using Terraria.ModLoader;
 
 namespace Synergia.Content.Items.Accessories
 {
     public class CaesiumRing : ModItem
     {
+        public override void AddRecipes()
+        {
+            CreateRecipe(1)
+                .AddIngredient(ModContent.ItemType<CaesiumBar>(), 8)
+                .AddTile(ModContent.TileType<CaesiumHeavyAnvilTile>())
+                .Register();
+        }
         public override void SetDefaults()
         {
             Item.width = 32;
@@ -20,7 +31,7 @@ namespace Synergia.Content.Items.Accessories
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            player.GetDamage(DamageClass.Throwing) += 0.15f;
+            player.GetDamage(DamageClass.Throwing) += 0.10f;
 
             var modPlayer = player.GetModPlayer<CaesiumRingPlayer>();
             modPlayer.timeSinceLastGas++;

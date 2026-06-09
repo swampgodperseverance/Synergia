@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using Avalon.Items.Material.Ores;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;
 using Terraria.ID;
@@ -16,7 +17,17 @@ namespace Synergia.Content.Items.Accessories
             Item.rare = ItemRarityID.Pink;
             Item.accessory = true;
         }
-
+        public override void AddRecipes()
+        {
+            CreateRecipe()
+                .AddIngredient(ModContent.ItemType<StonedSkull>(), 1)
+                .AddIngredient(ModContent.ItemType<EverwoodNecklace>(), 1)
+                .AddIngredient(ItemID.Bone, 10)
+                .AddIngredient(ModContent.ItemType<Tourmaline>(), 1)
+                .AddIngredient(ModContent.ItemType<Zircon>(), 1)
+                .AddTile(TileID.Anvils)
+                .Register();
+        }
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
          

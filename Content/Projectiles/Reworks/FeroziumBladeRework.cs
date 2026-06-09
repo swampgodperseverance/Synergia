@@ -24,9 +24,9 @@ namespace Synergia.Content.Projectiles.Reworks
         public override float MaxRotation => MathHelper.TwoPi;
         public override float SwingRadius => Projectile.ai[2] < 2 ? 65f : 55f;
         public override float StartScaleTime => 0.5f;
-        public override float StartScaleMult => 0.6f;
+        public override float StartScaleMult => 0.93f;
         public override float EndScaleTime => 0.35f;
-        public override float EndScaleMult => 0.6f;
+        public override float EndScaleMult => 0.93f;
         public override Color? TrailColor => null;
         public override Func<float, float> EasingFunc => rot => Easings.PowInOut(rot, 4f);
         public override int TrailLength => 6;

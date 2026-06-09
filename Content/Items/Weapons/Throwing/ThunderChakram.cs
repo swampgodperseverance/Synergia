@@ -1,8 +1,9 @@
 using Microsoft.Xna.Framework;
+using Synergia.Content.Projectiles.Thrower;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using Synergia.Content.Projectiles.Thrower;
+using ValhallaMod.Items.Material.Bar;
 
 namespace Synergia.Content.Items.Weapons.Throwing
 {
@@ -56,6 +57,13 @@ namespace Synergia.Content.Items.Weapons.Throwing
                     }
                 }
             }
+        }
+        public override void AddRecipes()
+        {
+            CreateRecipe()
+                .AddIngredient(ModContent.ItemType<ThunderBar>(), 12)
+                .AddTile(TileID.MythrilAnvil)
+                .Register();
         }
     }
 }

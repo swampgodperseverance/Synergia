@@ -1,9 +1,10 @@
-﻿using Terraria;
+﻿using System;
+using Microsoft.Xna.Framework;
+using Synergia.Content.Projectiles.Friendly;
+using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using Synergia.Content.Projectiles.Friendly;
-using System;
-using Microsoft.Xna.Framework;
+using ValhallaMod.Items.Material.Bar;
 
 namespace Synergia.Content.Items.Accessories
 {
@@ -21,6 +22,13 @@ namespace Synergia.Content.Items.Accessories
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
             player.GetModPlayer<ThunderSigilPlayer>().hasThunderSigil = true;
+        }
+        public override void AddRecipes()
+        {
+            CreateRecipe()
+                .AddIngredient(ModContent.ItemType<ThunderBar>(), 8)
+                .AddTile(TileID.MythrilAnvil)
+                .Register();
         }
     }
 
@@ -77,5 +85,6 @@ namespace Synergia.Content.Items.Accessories
                 }
             }
         }
+
     }
 }

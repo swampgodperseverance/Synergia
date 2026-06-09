@@ -1,11 +1,15 @@
 using Avalon.Items.Material.Bars;
+using Consolaria.Content.Items.Materials;
 using Microsoft.Xna.Framework;
+using NewHorizons.Content.Items.Weapons.Throwing;
 using Synergia.Common.GlobalPlayer;
+using Synergia.Content.Items.Misc;
 using Synergia.Content.Projectiles.Friendly;
 using Terraria;
 using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
+using ValhallaMod.Items.Material.Bar;
 
 namespace Synergia.Content.Items.Weapons.Throwing
 {
@@ -22,7 +26,7 @@ namespace Synergia.Content.Items.Weapons.Throwing
 			item.useTime = 20;
 			item.useAnimation = 20;
 			item.knockBack = 2;
-			item.value = Item.buyPrice(silver: 50);
+			item.value = Item.buyPrice(silver: 920);
 			item.shootSpeed = 10f;
 			item.maxStack = 1;
 			item.rare = ItemRarityID.Lime;
@@ -85,6 +89,14 @@ namespace Synergia.Content.Items.Weapons.Throwing
 
 			return false;
 		}
+        public override void AddRecipes()
+        {
+            CreateRecipe(1)
+                .AddIngredient(ModContent.ItemType<Carnwennan>(), 1)
+                .AddIngredient(ModContent.ItemType<SoulofBlight>(), 1)
+                .AddTile(ModContent.TileType<CaesiumHeavyAnvilTile>())
+                .Register();
+        }
 
     }
 }

@@ -1,9 +1,13 @@
-﻿using Terraria;
-using Terraria.ModLoader;
-using Terraria.ID;
-using Terraria.DataStructures;
+﻿
+using Avalon.Items.Material.Bars;
+using Consolaria.Content.Items.Materials;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Synergia.Content.Items.Misc;
+using Terraria;
+using Terraria.DataStructures;
+using Terraria.ID;
+using Terraria.ModLoader;
 
 namespace Synergia.Content.Items.Accessories
 {
@@ -17,10 +21,18 @@ namespace Synergia.Content.Items.Accessories
             Item.value = Item.sellPrice(gold: 1);
             Item.rare = ItemRarityID.Red;
         }
-
+        public override void AddRecipes()
+        {
+            CreateRecipe(1)
+                .AddIngredient(ModContent.ItemType<PreciousSkull>(), 1)
+                .AddIngredient(ModContent.ItemType<CaesiumRing>(), 1)
+                .AddIngredient(ModContent.ItemType<SoulofBlight>(), 8)
+                .AddTile(ModContent.TileType<CaesiumHeavyAnvilTile>())
+                .Register();
+        }
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            player.GetDamage(DamageClass.Throwing) += 0.23f; 
+            player.GetDamage(DamageClass.Throwing) += 0.15f; 
             player.GetCritChance(DamageClass.Throwing) += 10f;
             player.GetAttackSpeed(DamageClass.Throwing) += 0.05f; 
 

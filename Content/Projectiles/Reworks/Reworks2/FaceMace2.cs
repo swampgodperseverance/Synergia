@@ -67,7 +67,7 @@ namespace Synergia.Content.Projectiles.Reworks.Reworks2
                     Projectile.Center,
                     velocity,
                     ProjectileID.SnowBallFriendly,
-                    Projectile.damage / 2,
+                    Projectile.damage / 3,
                     0f,
                     Projectile.owner
                 );

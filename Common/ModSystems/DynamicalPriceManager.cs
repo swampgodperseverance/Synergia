@@ -133,6 +133,8 @@ namespace Synergia.Core.PriceSystem
             return text;
         }
         public static string GetOrigValue(Price price) {
+            if (price == null) return ""; 
+
             string text = "";
             if (price.Copper > 0) { text = text + price.Copper + " " + Lang.inter[15].Value + " "; }
             if (price.Silver > 0) { text = text + price.Silver + " " + Lang.inter[16].Value + " "; }

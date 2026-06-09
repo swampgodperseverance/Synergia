@@ -1,6 +1,8 @@
 ﻿using Terraria;
 using Terraria.DataStructures;
+using Terraria.ID;
 using ValhallaMod.Buffs.Cooldown;
+using ValhallaMod.Items.Material.Bar;
 
 namespace Synergia.Content.Items.Weapons.Melee
 {
@@ -58,9 +60,15 @@ namespace Synergia.Content.Items.Weapons.Melee
 			Projectile.NewProjectile(source, position, velocity, type, damage, knockback, Main.myPlayer, (float)attackType, 0f, 0f);
 			return false;
 		}
-
-		// Token: 0x06000F60 RID: 3936 RVA: 0x00003673 File Offset: 0x00001873
-		public override bool MeleePrefix()
+        public override void AddRecipes()
+        {
+            CreateRecipe()
+                .AddIngredient(ModContent.ItemType<ThunderBar>(), 12)
+                .AddTile(TileID.MythrilAnvil)
+                .Register();
+        }
+        // Token: 0x06000F60 RID: 3936 RVA: 0x00003673 File Offset: 0x00001873
+        public override bool MeleePrefix()
 		{
 			return true;
 		}

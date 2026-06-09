@@ -4,7 +4,7 @@ using Terraria;
 using Terraria.ID;
 using ValhallaMod.Items.Armor;
 using ValhallaMod.Items.Material;
-using ValhallaMod.Items.Weapons.Hybrid.Swords;
+using Consolaria;
 using static Terraria.ModLoader.ModContent;
 
 namespace Synergia.Common.ModSystems.RecipeSystem.ChangesRecipe.AvalonsChanges {
@@ -25,30 +25,84 @@ namespace Synergia.Common.ModSystems.RecipeSystem.ChangesRecipe.AvalonsChanges {
             CreateEvilLegs();
             CreateEvilHead();
             CreateEvilBody();
+            CreateEvilLegs2();
+            CreateEvilHead2();
+            CreateEvilBody2();
+            CreateEvilLegs3();
+            CreateEvilHead3();
+            CreateEvilBody3();
             CreateFlinxBolero();
         }
         static void CreateEvilLegs()
         {
             Recipe recipe = Recipe.Create(ItemType<EvilLegs>());
-            recipe.AddIngredient(ItemType<CaesiumBar>(), 15);
+            recipe.AddIngredient(ItemType<TroxiniumBar>(), 15);
             recipe.AddIngredient(ItemType<EvilIngot>(), 1);
-            recipe.AddTile(ModContent.TileType<CaesiumHeavyAnvilTile>());
+            recipe.AddTile(TileID.MythrilAnvil);
             recipe.Register();
         }
         static void CreateEvilBody()
         {
             Recipe recipe = Recipe.Create(ItemType<EvilBody>());
-            recipe.AddIngredient(ItemType<CaesiumBar>(), 20);
+            recipe.AddIngredient(ItemType<TroxiniumBar>(), 20);
             recipe.AddIngredient(ItemType<EvilIngot>(), 2);
-            recipe.AddTile(ModContent.TileType<CaesiumHeavyAnvilTile>());
+            recipe.AddTile(TileID.MythrilAnvil);
             recipe.Register();
         }
         static void CreateEvilHead()
         {
             Recipe recipe = Recipe.Create(ItemType<EvilHead>());
-            recipe.AddIngredient(ItemType<CaesiumBar>(), 15);
+            recipe.AddIngredient(ItemType<TroxiniumBar>(), 15);
             recipe.AddIngredient(ItemType<EvilIngot>(), 1);
-            recipe.AddTile(ModContent.TileType<CaesiumHeavyAnvilTile>());
+            recipe.AddTile(TileID.MythrilAnvil);
+            recipe.Register();
+        }
+        static void CreateEvilLegs2()
+        {
+            Recipe recipe = Recipe.Create(ItemType<EvilLegs>());
+            recipe.AddIngredient(ItemID.AdamantiteBar, 15);
+            recipe.AddIngredient(ItemType<EvilIngot>(), 1);
+            recipe.AddTile(TileID.MythrilAnvil);
+            recipe.Register();
+        }
+        static void CreateEvilBody2()
+        {
+            Recipe recipe = Recipe.Create(ItemType<EvilBody>());
+            recipe.AddIngredient(ItemID.AdamantiteBar, 20);
+            recipe.AddIngredient(ItemType<EvilIngot>(), 2);
+            recipe.AddTile(TileID.MythrilAnvil);
+            recipe.Register();
+        }
+        static void CreateEvilHead2()
+        {
+            Recipe recipe = Recipe.Create(ItemType<EvilHead>());
+            recipe.AddIngredient(ItemID.AdamantiteBar, 15);
+            recipe.AddIngredient(ItemType<EvilIngot>(), 1);
+            recipe.AddTile(TileID.MythrilAnvil);
+            recipe.Register();
+        }
+        static void CreateEvilLegs3()
+        {
+            Recipe recipe = Recipe.Create(ItemType<EvilLegs>());
+            recipe.AddIngredient(ItemID.AdamantiteBar, 15);
+            recipe.AddIngredient(ItemType<EvilIngot>(), 1);
+            recipe.AddTile(TileID.MythrilAnvil);
+            recipe.Register();
+        }
+        static void CreateEvilBody3()
+        {
+            Recipe recipe = Recipe.Create(ItemType<EvilBody>());
+            recipe.AddIngredient(ItemID.TitaniumBar, 20);
+            recipe.AddIngredient(ItemType<EvilIngot>(), 2);
+            recipe.AddTile(TileID.MythrilAnvil);
+            recipe.Register();
+        }
+        static void CreateEvilHead3()
+        {
+            Recipe recipe = Recipe.Create(ItemType<EvilHead>());
+            recipe.AddIngredient(ItemID.TitaniumBar, 15);
+            recipe.AddIngredient(ItemType<EvilIngot>(), 1);
+            recipe.AddTile(TileID.MythrilAnvil);
             recipe.Register();
         }
         static void CreateFlinxBolero()

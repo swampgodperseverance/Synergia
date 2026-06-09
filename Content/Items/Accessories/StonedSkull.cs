@@ -1,13 +1,23 @@
-using Terraria;
-using Terraria.ModLoader;
-using Terraria.ID;
-using Terraria.DataStructures;
+using Avalon.Items.Material.Ores;
 using Microsoft.Xna.Framework;
+using Terraria;
+using Terraria.DataStructures;
+using Terraria.ID;
+using Terraria.ModLoader;
+using ValhallaMod.Items.Material.Bar;
 
 namespace Synergia.Content.Items.Accessories
 {
     public class StonedSkull : ModItem
     {
+        public override void AddRecipes()
+        {
+            CreateRecipe()
+                .AddIngredient(ItemID.StoneBlock, 20)
+                .AddIngredient(ModContent.ItemType<Peridot>(), 2)
+                .AddTile(TileID.Anvils)
+                .Register();
+        }
         public override void SetDefaults()
         {
             Item.width = 32;

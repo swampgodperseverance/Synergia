@@ -32,7 +32,7 @@ namespace Synergia.Content.NPCs.Boss.SinlordWyrm
 		}
 		public override void SetDefaults() {
 			if(ModLoader.TryGetMod("CalamityMod", out Mod calamity)) calamity.Call("SetDefenseDamageNPC", NPC, true);
-			NPC.lifeMax = 100000;
+			NPC.lifeMax = 160000;
 			NPC.damage = 85;
 			NPC.defense = 30;
 			NPC.noTileCollide = true;

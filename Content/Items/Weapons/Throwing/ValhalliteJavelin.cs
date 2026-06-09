@@ -1,8 +1,9 @@
-﻿using Terraria;
+﻿using Microsoft.Xna.Framework;
+using Synergia.Content.Projectiles.Friendly; 
+using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using Microsoft.Xna.Framework;
-using Synergia.Content.Projectiles.Friendly; 
+using ValhallaMod.Items.Material.Bar;
 
 namespace Synergia.Content.Items.Weapons.Throwing
 {
@@ -26,8 +27,17 @@ namespace Synergia.Content.Items.Weapons.Throwing
             Item.autoReuse = true;
             Item.shoot = ModContent.ProjectileType<ValhalliteJavelinProj>();
             Item.shootSpeed = 12f;
-            Item.maxStack = 999;
+            Item.maxStack = 9999;
             Item.consumable = true;
         }
+        public override void AddRecipes()
+        {
+            CreateRecipe(40)  
+                .AddIngredient(ModContent.ItemType<ValhalliteBar>(), 1)
+               .AddTile(ModList.Valhalla.Find<ModTile>("DwarvenAnvil").Type)
+                .Register();
+        }
+
     }
+
 }

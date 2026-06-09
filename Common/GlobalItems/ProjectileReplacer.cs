@@ -2,6 +2,7 @@
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using ValhallaMod.Projectiles.Magic.Spells;
 
 namespace Synergia.Common.GlobalItems
 {
@@ -98,6 +99,12 @@ namespace Synergia.Common.GlobalItems
                             break;
                         case "Splatterink":
                             item.shoot = ModContent.ProjectileType<SplutterinkRework>();
+                            break;
+                        case "GoldenBomb":
+                            item.shoot = ModContent.ProjectileType<GoldenBombRework>();
+                            break;
+                        case "ObsidianSeal":
+                            item.shoot = ModContent.ProjectileType<ObsidianSealRework>();
                             break;
                     }
                 }

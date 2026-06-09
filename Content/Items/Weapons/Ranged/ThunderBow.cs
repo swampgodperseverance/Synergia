@@ -1,10 +1,11 @@
 ﻿using Microsoft.Xna.Framework;
+using Synergia.Content.Projectiles.Friendly;
 using Terraria;
 using Terraria.Audio;
 using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
-using Synergia.Content.Projectiles.Friendly;
+using ValhallaMod.Items.Material.Bar;
 
 namespace Synergia.Content.Items.Weapons.Ranged
 {
@@ -66,6 +67,13 @@ namespace Synergia.Content.Items.Weapons.Ranged
             );
 
             return false; 
+        }
+        public override void AddRecipes()
+        {
+            CreateRecipe()
+                .AddIngredient(ModContent.ItemType<ThunderBar>(), 10)
+                .AddTile(TileID.MythrilAnvil)
+                .Register();
         }
     }
 }

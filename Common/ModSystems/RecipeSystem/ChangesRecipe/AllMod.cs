@@ -22,8 +22,10 @@ using NewHorizons.Content.Items.Armor.NightMageArmor;
 using NewHorizons.Content.Items.Armor.RottenArmor;
 using NewHorizons.Content.Items.Armor.WyvernHunterArmor;
 using NewHorizons.Content.Items.Materials;
+using Synergia.Content.Items.Accessories;
 using Synergia.Content.Items.Weapons.AuraStaff;
 using Synergia.Content.Items.Weapons.Summon;
+using Synergia.Content.Items.Weapons.Throwing;
 using Terraria;
 using Terraria.ID;
 using ValhallaMod.Items.Weapons.Hybrid.Swords;
@@ -66,6 +68,62 @@ namespace Synergia.Common.ModSystems.RecipeSystem.ChangesRecipe {
             CreateUnderwaterAuraStaff();
             CreateAngryParasite();
             CreateHolyHandGrenade();
+            CreateTriwhip();
+            CreateEverNecklace();
+            CreateMercAura();
+            CreateAirflow();
+            CreateEarthCollapse();
+            CreateUnderScythe();
+        }
+        static void CreateUnderScythe()
+        {
+            Recipe recipe = Recipe.Create(ItemType<UnderwaterAuraScythe>());
+            recipe.AddIngredient(ItemType<UnderwaterAuraStaff>(), 1);
+            recipe.AddIngredient(ItemType<TorrentShard>(), 10);
+            recipe.AddIngredient(ItemID.SoulofMight, 3);
+            recipe.AddIngredient(ItemID.SoulofFright, 3);
+            recipe.AddIngredient(ItemID.SoulofSight, 3);
+            recipe.AddTile(TileID.MythrilAnvil);
+            recipe.Register();
+        }
+        static void CreateEarthCollapse()
+        {
+            Recipe recipe = Recipe.Create(ItemType<EarthCollapse>());
+            recipe.AddIngredient(ItemType<EnchantedRing>(), 1);
+            recipe.AddIngredient(ItemType<CoreShard>(), 10);
+            recipe.AddIngredient(RoAItem("NaturesHeart"), 1);
+            recipe.AddTile(TileID.DemonAltar);
+            recipe.Register();
+        }
+        static void CreateAirflow()
+        {
+            Recipe recipe = Recipe.Create(ItemType<Airflow>());
+            recipe.AddIngredient(ModList.StarforgedClassic.Find<ModItem>("AzuriteBarItem").Type, 10);
+            recipe.AddTile(ModList.StarforgedClassic.Find<ModTile>("StarForgeTile").Type);
+            recipe.Register();
+        }
+        static void CreateMercAura()
+        {
+            Recipe recipe = Recipe.Create(ItemType<MercuriumAuraScythe>());
+            recipe.AddIngredient(RoAItem("MercuriumNugget"), 10);
+            recipe.AddTile(TileID.Anvils);
+            recipe.Register();
+        }
+        static void CreateEverNecklace()
+        {
+            Recipe recipe = Recipe.Create(ItemType<EverwoodNecklace>());
+            recipe.AddIngredient(RoAItem("Elderwood"), 20);
+            recipe.AddTile(TileID.WorkBenches);
+            recipe.Register();
+        }
+        static void CreateTriwhip()
+        {
+            Recipe recipe = Recipe.Create(ItemType<Triwhip>());
+            recipe.AddIngredient(ItemType<Ripple>(), 1);
+            recipe.AddIngredient(RoAItem("MercuriumZipper"), 1);
+            recipe.AddIngredient(ItemType<RopeWhip>(), 1);
+            recipe.AddTile(TileID.WorkBenches);
+            recipe.Register();
         }
         static void CreateSharanga()
         {

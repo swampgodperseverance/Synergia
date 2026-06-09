@@ -16,14 +16,12 @@ namespace Synergia.Common.GlobalNPCs.AIs
 
         public override void AI(NPC npc)
         {
-            //
             if (npc.type != ModContent.NPCType<EvilNecromancer>())
                 return;
 
             // 
             float hpPercent = (float)npc.life / npc.lifeMax;
 
-            // Если хп меньше 35% и зеркала ещё не созданы
             if (hpPercent <= 0.35f && !spawnedMirror)
             {
                 SpawnMirrors(npc);
