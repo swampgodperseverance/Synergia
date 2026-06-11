@@ -14,7 +14,7 @@ using static Synergia.Common.ModSystems.WorldGens.SynergiaGenVars;
 namespace Synergia.Common.ModSystems.WorldGens.HoodlumsHeadquarter {
     // Arena 
     public class HeadquarterLayerOne {
-        // Size X: 172, Y: 31
+        // Size X: 171, Y: 31
         // 0 - empty, 1 - SwampMud, 2 - 472, 3 - 273, 4 - PeatBlock, 5 - Awa Platform, 6 - IronBrick(IsActuated), 7 - Swamp Wood, 8 - Cough wood Tile, 9 - Chain
         static readonly byte[,] HeadquarterLayerOneTiles = new byte[,]
         {
@@ -225,26 +225,6 @@ namespace Synergia.Common.ModSystems.WorldGens.HoodlumsHeadquarter {
                 }
             }
             return HeadquarterLayerTwo.GenHeadquarter(progress, HLOX - 86, y2 - 1);
-        }
-        public static void SpawnLava() {
-            int width = HeadquarterLayerOneTiles.GetLength(1);
-            int height = HeadquarterLayerOneTiles.GetLength(0);
-
-            for (int y = 0; y < height; y++) {
-                for (int x = 0; x < width; x++) {
-                    int worldX = HLOX - 86 + x;
-                    int worldY = HLOY - 30 - y;
-
-                    if (!WorldGen.InWorld(worldX, worldY, 10)) { continue; }
-
-                    Tile tile = Framing.GetTileSafely(worldX, worldY);
-
-                    switch (HeadquarterLayerOneLiquid[y, x]) {
-                        case 0: tile.LiquidAmount = 0; break;
-                        case 1: tile.LiquidType = LiquidID.Lava; tile.LiquidAmount = 255; break;
-                    }
-                }
-            }
         }
     }
 }
