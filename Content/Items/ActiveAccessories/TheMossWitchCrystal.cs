@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using Bismuth.Content.Buffs;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -38,12 +39,21 @@ namespace Synergia.Content.Items.ActiveAccessories
 
         public override bool Use(Player player, ref int time, ref int damage, ref bool silent)
         {
+            int[] protectedDebuffs = {
+        BuffID.PotionSickness, 
+        BuffID.ChaosState,     
+    };
+
             for (int i = 0; i < Player.MaxBuffs; i++)
             {
-                if (player.buffType[i] > 0 && Main.debuff[player.buffType[i]])
+                int buffType = player.buffType[i];
+                if (buffType > 0 && Main.debuff[buffType])
                 {
-                    player.DelBuff(i);
-                    i--;
+                    if (!protectedDebuffs.Contains(buffType))
+                    {
+                        player.DelBuff(i);
+                        i--; 
+                    }
                 }
             }
 

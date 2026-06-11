@@ -21,6 +21,7 @@ namespace Synergia.Content.NPCs.Swamp
         private bool idleState;
         private bool isJumping;
         private float currentSpeedX;
+        private int directionChangeCooldown;
 
         private const float WALK_SPEED = 1.2f;
         private const float CHASE_SPEED = 2.8f;
@@ -286,15 +287,35 @@ SwaR.PitchVariance = 0.12f;
             {
                 NPC.direction = Math.Sign(currentSpeedX);
                 NPC.spriteDirection = NPC.direction;
+                return;
             }
-            else if (Main.player[NPC.target].active && !Main.player[NPC.target].dead)
+
+            Player player = Main.player[NPC.target];
+            if (!player.active || player.dead) return;
+
+            float toPlayerX = player.Center.X - NPC.Center.X;
+            bool underPlayer = NPC.Center.Y > player.Center.Y + 20f;
+
+            if (underPlayer && Math.Abs(toPlayerX) < 220f)
             {
-                float toPlayer = Main.player[NPC.target].Center.X - NPC.Center.X;
-                if (Math.Abs(toPlayer) < 200f && Main.rand.NextBool(10))
+                if (directionChangeCooldown <= 0)
                 {
-                    NPC.direction = Math.Sign(toPlayer);
-                    NPC.spriteDirection = NPC.direction;
+                    if (Main.rand.NextBool(12))
+                    {
+                        NPC.direction = Math.Sign(toPlayerX);
+                        NPC.spriteDirection = NPC.direction;
+                        directionChangeCooldown = 30;
+                    }
                 }
+                else
+                {
+                    directionChangeCooldown--;
+                }
+            }
+            else if (Math.Abs(toPlayerX) < 200f && Main.rand.NextBool(10))
+            {
+                NPC.direction = Math.Sign(toPlayerX);
+                NPC.spriteDirection = NPC.direction;
             }
         }
 

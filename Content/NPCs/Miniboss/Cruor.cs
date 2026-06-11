@@ -6,20 +6,28 @@ using System.Threading.Tasks;
 using Microsoft.Xna.Framework.Audio;
 using Synergia.Common;
 using Synergia.Content.Dusts;
+using Synergia.Content.Items.Accessories;
+using Synergia.Content.Items.ActiveAccessories;
+using Synergia.Content.Items.Placeable;
 using Synergia.Content.Projectiles.Hostile;
+using Synergia.Content.Tiles.Relic;
 using Terraria;
 using Terraria.Audio;
 using Terraria.GameContent;
 using Terraria.GameContent.Bestiary;
 using Terraria.GameContent.ItemDropRules;
 using Terraria.ID;
+using ValhallaMod.Items.Material;
 
 namespace Synergia.Content.NPCs.Miniboss
 {
-	public class Cruor : ModNPC
+    [AutoloadBossHead]
+    public class Cruor : ModNPC
 	{
-		//Just change these
-		public override void SetStaticDefaults() {
+        private bool isSpawning = true;
+        private float spawnTimer = 0f;
+        //Just change these
+        public override void SetStaticDefaults() {
 			Main.npcFrameCount[Type] = 8;
 			NPCID.Sets.NPCBestiaryDrawModifiers value = new NPCID.Sets.NPCBestiaryDrawModifiers { Velocity = 1f };
 			NPCID.Sets.NPCBestiaryDrawOffset.Add(base.Type, value);
@@ -30,7 +38,7 @@ namespace Synergia.Content.NPCs.Miniboss
 			NPC.height = 60;
 			NPC.damage = 0; //no contact damage because that would be annoying
 			NPC.defense = 30;
-			NPC.lifeMax = 5000;
+			NPC.lifeMax = 22000;
 			NPC.knockBackResist = 0f;
 			NPC.noGravity = true;
 			NPC.noTileCollide = true;
@@ -39,13 +47,44 @@ namespace Synergia.Content.NPCs.Miniboss
 			NPC.HitSound = SoundID.DD2_SkeletonHurt;
 			NPC.DeathSound = SoundID.DD2_SkeletonDeath;
 			NPC.value = Item.sellPrice(0, 50, 0, 0);
-		}
+            NPC.alpha = 255;
+        }
 		//and the bestiary shit here
 		public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry) => bestiaryEntry.Info.AddRange(new IBestiaryInfoElement[] {
 			BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Biomes.TheDungeon,
 			new FlavorTextBestiaryInfoElement("Placeholder text")
 		});
-		public override void FindFrame(int frameHeight) {
+        private void SpawnAnimation(){
+            spawnTimer++;
+
+            if (spawnTimer < 60){
+                NPC.alpha = 255 - (int)(spawnTimer / 60f * 255);
+                NPC.scale = 0.5f + (spawnTimer / 60f) * 0.5f;
+
+                if (Main.rand.NextBool(2))
+                {
+                    Vector2 dustPos = NPC.Center + Main.rand.NextVector2Circular(40, 40);
+                    Dust.NewDustPerfect(
+                        dustPos,
+                        ModContent.DustType<CruorDust>(),
+                        (NPC.Center - dustPos) * 0.05f
+                    ).noGravity = true;
+                }
+
+                if (spawnTimer == 30) SoundEngine.PlaySound(SoundID.Item8, NPC.Center);
+            }
+            else{
+                NPC.alpha = 0;
+                NPC.scale = 1f;
+                isSpawning = false;
+                for (int i = 0; i < 20; i++)
+                {
+                    Dust.NewDustPerfect(NPC.Center, ModContent.DustType<CruorDust>(), Main.rand.NextVector2Circular(4f, 4f)).noGravity = true;
+                }
+                SoundEngine.PlaySound(SoundID.Item14, NPC.Center);
+            }
+        }
+        public override void FindFrame(int frameHeight) {
 			NPC.spriteDirection = NPC.direction;
 			if(++NPC.frameCounter >= 8) {
 				NPC.frameCounter = 0;
@@ -58,7 +97,10 @@ namespace Synergia.Content.NPCs.Miniboss
 			else NPC.rotation = NPC.velocity.X / 45f;
 		}
 		public override void AI() {
-			Player target = NPC.target > -1 ? Main.player[NPC.target] : null;
+            if (isSpawning){
+                SpawnAnimation();
+                return;}
+            Player target = NPC.target > -1 ? Main.player[NPC.target] : null;
 			if(!target.active || target.dead || target.Distance(NPC.Center) > 1000f) {
 				NPC.TargetClosest();
 				target = Main.player[NPC.target];
@@ -190,5 +232,29 @@ namespace Synergia.Content.NPCs.Miniboss
 			if(NPC.localAI[1] > 0f) sprite.Draw(texture, NPC.Center - new Vector2(7f * -NPC.spriteDirection, 18f).RotatedBy(NPC.rotation) - screenPos, null, new Color(NPC.ai[0] == 2f ? 255 : 200, NPC.ai[0] == 2f ? 55 : 0, NPC.ai[0] == 2f ? 75 : 0, 0) * (float)Math.Sin(NPC.localAI[1] * 0.1f * MathHelper.Pi), NPC.rotation, texture.Size() / 2f, NPC.scale * new Vector2(1f - NPC.localAI[1] * 0.1f, 0.8f), spriteEffects, 0f);
 			return false;
 		}
-	}
+		public override void ModifyNPCLoot(NPCLoot npcLoot) {
+			npcLoot.Add(ItemDropRule.OneFromOptions(1, 3, 5,
+				ItemID.Ectoplasm,
+				ModContent.ItemType<ThunderShard>()
+			));
+
+
+			npcLoot.Add(ItemDropRule.OneFromOptions(5,
+				ModContent.ItemType<TheOriginOfSymmetry>(),
+				ModContent.ItemType<CruelAmulet>()
+			));
+
+			npcLoot.Add(ItemDropRule.Common(ItemID.Nazar, 10));
+			npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<CruorTrophy>(), 10));
+			npcLoot.Add(ItemDropRule.MasterModeCommonDrop(ModContent.ItemType<CruorRelicItem>()));
+		}
+        public override void OnKill()
+        {
+            for (int i = 0; i < 30; i++)
+            {
+                Dust.NewDustPerfect(NPC.Center, ModContent.DustType<CruorDust>(), Main.rand.NextVector2Circular(5f, 5f), 0, default, 1.8f).noGravity = true;
+            }
+            SoundEngine.PlaySound(SoundID.Item14, NPC.Center);
+        }
+    }
 }

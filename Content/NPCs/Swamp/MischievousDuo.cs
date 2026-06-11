@@ -19,6 +19,9 @@ namespace Synergia.Content.NPCs.Swamp
         private bool idleState;
         private float currentSpeedX;
 
+        private int turnDelay;
+        private float targetDirection;
+
         private const float WALK_SPEED = 1.3f;
         private const float CHASE_SPEED = 3.1f;
         private const float ACCEL = 0.18f;
@@ -47,7 +50,6 @@ namespace Synergia.Content.NPCs.Swamp
         {
             NPC.TargetClosest(true);
             Player player = Main.player[NPC.target];
-
             float distance = Vector2.Distance(NPC.Center, player.Center);
             bool canSee = Collision.CanHitLine(NPC.Center, 1, 1, player.Center, 1, 1);
             bool aggro = canSee && distance < 450f && player.active && !player.dead;
@@ -68,12 +70,10 @@ namespace Synergia.Content.NPCs.Swamp
         {
             actionTimer++;
             wanderTimer++;
-
             if (actionTimer > 170 + Main.rand.Next(120))
             {
                 actionTimer = 0;
                 int action = Main.rand.Next(4);
-
                 if (action == 0)
                 {
                     idleState = true;
@@ -98,13 +98,11 @@ namespace Synergia.Content.NPCs.Swamp
             {
                 currentSpeedX *= 0.88f;
                 idleTimer++;
-
                 if (idleTimer > 50 + Main.rand.Next(60))
                 {
                     idleState = false;
                     idleTimer = 0;
                 }
-
                 return;
             }
 
@@ -120,16 +118,35 @@ namespace Synergia.Content.NPCs.Swamp
 
         private void AggressiveBehavior(Player player, float distance)
         {
-            float speedMultiplier = 1f;
+            bool playerAbove = player.Center.Y < NPC.Center.Y - 20;
 
+            float speedMultiplier = 1f;
             if (distance < 80f)
                 speedMultiplier = 0.7f;
             else if (distance > 300f)
                 speedMultiplier = 1.3f;
 
-            float direction = player.Center.X > NPC.Center.X ? 1 : -1;
-            float targetSpeed = direction * CHASE_SPEED * speedMultiplier;
+            float desiredDir = player.Center.X > NPC.Center.X ? 1f : -1f;
 
+            if (playerAbove)
+            {
+                if (turnDelay <= 0)
+                {
+                    targetDirection = desiredDir;
+                    turnDelay = 30;
+                }
+                else
+                {
+                    turnDelay--;
+                }
+            }
+            else
+            {
+                targetDirection = desiredDir;
+                turnDelay = 0;
+            }
+
+            float targetSpeed = targetDirection * CHASE_SPEED * speedMultiplier;
             currentSpeedX = MathHelper.Lerp(currentSpeedX, targetSpeed, ACCEL * 1.3f);
         }
 
@@ -147,7 +164,6 @@ namespace Synergia.Content.NPCs.Swamp
             if (blocked && NPC.collideX)
             {
                 Vector2 stepUpPos = NPC.position + new Vector2(NPC.direction * 20, -20);
-
                 if (!Collision.SolidCollision(stepUpPos, NPC.width, NPC.height))
                 {
                     NPC.position.Y -= 20;
@@ -237,14 +253,12 @@ namespace Synergia.Content.NPCs.Swamp
 
             float speed = Math.Abs(currentSpeedX);
             float animSpeed = speed > 2f ? 3f : 6f;
-
             NPC.frameCounter += speed * 1.5f;
 
             if (NPC.frameCounter >= animSpeed)
             {
                 NPC.frameCounter = 0;
                 NPC.frame.Y += frameHeight;
-
                 if (NPC.frame.Y >= frameHeight * 13)
                     NPC.frame.Y = 0;
             }
@@ -274,7 +288,6 @@ namespace Synergia.Content.NPCs.Swamp
                         (int)NPC.Center.Y,
                         ModContent.NPCType<SwamplingWarrior>()
                     );
-
                     NPC.NewNPC(
                         NPC.GetSource_Death(),
                         (int)NPC.Center.X,
