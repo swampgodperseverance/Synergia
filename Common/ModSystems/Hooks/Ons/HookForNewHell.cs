@@ -49,13 +49,16 @@ namespace Synergia.Common.ModSystems.Hooks.Ons {
         }
         bool NewLogic(Orig_IsActive orig, CaesiumBlastplains caesiumBlastplains, Player player) => false;
         bool On_WorldGen_PlaceTile(On_WorldGen.orig_PlaceTile orig, int i, int j, int Type, bool mute, bool forced, int plr, int style) {
-            bool arena = WorldHelper.CheckBiomeTile(i, j, 199, 119, SynergiaGenVars.HellArenaPositionX - 199, SynergiaGenVars.HellArenaPositionY - 119);
-            bool village = WorldHelper.CheckBiomeTile(i, j, 281, 119, SynergiaGenVars.HellVillageX - 280, SynergiaGenVars.HellVillageY - 119);
-            bool lake = WorldHelper.CheckBiomeTile(i, j, 215, 119, SynergiaGenVars.HellLakeX - 236, SynergiaGenVars.HellLakeY - 119);
-            if ((arena || village || lake) && Type == 127) {
-                SoundEngine.PlaySound(SoundID.Item27, new Vector2(i * 16, j * 16));
-                Dust.NewDust(new Vector2(i * 16, j * 16), 16, 16, DustID.IceRod);
-                return true;
+            if (!WorldGen.gen) {
+                bool arena = WorldHelper.CheckBiomeTile(i, j, 199, 119, SynergiaGenVars.HellArenaPositionX - 199, SynergiaGenVars.HellArenaPositionY - 119);
+                bool village = WorldHelper.CheckBiomeTile(i, j, 281, 119, SynergiaGenVars.HellVillageX - 280, SynergiaGenVars.HellVillageY - 119);
+                bool lake = WorldHelper.CheckBiomeTile(i, j, 215, 119, SynergiaGenVars.HellLakeX - 236, SynergiaGenVars.HellLakeY - 119);
+                if ((arena || village || lake) && Type == 127) {
+                    SoundEngine.PlaySound(SoundID.Item27, new Vector2(i * 16, j * 16));
+                    Dust.NewDust(new Vector2(i * 16, j * 16), 16, 16, DustID.IceRod);
+                    return true;
+                }
+                else { return orig(i, j, Type, mute, forced, plr, style); }
             }
             else { return orig(i, j, Type, mute, forced, plr, style); }
         }

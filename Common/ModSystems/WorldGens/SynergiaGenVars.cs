@@ -97,7 +97,7 @@ namespace Synergia.Common.ModSystems.WorldGens {
             HLOX = tag.GetInt("HLOX");
             HLOY = tag.GetInt("HLOY");
             HLTX = tag.GetInt("HLTX");
-            HLTY = tag.GetInt("HLTX");
+            HLTY = tag.GetInt("HLTY");
 
             SnowVillageGen = tag.GetBool("SnowVillageGen");
             HellVillageGen = tag.GetBool("HellVillageGen");
