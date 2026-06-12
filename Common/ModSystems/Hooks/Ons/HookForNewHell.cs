@@ -43,7 +43,7 @@ namespace Synergia.Common.ModSystems.Hooks.Ons {
             On_Player.DropTombstone += On_Player_DropTombstone; // Disabled Tombstone if player dead in New Hell
         }
         bool RoAIsBiomeActive(orig_IsBiomeActive orig, object type, Player player) {
-            bool hellStruct = WorldHelper.CheckBiome(player, 237 + SynergiaGenVars.HellArenaPositionX - SynergiaGenVars.HellLakeX, 140, SynergiaGenVars.HellLakeX - 236, SynergiaGenVars.HellLakeY - 140);
+            bool hellStruct = WorldHelper.CheckBiome(player, 237 + SynergiaGenVars.HellArenaPositionX - SynergiaGenVars.HellLakeX, 150, SynergiaGenVars.HellLakeX - 236, SynergiaGenVars.HellLakeY - 150);
             if (hellStruct) { return false; }
             else { return orig(type, player); }
         }
@@ -89,8 +89,7 @@ namespace Synergia.Common.ModSystems.Hooks.Ons {
             }
         }
         void On_Projectile_AI_007_GrapplingHooks(On_Projectile.orig_AI_007_GrapplingHooks orig, Projectile self) {
-            Player player = Main.player[self.owner];
-            if (player.InModBiome<NewHell>() && !player.GetModPlayer<BiomePlayer>().arenaBiome) { self.Kill(); } else { orig(self); }
+            orig(self);
         }
         void On_Mount_SetMount(On_Mount.orig_SetMount orig, Mount self, int m, Player mountedPlayer, bool faceLeft) {
             if (mountedPlayer.InModBiome<NewHell>() && !mountedPlayer.GetModPlayer<BiomePlayer>().arenaBiome) { self.Dismount(mountedPlayer); self.Reset(); return; }

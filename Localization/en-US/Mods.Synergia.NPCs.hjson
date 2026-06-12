@@ -136,7 +136,17 @@ SwamplingWarrior.DisplayName: Swampling Warrior
 Swizzard_MaskOff.DisplayName: Swizzard_ Mask Off
 Swizzard.DisplayName: Swizzard
 Nibbler.DisplayName: Nibbler
-MossWitch.DisplayName: Moss Witch
+
+MossWitch: {
+	DisplayName: Moss Witch
+
+	BossChecklistIntegration: {
+		EntryName: Moss Witch
+		SpawnInfo: Spawn in swamp struct
+	}
+}
+
 TaintedSlime.DisplayName: Tainted Slime
 TaintedPickaxe.DisplayName: Tainted Pickaxe
 TaintedMummy.DisplayName: Tainted Mummy
+Cruor.DisplayName: Cruor

@@ -1602,6 +1602,8 @@ Projectiles: {
 	StoneAgeProj.DisplayName: Stone Age Proj
 	SpellClone.DisplayName: Spell Clone
 	SunBomb.DisplayName: Sun Bomb
+	CruorSpike.DisplayName: Cruor Spike
+	CruorStar.DisplayName: Cruor Star
 }
 
 Buffs: {
