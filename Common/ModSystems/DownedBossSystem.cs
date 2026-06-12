@@ -7,15 +7,21 @@ namespace Synergia.Common.ModSystems;
 
 public class DownedBossSystem : ModSystem {
     public static bool DownedSinlordBoss = false;
+    public static bool DownedCruorBoss = false;
     public static bool CompleteNewFrostEvent = false;
 
     public override void ClearWorld() {
         DownedSinlordBoss = false;
+        DownedCruorBoss = false;
         CompleteNewFrostEvent = false;
     }
     public override void SaveWorldData(TagCompound tag) {
         if (DownedSinlordBoss) {
             EzSave(tag, "downedSinlordBoss", ref DownedSinlordBoss);
+        }
+        if (DownedCruorBoss)
+        {
+            EzSave(tag, "downedCruorBoss", ref DownedCruorBoss);
         }
         if (CompleteNewFrostEvent) {
             EzSave(tag, "CompleteNewFrostEvent", ref CompleteNewFrostEvent);
@@ -23,11 +29,13 @@ public class DownedBossSystem : ModSystem {
     }
     public override void LoadWorldData(TagCompound tag) {
         EzLoad(tag, "downedSinlordBoss", ref DownedSinlordBoss);
+        EzLoad(tag, "downedCruorBoss", ref DownedCruorBoss);
         EzLoad(tag, "CompleteNewFrostEvent", ref CompleteNewFrostEvent);
     }
     public override void NetSend(BinaryWriter writer) {
         BitsByte flags = new();
         flags[0] = DownedSinlordBoss;
+        flags[2] = DownedCruorBoss;
         flags[1] = CompleteNewFrostEvent;
         writer.Write(flags);
     }
@@ -35,5 +43,6 @@ public class DownedBossSystem : ModSystem {
         BitsByte flags = reader.ReadByte();
         DownedSinlordBoss = flags[0];
         CompleteNewFrostEvent = flags[1];
+        DownedCruorBoss = flags[2];
     }
 }

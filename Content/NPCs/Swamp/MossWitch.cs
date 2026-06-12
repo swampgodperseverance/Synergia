@@ -1,21 +1,27 @@
-﻿using ReLogic.Content;
-using Synergia.Helpers;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Text;
 using System.Threading.Tasks;
+using ReLogic.Content;
+using Synergia.Content.Items.ActiveAccessories;
+using Synergia.Helpers;
 using Terraria;
 using Terraria.Audio;
 using Terraria.DataStructures;
 using Terraria.GameContent;
+using Terraria.GameContent.ItemDropRules;
 using Terraria.ID;
 
 namespace Synergia.Content.NPCs.Swamp
 {
     public class MossWitch : ModNPC
     {
+        public override void ModifyNPCLoot(NPCLoot npcLoot)
+        {
+            npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<TheMossWitchCrystal>(), chanceDenominator: 6)); 
+        }
         public override string LocalizationCategory => Category(CategoryName.NPC);
 
         //attack
@@ -267,17 +273,23 @@ namespace Synergia.Content.NPCs.Swamp
                     SpawnSwampling();
             }
         }
+
         void SpawnSwampling()
         {
             if (Main.netMode == NetmodeID.MultiplayerClient) return;
-            int npcToSpawn = CanSpawnAfterDiggingUp[Main.rand.Next(0, CanSpawnAfterDiggingUp.Count)];
-            NPC npc = NPC.NewNPCDirect(
-                Projectile.GetSource_None(),
-                (int)Projectile.Center.X,
-                (int)Projectile.Center.Y,
-                npcToSpawn
-            );
-            npc.velocity.Y = -12;
+
+            // 20% chance added
+            if (Main.rand.NextFloat() < 0.2f)
+            {
+                int npcToSpawn = CanSpawnAfterDiggingUp[Main.rand.Next(0, CanSpawnAfterDiggingUp.Count)];
+                NPC npc = NPC.NewNPCDirect(
+                    Projectile.GetSource_None(),
+                    (int)Projectile.Center.X,
+                    (int)Projectile.Center.Y,
+                    npcToSpawn
+                );
+                npc.velocity.Y = -12;
+            }
         }
         public override void OnKill(int timeLeft)
         {

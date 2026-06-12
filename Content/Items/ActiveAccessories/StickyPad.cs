@@ -28,12 +28,12 @@ namespace Synergia.Content.Items.ActiveAccessories
             Item.accessory = true;
             Item.DamageType = GetInstance<AccessoryDamageClass>();
 
-            cooldown = 10 * 60;
+            cooldown = 12 * 60;
         }
 
         public override bool Use(Player player, ref int time, ref int damage, ref bool silent)
         {
-            player.velocity.Y = -24f;
+            player.velocity.Y = -40f;
 
             SoundEngine.PlaySound(SoundID.Item16, player.Center);
             SoundEngine.PlaySound(SoundID.Item52, player.Center);

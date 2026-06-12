@@ -1095,7 +1095,7 @@ Items: {
 	}
 
 	Hades: {
-		Tooltip: ""
+		Tooltip: The only one who can stand in my way is ME.
 		DisplayName: Hades
 	}
 
@@ -1115,31 +1115,31 @@ Items: {
 		Tooltip: ""
 		DisplayName: Sticky Pad
 		Passive: No fall damage!
-		Active: Mods.Synergia.Items.StickyPad.Active
+		Active: JUMP TO THE HEAVEN!
 	}
 
 	RunicWard: {
 		Tooltip: ""
 		DisplayName: Runic Ward
-		Passive: Mods.Synergia.Items.RunicWard.Passive
-		Active: Mods.Synergia.Items.RunicWard.Active
+		Passive: Increases magic damage by 5%
+		Active: Makes a dash and summon runic clone which deals damage.
 	}
 
 	CruelAmulet: {
 		Tooltip: ""
 		DisplayName: Cruel Amulet
-		Passive: Mods.Synergia.Items.CruelAmulet.Passive
-		Active: Mods.Synergia.Items.CruelAmulet.Active
+		Passive: Has no passive effects.
+		Active: Destroys all hostile projectiles. I'm afraid I can't let you... kill your past.
 	}
 
 	StoneAge: {
 		DisplayName: Stone Age
-		Tooltip: ""
+		Tooltip: Intensifies at times, dealing more damage
 	}
 
 	Justice: {
-		Passive: Mods.Synergia.Items.Justice.Passive
-		Active: Mods.Synergia.Items.Justice.Active
+		Passive: Increases damage endurance by 5%
+		Active: Makes player invulnerable for almost 2 seconds
 		DisplayName: Justice
 		Tooltip: ""
 	}
@@ -1147,8 +1147,27 @@ Items: {
 	EternalFire: {
 		Tooltip: ""
 		DisplayName: Eternal Fire
-		Active: Mods.Synergia.Items.EternalFire.Active
-		Passive: Mods.Synergia.Items.EternalFire.Passive
+		Active: Makes a dash and summon Solar Bombs dealing damage.
+		Passive: Has no passive effects.
+	}
+
+	TheOriginOfSymmetry: {
+		Tooltip:
+			'''
+			Increases critical strike chance by 20%
+			Splits screen into 9 reflections
+			'''
+		DisplayName: Axis of Reflections
+	}
+
+	CruorRelicItem: {
+		Tooltip: ""
+		DisplayName: Cruor Relic Item
+	}
+
+	CruorTrophy: {
+		Tooltip: ""
+		DisplayName: Cruor Trophy
 	}
 }
 
@@ -1604,6 +1623,8 @@ Projectiles: {
 	SunBomb.DisplayName: Sun Bomb
 	CruorSpike.DisplayName: Cruor Spike
 	CruorStar.DisplayName: Cruor Star
+	BoneFlash.DisplayName: Bone Flash
+	SoulfulGem.DisplayName: Soulful Gem
 }
 
 Buffs: {
