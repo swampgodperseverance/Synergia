@@ -15,33 +15,51 @@ namespace Synergia.Common.ModSystems {
         public static bool FirstEnterInSnowVillage { get; internal set; }
         public static bool FirstEnterInHellVillage { get; internal set; }
         public static bool SpawnDwarf { get; internal set; }
-        public static bool SinlordDead;
+
+        internal static bool sinlordDead = false;
+        public static bool SinlordDead { get { return sinlordDead; } private set { sinlordDead = value; } }
+
+        internal static bool mossWitchDead = false;
+        public static bool MossWitchDead { get { return mossWitchDead; } private set { mossWitchDead = value; } }
+
+        internal static bool cruorDead = false;
+        public static bool CruorDead { get { return cruorDead; } private set { cruorDead = value; } }
+
         public static bool SpawnCristal { get; set; }
 
         public override void ClearWorld() {
             FirstEnterInSnowVillage = false;
             FirstEnterInHellVillage = false;
             SpawnDwarf = false;
-            SinlordDead = false;
+            sinlordDead = false;
+            mossWitchDead = false;
+            cruorDead = false;
             SpawnCristal = false;
         }
         public override void OnWorldLoad() {
             FirstEnterInSnowVillage = false;
             FirstEnterInHellVillage = false;
             SpawnDwarf = false;
+            sinlordDead = false;
+            mossWitchDead = false;
+            cruorDead = false;
             SpawnCristal = false;
         }
         public override void SaveWorldData(TagCompound tag) {
             tag["FirstEnterInSnowVillage"] = FirstEnterInSnowVillage;
             tag["FirstEnterInHellVillage"] = FirstEnterInHellVillage;
             tag["SpawnDwarf"] = SpawnDwarf;
-            tag["SinlordDead"] = SinlordDead;
+            tag["SinlordDead"] = sinlordDead;
+            tag["MossWitchDead"] = mossWitchDead;
+            tag["CruorDeadDead"] = cruorDead;
         }
         public override void LoadWorldData(TagCompound tag) {
             FirstEnterInSnowVillage = tag.GetBool("FirstEnterInSnowVillage");
             FirstEnterInHellVillage = tag.GetBool("FirstEnterInHellVillage");
             SpawnDwarf = tag.GetBool("SpawnDwarf");
-            SinlordDead = tag.GetBool("SinlordDead");
+            sinlordDead = tag.GetBool("SinlordDead");
+            mossWitchDead = tag.GetBool("MossWitchDead");
+            cruorDead = tag.GetBool("CruorDeadDead");
         }
         sealed public override void NetSend(BinaryWriter writer) {
             writer.Write(FirstEnterInSnowVillage);

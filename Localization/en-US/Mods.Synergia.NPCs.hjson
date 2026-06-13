@@ -126,7 +126,16 @@ ImperianCommander: {
 
 Skelegon.DisplayName: Skelegon
 BigBob.DisplayName: Undertaken
-Sinlord.DisplayName: Sinlord Wyrm
+
+Sinlord: {
+	DisplayName: Sinlord Wyrm
+
+	BossChecklistIntegration: {
+		EntryName: Sinlord Wyrm
+		SpawnInfo: After completing the final quest with the Dwarf in Hell
+	}
+}
+
 SinlordBody.DisplayName: Sinlord Wyrm
 SinlordTail.DisplayName: Sinlord Wyrm
 FrogRider.DisplayName: Frog Rider
@@ -149,4 +158,16 @@ MossWitch: {
 TaintedSlime.DisplayName: Tainted Slime
 TaintedPickaxe.DisplayName: Tainted Pickaxe
 TaintedMummy.DisplayName: Tainted Mummy
-Cruor.DisplayName: Cruor
+
+Cruor: {
+	DisplayName: Cruor
+
+	BossChecklistIntegration: {
+		EntryName: Cruor
+		SpawnInfo:
+			'''
+			Mobs in the dungeon may drop “Inspired Crystals” 
+			And when three of them gather around the player, they are summoned
+			'''
+	}
+}

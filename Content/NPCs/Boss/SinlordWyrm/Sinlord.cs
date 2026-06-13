@@ -1,19 +1,15 @@
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
-using Terraria;
-using Terraria.ID;
-using Terraria.GameContent.ItemDropRules;
-using Terraria.DataStructures;
-using Terraria.ModLoader;
-using Terraria.Audio;
-using Terraria.Graphics.CameraModifiers;
-using System;
-using System.IO;
-using System.Collections.Generic;
 using Synergia.Content.Items.Misc;
 using Synergia.Content.Items.Placeable;
 using Synergia.Content.Items.Weapons.Cogworm;
 using Synergia.Content.Projectiles.Boss.SinlordWyrm;
+using System;
+using System.Collections.Generic;
+using System.IO;
+using Terraria;
+using Terraria.Audio;
+using Terraria.GameContent.ItemDropRules;
+using Terraria.Graphics.CameraModifiers;
+using Terraria.ID;
 using ValhallaMod.Items.Placeable.Blocks;
 
 namespace Synergia.Content.NPCs.Boss.SinlordWyrm
@@ -79,7 +75,7 @@ namespace Synergia.Content.NPCs.Boss.SinlordWyrm
 				Projectile.NewProjectile(NPC.GetSource_FromAI(), NPC.Center, Vector2.Zero, ModContent.ProjectileType<BurningExplosion>(), 0, 0f, Main.myPlayer);
 				foreach(int i in segments) if(Main.npc[i].active) Projectile.NewProjectile(NPC.GetSource_FromAI(), Main.npc[i].Center, Vector2.Zero, ModContent.ProjectileType<BurningExplosion>(), 0, 0f, Main.myPlayer);
 			}
-			NPC.SetEventFlagCleared(ref Common.ModSystems.SynergiaWorld.SinlordDead, -1);
+			NPC.SetEventFlagCleared(ref Common.ModSystems.SynergiaWorld.sinlordDead, -1);
 		}
 		public override void HitEffect(NPC.HitInfo hit) {
 			if(NPC.ai[0] == -1f && NPC.life <= 0 && !Main.dedServ)  {

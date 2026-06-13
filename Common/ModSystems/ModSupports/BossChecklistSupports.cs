@@ -1,5 +1,6 @@
 using Synergia.Content.Items.Misc;
 using Synergia.Content.NPCs.Boss.SinlordWyrm;
+using Synergia.Content.NPCs.Miniboss;
 using Synergia.Content.NPCs.Swamp;
 using System;
 using System.Collections.Generic;
@@ -12,8 +13,9 @@ namespace Synergia.Common.ModSystems.ModSupports {
         public override Mod TargetMod() { ModLoader.TryGetMod("BossChecklist", out Mod mod); return mod; }
         public override void PostSetupContent(Mod bossChecklistMod) {
             if (bossChecklistMod.Version < new Version(1, 6)) { return; }
-            RegisterInBossChecklist(bossChecklistMod, type[0], nameof(Sinlord), 12.5f, () => DownedBossSystem.DownedSinlordBoss, NPCType<Sinlord>(), ItemType<HellwormScale>(), CustomPortrait("Sinlord", 1f));
-            RegisterInBossChecklist(bossChecklistMod, type[1], nameof(MossWitch), 5.4f, () => DownedBossSystem.CompleteNewFrostEvent, NPCType<MossWitch>(), -1, CustomPortrait("Cruor", 1f));
+            RegisterInBossChecklist(bossChecklistMod, type[1], nameof(MossWitch), 5.4f, () => SynergiaWorld.MossWitchDead, NPCType<MossWitch>(), -1);
+            RegisterInBossChecklist(bossChecklistMod, type[1], nameof(Cruor), 12.4f, () => SynergiaWorld.CruorDead, NPCType<Cruor>(), -1, CustomPortrait("Cruor", 1f));
+            RegisterInBossChecklist(bossChecklistMod, type[0], nameof(Sinlord), 13.5f, () => SynergiaWorld.SinlordDead, NPCType<Sinlord>(), ItemType<HellwormScale>(), CustomPortrait("Sinlord", 1f));
         }
         void RegisterInBossChecklist(Mod bossChecklistMod, string type, string internalName, float weight, Func<bool> downed, int bossType, int spawnItem) {
             if (spawnItem > -1) { bossChecklistMod.Call(type, Mod, internalName, weight, downed, bossType, new Dictionary<string, object>() { ["spawnItems"] = new List<int> { spawnItem } }); }

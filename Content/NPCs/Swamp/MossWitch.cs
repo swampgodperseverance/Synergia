@@ -22,6 +22,8 @@ namespace Synergia.Content.NPCs.Swamp
         {
             npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<TheMossWitchCrystal>(), chanceDenominator: 6)); 
         }
+        public override void OnKill() => NPC.SetEventFlagCleared(ref Common.ModSystems.SynergiaWorld.mossWitchDead, -1);
+
         public override string LocalizationCategory => Category(CategoryName.NPC);
 
         //attack

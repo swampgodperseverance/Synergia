@@ -255,6 +255,7 @@ namespace Synergia.Content.NPCs.Miniboss
                 Dust.NewDustPerfect(NPC.Center, ModContent.DustType<CruorDust>(), Main.rand.NextVector2Circular(5f, 5f), 0, default, 1.8f).noGravity = true;
             }
             SoundEngine.PlaySound(SoundID.Item14, NPC.Center);
+            NPC.SetEventFlagCleared(ref Common.ModSystems.SynergiaWorld.cruorDead, -1);
         }
     }
 }
