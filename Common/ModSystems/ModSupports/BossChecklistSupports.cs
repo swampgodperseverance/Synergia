@@ -20,7 +20,8 @@ namespace Synergia.Common.ModSystems.ModSupports {
             else { bossChecklistMod.Call(type, Mod, internalName, weight, downed, bossType); }
         }
         void RegisterInBossChecklist(Mod bossChecklistMod, string type, string internalName, float weight, Func<bool> downed, int bossType, int spawnItem, Action<SpriteBatch, Rectangle, Color> customPortrait) {
-            bossChecklistMod.Call(type, Mod, internalName, weight, downed, bossType, new Dictionary<string, object>() { ["spawnItems"] = new List<int> { spawnItem }, ["customPortrait"] = customPortrait});
+            if (spawnItem > -1) { bossChecklistMod.Call(type, Mod, internalName, weight, downed, bossType, new Dictionary<string, object>() { ["spawnItems"] = new List<int> { spawnItem }, ["customPortrait"] = customPortrait }); }
+            else { bossChecklistMod.Call(type, Mod, internalName, weight, downed, bossType, new Dictionary<string, object>() { ["customPortrait"] = customPortrait }); }
         }   
         static Action<SpriteBatch, Rectangle, Color> CustomPortrait(string name, float size) {
             return (sb, rect, color) => { Texture2D texture = Request<Texture2D>($"Synergia/Assets/Textures/{name}").Value; 
