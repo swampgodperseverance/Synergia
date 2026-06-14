@@ -8,11 +8,6 @@ namespace Synergia.Common.ModSystems.WorldGens {
     public class SynergiaGenVars: ModSystem {
         public static List<Vector2> VillageTiles { get; set; } = [];
         public static List<Vector2> VillageWalles { get; set; } = [];
-        public static List<Vector2> HLOTiles { get; set; } = [];
-        public static List<Vector2> HLOWalles { get; set; } = [];
-        public static List<Vector2> HLTTiles { get; set; } = [];
-        public static List<Vector2> HLTWalles { get; set; } = [];
-
 
         public static int SnowVillagePositionX { get; set; }
         public static int SnowVillagePositionY { get; set; }
@@ -33,10 +28,6 @@ namespace Synergia.Common.ModSystems.WorldGens {
         public override void OnWorldLoad() {
             VillageTiles.Clear();
             VillageWalles.Clear();
-            HLTTiles.Clear();
-            HLOWalles.Clear();
-            HLTTiles.Clear();
-            HLTWalles.Clear();
 
             SnowVillagePositionX = 0;
             SnowVillagePositionY = 0;
@@ -57,10 +48,6 @@ namespace Synergia.Common.ModSystems.WorldGens {
         public override void SaveWorldData(TagCompound tag) {
             tag["VillageTiles"] = VillageTiles;
             tag["VilageWalles"] = VillageWalles;
-            tag["HLOTiles"] = HLTTiles;
-            tag["HLOWalles"] = HLTTiles;
-            tag["HLTTiles"] = HLTTiles;
-            tag["HLTWalles"] = HLTTiles;
 
             tag["SnowVillagePositionX"] = SnowVillagePositionX;
             tag["SnowVillagePositionY"] = SnowVillagePositionY;
@@ -81,10 +68,6 @@ namespace Synergia.Common.ModSystems.WorldGens {
         public override void LoadWorldData(TagCompound tag) {
             VillageTiles = tag.Get<List<Vector2>>("VillageTiles");
             VillageWalles = tag.Get<List<Vector2>>("VilageWalles");
-            HLTTiles = tag.Get<List<Vector2>>("HLOTiles");
-            HLOWalles = tag.Get<List<Vector2>>("HLOWalles");
-            HLTTiles = tag.Get<List<Vector2>>("HLTTiles");
-            HLTWalles = tag.Get<List<Vector2>>("HLTWalles");
 
             SnowVillagePositionX = tag.GetInt("SnowVillagePositionX");
             SnowVillagePositionY = tag.GetInt("SnowVillagePositionY");
@@ -107,14 +90,6 @@ namespace Synergia.Common.ModSystems.WorldGens {
             foreach (Vector2 v in VillageTiles) writer.WriteVector2(v);
             writer.Write(VillageWalles.Count);
             foreach (Vector2 v in VillageWalles) writer.WriteVector2(v);
-            writer.Write(HLTTiles.Count);
-            foreach (Vector2 v in HLTTiles) writer.WriteVector2(v);
-            writer.Write(HLOWalles.Count);
-            foreach (Vector2 v in HLOWalles) writer.WriteVector2(v);
-            writer.Write(HLTTiles.Count);
-            foreach (Vector2 v in HLTTiles) writer.WriteVector2(v);
-            writer.Write(HLTWalles.Count);
-            foreach (Vector2 v in HLTWalles) writer.WriteVector2(v);
 
 
             writer.Write(SnowVillagePositionX);
@@ -139,14 +114,6 @@ namespace Synergia.Common.ModSystems.WorldGens {
             for (int i = 0; i < count; i++)  { VillageTiles.Add(reader.ReadVector2()); }
             int count2 = reader.ReadInt32(); VillageWalles.Clear();
             for (int i = 0; i < count2; i++) { VillageWalles.Add(reader.ReadVector2()); }
-            int count3 = reader.ReadInt32(); HLTTiles.Clear();
-            for (int i = 0; i < count3; i++) { HLTTiles.Add(reader.ReadVector2()); }
-            int count4 = reader.ReadInt32(); HLOWalles.Clear();
-            for (int i = 0; i < count4; i++) { HLOWalles.Add(reader.ReadVector2()); }
-            int count5 = reader.ReadInt32(); HLTTiles.Clear();
-            for (int i = 0; i < count5; i++) { HLTTiles.Add(reader.ReadVector2()); }
-            int count6 = reader.ReadInt32(); HLTWalles.Clear();
-            for (int i = 0; i < count6; i++) { HLTWalles.Add(reader.ReadVector2()); }
 
             SnowVillagePositionX = reader.ReadInt32();
             SnowVillagePositionY = reader.ReadInt32();

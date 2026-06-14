@@ -9,16 +9,9 @@ namespace Synergia.Common.ModSystems.Hooks.Ons {
         public override int ArmorType => ItemType<BronzeMask>();
 
         public override void NewLogicForSetBonus(Orig_SetBonus orig, ModItem item, Player player) {
-            orig(item, player);
-            oldText = player.setBonus;
-
-            player.ThrownVelocity += 0.03f;
-            player.statDefense += 2;
-
-            player.setBonus = EditSetBonusText(ref oldText, "7", "10");
-            player.setBonus = EditSetBonusText(ref oldText, "+1", "+3") + "\n" + SUtils.LocUtil.ItemTooltip(SUtils.LocUtil.ARM, "BronzeSetBonus");
-
-            player.GetModPlayer<ArmorPlayers>().equipBronzeSet = true;
+            player.endurance += 10f;
+            player.setBonus = "";
+            player.setBonus = ItemTooltip(ARM, "BronzeSetBonus");
         }
     }
 }

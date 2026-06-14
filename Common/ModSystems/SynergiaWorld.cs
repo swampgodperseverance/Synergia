@@ -12,6 +12,9 @@ using static Synergia.Lists.Items;
 namespace Synergia.Common.ModSystems {
     public class SynergiaWorld : ModSystem {
         public static Dictionary<int, (int, int)> BannerType { get; private set; } = [];
+
+        public static int SwampChestindex { get; set; } = -1;
+
         public static bool FirstEnterInSnowVillage { get; internal set; }
         public static bool FirstEnterInHellVillage { get; internal set; }
         public static bool SpawnDwarf { get; internal set; }
@@ -25,9 +28,13 @@ namespace Synergia.Common.ModSystems {
         internal static bool cruorDead = false;
         public static bool CruorDead { get { return cruorDead; } private set { cruorDead = value; } }
 
+        public static bool OpenChest { get; internal set; } = false;
+
         public static bool SpawnCristal { get; set; }
 
         public override void ClearWorld() {
+            SwampChestindex = -1;
+
             FirstEnterInSnowVillage = false;
             FirstEnterInHellVillage = false;
             SpawnDwarf = false;
@@ -35,8 +42,11 @@ namespace Synergia.Common.ModSystems {
             mossWitchDead = false;
             cruorDead = false;
             SpawnCristal = false;
+            OpenChest = false;
         }
         public override void OnWorldLoad() {
+            SwampChestindex = -1;
+
             FirstEnterInSnowVillage = false;
             FirstEnterInHellVillage = false;
             SpawnDwarf = false;
@@ -44,6 +54,7 @@ namespace Synergia.Common.ModSystems {
             mossWitchDead = false;
             cruorDead = false;
             SpawnCristal = false;
+            OpenChest = false;
         }
         public override void SaveWorldData(TagCompound tag) {
             tag["FirstEnterInSnowVillage"] = FirstEnterInSnowVillage;
@@ -52,6 +63,7 @@ namespace Synergia.Common.ModSystems {
             tag["SinlordDead"] = sinlordDead;
             tag["MossWitchDead"] = mossWitchDead;
             tag["CruorDeadDead"] = cruorDead;
+            tag["OpenChest"] = OpenChest;
         }
         public override void LoadWorldData(TagCompound tag) {
             FirstEnterInSnowVillage = tag.GetBool("FirstEnterInSnowVillage");
@@ -60,18 +72,21 @@ namespace Synergia.Common.ModSystems {
             sinlordDead = tag.GetBool("SinlordDead");
             mossWitchDead = tag.GetBool("MossWitchDead");
             cruorDead = tag.GetBool("CruorDeadDead");
+            OpenChest = tag.GetBool("OpenChest");
         }
         sealed public override void NetSend(BinaryWriter writer) {
             writer.Write(FirstEnterInSnowVillage);
             writer.Write(FirstEnterInHellVillage);
             writer.Write(SpawnDwarf);
             writer.Write(SpawnCristal);
+            writer.Write(OpenChest);
         }
         sealed public override void NetReceive(BinaryReader reader) {
             FirstEnterInSnowVillage = reader.ReadBoolean();
             FirstEnterInHellVillage = reader.ReadBoolean();
             SpawnDwarf = reader.ReadBoolean();
             SpawnCristal = reader.ReadBoolean();
+            OpenChest = reader.ReadBoolean();
         }
         public override void PostWorldGen() {
             WorldHelper.AddContainersLoot(13, 3, SkyChest, ItemType<Starcaller>());

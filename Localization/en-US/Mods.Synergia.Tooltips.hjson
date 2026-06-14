@@ -227,7 +227,7 @@ Accessories: {
 Armors: {
 	Test: Test Accessory Tooltip
 	Test1: Test Accessory Tooltip
-	BronzeSetBonus: The thrower's weapon is poisoned with bronze venom
+	BronzeSetBonus: Increases your damage resistance by 10%
 	CorrodeSetBonus: Your attacks inflict enemies with corrosion decreasing their defense
 	GutsSetBonus:
 		'''

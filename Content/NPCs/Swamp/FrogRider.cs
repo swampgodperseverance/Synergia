@@ -1,5 +1,7 @@
-﻿using System;
+﻿using Bismuth.Utilities;
 using Microsoft.Xna.Framework;
+using Synergia.Common.Biome;
+using System;
 using Terraria;
 using Terraria.Audio;
 using Terraria.ID;
@@ -135,6 +137,11 @@ namespace Synergia.Content.NPCs.Swamp
         public override void OnHitPlayer(Player target, Player.HurtInfo hurtInfo)
         {
             SoundEngine.PlaySound(SoundID.NPCHit13, NPC.Center);
+        }
+        public override float SpawnChance(NPCSpawnInfo spawnInfo) {
+            if (spawnInfo.Player.InModBiome<ZoneSwamp>()) { return 2f; }
+            if (spawnInfo.Player.InModBiome<UndergraundSwamp>()) { return 5f; }
+            return 0;
         }
     }
 }

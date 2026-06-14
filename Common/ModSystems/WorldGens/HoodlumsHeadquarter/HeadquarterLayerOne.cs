@@ -4,7 +4,9 @@ using Avalon.Tiles.Furniture.Coughwood;
 using Avalon.Walls;
 using Bismuth.Content.Tiles;
 using Bismuth.Content.Walls;
+using miningcracks_take_on_luiafk.Utility;
 using Synergia.Helpers;
+using System;
 using Terraria;
 using Terraria.ID;
 using Terraria.WorldBuilding;
@@ -160,6 +162,15 @@ namespace Synergia.Common.ModSystems.WorldGens.HoodlumsHeadquarter {
             if (progress != null) {
                 progress.Message = "Localization";
                 progress.Set(0.33f);
+            }
+
+            // Clear Chest
+            for (int chestIndex = 0; chestIndex < 1000; chestIndex++) {
+                Chest chest = Main.chest[chestIndex];
+                if (chest != null && Main.tile[chest.x, chest.y].TileType == TileType<SwampChest>()) {
+                    chest.item[0].type = ItemID.None;
+                    SynergiaWorld.SwampChestindex = chestIndex;    
+                }
             }
 
             HLOX = SwampCenterX;

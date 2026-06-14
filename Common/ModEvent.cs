@@ -40,6 +40,13 @@ public abstract class ModEvent : ModSystem {
 
     public virtual void Load(int currentWave) { }
     public virtual void PostUpdateWorld(int currentWave) { }
+    public override void ClearWorld() {
+        CurrentWave = 0;
+        EventProgress = 0;
+        FistText = false;
+        IsActive = false;
+        spawnNPC = false;
+    }
     public override void OnWorldLoad() {
         CurrentWave = 0;
         EventProgress = 0;
@@ -248,7 +255,7 @@ public abstract class ModEvent : ModSystem {
         }
     }
     void NextWave() {
-        if (CurrentWave != MaxWave) {
+        if (CurrentWave != MaxWave && FistText) {
             if (EventProgress >= EventSize) {
                 CurrentWave++;
                 EventProgress = 0;

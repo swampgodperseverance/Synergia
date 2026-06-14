@@ -1,6 +1,8 @@
-﻿using System;
-using Bismuth.Content.Dusts;
+﻿using Bismuth.Content.Dusts;
+using Bismuth.Utilities;
 using Microsoft.Xna.Framework;
+using Synergia.Common.Biome;
+using System;
 using Terraria;
 using Terraria.Audio;
 using Terraria.ID;
@@ -416,6 +418,11 @@ SwaR.PitchVariance = 0.12f;
                     d.scale = Main.rand.NextFloat(0.9f, 1.6f);
                 }
             }
+        }
+        public override float SpawnChance(NPCSpawnInfo spawnInfo) {
+            if (spawnInfo.Player.InModBiome<ZoneSwamp>()) { return 2f; }
+            if (spawnInfo.Player.InModBiome<UndergraundSwamp>()) { return 5f; }
+            return 0;
         }
     }
 }

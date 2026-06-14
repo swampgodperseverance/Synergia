@@ -1,6 +1,8 @@
-﻿using System;
-using Bismuth.Content.Dusts;
+﻿using Bismuth.Content.Dusts;
+using Bismuth.Utilities;
 using Microsoft.Xna.Framework;
+using Synergia.Common.Biome;
+using System;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -296,6 +298,11 @@ namespace Synergia.Content.NPCs.Swamp
                     );
                 }
             }
+        }
+        public override float SpawnChance(NPCSpawnInfo spawnInfo) {
+            if (spawnInfo.Player.InModBiome<ZoneSwamp>()) { return 2f; }
+            if (spawnInfo.Player.InModBiome<UndergraundSwamp>()) { return 5f; }
+            return 0;
         }
     }
 }

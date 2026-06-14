@@ -2,18 +2,24 @@
 using Avalon.Tiles.Furniture;
 using Avalon.Tiles.Furniture.Coughwood;
 using Avalon.Tiles.Herbs;
+using Bismuth.Content.Items.Other;
 using Bismuth.Content.Tiles;
-using ParticleLibrary.UI.Primitives.Complex;
+using Bismuth.Utilities;
+using Synergia.Content.Items.Weapons.Melee;
+using Synergia.Content.Items.Weapons.Ranged;
 using Synergia.Helpers;
 using Terraria;
 using Terraria.ID;
 using Terraria.WorldBuilding;
+using ValhallaMod.Items.Accessory;
+using ValhallaMod.Items.Accessory.Shield;
 using ValhallaMod.Tiles.Furnitures;
 using static Synergia.Common.ModSystems.WorldGens.SynergiaGenVars;
 
 namespace Synergia.Common.ModSystems.WorldGens.HoodlumsHeadquarter {
     public class SettingHeadquarter : BaseWorldGens {
         bool swampGen;
+        static int chestValue = 0;
 
         public override string NameGen => "[Synergia] Setting struct in swamp";
         public override int Index => 1;
@@ -211,11 +217,37 @@ namespace Synergia.Common.ModSystems.WorldGens.HoodlumsHeadquarter {
 
         }
 
-        public override void PostUpdateWorld() {}
-        static void SwampChest(Item[] chestInventory, int chestIndex) { }
-        static void GoldChestLeft(Item[] chestInventory, int chestIndex) { }
+        public override void PostUpdateWorld() {
+            Main.LocalPlayer.GetModPlayer<BismuthPlayer>().IsBoSRead = true;
+        }
+        static void SwampChest(Item[] chestInventory, int chestIndex) {
+            int[] items = [ItemType<BlastProtectionVest>(), ItemType<NecroBuckler>()];
+            WorldHelper.LootInContainers(chestInventory, ref chestIndex, ItemType<UnchargedElessar>());
+            if (Main.tile[Main.chest[SynergiaWorld.SwampChestindex].x, Main.chest[SynergiaWorld.SwampChestindex].y].TileType != TileType<SwampChest>()) {
+                WorldHelper.RandomLootInCoutainer(chestInventory, ref chestIndex, 1, 1, items);
+            }
+            else {
+                Main.chest[SynergiaWorld.SwampChestindex].item[0].SetDefaults(Utils.SelectRandom(WorldGen.genRand, items));
+            }
+        }
+        static void ChestLoot(Item[] chestInventory, ref int chestIndex) {
+            WorldHelper.RandomLootInCoutainer(chestInventory, ref chestIndex, 2, 5, ItemID.RegenerationPotion, ItemID.ShinePotion, ItemID.NightOwlPotion, ItemID.SwiftnessPotion, ItemID.GillsPotion, ItemID.HunterPotion, ItemID.MiningPotion, 2329);
+            WorldHelper.LootInContainers(chestInventory, ref chestIndex, ItemID.HealingPotion, 3, 5);
+            WorldHelper.LootInContainers(chestInventory, ref chestIndex, ItemID.ManaPotion, 3, 5);
+        }
+        static void GoldChestLeft(Item[] chestInventory, int chestIndex) {
+            WorldHelper.LootInContainers(chestInventory, ref chestIndex, ItemType<Anaconda>());
+            WorldHelper.LootInContainers(chestInventory, ref chestIndex, ItemID.HermesBoots);
+            WorldHelper.LootInContainers(chestInventory, ref chestIndex, ItemID.ArcheryPotion);
+            ChestLoot(chestInventory, ref chestIndex);
+            WorldHelper.LootInContainers(chestInventory, ref chestIndex, ItemID.GoldCoin, 1, 10);
+        }
         static void GoldChestRight(Item[] chestInventory, int chestIndex) {
-            WorldHelper.LootInContainers(chestInventory, ref chestIndex, 151);
+            WorldHelper.LootInContainers(chestInventory, ref chestIndex, ItemType<StoneAge>());
+            WorldHelper.LootInContainers(chestInventory, ref chestIndex, ItemID.BandofRegeneration);
+            WorldHelper.LootInContainers(chestInventory, ref chestIndex, ItemID.IronskinPotion);
+            ChestLoot(chestInventory, ref chestIndex);
+            WorldHelper.LootInContainers(chestInventory, ref chestIndex, ItemID.GoldCoin, 1, 10);
         }
     }
 }

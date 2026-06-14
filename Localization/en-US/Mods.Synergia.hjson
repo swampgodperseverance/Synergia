@@ -1756,6 +1756,11 @@ Biomes: {
 		TownNPCDialogueName: the Frontier
 		DisplayName: Frontier
 	}
+
+	UndergraundSwamp: {
+		DisplayName: Undergraund Swamp
+		TownNPCDialogueName: the Undergraund Swamp
+	}
 }
 
 Emotes.DwarfEmote.Command: dwarfemote

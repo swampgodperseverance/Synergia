@@ -17,9 +17,10 @@ namespace Synergia.Common.GlobalWalles {
         public override bool CanExplode(int i, int j, int type) => BaseLogic(i, j);
         static bool HellStructBlock(int i, int j) => WorldHelper.CheckBiomeTile(i, j, 237 + SynergiaGenVars.HellArenaPositionX - SynergiaGenVars.HellLakeX, 119, SynergiaGenVars.HellLakeX - 236, SynergiaGenVars.HellLakeY - 119);
         static bool SnowVillages(int i, int j) => SynergiaGenVars.VillageTiles.Contains(new Vector2(i, j));
+        static bool Swamp(int i, int j) => WorldHelper.CheckBiomeTile(i, j, 171, System.Math.Abs(SynergiaGenVars.HLTY - SynergiaGenVars.HLOY), SynergiaGenVars.HLTX - 171, SynergiaGenVars.HLOY - System.Math.Abs(SynergiaGenVars.HLTY - SynergiaGenVars.HLOY) - 31);
         static bool BaseLogic(int i, int j) {
             if (!WorldGen.gen) {
-                if (HellStructBlock(i, j) || SnowVillages(i, j)) {
+                if (HellStructBlock(i, j) || SnowVillages(i, j) || Swamp(i, j)) {
                     if (Main.LocalPlayer.HasItem(ItemType<MasterToolBox>())) { return true; }
                     else { return false; }
                 }

@@ -15,14 +15,18 @@ namespace Synergia.Common.GlobalNPCs {
             }
         }
         public override void EditSpawnPool(IDictionary<int, float> pool, NPCSpawnInfo spawnInfo) {
-            if (Main.LocalPlayer.InModBiome<NewHell>()) {
+            if (spawnInfo.Player.InModBiome<NewHell>()) {
                 if (NPC.downedPlantBoss) {
                     for (int i = 0; i < NPCLoader.NPCCount; i++) {
-                        if (Lists.NPCs.NewHellNPCs.Contains(i)) {
-                            continue;
-                        }
+                        if (Lists.NPCs.NewHellNPCs.Contains(i)) { continue; }
                         pool.Remove(i);
                     }
+                }
+            }
+            if (spawnInfo.Player.InModBiome<UndergraundSwamp>()) {
+                for (int i = 0; i < NPCLoader.NPCCount; i++) {
+                    if (Lists.NPCs.NewSwampNPCs.Contains(i)) { continue; }
+                    pool.Remove(i);
                 }
             }
         }
