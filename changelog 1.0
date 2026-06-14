@@ -5,10 +5,12 @@ Frostholm city structure was added.
 Hoodlums Headquarter structure was added.
 Inferno Frontier structure was added.
 New main menu: The Beast Cave
-New Mini-Boss in swamps was added.
-New Mini-Boss in Dungeon was added.
+New Mini-Boss Moss Witch was added.
+New Mini-Boss Cruor was added.
+2 new entries for boss checklist
 New enemy Skelegon was added.
 New enemy Overtaken was added.
+New enemy Nibbler was added.
 Nw enemy Sparky was added.
 New town NPC Hell Dwarven was added.
 New enemy Snowykaze was added.
@@ -17,11 +19,17 @@ New enemy Hoodlum Swampling was added.
 New enemy Swampling Warrior was added.
 New enemy Frog Rider was added.
 New enemy Mischiveous Duo was added.
+New enemy Tainted Slime was added.
+New enemy Tainted Mummy was added.
+New enemy Tainted Pickaxe was added.
 Frost legion event was reworked.
 New background was added for the Frost Legion
 3 new types of presents were added, each with unique effects.
 New weapon Belphegor was added.
 New weapon Seaborn was added.
+New weapon Stone Age was added.
+New weapon Anaconda was added.
+New weapon Hades was added.
 New weapon Malebolge was added.
 New weapon Echelonis was added.
 New weapon Sodomist was added.
@@ -47,8 +55,17 @@ New tool Coreburned Pickaxe was added.
 New tool Coreburned Pickaxe was added.
 New tool Bronze Drill was added. Avalon Alt to the Valhalla's tin and copper content
 New accessory Thunder Sigil was added.
+New accessory Mortal Stones was added.
+New accessory Axis of Reflections was added.
+New accessory Jeweler was added.
 New wings were added.
 New active accessory Cursed Mirror was added.
+New active accessory Moss Witch Amulet was added.
+New active accessory Cruel Amulet was added.
+New active accessory Runic Ward was added.
+New active accessory Sticky Pad was added.
+New active accessory Justice was added.
+New active accessory Eternal Fire was added.
 New Shardfling Potion was added.
 Bronze Acolyte leggings were added.
 Bronze Acolyte hat was added.
@@ -103,11 +120,8 @@ New dashing Eye of Chtulhu attack.
 New summoning Eye of Chtulhu attack.
 New Minotaur attack.
 New necromancer attack with the launch of swords.
-New papuan Wizard attack with the sucking hole.
-New papuan Wizard attack with Projectile shooting.
-New papuan Wizard minion's attack wit Projectile shooting.
-New necromancer attack with the cursed fireballs.
-New expert necromancer attack with reflective mirror.
+New papuan Wizard attacks
+New necromancer attacks
 New Lunatic Cultist rework.
 New King Slime rework.
 New Twins rework.
@@ -128,8 +142,10 @@ Banner for the Snowykaze was added.
 Banner for the Overtaken was added.
 Banner for the Skelegon was added.
 Banner for the Sparky was added.
+Relic for Cruor was added.
+Trophy for Cruor was added
 Sinlord Wyrm now has a master pet.
-Sinlord Wyrn now has new svx.
+Sinlord Wyrn now has new sfx.
 Embient event "The Mist" was added. After 3rd Hell Dwarf quest a Hellheart Monolith appears in the Beast Cave, screen around is dark, and zoom is on maximal value. The only one visible thing, the Monolith in the mist.
 20 new quests
 New sword swing system.
@@ -156,8 +172,11 @@ New config for enabling new recipes.
 New Soundtrack "Peaceful Town" by Gojisturba was added.
 New Soundtrack "Gehenna" by Gojisturba was added.
 New Soundtrack "Sinlord Presence" by Mumb was added.
+New Soundtrack "Dante's Inferno" by Sky was added.
 Bunch of new sounds were added.
 New dynamical price system was added.
+New fishing loots added, Infamous Flame, hellsaw is a rare fishing loot in lava
+Bottled lava can be fished now
 CHANGES/REWORKS/RESPRITES
 Golem changes were remade.
 Lothor the Wild changes were remade.
@@ -178,6 +197,8 @@ Ichormore from Valhalla was changed.(Attack Rework or Visual upgrade)
 Illuminant Batbow from Valhalla was changed.(Attack Rework or Visual upgrade)
 Jade Hwacha from Valhalla was changed.(Attack Rework or Visual upgrade)
 Jade Shortsword from Valhalla was changed.(Attack Rework or Visual upgrade)
+Golden Bomb from Valhalla was changed.(Attack Rework or Visual upgrade)
+Obsidian Seal from Valhalla was changed.(Attack Rework or Visual upgrade)
 Jade Magic from Valhalla was changed.(Attack Rework or Visual upgrade)
 Jade Glaive was fully reworked.
 Kamek's wand from Valhalla was changed.(Attack Rework or Visual upgrade)
@@ -487,6 +508,10 @@ Orc Wizard max life was increased by 160, damage was increased by 10 and defense
 Rhino Orc max life was increased by 500, contact damage was increased by 25 and defense was increased by 10(Bismuth)
 Banshee max life was increased by 150, damage was increased by 4(Bismuth)
 Orcish Portal max life was increased by 1100 and defense was increased by 15(Bismuth)
+Ocram max life was increased by 35000, damage was increased by 4 and defense was increased by 3(Consolaria)
+Papuan Wizard max life was increased by 1200(Bismuth)
+Runic Elemental max life was increased by 250(Bismuth)
+Base Terraria Cultist Lunatic max life was increased by 10000.
 Base Terraria Skeleton Archer max life was increased by 60 and defense was increased by 4.
 Base Terraria Armored Skeleton max life was increased by 60 and defense was increased by 4.
 Base Terraria Moss Hornet max life was increased by 60 and defense was increased by 4.
@@ -648,7 +673,109 @@ Forbidden Crescent have an alternative recipe with troxinium now.
 Greater Potion Belt requires Helios Soul for crafting now.
 Greater Potion Belt has an alternative recipe with Duratanium now.
 Heaven's Seal requires Hallowed Bars for crafting now.
-Killing Emperor now gives additional 15% hp buffs to all mechanical bosses
+Magnet Horseshoe requires 10 Heartstone for crafting now.
+Restoration Rose requires 1 Restoration Band for crafting now.
+Square Root requires 3 Core Shard for crafting now.
+Gem of True Sight requires 1 Tourmaline, 1 Peridot, and 1 Zircon for crafting now.
+Lesser Potion Belt now has a new recipe: Daybloom, Bronze Bar, Strange Brew
+Condensed Knowledge now has a new recipe: Book, Starstone, Mana Flower
+Evil Legings now have a new recipe: Troxinium Bar, Evil Ingot
+Evil Breastplate now has a new recipe: Troxinium Bar, Evil Ingot
+Evil Helmet now has a new recipe: Troxinium Bar, Evil Ingot
+Flinx Fur Bolero now has a new recipe: Silk, Flinx Fur, Bismuth Bar
+Star Aura Staff requires Azurite Bar for crafting now.
+Chlorophyte Shortsword requires 1 Venom Shard for crafting now.
+Leaf Shield requires 1 Venom Shard for crafting now.
+Shell Staff requires 1 Venom Shard for crafting now.
+Chlorophyle Glaive requires 1 Venom Shard for crafting now.
+Venom Sabre] requires 1 Venom Shard for crafting now.
+Sparking Shortsword requires 1 Fire Shard for crafting now.
+Cerberus requires 1 Fire Shard for crafting now.
+Spore Plant Pot requires 1 Toxin Shard for crafting now.
+Bulbasword requires 1 Toxin Shard for crafting now.
+Bamboo Whip now has a new recipe: Bamboo Block, Rope Whip
+Hyperthermia now has a new recipe: Granite Charger, Energy Revolver, Heat Ray
+Terra Spear now has a new recipe: True Dark Lance, True Gungnir, Broken Spear
+Blade of Evil now has a new recipe: Troxinium Bar, Evil Ingot
+Marble Shield Breaker now has a new recipe: Marble, Hallowed Bar
+Olimpus Slasher now has a new recipe: Marble, Hallowed Bar
+Disabled recipes for Chlorophyte Headpiece, Hallowed Headpiece, and Hallowed Face Shield.
+Key Of The Sun requires 1 Thunder Bar for crafting now.
+True Philosopher Stone requires 30 Zinc Ore, 30 Bismuth Ore, 30 Bronze Ore, and 30 Nickel Ore for crafting now.
+Chlorophyte Javelin requires 1 Venom Shard for crafting now.
+Nano Jetpack requires 1 Aluminium Bar for crafting now.
+Rope Whip requires 1 Elastic Cord for crafting now.
+Crimeras Tongue requires 1 Bamboo Whip for crafting now.
+Hungry Worm requires 1 Bamboo Whip for crafting now.
+Nano Star requires 8 Aluminium Bar for crafting now.
+Scarlet Gungnir requires 5 Wicked Shards for crafting now.
+Herbarium requires 1 Tattered Book for crafting now.
+Freeze Bolt requires 3 Frigid Shard for crafting now.
+Icicle requires 1 Ice Crystal for crafting now.
+Longbone requires 1 Elastic Cord for crafting now.
+Aeons Eternity requires 1 Star Fusion for crafting now.
+Urchin Mace requires 3 Fish Tooth for crafting now.
+True Aeons Eternity requires 10 Soul of Sight, 10 Soul of Might, and 10 Soul of Fright for crafting now.
+Quantum Claymore requires 10 Dark Essence for crafting now.
+Vertex Of Excalibur requires 1 Blade Evil for crafting now.
+Crystal Unity now has a new recipe: Rod Of The Shock, Rod Of The Dragonfire, Rod Of The Terra, Rod Of The Stream, Element Diamond
+Crystal Tomahawk now has a new recipe: Rusty Axe, Crystal Shard, Soul of Light
+Magmafrost Bolt now has a new recipe: Freeze Bolt, Fire Lighter
+Reflector Staff now has a new recipe: Aluminium Bar, Quicksilver, Big Lens, Soul of Light
+Darklight Lance now has a new recipe: Spear, Hallowed Bar, Dark Essence
+Cranium Crusher now has a new recipe: Corrode Club, Hallowed Bar
+Suspicious Looking Skull requires 5 Lunar Tablet Fragment for crafting now.
+Zenith requires 1 Solar Wind, 1 Quantum Claymore, 1 True Aeons Eternity, 1 Radiance, and 1 Blade Evil for crafting now.
+Tonbogiri requires 1 Terra Spear for crafting now.
+Angry Parasite now has a new recipe: Baccilite Bar, Bamboo Whip
+Holy Handgrenade now has a new recipe: Dynamite, Bismuth Bar, Bottled Water
+Ring of Replenishment requires 1 Restoration Rose for crafting now.
+Thorn Heart Amulet requires 5 Fish Tooth for crafting now.
+Banner Belt requires 5 Animal Skin for crafting now.
+Gift of Starpower now has a new recipe: Natures Endowment, Condensed Knowledge, Sorcerer Emblem, Fragment Nebula
+Apollos Quiver now has a new recipe: Lost Pegleg, Leather Quiver, Tribal Quiver, Destroyer Emblem, Magic Quiver, Fragment Vortex
+Underwater Aura Staff now has a new recipe: Seashell, Water Essence
+Waters Breastplate requires 8 Torrent Shard, 5 Soul of Might, 5 Soul of Sight, and 5 Soul of Fright for crafting now.
+Waters Helmet requires 6 Torrent Shard, 5 Soul of Might, 5 Soul of Sight, and 5 Soul of Fright for crafting now.
+Waters Leggings requires 6 Torrent Shard, 5 Soul of Might, 5 Soul of Sight, and 5 Soul of Fright for crafting now.
+Waters Armor new setbonus.
+Ashen Armor new setbonus.
+Palladins armor setbonus rework.
+Feathers In A Bottle requires 3 Air Essence for crafting now.
+Moonlight Staff now has a new recipe: Rune Essence, Duratanium Bar
+Runic Blade now has a new recipe: Rune Essence, Duratanium Bar
+Galvorn Aura Staff now has a new recipe: Galvorn Bar, Earth Essence
+Gel Canister requires 1 Hardened Glass for crafting now.
+Hymn Of Protection requires 1 Tattered Book and 5 Aluminium Bar for crafting now.
+Magnet Horseshoe requires 10 Starstone and 10 Heartstone for crafting now.
+White Thread requires 2 Cobweb for crafting now.
+Disabled recipes for Adamantite Hat, Adamantite Headpiece, Mythril Headgear, Mythril Headpiece, Orichalcum Hat, Orichalcum Headpiece, Titanium Hat, Titanium Hood, Palladium Hat, Palladium Hood, Cobalt Headgear, and Cobalt Headpiece.
+Feral Breastplate requires 14 White Thread for crafting now.
+Feral Leggings requires 12 White Thread for crafting now.
+Feral Helmet requires 12 White Thread for crafting now.
+Forfeiter requires Scarabine for crafting now.
+Riveted Hood now has a new recipe: Animal Leather, Aluminium Bar
+Riveted Boots now has a new recipe: Animal Leather, Aluminium Bar
+Riveted Jacket now has a new recipe: Animal Leather, Aluminium Bar
+Potion Belt now has a new recipe: Lesser Potion Belt, Deathweed, Strange Brew, Baccilite Bar
+Crescento now has a new recipe: Snotknife, Wave Harvester, Bulbasword, Sparking Shortsword
+Golden bomb now has post ocram recipe but i forgot it sorry
+Underwater Aura Scythe now has a new recipe: Underwater Aura Staff, Torrent Shard, Soul of Might, Soul of Fright, Soul of Sight
+Earth Collapse now has a new recipe: Enchanted Ring, Core Shard, Natures Heart
+Airflow now has a new recipe: Azurite Bar 
+Mercurium Aura Scythe now has a new recipe: 10 Mercurium Nugget
+Everwood Necklace now has a new recipe: Elderwood
+Triwhip now has a new recipe: Ripple, Mercurium Zipper, Rope Whip
+Arcane Barrage now has a new recipe: Tattered Book, Amethyst, Enchanted Bar
+Obsidian Seal now has a new recipe: Spell Tome, Arcane Barrage, Rain of Tears, Obsidian, Evil Ingot
+Ghost Venom Staff now has a new recipe: Venom Staff, Mercurium Staff, Spectre Staff, Venom Shard
+Spark Of Sight now has a new recipe: Ghost Venom Staff, Obsidian Seal, Bismuthum Bar, Ectoplasm
+Caesium ring now has a new recipe: 8 Caesium Bars
+Bloodstained Glove now has a new recipe: Frost Gauntlet, Slitthroat Necklace, Solar Fragment
+Caesium Skull now has a new recipe: Caesium Ring, Precious Skull, Soul of Blight
+
+Killing Emperor now gives additional 15% hp buff to all mechanical bosses
+Mirror of the lost was nerfed by 5%
 Add some wetness compatibility:
 1) Player gets less damage in hell when player has 75-100
 2) Water Fighter, Aqua Impact, Water Aura staff, Underwater aura staff, Underwater Scythe, Urchin Uppercutter, Typhoon deal more damage when player has 75-100
@@ -671,6 +798,7 @@ Fleder, Gargoyle, Demonic Spirit and Valkyrie now drop Mystical Claw (≈14% cha
 Infected Man, Frozen Nimbus, Frozen Soul and Giant Albino Charger now drop Element Dust (≈14% chance)
 Flesh Slime, Shadow Slime, Sludger and Tiny Toxic Sludge now drop Dew of Herbs (≈14% chance)
 Vile Decomposer and Dragon Snatcher now drop Dew Orb (≈14% chance)
+Booty Mimic drops magic grenade instead of magic bomb now
 Wyverns now drop Mystical Totem (≈14% chance) and Breeze Shards
 Backwoods Raven, Fleder, Gargoyle, Valkyrie, Frozen Nimbus and Wyverns now drop Breeze Shards (10% chance, 1–2)
 Wyverns additionally drop Wyvern Fur
@@ -726,4 +854,5 @@ Decahedron of the Unfortunate was removed
 Bloody Scythe was removed
 Decayed Scythe was removed
 Books of Progression were removed
-
+Removed 500+ useless files from tpackbuilder version
+Removed Evil Helmet buffs
