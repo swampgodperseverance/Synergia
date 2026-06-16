@@ -8,18 +8,16 @@ using Terraria.ID;
 
 namespace Synergia.Common.GlobalNPCs.AIs
 {
-    public class NecromantAI : GlobalNPC
+    public class EvilNecromancerAI : GlobalNPC
     {
         public override bool InstancePerEntity => true;
 
         private bool spawnedMirror = false; 
+        
+		public override bool AppliesToEntity(NPC npc, bool lateInstatiation) => npc.ModNPC is EvilNecromancer;
 
         public override void AI(NPC npc)
         {
-            if (npc.type != ModContent.NPCType<EvilNecromancer>())
-                return;
-
-            // 
             float hpPercent = (float)npc.life / npc.lifeMax;
 
             if (hpPercent <= 0.35f && !spawnedMirror)
