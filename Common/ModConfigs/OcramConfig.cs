@@ -26,12 +26,10 @@ namespace Synergia.Common.ModConfigs
         public bool NewRecipe { get; set; }
 
         public override void OnLoaded() {
-            OcramUpgrades.HardModeEnabled = HardModeEnabled;
             PapuanWizardUpgrades.HardAIEnabled = PapuanWizardHardAIEnabled;
         }
         public override void OnChanged()
         {
-            OcramUpgrades.HardModeEnabled = HardModeEnabled;
             PapuanWizardUpgrades.HardAIEnabled = PapuanWizardHardAIEnabled;
         }
     }

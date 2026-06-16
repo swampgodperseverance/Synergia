@@ -1665,6 +1665,12 @@ Projectiles: {
 	BlasphemousLightningStar.DisplayName: Blasphemous Lightning Star
 	SuperboltFriendly.DisplayName: Superbolt Friendly
 	GammaBladeProjRework.DisplayName: Gamma Blade Proj Rework
+	OcramExplosion.DisplayName: Ocram Explosion
+	OcramBomb.DisplayName: Ocram Bomb
+	OcramBombExplosion.DisplayName: Ocram Bomb Explosion
+	OcramKnife.DisplayName: Ocram Knife
+	OcramSkull2.DisplayName: Ocram Skull2
+	OcramSkull1.DisplayName: Ocram Skull1
 }
 
 Buffs: {
