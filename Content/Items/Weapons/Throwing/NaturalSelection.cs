@@ -11,7 +11,7 @@ namespace Synergia.Content.Items.Weapons.Throwing
     {
         public override void SetDefaults()
         {
-            Item.damage = 20;
+            Item.damage = 24;
             Item.DamageType = DamageClass.Throwing;
             Item.width = 37;
             Item.height = 32;

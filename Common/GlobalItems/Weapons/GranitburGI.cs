@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using System;
+using Microsoft.Xna.Framework;
 using NewHorizons;
 using Synergia.Content.Projectiles.Reworks.Reworks2;
 using Terraria;
@@ -12,11 +13,13 @@ namespace Synergia.Common.GlobalItems.Weapons
     public class granitburGI : GlobalItem
     {
         public override bool InstancePerEntity => true;
+        private int swingDirection;
 
-        public override bool AppliesToEntity(Item entity, bool lateInstantiation)
+        public override bool AppliesToEntity(Item item, bool lateInstantiation)
         {
-            if (entity.ModItem == null) return false;
-            return entity.ModItem.Mod?.Name == "ValhallaMod" && entity.ModItem.Name == "Granitbur";
+            if (item.ModItem == null) return false;
+            return string.Equals(item.ModItem.Mod?.Name, "ValhallaMod", StringComparison.OrdinalIgnoreCase)
+                && string.Equals(item.ModItem.Name, "Granitbur", StringComparison.OrdinalIgnoreCase);
         }
 
         public override void SetDefaults(Item item)
@@ -28,47 +31,35 @@ namespace Synergia.Common.GlobalItems.Weapons
 
         public int swingCounter = 0;
 
-        public override bool Shoot(
-            Item item,
-            Player player,
-            EntitySource_ItemUse_WithAmmo source,
-            Vector2 position,
-            Vector2 velocity,
-            int type,
-            int damage,
-            float knockback)
+        public override void ModifyShootStats(Item item, Player player, ref Vector2 position, ref Vector2 velocity, ref int type, ref int damage, ref float knockback)
         {
-            if (!AppliesToEntity(item, false))
-                return true;
+            velocity = Vector2.Zero;
+            swingDirection = swingDirection == 1 ? -1 : 1;
+        }
 
-            if (Main.myPlayer == player.whoAmI)
-            {
-                float swingTime = item.useAnimation;
-                int projType = ModContent.ProjectileType<GranitburRework>();
-                int proj = Projectile.NewProjectile(
-                    source,
-                    player.MountedCenter,
-                    velocity,
-                    projType,
-                    damage,
-                    knockback,
-                    player.whoAmI,
-                    swingCounter % 2, // ai0
-                    swingTime // ai1
-                );
+        public override bool Shoot(Item item, Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
+        {
+            Vector2 handOffset = new Vector2(player.direction * 12, -4 * player.gravDir);
+            Vector2 handPos = player.RotatedRelativePoint(player.MountedCenter + handOffset);
 
-                if (proj.WithinBounds(Main.maxProjectiles))
-                {
-                    Main.projectile[proj].netUpdate = true;
-                }
-
-                SoundEngine.PlaySound(SoundID.Item1 with { PitchVariance = 0.15f, Volume = 0.9f }, player.Center);
-            }
-
-            swingCounter++;
-            if (swingCounter > 1) swingCounter = 0;
+            Projectile.NewProjectile(
+                source,
+                handPos,
+                Vector2.Zero,
+                type,
+                damage,
+                knockback,
+                player.whoAmI,
+                ai0: swingDirection,
+                ai1: player.MountedCenter.AngleTo(Main.MouseWorld)
+            );
 
             return false;
+        }
+
+        public override bool CanUseItem(Item item, Player player)
+        {
+            return player.ownedProjectileCounts[item.shoot] < 1;
         }
     }
 }

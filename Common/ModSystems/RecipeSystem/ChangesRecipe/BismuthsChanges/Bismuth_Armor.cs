@@ -1,6 +1,8 @@
 ﻿
+using Avalon.Items.Material.Bars;
 using Avalon.Items.Material.Shards;
 using Bismuth.Content.Items.Armor;
+using Bismuth.Content.Items.Materials;
 using Bismuth.Content.Items.Placeable;
 using Consolaria.Content.Items.Materials;
 using NewHorizons.Content.Items.Ammo;
@@ -32,6 +34,9 @@ namespace Synergia.Common.ModSystems.RecipeSystem.ChangesRecipe.HorizonsChanges
             DisableRecipe(recipe, ItemType<ChlorophyteHeadpiece>());
             DisableRecipe(recipe, ItemType<HallowedHeadpiece>());
             DisableRecipe(recipe, ItemType<HallowedFaceShield>());
+            DisableRecipe(recipe, ItemType<ScalyHelmet>());
+            DisableRecipe(recipe, ItemType<ScalyBreastplate>());
+            DisableRecipe(recipe, ItemType<ScalyLeggings>());
         }
         public override void Ingredient(Recipe recipe)
         {
@@ -60,6 +65,15 @@ namespace Synergia.Common.ModSystems.RecipeSystem.ChangesRecipe.HorizonsChanges
             CreateRivetedHood();
             CreateRivetedBreast();
             CreateRivetedLeggings();
+            CreateScalyLegs1();
+            CreateScalyLegs2();
+            CreateScalyLegs3();
+            CreateScalyBody1();
+            CreateScalyBody2();
+            CreateScalyBody3();
+            CreateScalyHead1();
+            CreateScalyHead2();
+            CreateScalyHead3();
         }
         static void CreatePikemansHelmet()
         {
@@ -106,6 +120,78 @@ namespace Synergia.Common.ModSystems.RecipeSystem.ChangesRecipe.HorizonsChanges
             Recipe recipe = Recipe.Create(ItemType<RivetedJacket>());
             recipe.AddIngredient(RoAItem("AnimalLeather"), 12);
             recipe.AddIngredient(ItemType<AluminiumBar>(), 12);
+            recipe.AddTile(TileID.Anvils);
+            recipe.Register();
+        }
+        static void CreateScalyLegs1()
+        {
+            Recipe recipe = Recipe.Create(ItemType<ScalyLeggings>());
+            recipe.AddIngredient(ItemType<SerpentsScale>(), 8);
+            recipe.AddIngredient(ItemType<BacciliteBar>(), 6);
+            recipe.AddTile(TileID.Anvils);
+            recipe.Register();
+        }
+        static void CreateScalyHead1()
+        {
+            Recipe recipe = Recipe.Create(ItemType<ScalyHelmet>());
+            recipe.AddIngredient(ItemType<SerpentsScale>(), 10);
+            recipe.AddIngredient(ItemType<BacciliteBar>(), 6);
+            recipe.AddTile(TileID.Anvils);
+            recipe.Register();
+        }
+        static void CreateScalyBody1()
+        {
+            Recipe recipe = Recipe.Create(ItemType<ScalyBreastplate>());
+            recipe.AddIngredient(ItemType<SerpentsScale>(), 12);
+            recipe.AddIngredient(ItemType<BacciliteBar>(), 8);
+            recipe.AddTile(TileID.Anvils);
+            recipe.Register();
+        }
+        static void CreateScalyLegs2()
+        {
+            Recipe recipe = Recipe.Create(ItemType<ScalyLeggings>());
+            recipe.AddIngredient(ItemType<SerpentsScale>(), 8);
+            recipe.AddIngredient(ItemID.DemoniteBar, 6);
+            recipe.AddTile(TileID.Anvils);
+            recipe.Register();
+        }
+        static void CreateScalyHead2()
+        {
+            Recipe recipe = Recipe.Create(ItemType<ScalyHelmet>());
+            recipe.AddIngredient(ItemType<SerpentsScale>(), 10);
+            recipe.AddIngredient(ItemID.DemoniteBar, 6);
+            recipe.AddTile(TileID.Anvils);
+            recipe.Register();
+        }
+        static void CreateScalyBody2()
+        {
+            Recipe recipe = Recipe.Create(ItemType<ScalyBreastplate>());
+            recipe.AddIngredient(ItemType<SerpentsScale>(), 12);
+            recipe.AddIngredient(ItemID.DemoniteBar, 8);
+            recipe.AddTile(TileID.Anvils);
+            recipe.Register();
+        }
+        static void CreateScalyLegs3()
+        {
+            Recipe recipe = Recipe.Create(ItemType<ScalyLeggings>());
+            recipe.AddIngredient(ItemType<SerpentsScale>(), 8);
+            recipe.AddIngredient(ItemID.CrimtaneBar, 6);
+            recipe.AddTile(TileID.Anvils);
+            recipe.Register();
+        }
+        static void CreateScalyHead3()
+        {
+            Recipe recipe = Recipe.Create(ItemType<ScalyHelmet>());
+            recipe.AddIngredient(ItemType<SerpentsScale>(), 10);
+            recipe.AddIngredient(ItemID.CrimtaneBar, 6);
+            recipe.AddTile(TileID.Anvils);
+            recipe.Register();
+        }
+        static void CreateScalyBody3()
+        {
+            Recipe recipe = Recipe.Create(ItemType<ScalyBreastplate>());
+            recipe.AddIngredient(ItemType<SerpentsScale>(), 12);
+            recipe.AddIngredient(ItemID.CrimtaneBar, 8);
             recipe.AddTile(TileID.Anvils);
             recipe.Register();
         }

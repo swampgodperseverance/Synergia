@@ -23,7 +23,7 @@ namespace Synergia.Content.Items.Weapons.Throwing
             Item.noUseGraphic = true; 
             Item.noMelee = true; 
             Item.shoot = ModContent.ProjectileType<InfamousFlameProjectile>();
-            Item.shootSpeed = 12f;
+            Item.shootSpeed = 16f;
         }
 
         public override bool CanUseItem(Player player)

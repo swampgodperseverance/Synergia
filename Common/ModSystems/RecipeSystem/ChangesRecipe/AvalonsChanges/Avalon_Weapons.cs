@@ -14,6 +14,7 @@ using Avalon.Items.Weapons.Magic.Superhardmode;
 using Avalon.Items.Weapons.Melee.Hardmode.CraniumCrusher;
 using Avalon.Items.Weapons.Melee.Hardmode.DarklightLance;
 using Avalon.Items.Weapons.Melee.Hardmode.FeroziumIceSword;
+using Avalon.Items.Weapons.Melee.Hardmode.HallowedClaymore;
 using Avalon.Items.Weapons.Melee.Hardmode.QuantumClaymore;
 using Avalon.Items.Weapons.Melee.Hardmode.TrueAeonsEternity;
 using Avalon.Items.Weapons.Melee.Hardmode.VertexOfExcalibur;
@@ -86,9 +87,9 @@ namespace Synergia.Common.ModSystems.RecipeSystem.ChangesRecipe.AvalonsChanges {
             CreateReflectorStaff();
             CreateDarklance();
             CreateCranium();
+            CreateeXC();
         }
         public override void RemoveIngredient(Recipe recipe) {
-            RemoveIngredient(recipe, ItemType<VertexOfExcalibur>(), 5);
         }
         public override void Tiles(Recipe recipe) {
         }
@@ -100,6 +101,7 @@ namespace Synergia.Common.ModSystems.RecipeSystem.ChangesRecipe.AvalonsChanges {
             recipe.AddIngredient(ItemID.AdamantiteBar, 18);
             recipe.AddIngredient(ItemID.FrostCore, 1);
             recipe.AddIngredient(ItemType<FrigidShard>());
+            recipe.AddIngredient(ItemType<SoulofBlight>(), 5);
             recipe.AddTile(TileType<CaesiumHeavyAnvilTile>());
             recipe.Register();
         }
@@ -111,6 +113,7 @@ namespace Synergia.Common.ModSystems.RecipeSystem.ChangesRecipe.AvalonsChanges {
             recipe.AddIngredient(ItemID.TitaniumBar, 18);
             recipe.AddIngredient(ItemID.FrostCore, 1);
             recipe.AddIngredient(ItemType<FrigidShard>());
+            recipe.AddIngredient(ItemType<SoulofBlight>(), 5);
             recipe.AddTile(TileType<CaesiumHeavyAnvilTile>());
             recipe.Register();
         }
@@ -122,6 +125,7 @@ namespace Synergia.Common.ModSystems.RecipeSystem.ChangesRecipe.AvalonsChanges {
             recipe.AddIngredient(ItemType<TroxiniumBar>(), 18);
             recipe.AddIngredient(ItemID.FrostCore, 1);
             recipe.AddIngredient(ItemType<FrigidShard>());
+            recipe.AddIngredient(ItemType<SoulofBlight>(), 5);
             recipe.AddTile(TileType<CaesiumHeavyAnvilTile>());
             recipe.Register();
         }
@@ -177,6 +181,13 @@ namespace Synergia.Common.ModSystems.RecipeSystem.ChangesRecipe.AvalonsChanges {
             Recipe recipe = Recipe.Create(ItemType<CraniumCrusher>());
             recipe.AddIngredient(ItemType<CorrodeClub>(), 1);
             recipe.AddIngredient(ItemID.HallowedBar, 10);
+            recipe.AddTile(TileID.MythrilAnvil);
+            recipe.Register();
+        }
+        static void CreateeXC()
+        {
+            Recipe recipe = Recipe.Create(ItemType<HallowedClaymore>());
+            recipe.AddIngredient(ItemID.HallowedBar, 20);
             recipe.AddTile(TileID.MythrilAnvil);
             recipe.Register();
         }

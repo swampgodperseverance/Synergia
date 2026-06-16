@@ -23,11 +23,13 @@ using NewHorizons.Content.Items.Armor.RottenArmor;
 using NewHorizons.Content.Items.Armor.WyvernHunterArmor;
 using NewHorizons.Content.Items.Materials;
 using Synergia.Content.Items.Accessories;
+using Synergia.Content.Items.Consumables;
 using Synergia.Content.Items.Weapons.AuraStaff;
 using Synergia.Content.Items.Weapons.Summon;
 using Synergia.Content.Items.Weapons.Throwing;
 using Terraria;
 using Terraria.ID;
+using ValhallaMod.Items.Material;
 using ValhallaMod.Items.Weapons.Hybrid.Swords;
 using ValhallaMod.Items.Weapons.Melee.Spears;
 using ValhallaMod.Items.Weapons.Melee.Swords;
@@ -41,6 +43,7 @@ namespace Synergia.Common.ModSystems.RecipeSystem.ChangesRecipe {
         public override void DisableRecipe(Recipe recipe)
         {
             DisableRecipe(recipe, ItemType<Sharanga>());
+            DisableRecipe(recipe, ItemID.PumpkinMoonMedallion);
         }
         public override void Ingredient(Recipe recipe) {
             AddLotIngredient(recipe, ItemID.VenomBullet, (ModContent.ItemType<VenomShard>(), 1));
@@ -74,6 +77,17 @@ namespace Synergia.Common.ModSystems.RecipeSystem.ChangesRecipe {
             CreateAirflow();
             CreateEarthCollapse();
             CreateUnderScythe();
+            CreatePumpkinMedallion();
+            CreateShardflingPotion();
+        }
+        static void CreatePumpkinMedallion()
+        {
+            Recipe recipe = Recipe.Create(ItemID.PumpkinMoonMedallion);
+            recipe.AddIngredient(ItemID.Pumpkin, 30);
+            recipe.AddIngredient(ItemType<ThunderShard>(), 5);
+            recipe.AddIngredient(ItemID.HallowedBar, 10);
+            recipe.AddTile(TileID.MythrilAnvil);
+            recipe.Register();
         }
         static void CreateUnderScythe()
         {
@@ -157,6 +171,15 @@ namespace Synergia.Common.ModSystems.RecipeSystem.ChangesRecipe {
             recipe.AddIngredient(ItemType<BismuthBar>(), 2);
             recipe.AddIngredient(ItemID.BottledWater, 2);
             recipe.AddTile(TileID.Anvils);
+            recipe.Register();
+        }
+        static void CreateShardflingPotion()
+        {
+            Recipe recipe = Recipe.Create(ItemType<ShardflingPotion>());
+            recipe.AddIngredient(ItemID.BottledWater, 1);
+            recipe.AddIngredient(ItemType<WhiteThread>(), 2);
+            recipe.AddIngredient(RoAItem("MiracleMint"), 1);
+            recipe.AddTile(TileID.Bottles);
             recipe.Register();
         }
     }

@@ -2,7 +2,7 @@
 using System.IO;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using ReLogic.Content;                      
+using ReLogic.Content;
 using Terraria;
 using Terraria.Audio;
 using Terraria.Graphics.CameraModifiers;
@@ -10,15 +10,13 @@ using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace Synergia.Content.Projectiles.Reworks.Reworks2
-{
+{ //idea from unowen mech bosses
     public class MinotaursWaraxeRework : ModProjectile
     {
 
         public override void SetStaticDefaults()
         {
             ProjectileID.Sets.HeldProjDoesNotUsePlayerGfxOffY[Type] = true;
-            ProjectileID.Sets.TrailCacheLength[Type] = 2;
-            ProjectileID.Sets.TrailingMode[Type] = 2;
         }
 
         public override void SetDefaults()
@@ -105,7 +103,7 @@ namespace Synergia.Content.Projectiles.Reworks.Reworks2
             }
 
             Projectile.Center = player.MountedCenter
-                - new Vector2(2f, 4f) * player.direction  
+                - new Vector2(2f, 4f) * player.direction
                 + armSwing.ToRotationVector2() * 12f
                 + swing.ToRotationVector2() * 28f * scaleMultiplier;
 
@@ -147,7 +145,7 @@ namespace Synergia.Content.Projectiles.Reworks.Reworks2
 
             if (player.channel ? Projectile.ai[1] != startPoint * 0.5f : Projectile.ai[1] > 0f)
             {
-                Projectile.ai[1] -= 1f;
+                Projectile.ai[1] -= 12f;
             }
         }
 
@@ -207,33 +205,31 @@ namespace Synergia.Content.Projectiles.Reworks.Reworks2
 
         public override bool PreDraw(ref Color lightColor)
         {
-            Texture2D texTrail = ModContent.Request<Texture2D>("Terraria/Images/Extra_98", AssetRequestMode.ImmediateLoad).Value;
-
-            Main.EntitySpriteDraw(
-                texTrail,
-                Projectile.Center
-                    + new Vector2(4f, 25 * -Projectile.spriteDirection)
-                        .RotatedBy(Projectile.rotation + 0.7853982f * Projectile.spriteDirection)
-                    * scaleMultiplier
-                    - Main.screenPosition,
-                new Rectangle(0, texTrail.Height / 2, texTrail.Width, texTrail.Height / 2),
-                new Color(255, 0, 0, 0),
-                Projectile.rotation + MathHelper.PiOver2 * (Projectile.spriteDirection + 1),
-                new Vector2(texTrail.Width / 2f, 0f),
-                scaleMultiplier * new Vector2(0.5f, Math.Abs(Projectile.oldRot[0] - Projectile.oldRot[1]) * 12f),
-                SpriteEffects.None, 0);
             Texture2D texMain = ModContent.Request<Texture2D>(Texture, AssetRequestMode.ImmediateLoad).Value;
+            float rotation = Projectile.rotation + 0.7853982f * Projectile.spriteDirection;
+
+            SpriteEffects effects = Projectile.spriteDirection == 1 ? SpriteEffects.None : SpriteEffects.FlipHorizontally;
+
+            if (Projectile.spriteDirection == 1)
+            {
+                effects = SpriteEffects.None;
+            }
+            else
+            {
+                effects = SpriteEffects.FlipHorizontally;
+            }
 
             Main.EntitySpriteDraw(
                 texMain,
                 Projectile.Center - Main.screenPosition,
                 null,
                 Projectile.GetAlpha(lightColor),
-                Projectile.rotation + 0.7853982f * Projectile.spriteDirection,
+                rotation,
                 texMain.Size() / 2f,
                 scaleMultiplier,
-                Projectile.spriteDirection == 1 ? SpriteEffects.None : SpriteEffects.FlipHorizontally,
+                effects,
                 0);
+
             Texture2D texGlow = ModContent.Request<Texture2D>(GlowTexture, AssetRequestMode.ImmediateLoad).Value;
 
             Main.EntitySpriteDraw(
@@ -241,10 +237,10 @@ namespace Synergia.Content.Projectiles.Reworks.Reworks2
                 Projectile.Center - Main.screenPosition,
                 null,
                 Color.White,
-                Projectile.rotation + 0.7853982f * Projectile.spriteDirection,
+                rotation,
                 texGlow.Size() / 2f,
                 scaleMultiplier,
-                Projectile.spriteDirection == 1 ? SpriteEffects.None : SpriteEffects.FlipHorizontally,
+                effects,
                 0);
 
             return false;

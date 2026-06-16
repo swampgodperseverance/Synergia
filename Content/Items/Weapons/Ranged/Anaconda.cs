@@ -3,6 +3,7 @@ using Avalon.Common;
 using Avalon.Common.Extensions;
 using Avalon.Common.Templates;
 using Microsoft.Xna.Framework;
+using Synergia.Content.Items.Weapons.Melee;
 using Synergia.Content.Projectiles.RangedProjectiles;
 using Terraria;
 using Terraria.Audio;
@@ -17,6 +18,7 @@ namespace Synergia.Content.Items.Weapons.Ranged
         public override void SetStaticDefaults()
         {
             Item.ResearchUnlockCount = 1;
+            ItemID.Sets.ShimmerTransformToItem[Type] = ModContent.ItemType<StoneAge>();
         }
         public override void SetDefaults()
         {

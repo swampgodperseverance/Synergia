@@ -40,9 +40,17 @@ namespace Synergia.Common.GlobalNPCs.Changes
                     npc.damage += 10;
                     npc.defense += 4;
                 },
+                [NPCID.KingSlime] = npc =>
+                {
+                    npc.lifeMax += 200;
+                },
                 [NPCID.CultistBoss] = npc =>
                 {
-                    npc.lifeMax += 10000;
+                    npc.lifeMax += 20000;
+                },
+                [NPCID.CultistDragonHead] = npc =>
+                {
+                    npc.lifeMax += 8000;
                 },
                 [NPCID.VoodooDemon] = npc =>
                 {
@@ -180,7 +188,7 @@ namespace Synergia.Common.GlobalNPCs.Changes
                 [ModContent.NPCType<Banshee>()] = npc =>
                 {
                     npc.lifeMax += 150;
-                    npc.damage += 4;
+                    npc.damage += 2;
                 },
 
                 [ModContent.NPCType<OrcDefender>()] = npc =>
@@ -235,7 +243,7 @@ namespace Synergia.Common.GlobalNPCs.Changes
                 },
                [ModContent.NPCType<Emperor>()] = npc =>
                 {
-                    npc.lifeMax += 3000;
+                    npc.lifeMax += 4000;
                     npc.damage += 10;
                     npc.defense -= 15;
                 },
@@ -290,6 +298,12 @@ namespace Synergia.Common.GlobalNPCs.Changes
                 [lumberjackType] = npc =>
                 {
                     npc.lifeMax += 50;
+                },
+                [ModContent.NPCType<SandWorm>()] = npc =>
+                {
+                    npc.lifeMax += 200;
+                    npc.damage += 2;
+                    npc.defense += 1;
                 },
 
             };

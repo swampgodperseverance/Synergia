@@ -6,6 +6,7 @@ using Terraria.DataStructures;
 using Terraria.GameContent.Bestiary;
 using Terraria.GameContent.ItemDropRules;
 using Terraria.ID;
+using ValhallaMod.Items.Weapons.Ranged.Thrown;
 using static Synergia.Common.SUtils.LocUtil;
 
 namespace Synergia.Content.NPCs
@@ -150,6 +151,7 @@ namespace Synergia.Content.NPCs
 		public override void ModifyNPCLoot(NPCLoot npcLoot)
 		{
 			npcLoot.Add(ItemDropRule.Common(ItemID.SnowBlock, 1, 5, 10));
-		}
+            npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<ExplosiveCharge>(), 1, 23, 45));
+        }
 	}
 }

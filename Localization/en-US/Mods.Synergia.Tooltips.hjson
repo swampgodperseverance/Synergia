@@ -228,13 +228,18 @@ Armors: {
 	Test: Test Accessory Tooltip
 	Test1: Test Accessory Tooltip
 	BronzeSetBonus: Increases your damage resistance by 10%
+	OrcishSetBonus:
+		'''
+		Increases your stats
+		Makes your enemies wither away after being struck
+		'''
 	CorrodeSetBonus: Your attacks inflict enemies with corrosion decreasing their defense
 	GutsSetBonus:
 		'''
-		+10% Summon damage
+		Increases summon damage by +10%
 		Summons up to 5 hunger jaws
 		Each jaw attacks enemies nearby the player
-		Press BLYAT KNOPKY ZABINDIT to launch them to your cursor
+		Press {0} to launch them to your cursor
 		'''
 	ThunderSetBonus:
 		'''
@@ -269,7 +274,7 @@ Weapons: {
 	FireType_CursedInferno: Cursed Inferno
 	FireType_Frostburn: Frostburn
 	FireType_Shadowflame: Shadowflame
-	AdamantDaggerInfo: SSsssSs
+	AdamantDaggerInfo: ROCKETS ARE COMING
 	ThornChakramInfo: A living thorn chakram that pauses mid-air to barrage enemies with spikes, then rapidly returns to the player.
 	AeglosInfo: A high velocity, piercing javelin.
 	AirflowInfo: A wind chakram that continuously spawns harpy feathers while flying.

@@ -1,5 +1,5 @@
 ﻿using Synergia.Content.Projectiles.Friendly;
-using Synergia.Content.Buffs; // Добавлен using для баффа
+using Synergia.Content.Buffs; 
 //consolaria
 using Microsoft.Xna.Framework;
 using Terraria;
@@ -32,7 +32,7 @@ namespace Synergia.Content.Items.Weapons.Cogworm
             Item.useTime = Item.useAnimation = 32;
 
             Item.shoot = ModContent.ProjectileType<CleavageSpear>();
-            Item.shootSpeed = 57f;
+            Item.shootSpeed = 30f;
 
             Item.useStyle = ItemUseStyleID.Shoot;
             Item.knockBack = 2f;

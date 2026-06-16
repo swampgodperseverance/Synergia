@@ -1,20 +1,28 @@
 ﻿
+using Avalon.Items.Accessories.Hardmode;
 using Avalon.Items.Material;
 using Avalon.Items.Material.Bars;
 using Avalon.Items.Material.Ores;
 using Avalon.Items.Material.Shards;
+using Avalon.Items.Tomes.Hardmode;
+using Avalon.Items.Tomes.PreHardmode;
 using Avalon.Items.Tools.Hardmode;
 using Avalon.Items.Weapons.Magic.Hardmode.EnergyRevolver;
+using Avalon.Items.Weapons.Magic.Hardmode.MagicGrenade;
 using Avalon.Items.Weapons.Melee.Hardmode.DarklightLance;
 using Avalon.Items.Weapons.Melee.PreHardmode.MarrowMasher;
 using Avalon.Items.Weapons.Melee.PreHardmode.UrchinMace;
+using Avalon.Items.Weapons.Ranged.PreHardmode.Icicle;
 using Avalon.Items.Weapons.Ranged.PreHardmode.Thompson;
+using Avalon.Prefixes;
 using Bismuth.Content.Items.Materials;
 using Bismuth.Content.Items.Placeable;
+using Bismuth.Content.Items.Weapons.Magical;
 using Bismuth.Content.Items.Weapons.Ranged;
 using Consolaria.Content.Items.Weapons.Ranged;
 using NewHorizons.Content.Items.Materials;
 using NewHorizons.Content.Items.Weapons.Magic;
+using NewHorizons.Content.Items.Weapons.Throwing;
 using starforgedclassic;
 using starforgedclassic.Content.Weapons.PlumeShot;
 using Synergia.Content.Items.Materials;
@@ -27,11 +35,14 @@ using ValhallaMod.Items.Garden.PlantPots;
 using ValhallaMod.Items.Material;
 using ValhallaMod.Items.Material.Bar;
 using ValhallaMod.Items.Tools;
+using ValhallaMod.Items.Weapons.Blood;
 using ValhallaMod.Items.Weapons.Hybrid.Swords;
 using ValhallaMod.Items.Weapons.Magic.Gloves;
 using ValhallaMod.Items.Weapons.Magic.Guns;
 using ValhallaMod.Items.Weapons.Magic.Staffs;
+using ValhallaMod.Items.Weapons.Magic.Thrown;
 using ValhallaMod.Items.Weapons.Magic.Tomes;
+using ValhallaMod.Items.Weapons.Melee.Boomerangs;
 using ValhallaMod.Items.Weapons.Melee.ChannelMelee;
 using ValhallaMod.Items.Weapons.Melee.Glaives;
 using ValhallaMod.Items.Weapons.Melee.Knives;
@@ -42,15 +53,13 @@ using ValhallaMod.Items.Weapons.Ranged.Bows;
 using ValhallaMod.Items.Weapons.Ranged.DartGuns;
 using ValhallaMod.Items.Weapons.Ranged.Darts;
 using ValhallaMod.Items.Weapons.Ranged.Guns;
+using ValhallaMod.Items.Weapons.Ranged.Javelins;
 using ValhallaMod.Items.Weapons.Ranged.RocketLaunchers;
 using ValhallaMod.Items.Weapons.Ranged.Thrown;
 using ValhallaMod.Items.Weapons.Summon.Auras;
 using ValhallaMod.Items.Weapons.Summon.Whips;
-using static Terraria.ModLoader.ModContent;
 using static Synergia.ModList;
-using ValhallaMod.Items.Weapons.Magic.Thrown;
-using Avalon.Items.Weapons.Magic.Hardmode.MagicGrenade;
-using Bismuth.Content.Items.Weapons.Magical;
+using static Terraria.ModLoader.ModContent;
 
 namespace Synergia.Common.ModSystems.RecipeSystem.ChangesRecipe.AvalonsChanges {
         public class ValhallaWeapons : BaseRecipe {
@@ -63,6 +72,7 @@ namespace Synergia.Common.ModSystems.RecipeSystem.ChangesRecipe.AvalonsChanges {
             DisableRecipe(recipe, ItemType<TerraSpear>());
             DisableRecipe(recipe, ItemType<ObsidianSeal>());
             DisableRecipe(recipe, ItemType<GhostVenomStaff>());
+            DisableRecipe(recipe, ItemType<CarrotDagger>());
         }
         public override void Ingredient(Recipe recipe) {
             AddLotIngredient(recipe, ItemType<BlueSlice>(), (ModContent.ItemType<FrigidShard>(), 3));
@@ -86,6 +96,10 @@ namespace Synergia.Common.ModSystems.RecipeSystem.ChangesRecipe.AvalonsChanges {
             AddLotIngredient(recipe, ItemType<Cerberus>(), (ModContent.ItemType<FireShard>(), 1));
             AddLotIngredient(recipe, ItemType<SporePlantPot>(), (ModContent.ItemType<ToxinShard>(), 1));
             AddLotIngredient(recipe, ItemType<Bulbasword>(), (ModContent.ItemType<ToxinShard>(), 1));
+        }
+        public override void RemoveIngredient(Recipe recipe)
+        {
+            RemoveIngredient(recipe, ItemType<ValhallaMod.Items.Weapons.Melee.Glaives.DemoniteGlaive>(), 1);
         }
         public override void PostRecipe()
         {
@@ -130,8 +144,36 @@ namespace Synergia.Common.ModSystems.RecipeSystem.ChangesRecipe.AvalonsChanges {
             CreateObsidianSeal();
             CreateGhostVenomStaff();
             CreateSparkOfSight();
+            CreateSnowflake();
+            CreateOmegaDisc();
+            CreateAzraels();
+            CreateJadeNaginata();
         }
-
+        static void CreateJadeNaginata()
+        {
+            Recipe recipe = Recipe.Create(ItemType<JadeSpear>());
+            recipe.AddIngredient(ItemType<JadeFragment>(), 12);
+            recipe.AddIngredient(ItemType<JadeCloth>(), 8);
+            recipe.AddTile(TileID.Anvils);
+            recipe.Register();
+        }
+        static void CreateAzraels()
+        {
+            Recipe recipe = Recipe.Create(ItemType<AzraelsHeartstopper>());
+            recipe.AddIngredient(ItemType<ScarletGungnir>(), 1);
+            recipe.AddIngredient(ItemID.Ectoplasm, 10);
+            recipe.AddIngredient(ItemType<Consolaria.Content.Items.Materials.SoulofBlight>(), 8);
+            recipe.AddTile(TileType<CaesiumHeavyAnvilTile>());
+            recipe.Register();
+        }
+        static void CreateOmegaDisc()
+        {
+            Recipe recipe = Recipe.Create(ItemType<OmegaDisc>());
+            recipe.AddIngredient(ItemType<AluminiumBar>(), 10);
+            recipe.AddIngredient(ItemID.Bone, 10);
+            recipe.AddTile(TileID.Anvils);
+            recipe.Register();
+        }
         static void CreateHeavensSeal()
         {
             Recipe recipe = Recipe.Create(ItemType<HeavensSeal>());
@@ -499,6 +541,16 @@ namespace Synergia.Common.ModSystems.RecipeSystem.ChangesRecipe.AvalonsChanges {
             recipe.AddIngredient(ItemType<BismuthumBar>(), 10);
             recipe.AddIngredient(ItemID.Ectoplasm, 10);
             recipe.AddTile(ModContent.TileType<CaesiumHeavyAnvilTile>());
+            recipe.Register();
+        }
+        static void CreateSnowflake()
+        {
+            Recipe recipe = Recipe.Create(ItemType<SnowGlaive>());
+            recipe.AddIngredient(ItemID.IceBlock, 15);
+            recipe.AddIngredient(ItemType<Icicle>(), 50);
+            recipe.AddIngredient(ItemID.FallenStar, 8);
+            recipe.AddIngredient(ItemType<FrostShard>(), 6);
+            recipe.AddTile(TileID.IceMachine);
             recipe.Register();
         }
     }

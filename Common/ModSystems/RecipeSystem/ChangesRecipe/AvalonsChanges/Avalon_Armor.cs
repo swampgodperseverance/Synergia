@@ -24,6 +24,9 @@ namespace Synergia.Common.ModSystems.RecipeSystem.ChangesRecipe.AvalonsChanges {
                 AddIngredient(recipe, ItemType<CaesiumGalea>(), 0, new Item(CaesiumBar, 10));
                 AddIngredient(recipe, ItemType<CaesiumGreaves>(), 0, new Item(CaesiumBar, 10));
                 AddIngredient(recipe, ItemType<CaesiumPlateMail>(), 0, new Item(CaesiumBar, 20));
+                AddIngredient(recipe, ItemType<CaesiumGalea>(), 1, new Item(CorrodeBar, 10));
+                AddIngredient(recipe, ItemType<CaesiumGreaves>(), 1, new Item(CorrodeBar, 10));
+                AddIngredient(recipe, ItemType<CaesiumPlateMail>(), 0, new Item(CorrodeBar, 20));
                 AddIngredientNotIndex(recipe, EarthsplitterChestpiece, CorrodeBar, 10);
                 AddIngredientNotIndex(recipe, EarthsplitterHelm, CorrodeBar, 4);
                 AddIngredientNotIndex(recipe, EarthsplitterLeggings, CorrodeBar, 8);

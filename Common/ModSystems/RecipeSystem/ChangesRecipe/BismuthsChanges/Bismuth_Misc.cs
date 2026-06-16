@@ -1,4 +1,5 @@
-﻿using Synergia.Content.Items.Materials;
+﻿using Avalon.Items.Material;
+using Synergia.Content.Items.Materials;
 using Terraria;
 
 namespace Synergia.Common.ModSystems.RecipeSystem.ChangesRecipe {
@@ -12,8 +13,7 @@ namespace Synergia.Common.ModSystems.RecipeSystem.ChangesRecipe {
 
             Recipe NewBronzeRecipe = Recipe.Create(Bismuths.BBronze);
             NewBronzeRecipe.AddIngredient(Bismuths.ABronze);
-            NewBronzeRecipe.AddIngredient<SulfuricAcid>();
-            NewBronzeRecipe.AddConsumeIngredientCallback(OnCraft.SulphurConsumeIngredientCallback);
+            NewBronzeRecipe.AddIngredient<BottledLava>();
             NewBronzeRecipe.Register();
         }
 

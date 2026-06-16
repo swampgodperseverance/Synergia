@@ -7,22 +7,22 @@ Items: {
 	OstaraBoots.Tooltip: Jump height increased
 	WarlockHood.Tooltip:
 		'''
-		+25% Aura radius and +1 Aura slot
+		Increases your max aura radius by 15% and amount of auras by 1
 		Increases your max number of minions by 1
 		'''
 	WarlockRobe.Tooltip:
 		'''
-		+35% Aura radius when linked on the player
+		Increases your max aura radius by 20% when linked on the player
 		Increases your max number of minions by 1
 		'''
 	WarlockLeggings.Tooltip:
 		'''
-		+10% Aura radius and +10% aura radius when linked on the player
+		Increases your max aura radius by 10% 
 		Increases your max number of minions by 1
 		'''
 	AncientWarlockHood.Tooltip:
 		'''
-		+25% Aura radius and +1 Aura slot
+		Increases your max aura radius by 20% when linked on the player
 		Increases your max number of minions by 1
 		'''
 	AncientWarlockRobe.Tooltip:
@@ -32,7 +32,7 @@ Items: {
 		'''
 	AncientWarlockLeggings.Tooltip:
 		'''
-		+10% Aura radius and +10% aura radius when linked on the player
+		Increases your max aura radius by 10% 
 		Increases your max number of minions by 1
 		'''
 	SentinelHelmet.Tooltip: Increases throwing damage by 15% and crit chance by 5%
@@ -123,7 +123,7 @@ Items: {
 		'''
 	NightMagePants.Tooltip: +8% Magic damage
 	BismuthumBreastplate.Tooltip: Damage is increased by 5%
-	BismuthumLeggings.Tooltip: Movement speed is increased by 25%
+	BismuthumLeggings.Tooltip: Movement speed is increased by 10%
 	BerserksRing.Tooltip: Item use speed inreased by 30%, but damage decreased by 20%
 	KillersHood.Tooltip: Magic critical strike chance is increased by 8%
 	KillersJacket.Tooltip: Magic damage is increased by 10%
@@ -142,6 +142,23 @@ Items: {
 		'''
 		Increases movement speed by 15%
 		Increases ranged damage by 7%
+		'''
+	BronzeMask.Tooltip:
+		'''
+		Damage is increased by 10%
+		No fall damage
+		'''
+	BronzeBreastplate.Tooltip:
+		'''
+		Critical strike chance is increased by 8%
+		Immunity to knockback
+		'''
+	OrcishHelmet.Tooltip: Damage is increased by 12%
+	OrcishBreastplate.Tooltip:
+		'''
+		Critical strike chance is increased by 11%
+		Allows player to dash into the enemy
+		Double tap in a direction
 		'''
 	PikemansLeggings.Tooltip: Melee critical strike chance is increased by 6%
 	PikemansBreastplate.Tooltip:
@@ -185,8 +202,10 @@ Items: {
 		10% increased movement speed
 		Player have a chance to dodge attacks.
 		'''
-	JadeMask.Tooltip: "              10% Increased damage"
+	JadeMask.Tooltip: 10% Increased damage
 	JadeLegs.Tooltip: 10% increased movement speed and critical strike
+	ScalyHelmet.Tooltip: Increases throwing and melee critical strike chance by 11%
+	ScalyBreastplate.Tooltip: Increases throwing and melee damage by 11%
 
 	EverwoodJavelin: {
 		DisplayName: Everwood Javelin
@@ -825,7 +844,11 @@ Items: {
 
 	CorrodeVisage: {
 		DisplayName: Corrode Visage
-		Tooltip: ""
+		Tooltip:
+			'''
+			Increases throwing damage and critical strike chance by 15%
+			Increases throwing attack speed by 10%
+			'''
 	}
 
 	SulfuricAcid: {
@@ -1168,6 +1191,16 @@ Items: {
 	CruorTrophy: {
 		Tooltip: ""
 		DisplayName: Cruor Trophy
+	}
+
+	MortalStones: {
+		Tooltip: ""
+		DisplayName: Mortal Stones
+	}
+
+	Jeweler: {
+		Tooltip: ""
+		DisplayName: Jeweler
 	}
 }
 
@@ -1625,6 +1658,13 @@ Projectiles: {
 	CruorStar.DisplayName: Cruor Star
 	BoneFlash.DisplayName: Bone Flash
 	SoulfulGem.DisplayName: Soulful Gem
+	JewelerProj.DisplayName: Jeweler Proj
+	JaguarDaggerRework.DisplayName: Jaguar Dagger Rework
+	OrcishArrow.DisplayName: Orcish Arrow
+	BlasphemousStar.DisplayName: Blasphemous Star
+	BlasphemousLightningStar.DisplayName: Blasphemous Lightning Star
+	SuperboltFriendly.DisplayName: Superbolt Friendly
+	GammaBladeProjRework.DisplayName: Gamma Blade Proj Rework
 }
 
 Buffs: {

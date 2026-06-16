@@ -197,7 +197,7 @@ namespace Synergia.Content.Projectiles.Thrower
                     Projectile.Center,
                     directions[i] * 6f,
                     ModContent.ProjectileType<ThunderSpike2>(),
-                    Projectile.damage / 4,
+                    Projectile.damage / 3,
                     Projectile.knockBack * 0.6f,
                     Projectile.owner
                 );

@@ -24,7 +24,7 @@ namespace Synergia.Content.Projectiles.Reworks
             Projectile.height = 32;
             Projectile.friendly = true;
             Projectile.penetrate = -1;
-            Projectile.timeLeft = 2; // мгновенно спавнит и исчезает
+            Projectile.timeLeft = 2;
             Projectile.aiStyle = 0;
             Projectile.DamageType = DamageClass.Magic;
             Projectile.tileCollide = false;
@@ -33,28 +33,35 @@ namespace Synergia.Content.Projectiles.Reworks
 
         public override void AI()
         {
+            Vector2 spawnPos = Projectile.Center;
 
-            int count = Main.rand.Next(3,4);
-
-            for (int i = 0; i < count; i++)
+            for (int d = 0; d < 8; d++)
             {
-                float angle = MathHelper.TwoPi * i / count; 
-                float radius = Main.rand.NextFloat(40f, 60f); 
-                Vector2 spawnPos = Projectile.Center + radius * new Vector2((float)Math.Cos(angle), (float)Math.Sin(angle));
-
-                Projectile.NewProjectile(
-                    Projectile.GetSource_FromAI(),
-                    spawnPos,
-                    Vector2.Zero,
-                    ModContent.ProjectileType<NebulaPike>(),
-                    64, // урон, можно изменить
-                    1f, // knockback
-                    Projectile.owner
+                Dust dust = Dust.NewDustDirect(
+                    spawnPos - new Vector2(4, 4),
+                    8, 8,
+                    DustID.PinkTorch,
+                    Main.rand.NextFloat(-2f, 2f),
+                    Main.rand.NextFloat(-2f, 2f),
+                    100,
+                    default,
+                    1.2f
                 );
+                dust.noGravity = true;
+                dust.velocity *= 0.8f;
             }
 
+            Projectile.NewProjectile(
+                Projectile.GetSource_FromAI(),
+                spawnPos,
+                Vector2.Zero,
+                ModContent.ProjectileType<NebulaPike>(),
+                64,
+                1f,
+                Projectile.owner
+            );
 
-            Projectile.Kill(); // уничтожаем спавнер
+            Projectile.Kill();
         }
     }
 }

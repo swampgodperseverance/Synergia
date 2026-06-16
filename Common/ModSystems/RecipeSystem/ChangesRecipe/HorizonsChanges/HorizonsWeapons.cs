@@ -4,6 +4,7 @@ using Avalon.Items.Material.Bars;
 using Avalon.Items.Material.Ores;
 using Avalon.Items.Material.Shards;
 using Avalon.Items.Placeable.Tile;
+using Avalon.Items.Weapons.Melee.PreHardmode.Shurikerang;
 using Bismuth.Content.Items.Placeable;
 using NewHorizons.Content.Items;
 using NewHorizons.Content.Items.Accessories;
@@ -56,6 +57,10 @@ namespace Synergia.Common.ModSystems.RecipeSystem.ChangesRecipe.HorizonsChanges
             AddIngredient(recipe, ItemType<ScarletGungnir>(), 1, new Item(ItemType<WickedShard>(), 5));
             AddLotIngredient(recipe, ItemType<ChlorophyteJavelin>(), (ModContent.ItemType<VenomShard>(), 1));
         }
+        public override void RemoveIngredient(Recipe recipe)
+        {
+            RemoveIngredient(recipe, ItemType<BloodSpiller>(), 1);
+        }
         public override void PostRecipe()
         {
             CreateSeaBeast();
@@ -63,6 +68,7 @@ namespace Synergia.Common.ModSystems.RecipeSystem.ChangesRecipe.HorizonsChanges
             CreateWandMana1();
             CreateWandMana2();
             CreateGungnir();
+            CreateSaws();
         }
         static void CreateSeaBeast()
         {
@@ -111,6 +117,15 @@ namespace Synergia.Common.ModSystems.RecipeSystem.ChangesRecipe.HorizonsChanges
             recipe.AddIngredient(ItemID.SoulofSight, 6);
             recipe.AddIngredient(ItemID.SoulofFright, 6);
             recipe.AddIngredient(ItemID.SoulofMight, 6);
+            recipe.AddTile(TileID.MythrilAnvil);
+            recipe.Register();
+
+        }
+        static void CreateSaws()
+        {
+            Recipe recipe = Recipe.Create(ItemType<BlazingSaws>());
+            recipe.AddIngredient(ItemType<Shurikerang>(), 1);
+            recipe.AddIngredient(ItemID.SoulofNight, 10);
             recipe.AddTile(TileID.MythrilAnvil);
             recipe.Register();
 

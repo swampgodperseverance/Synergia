@@ -1,5 +1,7 @@
 ﻿using System.Collections.Generic;
+using Bismuth.Content.Items.Weapons.Ranged;
 using Microsoft.Xna.Framework;
+using Synergia.Content.Items.Weapons.Ranged;
 using Synergia.Content.Projectiles.Friendly;
 using Terraria;
 using Terraria.Audio;
@@ -17,6 +19,7 @@ namespace Synergia.Content.Items.Weapons.Melee
             ItemID.Sets.GamepadExtraRange[Item.type] = 10;
             ItemID.Sets.GamepadSmartQuickReach[Item.type] = true;
             Item.ResearchUnlockCount = 1;
+            ItemID.Sets.ShimmerTransformToItem[Type] = ModContent.ItemType<Anaconda>();
         }
 
         public override void SetDefaults()

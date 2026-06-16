@@ -16,11 +16,7 @@ namespace Synergia.Common.ModConfigs
         [LabelKey("$Mods.Synergia.Configs.Config.SynegiaConfig.OcramWildAI")]
         [TooltipKey("$Mods.Synergia.Configs.Config.SynegiaConfig.MakesOcramAI2")]
         [DefaultValue(true)]
-        public bool BacteriumPrimeBuffEnabled { get; set; }
 
-        [LabelKey("$Mods.Synergia.Configs.Config.SynegiaConfig.PapuanHardAI")]
-        [TooltipKey("$Mods.Synergia.Configs.Config.SynegiaConfig.MakesPapuanAI")]
-        [DefaultValue(true)]
         public bool PapuanWizardHardAIEnabled { get; set; }
 
         [ReloadRequiredAttribute()]
@@ -31,13 +27,11 @@ namespace Synergia.Common.ModConfigs
 
         public override void OnLoaded() {
             OcramUpgrades.HardModeEnabled = HardModeEnabled;
-            BacteriumPrimeBuff.Enabled = BacteriumPrimeBuffEnabled;
             PapuanWizardUpgrades.HardAIEnabled = PapuanWizardHardAIEnabled;
         }
         public override void OnChanged()
         {
             OcramUpgrades.HardModeEnabled = HardModeEnabled;
-            BacteriumPrimeBuff.Enabled = BacteriumPrimeBuffEnabled;
             PapuanWizardUpgrades.HardAIEnabled = PapuanWizardHardAIEnabled;
         }
     }
