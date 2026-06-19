@@ -26,6 +26,11 @@ namespace Synergia.Common.ModConfigs {
         [DefaultValue(true)]
         public bool ResetUI { get; set; }
 
+        [LabelKey("$Mods.Synergia.Configs.Config.UI.NewFont")]
+        [TooltipKey("$Mods.Synergia.Configs.Config.UI.NewFontTooltip")]
+        [DefaultValue(true)]
+        public bool NewFont { get; set; }
+
         public override void OnLoaded() {
             HookForNewProgressBar.NewUI = ActiveNewUI;
             SummonUI.IsActiveSummonUI = ActiveSummonUI;
@@ -37,6 +42,7 @@ namespace Synergia.Common.ModConfigs {
             SummonUI.IsActiveSummonUI = ActiveSummonUI;
             SummonUI.HoverUIElement = HoverUI;
             SummonUI.ResetUIPositions = ResetUI;
+            GetInstance<Synergia>().needUpdateFont = true;
         }
     }
 }

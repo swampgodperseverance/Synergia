@@ -28,3 +28,12 @@ ShopUI: {
 	Base: Base Price
 	Custom: Sell Price
 }
+
+AchiveCount: Achivment {0}
+OrcishChestInfo: The magical power of the flower from the dark forest prevents the chest from being opened
+
+SummonUI: {
+	Minion: Active minions {0} of {1}
+	Sentry: Active sentry {0} of {1}
+	Aura: Active aurs {0} of {1}
+}

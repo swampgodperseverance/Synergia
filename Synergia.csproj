@@ -68,6 +68,11 @@
       <Reference Include="VitalityMod">
         <HintPath>lib\VitalityMod.dll</HintPath>
       </Reference>
+		<PackageReference Include="BepInEx.AssemblyPublicizer.MSBuild" Version="0.4.1" PrivateAssets="all" />
+		<Publicize Include="tModLoader" PublicizeTarget="Fields, Types, Methods" />
+	</ItemGroup>
+    <ItemGroup>
+      <Folder Include="Assets\Font\" />
     </ItemGroup>
     <ProjectExtensions><VisualStudio><UserProperties /></VisualStudio></ProjectExtensions>
 

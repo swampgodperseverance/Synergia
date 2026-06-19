@@ -27,6 +27,7 @@ namespace Synergia.UIs {
 
         const byte maxChar = 60;
 
+        bool closeUI = false;
         bool showUI = false;
         bool blockClickThisFrame;
         bool anyButtonHovered = false;
@@ -69,7 +70,7 @@ namespace Synergia.UIs {
                 GetInstance<Synergia>().DwarfChatInterface.SetState(null);
             }
         }
-        protected override void DrawSelf(SpriteBatch spriteBatch) {
+        public override void DrawSelf(SpriteBatch spriteBatch) {
             base.DrawSelf(spriteBatch);
             RegisterTexture();
             drawChat.Height.Set(Pos(), 0f);
@@ -123,7 +124,7 @@ namespace Synergia.UIs {
             // Close
             string closeButton = Language.GetTextValue("LegacyInterface.52");
             float s = Language.ActiveCulture.Name switch { "de-DE" => -20, "fr-FR" => -20, "ru-RU" => -20, _ => 0, };
-            float w = isQuestButton ? 25 : 0;
+            float w = isQuestButton ? 100 : 0;
             r = Language.ActiveCulture.Name == "pt-BR" ? r += 10 : r = 0;
             Vector2 closeButtonPos = new(posIfQuest.X + scale + s + w + r, posIfQuest.Y);
             DrawButton(spriteBatch, font, "Close", closeButton, closeButtonPos, vector3, player, CloseWindow);
@@ -193,7 +194,7 @@ namespace Synergia.UIs {
             }
         }
         static void DrawQuestItemIcon(SpriteBatch sb, Vector2 pos) {
-            if (itemIcon != null && chain != null) {
+            if (itemIcon != null && chain != null && npcChatCornerItem != -1) {
                 sb.Draw(chain, pos, Color.White);
                 sb.Draw(itemIcon, new Vector2(pos.X, pos.Y + 40f), Color.White);
                 Item iItemType = new(npcChatCornerItem);
@@ -220,7 +221,6 @@ namespace Synergia.UIs {
                 }
             }
         }
-        // TODO: IF QUEST COMPLITE AND CLICK TO BATTON NPC SAY NEXT "NoQuest";
         void QuestButton(SpriteBatch sb, DynamicSpriteFont font, Vector2 pos, Vector2 vector3, Vector2 qustButtonPos, Player player) {
             string baseSay = LocUIKey("DwarfChat", "NoQuest");
             TryGetQuest(player, out NPC npc, out QuestData questData, out IQuest quest);
@@ -232,8 +232,7 @@ namespace Synergia.UIs {
             if (stringSize.X > 260f) vector4.X *= 260f / stringSize.X;
             bool hover = mousePos.Between(pos, pos + stringSize * vector3 * vector4.X);
             bool release = mouseLeft && mouseLeftRelease;
-            bool questFlag = player.GetModPlayer<QuestBoolean>().HellDwarfQuest;
-            if (quest != null) {
+            if (!player.GetModPlayer<QuestBoolean>().needResset && quest != null) {
                 isQuestButton = true;
                 if (!quest.IsCompleted(player)) {
                     if (questData.IsFirstClicked) {
@@ -270,23 +269,20 @@ namespace Synergia.UIs {
                 }
             }
             else {
-                if (npcChatCornerItem != 0) {
-                    QuestItem(ref npcChatCornerItem, ItemType<DwarvenAnvil>());
+                npcChatCornerItem = -1;
+                button = Language.GetTextValue("Mods.Synergia.Quests.BaseButton");
+                if (player.GetModPlayer<QuestBoolean>().finelText == "") {
+                    npcChatText = baseSay;
+                    DrawButton(sb, font, "BaseQuestButton", button, pos, vector3, player, Quest);
                 }
                 else {
-                    text = baseSay;
+                    npcChatText = player.GetModPlayer<QuestBoolean>().finelText;
+                    DrawButton(sb, font, "BaseQuestButton", button, pos, vector3, player, () => { player.GetModPlayer<QuestBoolean>().finelText = ""; });
                 }
-                npcChatText = text;
-                button = Language.GetTextValue("Mods.Synergia.Quests.BaseButton");
-                DrawButton(sb, font, "BaseQuestButton", button, pos, vector3, player, Quest);
-            }
-        }
-        void QuestItem(ref int item, int itemType) {
-            if (item == itemType) {
-                text = hellQuest.GetName(item);
             }
         }
         void CloseWindow() {
+            closeUI = true;
             SoundEngine.PlaySound(SoundID.MenuClose);
             npcChatText = "";
             playerInventory = false;

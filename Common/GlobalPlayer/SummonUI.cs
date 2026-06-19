@@ -90,13 +90,13 @@ namespace Synergia.Common.GlobalPlayer {
                 if (!Main.mouseText) {
                     string mouseText;
                     if (summonBounds.Contains(Main.MouseScreen.ToPoint())) {
-                        mouseText = $"1"; ChatManager.DrawColorCodedStringWithShadow(Main.spriteBatch, font, mouseText, new Vector2(Main.mouseX + 17, Main.mouseY + 17), new Color(Main.mouseTextColor, Main.mouseTextColor, Main.mouseTextColor), 0f, Vector2.Zero, Vector2.One);
+                        mouseText = string.Format(LocUIKey("SummonUI", "Minion"), player.numMinions, player.maxMinions); ChatManager.DrawColorCodedStringWithShadow(Main.spriteBatch, font, mouseText, new Vector2(Main.mouseX + 17, Main.mouseY + 17), new Color(Main.mouseTextColor, Main.mouseTextColor, Main.mouseTextColor), 0f, Vector2.Zero, Vector2.One);
                     }
                     else if (sentryBounds.Contains(Main.MouseScreen.ToPoint())) {
-                        mouseText = $"2"; ChatManager.DrawColorCodedStringWithShadow(Main.spriteBatch, font, mouseText, new Vector2(Main.mouseX + 17, Main.mouseY + 17), new Color(Main.mouseTextColor, Main.mouseTextColor, Main.mouseTextColor), 0f, Vector2.Zero, Vector2.One);
+                        mouseText = string.Format(LocUIKey("SummonUI", "Sentry"), CountSentrySlots(player), player.maxTurrets); ChatManager.DrawColorCodedStringWithShadow(Main.spriteBatch, font, mouseText, new Vector2(Main.mouseX + 17, Main.mouseY + 17), new Color(Main.mouseTextColor, Main.mouseTextColor, Main.mouseTextColor), 0f, Vector2.Zero, Vector2.One);
                     }
                     else if (auraBounds.Contains(Main.MouseScreen.ToPoint())) {
-                        mouseText = $"3"; ChatManager.DrawColorCodedStringWithShadow(Main.spriteBatch, font, mouseText, new Vector2(Main.mouseX + 17, Main.mouseY + 17), new Color(Main.mouseTextColor, Main.mouseTextColor, Main.mouseTextColor), 0f, Vector2.Zero, Vector2.One);
+                        mouseText = string.Format(LocUIKey("SummonUI", "Aura"), CountAuraSlots(player), auraPlayer.maxAuras); ChatManager.DrawColorCodedStringWithShadow(Main.spriteBatch, font, mouseText, new Vector2(Main.mouseX + 17, Main.mouseY + 17), new Color(Main.mouseTextColor, Main.mouseTextColor, Main.mouseTextColor), 0f, Vector2.Zero, Vector2.One);
                     }
                 }
                 if (HoverUIElement) {

@@ -1,10 +1,15 @@
-﻿using Bismuth;
+﻿using Synergia.Content.Quests;
+using Synergia.Helpers;
+using Terraria;
 using Terraria.ModLoader.IO;
+using static Terraria.ModLoader.BackupIO;
 
 namespace Synergia.Common {
     public partial class QuestSystem {
         public class QuestBoolean : ModPlayer {
-            public bool DwarfQuest = false, HunterQuest = false, ArtistQuest = false, NinjaQuest = false, FarmerQuest = false, LibrarianQuest = false, HellDwarfQuest = false, HunterQuest1 = false, DwarfQuest1 = false, ArtistQuest1 = false, NinjaQuest1 = false, FarmerQuest1 = false, LibrarianQuest1 = false, HellDwarfQuest1 = false, DwarfQuest2 = false, ImperianConsulQuest = false;
+            public bool DwarfQuest = false, HunterQuest = false, ArtistQuest = false, NinjaQuest = false, FarmerQuest = false, LibrarianQuest = false, HellDwarfQuest = false, HunterQuest1 = false, DwarfQuest1 = false, ArtistQuest1 = false, NinjaQuest1 = false, FarmerQuest1 = false, LibrarianQuest1 = false, HellDwarfQuest1 = false, DwarfQuest2 = false, ArtistQuest2 = false, LibrarianQuest2, HellDwarfQuest2 = false, ArtistQuest3 = false, LibrarianQuest3 = false, HellDwarfQuest3, ImperianConsulQuest = false;
+            public bool needResset = false;
+            public string finelText = "";
 
             public override void Initialize() {
                 DwarfQuest = false;
@@ -14,15 +19,22 @@ namespace Synergia.Common {
                 HunterQuest1 = false;
                 ArtistQuest = false;
                 ArtistQuest1 = false;
+                ArtistQuest2 = false;
+                ArtistQuest3 = false;
                 NinjaQuest = false;
                 NinjaQuest1 = false;
                 FarmerQuest = false;
                 FarmerQuest1 = false;
                 LibrarianQuest = false;
                 LibrarianQuest1 = false;
+                LibrarianQuest2 = false;
+                LibrarianQuest3 = false;
                 HellDwarfQuest = false;
                 HellDwarfQuest1 = false;
+                HellDwarfQuest2 = false;
+                HellDwarfQuest3 = false;
                 ImperianConsulQuest = false;
+                needResset = false;
             }
             public override void SaveData(TagCompound tag) {
                 MySaveData(tag, nameof(DwarfQuest),          ref DwarfQuest);
@@ -32,14 +44,20 @@ namespace Synergia.Common {
                 MySaveData(tag, nameof(HunterQuest1),        ref HunterQuest1);
                 MySaveData(tag, nameof(ArtistQuest),         ref ArtistQuest);
                 MySaveData(tag, nameof(ArtistQuest1),        ref ArtistQuest1);
+                MySaveData(tag, nameof(ArtistQuest2),        ref ArtistQuest2);
+                MySaveData(tag, nameof(ArtistQuest3),        ref ArtistQuest3);
                 MySaveData(tag, nameof(NinjaQuest),          ref NinjaQuest);
                 MySaveData(tag, nameof(NinjaQuest1),         ref NinjaQuest1);
                 MySaveData(tag, nameof(FarmerQuest),         ref FarmerQuest);
                 MySaveData(tag, nameof(FarmerQuest1),        ref FarmerQuest1);
                 MySaveData(tag, nameof(LibrarianQuest),      ref LibrarianQuest);
                 MySaveData(tag, nameof(LibrarianQuest1),     ref LibrarianQuest1);
+                MySaveData(tag, nameof(LibrarianQuest2),     ref LibrarianQuest2);
+                MySaveData(tag, nameof(LibrarianQuest3),     ref LibrarianQuest3);
                 MySaveData(tag, nameof(HellDwarfQuest),      ref HellDwarfQuest);
                 MySaveData(tag, nameof(HellDwarfQuest1),     ref HellDwarfQuest1);
+                MySaveData(tag, nameof(HellDwarfQuest2),     ref HellDwarfQuest2);
+                MySaveData(tag, nameof(HellDwarfQuest3),     ref HellDwarfQuest3);
                 MySaveData(tag, nameof(ImperianConsulQuest), ref ImperianConsulQuest);
             }
             public override void LoadData(TagCompound tag) {
@@ -50,18 +68,29 @@ namespace Synergia.Common {
                 MyLoadData(tag, nameof(HunterQuest1),        ref HunterQuest1);
                 MyLoadData(tag, nameof(ArtistQuest),         ref ArtistQuest);
                 MyLoadData(tag, nameof(ArtistQuest1),        ref ArtistQuest1);
+                MyLoadData(tag, nameof(ArtistQuest2),        ref ArtistQuest2);
+                MyLoadData(tag, nameof(ArtistQuest3),        ref ArtistQuest3);
                 MyLoadData(tag, nameof(NinjaQuest),          ref NinjaQuest);
                 MyLoadData(tag, nameof(NinjaQuest1),         ref NinjaQuest1);
                 MyLoadData(tag, nameof(FarmerQuest),         ref FarmerQuest);
                 MyLoadData(tag, nameof(FarmerQuest1),        ref FarmerQuest1);
                 MyLoadData(tag, nameof(LibrarianQuest),      ref LibrarianQuest);
                 MyLoadData(tag, nameof(LibrarianQuest1),     ref LibrarianQuest1);
+                MyLoadData(tag, nameof(LibrarianQuest2),     ref LibrarianQuest2);
+                MyLoadData(tag, nameof(LibrarianQuest3),     ref LibrarianQuest3);
                 MyLoadData(tag, nameof(HellDwarfQuest),      ref HellDwarfQuest);
                 MyLoadData(tag, nameof(HellDwarfQuest1),     ref HellDwarfQuest1);
+                MyLoadData(tag, nameof(HellDwarfQuest2),     ref HellDwarfQuest2);
+                MyLoadData(tag, nameof(HellDwarfQuest3),     ref HellDwarfQuest3);
                 MyLoadData(tag, nameof(ImperianConsulQuest), ref ImperianConsulQuest);
             }
             static void MySaveData(TagCompound tag, string saveName, ref bool save) => tag[saveName] = save;
             private void MyLoadData(TagCompound tag, string saveName, ref bool save) => save = tag.GetBool(saveName);
+
+            public override void PostUpdate() {
+                SynegiaHelper.TryGetTalkNPC(Player, out NPC npc);
+                if (npc == null) { needResset = false; finelText = ""; }
+            }
         }
     }
 }

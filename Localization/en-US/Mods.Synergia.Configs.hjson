@@ -12,6 +12,8 @@ Config: {
 		ActiveSummonUITooltip: If it bothers you, you can enable it by default value enabled.
 		ActiveSummonUI: Active Summon UI
 		SummonUI: Summon UI
+		NewFont: New Font
+		NewFontTooltip: Replaces the default fonts with new ones. Please note that the changes will take effect in the main menu or in the game world.
 	}
 
 	SynegiaConfig: {

@@ -69,23 +69,28 @@ public partial class QuestSystem {
                     }
                 }
             }
+
             MultiQuest(quest.DwarfQuest, quest.DwarfQuest1, NPCType<Dwarf>(), DWARF);
-            if (quest.ArtistQuest) {
-                AddQuest(NPCType<Artist>(), ARTIST);
-            }
+            OmegaQuest(quest.ArtistQuest, quest.ArtistQuest1, quest.ArtistQuest2, NPCType<Artist>(), ARTIST);
+            OmegaQuest(quest.LibrarianQuest, quest.LibrarianQuest1, quest.LibrarianQuest2, NPCType<Librarian>(), LIBRARIAN);
+            if (!quest.needResset) { OmegaQuest(quest.HellDwarfQuest, quest.HellDwarfQuest1, quest.HellDwarfQuest2, NPCType<HellDwarf>(), HELLDWARF); }
+
             if (quest.NinjaQuest) {
                 AddQuest(NPCType<Ninja>(), NINJA);
-            }
-            if (quest.LibrarianQuest) {
-                AddQuest(NPCType<Librarian>(), LIBRARIAN);
-            }
-            if (quest.HellDwarfQuest) {
-                AddQuest(NPCType<HellDwarf>(), HELLDWARF);
             }
             if (quest.ImperianConsulQuest) {
                 AddQuest(NPCType<ImperianConsul>(), "ImperianConsul");
             }
             if (Player.GetModPlayer<Quests>().EquipmentQuest == 0) { Player.GetModPlayer<Quests>().EquipmentQuest = -1; }
+        }
+        void OmegaQuest(bool quest1, bool quest2, bool quest3, int npcType, string questKey) {
+            if (quest1) {
+                if (quest2) {
+                    if (quest3) { AddQuest(npcType, questKey); }
+                    else { AddQuest(npcType, questKey); }
+                }
+                else AddQuest(npcType, questKey);
+            }
         }
         void MultiQuest(bool quest1, bool quest2, int npcType, string questKey) {
             if (quest1) {

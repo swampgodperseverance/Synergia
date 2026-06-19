@@ -62,7 +62,7 @@ public class FadingHellChestplate_Cloak : PlayerDrawLayer
         return drawInfo.drawPlayer.armor[1].type == ModContent.ItemType<FadingHellChestplate>() && drawInfo.drawPlayer.armor[11].type == ItemID.None
             || drawInfo.drawPlayer.armor[11].type == ModContent.ItemType<FadingHellChestplate>();
     }
-    protected override void Draw(ref PlayerDrawSet drawInfo)
+    public override void Draw(ref PlayerDrawSet drawInfo)
     {
         if (drawInfo.hideEntirePlayer)
             return;

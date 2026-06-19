@@ -1,9 +1,10 @@
 ﻿using Avalon.Items.Weapons.Magic.PreHardmode.LotusLeech;
 using Avalon.NPCs.TownNPCs;
 using Bismuth.Utilities.ModSupport;
+using Synergia.Common.ModSystems.Hooks.Ons;
+using Synergia.Content.Items.QuestItem;
 using Terraria;
 using Terraria.ID;
-using ValhallaMod.Items.Material;
 
 namespace Synergia.Content.Quests {
     public class LibrarianQuest_First : BaseQuestLogic {
@@ -17,16 +18,17 @@ namespace Synergia.Content.Quests {
         public override int Priority => 11;
         public override bool ISManyEndings => false;
         public override QuestPhase Phase => QuestPhase.PreSkeletron;
-        public override int CornerItem => ModList.Valhalla.Find<ModItem>("DamagedBook").Type;
+        public override int CornerItem => ItemType<RustyBook>();
         public override PostBossQuest PostBossRequirement => PostBossQuest.PostSkeletron;
         public override string GetChat(NPC npc, Player player) => BaseGetChat(player, "LibrarianQuest_First", "QuestProgress0", "QuestProgress2", "QuestProgress1");
         public override string GetButtonText(Player player, ref bool Isfristclicked) => BaseGetButtonText(player, ref Isfristclicked, "LibrarianQuest_First", "QuestButton", "QuestButtonGive");
         public override bool IsCompleted(Player player) => BaseIsCompleted(player);
         public override void OnChatButtonClicked(Player player) {
             BaseOnChatButtonClicked(player);
-            CheckItem(player, ref player.GetModPlayer<QuestBoolean>().LibrarianQuest1, ModList.Valhalla.Find<ModItem>("DamagedBook").Type, 1, 1, LocQuestKey("LibrarianQuest_First", "QuestCompleted"), LocQuestKey("LibrarianQuest_First", "QuestCompletedFalse"), ItemType<LotusLeech>());
+            CheckItem(player, ref player.GetModPlayer<QuestBoolean>().LibrarianQuest1, ItemType<RustyBook>(), 1, 1, LocQuestKey("LibrarianQuest_First", "QuestCompleted"), LocQuestKey("LibrarianQuest_First", "QuestCompletedFalse"), ItemType<LotusLeech>());
             if (Progress == 0) {
                 CompletedQuickSpawnItem(player, ItemID.ManaPotion, 15);
+                HookForQuest.NpcQuestKeys.Remove(QuestNPC);
             }
         }
         public override bool IsAvailable(Player player) => player.GetModPlayer<QuestBoolean>().LibrarianQuest && BaseIsAvailable(player);

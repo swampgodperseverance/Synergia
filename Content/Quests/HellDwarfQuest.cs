@@ -25,7 +25,7 @@ namespace Synergia.Content.Quests {
         public override void OnChatButtonClicked(Player player) {
             BaseOnChatButtonClicked(player);
             CheckItem(player, ref player.GetModPlayer<QuestBoolean>().HellDwarfQuest, ItemType<BottledLava>(), 1, 1, LocQuestKey("HellDwarf", "QuestCompleted"), LocQuestKey("HellDwarf", "QuestCompletedFalse"), ItemType<SinstoneMagma>(), 25);
-            if (Progress == 0) { HookForQuest.NpcQuestKeys.Remove(QuestNPC); }
+            if (Progress == 0) { HookForQuest.NpcQuestKeys.Remove(QuestNPC); player.GetModPlayer<QuestBoolean>().needResset = true; }
         }
         public override bool IsAvailable(Player player) => BaseIsAvailable(player);
         public override bool IsActive(Player player) => BaseIsActive(player);

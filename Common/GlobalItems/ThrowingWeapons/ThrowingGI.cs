@@ -18,11 +18,9 @@ namespace Synergia.Common.GlobalItems.ThrowingWeapons {
         }
         public sealed override void ModifyTooltips(Item item, List<TooltipLine> tooltips) {
             Color color = BaseRarity.AnimatedColor([Color.Gray, Color.LightGray, Color.White], 45);
-            tooltips.Add(new TooltipLine(Mod, "ThrowingItem", ItemTooltip(WEP, "Info")) { OverrideColor = color });
+            tooltips.Insert(1, new TooltipLine(Mod, "ThrowingItem", ItemTooltip(WEP, "Info")) { OverrideColor = Color.Gray });
             tooltips.Add(new TooltipLine(Mod, "Ability", ItemTooltip(WEP, "BaseText")) { OverrideColor = color });
             tooltips.Add(new TooltipLine(Mod, "ActiveAbility", ItemTooltip(WEP, AbilityInfo)) { OverrideColor = color });
         }
     }
-
-
 }

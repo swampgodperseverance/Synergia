@@ -1,10 +1,8 @@
-﻿using Bismuth.Content.Items.Other;
-using Bismuth.Content.Tiles;
+﻿using Bismuth.Content.Tiles;
 using MonoMod.RuntimeDetour;
 using Synergia.Content.NPCs.Swamp;
 using System.Reflection;
 using Terraria;
-using Terraria.Achievements;
 using Terraria.Audio;
 using Terraria.ID;
 using static Synergia.Common.ModSystems.WorldGens.SynergiaGenVars;
@@ -22,12 +20,11 @@ namespace Synergia.Common.ModSystems.Hooks.Ons {
 
         public override void Load() {
             MethodInfo info = typeof(SwampChest).GetMethod(nameof(SwampChest.RightClick), BindingFlags.Public | BindingFlags.Instance);
-            openChest = new Hook(info, (get_OnRightClicDetour)set_RightClic);
+            openChest = new Hook(info, (get_OnRightClicDetour)Set_RightClic);
             info = typeof(SwampChest).GetMethod(nameof(SwampChest.MouseOver), BindingFlags.Public | BindingFlags.Instance);
-            chestInfo = new Hook(info, (get_MouseOverDetour)set_MouseOver);
-            // MouseOver
+            chestInfo = new Hook(info, (get_MouseOverDetour)Set_MouseOver);
         }
-        bool set_RightClic(orig_OnRightClick orig, SwampChest chest, int x, int y) {
+        bool Set_RightClic(orig_OnRightClick orig, SwampChest chest, int x, int y) {
             if ((x == HLOX - 2 && y == HLTY + 34) || (x == HLOX - 2 && y == HLTY + 33) || (x == HLOX - 1 && y == HLTY + 34) || (x == HLOX - 1 && y == HLTY + 33)) {
                 if (!SynergiaWorld.OpenChest) {
                     for (int i = 0; i < Main.LocalPlayer.inventory.Length; i++) {
@@ -49,7 +46,7 @@ namespace Synergia.Common.ModSystems.Hooks.Ons {
             }
             else { return orig(chest, x, y); }
         }
-        void set_MouseOver(orig_MouseOver orig, SwampChest chest, int x, int y) {
+        void Set_MouseOver(orig_MouseOver orig, SwampChest chest, int x, int y) {
             if ((x == HLOX - 2 && y == HLTY + 34) || (x == HLOX - 2 && y == HLTY + 33) || (x == HLOX - 1 && y == HLTY + 34) || (x == HLOX - 1 && y == HLTY + 33)) {
                 if (!SynergiaWorld.OpenChest) {
                     Main.LocalPlayer.cursorItemIconEnabled = true;
@@ -60,7 +57,10 @@ namespace Synergia.Common.ModSystems.Hooks.Ons {
             else { orig(chest, x, y); }
         }
         public override void Unload() {
-            base.Unload();
+            openChest?.Undo();
+            openChest = null;
+            chestInfo?.Undo();
+            chestInfo = null;
         }
     }
 }

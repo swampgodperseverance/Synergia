@@ -253,7 +253,7 @@ namespace Synergia.Common.GlobalPlayer.Armor
         }
         public override Position GetDefaultPosition() => new BeforeParent(PlayerDrawLayers.Head);
 
-        protected override void Draw(ref PlayerDrawSet drawInfo)
+        public override void Draw(ref PlayerDrawSet drawInfo)
         {
             if (drawInfo.hideEntirePlayer)
                 return;

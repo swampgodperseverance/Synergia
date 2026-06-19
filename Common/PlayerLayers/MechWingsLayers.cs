@@ -6,7 +6,7 @@ namespace Synergia.Common.PlayerLayers {
     public class MechWingsLayers : PlayerDrawLayer {
         public override Position GetDefaultPosition() => new AfterParent(PlayerDrawLayers.Wings);
         public override bool GetDefaultVisibility(PlayerDrawSet drawInfo) => drawInfo.drawPlayer.wings == EquipLoader.GetEquipSlot(Mod, "PostMechWings", EquipType.Wings);
-        protected override void Draw(ref PlayerDrawSet drawInfo) {
+        public override void Draw(ref PlayerDrawSet drawInfo) {
             Player drawPlayer = drawInfo.drawPlayer;
 
             if (drawPlayer.dead) { return; }

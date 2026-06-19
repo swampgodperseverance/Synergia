@@ -25,7 +25,7 @@ namespace Synergia.UIs
 			Width.Set(TextureAssets.InventoryBack9.Value.Width * scale, 0f);
 			Height.Set(TextureAssets.InventoryBack9.Value.Height * scale, 0f);
 		}
-        protected override void DrawSelf(SpriteBatch spriteBatch)
+        public override void DrawSelf(SpriteBatch spriteBatch)
         {
             float oldScale = Main.inventoryScale;
             Main.inventoryScale = _scale;

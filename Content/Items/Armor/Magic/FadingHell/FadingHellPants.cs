@@ -215,7 +215,7 @@ public class FadingHellPants_TailDraw : PlayerDrawLayer
         return drawInfo.drawPlayer.armor[2].type == ModContent.ItemType<FadingHellPants>() && drawInfo.drawPlayer.armor[12].type == ItemID.None
             || drawInfo.drawPlayer.armor[12].type == ModContent.ItemType<FadingHellPants>();
     }
-    protected override void Draw(ref PlayerDrawSet drawInfo)
+    public override void Draw(ref PlayerDrawSet drawInfo)
     {
         if (drawInfo.hideEntirePlayer)
             return;

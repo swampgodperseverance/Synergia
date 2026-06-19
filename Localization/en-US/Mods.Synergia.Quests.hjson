@@ -168,42 +168,107 @@ FarmerQuest_First: {
 }
 
 LibrarianQuest_First: {
-	QuestName: Luck Potion
-	QuestDescription: Give LuckPotion for Ninja
-	QuestStage: Collect Luck Potion
-	QuestProgress0: Thanks for the Luck Potion!
-	QuestProgress1: Next task, my son. Create a rusty book on the tome forge for heaven's sake, and bring it to me.
+	QuestName: Rusty Book
+	QuestDescription: Give Rusty Book for Librarian
+	QuestStage: Collect Rusty Book
+	QuestProgress0: Thanks for the Rusty Book!
+	QuestProgress1: Next task, my son. Create a rusty book on the tome for heaven's sake, and bring it to me.
 	QuestProgress2: Why are you staring at me? For being a mage, you should know how to obtain books
 	QuestButton: Accept
-	QuestButtonGive: Give Potion
+	QuestButtonGive: Give Book
 	QuestCompleted: Not bad. I see you are making progress. Take some useful items from me
-	QuestCompletedFalse: You don't have an Flaming Fabric
+	QuestCompletedFalse: You don't have an Rusty Book
 }
 
 HellDwarfQuest_First: {
-	QuestName: Luck Potion
-	QuestDescription: Give LuckPotion for Ninja
-	QuestStage: Collect Luck Potion
-	QuestProgress0: Thanks for the Luck Potion!
+	QuestName: Pandemonium
+	QuestDescription: Give Pandemonium for Hell Dwarf
+	QuestStage: Collect Pandemonium
+	QuestProgress0: Thanks for the Pandemonium!
 	QuestProgress1: The bridge has been intact for a long time, and there was no trace of lava there. There is a locked chest at the bottom, create a key and get the contents from there.
 	QuestProgress2: You Can't get it? Yeah, i know it’s hard
 	QuestButton: Accept
-	QuestButtonGive: Give Potion
+	QuestButtonGive: Give Pandemonium
 	QuestCompleted: Impossible. I cant even believe. I haven't been this happy in a long time
-	QuestCompletedFalse: You don't have an Flaming Fabric
+	QuestCompletedFalse: You don't have an Pandemonium
 }
 
 DwarfQuest_Second: {
-	QuestName: Luck Potion
-	QuestDescription: Give LuckPotion for Ninja
-	QuestStage: Collect Luck Potion
-	QuestProgress0: Thanks for the Luck Potion!
+	QuestName: Dwarven Helmet
+	QuestDescription: Give Dwarven Helmet for Dwarf
+	QuestStage: Collect Dwarven Helmet
+	QuestProgress0: Thanks for the Dwarven Helmet!
 	QuestProgress1: I've been wanting to make an item similar to the helmet of that dwarf who abandoned us. I wish I knew what it looked like.
 	QuestProgress2: Hmm...
 	QuestButton: Accept
 	QuestButtonGive: Give Potion
 	QuestCompleted: How do you know what he looks like? That's suspicious.. But ok, thanks
-	QuestCompletedFalse: You don't have an Flaming Fabric
+	QuestCompletedFalse: You don't have an Dwarven Helmet
+}
+
+LibrarianQuest_Second: {
+	QuestName: Royal Ink
+	QuestDescription: Give Royal Ink for Librarian
+	QuestStage: Collect Royal Ink
+	QuestProgress0: Thanks for the Royal Ink!
+	QuestProgress1: Beneath the silent, sapphire waves, the Giant Squid drifts slow and deep. Its ink — a dream the ocean saves, a midnight bloom the stars still keep
+	QuestProgress2: Bring me royal ink as soon as possible
+	QuestButton: Accept
+	QuestButtonGive: Give Ink
+	QuestCompleted: OH MY GOD! You killed this peaceful creature for ink?... You are cruel. Take your reward and get out of my sight
+	QuestCompletedFalse: You don't have an Royal Ink
+}
+
+HellDwarfQuest_Second: {
+	QuestName: Boney Ridge
+	QuestDescription: Give Boney Ridge for Hell Dwarf
+	QuestStage: Collect Boney Ridge
+	QuestProgress0: Thanks for the Boney Ridge!
+	QuestProgress1: Defeat the Giant Bone Serpent In the day when this place was destroyed, I saw a giant black worm that lives nearby, and a small bone one, destroy the bone one first
+	QuestProgress2: After this a tough fight awaits you
+	QuestButton: Accept
+	QuestButtonGive: Give Ridge
+	QuestCompleted: You're damn strong, I think you're ready for the final test.
+	QuestCompletedFalse: You don't have an Boney Ridge
+}
+
+ArtistQuest_Three: {
+	QuestName: Feneaths Brush
+	QuestDescription: Give Feneaths Brush for Hell Dwarf
+	QuestStage: Collect Feneaths Brush
+	QuestProgress0: Thanks for the Feneaths Brush
+	QuestProgress1: There are rumors that there are ruins of an ancient civilization in hell, I wonder if there is anything for creativity there?
+	QuestProgress2: I don't believe there's nothing
+	QuestButton: Accept
+	QuestButtonGive: Give Brush
+	QuestCompleted: Wow. I really appreciate it. Thank you for all the help, I think this was the last task, here you go
+	QuestCompletedFalse: You don't have an Boney Ridge
+}
+
+LibrarianQuest_Three: {
+	QuestName: Time Continuum
+	QuestDescription: Give Time Continuum for Hell Dwarf
+	QuestStage: Collect Time Continuum
+	QuestProgress0: Thanks for the Time Continuum
+	QuestProgress1: The final challenge. Craft the everlasting book which help me to take over time. Let’s start
+	QuestProgress2: Why are you staring at me? Let's take over the world together
+	QuestButton: Accept
+	QuestButtonGive: Give Book
+	QuestCompleted: The beginning of the end. You was the best person which i work with
+	QuestCompletedFalse: You don't have an Time Continuum
+}
+
+HellDwarfQuest_Three: {
+	QuestName: Hellworm Scale
+	QuestDescription: Give Hellworm Scale for Hell Dwarf
+	QuestStage: Collect Hellworm Scale
+	QuestProgress0: Thanks for the Hellworm Scale!
+	QuestProgress1: A monstrous serpent made of lava and sinstone has been sighted near the old caves. Destroy like it did once
+	QuestProgress2: I believe in you. It hides in a cave nearby — let me know when the beast is slain
+	QuestButton: Accept
+	QuestButtonGive: Give Scale
+	QuestCompleted: finally.... I can live out my life peacefully, thank you for everything, wanderer.
+	QuestCompletedFalse: You don't have an Hellworm Scale
 }
 
 ImperianConsul: {

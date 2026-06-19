@@ -22,6 +22,9 @@ namespace Synergia.Common.GlobalPlayer {
         public int currentHit = 0;
         public int timeLastHit = 0;
 
+        public int frame = 0;
+        public int frameTimer = 0;
+
         public override void Initialize() {
             Tir2Buffs = false;
             Tir5Buffs = false;
@@ -32,6 +35,8 @@ namespace Synergia.Common.GlobalPlayer {
             activeBloodBuff = false;
             currentHit = 0;
             timeLastHit = 0;
+            frame = 0;
+            frameTimer = 0;
         }
         public override bool FreeDodge(Player.HurtInfo info) {
             if (Tir2Buffs && Main.rand.NextBool(5)) { // 5 || 6 
@@ -45,11 +50,16 @@ namespace Synergia.Common.GlobalPlayer {
         public override void PostUpdate() {
             if (Lists.Items.WeaponActiveBlood.Contains(Player.HeldItem.type)) { activeBloodUI = true; }
             else { activeBloodUI = false; }
-            if (currentHit >= hitForActiveBloodBuff) { activeBloodBuff = true; }
+            if (currentHit > 0 && currentHit >= hitForActiveBloodBuff) { activeBloodBuff = true; }
+            else { activeBloodBuff = false; }
             if (currentHit >= 1) {
                 if (!activeBloodBuff) {
                     timeLastHit++;
                     if (timeLastHit >= timeForResetHit) { currentHit = 0; }
+                }
+                else {
+                    timeLastHit++;
+                    if (timeLastHit >= (timeForResetHit + 60)) { currentHit = 0; }
                 }
             }
             if (!activeBloodUI) {

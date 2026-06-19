@@ -155,6 +155,7 @@ namespace Synergia.Common.GlobalPlayer
                 Player.ClearBuff(BuffID.WaterWalking);
                 Player.ClearBuff(BuffID.Gravitation);
             }
+            Synergia.NewFont();
         }
 
         public override bool CanBeTeleportedTo(Vector2 teleportPosition, string context)

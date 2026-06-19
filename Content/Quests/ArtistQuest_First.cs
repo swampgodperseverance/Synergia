@@ -25,7 +25,7 @@ namespace Synergia.Content.Quests {
         public override void OnChatButtonClicked(Player player) {
             BaseOnChatButtonClicked(player);
             CheckItem(player, ref player.GetModPlayer<QuestBoolean>().ArtistQuest1, GetRoAItem("FlamingFabric"), 1, 1, LocQuestKey("ArtistQuest_Frist", "QuestCompleted"), LocQuestKey("ArtistQuest_Frist", "QuestCompletedFalse"), ItemID.GoldCoin, 3);
-            if (Progress == 0) { CompletedQuickSpawnItem(player, GetRoAItem("DevilHunterPants"), 1); CompletedQuickSpawnItem(player, GetRoAItem("DevilHunterCloak"), 1); }
+            if (Progress == 0) { CompletedQuickSpawnItem(player, GetRoAItem("DevilHunterPants"), 1); CompletedQuickSpawnItem(player, GetRoAItem("DevilHunterCloak"), 1); HookForQuest.NpcQuestKeys.Remove(QuestNPC); }
         }
         public override bool IsAvailable(Player player) => player.GetModPlayer<QuestBoolean>().ArtistQuest && BaseIsAvailable(player);
         public override bool IsActive(Player player) => player.GetModPlayer<QuestBoolean>().ArtistQuest && BaseIsActive(player);

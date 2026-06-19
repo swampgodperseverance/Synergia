@@ -90,7 +90,7 @@ public class FadingHellHat_MaskDraw : PlayerDrawLayer
             || drawInfo.drawPlayer.armor[10].type == ModContent.ItemType<FadingHellHat>();
     }
 
-    protected override void Draw(ref PlayerDrawSet drawInfo)
+    public override void Draw(ref PlayerDrawSet drawInfo)
     {
         if (drawInfo.hideEntirePlayer)
             return;
@@ -148,7 +148,7 @@ public class FadingHellHat_CandlewickDraw : PlayerDrawLayer
             || drawInfo.drawPlayer.armor[10].type == ModContent.ItemType<FadingHellHat>();
     }
 
-    protected override void Draw(ref PlayerDrawSet drawInfo)
+    public override void Draw(ref PlayerDrawSet drawInfo)
     {
         if (drawInfo.hideEntirePlayer)
             return;
@@ -204,7 +204,7 @@ public class FadingHellHat_FlameDraw : PlayerDrawLayer
             || drawInfo.drawPlayer.armor[10].type == ModContent.ItemType<FadingHellHat>();
     }
 
-    protected override void Draw(ref PlayerDrawSet drawInfo)
+    public override void Draw(ref PlayerDrawSet drawInfo)
     {
         if (drawInfo.hideEntirePlayer)
             return;

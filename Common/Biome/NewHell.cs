@@ -36,13 +36,11 @@ namespace Synergia.Common.Biome {
             public override void OnWorldLoad() => LothorDead = false;
             public override void SaveWorldData(TagCompound tag) => tag["LothorDead"] = LothorDead;
             public override void LoadWorldData(TagCompound tag) => LothorDead = tag.GetBool("LothorDead");
-            public override void NetSend(BinaryWriter writer) => writer.Write(LothorDead);
-            public override void NetReceive(BinaryReader reader) => LothorDead = reader.ReadBoolean();
             public override void ClearWorld() => LothorDead = false;
         }
         public class LothorNPC : GlobalNPC {
             public override void OnKill(NPC npc) {
-                if (npc.type == ModList.Roa.Find<ModNPC>("Lothor").Type) { LothorDeadSystem.LothorDead = true; }
+                if (npc.type == ModList.Roa.Find<ModNPC>("Lothor").Type) { NPC.SetEventFlagCleared(ref LothorDeadSystem.LothorDead, -1); }
             }
         }
         public class HellDebuff : ModPlayer {

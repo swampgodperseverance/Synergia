@@ -56,7 +56,7 @@ public class DwarfUI : UIState {
         {ItemType<Luceat>(), ItemType<HellLuceat>()},
         {ItemType<SparkingShortsword>(), ItemType<Rhabdomyolysis>()},
         {ItemType<Cerberus>(), ItemType<Hades>()},
-        {ItemID.DemonScythe, ItemType <Avalon.Items.Weapons.Magic.Hardmode.DevilsScythe.DevilsScythe>()},
+        {ItemID.DemonScythe, ItemType <DevilsScythe>()},
         {ItemID.ImpStaff, ItemType<Echelonis>()},
         {ItemID.MoltenBreastplate, ItemType<CoreburnedBreastplate>()},
         {ItemID.MoltenHelmet, ItemType<CoreburnedHelmet>()},
@@ -166,7 +166,7 @@ public class DwarfUI : UIState {
     }
     #endregion
     static Texture2D GetTexture(int id) => TextureAssets.Item[id].Value;
-    protected override void DrawSelf(SpriteBatch spriteBatch) {
+    public override void DrawSelf(SpriteBatch spriteBatch) {
         base.DrawSelf(spriteBatch);
         Textures();
         CloseUI_SaveOnly();
@@ -198,7 +198,7 @@ public class DwarfUI : UIState {
         }
         if (!itemSlotWeppon.Item.IsAir && canReforge) {
             #region get and draw price
-            int convertPrice = itemSlotWeppon.Item.value / 10;
+            int convertPrice = itemSlotWeppon.Item.value * 2;
             if (convertPrice == 0) convertPrice = Item.buyPrice(0, 0, 1, 0);
             string costText = Language.GetTextValue("LegacyInterface.46") + ": ";
             string coinsText = "";
@@ -310,13 +310,16 @@ public class DwarfUI : UIState {
                             }
                             else {
                                 forgingFails++;
+                                switch (forgingFails) {
+                                    case 1: SoundEngine.PlaySound(GetSongByName("AnvilRarity0"), Main.LocalPlayer.position); break;
+                                    case 2: SoundEngine.PlaySound(GetSongByName("AnvilRarity1"), Main.LocalPlayer.position); break;
+                                    case 3: SoundEngine.PlaySound(GetSongByName("AnvilRarity2"), Main.LocalPlayer.position); break;
+                                }
                                 forgingSpeed += 2;
-                                SoundEngine.PlaySound(SoundID.DD2_BetsyFireballShot);
                                 if (forgingFails >= 3) {
                                     forgingEnded = true;
                                     itemSlotWeppon.Item.TurnToAir();
 
-                                    SoundEngine.PlaySound(SoundID.Item14);
                                     CombatText.NewText(Main.LocalPlayer.getRect(), Color.Red, LocUIKey("DwarfUI", "IsNotGood"));
                                     Main.LocalPlayer.mouseInterface = false;
 

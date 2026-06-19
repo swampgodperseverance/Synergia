@@ -1,12 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Reflection;
-using Avalon.Items.Accessories.Hardmode;
+﻿using Avalon.Items.Accessories.Hardmode;
 using Avalon.Items.Material.TomeMats;
 using Bismuth.Content.Items.Accessories;
 using NewHorizons.Content.Items.Accessories;
+using System;
+using System.Collections.Generic;
 using Terraria;
-using static Synergia.Common.SUtils.LocUtil;
+using ValhallaMod.Items.Tools;
 using static Synergia.Helpers.ItemHelper;
 using static Synergia.Lists.Items;
 using static Synergia.ModList;
@@ -17,7 +16,12 @@ namespace Synergia.Common.GlobalItems.Set {
             BaseAccTooltips(item, tooltips, ItemType<BacchusBoots>(), 5, "BacchusBoots");
             BaseAccTooltips(item, tooltips, ItemType<BerserksRing>(), 2, "BerserksRing");
             BaseAccTooltips(item, tooltips, ItemType<ScrollOfGenin>(), 2, AddAttackSpeed(DamageClassName("throwing"), 8), true);
-            BaseAddTooltips(item, tooltips, WeaponActiveBlood, "BWeapon", "BloodTooltips", color: Color.Red);
+            foreach (int type in WeaponActiveBlood) {
+                if (item.type == type) {
+                    tooltips.Insert(1, new(Synergia.Instance, "BWeapon", ItemTooltip(WEP, "BloodTooltips")) { OverrideColor = Color.Red });
+                }
+            }
+            BaseAddTooltips(item, tooltips, ItemType<JadePickaxe>(), "ore", "JadePickaxe");
 
             if (item.ModItem != null && item.ModItem.Mod == Bis) {
                 string itemNameValue = Lang.GetItemNameValue(item.type);

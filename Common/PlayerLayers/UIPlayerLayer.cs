@@ -3,11 +3,12 @@ using Synergia.Common.GlobalPlayer;
 using System;
 using Terraria;
 using Terraria.DataStructures;
+using TRAEProject.NewContent.Items.DreadItems.BloodBoiler;
 
 namespace Synergia.Common.PlayerLayers {
     public class UIPlayerLayer : PlayerDrawLayer {
         public override Position GetDefaultPosition() => PlayerDrawLayers.BeforeFirstVanillaLayer;
-        protected override void Draw(ref PlayerDrawSet drawInfo) {
+        public override void Draw(ref PlayerDrawSet drawInfo) {
             Player player = drawInfo.drawPlayer;
             if (drawInfo.shadow != 0f || player.dead || player.whoAmI != Main.myPlayer) { return; }
             float mountScale = player.mount.Active ? 20 : 0;
@@ -37,16 +38,28 @@ namespace Synergia.Common.PlayerLayers {
         }
         static DrawData BloodUI(Vector2 pos, BloodPlayer bPlayer) {
             Texture2D barTextura = Request<Texture2D>(GetUIElementName("BloodUI")).Value;
+            Texture2D barTexturaBlood = Request<Texture2D>(GetUIElementName("BloodUI_Blood")).Value;
             Texture2D fullBarTextura = Request<Texture2D>(GetUIElementName("BloodUIBar")).Value;
             Texture2D fullBarTextura_Bg = Request<Texture2D>(GetUIElementName("BloodUIBa_Bg")).Value;
             Vector2 bloodPos = new(pos.X, pos.Y + 50);
+            if (bPlayer.frame < 3 && bPlayer.activeBloodBuff) { bloodPos += Main.rand.NextVector2Circular(2f, 2f); }
             float scale = 0;
-            if (bPlayer.activeBloodBuff) { 
-                barTextura = Request<Texture2D>(GetUIElementName("BloodUI_Blood")).Value;
-                scale = 2;
-            }
             Main.spriteBatch.Draw(fullBarTextura_Bg, new(bloodPos.X, bloodPos.Y - scale), null, Color.White, 0f, fullBarTextura_Bg.Size() * 0.5f, Main.UIScale, SpriteEffects.None, 0);
-            Main.spriteBatch.Draw(barTextura, bloodPos, null, Color.White, 0f, barTextura.Size() * 0.5f, Main.UIScale, SpriteEffects.None, 0);
+            if (bPlayer.activeBloodBuff) {
+                scale = 2;
+                bPlayer.frameTimer++;
+                if (bPlayer.frameTimer >= 25) {
+                    bPlayer.frameTimer = 0;
+                    if (bPlayer.frame < 3) { bPlayer.frame++; }
+                }
+                Main.spriteBatch.Draw(barTexturaBlood, bloodPos, barTexturaBlood.Frame(1, 4, 0, bPlayer.frame), Color.White, 0f, barTexturaBlood.Frame(1, 4, 0, bPlayer.frame).Size() * 0.5f, Main.UIScale, SpriteEffects.None, 0);
+            }
+            else {
+                bPlayer.frame = 0;
+                bPlayer.frameTimer = 0;
+                Main.spriteBatch.Draw(barTextura, bloodPos, null, Color.White, 0f, barTextura.Size() * 0.5f, Main.UIScale, SpriteEffects.None, 0);
+            }
+
             float progress = (float)BloodPlayer.hitForActiveBloodBuff <= 0 ? 1f : (float)bPlayer.currentHit / (float)BloodPlayer.hitForActiveBloodBuff;
             progress = MathHelper.Clamp(progress, 0f, 1f);
             int barWidth = (int)(fullBarTextura.Width * progress);

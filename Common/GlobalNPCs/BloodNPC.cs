@@ -15,10 +15,8 @@ namespace Synergia.Common.GlobalNPCs {
                             bPlayer.currentHit++;
                             bPlayer.timeLastHit = 0;
                         }
-                        if (bPlayer.Tir10Buffs) {
-                            int amount = Main.rand.Next(1, 6);
-                            player.Heal(amount);
-                        }
+                        if (bPlayer.activeBloodBuff) { bPlayer.timeLastHit = 0; }
+                        if (bPlayer.Tir10Buffs) { player.Heal(Main.rand.Next(1, 6)); }
                     }
                     else {
                         if (target.type != NPCID.TargetDummy) {
@@ -26,10 +24,8 @@ namespace Synergia.Common.GlobalNPCs {
                                 bPlayer.currentHit++;
                                 bPlayer.timeLastHit = 0;
                             }
-                            if (bPlayer.Tir10Buffs) {
-                                int amount = Main.rand.Next(1, 6);
-                                player.Heal(amount);
-                            }
+                            if (bPlayer.activeBloodBuff) { bPlayer.timeLastHit = 0; }
+                            if (bPlayer.Tir10Buffs) { player.Heal(Main.rand.Next(1, 6)); }
                         }
                     }
                 }

@@ -46,7 +46,7 @@ namespace Synergia.UIs {
                 }
             }
         }
-        protected override void DrawSelf(SpriteBatch spriteBatch) {
+        public override void DrawSelf(SpriteBatch spriteBatch) {
             base.DrawSelf(spriteBatch);
             buttonHoverNow.Clear();
             anyButtonHovered = false;
