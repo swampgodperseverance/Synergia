@@ -27,7 +27,7 @@ namespace Synergia.Content.Quests {
         public override void OnChatButtonClicked(Player player) {
             BaseOnChatButtonClicked(player);
             CheckItem(player, ref player.GetModPlayer<QuestBoolean>().ArtistQuest2, ItemType<RoyalInk>(), 1, 1, LocQuestKey("ArtistQuest_Second", "QuestCompleted"), LocQuestKey("ArtistQuest_Second", "QuestCompletedFalse"), ItemType<Seaborn>());
-            if (Progress == 0) { HookForQuest.NpcQuestKeys.Remove(QuestNPC); }
+            if (Progress == 0) { CompletedQuickSpawnItem(player, ItemID.GoldCoin, 50); HookForQuest.NpcQuestKeys.Remove(QuestNPC); }
         }
         public override bool IsAvailable(Player player) => player.GetModPlayer<QuestBoolean>().ArtistQuest1 && BaseIsAvailable(player);
         public override bool IsActive(Player player) => player.GetModPlayer<QuestBoolean>().ArtistQuest1 && BaseIsActive(player);

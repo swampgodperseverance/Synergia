@@ -1,7 +1,7 @@
 Dwarf: {
-	QuestName: Dwarven Anvil
+	QuestName: Stolen memories
 	QuestDescription: Somewhere deep within the frozen reaches of the winter biome lies an ancient Dwarven Anvil, half-buried beneath layers of ice and time. Forged in an age when dwarven forges still burned bright beneath the mountains, it hums faintly with forgotten power.
-	QuestStage: Collect Anvil
+	QuestStage: Collect Dwarven Anvil
 	QuestProgress0: Thanks for the Anvil!
 	QuestProgress1:
 		'''
@@ -23,14 +23,14 @@ Dwarf: {
 
 Hunter: {
 	QuestName: Whispering Reed
-	QuestDescription: '''In the damp stillness of the swamps grows a peculiar plant known as the Whispering Reed. Its thin stalks sway even when the air is unmoving, as if stirred by voices no one else can hear. 	Travelers often speak of faint murmurs echoing through the marsh at dusk. Secrets carried by the reeds themselves. Some believe they are remnants of lost souls, others say it is simply the swamplings lurking.'''
+	QuestDescription: '''In the damp stillness of the swamps grows a peculiar plant known as the Whispering Reed. Its thin stalks sway even when the air is unmoving, as if stirred by voices no one else can hear. Travelers often speak of faint murmurs echoing through the marsh at dusk. Secrets carried by the reeds themselves. Some believe they are remnants of lost souls, others say it is simply the swamplings lurking.'''
 	QuestStage: Collect Whispering Reed
-	QuestProgress0: Thanks for the Whispering Reed!
-	QuestProgress1: I heard stories about swamps. They say something down there sings when the moon is high. Bring me a Whispering Reed, if you dare.
+	QuestProgress0: Thanks for it, you are doing great things!
+	QuestProgress1: I heard stories about the swamps. They say something down there sings when the moon is high. Bring me a Whispering Reed, if you dare.
 	QuestProgress2: Still searching, huh? Swamps don't give up their secrets easily. Listen for the hum thats how you'll know you're close.
 	QuestButton: Accept
-	QuestButtonGive: Give Whispering Reed
-	QuestCompleted: So you found it, The Whispering Reed. You can almost hear their voices, can't you? Keep it close - it remembers those who listen.
+	QuestButtonGive: Give away a Whispering Reed
+	QuestCompleted: So you found it, a Whispering Reed. You can almost hear their voices, can't you? Keep it close - it remembers those who listen.
 	QuestCompletedFalse: You don't have a Whispering Reed.
 }
 
@@ -38,11 +38,11 @@ Artist: {
 	QuestName: Red Husk.
 	QuestDescription: Red Husk grows quietly in the depths of the caves, clinging to stone where little else survives. Its dry and crimson shell feels fragile, almost like it could crumble at a touch. It doesn’t seem fully dead, but not alive either, just something left behind. Miners tend to ignore it, aldthough some say it appears more often in places where the air feels heavier than usual.
 	QuestStage: Collect Red Husk.
-	QuestProgress0: Thanks for the Red Husk!
+	QuestProgress0: I'm really grateful for the Red Husk!
 	QuestProgress1: Have you ever seen the color that bleeds between dusk and fire? They call it Red Husk. I need it - no, I ache for it. Bring me that hue from the deep caves.
 	QuestProgress2: The canvas waits… empty. The color haunts my dreams. Did you find it? The Red Husk? Faster
 	QuestButton: Accept
-	QuestButtonGive: Give husk
+	QuestButtonGive: Give a husk
 	QuestCompleted: Look at it - that living crimson! With this, my painting will finally breathe. You've given me more than pigment… you've given me a heartbeat.
 	QuestCompletedFalse: You don't have a Red Husk.
 }
@@ -74,14 +74,14 @@ Farmer: {
 }
 
 Librarian: {
-	QuestName: Tome
-	QuestDescription: Create damaged book, that can describe everything it experienced between its lines.
-	QuestStage: Collect Tome.
+	QuestName: The ancient book
+	QuestDescription: Create tattered book, that can describe everything it experienced between its lines. Crazy Librarian said that people from Imperial City haven't heard about this.
+	QuestStage: Old covers, new problems.
 	QuestProgress0: Thanks!
-	QuestProgress1: My first quest for you will be damaged tome. I wanna try my skills on it. Who knows, what can i create
+	QuestProgress1: My first quest for you will be to collect Tattered Tome. I wanna try my skills on it. Who knows, what can i create
 	QuestProgress2: Why are you staring at me? Run and find the book and you'll get a bonus.
 	QuestButton: Accept
-	QuestButtonGive: Give a book
+	QuestButtonGive: Give a book back
 	QuestCompleted: Oh yeah, that's it. Finally my plans can become true. Here is small trinket for you.
 	QuestCompletedFalse: You don't have a tome, bruh.
 }
@@ -90,42 +90,42 @@ Dwarf2.QuestName: ""
 BaseButton: Quest
 
 HellDwarf: {
-	QuestName: Bottled Lava
-	QuestDescription: Give Bottled Lava for Dwarf in Hell.
+	QuestName: Trapped Fire
+	QuestDescription: Deep within the Underworld, even the fire feels like it's trying to escape from something. Bring a bottle of hot liquid to the one who watches the ruins.
 	QuestStage: Collect Bottled Lava
-	QuestProgress0: Thanks for the Bottled Lava!
-	QuestProgress1: I cant even believe that I'm giving tasks to someone again, and in such a terrible place too. I need bottled lava
-	QuestProgress2: You Can't get it? No problem.
+	QuestProgress0: Thanks for the Bottled Lava. It’s warm, but it doesn't bring any real heat. 
+	QuestProgress1:  I can't even believe that I'm giving tasks to someone in such a terrible place though. Albeit i was sixteen years here. I really need the bottled lava.
+	QuestProgress2: You can't get it? No problem. Failure is the only honest thing
 	QuestButton: Accept
-	QuestButtonGive: Give Bottled
-	QuestCompleted: Exactly, thank you somuch. There is some magma chunks for you
-	QuestCompletedFalse: You don't have an Bottled Lava
+	QuestButtonGive: Give Bottled Lava
+	QuestCompleted: Exactly, thank you so much. Take these magma chunks. They don't breathe, so they won't lie or hurt you.
+	QuestCompletedFalse: You don't have an Bottled Lava yet.  Perhaps the flames refused to be contained by someone like you.
 }
 
 HunterQuest_Frist: {
-	QuestName: Downed Lothor
-	QuestDescription: Give Lothor Soul for Dwarf in Hell.
-	QuestStage: Collect Lothor Soul
+	QuestName: The backwoods curse
+	QuestDescription: Give Lothor's Skull to the hunter. The horror that this druid brought in these lands cannot be described in words, even the hottest places are cursed by his presence.
+	QuestStage: Collect the Lothor Skull
 	QuestProgress0: Thanks for the Lothor Soul!
-	QuestProgress1: Hi again. Have you even heard something about the Druid who became a monster? I would like to see his skull on my wall. Bring this if you're not a weakling
+	QuestProgress1: Hi again. Have you ever heard something about the Druid who became a monster? I would like to see his skull on my wall. Bring this if you're not a weakling
 	QuestProgress2: Don't think you can do it that easily.
 	QuestButton: Accept
-	QuestButtonGive: Give Soul
-	QuestCompleted: So you beat it... Unbelievable I thought you was dead. Glad to see you, there is your reward
-	QuestCompletedFalse: You don't have an Lothor Soul
+	QuestButtonGive: Give the Skull
+	QuestCompleted: So you beat it... Unbelievable I thought you were dead. Glad to see you, there is your reward. You said something about Orcish curse? I don't really care about it.
+	QuestCompletedFalse: You don't have a Lothor Skull
 }
 
 DwarfQuest_Frist: {
-	QuestName: Downed Evil Snow Men
-	QuestDescription: Give Soul of Ice for Dwarf in tundra.
-	QuestStage: Collect Soul of Ice
+	QuestName: Living Snowmen
+	QuestDescription: Give the Soul of Ice to the Dwarf in the tundra.
+	QuestStage: Complete the frost legion and collect Soul of Ice from the Cold Father - the final enemy.
 	QuestProgress0: Thanks for the Soul of Ice!
-	QuestProgress1: Do you know something about snow legion? These are the good snowmen of the past who were swallowed by the darkness, kill their leader
+	QuestProgress1: Do you know something about the Frost Legion? These are the good snowmen of the past who were swallowed by the darkness and united with the souls of dead ice creatures, kill their leader and bring soul to ME
 	QuestProgress2: Be prepared. They attack in droves.
 	QuestButton: Accept
 	QuestButtonGive: Give Soul
-	QuestCompleted: Finally end of the snowmen dynasty. There was tons of problems from it. Take this
-	QuestCompletedFalse: You don't have an Soul of Ice
+	QuestCompleted: Finally, the end of the snowmen's dynasty. There were tons of problems caused by them. Take this as a reward
+	QuestCompletedFalse: You don't have a Soul of Ice yet.
 }
 
 ArtistQuest_Frist: {
@@ -142,16 +142,16 @@ ArtistQuest_Frist: {
 }
 
 NinjaQuest_Frist: {
-	QuestName: Luck Potion
-	QuestDescription: Give LuckPotion for Ninja
+	QuestName: Lucky ninja
+	QuestDescription: Ninja said that he's the most unlucky person in the whole world. Does he really think that one luchy potion helps him? Comic
 	QuestStage: Collect Luck Potion
 	QuestProgress0: Thanks for the Luck Potion!
-	QuestProgress1: Wanna try lucky potion for the first time. Maybe at least now I won't get hit by a slime.
+	QuestProgress1: Want to try lucky potion for the first time. Maybe at least now I won't get hit by a slime.
 	QuestProgress2: Still empty-handed? Hmph. You're very slow for a ninja.
 	QuestButton: Accept
 	QuestButtonGive: Give Potion
 	QuestCompleted: Great work, thanks. I will try it. Take these clevers. You can use them for something
-	QuestCompletedFalse: You don't have an Flaming Fabric
+	QuestCompletedFalse: You don't have it yet
 }
 
 FarmerQuest_First: {
@@ -168,45 +168,45 @@ FarmerQuest_First: {
 }
 
 LibrarianQuest_First: {
-	QuestName: Rusty Book
-	QuestDescription: Give Rusty Book for Librarian
+	QuestName: Bones and books
+	QuestDescription: Give a Rusty Book to the Librarian, which can be crafted by using dungeon old and rusty materials. 
 	QuestStage: Collect Rusty Book
 	QuestProgress0: Thanks for the Rusty Book!
 	QuestProgress1: Next task, my son. Create a rusty book on the tome for heaven's sake, and bring it to me.
 	QuestProgress2: Why are you staring at me? For being a mage, you should know how to obtain books
 	QuestButton: Accept
-	QuestButtonGive: Give Book
+	QuestButtonGive: Give the book
 	QuestCompleted: Not bad. I see you are making progress. Take some useful items from me
-	QuestCompletedFalse: You don't have an Rusty Book
+	QuestCompletedFalse: You don't have it yet. Why so?
 }
 
 HellDwarfQuest_First: {
 	QuestName: Pandemonium
-	QuestDescription: Give Pandemonium for Hell Dwarf
+	QuestDescription: Deep beneath the Collapsed Bridge lies a relic from the time before the Great Tragedy. A fragment of a world that didn't know it will ever turn in such a terrible place.
 	QuestStage: Collect Pandemonium
-	QuestProgress0: Thanks for the Pandemonium!
-	QuestProgress1: The bridge has been intact for a long time, and there was no trace of lava there. There is a locked chest at the bottom, create a key and get the contents from there.
-	QuestProgress2: You Can't get it? Yeah, i know it’s hard
+	QuestProgress0: Thanks for the Pandemonium, i feel like i'm touching a ghost from the past
+	QuestProgress1: The bridge collapsed when escape stopped being necessary, and back then, there was no trace of lava below it. There is a locked chest at the bottom, left by those who thought they could hide their past. I need items from there
+	QuestProgress2: You can't get it? Yeah, i know it’s hard, the ruins don't like to give up the things they have buried.
 	QuestButton: Accept
 	QuestButtonGive: Give Pandemonium
-	QuestCompleted: Impossible. I cant even believe. I haven't been this happy in a long time
-	QuestCompletedFalse: You don't have an Pandemonium
+	QuestCompleted: Impossible. I can't believe. I can't say I feel relief, but the silence here feels a bit lighter.
+	QuestCompletedFalse: You don't have the Pandemonium. The lock remains unbroken yet
 }
 
 DwarfQuest_Second: {
-	QuestName: Dwarven Helmet
-	QuestDescription: Give Dwarven Helmet for Dwarf
-	QuestStage: Collect Dwarven Helmet
-	QuestProgress0: Thanks for the Dwarven Helmet!
-	QuestProgress1: I've been wanting to make an item similar to the helmet of that dwarf who abandoned us. I wish I knew what it looked like.
-	QuestProgress2: Hmm...
+	QuestName: Helmet of the Forsaken
+	QuestDescription: Retrieve the second relic from the bottom of the undivided chest.
+	QuestStage: Collect the Dwarven Helmet
+	QuestProgress0: Thanks for the Dwarven Helmet, creation which bleeds with iron. 
+	QuestProgress1:  I've been trying to recreate something from that dwarf who abandoned us before everything became broken. I only have fragments of memories left.
+	QuestProgress2: Hmm... Some secrets are meant to be buried forever, perhaps
 	QuestButton: Accept
-	QuestButtonGive: Give Potion
-	QuestCompleted: How do you know what he looks like? That's suspicious.. But ok, thanks
-	QuestCompletedFalse: You don't have an Dwarven Helmet
+	QuestButtonGive: Give the Helmet
+	QuestCompleted: How do you even know what his armor looked like? That's... Kind of suspicious. Are you hiding something too? Nevermind
+	QuestCompletedFalse: You don't have the Dwarven Helmet yet
 }
 
-LibrarianQuest_Second: {
+ArtistQuest_Second: {
 	QuestName: Royal Ink
 	QuestDescription: Give Royal Ink for Librarian
 	QuestStage: Collect Royal Ink
@@ -214,61 +214,74 @@ LibrarianQuest_Second: {
 	QuestProgress1: Beneath the silent, sapphire waves, the Giant Squid drifts slow and deep. Its ink — a dream the ocean saves, a midnight bloom the stars still keep
 	QuestProgress2: Bring me royal ink as soon as possible
 	QuestButton: Accept
-	QuestButtonGive: Give Ink
+	QuestButtonGive: Give the ink
 	QuestCompleted: OH MY GOD! You killed this peaceful creature for ink?... You are cruel. Take your reward and get out of my sight
 	QuestCompletedFalse: You don't have an Royal Ink
 }
 
+LibrarianQuest_Second:{
+	QuestName: Bottomless Evil
+	QuestDescription: Give Bottomless Evil for Librarian
+	QuestStage: Collect Bottomless Evil
+	QuestProgress0: Thanks for the Bottomless Evil!
+	QuestProgress1: Next task, my son. Create a book hidden behind the souls of huge mechanical monsters
+	QuestProgress2: Why are you staring at me? Destroy this evil creatures
+	QuestButton: Accept
+	QuestButtonGive: Give the bottomless
+	QuestCompleted: Perfect. Down to the last minute detail. You deserve a reward
+	QuestCompletedFalse: You don't have an Bottomless Evil
+}
+
 HellDwarfQuest_Second: {
-	QuestName: Boney Ridge
-	QuestDescription: Give Boney Ridge for Hell Dwarf
+	QuestName: Bones
+	QuestDescription: Legends told that insanely big bone seprents were in anger after Sinlord's attack on the inferno frontier. Dwarf want to take a look on one of them, what does it hide?
 	QuestStage: Collect Boney Ridge
 	QuestProgress0: Thanks for the Boney Ridge!
-	QuestProgress1: Defeat the Giant Bone Serpent In the day when this place was destroyed, I saw a giant black worm that lives nearby, and a small bone one, destroy the bone one first
+	QuestProgress1: Defeat the Giant Bone Serpent. Once I saw a giant black worm that lives nearby, and a small bone one, destroy the bone one first
 	QuestProgress2: After this a tough fight awaits you
 	QuestButton: Accept
-	QuestButtonGive: Give Ridge
+	QuestButtonGive: Give the ridge
 	QuestCompleted: You're damn strong, I think you're ready for the final test.
-	QuestCompletedFalse: You don't have an Boney Ridge
+	QuestCompletedFalse: You don't have the Boney Ridge
 }
 
 ArtistQuest_Three: {
-	QuestName: Feneaths Brush
-	QuestDescription: Give Feneaths Brush for Hell Dwarf
+	QuestName: The masochism of Art
+	QuestDescription: Give a Feneaths Brush to the Artist. Old Feneaths statue stands somewhere in the middle of a huge underworld. Maybe those who live there have learned his skills?
 	QuestStage: Collect Feneaths Brush
 	QuestProgress0: Thanks for the Feneaths Brush
-	QuestProgress1: There are rumors that there are ruins of an ancient civilization in hell, I wonder if there is anything for creativity there?
+	QuestProgress1: There are rumors that there are ruins of an ancient civilization in hell, I wonder if there is anything for creativity there? I want something which will burn my hands along with the canvas.
 	QuestProgress2: I don't believe there's nothing
 	QuestButton: Accept
-	QuestButtonGive: Give Brush
-	QuestCompleted: Wow. I really appreciate it. Thank you for all the help, I think this was the last task, here you go
-	QuestCompletedFalse: You don't have an Boney Ridge
+	QuestButtonGive: Give the brush
+	QuestCompleted: Wow. I really appreciate it and all things that you have done. Thank you for all the help, I think this was the last task, here you go
+	QuestCompletedFalse: You don't have it yet
 }
 
 LibrarianQuest_Three: {
-	QuestName: Time Continuum
-	QuestDescription: Give Time Continuum for Hell Dwarf
-	QuestStage: Collect Time Continuum
+	QuestName: Monster he had became
+	QuestDescription: Give the Time Continuum to the Librarian. Ancient relic that breaks everything.
+	QuestStage: Collect the Time Continuum
 	QuestProgress0: Thanks for the Time Continuum
 	QuestProgress1: The final challenge. Craft the everlasting book which help me to take over time. Let’s start
 	QuestProgress2: Why are you staring at me? Let's take over the world together
 	QuestButton: Accept
-	QuestButtonGive: Give Book
+	QuestButtonGive: Give the book
 	QuestCompleted: The beginning of the end. You was the best person which i work with
 	QuestCompletedFalse: You don't have an Time Continuum
 }
 
 HellDwarfQuest_Three: {
-	QuestName: Hellworm Scale
-	QuestDescription: Give Hellworm Scale for Hell Dwarf
-	QuestStage: Collect Hellworm Scale
+	QuestName: Demigod's Scale
+	QuestDescription: Give the Hellworm Scale to the dwarf. The Wyrm is the most hateful being in the most hateful place.
+	QuestStage: Collect the Hellworm Scale
 	QuestProgress0: Thanks for the Hellworm Scale!
-	QuestProgress1: A monstrous serpent made of lava and sinstone has been sighted near the old caves. Destroy like it did once
-	QuestProgress2: I believe in you. It hides in a cave nearby — let me know when the beast is slain
+	QuestProgress1: A monstrous serpent made of lava and sinstone has been sighted near the old caves. Destroy it just like it once destroyed this place.
+	QuestProgress2: I believe in you. It hides in a cave nearby - let me know when the beast is slain
 	QuestButton: Accept
-	QuestButtonGive: Give Scale
-	QuestCompleted: finally.... I can live out my life peacefully, thank you for everything, wanderer.
-	QuestCompletedFalse: You don't have an Hellworm Scale
+	QuestButtonGive: Give the remains back
+	QuestCompleted: finally.... I can live out my life peacefully, thank you for everything, wanderer. I was scared that the same fate awaited me.
+	QuestCompletedFalse: You don't have the Hellworm Scale
 }
 
 ImperianConsul: {

@@ -1,4 +1,5 @@
-﻿using Avalon.Items.Weapons.Magic.PreHardmode.LotusLeech;
+﻿using Avalon.Items.Material.TomeMats;
+using Avalon.Items.Weapons.Magic.PreHardmode.LotusLeech;
 using Avalon.NPCs.TownNPCs;
 using Bismuth.Utilities.ModSupport;
 using Synergia.Common.ModSystems.Hooks.Ons;
@@ -18,16 +19,16 @@ namespace Synergia.Content.Quests {
         public override int Priority => 12;
         public override bool ISManyEndings => false;
         public override QuestPhase Phase => QuestPhase.PreSkeletron;
-        public override int CornerItem => ItemType<RoyalInk>();
+        public override int CornerItem => ItemType<BottomlessEvil>();
         public override PostBossQuest PostBossRequirement => PostBossQuest.PostWoF;
         public override string GetChat(NPC npc, Player player) => BaseGetChat(player, "LibrarianQuest_Second", "QuestProgress0", "QuestProgress2", "QuestProgress1");
         public override string GetButtonText(Player player, ref bool Isfristclicked) => BaseGetButtonText(player, ref Isfristclicked, "LibrarianQuest_Second", "QuestButton", "QuestButtonGive");
         public override bool IsCompleted(Player player) => BaseIsCompleted(player);
         public override void OnChatButtonClicked(Player player) {
             BaseOnChatButtonClicked(player);
-            CheckItem(player, ref player.GetModPlayer<QuestBoolean>().LibrarianQuest2, ItemType<RoyalInk>(), 1, 1, LocQuestKey("LibrarianQuest_Second", "QuestCompleted"), LocQuestKey("LibrarianQuest_Second", "QuestCompletedFalse"), ItemType<LotusLeech>());
+            CheckItem(player, ref player.GetModPlayer<QuestBoolean>().LibrarianQuest2, ItemType<BottomlessEvil>(), 1, 1, LocQuestKey("LibrarianQuest_Second", "QuestCompleted"), LocQuestKey("LibrarianQuest_Second", "QuestCompletedFalse"), ItemType<DragonOrb>());
             if (Progress == 0) {
-                CompletedQuickSpawnItem(player, ItemID.GoldCoin, 50);
+                CompletedQuickSpawnItem(player, ItemID.GreaterManaPotion, 50);
                 HookForQuest.NpcQuestKeys.Remove(QuestNPC);
             }
         }
