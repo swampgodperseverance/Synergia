@@ -140,7 +140,7 @@ namespace Synergia.Common.ModSystems.WorldGens.HoodlumsHeadquarter {
                     HLTY = worldY;
                 }
             }
-            return HeadquarterLayerThree.GenHeadquarter(progress, HLTX - 171, HLTY - 1); 
+            return true; 
         }
     }
 }

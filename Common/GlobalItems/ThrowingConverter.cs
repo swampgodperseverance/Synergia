@@ -45,7 +45,8 @@ namespace Synergia.Common.GlobalItems
             ItemID.BouncyGrenade,
 			ItemID.PartyGirlGrenade,
 			ItemID.StickyGrenade,
-			ItemID.Beenade,	
+			ItemID.Beenade,
+            ItemID.AleThrowingGlove,
 
 
 			//Consolaria
@@ -86,10 +87,15 @@ namespace Synergia.Common.GlobalItems
             ItemType<AzraelsHeartstopper>(),
             ItemType<Sufferang>(),
             ItemType<Pumpkinade>(),
+            ItemType<TarBlade>(),
+            ItemType<ClusterGrenade>(),
+            ItemType<SpiderEgg>(),
+            ItemType<ToothKnife>(),
 
 			//Horizon
 			ItemType<NewHorizons.Content.Items.Weapons.Ranged.IncendiaryGrenade>(),
             ItemType<CrystalGrenade>(),
+            ItemType<AdamantiteClusterGrenade>(),
         };
 
 		private static Mod avalon = ModLoader.GetMod("Avalon");

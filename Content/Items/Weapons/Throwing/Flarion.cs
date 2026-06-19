@@ -16,7 +16,7 @@ namespace Synergia.Content.Items.Weapons.Throwing
 			base.Item.autoReuse = true;
 			base.Item.noMelee = true;
 			base.Item.useStyle = 1;
-			base.Item.shootSpeed = 12f;
+			base.Item.shootSpeed = 23f;
 			base.Item.damage = 58;
 			base.Item.knockBack = 4f;
 			base.Item.width = 24;

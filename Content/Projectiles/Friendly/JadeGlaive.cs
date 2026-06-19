@@ -18,7 +18,6 @@ namespace Synergia.Content.Projectiles.Friendly
         private bool isDying = false;
         private float deathTimer = 0f;
         private float outlineIntensity = 0f;
-
         public static readonly SoundStyle Impulse = new("Synergia/Assets/Sounds/Impulse");
 
         public override void SetStaticDefaults()
@@ -49,18 +48,8 @@ namespace Synergia.Content.Projectiles.Friendly
             {
                 CreateExplosionDust();
                 SoundEngine.PlaySound(Impulse, Projectile.Center);
-
                 var s = Projectile.GetSource_FromThis();
-                Projectile.NewProjectile(
-                    s,
-                    Projectile.Center,
-                    Vector2.Zero,
-                    ModContent.ProjectileType<JadeShardFriendly>(),
-                    Projectile.damage,
-                    Projectile.knockBack,
-                    Projectile.owner
-                );
-
+                Projectile.NewProjectile(s, Projectile.Center, Vector2.Zero, ModContent.ProjectileType<JadeShardFriendly>(), Projectile.damage, Projectile.knockBack, Projectile.owner);
                 Projectile.Kill();
                 return;
             }
@@ -94,7 +83,6 @@ namespace Synergia.Content.Projectiles.Friendly
                             d.velocity = dashDir.RotatedByRandom(0.5f) * Main.rand.NextFloat(2f, 6f);
                             d.scale = Main.rand.NextFloat(1.2f, 1.8f);
                         }
-
                         SoundEngine.PlaySound(SoundID.Item74 with { Pitch = 0.5f, Volume = 1f }, Projectile.Center);
                     }
                 }
@@ -136,29 +124,32 @@ namespace Synergia.Content.Projectiles.Friendly
         private void HandleDeathAnimation()
         {
             deathTimer++;
-
+            Projectile.rotation += 0.35f;
             float deathProgress = deathTimer / 30f;
 
             if (deathTimer <= 15)
             {
-                float scale = 1f + deathProgress * 2f;
+                float scale = 1f + deathProgress * 0.35f;
                 Projectile.scale = scale;
-                outlineIntensity = deathProgress * 2f;
+                outlineIntensity = deathProgress * 0.9f;
 
-                if (deathTimer % 3 == 0 && Main.myPlayer == Projectile.owner)
+                if (deathTimer % 4 == 0 && Main.myPlayer == Projectile.owner)
                 {
-                    Main.LocalPlayer.GetModPlayer<ScreenShakePlayer>().TriggerShake(2, 0.1f);
+                    Main.LocalPlayer.GetModPlayer<ScreenShakePlayer>().TriggerShake(2, 0.08f);
                 }
             }
             else if (deathTimer <= 30)
             {
-                Projectile.scale = 2.5f - (deathProgress - 0.5f) * 3f;
-                outlineIntensity = 1f - (deathProgress - 0.5f) * 2f;
+                Projectile.scale = 1.35f - (deathProgress - 0.5f) * 0.7f;
+                outlineIntensity = 0.9f - (deathProgress - 0.5f) * 1.1f;
 
-                Dust deathDust = Dust.NewDustPerfect(Projectile.Center, ModContent.DustType<JadeDust>());
-                deathDust.scale = Main.rand.NextFloat(1.5f, 2.5f);
-                deathDust.velocity = Main.rand.NextVector2Circular(4f, 4f);
-                deathDust.noGravity = true;
+                if (deathTimer % 3 == 0)
+                {
+                    Dust deathDust = Dust.NewDustPerfect(Projectile.Center, ModContent.DustType<JadeDust>());
+                    deathDust.scale = Main.rand.NextFloat(1.2f, 2f);
+                    deathDust.velocity = Main.rand.NextVector2Circular(3f, 3f);
+                    deathDust.noGravity = true;
+                }
             }
 
             if (deathTimer >= 30)
@@ -175,39 +166,37 @@ namespace Synergia.Content.Projectiles.Friendly
                 Main.LocalPlayer.GetModPlayer<ScreenShakePlayer>().TriggerShake(12, 0.6f);
             }
 
-            for (int i = 0; i < 60; i++)
+            for (int i = 0; i < 25; i++)
             {
                 Dust d = Dust.NewDustPerfect(Projectile.Center, ModContent.DustType<JadeDust>());
                 d.noGravity = true;
-                d.scale = Main.rand.NextFloat(1.8f, 3.5f);
-                d.velocity = Main.rand.NextVector2Circular(8f, 8f) * Main.rand.NextFloat(1f, 2.5f);
-                d.fadeIn = 0.5f;
+                d.scale = Main.rand.NextFloat(1.5f, 2.8f);
+                d.velocity = Main.rand.NextVector2Circular(6f, 6f) * Main.rand.NextFloat(1f, 2f);
+                d.fadeIn = 0.4f;
             }
 
-            for (int i = 0; i < 15; i++)
+            for (int i = 0; i < 8; i++)
             {
                 Dust d = Dust.NewDustPerfect(Projectile.Center, DustID.GemEmerald);
                 d.noGravity = true;
-                d.scale = Main.rand.NextFloat(1.2f, 2f);
-                d.velocity = Main.rand.NextVector2Circular(6f, 6f);
+                d.scale = Main.rand.NextFloat(1f, 1.6f);
+                d.velocity = Main.rand.NextVector2Circular(5f, 5f);
             }
 
-            SoundEngine.PlaySound(SoundID.Item14 with { Volume = 1.5f, Pitch = 0.2f }, Projectile.Center);
-            SoundEngine.PlaySound(SoundID.Item29 with { Volume = 1.3f, Pitch = 0.6f }, Projectile.Center);
-
+            SoundEngine.PlaySound(SoundID.Item14 with { Volume = 1.2f, Pitch = 0.2f }, Projectile.Center);
+            SoundEngine.PlaySound(SoundID.Item29 with { Volume = 1.1f, Pitch = 0.6f }, Projectile.Center);
             Lighting.AddLight(Projectile.Center, 0.3f, 2f, 0.5f);
         }
 
         private void CreateExplosionDust()
         {
-            for (int i = 0; i < 30; i++)
+            for (int i = 0; i < 20; i++)
             {
                 Dust d = Dust.NewDustPerfect(Projectile.Center, ModContent.DustType<JadeDust>());
                 d.noGravity = true;
-                d.scale = Main.rand.NextFloat(1.4f, 2.2f);
-                d.velocity = Vector2.UnitX.RotatedByRandom(MathHelper.TwoPi) * Main.rand.NextFloat(3f, 8f);
+                d.scale = Main.rand.NextFloat(1.2f, 2f);
+                d.velocity = Vector2.UnitX.RotatedByRandom(MathHelper.TwoPi) * Main.rand.NextFloat(3f, 7f);
             }
-
             SoundEngine.PlaySound(SoundID.Item14 with { Volume = 0.9f, Pitch = 0.3f }, Projectile.Center);
         }
 
@@ -249,15 +238,15 @@ namespace Synergia.Content.Projectiles.Friendly
             if (outlineIntensity > 0.05f)
             {
                 float alpha = outlineIntensity * 0.8f;
-                float scale = Projectile.scale * (1f + outlineIntensity * 0.3f);
+                float scale = Projectile.scale * (1f + outlineIntensity * 0.06f);
 
                 for (int i = 0; i < 8; i++)
                 {
                     float angle = i * MathHelper.TwoPi / 8f;
-                    Vector2 offset = angle.ToRotationVector2() * (4f * outlineIntensity);
+                    Vector2 offset = angle.ToRotationVector2() * (1.4f * outlineIntensity);
                     Vector2 outlinePos = Projectile.Center - Main.screenPosition + offset;
-
                     Color outlineColor = new Color(50, 200, 100, 0) * alpha;
+
                     Main.spriteBatch.Draw(tex, outlinePos, null, outlineColor,
                         Projectile.rotation + angle * 0.5f, drawOrigin, scale, SpriteEffects.None, 0f);
                 }
@@ -273,6 +262,7 @@ namespace Synergia.Content.Projectiles.Friendly
                 float progress = 1f - (float)k / Projectile.oldPos.Length;
                 float alpha = 0.4f * progress * (1f - outlineIntensity * 0.7f);
                 Color trailColor = new Color(100, 255, 150, 100) * alpha;
+
                 Main.spriteBatch.Draw(tex, drawPos, null, trailColor,
                     Projectile.rotation, drawOrigin, Projectile.scale * progress, SpriteEffects.None, 0f);
             }

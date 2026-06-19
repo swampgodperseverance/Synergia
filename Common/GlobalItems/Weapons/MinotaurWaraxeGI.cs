@@ -54,7 +54,9 @@ namespace Synergia.Common.GlobalItems.Weapons
                 initialTime
             );
 
-            Main.projectile[proj].direction = player.direction;
+            Projectile p = Main.projectile[proj];
+            p.direction = player.direction;
+            p.spriteDirection = player.direction;
 
             return false;
         }

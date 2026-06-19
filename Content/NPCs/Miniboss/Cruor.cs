@@ -38,7 +38,7 @@ namespace Synergia.Content.NPCs.Miniboss
 			NPC.height = 60;
 			NPC.damage = 0; //no contact damage because that would be annoying
 			NPC.defense = 30;
-			NPC.lifeMax = 22000;
+			NPC.lifeMax = 36000;
 			NPC.knockBackResist = 0f;
 			NPC.noGravity = true;
 			NPC.noTileCollide = true;
@@ -96,129 +96,163 @@ namespace Synergia.Content.NPCs.Miniboss
 			if(NPC.ai[0] == 3f && NPC.localAI[3] > 0f) NPC.rotation = Vector2.Normalize(Vector2.Lerp((NPC.velocity.X / 45f).ToRotationVector2(), (NPC.ai[2] + (NPC.spriteDirection - 1) * MathHelper.PiOver2).ToRotationVector2(), NPC.localAI[3])).ToRotation();
 			else NPC.rotation = NPC.velocity.X / 45f;
 		}
-		public override void AI() {
-            if (isSpawning){
+        public override void AI()
+        {
+            if (isSpawning)
+            {
                 SpawnAnimation();
-                return;}
+                return;
+            }
+
             Player target = NPC.target > -1 ? Main.player[NPC.target] : null;
-			if(!target.active || target.dead || target.Distance(NPC.Center) > 1000f) {
-				NPC.TargetClosest();
-				target = Main.player[NPC.target];
-				if (!target.active || target.dead || target.Distance(NPC.Center) > 1000f) if(NPC.alpha >= 255) NPC.active = false;
-				else NPC.alpha += 17;
-			}
-			if(target != null) switch(NPC.ai[0]) {
-				case 0:
-					if(NPC.ai[1] > 0f) NPC.ai[1]++;
-					if(NPC.ai[1] > (Main.getGoodWorld ? 60f : 120f)) {
-						List<float> attacks = new() {1f, 2f, 3f};
-						attacks.Remove(NPC.ai[3]);
-						NPC.ai[0] = attacks[Main.rand.Next(attacks.Count)];
-						NPC.ai[1] = 0f;
-						NPC.netUpdate = true;
-						NPC.TargetClosest();
-					}
-					else {
-						NPC.direction = Math.Sign(target.Center.X - NPC.Center.X);
-						Vector2 targetPos = target.Center - new Vector2(NPC.direction * 96f, 128f);
-						NPC.velocity += (targetPos - NPC.Center) * 0.0018f;
-						NPC.velocity *= 0.92f;
-						if(NPC.ai[1] == 0f && NPC.Distance(targetPos) < 160f) NPC.ai[1]++;
-					}
-				break;
-				case 1:
-					if(++NPC.ai[1] > 240f) {
-						NPC.ai[3] = NPC.ai[0];
-						NPC.ai[0] = 0f;
-						NPC.ai[1] = 0f;
-						NPC.localAI[2] = 0f;
-						NPC.netUpdate = true;
-						NPC.TargetClosest();
-					}
-					else {
-						NPC.direction = Math.Sign(target.Center.X - NPC.Center.X);
-						Vector2 targetPos = target.Center - new Vector2(NPC.direction * 320f, 0f);
-						if(NPC.ai[1] % 60 < 20 || NPC.ai[1] % 60 > 40) {
-							NPC.velocity += (targetPos - NPC.Center) * 0.0048f * (NPC.ai[1] % 60 > 40 ? (NPC.ai[1] % 60 - 40) / 20f : 1f);
-							if(NPC.ai[1] % 60 < 20 || NPC.ai[1] % 60 > 50) NPC.localAI[0] = 0f;
-						}
-						else {
-							if(NPC.ai[1] % 60 < 50) {
-								if(NPC.ai[1] % 60 > 30) NPC.localAI[2] = (float)Math.Sin(MathHelper.Pi * (NPC.ai[1] % 60 - 30f) / 30f) * 3f;
-								int e = Dust.NewDust(NPC.Center - new Vector2(1f - NPC.direction * NPC.width, 1f) + Main.rand.NextVector2Circular(NPC.width, NPC.height), 2, 2, 182, 0f, 0f, 150, default(Color), (NPC.ai[1] % 60 - 20f) / 20f);
-								Main.dust[e].velocity = (NPC.Center - Vector2.One - Main.dust[e].position) * 0.1f + NPC.velocity;
-								Main.dust[e].noGravity = true;
-							}
-							if(NPC.ai[1] % 60 == 40) {
-								NPC.velocity.X -= NPC.direction * 4f;
-								if(Main.netMode != 1) Projectile.NewProjectileDirect(NPC.GetSource_FromAI(), NPC.Center + NPC.rotation.ToRotationVector2() * NPC.direction * NPC.width / 3, Vector2.UnitX * NPC.direction * 4f, 270, 27, 1f, Main.myPlayer).tileCollide = !Main.expertMode;
-							}
-							else if(NPC.ai[1] % 60 == 20) {
-								NPC.localAI[1] = 10f;
-								SoundEngine.PlaySound(SoundID.DD2_SkeletonSummoned, NPC.Center);
-							}
-							NPC.localAI[0] = 1f;
-						}
-						NPC.velocity *= 0.92f;
-					}
-				break;
-				case 2:
-					if(++NPC.ai[1] > 180f) {
-						NPC.ai[3] = NPC.ai[0];
-						NPC.ai[0] = 0f;
-						NPC.ai[1] = 0f;
-						NPC.ai[2] = 0f;
-						NPC.localAI[2] = 0f;
-						NPC.netUpdate = true;
-						NPC.TargetClosest();
-					}
-					else {
-						NPC.localAI[0] = NPC.ai[1] % 90 < 80 && NPC.ai[1] % 90 > 40 && (NPC.ai[1] < 80f || Main.expertMode) ? 1f : 0f;
-						if(NPC.ai[1] < 40f) NPC.direction = Math.Sign(target.Center.X - NPC.Center.X);
-						else if(NPC.ai[1] % 90 == 60 && (NPC.ai[1] == 60f || Main.expertMode) && Main.netMode != 1) {
-							SoundEngine.PlaySound(SoundID.Item8, NPC.Center);
-							if(NPC.ai[1] == 60f) NPC.ai[2] = Main.rand.NextFloat(MathHelper.TwoPi);
-							for(int i = 0; i < (Main.getGoodWorld ? 7 : 5); i++) Projectile.NewProjectile(NPC.GetSource_FromAI(), NPC.Center + NPC.rotation.ToRotationVector2() * NPC.direction * NPC.width / 3, (NPC.ai[2] + i / (Main.getGoodWorld ? 7f : 5f) * MathHelper.TwoPi).ToRotationVector2(), ModContent.ProjectileType<CruorStar>(), 38, 1f, Main.myPlayer, NPC.ai[1] == 60f ? NPC.direction : -NPC.direction);
-						}
-						else if(NPC.ai[1] % 90 == 40 && (NPC.ai[1] == 40f || Main.expertMode)) {
-							SoundEngine.PlaySound(SoundID.Item4, NPC.Center);
-							NPC.localAI[1] = 10f;
-						}
-						if(NPC.ai[1] % 90 > 45) NPC.localAI[2] = (float)Math.Sin(MathHelper.Pi * (NPC.ai[1] % 90 - 45f) / 30f) * 5f;
-						NPC.velocity *= 0.92f;
-					}
-				break;
-				case 3:
-					if(++NPC.ai[1] > 120f) {
-						NPC.ai[3] = NPC.ai[0];
-						NPC.ai[0] = 0f;
-						NPC.ai[1] = 0f;
-						NPC.ai[2] = 0f;
-						NPC.localAI[0] = 0f;
-						NPC.localAI[3] = 0f;
-						NPC.netUpdate = true;
-						NPC.TargetClosest();
-					}
-					else {
-						NPC.localAI[0] = NPC.ai[1] < 60f ? 0f : 1f;
-						float lerp = (NPC.ai[1] - 60f) / 60f;
-						if(NPC.ai[1] < 60f) {
-							NPC.direction = Math.Sign(target.Center.X - NPC.Center.X);
-							NPC.ai[2] = (target.Center - NPC.Center).ToRotation();
-						}
-						else if(NPC.ai[1] % (Main.getGoodWorld ? 6f : Main.expertMode ? 10f : 12f) == 0f) {
-							SoundEngine.PlaySound(SoundID.Item20, NPC.Center);
-							if(Main.netMode != 1) Projectile.NewProjectile(NPC.GetSource_FromAI(), NPC.Center + NPC.rotation.ToRotationVector2() * NPC.direction * NPC.width / 4, (NPC.ai[2] - (MathHelper.PiOver2 * 0.6f - MathHelper.PiOver2 * 1.2f * lerp) * NPC.direction).ToRotationVector2(), ModContent.ProjectileType<CruorSpike>(), 36, 1f, Main.myPlayer);
-						}
-						lerp = NPC.ai[1] / 120f;
-						NPC.localAI[3] = NPC.localAI[0] * MathHelper.SmoothStep(0f, 0.2f, (float)Math.Sin(MathHelper.Pi * lerp * lerp * lerp));
-						NPC.velocity *= 0.92f;
-					}
-				break;
-			}
-			if(NPC.localAI[1] > 0f) NPC.localAI[1]--;
-		}
-		public override bool PreDraw(SpriteBatch sprite, Vector2 screenPos, Color drawColor) {
+
+            // FIX for checking for players
+            if (target == null || !target.active || target.dead || target.Distance(NPC.Center) > 1000f){
+                NPC.TargetClosest();
+                target = NPC.target > -1 ? Main.player[NPC.target] : null;
+                if (target == null || !target.active || target.dead || target.Distance(NPC.Center) > 1000f)
+                {
+                    if (NPC.alpha >= 255)
+                        NPC.active = false;
+                    else
+                        NPC.alpha += 17;
+                    return; 
+                }
+            }
+
+            // NUll checking
+            if (target != null){
+                switch (NPC.ai[0])
+                {
+                    case 0:
+                        if (NPC.ai[1] > 0f) NPC.ai[1]++;
+                        if (NPC.ai[1] > (Main.getGoodWorld ? 60f : 120f))
+                        {
+                            List<float> attacks = new() { 1f, 2f, 3f };
+                            attacks.Remove(NPC.ai[3]);
+                            NPC.ai[0] = attacks[Main.rand.Next(attacks.Count)];
+                            NPC.ai[1] = 0f;
+                            NPC.netUpdate = true;
+                            NPC.TargetClosest();
+                        }
+                        else
+                        {
+                            NPC.direction = Math.Sign(target.Center.X - NPC.Center.X);
+                            Vector2 targetPos = target.Center - new Vector2(NPC.direction * 96f, 128f);
+                            NPC.velocity += (targetPos - NPC.Center) * 0.0018f;
+                            NPC.velocity *= 0.92f;
+                            if (NPC.ai[1] == 0f && NPC.Distance(targetPos) < 160f) NPC.ai[1]++;
+                        }
+                        break;
+                    case 1:
+                        if (++NPC.ai[1] > 240f)
+                        {
+                            NPC.ai[3] = NPC.ai[0];
+                            NPC.ai[0] = 0f;
+                            NPC.ai[1] = 0f;
+                            NPC.localAI[2] = 0f;
+                            NPC.netUpdate = true;
+                            NPC.TargetClosest();
+                        }
+                        else
+                        {
+                            NPC.direction = Math.Sign(target.Center.X - NPC.Center.X);
+                            Vector2 targetPos = target.Center - new Vector2(NPC.direction * 320f, 0f);
+                            if (NPC.ai[1] % 60 < 20 || NPC.ai[1] % 60 > 40)
+                            {
+                                NPC.velocity += (targetPos - NPC.Center) * 0.0048f * (NPC.ai[1] % 60 > 40 ? (NPC.ai[1] % 60 - 40) / 20f : 1f);
+                                if (NPC.ai[1] % 60 < 20 || NPC.ai[1] % 60 > 50) NPC.localAI[0] = 0f;
+                            }
+                            else
+                            {
+                                if (NPC.ai[1] % 60 < 50)
+                                {
+                                    if (NPC.ai[1] % 60 > 30) NPC.localAI[2] = (float)Math.Sin(MathHelper.Pi * (NPC.ai[1] % 60 - 30f) / 30f) * 3f;
+                                    int e = Dust.NewDust(NPC.Center - new Vector2(1f - NPC.direction * NPC.width, 1f) + Main.rand.NextVector2Circular(NPC.width, NPC.height), 2, 2, 182, 0f, 0f, 150, default(Color), (NPC.ai[1] % 60 - 20f) / 20f);
+                                    Main.dust[e].velocity = (NPC.Center - Vector2.One - Main.dust[e].position) * 0.1f + NPC.velocity;
+                                    Main.dust[e].noGravity = true;
+                                }
+                                if (NPC.ai[1] % 60 == 40)
+                                {
+                                    NPC.velocity.X -= NPC.direction * 4f;
+                                    if (Main.netMode != 1) Projectile.NewProjectileDirect(NPC.GetSource_FromAI(), NPC.Center + NPC.rotation.ToRotationVector2() * NPC.direction * NPC.width / 3, Vector2.UnitX * NPC.direction * 4f, 270, 27, 1f, Main.myPlayer).tileCollide = !Main.expertMode;
+                                }
+                                else if (NPC.ai[1] % 60 == 20)
+                                {
+                                    NPC.localAI[1] = 10f;
+                                    SoundEngine.PlaySound(SoundID.DD2_SkeletonSummoned, NPC.Center);
+                                }
+                                NPC.localAI[0] = 1f;
+                            }
+                            NPC.velocity *= 0.92f;
+                        }
+                        break;
+                    case 2:
+                        if (++NPC.ai[1] > 180f)
+                        {
+                            NPC.ai[3] = NPC.ai[0];
+                            NPC.ai[0] = 0f;
+                            NPC.ai[1] = 0f;
+                            NPC.ai[2] = 0f;
+                            NPC.localAI[2] = 0f;
+                            NPC.netUpdate = true;
+                            NPC.TargetClosest();
+                        }
+                        else
+                        {
+                            NPC.localAI[0] = NPC.ai[1] % 90 < 80 && NPC.ai[1] % 90 > 40 && (NPC.ai[1] < 80f || Main.expertMode) ? 1f : 0f;
+                            if (NPC.ai[1] < 40f) NPC.direction = Math.Sign(target.Center.X - NPC.Center.X);
+                            else if (NPC.ai[1] % 90 == 60 && (NPC.ai[1] == 60f || Main.expertMode) && Main.netMode != 1)
+                            {
+                                SoundEngine.PlaySound(SoundID.Item8, NPC.Center);
+                                if (NPC.ai[1] == 60f) NPC.ai[2] = Main.rand.NextFloat(MathHelper.TwoPi);
+                                for (int i = 0; i < (Main.getGoodWorld ? 7 : 5); i++) Projectile.NewProjectile(NPC.GetSource_FromAI(), NPC.Center + NPC.rotation.ToRotationVector2() * NPC.direction * NPC.width / 3, (NPC.ai[2] + i / (Main.getGoodWorld ? 7f : 5f) * MathHelper.TwoPi).ToRotationVector2(), ModContent.ProjectileType<CruorStar>(), 38, 1f, Main.myPlayer, NPC.ai[1] == 60f ? NPC.direction : -NPC.direction);
+                            }
+                            else if (NPC.ai[1] % 90 == 40 && (NPC.ai[1] == 40f || Main.expertMode))
+                            {
+                                SoundEngine.PlaySound(SoundID.Item4, NPC.Center);
+                                NPC.localAI[1] = 10f;
+                            }
+                            if (NPC.ai[1] % 90 > 45) NPC.localAI[2] = (float)Math.Sin(MathHelper.Pi * (NPC.ai[1] % 90 - 45f) / 30f) * 5f;
+                            NPC.velocity *= 0.92f;
+                        }
+                        break;
+                    case 3:
+                        if (++NPC.ai[1] > 120f)
+                        {
+                            NPC.ai[3] = NPC.ai[0];
+                            NPC.ai[0] = 0f;
+                            NPC.ai[1] = 0f;
+                            NPC.ai[2] = 0f;
+                            NPC.localAI[0] = 0f;
+                            NPC.localAI[3] = 0f;
+                            NPC.netUpdate = true;
+                            NPC.TargetClosest();
+                        }
+                        else
+                        {
+                            NPC.localAI[0] = NPC.ai[1] < 60f ? 0f : 1f;
+                            float lerp = (NPC.ai[1] - 60f) / 60f;
+                            if (NPC.ai[1] < 60f)
+                            {
+                                NPC.direction = Math.Sign(target.Center.X - NPC.Center.X);
+                                NPC.ai[2] = (target.Center - NPC.Center).ToRotation();
+                            }
+                            else if (NPC.ai[1] % (Main.getGoodWorld ? 6f : Main.expertMode ? 10f : 12f) == 0f)
+                            {
+                                SoundEngine.PlaySound(SoundID.Item20, NPC.Center);
+                                if (Main.netMode != 1) Projectile.NewProjectile(NPC.GetSource_FromAI(), NPC.Center + NPC.rotation.ToRotationVector2() * NPC.direction * NPC.width / 4, (NPC.ai[2] - (MathHelper.PiOver2 * 0.6f - MathHelper.PiOver2 * 1.2f * lerp) * NPC.direction).ToRotationVector2(), ModContent.ProjectileType<CruorSpike>(), 36, 1f, Main.myPlayer);
+                            }
+                            lerp = NPC.ai[1] / 120f;
+                            NPC.localAI[3] = NPC.localAI[0] * MathHelper.SmoothStep(0f, 0.2f, (float)Math.Sin(MathHelper.Pi * lerp * lerp * lerp));
+                            NPC.velocity *= 0.92f;
+                        }
+                        break;
+                }
+                if (NPC.localAI[1] > 0f) NPC.localAI[1]--;
+            }
+        }
+        public override bool PreDraw(SpriteBatch sprite, Vector2 screenPos, Color drawColor) {
 			Texture2D texture = TextureAssets.Npc[NPC.type].Value;
 			Vector2 origin = NPC.frame.Size() / 2f;
 			Color color = NPC.GetNPCColorTintedByBuffs(NPC.GetAlpha(drawColor));
@@ -232,22 +266,23 @@ namespace Synergia.Content.NPCs.Miniboss
 			if(NPC.localAI[1] > 0f) sprite.Draw(texture, NPC.Center - new Vector2(7f * -NPC.spriteDirection, 18f).RotatedBy(NPC.rotation) - screenPos, null, new Color(NPC.ai[0] == 2f ? 255 : 200, NPC.ai[0] == 2f ? 55 : 0, NPC.ai[0] == 2f ? 75 : 0, 0) * (float)Math.Sin(NPC.localAI[1] * 0.1f * MathHelper.Pi), NPC.rotation, texture.Size() / 2f, NPC.scale * new Vector2(1f - NPC.localAI[1] * 0.1f, 0.8f), spriteEffects, 0f);
 			return false;
 		}
-		public override void ModifyNPCLoot(NPCLoot npcLoot) {
-			npcLoot.Add(ItemDropRule.OneFromOptions(1, 3, 5,
-				ItemID.Ectoplasm,
-				ModContent.ItemType<ThunderShard>()
-			));
+        public override void ModifyNPCLoot(NPCLoot npcLoot){
+            npcLoot.Add(ItemDropRule.OneFromOptions(1, 3, 5,
+                ItemID.Ectoplasm,
+                ModContent.ItemType<ThunderShard>()
+            ));
 
+            npcLoot.Add(ItemDropRule.OneFromOptions(1,
+                ModContent.ItemType<TheOriginOfSymmetry>(),
+                ModContent.ItemType<CruelAmulet>(),
+                ModContent.ItemType<Jeweler>(),
+                ModContent.ItemType<MortalStones>()
+            ));
 
-			npcLoot.Add(ItemDropRule.OneFromOptions(5,
-				ModContent.ItemType<TheOriginOfSymmetry>(),
-				ModContent.ItemType<CruelAmulet>()
-			));
-
-			npcLoot.Add(ItemDropRule.Common(ItemID.Nazar, 10));
-			npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<CruorTrophy>(), 10));
-			npcLoot.Add(ItemDropRule.MasterModeCommonDrop(ModContent.ItemType<CruorRelicItem>()));
-		}
+            npcLoot.Add(ItemDropRule.Common(ItemID.Nazar, 10));
+            npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<CruorTrophy>(), 10));
+            npcLoot.Add(ItemDropRule.MasterModeCommonDrop(ModContent.ItemType<CruorRelicItem>()));
+        }
         public override void OnKill()
         {
             for (int i = 0; i < 30; i++)

@@ -11,6 +11,7 @@ namespace Synergia.Content.Projectiles.Thrower
     public class SunJavelinProj : ModProjectile
     {
         private static readonly Color SunColor = new Color(255, 245, 180);
+        private bool hasHit = false;
 
         public override void SetStaticDefaults()
         {
@@ -20,74 +21,38 @@ namespace Synergia.Content.Projectiles.Thrower
 
         public override void SetDefaults()
         {
-            Projectile.width = 76;
-            Projectile.height = 76;
+            Projectile.width = 20;
+            Projectile.height = 20;
             Projectile.aiStyle = -1;
             Projectile.friendly = true;
             Projectile.DamageType = DamageClass.Throwing;
             Projectile.hostile = false;
-            Projectile.tileCollide = false;
+            Projectile.tileCollide = true;
             Projectile.penetrate = 1;
-            Projectile.timeLeft = 78;
+            Projectile.timeLeft = 300;
             Projectile.usesLocalNPCImmunity = true;
-            Projectile.localNPCHitCooldown = 3;
+            Projectile.localNPCHitCooldown = 10;
             Projectile.alpha = 255;
         }
 
         public override void AI()
         {
             Lighting.AddLight(Projectile.Center, 1.1f, 1.0f, 0.6f);
-            Projectile.ai[0]++;
 
             float speed = Projectile.velocity.Length();
             if (speed > 0f)
             {
                 Projectile.velocity = Projectile.velocity.SafeNormalize(Vector2.UnitX) * speed;
             }
-            else
-            {
-                Projectile.velocity = Vector2.UnitX * 10f;
-            }
 
             Projectile.rotation = Projectile.velocity.ToRotation() + MathHelper.ToRadians(90f);
 
             if (Projectile.alpha > 0)
-                Projectile.alpha -= 5;
+                Projectile.alpha -= 8;
             else
                 Projectile.alpha = 0;
 
-            if (Projectile.ai[0] > 5)
-            {
-                Rectangle projectileHitbox = Projectile.Hitbox;
-
-                foreach (NPC npc in Main.npc)
-                {
-                    if (npc.active && !npc.friendly && npc.CanBeChasedBy() &&
-                        projectileHitbox.Intersects(npc.Hitbox))
-                    {
-                        int damage = Projectile.damage;
-                        float knockback = Projectile.knockBack;
-                        bool crit = false;
-
-                        NPC.HitInfo hitInfo = new NPC.HitInfo
-                        {
-                            Damage = damage,
-                            Knockback = knockback,
-                            Crit = crit,
-                            HitDirection = npc.Center.X < Projectile.Center.X ? -1 : 1
-                        };
-
-                        npc.StrikeNPC(hitInfo, true, true);
-
-                        if (Projectile.penetrate == 1)
-                        {
-                            Projectile.Kill();
-                            return;
-                        }
-                        break;
-                    }
-                }
-            }
+            Projectile.ai[0]++;
 
             Vector2 perpOffset = Projectile.velocity.RotatedBy(MathHelper.PiOver2) * 3f;
 
@@ -133,6 +98,16 @@ namespace Synergia.Content.Projectiles.Thrower
             }
         }
 
+        public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
+        {
+
+            if (!hasHit)
+            {
+                hasHit = true;
+                // Дополнительные эффекты при попадании
+            }
+        }
+
         public override void OnKill(int timeLeft)
         {
             for (int i = 0; i < 40; i++)
@@ -152,11 +127,6 @@ namespace Synergia.Content.Projectiles.Thrower
             }
         }
 
-        public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
-        {
-            CombatText.NewText(target.Hitbox, Color.Red, "HIT");
-        }
-
         public override bool PreDraw(ref Color lightColor)
         {
             Main.instance.LoadProjectile(Projectile.type);
@@ -170,6 +140,8 @@ namespace Synergia.Content.Projectiles.Thrower
 
             for (int k = 0; k < Projectile.oldPos.Length; k++)
             {
+                if (Projectile.oldPos[k] == Vector2.Zero) continue;
+
                 Vector2 drawPos = Projectile.oldPos[k] + Projectile.Size * 0.5f - Main.screenPosition;
                 float fade = (Projectile.oldPos.Length - k) / (float)Projectile.oldPos.Length;
 

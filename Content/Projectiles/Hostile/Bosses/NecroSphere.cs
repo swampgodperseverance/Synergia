@@ -114,32 +114,54 @@ namespace Synergia.Content.Projectiles.Hostile.Bosses
 
         public override void OnKill(int timeLeft)
         {
-            float rotationProgress = rotationSpeed / maxRotationSpeed;
-            float spreadSpeed = 14f + rotationProgress * 8f;
+            // --- Логика создания снаряда (только на сервере/в одиночной игре) ---
+            if (Main.netMode != NetmodeID.MultiplayerClient)
+            {
+                // Ищем ближайшего активного игрока
+                Player target = null;
+                float closestDistSqr = 2000f * 2000f; // дистанция поиска (2000 пикселей)
+                foreach (Player player in Main.player)
+                {
+                    if (player.active && !player.dead)
+                    {
+                        float distSqr = Vector2.DistanceSquared(Projectile.Center, player.Center);
+                        if (distSqr < closestDistSqr)
+                        {
+                            closestDistSqr = distSqr;
+                            target = player;
+                        }
+                    }
+                }
 
-            Projectile.NewProjectile(Projectile.GetSource_Death(), Projectile.position.X, Projectile.position.Y, spreadSpeed, 0f, ModContent.ProjectileType<NecroFire>(), Projectile.damage, 0f, Projectile.owner, 0f, 0f);
-            Projectile.NewProjectile(Projectile.GetSource_Death(), Projectile.position.X, Projectile.position.Y, -spreadSpeed, 0f, ModContent.ProjectileType<NecroFire>(), Projectile.damage, 0f, Projectile.owner, 0f, 0f);
-            Projectile.NewProjectile(Projectile.GetSource_Death(), Projectile.position.X, Projectile.position.Y, 0f, spreadSpeed, ModContent.ProjectileType<NecroFire>(), Projectile.damage, 0f, Projectile.owner, 0f, 0f);
-            Projectile.NewProjectile(Projectile.GetSource_Death(), Projectile.position.X, Projectile.position.Y, 0f, -spreadSpeed, ModContent.ProjectileType<NecroFire>(), Projectile.damage, 0f, Projectile.owner, 0f, 0f);
+                if (target != null)
+                {
+                    Vector2 direction = target.Center - Projectile.Center;
+                    direction.Normalize();
+                    float speed = 14f;
+                    Vector2 velocity = direction * speed;
 
-            Projectile.NewProjectile(Projectile.GetSource_Death(), Projectile.position.X, Projectile.position.Y, spreadSpeed * 0.7f, spreadSpeed * 0.7f, ModContent.ProjectileType<NecroFire>(), Projectile.damage, 0f, Projectile.owner, 0f, 0f);
-            Projectile.NewProjectile(Projectile.GetSource_Death(), Projectile.position.X, Projectile.position.Y, -spreadSpeed * 0.7f, spreadSpeed * 0.7f, ModContent.ProjectileType<NecroFire>(), Projectile.damage, 0f, Projectile.owner, 0f, 0f);
-            Projectile.NewProjectile(Projectile.GetSource_Death(), Projectile.position.X, Projectile.position.Y, spreadSpeed * 0.7f, -spreadSpeed * 0.7f, ModContent.ProjectileType<NecroFire>(), Projectile.damage, 0f, Projectile.owner, 0f, 0f);
-            Projectile.NewProjectile(Projectile.GetSource_Death(), Projectile.position.X, Projectile.position.Y, -spreadSpeed * 0.7f, -spreadSpeed * 0.7f, ModContent.ProjectileType<NecroFire>(), Projectile.damage, 0f, Projectile.owner, 0f, 0f);
+                    Projectile.NewProjectile(Projectile.GetSource_Death(), Projectile.Center, velocity,
+                        ModContent.ProjectileType<NecroFire>(), Projectile.damage, 0f, Projectile.owner);
+                }
+            }
 
             SoundEngine.PlaySound(SoundID.Item14, Projectile.position);
             SoundEngine.PlaySound(SoundID.Item10 with { Volume = 0.8f, Pitch = -0.3f }, Projectile.Center);
 
             for (int i = 0; i < 30; i++)
             {
-                Dust d = Dust.NewDustDirect(Projectile.position, Projectile.width, Projectile.height, DustID.PurpleTorch, Main.rand.NextFloat(-5f, 5f), Main.rand.NextFloat(-5f, 5f), 150, Color.Purple, 1.8f + rotationProgress);
+                Dust d = Dust.NewDustDirect(Projectile.position, Projectile.width, Projectile.height,
+                    DustID.PurpleTorch, Main.rand.NextFloat(-5f, 5f), Main.rand.NextFloat(-5f, 5f),
+                    150, Color.Purple, 1.8f + rotationSpeed / maxRotationSpeed);
                 d.noGravity = true;
                 d.velocity *= 1.2f;
             }
 
             for (int i = 0; i < 15; i++)
             {
-                Dust d = Dust.NewDustDirect(Projectile.position, Projectile.width, Projectile.height, DustID.PurpleCrystalShard, Main.rand.NextFloat(-4f, 4f), Main.rand.NextFloat(-4f, 4f), 100, Color.Magenta, 1.3f);
+                Dust d = Dust.NewDustDirect(Projectile.position, Projectile.width, Projectile.height,
+                    DustID.PurpleCrystalShard, Main.rand.NextFloat(-4f, 4f), Main.rand.NextFloat(-4f, 4f),
+                    100, Color.Magenta, 1.3f);
                 d.noGravity = true;
             }
         }

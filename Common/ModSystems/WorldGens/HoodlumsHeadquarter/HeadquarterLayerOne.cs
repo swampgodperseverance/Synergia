@@ -4,7 +4,6 @@ using Avalon.Tiles.Furniture.Coughwood;
 using Avalon.Walls;
 using Bismuth.Content.Tiles;
 using Bismuth.Content.Walls;
-using miningcracks_take_on_luiafk.Utility;
 using Synergia.Helpers;
 using System;
 using Terraria;

@@ -28,27 +28,27 @@ namespace Synergia.Common.GlobalItems.Set
 			// Consolaria
 			if (consolaria != null)
 			{
-				if (item.type == consolaria.Find<ModItem>("OstaraHat").Type)
-				{
-					player.GetDamage(DamageClass.Throwing) += 0.11f;
-					player.GetCritChance(DamageClass.Throwing) += 5;
-				}
-				if (item.type == consolaria.Find<ModItem>("OstaraJacket").Type)
-				{
-					player.GetAttackSpeed(DamageClass.Throwing) += 0.13f;
-				}
-				if (item.type == consolaria.Find<ModItem>("OstaraBoots").Type)
-				{
-					player.jumpSpeedBoost += 2.4f;
-				}
+				//if (item.type == consolaria.Find<ModItem>("OstaraHat").Type)
+				//{
+				//	player.GetDamage(DamageClass.Throwing) += 0.11f;
+				//	player.GetCritChance(DamageClass.Throwing) += 5;
+				//}
+				//if (item.type == consolaria.Find<ModItem>("OstaraJacket").Type)
+				//{
+				//	player.GetAttackSpeed(DamageClass.Throwing) += 0.13f;
+				//}
+				//if (item.type == consolaria.Find<ModItem>("OstaraBoots").Type)
+				//{
+				//	player.jumpSpeedBoost += 2.4f;
+				//}
 				if (item.type == consolaria.Find<ModItem>("WarlockHood").Type)
 				{
-					auraPlayer.bonusAuraRadius += 0.25f;
+					auraPlayer.bonusAuraRadius += 0.15f;
 					auraPlayer.maxAuras = 1;
 				}
 				if (item.type == consolaria.Find<ModItem>("WarlockRobe").Type)
 				{
-					auraPlayer.bonusPlayerLinkedAuraRadius += 0.35f;
+					auraPlayer.bonusPlayerLinkedAuraRadius += 0.20f;
 				}
 				if (item.type == consolaria.Find<ModItem>("WarlockLeggings").Type)
 				{
@@ -57,12 +57,12 @@ namespace Synergia.Common.GlobalItems.Set
 				}
 				if (item.type == consolaria.Find<ModItem>("AncientWarlockHood").Type)
 				{
-					auraPlayer.bonusAuraRadius += 0.25f;
+					auraPlayer.bonusAuraRadius += 0.15f;
 					auraPlayer.maxAuras = 1;
 				}
 				if (item.type == consolaria.Find<ModItem>("AncientWarlockRobe").Type)
 				{
-					auraPlayer.bonusPlayerLinkedAuraRadius += 0.35f;
+					auraPlayer.bonusPlayerLinkedAuraRadius += 0.20f;
 				}
 				if (item.type == consolaria.Find<ModItem>("AncientWarlockLeggings").Type)
 				{
@@ -145,19 +145,19 @@ namespace Synergia.Common.GlobalItems.Set
 			// Avalon
 			if (avalon != null)
 			{
-				if (item.type == avalon.Find<ModItem>("EarthsplitterChestpiece").Type)
-				{
-					player.GetDamage(DamageClass.Throwing) += 0.16f;
-					player.GetCritChance(DamageClass.Throwing) += 15;
-				}
-				if (item.type == avalon.Find<ModItem>("EarthsplitterHelm").Type)
-				{
-					player.GetAttackSpeed(DamageClass.Throwing) += 0.18f;
-				}
-				if (item.type == avalon.Find<ModItem>("EarthsplitterLeggings").Type)
-				{
-					player.GetCritChance(DamageClass.Throwing) += 8;
-				}
+				//if (item.type == avalon.Find<ModItem>("EarthsplitterChestpiece").Type)
+				//{
+				//	player.GetDamage(DamageClass.Throwing) += 0.16f;
+				//	player.GetCritChance(DamageClass.Throwing) += 15;
+				//}
+				//if (item.type == avalon.Find<ModItem>("EarthsplitterHelm").Type)
+				//{
+				//	player.GetAttackSpeed(DamageClass.Throwing) += 0.18f;
+				//}
+				//if (item.type == avalon.Find<ModItem>("EarthsplitterLeggings").Type)
+				//{
+				//	player.GetCritChance(DamageClass.Throwing) += 8;
+				//}
 				if (item.type == avalon.Find<ModItem>("FleshCap").Type)
 				{
 					auraPlayer.bonusAuraRadius += 0.15f;
@@ -223,7 +223,7 @@ namespace Synergia.Common.GlobalItems.Set
 				}
 				if (item.type == bismuth.Find<ModItem>("BismuthumLeggings").Type)
 				{
-					player.moveSpeed -= 0.1f;
+					player.moveSpeed -= 0.25f;
 				}
 				if (item.type == bismuth.Find<ModItem>("BismuthumHeadgear").Type)
 				{
@@ -304,10 +304,44 @@ namespace Synergia.Common.GlobalItems.Set
                     player.GetDamage(DamageClass.Magic) += 0.08f;
                     player.manaRegenBonus += 10;
                 }
+                if (item.type == bismuth.Find<ModItem>("BronzeMask").Type)
+                {
+                    player.GetDamage(DamageClass.Throwing) -= 0.05f;
+					player.ThrownVelocity -= 12;
+                    player.GetCritChance(DamageClass.Throwing) -= 4f;
+					player.noFallDmg = true;
+                    player.GetDamage(DamageClass.Generic) += 0.10f;
+                }
+				if (item.type == bismuth.Find<ModItem>("BronzeBreastplate").Type)
+                {
+                    player.GetDamage(DamageClass.Throwing) -= 0.06f;
+                    player.GetCritChance(DamageClass.Generic) += 0.08f;
+                    player.noKnockback = true;
+                }
+
                 if (item.type == bismuth.Find<ModItem>("NecromancersRobe").Type)
                 {
                     player.maxMinions -= 1;
 
+                }
+                if (item.type == bismuth.Find<ModItem>("ScalyHelmet").Type)
+                {
+                    player.GetCritChance(DamageClass.Melee) += 11f;
+                }
+                if (item.type == bismuth.Find<ModItem>("ScalyBreastplate").Type)
+                {
+                    player.GetDamage(DamageClass.Melee) += 0.10f;
+                }
+                if (item.type == bismuth.Find<ModItem>("OrcishHelmet").Type)
+                {
+                    player.ThrownVelocity -= 0.25f;
+                    player.GetAttackSpeed(DamageClass.Generic) += 0.12f;
+                }
+                if (item.type == bismuth.Find<ModItem>("OrcishBreastplate").Type)
+                {
+                    player.GetDamage(DamageClass.Throwing) -= 0.15f;
+                    player.GetCritChance(DamageClass.Generic) += 11f;
+                    player.eocDash = 1;
                 }
 
             }
@@ -322,9 +356,9 @@ namespace Synergia.Common.GlobalItems.Set
 					ReplaceTooltip(tooltips, "Tooltip0", Language.GetTextValue($"Mods.Synergia.{tooltipKey}"));
 			}
 
-			Add("Consolaria", "OstaraHat", "Items.OstaraHat.Tooltip");
-			Add("Consolaria", "OstaraJacket", "Items.OstaraJacket.Tooltip");
-			Add("Consolaria", "OstaraBoots", "Items.OstaraBoots.Tooltip");
+			//Add("Consolaria", "OstaraHat", "Items.OstaraHat.Tooltip");
+			//Add("Consolaria", "OstaraJacket", "Items.OstaraJacket.Tooltip");
+			//Add("Consolaria", "OstaraBoots", "Items.OstaraBoots.Tooltip");
 			Add("Consolaria", "WarlockHood", "Items.WarlockHood.Tooltip");
 			Add("Consolaria", "WarlockRobe", "Items.WarlockRobe.Tooltip");	
 			Add("Consolaria", "WarlockLeggings", "Items.WarlockLeggings.Tooltip");
@@ -346,9 +380,9 @@ namespace Synergia.Common.GlobalItems.Set
 			Add("ValhallaMod", "JadeHead", "Items.JadeHead.Tooltip");
 			Add("ValhallaMod", "JadeLegs", "Items.JadeLegs.Tooltip");
 
-			Add("Avalon", "EarthsplitterChestpiece", "Items.EarthsplitterChestpiece.Tooltip");
-			Add("Avalon", "EarthsplitterHelm", "Items.EarthsplitterHelm.Tooltip");
-			Add("Avalon", "EarthsplitterLeggings", "Items.EarthsplitterLeggings.Tooltip");
+			//Add("Avalon", "EarthsplitterChestpiece", "Items.EarthsplitterChestpiece.Tooltip");
+			//Add("Avalon", "EarthsplitterHelm", "Items.EarthsplitterHelm.Tooltip");
+			//Add("Avalon", "EarthsplitterLeggings", "Items.EarthsplitterLeggings.Tooltip");
 			Add("Avalon", "FleshCap", "Items.FleshCap.Tooltip");
 			Add("Avalon", "FleshWrappings", "Items.FleshWrappings.Tooltip");
 			Add("Avalon", "FleshPants", "Items.FleshPants.Tooltip");
@@ -385,15 +419,36 @@ namespace Synergia.Common.GlobalItems.Set
             Add("Bismuth", "WatersBreastplate", "Items.WatersBreastplate.Tooltip");
             Add("Bismuth", "WatersHelmet", "Items.WatersHelmet.Tooltip");
 
-            if (item.type != ModContent.Find<ModItem>("Bismuth/NomadsBoots").Type)
-                return;
+            Add("Bismuth", "ScalyHelmet", "Items.ScalyHelmet.Tooltip");
+            Add("Bismuth", "ScalyBreastplate", "Items.ScalyBreastplate.Tooltip");
 
-            tooltips.RemoveAll(line =>
-                line.Mod == "Terraria" &&
-                line.Name.StartsWith("Tooltip")
-            );
-            string newTooltip = Language.GetTextValue("Mods.Synergia.Items.NomadsBoots.Tooltip");
-            tooltips.Add(new TooltipLine(Mod, "NomadsBootsTooltip", newTooltip));
+            Add("Bismuth", "BronzeBreastplate", "Items.BronzeBreastplate.Tooltip");
+
+            Add("Bismuth", "OrcishHelmet", "Items.OrcishHelmet.Tooltip");
+            Add("Bismuth", "OrcishBreastplate", "Items.OrcishBreastplate.Tooltip");
+
+            bool isNomadsBoots = item.type == ModContent.Find<ModItem>("Bismuth/NomadsBoots").Type;
+            bool isBronzeMask = item.type == ModContent.Find<ModItem>("Bismuth/BronzeMask").Type;
+
+            if (isNomadsBoots)
+            {
+                tooltips.RemoveAll(line =>
+                    line.Mod == "Terraria" &&
+                    line.Name.StartsWith("Tooltip")
+                );
+                string newTooltip = Language.GetTextValue("Mods.Synergia.Items.NomadsBoots.Tooltip");
+                tooltips.Add(new TooltipLine(Mod, "NomadsBootsTooltip", newTooltip));
+            }
+
+            if (isBronzeMask)
+            {
+                tooltips.RemoveAll(line =>
+                    line.Mod == "Terraria" &&
+                    line.Name.StartsWith("Tooltip")
+                );
+                string secondNewTooltip = Language.GetTextValue("Mods.Synergia.Items.BronzeMask.Tooltip");
+                tooltips.Add(new TooltipLine(Mod, "BronzeMask", secondNewTooltip));
+            }
         }
 
 		private void ReplaceTooltip(List<TooltipLine> tooltips, string tooltipName, string newText)
@@ -412,6 +467,7 @@ namespace Synergia.Common.GlobalItems.Set
     {
 
         private static Mod bismuth = ModLoader.GetMod("Bismuth");
+        private static Mod horizons = ModLoader.GetMod("NewHorizons");
         public override void SetDefaults(Item item)
         {
             if (item.type == bismuth.Find<ModItem>("WatersHelmet").Type)
@@ -442,6 +498,74 @@ namespace Synergia.Common.GlobalItems.Set
             if (item.type == bismuth.Find<ModItem>("PikemansLeggings").Type)
             {
                 item.defense = 3;
+            }
+            if (item.type == bismuth.Find<ModItem>("BismuthumHelmet").Type)
+            {
+                item.defense = 12;
+            }
+            if (item.type == bismuth.Find<ModItem>("BismuthumHat").Type)
+            {
+                item.defense = 8;
+            }
+            if (item.type == bismuth.Find<ModItem>("BismuthumHeadgear").Type)
+            {
+                item.defense = 10;
+            }
+
+            if (item.type == bismuth.Find<ModItem>("BismuthumBreastplate").Type)
+            {
+                item.defense = 16;
+            }
+
+            if (item.type == bismuth.Find<ModItem>("BismuthumLeggings").Type)
+            {
+                item.defense = 7;
+            }
+            if (item.type == bismuth.Find<ModItem>("NomadsHood").Type)
+            {
+                item.defense = 7;
+            }
+
+            if (item.type == bismuth.Find<ModItem>("NomadsJacket").Type)
+            {
+                item.defense = 10;
+            }
+
+            if (item.type == bismuth.Find<ModItem>("NomadsBoots").Type)
+            {
+                item.defense = 7;
+            }
+            if (item.type == bismuth.Find<ModItem>("JaguarsMask").Type)
+            {
+                item.defense = 8;
+            }
+
+            if (item.type == bismuth.Find<ModItem>("JaguarsBreastplate").Type)
+            {
+                item.defense = 13;
+            }
+
+            if (item.type == bismuth.Find<ModItem>("JaguarsLeggings").Type)
+            {
+                item.defense = 10;
+            }
+
+            if (item.type == bismuth.Find<ModItem>("ScalyLeggings").Type)
+            {
+                item.defense = 4;
+            }
+
+            if (item.type == bismuth.Find<ModItem>("ScalyHelmet").Type)
+            {
+                item.defense = 5;
+            }
+            if (item.type == bismuth.Find<ModItem>("ScalyBreastplate").Type)
+            {
+                item.defense = 6;
+            }
+            if (item.type == horizons.Find<ModItem>("AshenShroud").Type)
+            {
+                item.defense = 4;
             }
         }
     }

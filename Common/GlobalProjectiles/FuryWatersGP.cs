@@ -32,8 +32,8 @@ namespace Synergia.Common.GlobalProjectiles
 
         
             trailDrawer = new PrimDrawer(
-                widthFunc: t => 25f * (1f - t), // Ширина уменьшается по длине трейла
-                colorFunc: t => new Color(100, 200, 255, (byte)(200 * (1f - t))) // Цвет с прозрачностью
+                widthFunc: t => 25f * (1f - t),
+                colorFunc: t => new Color(100, 200, 255, (byte)(200 * (1f - t))) 
             );
         }
 
@@ -47,7 +47,6 @@ namespace Synergia.Common.GlobalProjectiles
 
         private void DrawTrail(Projectile projectile)
         {
-            // Берем только непустые позиции и добавляем смещение по центру снаряда
             Vector2[] trailPositions = projectile.oldPos
                 .Where(pos => pos != Vector2.Zero)
                 .Select(pos => pos + projectile.Size / 2f)
@@ -55,7 +54,6 @@ namespace Synergia.Common.GlobalProjectiles
 
             if (trailPositions.Length > 1)
             {
-                // Рисуем трейл
                 trailDrawer.DrawPrims(trailPositions, -Main.screenPosition, trailPositions.Length);
             }
         }

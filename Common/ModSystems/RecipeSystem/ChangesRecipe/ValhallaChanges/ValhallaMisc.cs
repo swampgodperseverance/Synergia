@@ -46,7 +46,7 @@ namespace Synergia.Common.ModSystems.RecipeSystem.ChangesRecipe.AvalonsChanges {
         public override void PostRecipe()
         {
             CreateGreaterPotionBelt();
-            
+            CreateThunderbar();
         }
         static void CreateGreaterPotionBelt()
         {
@@ -56,6 +56,14 @@ namespace Synergia.Common.ModSystems.RecipeSystem.ChangesRecipe.AvalonsChanges {
             recipe.AddIngredient(ItemType<DurataniumBar>(), 5);
             recipe.AddIngredient(ItemID.Ale, 5);
             recipe.AddTile(TileID.Bottles);
+            recipe.Register();
+        }
+        static void CreateThunderbar()
+        {
+            Recipe recipe = Recipe.Create(ItemType<ThunderBar>(), 2);
+            recipe.AddIngredient(ItemID.ChlorophyteBar, 2);
+            recipe.AddIngredient(ItemType<ThunderShard>(), 1);
+            recipe.AddTile(TileID.AdamantiteForge);
             recipe.Register();
         }
 

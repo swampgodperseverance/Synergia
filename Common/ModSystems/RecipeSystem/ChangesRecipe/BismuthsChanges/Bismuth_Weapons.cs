@@ -14,6 +14,7 @@ using NewHorizons.Content.Items.Ammo;
 using NewHorizons.Content.Items.Armor.AshenArmor;
 using NewHorizons.Content.Items.Armor.PyroArmor;
 using NewHorizons.Content.Items.Armor.SkyArmor;
+using NewHorizons.Content.Items.Materials;
 using NewHorizons.Content.Items.Weapons;
 using NewHorizons.Content.Items.Weapons.Magic;
 using NewHorizons.Content.Items.Weapons.Ranged;
@@ -51,6 +52,7 @@ namespace Synergia.Common.ModSystems.RecipeSystem.ChangesRecipe.HorizonsChanges
         }
         public override void PostRecipe()
         {
+            CreateDwarvenBattleAxe();
             CreateMoonStaff();
             CreateRuneSword();
             CreateGalvornStaff();
@@ -58,6 +60,14 @@ namespace Synergia.Common.ModSystems.RecipeSystem.ChangesRecipe.HorizonsChanges
             CreateBismuthumSword();
             CreateGalvornBlade();
 
+        }
+        static void CreateDwarvenBattleAxe()
+        {
+            Recipe recipe = Recipe.Create(ItemType<DwarvenBattleAxe>());
+            recipe.AddRecipeGroup(RecipeGroupID.IronBar, 10);
+            recipe.AddIngredient(ItemType<AncientScrap>(), 8);
+            recipe.AddTile(TileID.Anvils);
+            recipe.Register();
         }
         static void CreateRuneSword()
         {

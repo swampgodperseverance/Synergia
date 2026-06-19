@@ -40,7 +40,7 @@ namespace Synergia.Content.Items.Weapons.Cogworm
             Item.useStyle = ItemUseStyleID.Swing;
             Item.UseSound = SoundID.Item1;
             Item.DamageType = DamageClass.Throwing;
-            Item.damage = 130;
+            Item.damage = 150;
             Item.knockBack = 4f;
             Item.autoReuse = true;
             Item.shootSpeed = 12f;

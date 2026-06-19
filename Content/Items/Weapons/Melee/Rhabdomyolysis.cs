@@ -25,7 +25,7 @@ namespace Synergia.Content.Items.Weapons.Melee
             Item.useTime = 5;
             Item.useAnimation = 18;
             Item.UseSound = SoundID.Item1;
-            Item.damage = 30;
+            Item.damage = 45;
             Item.DamageType = DamageClass.MeleeNoSpeed;
             Item.ArmorPenetration = 10;
             Item.rare = ItemRarityID.Lime;

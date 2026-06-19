@@ -8,6 +8,7 @@ using Avalon.Items.Weapons.Melee.Hardmode.DarklightLance;
 using Avalon.Items.Weapons.Melee.Hardmode.Starstorm;
 using Avalon.Items.Weapons.Melee.PreHardmode.AeonsEternity;
 using Avalon.Items.Weapons.Melee.PreHardmode.SanguineKatana;
+using Avalon.Items.Weapons.Ranged.Hardmode.CrystalTomahawk;
 using Avalon.Items.Weapons.Ranged.PreHardmode.Boompipe;
 using Avalon.Items.Weapons.Ranged.PreHardmode.EggCannon;
 using Avalon.Items.Weapons.Summon.Hardmode.Gastropod;
@@ -15,7 +16,9 @@ using Bismuth.Content.Items.Weapons.Assassin;
 using Bismuth.Content.Items.Weapons.Magical;
 using Bismuth.Content.Items.Weapons.Melee;
 using Bismuth.Content.Items.Weapons.Ranged;
+using Bismuth.Content.Items.Weapons.Throwing;
 using Consolaria.Content.Items.Weapons.Ammo;
+using Consolaria.Content.Items.Weapons.Melee;
 using Consolaria.Content.Items.Weapons.Ranged;
 using NewHorizons.Content.Items.Weapons.Magic;
 using NewHorizons.Content.Items.Weapons.Melee;
@@ -26,6 +29,7 @@ using Synergia.Content.Projectiles.Reworks.Reworks2;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using ValhallaMod.Items.Weapons.Magic.Music;
 using ValhallaMod.Items.Weapons.Magic.Staffs;
 using ValhallaMod.Items.Weapons.Magic.Thrown;
 using ValhallaMod.Items.Weapons.Melee.ChannelMelee;
@@ -41,6 +45,7 @@ using ValhallaMod.Items.Weapons.Ranged.Javelins;
 using ValhallaMod.Items.Weapons.Ranged.Launchers;
 using ValhallaMod.Items.Weapons.Ranged.Longbows;
 using ValhallaMod.Items.Weapons.Ranged.RocketLaunchers;
+using ValhallaMod.Items.Weapons.Ranged.Thrown;
 using ValhallaMod.Items.Weapons.Summon.Minions;
 using ValhallaMod.Items.Weapons.Summon.Sentries;
 using ValhallaMod.Items.Weapons.Summon.Whips;
@@ -58,6 +63,8 @@ namespace Synergia.Common.GlobalItems.Changes
 
             int ZapperType =
                 ModLoader.GetMod("RoA")?.Find<ModItem>("MercuriumZipper")?.Type ?? 0;
+            int kamotype =
+                 ModLoader.GetMod("NewHorizons")?.Find<ModItem>("BoneKama")?.Type ?? 0;
             int arterialSptayType =
                 ModLoader.GetMod("RoA")?.Find<ModItem>("ArterialSpray")?.Type ?? 0;
             int ravensEyeType =
@@ -76,6 +83,10 @@ namespace Synergia.Common.GlobalItems.Changes
                 {
                     item.damage -= 20;
                     item.useAnimation -= 3;
+                },
+                [ItemID.Flamarang] = item =>
+                {
+                    item.damage -= 12;
                 },
 
                 [ModContent.ItemType<Radiance>()] = item =>
@@ -172,6 +183,10 @@ namespace Synergia.Common.GlobalItems.Changes
                 {
                     item.useAnimation += 3;
                     item.useTime += 3;
+                },
+                [ModContent.ItemType<Granitbur>()] = item =>
+                {
+                    item.useTime += 10;
                 },
                 [StarFusionType] = item =>
                 {
@@ -402,7 +417,115 @@ namespace Synergia.Common.GlobalItems.Changes
                 {
                     item.damage += 12;
                 },
-
+                [ModContent.ItemType<TrueGungnir>()] = item =>
+                {
+                    item.useAnimation += 8;
+                    item.useTime += 8;
+                    item.shootSpeed -= 10;
+                    item.damage -= 18;
+                },
+                [ModContent.ItemType<Tonbogiri>()] = item =>
+                {
+                    item.shootSpeed -= 18;
+                },
+                [ModContent.ItemType<SolarWind>()] = item =>
+                {
+                    item.shootSpeed -= 7;
+                    item.damage += 25;
+                },
+                [ModContent.ItemType<CarrotDagger>()] = item =>
+                {
+                    item.damage += 3;
+                },
+                [ModContent.ItemType<Typhoon>()] = item =>
+                {
+                    item.damage += 4;
+                },
+                [ModContent.ItemType<DemoniteGlaive>()] = item =>
+                {
+                    item.damage += 8;
+                },
+                [ModContent.ItemType<BloodSpiller>()] = item =>
+                {
+                    item.damage += 2;
+                },
+                [ModContent.ItemType<CrimiteGlaive>()] = item =>
+                {
+                    item.damage += 7;
+                },
+                [ModContent.ItemType<NewHorizons.Content.Items.Weapons.Throwing.NightGlaive>()] = item =>
+                {
+                    item.damage += 6;
+                    item.shootSpeed -= 5;
+                },
+                [ModContent.ItemType<DungeonGlaive>()] = item =>
+                {
+                    item.damage += 7;
+                },
+                [kamotype] = item =>
+                {
+                    item.damage += 5;
+                },
+                [ModContent.ItemType<SpicySauce>()] = item =>
+                {
+                    item.damage -= 13;
+                    item.useAnimation += 12;
+                    item.useTime += 12;
+                    item.shootSpeed -= 3;
+                },
+                [ModContent.ItemType<CrystalTomahawk>()] = item =>
+                {
+                    item.damage -= 10;
+                    item.useAnimation += 13;
+                    item.useTime += 13;
+                },
+                [ModContent.ItemType<OrcishJavelin>()] = item =>
+                {
+                    item.damage += 5;
+                },
+                [ModContent.ItemType<CorrodeShuriken>()] = item =>
+                {
+                    item.damage -= 13;
+                },
+                [ModContent.ItemType<ValhallaMod.Items.Weapons.Melee.Glaives.NightGlaive>()] = item =>
+                {
+                    item.damage -= 8;
+                },
+                [ModContent.ItemType<JaguarsChakram>()] = item =>
+                {
+                    item.damage += 15;
+                },
+                [ModContent.ItemType<SharkKnife>()] = item =>
+                {
+                    item.damage -= 17;
+                },
+                [ModContent.ItemType<TrueNightGlaive>()] = item =>
+                {
+                    item.damage += 16;
+                },
+                [ModContent.ItemType<Carnwennan>()] = item =>
+                {
+                    item.shootSpeed += 3;
+                },
+                [ModContent.ItemType<SolarDisk>()] = item =>
+                {
+                    item.damage += 15;
+                },
+                [ModContent.ItemType<NewHorizons.Content.Items.Weapons.Throwing.ChlorophyteJavelin>()] = item =>
+                {
+                    item.shootSpeed += 10;
+                },
+                [ModContent.ItemType<JaguarsDagger>()] = item =>
+                {
+                    item.useAnimation += 6;
+                    item.useTime += 6;
+                },
+                [ModContent.ItemType<NebulaRod>()] = item =>
+                {
+                    item.useAnimation += 18;
+                    item.useTime += 18;
+                    item.mana += 13;
+                },
             };
         }
 

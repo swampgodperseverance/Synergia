@@ -9,7 +9,6 @@ namespace Synergia.Common.GlobalItems
     public class ProjectileReplacer : GlobalItem
     {
 
-        
         public override void SetDefaults(Item item)
         {
             Mod vanillaMod = ModLoader.GetMod("Synergia");
@@ -120,6 +119,16 @@ namespace Synergia.Common.GlobalItems
                     }
                 }
                 if (item.ModItem != null &&
+                     item.ModItem.Mod.Name == "NewHorizons")
+                {
+                    switch (item.ModItem.Name)
+                    {
+                        case "GammaBlade":
+                            item.shoot = ModContent.ProjectileType<GammaBladeProjRework>();
+                            break;
+                    }
+                }
+                if (item.ModItem != null &&
                     item.ModItem.Mod.Name == "Bismuth")
                 {
                     switch (item.ModItem.Name)
@@ -151,6 +160,12 @@ namespace Synergia.Common.GlobalItems
                     {
                         case "WaveOfForce":
                             item.shoot = ModContent.ProjectileType<Content.Projectiles.Reworks.PurpleCog>();
+                            break;
+                    }
+                    switch (item.ModItem.Name)
+                    {
+                        case "JaguarsDagger":
+                            item.shoot = ModContent.ProjectileType<Content.Projectiles.Reworks.Reworks2.JaguarDaggerRework>();
                             break;
                     }
                 }

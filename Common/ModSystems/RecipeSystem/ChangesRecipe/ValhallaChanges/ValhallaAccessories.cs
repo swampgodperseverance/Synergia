@@ -64,7 +64,7 @@ namespace Synergia.Common.ModSystems.RecipeSystem.ChangesRecipe.AvalonsChanges {
         }
         static void CreateCondensedKnowledge()
         {
-            Recipe recipe = Recipe.Create(ItemType<LesserPotionBelt>());
+            Recipe recipe = Recipe.Create(ItemType<CondensedKnowledge>());
             recipe.AddIngredient(ItemID.Book, 3);
             recipe.AddIngredient(ItemType<Starstone>(), 5);
             recipe.AddIngredient(ItemID.ManaFlower, 1);
