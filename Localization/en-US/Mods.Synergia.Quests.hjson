@@ -156,7 +156,7 @@ NinjaQuest_Frist: {
 
 FarmerQuest_First: {
 	QuestName: Luck Potion
-	QuestDescription: Give LuckPotion for Ninja
+	QuestDescription: Give Luck Potion for Ninja
 	QuestStage: Collect Luck Potion
 	QuestProgress0: Thanks for the Luck Potion!
 	QuestProgress1: I’m hungry after hard day. Can you bring me some food please?

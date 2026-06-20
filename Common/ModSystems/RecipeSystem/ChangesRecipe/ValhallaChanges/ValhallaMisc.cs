@@ -9,6 +9,7 @@ using Avalon.Items.Potions.Buff;
 using Avalon.Items.Tomes.PreHardmode;
 using Avalon.Items.Tools.Hardmode;
 using Bismuth.Content.Items.Materials;
+using Bismuth.Content.Items.Placeable;
 using Consolaria.Content.Items.Materials;
 using NewHorizons.Content.Items.Armor.SkyArmor;
 using NewHorizons.Content.Items.Materials;
@@ -47,6 +48,7 @@ namespace Synergia.Common.ModSystems.RecipeSystem.ChangesRecipe.AvalonsChanges {
         {
             CreateGreaterPotionBelt();
             CreateThunderbar();
+            CreateTimeFragment();
         }
         static void CreateGreaterPotionBelt()
         {
@@ -64,6 +66,15 @@ namespace Synergia.Common.ModSystems.RecipeSystem.ChangesRecipe.AvalonsChanges {
             recipe.AddIngredient(ItemID.ChlorophyteBar, 2);
             recipe.AddIngredient(ItemType<ThunderShard>(), 1);
             recipe.AddTile(TileID.AdamantiteForge);
+            recipe.Register();
+        }
+        static void CreateTimeFragment()
+        {
+            Recipe recipe = Recipe.Create(ItemType<FragmentsOfTime>(), 2);
+            recipe.AddIngredient(ItemType<BismuthumBar>(), 2);
+            recipe.AddIngredient(ItemType<ThunderShard>(), 1);
+            recipe.AddIngredient(ItemID.Ectoplasm, 1);
+            recipe.AddTile(TileType<CaesiumHeavyAnvilTile>());
             recipe.Register();
         }
 

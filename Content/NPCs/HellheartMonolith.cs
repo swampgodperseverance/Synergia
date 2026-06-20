@@ -22,9 +22,6 @@ namespace Synergia.Content.NPCs
         private float targetScreenFade;
         private bool dying;
         private float deathTimer;
-        //private float originalMusicVolume;
-        //private bool musicSaved;
-        //private float musicFactor = 1f;
         private float pulseIntensity = 1f;
         private float rayRotation;
         private float heartbeatPulse;
@@ -33,6 +30,7 @@ namespace Synergia.Content.NPCs
         private bool bossSpawned;
         private float heartbeatSoundTimer;
         private float cameraShakeTimer;
+        private float visualScale = 1f;
 
         private static Asset<Texture2D> rayTexture;
         private static Asset<Texture2D> glowTexture;
@@ -68,6 +66,7 @@ namespace Synergia.Content.NPCs
             NPC.noTileCollide = true;
             NPC.lavaImmune = true;
             NPC.chaseable = false;
+            NPC.scale = 1f;
         }
 
         public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry)
@@ -82,10 +81,10 @@ namespace Synergia.Content.NPCs
         public override void AI()
         {
             float lifeRatio = (float)NPC.life / NPC.lifeMax;
+
             breathTimer += 0.015f;
             strongBreathTimer += 0.005f;
             rayRotation += 0.0015f;
-
             heartbeatPulse = (float)Math.Sin(Main.GlobalTimeWrappedHourly * 2f) * 0.2f + 0.8f;
 
             if (heartbeatSoundTimer <= 0)
@@ -111,9 +110,7 @@ namespace Synergia.Content.NPCs
             }
 
             if (cameraShakeTimer > 0)
-            {
                 cameraShakeTimer -= 0.016f;
-            }
 
             if (lifeRatio <= 0.5f && !dying)
             {
@@ -126,26 +123,28 @@ namespace Synergia.Content.NPCs
                 NPC.position += shakeOffset;
 
                 if (lifeRatio <= 0.1f && !bossSpawned)
-                {
                     BossDeathSequence();
-                }
             }
             else
             {
                 shakeOffset = Vector2.Zero;
             }
 
-            float basePulse = (float)Math.Sin(breathTimer) * 0.02f;
-            float strongPulse = (float)Math.Sin(strongBreathTimer * 0.5f) * 0.06f;
-            pulseIntensity = 1f + (float)Math.Sin(strongBreathTimer * 1.5f) * 0.05f;
-            NPC.scale = 1f + basePulse + strongPulse + (heartbeatPulse - 0.8f) * 0.15f;
+            float basePulse = (float)Math.Sin(breathTimer) * 0.025f;
+            float strongPulse = (float)Math.Sin(strongBreathTimer * 0.5f) * 0.065f;
+            float heartBoost = (heartbeatPulse - 0.8f) * 0.18f;
+
+            float targetScale = 1f + basePulse + strongPulse + heartBoost;
+            visualScale = MathHelper.Lerp(visualScale, targetScale, 0.12f);
+
+            NPC.scale = 1f;
 
             Player player = Main.LocalPlayer;
             float triggerDistance = 86f * 16f;
             float fadeDistance = 100f * 16f;
             float distance = Vector2.Distance(player.Center, NPC.Center);
-            float baseScreenFade = 0f;
 
+            float baseScreenFade = 0f;
             if (!dying)
             {
                 if (distance <= triggerDistance)
@@ -158,25 +157,17 @@ namespace Synergia.Content.NPCs
 
             float healthFadeFactor = lifeRatio >= 0.5f ? 1f : (lifeRatio * 2f);
             targetScreenFade = baseScreenFade * healthFadeFactor;
-            float fadeSpeed = 0.02f;
-            screenFade = MathHelper.Lerp(screenFade, targetScreenFade, fadeSpeed);
+            screenFade = MathHelper.Lerp(screenFade, targetScreenFade, 0.02f);
 
             if (dying)
             {
                 deathTimer += 0.01f;
                 float progress = MathHelper.Clamp(deathTimer, 0f, 1f);
                 screenFade = MathHelper.Lerp(1f, 0f, progress * 1.5f);
-                //if (progress >= 0.66f && !musicSaved)
-                //{
-                //    RestoreMusic();
-                //}
-                if (progress >= 1f)
-                {
-                    NPC.active = false;
-                }
-            }
 
-            //HandleMusic(distance);
+                if (progress >= 1f)
+                    NPC.active = false;
+            }
 
             float lightIntensity = 2.2f * (1f + strongPulse * 0.5f) * (1f + screenFade * 0.3f) * (1f + shakeIntensity * 0.1f) * heartbeatPulse;
             Color lightColor = new Color(1.6f, 0.6f, 0.2f) * lightIntensity;
@@ -197,10 +188,7 @@ namespace Synergia.Content.NPCs
 
             for (int i = 0; i < 80; i++)
             {
-                Vector2 velocity = new Vector2(
-                    Main.rand.NextFloat(-14f, 14f),
-                    Main.rand.NextFloat(-14f, 14f)
-                );
+                Vector2 velocity = new Vector2(Main.rand.NextFloat(-14f, 14f), Main.rand.NextFloat(-14f, 14f));
                 Dust.NewDust(NPC.position, NPC.width, NPC.height, DustID.Torch, velocity.X, velocity.Y, 120, Color.OrangeRed, 3f);
             }
 
@@ -208,54 +196,17 @@ namespace Synergia.Content.NPCs
             SoundEngine.PlaySound(SoundID.Roar, NPC.Center);
 
             var shakePlayer = Main.LocalPlayer.GetModPlayer<ScreenShakePlayer>();
-            if (shakePlayer != null)
-            {
-                shakePlayer.TriggerShake(120, 3f);
-            }
+            shakePlayer?.TriggerShake(120, 3f);
 
             if (Main.netMode != NetmodeID.MultiplayerClient)
             {
-                int sinlord = NPC.NewNPC(
-                    NPC.GetSource_Death(),
-                    (int)NPC.Center.X,
-                    (int)NPC.Center.Y - 100,
-                    ModContent.NPCType<NPCs.Boss.SinlordWyrm.Sinlord>()
-                );
+                int sinlord = NPC.NewNPC(NPC.GetSource_Death(), (int)NPC.Center.X, (int)NPC.Center.Y - 100, ModContent.NPCType<NPCs.Boss.SinlordWyrm.Sinlord>());
                 Projectile.NewProjectile(NPC.GetSource_Death(), NPC.Center, Vector2.Zero, ModContent.ProjectileType<Content.Projectiles.Boss.SinlordWyrm.Hellheart>(), 0, 0f, Main.myPlayer, sinlord);
+
                 if (Main.netMode == NetmodeID.Server)
-                {
                     NetMessage.SendData(MessageID.SyncNPC, -1, -1, null, sinlord);
-                }
             }
         }
-
-        //private void HandleMusic(float distance)
-        //{
-        //    if (!musicSaved)
-        //    {
-        //        originalMusicVolume = Main.musicVolume;
-        //        musicSaved = true;
-        //    }
-
-        //    float targetMusicFactor = 1f - screenFade;
-        //    if (distance > 120f * 16f)
-        //        targetMusicFactor = 1f;
-
-        //    float musicLerpSpeed = dying ? 0.1f : 0.03f;
-        //    musicFactor = MathHelper.Lerp(musicFactor, targetMusicFactor, musicLerpSpeed);
-
-        //    if (!dying)
-        //    {
-        //        Main.musicVolume = originalMusicVolume * musicFactor;
-        //    }
-        //}
-
-        //private void RestoreMusic()
-        //{
-        //    if (!musicSaved) return;
-        //    Main.musicVolume = originalMusicVolume;
-        //    musicSaved = false;
-        //}
 
         public override bool PreDraw(SpriteBatch spriteBatch, Vector2 screenPos, Color drawColor)
         {
@@ -270,21 +221,23 @@ namespace Synergia.Content.NPCs
             float deathProgress = dying ? MathHelper.Clamp(deathTimer, 0f, 1f) : 0f;
             float fadeOutAlpha = 1f - deathProgress * 0.8f;
             float scaleShrink = 1f - deathProgress * 0.3f;
+
             Vector2 pos = NPC.Center - screenPos + shakeOffset;
             float alpha = MathHelper.Clamp(screenFade * 1.3f, 0.2f, 0.9f) * fadeOutAlpha;
             float lifeRatio = (float)NPC.life / NPC.lifeMax;
             float glowMultiplier = 1f + (1f - lifeRatio) * 0.5f;
 
             spriteBatch.End();
-            spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.Additive, SamplerState.LinearClamp, DepthStencilState.None, RasterizerState.CullNone);
+            spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.Additive, SamplerState.LinearClamp, DepthStencilState.None, RasterizerState.CullNone, null, Main.GameViewMatrix.TransformationMatrix);
 
             DrawRays(spriteBatch, pos, alpha * glowMultiplier, deathProgress);
             DrawOuterGlow(spriteBatch, pos, alpha * glowMultiplier, deathProgress);
 
             spriteBatch.End();
-            spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend);
+            spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp, DepthStencilState.None, RasterizerState.CullNone, null, Main.GameViewMatrix.TransformationMatrix);
 
             Color npcColor = NPC.GetAlpha(Lighting.GetColor((int)(NPC.Center.X / 16), (int)(NPC.Center.Y / 16))) * fadeOutAlpha;
+
             Main.EntitySpriteDraw(
                 TextureAssets.Npc[NPC.type].Value,
                 NPC.Center - Main.screenPosition + shakeOffset,
@@ -292,18 +245,18 @@ namespace Synergia.Content.NPCs
                 npcColor,
                 NPC.rotation,
                 NPC.frame.Size() / 2f,
-                NPC.scale * scaleShrink,
+                visualScale * scaleShrink,
                 SpriteEffects.None,
                 0f
             );
 
             spriteBatch.End();
-            spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.Additive);
+            spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.Additive, SamplerState.LinearClamp, DepthStencilState.None, RasterizerState.CullNone, null, Main.GameViewMatrix.TransformationMatrix);
 
             DrawCoreGlow(spriteBatch, pos, alpha * glowMultiplier, deathProgress);
 
             spriteBatch.End();
-            spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend);
+            spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp, DepthStencilState.None, RasterizerState.CullNone, null, Main.GameViewMatrix.TransformationMatrix);
         }
 
         private void DrawRays(SpriteBatch spriteBatch, Vector2 pos, float alpha, float deathProgress)
@@ -322,16 +275,11 @@ namespace Synergia.Content.NPCs
                 float angle = MathHelper.TwoPi / 8f * i + rotation;
                 float distanceFactor = 1f + (float)Math.Sin(angle + Main.GlobalTimeWrappedHourly) * 0.05f;
                 Color rayColor = new Color(255, 130, 70) * (0.4f * alpha * heartbeatPulse * shakeEffect);
+
                 spriteBatch.Draw(
-                    rayTex,
-                    pos,
-                    null,
-                    rayColor,
-                    angle,
-                    origin,
-                    new Vector2(pulseScale * distanceFactor * fadeScale, 1.5f * pulseIntensity * NPC.scale * shakeEffect * fadeScale),
-                    SpriteEffects.None,
-                    0f
+                    rayTex, pos, null, rayColor, angle, origin,
+                    new Vector2(pulseScale * distanceFactor * fadeScale, 1.5f * pulseIntensity * visualScale * shakeEffect * fadeScale),
+                    SpriteEffects.None, 0f
                 );
             }
         }
@@ -345,16 +293,11 @@ namespace Synergia.Content.NPCs
             float shakeEffect = 1f + (1f - lifeRatio) * 0.4f;
             float fadeScale = 1f - deathProgress * 0.5f;
             Color glowColor = new Color(255, 90, 40) * (0.2f * alpha * heartbeatPulse * shakeEffect);
+
             spriteBatch.Draw(
-                glowTex,
-                pos,
-                null,
-                glowColor,
-                0f,
-                glowTex.Size() / 2f,
-                glowScale * NPC.scale * shakeEffect * fadeScale,
-                SpriteEffects.None,
-                0f
+                glowTex, pos, null, glowColor, 0f, glowTex.Size() / 2f,
+                glowScale * visualScale * shakeEffect * fadeScale,
+                SpriteEffects.None, 0f
             );
         }
 
@@ -367,16 +310,11 @@ namespace Synergia.Content.NPCs
             float shakeEffect = 1f + (1f - lifeRatio) * 0.5f;
             float fadeScale = 1f - deathProgress * 0.6f;
             Color coreColor = new Color(255, 150, 90) * (0.6f * alpha * shakeEffect);
+
             spriteBatch.Draw(
-                coreTex,
-                pos,
-                null,
-                coreColor,
-                0f,
-                coreTex.Size() / 2f,
-                coreScale * NPC.scale * 1.1f * shakeEffect * fadeScale,
-                SpriteEffects.None,
-                0f
+                coreTex, pos, null, coreColor, 0f, coreTex.Size() / 2f,
+                coreScale * visualScale * 1.1f * shakeEffect * fadeScale,
+                SpriteEffects.None, 0f
             );
         }
 
@@ -385,51 +323,42 @@ namespace Synergia.Content.NPCs
             if (screenFade <= 0.01f) return;
 
             Texture2D pixel = TextureAssets.MagicPixel.Value;
+
             spriteBatch.End();
-            spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend);
+            spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.LinearClamp, DepthStencilState.None, RasterizerState.CullNone, null, Main.GameViewMatrix.TransformationMatrix);
 
             float vignetteStrength = 0.9f * screenFade * (0.7f + heartbeatPulse * 0.3f);
             Color fadeColor = Color.Black * vignetteStrength;
-            spriteBatch.Draw(
-                pixel,
-                new Rectangle(0, 0, Main.screenWidth, Main.screenHeight),
-                fadeColor
-            );
+            spriteBatch.Draw(pixel, new Rectangle(0, 0, Main.screenWidth, Main.screenHeight), fadeColor);
 
             spriteBatch.End();
-            spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.Additive);
+            spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.Additive, SamplerState.LinearClamp, DepthStencilState.None, RasterizerState.CullNone, null, Main.GameViewMatrix.TransformationMatrix);
 
             if (ringTexture != null && ringTexture.IsLoaded)
             {
                 Texture2D ring = ringTexture.Value;
+                float lifeRatio = (float)NPC.life / NPC.lifeMax;
+                float deathProgress = dying ? MathHelper.Clamp(deathTimer, 0f, 1f) : 0f;
+                float shakeEffect = 1f + (1f - lifeRatio) * 0.3f;
+                float fadeScale = 1f - deathProgress * 0.7f;
                 float ringPulse = 1f + (float)Math.Sin(Main.GlobalTimeWrappedHourly * 2f) * 0.05f;
                 float ringAlpha = screenFade * (0.6f + heartbeatPulse * 0.2f);
-                float lifeRatio = (float)NPC.life / NPC.lifeMax;
-                float shakeEffect = 1f + (1f - lifeRatio) * 0.3f;
-                float deathProgress = dying ? MathHelper.Clamp(deathTimer, 0f, 1f) : 0f;
-                float fadeScale = 1f - deathProgress * 0.7f;
+
                 Color ringColor = new Color(255, 130, 70) * ringAlpha * shakeEffect;
+
                 spriteBatch.Draw(
-                    ring,
-                    NPC.Center - screenPos + shakeOffset,
-                    null,
-                    ringColor,
-                    Main.GlobalTimeWrappedHourly * 0.4f,
-                    ring.Size() / 2f,
-                    4.5f * ringPulse * shakeEffect * fadeScale,
-                    SpriteEffects.None,
-                    0f
+                    ring, NPC.Center - screenPos + shakeOffset, null, ringColor,
+                    Main.GlobalTimeWrappedHourly * 0.4f, ring.Size() / 2f,
+                    4.5f * ringPulse * visualScale * shakeEffect * fadeScale,
+                    SpriteEffects.None, 0f
                 );
+
                 spriteBatch.Draw(
-                    ring,
-                    NPC.Center - screenPos + shakeOffset,
-                    null,
+                    ring, NPC.Center - screenPos + shakeOffset, null,
                     new Color(200, 70, 30) * (ringAlpha * 0.4f * shakeEffect),
-                    -Main.GlobalTimeWrappedHourly * 0.2f,
-                    ring.Size() / 2f,
-                    5f * ringPulse * 0.7f * shakeEffect * fadeScale,
-                    SpriteEffects.None,
-                    0f
+                    -Main.GlobalTimeWrappedHourly * 0.2f, ring.Size() / 2f,
+                    5f * ringPulse * 0.7f * visualScale * shakeEffect * fadeScale,
+                    SpriteEffects.None, 0f
                 );
             }
 

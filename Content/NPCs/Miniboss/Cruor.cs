@@ -46,13 +46,13 @@ namespace Synergia.Content.NPCs.Miniboss
 			NPC.aiStyle = -1;
 			NPC.HitSound = SoundID.DD2_SkeletonHurt;
 			NPC.DeathSound = SoundID.DD2_SkeletonDeath;
-			NPC.value = Item.sellPrice(0, 50, 0, 0);
+			NPC.value = Item.sellPrice(0, 7, 9  , 0);
             NPC.alpha = 255;
         }
 		//and the bestiary shit here
 		public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry) => bestiaryEntry.Info.AddRange(new IBestiaryInfoElement[] {
 			BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Biomes.TheDungeon,
-			new FlavorTextBestiaryInfoElement("Placeholder text")
+			new FlavorTextBestiaryInfoElement("Soulless creature.")
 		});
         private void SpawnAnimation(){
             spawnTimer++;

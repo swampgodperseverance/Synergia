@@ -10,11 +10,7 @@ namespace Synergia.Common.ModConfigs
         public override ConfigScope Mode => ConfigScope.ServerSide;
 
 
-        [LabelKey("$Mods.Synergia.Configs.Config.SynergiaConfig.NewRecipe")]
-        [TooltipKey("$Mods.Synergia.Configs.Config.SynergiaConfig.NewRecipeTooltip")]
-        [ReloadRequired]
-        [DefaultValue(true)]
-        public bool NewRecipe { get; set; } = true;
+
         [DefaultValue(true)]
         [LabelKey("$Mods.Synergia.Configs.Config.SynergiaConfig.PapuanWizardHardAIEnabled")]
         [TooltipKey("$Mods.Synergia.Configs.Config.SynergiaConfig.PapuanWizardHardAIEnabledTooltip")]

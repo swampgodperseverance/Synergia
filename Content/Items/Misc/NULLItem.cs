@@ -26,7 +26,7 @@ namespace Synergia.Content.Items.Misc {
             public virtual bool ItemIconPulse => false;
             public virtual int TimeToNextItem => 60;
             public virtual float Scale => 0;
-            public sealed override bool IsLoadingEnabled(Mod mod) => GetInstance<BossConfig>().NewRecipe;
+            public sealed override bool IsLoadingEnabled(Mod mod) => GetInstance<MechanicsConfig>().NewRecipe;
             public sealed override string Texture => Reassures.Reassures.Blank;
             public sealed override void SetDefaults() => Item.CloneDefaults(CloneItem);
             public sealed override void SetStaticDefaults() => ItemID.Sets.ItemIconPulse[Type] = ItemIconPulse;

@@ -1,7 +1,10 @@
 using System;
 using System.Collections.Generic;
 using Avalon.Items.Weapons.Magic.Hardmode.AquaImpact;
+using Avalon.Items.Weapons.Magic.Hardmode.Boomlash;
+using Avalon.Items.Weapons.Magic.Hardmode.DevilsScythe;
 using Avalon.Items.Weapons.Magic.Hardmode.MagicGrenade;
+using Avalon.Items.Weapons.Magic.Hardmode.Sunstorm;
 using Avalon.Items.Weapons.Magic.PreHardmode.ChaosTome;
 using Avalon.Items.Weapons.Magic.PreHardmode.Smogscreen;
 using Avalon.Items.Weapons.Melee.Hardmode.CraniumCrusher;
@@ -31,6 +34,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 using ValhallaMod.Items.Weapons.Magic.Arcana;
+using ValhallaMod.Items.Weapons.Magic.Lanterns;
 using ValhallaMod.Items.Weapons.Magic.Music;
 using ValhallaMod.Items.Weapons.Magic.Staffs;
 using ValhallaMod.Items.Weapons.Magic.Thrown;
@@ -57,6 +61,7 @@ namespace Synergia.Common.GlobalItems.Changes
 {
     public class BalanceEditor : GlobalItem
     {
+        internal static bool Disabled = false;
         private static Dictionary<int, Action<Item>> Changes;
 
         public override void Load()
@@ -562,11 +567,41 @@ namespace Synergia.Common.GlobalItems.Changes
                 {
                     item.damage += 15;
                 },
+                [ModContent.ItemType<Avalon.Items.Weapons.Magic.Hardmode.DevilsScythe.DevilsScythe>()] = item =>
+                {
+                    item.damage -= 70;
+                    item.useAnimation += 14;
+                    item.useTime += 14;
+                },
+                [ModContent.ItemType<GhostVenomStaff>()] = item =>
+                {
+                    item.damage -= 18;
+                    item.useAnimation += 4;
+                    item.useTime += 4;
+                },
+                [ModContent.ItemType<Boomlash>()] = item =>
+                {
+                    item.damage -= 26;
+                    item.useAnimation += 10;
+                    item.useTime += 10;
+                },
+                [ModContent.ItemType<Sunstorm>()] = item =>
+                {
+                    item.damage += 25;
+                },
+                [ModContent.ItemType<Unlighter>()] = item =>
+                {
+                    item.damage += 11;
+                    item.useAnimation -= 36;
+                    item.useTime -= 36;
+                },
+
             };
         }
 
         public override void SetDefaults(Item item)
         {
+            if (Disabled || Changes == null) return;
             if (Changes.TryGetValue(item.type, out var edit))
                 edit(item);
         }

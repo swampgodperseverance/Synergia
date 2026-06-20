@@ -1,6 +1,16 @@
-DANTE'S INFERNO
-NEW STRUCTURES
-1000+ COMPATIBILITY CHANGES
-180+ ITEMS REWORKS
-NEW MECHANICS
-AND MUCH MORE
+Welcome to Synergia!
+
+Synergia delivers a mountain of new content and dynamically evolves every aspect of its world. 
+
+KEY FEATURES 
+
+Update
+
+3 new, well-developed structures. Explore giant Inferno Frontier, Hoodlums Headquarter and a Frostholm Village	.  
+New items, enemies. adds a bunch of enemies, mini bosses, accessories, weapons, armor, and more.
+Thrower. Completely new thrower class centered on fast-paced action and the requirement for the player to land constant hits.
+Quests. Around of 20 quests for better dive.
+Bosses reworks. A lot of changes in bosses AIs, some of them fully reworked.
+Global Mechanics. Dynamical Prices, Hooks now need stamina, Active Armor Set bonuses and more.
+Compatibility changes. Adds compatibility between mods on literally every part of the game: quests, recipes, balance, UIs, Structures, mechanics from all mods shared among everyone. Want to say, 250+ Items, tiles, armors from mods were changed, resprited, or reworked
+And much more! Lore, Frost Legion rework, Underworld Upgrade and other big things to deal with

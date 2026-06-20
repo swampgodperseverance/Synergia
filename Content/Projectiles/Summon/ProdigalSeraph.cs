@@ -22,23 +22,26 @@ namespace Synergia.Content.Projectiles.Summon
         {
             Projectile.width = 40;
             Projectile.height = 40;
-
             Projectile.friendly = true;
             Projectile.minion = true;
             Projectile.minionSlots = 1f;
-
             Projectile.penetrate = -1;
             Projectile.timeLeft = 18000;
-
             Projectile.tileCollide = false;
             Projectile.ignoreWater = true;
-
             Projectile.DamageType = DamageClass.Summon;
         }
 
         public override void AI()
         {
             Player player = Main.player[Projectile.owner];
+
+            if (!CheckMinionLimit(player))
+            {
+                Projectile.Kill();
+                return;
+            }
+
             if (player.dead || !player.active || !player.HasBuff(ModContent.BuffType<Buffs.ProdigyBuff>()))
             {
                 Projectile.Kill();
@@ -46,19 +49,16 @@ namespace Synergia.Content.Projectiles.Summon
             }
 
             Projectile.timeLeft = 2;
-            float radius = 80f;
 
+            float radius = 80f;
             float angle = (Main.GlobalTimeWrappedHourly * 2f) + Projectile.whoAmI;
             Vector2 offset = new Vector2((float)Math.Cos(angle), (float)Math.Sin(angle)) * radius;
-
             Vector2 targetPos = player.Center + offset;
             Vector2 move = targetPos - Projectile.Center;
-
             Projectile.velocity = move * 0.1f;
 
             NPC target = null;
             float distanceMax = 900f;
-
             foreach (NPC npc in Main.npc)
             {
                 if (npc.CanBeChasedBy())
@@ -73,12 +73,10 @@ namespace Synergia.Content.Projectiles.Summon
             }
 
             bool attacking = target != null;
+
             if (attacking)
             {
-                if (target.Center.X > Projectile.Center.X)
-                    Projectile.spriteDirection = 1;
-                else
-                    Projectile.spriteDirection = -1;
+                Projectile.spriteDirection = target.Center.X > Projectile.Center.X ? 1 : -1;
             }
             else
             {
@@ -89,25 +87,19 @@ namespace Synergia.Content.Projectiles.Summon
             }
 
             Projectile.rotation = Projectile.velocity.X * 0.05f;
-            Projectile.frameCounter++;
 
+            Projectile.frameCounter++;
             if (attacking)
             {
-                if (Projectile.frameCounter >= 7) 
+                if (Projectile.frameCounter >= 7)
                 {
                     Projectile.frameCounter = 0;
                     Projectile.frame++;
-
-                    if (Projectile.frame < 4)
-                        Projectile.frame = 4;
-
-                    if (Projectile.frame > shootFrame)
-                        Projectile.frame = 4;
+                    if (Projectile.frame < 4) Projectile.frame = 4;
+                    if (Projectile.frame > shootFrame) Projectile.frame = 4;
 
                     if (Projectile.frame == shootFrame)
-                    {
                         Shoot(target);
-                    }
                 }
             }
             else
@@ -115,18 +107,38 @@ namespace Synergia.Content.Projectiles.Summon
                 if (Projectile.frameCounter >= 8)
                 {
                     Projectile.frameCounter = 0;
-                    Projectile.frame++;
-
-                    if (Projectile.frame >= 4)
-                        Projectile.frame = 0;
+                    Projectile.frame = (Projectile.frame + 1) % 4;
                 }
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        private bool CheckMinionLimit(Player player)
+        {
+            int count = 0;
+            for (int i = 0; i < Main.maxProjectiles; i++)
+            {
+                Projectile p = Main.projectile[i];
+                if (p.active && p.type == Projectile.type && p.owner == Projectile.owner)
+                {
+                    count++;
+                    if (count > 5)
+                    {
+                        if (p.whoAmI < Projectile.whoAmI)
+                        {
+                            p.Kill();
+                        }
+                    }
+                }
+            }
+            return count <= 5;
+        }
+
         private void Shoot(NPC target)
         {
-            if (target == null || !target.active)
-                return;
+            if (target == null || !target.active) return;
 
             Vector2 direction = target.Center - Projectile.Center;
             direction.Normalize();
@@ -148,7 +160,6 @@ namespace Synergia.Content.Projectiles.Summon
         private int GetRandomProjectile()
         {
             int choice = Main.rand.Next(3);
-
             return choice switch
             {
                 0 => ModContent.ProjectileType<ProdigyGold>(),
@@ -156,12 +167,11 @@ namespace Synergia.Content.Projectiles.Summon
                 _ => ModContent.ProjectileType<ProdigyLava>(),
             };
         }
+
         public override bool PreDraw(ref Color lightColor)
         {
             Texture2D texture = Terraria.GameContent.TextureAssets.Projectile[Projectile.type].Value;
-
             Rectangle frame = texture.Frame(1, Main.projFrames[Projectile.type], 0, Projectile.frame);
-
             Vector2 origin = frame.Size() / 2f;
 
             SpriteEffects effects = Projectile.spriteDirection == 1
@@ -169,11 +179,9 @@ namespace Synergia.Content.Projectiles.Summon
                 : SpriteEffects.FlipHorizontally;
 
             Color glowColor = Color.White * 0.6f;
-
             for (int i = 0; i < 4; i++)
             {
                 Vector2 offset = (MathHelper.TwoPi * i / 4f).ToRotationVector2() * 2f;
-
                 Main.EntitySpriteDraw(
                     texture,
                     Projectile.Center - Main.screenPosition + offset,

@@ -212,7 +212,7 @@ namespace Synergia.Common.GlobalPlayer
                 ModEvent.Instance.SettingEvent();
                 if (ModList.PackBuilderLoaded != null)
                 {
-                    if (GetInstance<BossConfig>().NewRecipe)
+                    if (GetInstance<MechanicsConfig>().NewRecipe)
                     {
                         Main.NewText(string.Format(LocUIKey(CHATMSG, "tPacer"), ModList.PackBuilderLoaded.DisplayName, Language.GetTextValue("Mods.Synergia.Config.NewRecipe")), Color.DarkRed);
                     }

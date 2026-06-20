@@ -1,4 +1,5 @@
 ﻿using Avalon.Items.Armor.Hardmode;
+using Avalon.Items.Weapons.Magic.Hardmode.Boomlash;
 using Avalon.Items.Weapons.Magic.Hardmode.DevilsScythe;
 using Bismuth.Content.Items.Other;
 using NewHorizons.Content.Items.Armor.AshenArmor;
@@ -66,6 +67,8 @@ public class DwarfUI : UIState {
         {ItemType<AshenBreastplate>(), ItemType<DreadArmor>()},
         {ItemType<AshenShroud>(), ItemType<DreadHelmet>()},
         {ItemType<AshenLeggins>(), ItemType<DreadLeggings>()},
+        {ItemID.DemonScythe, ItemType<DevilsScythe>()},
+        {ItemID.Flamelash, ItemType<Boomlash>()},
     };
     readonly SaveItemPlayer saveItem = Main.LocalPlayer.GetModPlayer<SaveItemPlayer>();
     Texture2D anvil;

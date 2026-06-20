@@ -5,7 +5,7 @@ using Terraria;
 namespace Synergia.Common.ModSystems.RecipeSystem.ChangesRecipe {
     public abstract class BaseRecipe : ModSystem {
         public sealed override void PostAddRecipes() {
-            if (GetInstance<BossConfig>().NewRecipe) {
+            if (GetInstance<MechanicsConfig>().NewRecipe) {
                 List<Recipe> recipesCopy = [.. Main.recipe];
                 foreach (Recipe recipe in recipesCopy) {
                     DisableRecipe(recipe);
@@ -18,7 +18,7 @@ namespace Synergia.Common.ModSystems.RecipeSystem.ChangesRecipe {
             }
         }
         public sealed override void AddRecipes() {
-            if (GetInstance<BossConfig>().NewRecipe) {
+            if (GetInstance<MechanicsConfig>().NewRecipe) {
                 Recipes();
             }
         }

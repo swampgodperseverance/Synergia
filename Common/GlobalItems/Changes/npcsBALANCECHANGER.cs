@@ -16,6 +16,7 @@ namespace Synergia.Common.GlobalNPCs.Changes
 {
     public class NPCBalanceEditor : GlobalNPC
     {
+        internal static bool Disabled = false;
         private static Dictionary<int, Action<NPC>> Changes;
 
         public override void Load()
@@ -312,6 +313,7 @@ namespace Synergia.Common.GlobalNPCs.Changes
 
         public override void SetDefaults(NPC npc)
         {
+            if (Disabled || Changes == null) return;
             if (Changes.TryGetValue(npc.type, out var edit))
                 edit(npc);
         }

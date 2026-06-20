@@ -84,6 +84,7 @@ namespace Synergia.Content.Projectiles.Summon
 
         public override bool OnTileCollide(Vector2 oldVelocity)
         {
+            Projectile.velocity = Vector2.Zero;     
             Explode();
             return false;
         }

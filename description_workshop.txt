@@ -1,71 +1,49 @@
-PLEASE, USE OLD TALES INSTEAD OF BOSS CHECKLIST TO CHECK PROGRESSION
-PROGRESSION WAS CHANGED
+[h1] OUT NOW! [/h1]
 
-[h1]Main information[/h1]
+We have gathered some of the most talented and creative minds across our community to collaborate and make something unforgettable.
+Introducing Synergia 1.0 Dante's Inferno update.
 
-Synergia focuses on extremely expanding the possibilities of Terraria and existing mods.
-This mod features tons of compatibility changes through unique mods and own unique content, such as weapons, accessories etc..
-Synergia is designed for people who likes terraria small mods, but always put them off until later.
+Synergia delivers a mountain of new content and dynamically evolves every aspect of its world. 
 
-Perfect for people who want to refresh their old playthroughs.
+[h2] KEY FEATURES [/h2]
 
-This "Beta" version features a new boss, 1100 compatibility changes, 16 AI of bosses&minibosses improvements and a variety of interesting content such as aura subclass expansion, thrower class and even weapons rework. 
-
-[h1]Content in this beta[/h1]
+[h1]Update[/h1]
 [list]
-[*] [b]Sinlord Wyrm.[/b] Deep in the Underworld, there is a post-plantera boss with unique AI, sounds, music etc..  
-[*] [b]Old Tales.[/b] System that works for showing correct boss progression because it was changed. Ocram now is a pre-cultist final boss for example.
-[*] [b]Thrower.[/b] Just basically thrower with around of 100 weapons combined and balanced from other mods, and personally added by Synergia. Accessories and armor included
-[*] [b]Aura subclass expansion.[/b] Aura it's a new system added by Valhalla Mod. Summoner-Subclass and synergia adds good amount of content to play
-[*] [b]New bosses attacks.[/b] All modded bosses except lepus have at least 1 new attack. Vanilla bosses got changes too.
-[*] [b]Challenge AIs.[/b] 2 Challenge AI bosses for people who like hard fights. You can enable it in mod config
-[*] [b]Compatibility changes.[/b] Around of 400 recipe changes, around of 200 item modifications, around of 300 drop condition changes, 30+ armor pieces changes, accessories changes, giant crafting trees and weapons rework. 
-[*] [b]And much more![/b]
-[/list]
-
-[h1]How much content this modpack have with all mods included?[/h1]
-[list]
-[*] [b]540 weapons[/b] 
-[*] [b]10 Bosses[/b]
-[*] [b]+-80 Armor sets[/b]
-[*] [b]New mechanics[/b]
-[*] [b]New NPCs[/b]
-[*] [b]New generations[/b] 
-[*] [b]Tons of bosses were changed[/b] 
-[*] [b]And much more![/b]
-[/list]
-
-[h1]What will be in the "Release" version?[/h1]
-[list]
-[*] [b]Druid[/b] 
-[*] [b]More compatibility[/b]
-[*] [b]Active accessories[/b]
-[*] [b]And...[/b]
+[*] [b]3 new, well-developed structures.[/b] Explore giant Inferno Frontier, Hoodlums Headquarter and a Frostholm Village	.  
+[*] [b]New items, enemies.[/b] adds a bunch of enemies, mini bosses, accessories, weapons, armor, and more.
+[*] [b]Thrower.[/b] Completely new thrower class centered on fast-paced action and the requirement for the player to land constant hits.
+[*] [b]Quests.[/b] Around of 20 quests for better dive.
+[*] [b]Bosses reworks.[/b] A lot of changes in bosses AIs, some of them fully reworked.
+[*] [b]Global Mechanics.[/b] Dynamical Prices, Hooks now need stamina, Active Armor Set bonuses and more.
+[*] [b]Compatibility changes.[/b] Adds compatibility between mods on literally every part of the game: quests, recipes, balance, UIs, Structures, mechanics from all mods shared among everyone. Want to say, 250+ Items, tiles, armors from mods were changed, resprited, or reworked
+[*] [b]And much more![/b] Lore, Frost Legion rework, Underworld Upgrade, new music and other big and interesting things to deal with
 [/list]
 
 [b]Does the mod work in multiplayer?[/b]
-Should be
+Should be, but it has some known bugs that still not fixed. Albeit not critical
+
+[b]How to play?[/b]
+Just download all mods that you see on the steam page and go on.
+
+[b]Mod has great configurations options.[/b]
+
+[b]Druid is not available now.[/b]
+
+[b]You can encounter bugs.[/b]
+
+[b]Not every part of the game is absolutely polished. But we tried our best[/b]
 
 Whether you're playing casually or going for a full challenge run, Synergia ensures everything feels connected, smooth, and epic.
 
-Created by Swampgod and cleo.
+Created by Synergia crew. Swampgod, Cleo, Bimba, Aeris, Unowen, Sky, Gojisturba, Mumb and Quan
 
-We also had Ropyxa in our team. But he quit Terraria modding, thanks a lot!
+Additional thanks to the Verge, nmrwski., Reksi, rolleg, Geki, Sarchasm, Jona, Ma3allim, peege. on, G.A.S, unholy, Cknight, Serork, ttalex, Ropyxa, kam, red, maskano, kashalotick, Eduarrdo, gasstein, tamet
 
-Thank you, gasstein and Tamet for helping me with code and assets.
-
-Thanks @ddg.Of.mind for beautiful poster, he can do smth like this for you also.
-
-Thank you, Unholy, talex and Gergeroth for trailer.
-
-Credits: Serork, peege_on, Heretic, has2r, N.F.A., KondiU, Sparcdoctor, Croul, A44, blahblahbla, Xami, Mary, Ether, EnnWAY, musicman, Swampz, heartplusup, fredleon, red, charleyistired, mikumikumiku, aku, qwerty314, jbame, hina, dedmaxim, Jona, z.e.n HammerHoovy, KainSett, nobisyu, Nycro, kaliphobia and shekel.
-Write me in discord if I forget you as one of the mod devs.
-
-
-I DONT KNOW WHEN WILL BE NEXT BIG UPDATE. After this beta i take a hiatus for an indefinite period, but may be i will update the mod. Will be seen
+Thanks community for being with us, i hope you will like it.
 
 [h1]Links[/h1]
 
-[url=https://discord.gg/wp6vvbv2wA]Discord[/url]
+[url=https://discord.com/invite/MbgzXHR8wG]Discord[/url]
 [url=https://github.com/swampgodperseverance/Synergia]GitHub[/url]
+[url=https://terrariamods.wiki.gg/wiki/Synergia]WIP Wiki[/url]
   

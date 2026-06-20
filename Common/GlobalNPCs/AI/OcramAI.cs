@@ -7,8 +7,10 @@ using Microsoft.Xna.Framework;
 using System;
 using System.IO;
 using System.Reflection;
-using Synergia.Content.Projectiles.Boss.OcramBuff
+using Synergia.Content.Projectiles.Boss.OcramBuff;
+
 using Consolaria.Content.NPCs.Bosses.Ocram;
+using Consolaria.Content.Projectiles.Enemies;
 
 namespace Synergia.Common.GlobalNPCs.AI
 {
