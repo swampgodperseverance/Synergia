@@ -7,7 +7,7 @@ using Microsoft.Xna.Framework;
 using System;
 using System.IO;
 using System.Reflection;
-using Synergia.Content.Projectiles.Bosses.OcramBuff;
+using Synergia.Content.Projectiles.Boss.OcramBuff
 using Consolaria.Content.NPCs.Bosses.Ocram;
 
 namespace Synergia.Common.GlobalNPCs.AI
@@ -107,6 +107,7 @@ namespace Synergia.Common.GlobalNPCs.AI
 					}
 					npc.velocity += shootDir * 0.003f;
 					if(++npc.ai[2] > 90f) {
+						if(Main.netMode != 1) for(int i = 0; i < 4; i++) Projectile.NewProjectile(npc.GetSource_FromAI(), npc.Center, Main.rand.NextVector2Circular(4f, 4f), ModContent.ProjectileType<OcramBomb>(), 32, 1f, Main.myPlayer, npc.target + 1);
 						if(++npc.ai[3] > 3f) {
 							npc.ai[1]++;
 							npc.ai[3] = 0f;
