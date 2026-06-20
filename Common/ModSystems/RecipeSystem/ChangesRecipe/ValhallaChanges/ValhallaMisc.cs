@@ -34,6 +34,7 @@ using ValhallaMod.Items.Weapons.Ranged.ProjectileGuns;
 using ValhallaMod.Items.Weapons.Summon.Auras;
 using ValhallaMod.Items.Weapons.Summon.Whips;
 using ValhallaMod.Projectiles.Summon.Sentries;
+using ValhallaMod.Systems.WorldGeneration;
 using static Terraria.ModLoader.ModContent;
 
 namespace Synergia.Common.ModSystems.RecipeSystem.ChangesRecipe.AvalonsChanges {
@@ -49,6 +50,14 @@ namespace Synergia.Common.ModSystems.RecipeSystem.ChangesRecipe.AvalonsChanges {
             CreateGreaterPotionBelt();
             CreateThunderbar();
             CreateTimeFragment();
+            CreateValhalliteAnvil();
+        }
+        static void CreateValhalliteAnvil()
+        {
+            Recipe recipe = Recipe.Create(ItemType<ValhallaMod.Items.Placeable.DwarvenAnvil>(), 1);
+            recipe.AddIngredient(ItemType<ValhalliteBar>(), 16);
+            recipe.AddTile(TileID.Anvils);
+            recipe.Register();
         }
         static void CreateGreaterPotionBelt()
         {

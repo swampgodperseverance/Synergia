@@ -78,6 +78,7 @@ namespace Synergia.Common.ModSystems.RecipeSystem.ChangesRecipe {
             CreateEarthCollapse();
             CreateUnderScythe();
             CreatePumpkinMedallion();
+            CreateEverJav();
             CreateShardflingPotion();
         }
         static void CreatePumpkinMedallion()
@@ -127,6 +128,13 @@ namespace Synergia.Common.ModSystems.RecipeSystem.ChangesRecipe {
         {
             Recipe recipe = Recipe.Create(ItemType<EverwoodNecklace>());
             recipe.AddIngredient(RoAItem("Elderwood"), 20);
+            recipe.AddTile(TileID.WorkBenches);
+            recipe.Register();
+        }
+        static void CreateEverJav()
+        {
+            Recipe recipe = Recipe.Create(ItemType<EverwoodJavelin>());
+            recipe.AddIngredient(RoAItem("Elderwood"), 30);
             recipe.AddTile(TileID.WorkBenches);
             recipe.Register();
         }

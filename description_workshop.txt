@@ -14,7 +14,7 @@ Synergia delivers a mountain of new content and dynamically evolves every aspect
 [*] [b]Thrower.[/b] Completely new thrower class centered on fast-paced action and the requirement for the player to land constant hits.
 [*] [b]Quests.[/b] Around of 20 quests for better dive.
 [*] [b]Bosses reworks.[/b] A lot of changes in bosses AIs, some of them fully reworked.
-[*] [b]Global Mechanics.[/b] Dynamical Prices, Hooks now need stamina, Active Armor Set bonuses and more.
+[*] [b]Global Mechanics.[/b]  Hooks now need stamina, Active Armor Set bonuses, hellforging and more.
 [*] [b]Compatibility changes.[/b] Adds compatibility between mods on literally every part of the game: quests, recipes, balance, UIs, Structures, mechanics from all mods shared among everyone. Want to say, 250+ Items, tiles, armors from mods were changed, resprited, or reworked
 [*] [b]And much more![/b] Lore, Frost Legion rework, Underworld Upgrade, new music and other big and interesting things to deal with
 [/list]

@@ -16,11 +16,6 @@ namespace Synergia.Common.ModConfigs
         [DefaultValue(true)]
         public bool NewRecipe { get; set; } = true;
 
-        [LabelKey("$Mods.Synergia.Configs.Config.SynergiaConfig.DynamicalPrices")]
-        [TooltipKey("$Mods.Synergia.Configs.Config.SynergiaConfig.DynamicalPricesTooltip")]
-        [ReloadRequired]
-        [DefaultValue(true)]
-        public bool DynimicalPrices { get; set; } = true;
 
         [LabelKey("$Mods.Synergia.Configs.Config.SynergiaConfig.StaminaHooks")]
         [TooltipKey("$Mods.Synergia.Configs.Config.SynergiaConfig.StaminaHooksTooltip")]
@@ -45,7 +40,6 @@ namespace Synergia.Common.ModConfigs
 
         private void UpdateAIStates()
         {
-            Core.PriceSystem.DynamicPriceManager.Disabled = !this.DynimicalPrices;
             Common.GlobalNPCs.Changes.NPCBalanceEditor.Disabled = !this.NpcHpScaling;
             Common.GlobalItems.Changes.BalanceEditor.Disabled = !this.WeaponsScaling;
             Common.GlobalProjectiles.HookGP.Disabled = !this.StaminaHooks;

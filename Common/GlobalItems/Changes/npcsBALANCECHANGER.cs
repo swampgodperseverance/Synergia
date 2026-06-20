@@ -177,6 +177,18 @@ namespace Synergia.Common.GlobalNPCs.Changes
                 {
                     npc.lifeMax += 1200;
                 },
+                [ModContent.NPCType<PapuanWarrior>()] = npc =>
+                {
+                    npc.lifeMax -= 70;
+                },
+                [ModContent.NPCType<PapuanArcher>()] = npc =>
+                {
+                    npc.lifeMax -= 70;
+                },
+                [ModContent.NPCType<Papuan>()] = npc =>
+                {
+                    npc.lifeMax -= 70;
+                },
                 [ModContent.NPCType<RunicElemental>()] = npc =>
                 {
                     npc.lifeMax += 250;

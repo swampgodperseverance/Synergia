@@ -46,7 +46,7 @@ namespace Synergia.Common.ModSystems.RecipeSystem.ChangesRecipe.AvalonsChanges {
             static void CreateMercuriumNugget()
             {
                 Recipe recipe = Recipe.Create(RoAItem("MercuriumNugget"));
-                recipe.AddIngredient(RoAItem("MercuriumOre"));
+                recipe.AddIngredient(RoAItem("MercuriumOre"), 4);
                 recipe.AddIngredient(ItemType<ChunkstoneBlock>(), 2);
                 recipe.AddTile(TileID.DemonAltar);
                 recipe.Register();

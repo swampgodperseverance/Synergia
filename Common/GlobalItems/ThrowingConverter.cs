@@ -91,6 +91,7 @@ namespace Synergia.Common.GlobalItems
             ItemType<ClusterGrenade>(),
             ItemType<SpiderEgg>(),
             ItemType<ToothKnife>(),
+             ItemType<GlassBoomerang>(),
 
 			//Horizon
 			ItemType<NewHorizons.Content.Items.Weapons.Ranged.IncendiaryGrenade>(),

@@ -242,7 +242,7 @@ namespace Synergia.Common.ModSystems.RecipeSystem.ChangesRecipe.AvalonsChanges {
         {
             Recipe recipe = Recipe.Create(ItemType<GlassCrossbow>());
             recipe.AddIngredient(ItemType<HardenedGlass>(), 9);
-            recipe.AddIngredient(ItemType<Booger>(), 5);
+            recipe.AddIngredient(ItemType<Booger>(), 3);
             recipe.AddTile(TileID.GlassKiln);
             recipe.Register();
         }

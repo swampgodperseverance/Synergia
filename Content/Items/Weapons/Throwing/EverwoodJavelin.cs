@@ -32,12 +32,6 @@ namespace Synergia.Content.Items.Weapons.Throwing
 			item.noUseGraphic = true;
 			item.noMelee = true;
 		}
-        public override void AddRecipes()
-        {
-            CreateRecipe()
-             //   .AddIngredient(Mod.Find<ModItem>("Everwood").Type, 10)
-                .AddTile(TileID.Anvils)
-                .Register();
-        }
+
     }
 }
