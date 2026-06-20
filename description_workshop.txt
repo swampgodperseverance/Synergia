@@ -20,7 +20,7 @@ Synergia delivers a mountain of new content and dynamically evolves every aspect
 [/list]
 
 [b]Does the mod work in multiplayer?[/b]
-Should be, but it has some known bugs that still not fixed. Albeit not critical
+Should be, but it has some known bugs that still not fixed. Albeit its not critical
 
 [b]How to play?[/b]
 Just download all mods that you see on the steam page and go on.
@@ -33,9 +33,9 @@ Just download all mods that you see on the steam page and go on.
 
 [b]Not every part of the game is absolutely polished. But we tried our best[/b]
 
-Whether you're playing casually or going for a full challenge run, Synergia ensures everything feels connected, smooth, and epic.
+Whether you're playing casually or going for a full challenge run, Synergia ensures everything feels connected, smooth, and epic. Compatible and balanced with [url=https://steamcommunity.com/profiles/76561199125907379/myworkshopfiles/]Unowen's[/url] rework mods.
 
-Created by Synergia crew. Swampgod, Cleo, Bimba, Aeris, Unowen, Sky, Gojisturba, Mumb and Quan
+Created by Synergia crew: Swampgod, Cleo, Bimba, Aeris, Unowen, Sky, Gojisturba, Mumb and Quan
 
 Additional thanks to the Verge, nmrwski., Reksi, rolleg, Geki, Sarchasm, Jona, Ma3allim, peege. on, G.A.S, unholy, Cknight, Serork, ttalex, Ropyxa, kam, red, maskano, kashalotick, Eduarrdo, gasstein, tamet
 
