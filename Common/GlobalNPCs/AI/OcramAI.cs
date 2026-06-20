@@ -18,10 +18,30 @@ namespace Synergia.Common.GlobalNPCs.AI
 	{
         internal static bool Disabled = false;
 
-        public override bool AppliesToEntity(NPC npc, bool lateInstatiation) => npc.ModNPC is Ocram;
+		public override bool AppliesToEntity(NPC npc, bool lateInstatiation) => npc.ModNPC is Ocram || npc.ModNPC is ServantofOcram;
+		public override void SetDefaults(NPC npc) {
+			if(npc.ModNPC is ServantofOcram) npc.noTileCollide = true;
+		}
 		public override bool PreAI(NPC npc) {
-            if (Disabled) return true;
-            Ocram o = npc.ModNPC as Ocram;
+			if(npc.ModNPC is ServantofOcram soo) {
+				NPC ocram = Main.npc[(int)npc.ai[0] - 1];
+				if(ocram.active) {
+					if(ocram.ai[2] == 0f) if(ocram.ai[1] == 1f) {
+						npc.velocity = Vector2.Normalize(Main.player[ocram.target].Center - npc.Center) * 16f;
+						npc.ai[3] = 60f;
+					}
+					else if(Main.netMode != 1) Projectile.NewProjectile(npc.GetSource_FromAI(), npc.Center, Vector2.Normalize(Main.player[ocram.target].Center - npc.Center), ModContent.ProjectileType<ServantScythe>(), 30, 4f, Main.myPlayer); 
+					if(npc.ai[3] > 0f) {
+						npc.ai[3]--;
+						return false;
+					}
+					npc.velocity += ((ocram.ai[1] < 3f ? Main.player[ocram.target].Center : ocram.Center) + new Vector2(npc.ai[1], npc.ai[2]).RotatedBy(ocram.rotation) - npc.Center) * 0.018f;
+					npc.velocity *= 0.92f;
+				}
+				else npc.StrikeInstantKill();
+				return false;
+			}
+			Ocram o = npc.ModNPC as Ocram;
 			if(npc.life < npc.lifeMax * (Main.expertMode ? 0.65 : 0.5) && npc.ai[0] != 3f) return true;
 			else if(npc.ai[0] == 0f && npc.ai[1] == 0f && npc.ai[2] == 0f) try {
 				if(o.GetType().GetField("_spawnCheck", BindingFlags.NonPublic | BindingFlags.Instance).GetValue(o) is float f && f < 100f) return true;
@@ -138,6 +158,7 @@ namespace Synergia.Common.GlobalNPCs.AI
 					}
 					if(++npc.ai[2] > 240f) {
 						npc.ai[1]++;
+						if(NPC.AnyNPCs(ModContent.NPCType<ServantofOcram>())) npc.ai[1]++;
 						npc.ai[2] = 0f;
 						npc.ai[3] = 0f;
 						npc.velocity *= 0.5f;
@@ -147,10 +168,31 @@ namespace Synergia.Common.GlobalNPCs.AI
 					npc.velocity *= 0.9f;
 				break;
 				case 4:
+					npc.velocity += (targetPos - Vector2.UnitY * 320f - npc.Center) * 0.018f * npc.ai[2] / 90f;
+					turnSpeed *= npc.ai[2] / 45f;
+					if(npc.ai[2] == 60f) {
+						int s = NPC.NewNPC(npc.GetSource_FromAI(), (int)npc.Center.X, (int)npc.Center.Y, ModContent.NPCType<ServantofOcram>(), 0, npc.whoAmI + 1, 240f, 240f, 0f, 255);
+						if(s < Main.maxNPCs) NetMessage.SendData(23, -1, -1, null, s);
+						s = NPC.NewNPC(npc.GetSource_FromAI(), (int)npc.Center.X, (int)npc.Center.Y, ModContent.NPCType<ServantofOcram>(), 0, npc.whoAmI + 1, 240f, -240f, 0f, 255);
+						if(s < Main.maxNPCs) NetMessage.SendData(23, -1, -1, null, s);
+						s = NPC.NewNPC(npc.GetSource_FromAI(), (int)npc.Center.X, (int)npc.Center.Y, ModContent.NPCType<ServantofOcram>(), 0, npc.whoAmI + 1, -240f, -240f, 0f, 255);
+						if(s < Main.maxNPCs) NetMessage.SendData(23, -1, -1, null, s);
+						s = NPC.NewNPC(npc.GetSource_FromAI(), (int)npc.Center.X, (int)npc.Center.Y, ModContent.NPCType<ServantofOcram>(), 0, npc.whoAmI + 1, -240f, 240f, 0f, 255);
+						if(s < Main.maxNPCs) NetMessage.SendData(23, -1, -1, null, s);
+					}
+					if(++npc.ai[2] > 120f) {
+						npc.ai[1]++;
+						npc.ai[2] = 0f;
+						npc.netUpdate = true;
+						npc.TargetClosest();
+					}
+					npc.velocity *= 0.9f;
+				break;
+				case 5:
 					if(npc.ai[2] > 90f) {
 						npc.velocity += (targetPos - Vector2.UnitY * 420f - npc.Center) * 0.018f - Vector2.UnitY.RotatedBy(npc.rotation) * 0.1f;
 						turnSpeed = 0.05f;
-						if(npc.ai[2] % 12 == 0f && Main.netMode != 1) Projectile.NewProjectile(npc.GetSource_FromAI(), npc.Center - npc.rotation.ToRotationVector2() * npc.width / 3f * (npc.ai[2] % 24 == 0 ? -1 : 1), (npc.rotation + MathHelper.PiOver2 * 1.2f * (npc.ai[2] % 24 == 0 ? -1 : 1) + MathHelper.PiOver2).ToRotationVector2() * 2f, ModContent.ProjectileType<OcramSkull>(), 30, 4f, Main.myPlayer);
+						if(npc.ai[2] % 12 == 0f && Main.netMode != 1) Projectile.NewProjectile(npc.GetSource_FromAI(), npc.Center - npc.rotation.ToRotationVector2() * npc.width / 3f * (npc.ai[2] % 24 == 0 ? -1 : 1), (npc.rotation + MathHelper.PiOver2 * (npc.life < npc.lifeMax * 0.3 ? 0.6f : 1.2f) * (npc.ai[2] % 24 == 0 ? -1 : 1) + MathHelper.PiOver2).ToRotationVector2() * 2f, npc.life < npc.lifeMax * 0.3 ? ModContent.ProjectileType<OcramSkull1>() : ModContent.ProjectileType<OcramSkull2>(), 30, 4f, Main.myPlayer);
 					}
 					else {
 						if(npc.ai[2] == 90f) try {
@@ -245,6 +287,7 @@ namespace Synergia.Common.GlobalNPCs.AI
 					}
 					if(++npc.ai[2] > 480f) {
 						npc.ai[1]++;
+						if(npc.life > npc.lifeMax * 0.8 || NPC.AnyNPCs(ModContent.NPCType<ServantofOcram>())) npc.ai[1]++;
 						npc.ai[2] = 0f;
 						npc.ai[3] = 0f;
 						npc.velocity *= 0.5f;
@@ -254,6 +297,21 @@ namespace Synergia.Common.GlobalNPCs.AI
 					npc.velocity *= 0.9f;
 				break;
 				case 3:
+					npc.velocity += (targetPos - Vector2.UnitY * 320f - npc.Center) * 0.018f * npc.ai[2] / 90f;
+					turnSpeed *= npc.ai[2] / 45f;
+					if(npc.ai[2] == 60f) for(int i = -1; i <= 1; i += 2) {
+						int s = NPC.NewNPC(npc.GetSource_FromAI(), (int)npc.Center.X, (int)npc.Center.Y, ModContent.NPCType<ServantofOcram>(), 0, npc.whoAmI + 1, i * 420f, -160f, 0f, 255);
+						if(s < Main.maxNPCs) NetMessage.SendData(23, -1, -1, null, s);
+					}
+					if(++npc.ai[2] > 120f) {
+						npc.ai[1]++;
+						npc.ai[2] = 0f;
+						npc.netUpdate = true;
+						npc.TargetClosest();
+					}
+					npc.velocity *= 0.9f;
+				break;
+				case 4:
 					if(npc.ai[2] > 90f) {
 						npc.velocity -= Vector2.UnitY.RotatedBy(npc.rotation) * 0.1f;
 						turnSpeed = 0.05f;
@@ -304,5 +362,6 @@ namespace Synergia.Common.GlobalNPCs.AI
 			if(Main.netMode == 0) return;
 			npc.rotation = binaryReader.ReadSingle();
 		}
+		public override bool CanHitPlayer(NPC npc, Player target, ref int cooldownSlot) => npc.ModNPC is not ServantofOcram || npc.ai[3] > 0f;
 	}
 }

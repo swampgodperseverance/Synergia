@@ -1,10 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
+﻿using ParticleLibrary.Utilities;
 using ReLogic.Content;
+using Synergia.Helpers;
+using System;
+using System.Collections.Generic;
 using Terraria;
-using Terraria.ModLoader;
+using Terraria.Utilities.Terraria.Utilities;
 
 namespace Synergia.Menu
 {
@@ -35,39 +35,55 @@ namespace Synergia.Menu
 
         private static readonly List<InfernoCinder> cinders = new();
         private static readonly List<InfernoCinder> meltDusts = new();
-        private static Asset<Texture2D> bg;
-        private static Asset<Texture2D> cinderTex;
-        private static Asset<Texture2D> vignetteTex;
+        private static Asset<Texture2D> backgroundTexture;
+        private static Asset<Texture2D> crystalTexture;
+        private static Asset<Texture2D> rayTexture;
+        private static Asset<Texture2D> cinderTexture;
+        private static Asset<Texture2D> vignetteTexture;
         private static Asset<Texture2D> logoTexture;
+        private static Asset<Texture2D> logoGlowTexture;
+        private static Asset<Texture2D> logoCrossTexture;
+        private static float CurrentMusicVolume = 1f;
 
+        private float raysTimer = 30f;
         private float vignettePulse = 0f;
+        private float vignettePower = 1f;
         private float logoBobTimer = 0f;
         private float logoHoverProgress = 0f;
         private bool isLogoHovered = false;
         private bool isLogoClicked = false;
         private float clickPulseTimer = 0f;
 
+        private const float CRYSTAL_RAYS_SPEED = 0.001f;
         private const int LOGO_WIDTH = 594;
         private const int LOGO_HEIGHT = 280;
         private float logoScale = 0.8f;
         private const float LOGO_BOB_AMOUNT = 4f;
         private const float LOGO_BOB_SPEED = 0.025f;
+        private const float VIGNETTE_POWER_SPEED = 0.025f;
 
         public override string DisplayName => "Dante's Inferno";
+        public override int Music => MusicLoader.GetMusicSlot(GetSongByName2("Netherworld"));
         public override Asset<Texture2D> Logo => ModContent.Request<Texture2D>("Terraria/Images/UI/CharCreation/PanelGrayscale");
 
         public override void Load()
         {
-            bg = ModContent.Request<Texture2D>("Synergia/Menu/DantesInferno");
-            cinderTex = ModContent.Request<Texture2D>("Synergia/Menu/InfernoDust");
-            vignetteTex = ModContent.Request<Texture2D>("Synergia/Menu/Vignette");
+            backgroundTexture = ModContent.Request<Texture2D>("Synergia/Menu/DantesInferno");
+            crystalTexture = ModContent.Request<Texture2D>("Synergia/Menu/DantesInferno_Crystal");
+            rayTexture = ModContent.Request<Texture2D>("Synergia/Assets/Textures/Ray");
+            cinderTexture = ModContent.Request<Texture2D>("Synergia/Menu/InfernoDust");
+            vignetteTexture = ModContent.Request<Texture2D>("Synergia/Menu/Vignette");
             logoTexture = ModContent.Request<Texture2D>("Synergia/Menu/Logo");
+            logoGlowTexture = ModContent.Request<Texture2D>("Synergia/Menu/Logo_Glow");
+            logoCrossTexture = ModContent.Request<Texture2D>("Synergia/Menu/Logo_Cross");
+            On_Main.UpdateAudio += Main_UpdateAudio;
         }
 
         public override void Unload()
         {
             cinders.Clear();
             meltDusts.Clear();
+            On_Main.UpdateAudio -= Main_UpdateAudio;
         }
 
         private static float SmoothApproach(float current, float target, float speed)
@@ -77,25 +93,80 @@ namespace Synergia.Menu
 
         public override bool PreDrawLogo(SpriteBatch spriteBatch, ref Vector2 logoDrawCenter, ref float logoRotation, ref float logoScale, ref Color drawColor)
         {
-            Texture2D background = bg.Value;
-            Texture2D tex = cinderTex.Value;
+            Texture2D background = backgroundTexture.Value;
+            Texture2D tex = cinderTexture.Value;
+
+            spriteBatch.End();
+            spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp, DepthStencilState.None, RasterizerState.CullNone, null, Main.UIScaleMatrix);
 
             spriteBatch.Draw(background, Vector2.Zero, null, Color.White, 0f, Vector2.Zero,
                 new Vector2(Main.screenWidth / (float)background.Width, Main.screenHeight / (float)background.Height),
                 SpriteEffects.None, 0f);
+            DrawCrystal(spriteBatch);
+
+            spriteBatch.End();
+            spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.LinearClamp, DepthStencilState.None, RasterizerState.CullNone, null, Main.UIScaleMatrix);
 
             DrawCinders(spriteBatch, tex);
             DrawMeltDusts(spriteBatch, tex);
-            DrawAnimatedLogo(spriteBatch);
+            DrawAnimatedLogo(spriteBatch, logoDrawCenter);
             DrawVignette(spriteBatch);
 
             drawColor = Color.White;
-            Main.time = 27000;
+            Main.time = 5000;
             Main.dayTime = true;
+
             return false;
         }
+        public override void Update(bool isOnTitleScreen)
+        {
+            if (Main.curMusic == Music)
+                CurrentMusicVolume = 1f - 0.6f * vignettePower;
+            else
+                CurrentMusicVolume = 1f;
+        }
+        private void Main_UpdateAudio(On_Main.orig_UpdateAudio orig, Main self)
+        {
+            float origVolume = Main.musicVolume;
+            if (Main.gameMenu)
+                Main.musicVolume = origVolume * CurrentMusicVolume;
+            orig(self);
+            Main.musicVolume = origVolume;
+        }
 
-        private void DrawAnimatedLogo(SpriteBatch spriteBatch)
+        private void DrawCrystal(SpriteBatch spriteBatch)
+        {
+            Texture2D crystal = crystalTexture.Value;
+            Texture2D ray = rayTexture.Value;
+
+            raysTimer += CRYSTAL_RAYS_SPEED;
+
+            Vector2 rayCenter = new Vector2(Main.screenWidth * 0.25078125f, Main.screenHeight * 0.4388889f);
+            Vector2 rayOrigin = new Vector2(ray.Width / 2, ray.Height);
+
+            for (int i = 0; i < 13; i++)
+            {
+                Vector2 rayScale = new Vector2(4.5f, 2.5f + 0.5f * MathF.Cos(i + raysTimer));
+                float rayRotate = MathF.Sin((i + 1) * 13.97f + raysTimer) * 3f;
+                spriteBatch.Draw(
+                    ray,
+                    rayCenter,
+                    null,
+                    new Color(255, 130, 70),
+                    rayRotate,
+                    rayOrigin,
+                    rayScale,
+                    SpriteEffects.None,
+                    0f
+                );
+            }
+
+            spriteBatch.Draw(crystal, Vector2.Zero, null, Color.White, 0f, Vector2.Zero,
+                new Vector2(Main.screenWidth / (float)crystal.Width, Main.screenHeight / (float)crystal.Height),
+                SpriteEffects.None, 0f);
+        }
+
+        private void DrawAnimatedLogo(SpriteBatch spriteBatch, Vector2 logoCenter)
         {
             if (logoTexture == null || logoTexture.Value == null)
                 return;
@@ -107,17 +178,17 @@ namespace Synergia.Menu
             float logoWidth = LOGO_WIDTH * logoScale;
             float logoHeight = LOGO_HEIGHT * logoScale;
 
-            float xPos = (Main.screenWidth - logoWidth) / 2f;
-            float baseY = Main.screenHeight * 0.00f;
+
             float bobOffset = (float)Math.Sin(logoBobTimer) * LOGO_BOB_AMOUNT;
-            Vector2 logoPosition = new Vector2(xPos, baseY + bobOffset);
+            Vector2 logoPosition = new Vector2(logoCenter.X, logoCenter.Y + bobOffset);
 
             Rectangle logoRect = new Rectangle(
-                (int)logoPosition.X,
-                (int)logoPosition.Y,
+                (int)(logoPosition.X - logoWidth / 2),
+                (int)(logoPosition.Y - logoHeight / 2),
                 (int)logoWidth,
                 (int)logoHeight
             );
+            Vector2 logoOrigin = new Vector2(LOGO_WIDTH, LOGO_HEIGHT) / 2f;
             isLogoHovered = logoRect.Contains(Main.MouseScreen.ToPoint());
 
             if (isLogoHovered && Main.mouseLeft && Main.mouseLeftRelease)
@@ -138,8 +209,8 @@ namespace Synergia.Menu
             }
 
             float target = isLogoHovered ? 1f : 0f;
+            vignettePower = Math.Clamp(vignettePower + VIGNETTE_POWER_SPEED * (target * 2f - 1f), 0f, 1f);
             logoHoverProgress = SmoothApproach(logoHoverProgress, target, 0.08f);
-
             float currentScale = logoScale + logoHoverProgress * 0.04f;
 
             float clickPulse = 0f;
@@ -148,7 +219,6 @@ namespace Synergia.Menu
                 clickPulse = (float)Math.Sin(clickPulseTimer * 8f) * 0.08f * (1f - clickPulseTimer / 2f);
                 clickPulse = Math.Max(clickPulse, 0f);
             }
-
             Color outlineColor = Color.Lerp(Color.Black, new Color(200, 50, 30), logoHoverProgress + clickPulse);
 
             float pulseFactor = 1f + clickPulse * 0.15f;
@@ -172,7 +242,7 @@ namespace Synergia.Menu
                     null,
                     outlineColor,
                     0f,
-                    Vector2.Zero,
+                    logoOrigin,
                     currentScale * pulseFactor,
                     SpriteEffects.None,
                     0f
@@ -202,7 +272,7 @@ namespace Synergia.Menu
                     null,
                     extraOutlineColor,
                     0f,
-                    Vector2.Zero,
+                    logoOrigin,
                     currentScale * pulseFactor,
                     SpriteEffects.None,
                     0f
@@ -210,8 +280,9 @@ namespace Synergia.Menu
             }
 
             float glowIntensity = (0.3f + clickPulse * 0.5f) * logoHoverProgress;
-            if (glowIntensity > 0.01f)
+            if (glowIntensity > 0.1f)
             {
+                Texture2D logoGlow = logoGlowTexture.Value;
                 for (int i = 0; i < 6; i++)
                 {
                     float angle = vignettePulse + i * 1.0472f + clickPulseTimer * 2f;
@@ -222,37 +293,53 @@ namespace Synergia.Menu
                     );
 
                     Color glowColor = new Color(
-                        255,
-                        100 + (int)(80 * logoHoverProgress) + (int)(50 * clickPulse),
-                        50 + (int)(30 * clickPulse),
+                        200,
+                        40 + (int)(30 * logoHoverProgress) + (int)(20 * clickPulse),
+                        10 + (int)(10 * clickPulse),
                         (int)((60 + 80 * clickPulse) * Math.Min(glowIntensity, 1f))
                     );
 
                     spriteBatch.Draw(
-                        logo,
+                        logoGlow,
                         logoPosition + glowOffset,
                         null,
                         glowColor,
                         0f,
-                        Vector2.Zero,
+                        logoOrigin,
                         currentScale * (1f + clickPulse * 0.05f),
                         SpriteEffects.None,
                         0f
                     );
                 }
             }
-
             spriteBatch.Draw(
                 logo,
                 logoPosition,
                 null,
                 Color.White,
                 0f,
-                Vector2.Zero,
+                logoOrigin,
                 currentScale * (1f + clickPulse * 0.02f),
                 SpriteEffects.None,
                 0f
             );
+
+            if (clickPulseTimer > 0f)
+            {
+                Texture2D logoCross = logoCrossTexture.Value;
+                Color lightColor = Color.Lerp(Color.White, Color.Transparent, clickPulseTimer / 2f);
+                spriteBatch.Draw(
+                    logoCross,
+                    logoPosition,
+                    null,
+                    lightColor.WithAlpha(0f),
+                    0f,
+                    logoOrigin,
+                    currentScale * (1f + clickPulse * 0.05f),
+                    SpriteEffects.None,
+                    0f
+                );
+            }
         }
 
         private void DrawCinders(SpriteBatch spriteBatch, Texture2D tex)
@@ -318,9 +405,9 @@ namespace Synergia.Menu
 
         private void DrawVignette(SpriteBatch spriteBatch)
         {
-            float pulse = 0.75f + MathF.Sin(vignettePulse) * 0.08f;
+            float pulse = 0.5f + 0.25f * EaseFunctions.EaseInOutCubic(vignettePower) + MathF.Sin(vignettePulse) * 0.08f;
             Color vignetteColor = new Color(0, 0, 0, (byte)(pulse * 255));
-            spriteBatch.Draw(vignetteTex.Value,
+            spriteBatch.Draw(vignetteTexture.Value,
                 new Rectangle(0, 0, Main.screenWidth, Main.screenHeight),
                 null, vignetteColor, 0f, Vector2.Zero, SpriteEffects.None, 0f);
         }

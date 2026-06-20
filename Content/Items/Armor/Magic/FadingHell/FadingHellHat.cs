@@ -92,7 +92,7 @@ public class FadingHellHat_MaskDraw : PlayerDrawLayer
 
     public override void Draw(ref PlayerDrawSet drawInfo)
     {
-        if (drawInfo.hideEntirePlayer)
+        if (drawInfo.hideEntirePlayer || drawInfo.drawPlayer.merman || drawInfo.drawPlayer.wereWolf)
             return;
 
         Player player = drawInfo.drawPlayer;
@@ -150,7 +150,7 @@ public class FadingHellHat_CandlewickDraw : PlayerDrawLayer
 
     public override void Draw(ref PlayerDrawSet drawInfo)
     {
-        if (drawInfo.hideEntirePlayer)
+        if (drawInfo.hideEntirePlayer || drawInfo.drawPlayer.merman || drawInfo.drawPlayer.wereWolf)
             return;
 
         Player player = drawInfo.drawPlayer;
@@ -206,7 +206,7 @@ public class FadingHellHat_FlameDraw : PlayerDrawLayer
 
     public override void Draw(ref PlayerDrawSet drawInfo)
     {
-        if (drawInfo.hideEntirePlayer)
+        if (drawInfo.hideEntirePlayer || drawInfo.drawPlayer.merman || drawInfo.drawPlayer.wereWolf)
             return;
 
         Player player = drawInfo.drawPlayer;

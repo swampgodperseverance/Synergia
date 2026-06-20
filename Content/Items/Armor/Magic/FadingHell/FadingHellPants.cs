@@ -44,11 +44,6 @@ public sealed class FadingHellPants : ModItem
         player.moveSpeed += 0.12f;
     }
 }
-public class FadingHellPantsSpeedboost : ModPlayer
-{
-
-}
-
 public class RopeVerlet
 {
     public struct RopeSegment
@@ -217,7 +212,7 @@ public class FadingHellPants_TailDraw : PlayerDrawLayer
     }
     public override void Draw(ref PlayerDrawSet drawInfo)
     {
-        if (drawInfo.hideEntirePlayer)
+        if (drawInfo.hideEntirePlayer || drawInfo.drawPlayer.merman || drawInfo.drawPlayer.wereWolf)
             return;
 
         Player player = drawInfo.drawPlayer;
@@ -253,7 +248,7 @@ public class FadingHellPants_TailDraw : PlayerDrawLayer
             drawInfo.DrawDataCache.Add(drawData);
         }
 
-        if (!player.GetModPlayer<FadingHellPlayer>().isOnFire) return;
+        if (!(player.GetModPlayer<FadingHellPlayer>().isOnFire || player.armor[12].type == ItemType<FadingHellPants>())) return;
 
         Texture2D flameTex = tailFlameAsset.Value;
         ulong seed = (ulong)(player.miscCounter / 5);
@@ -261,7 +256,7 @@ public class FadingHellPants_TailDraw : PlayerDrawLayer
         int frameWidth = flameTex.Width / TypesAmount;
         int frameHeight = flameTex.Height / FramesAmount;
         frame = new Rectangle(
-            frameWidth * ((int)player.GetModPlayer<FadingHellPlayer>().currentFireType - 1),
+            frameWidth * Math.Clamp((int)player.GetModPlayer<FadingHellPlayer>().currentFireType - 1, 0, 3),
             frameHeight * frameCount,
             frameWidth,
             frameHeight

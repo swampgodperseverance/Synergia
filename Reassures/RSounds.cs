@@ -34,6 +34,7 @@ namespace Synergia.Reassures {
             MusicLoader.AddMusic(mod, "Assets/Sounds/SinlordPresence");
             MusicLoader.AddMusic(mod, "Assets/Sounds/JadePeace");
             MusicLoader.AddMusic(mod, "Assets/Sounds/Morrow");
+            MusicLoader.AddMusic(mod, "Assets/Sounds/Netherworld");
         }
         public void Unload() { }
     }
