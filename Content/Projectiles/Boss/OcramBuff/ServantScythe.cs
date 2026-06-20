@@ -57,7 +57,7 @@ namespace Synergia.Content.Projectiles.Boss.OcramBuff {
 
         public override bool PreDraw(ref Color lightColor) {
             SpriteBatch spriteBatch = Main.spriteBatch;
-            Texture2D texture = (Texture2D)ModContent.Request<Texture2D>("Consolaria/Assets/Textures/Projectiles/OcramScythe_Glow");
+            Texture2D texture = ModContent.Request<Texture2D>(Texture).Value;
             Vector2 drawOrigin = new Vector2(texture.Width * 0.5f, Projectile.height * 0.5f);
             SpriteEffects effects = (Projectile.spriteDirection == -1) ? SpriteEffects.None : SpriteEffects.FlipHorizontally;
             for (int k = 0; k < Projectile.oldPos.Length - 1; k++) {
