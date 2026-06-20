@@ -7,7 +7,7 @@ using Microsoft.Xna.Framework;
 using System;
 using System.IO;
 using System.Reflection;
-using Synergia.Content.Projectiles.Boss.OcramBuff
+using Synergia.Content.Projectiles.Boss.OcramBuff;
 using Consolaria.Content.NPCs.Bosses.Ocram;
 
 namespace Synergia.Common.GlobalNPCs.AI
@@ -145,7 +145,7 @@ namespace Synergia.Common.GlobalNPCs.AI
 					if(npc.ai[2] > 90f) {
 						npc.velocity += (targetPos - Vector2.UnitY * 420f - npc.Center) * 0.018f - Vector2.UnitY.RotatedBy(npc.rotation) * 0.1f;
 						turnSpeed = 0.05f;
-						if(npc.ai[2] % 12 == 0f && Main.netMode != 1) Projectile.NewProjectile(npc.GetSource_FromAI(), npc.Center - npc.rotation.ToRotationVector2() * npc.width / 3f * (npc.ai[2] % 24 == 0 ? -1 : 1), (npc.rotation + MathHelper.PiOver2 * 1.2f * (npc.ai[2] % 24 == 0 ? -1 : 1) + MathHelper.PiOver2).ToRotationVector2() * 2f, ModContent.ProjectileType<OcramSkull>(), 30, 4f, Main.myPlayer);
+						if(npc.ai[2] % 12 == 0f && Main.netMode != 1) Projectile.NewProjectile(npc.GetSource_FromAI(), npc.Center - npc.rotation.ToRotationVector2() * npc.width / 3f * (npc.ai[2] % 24 == 0 ? -1 : 1), (npc.rotation + MathHelper.PiOver2 * 1.2f * (npc.ai[2] % 24 == 0 ? -1 : 1) + MathHelper.PiOver2).ToRotationVector2() * 2f, ModContent.ProjectileType<OcramSkull1>(), 30, 4f, Main.myPlayer);
 					}
 					else {
 						if(npc.ai[2] == 90f) try {
