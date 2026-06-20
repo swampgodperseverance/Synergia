@@ -58,7 +58,7 @@ Designed for large modpacks
 Gigantic update in progress.
 
 
-### 🔗 Links
+### Links
 
 [Discord](https://discord.gg/P5Y3xYyn)
 
