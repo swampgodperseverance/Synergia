@@ -23,10 +23,13 @@ namespace Synergia.Common.GlobalItems.Visual
     {
         public override bool PreDrawInInventory(Item item, SpriteBatch spriteBatch, Vector2 position, Rectangle frame, Color drawColor, Color itemColor, Vector2 origin, float scale)
         {
+            if (Main.gameMenu)
+                return false;
+
             Player player = Main.LocalPlayer;
             FireType fireType = FireType.None;
             if (!(player.GetModPlayer<FadingHellPlayer>().isSetBonus && IsSuitableItem(item, ref fireType)))
-                return base.PreDrawInInventory(item, spriteBatch, position, frame, drawColor, itemColor, origin, scale);
+                return true;
             
             Texture2D texture = TextureAssets.Item[item.type].Value;
             FadingHellFireData? fireData = GetFireData(fireType);
