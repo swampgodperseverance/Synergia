@@ -64,7 +64,7 @@ public class FadingHellChestplate_Cloak : PlayerDrawLayer
     }
     public override void Draw(ref PlayerDrawSet drawInfo)
     {
-        if (drawInfo.hideEntirePlayer)
+        if (drawInfo.hideEntirePlayer || drawInfo.drawPlayer.merman || drawInfo.drawPlayer.wereWolf)
             return;
 
         Player player = drawInfo.drawPlayer;

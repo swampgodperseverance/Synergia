@@ -1,4 +1,5 @@
 ﻿using Synergia.Content.Items.Armor.Magic.FadingHell;
+using Synergia.Trails;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,22 +16,40 @@ namespace Synergia.Common.GlobalPlayer.Armor
         public static readonly string[] TextureSuffix = { "Cursed", "Frozen", "Shadow" };
         private void UpdateVisual()
         {
+            if (Player.merman || Player.wereWolf)
+                return;
+
             int fireType = (int)Player.GetModPlayer<FadingHellPlayer>().currentFireType - 2;
             if (fireType < 0)
             {
                 int slot = EquipLoader.GetEquipSlot(Mod, ModContent.GetInstance<FadingHellHat>().Name, EquipType.Head);
-                ArmorIDs.Head.Sets.DrawHead[slot] = !Player.GetModPlayer<FadingHellPlayer>().ShouldFireBeDrawn();
+                ArmorIDs.Head.Sets.DrawHead[slot] = !(Player.GetModPlayer<FadingHellPlayer>().ShouldFireBeDrawn() && IsVisible(ItemType<FadingHellHat>(), 0));
                 return;
             }
 
-            int headSlot = EquipLoader.GetEquipSlot(Mod, $"FadingHellHat_{TextureSuffix[fireType]}", EquipType.Head);
-            int bodySlot = EquipLoader.GetEquipSlot(Mod, $"FadingHellChestplate_{TextureSuffix[fireType]}", EquipType.Body);
-            int legsSlot = EquipLoader.GetEquipSlot(Mod, $"FadingHellPants_{TextureSuffix[fireType]}", EquipType.Legs);
-            ArmorIDs.Head.Sets.DrawHead[headSlot] = !Player.GetModPlayer<FadingHellPlayer>().ShouldFireBeDrawn();
-            Player.head = headSlot;
-            Player.body = bodySlot;
-            Player.legs = legsSlot;
+            if(IsVisible(ItemType<FadingHellHat>(), 0))
+            {
+                int headSlot = EquipLoader.GetEquipSlot(Mod, $"FadingHellHat_{TextureSuffix[fireType]}", EquipType.Head);
+                ArmorIDs.Head.Sets.DrawHead[headSlot] = !Player.GetModPlayer<FadingHellPlayer>().ShouldFireBeDrawn();
+                Player.head = headSlot;
+            }
+            if (IsVisible(ItemType<FadingHellChestplate>(), 1))
+            {
+                int bodySlot = EquipLoader.GetEquipSlot(Mod, $"FadingHellChestplate_{TextureSuffix[fireType]}", EquipType.Body);
+                Player.body = bodySlot;
+            }
+            if(IsVisible(ItemType<FadingHellPants>(), 2))
+            {
+                int legsSlot = EquipLoader.GetEquipSlot(Mod, $"FadingHellPants_{TextureSuffix[fireType]}", EquipType.Legs);
+                Player.legs = legsSlot;
+            }
         }
+        private bool IsVisible(int itemType, int slot)
+        {
+            return Player.armor[slot].type == itemType && Player.armor[slot + 10].type == ItemID.None
+            || Player.armor[slot + 10].type == itemType;
+        }
+
         //fuck you tml devs, fix FrameEffect
         /*public override void FrameEffects()
         {
