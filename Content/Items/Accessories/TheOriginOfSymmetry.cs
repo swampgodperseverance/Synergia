@@ -27,7 +27,7 @@ namespace Synergia.Content.Items.Accessories
 
             Item.accessory = true;
 
-            Item.rare = ItemRarityID.Red;
+            Item.rare = ItemRarityID.Purple;
             Item.value = Item.sellPrice(gold: 20);
         }
 

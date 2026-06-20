@@ -10,6 +10,7 @@ namespace Synergia.Common.GlobalNPCs.AIs
 {
     public class EvilNecromancerAI : GlobalNPC
     {
+        internal static bool Disabled = false;
         public override bool InstancePerEntity => true;
 
         private bool spawnedMirror = false; 
@@ -18,6 +19,7 @@ namespace Synergia.Common.GlobalNPCs.AIs
 
         public override void AI(NPC npc)
         {
+            if (Disabled) return;
             float hpPercent = (float)npc.life / npc.lifeMax;
 
             if (hpPercent <= 0.35f && !spawnedMirror)

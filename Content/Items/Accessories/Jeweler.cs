@@ -29,14 +29,14 @@ namespace Synergia.Content.Items.Accessories
             Item.width = 30;
             Item.height = 30;
             Item.accessory = true;
-            Item.rare = ItemRarityID.Pink;
+            Item.rare = ItemRarityID.Purple;
             Item.value = Item.sellPrice(gold: 5);
         }
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            player.GetDamage(DamageClass.Magic) += MagicDamageBonus - 1f;
-            player.GetDamage(DamageClass.Summon) += SummonDamageBonus - 1f;
+            player.GetDamage(DamageClass.Magic) += MagicDamageBonus - 0.10f;
+            player.GetDamage(DamageClass.Summon) += SummonDamageBonus - 0.10f;
 
             var jevelerPlayer = player.GetModPlayer<JewelerPlayer>();
             jevelerPlayer.equippedJeveler = true;

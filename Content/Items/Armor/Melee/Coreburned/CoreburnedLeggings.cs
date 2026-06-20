@@ -1,4 +1,5 @@
 using Microsoft.Xna.Framework;
+using Synergia.Common.Rarities;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -15,7 +16,7 @@ public class CoreburnedLeggings : ModItem
     {
         int width = 26; int height = 20;
         Item.Size = new Vector2(width, height);
-        Item.rare = ItemRarityID.Yellow;
+        Item.rare = ModContent.RarityType<CoreburnedRarity>();
         Item.defense = 17;
         Item.value = Item.sellPrice(0, 4, 8, 50);
     }

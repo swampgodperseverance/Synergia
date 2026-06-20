@@ -21,7 +21,8 @@ namespace Synergia.Content.Items.Armor.Thrower
 			player.GetDamage(DamageClass.Throwing) += 0.15f;
 			player.GetAttackSpeed(DamageClass.Throwing) += 0.1f;
 			player.GetCritChance(DamageClass.Throwing) += 15;
-		}
+            player.eocDash = 1;
+        }
 		public override bool IsArmorSet(Item head, Item body, Item legs) {
 			return body.type == ItemType<CorrodeBody>() && legs.type == ItemType<CorrodeLegs>() && head.type == Type;
 		}

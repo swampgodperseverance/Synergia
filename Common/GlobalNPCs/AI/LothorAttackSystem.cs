@@ -10,7 +10,8 @@ namespace Synergia.Common.GlobalNPCs.AI
 {
 	public class LothorAttackSystem : GlobalNPC
 	{
-		public override bool InstancePerEntity => true;
+        internal static bool Disabled = false;
+        public override bool InstancePerEntity => true;
 		private int _attackCooldown = 0;
 		// DefensiveRing
 		private int _defensiveRingID = -1;
@@ -26,7 +27,8 @@ namespace Synergia.Common.GlobalNPCs.AI
 			_defensiveRingID = binaryReader.ReadInt32();
 		}
 		public override void AI(NPC npc) {
-			if(npc.life < npc.lifeMax * 0.25f && _defensiveRingID == -1) {
+            if (Disabled) return;
+            if (npc.life < npc.lifeMax * 0.25f && _defensiveRingID == -1) {
 				for(int i = 0; i < 50; i++) {
 					Dust.NewDustPerfect(
 						npc.Center,

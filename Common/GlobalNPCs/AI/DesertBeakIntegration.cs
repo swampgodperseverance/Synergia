@@ -18,7 +18,7 @@ namespace Synergia.Common.GlobalNPCs.AI
 
         private int sandstormCooldown = 0;
         private bool isPreparingSandstorm = false;
-
+        internal static bool Disabled = false;
         // Feather Volley
         private bool isPreparingFeatherVolley = false;
         private int featherVolleyTimer = 0;
@@ -49,7 +49,7 @@ namespace Synergia.Common.GlobalNPCs.AI
 
         public override void AI(NPC npc)
         {
-
+            if (Disabled) return;
             Player target = Main.player[npc.target];
             if (!target.active || target.dead) return;
 
@@ -158,7 +158,6 @@ namespace Synergia.Common.GlobalNPCs.AI
                 Vector2 velocity = direction * 8f;
                 velocity = velocity.RotatedBy(MathHelper.ToRadians(angleOffset));
 
-                // Добавляем случайное вертикальное смещение к позиции появления
                 Vector2 spawnPosWithOffset = featherSpawnPos + new Vector2(0, Main.rand.NextFloat(-30f, 30f));
 
                 if (Main.netMode != NetmodeID.MultiplayerClient)

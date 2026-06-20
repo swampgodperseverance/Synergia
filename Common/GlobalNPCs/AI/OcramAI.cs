@@ -13,9 +13,12 @@ namespace Synergia.Common.GlobalNPCs.AI
 {
 	public class OcramAI : GlobalNPC
 	{
-		public override bool AppliesToEntity(NPC npc, bool lateInstatiation) => npc.ModNPC is Ocram;
+        internal static bool Disabled = false;
+
+        public override bool AppliesToEntity(NPC npc, bool lateInstatiation) => npc.ModNPC is Ocram;
 		public override bool PreAI(NPC npc) {
-			Ocram o = npc.ModNPC as Ocram;
+            if (Disabled) return true;
+            Ocram o = npc.ModNPC as Ocram;
 			if(npc.life < npc.lifeMax * (Main.expertMode ? 0.65 : 0.5) && npc.ai[0] != 3f) return true;
 			else if(npc.ai[0] == 0f && npc.ai[1] == 0f && npc.ai[2] == 0f) try {
 				if(o.GetType().GetField("_spawnCheck", BindingFlags.NonPublic | BindingFlags.Instance).GetValue(o) is float f && f < 100f) return true;

@@ -53,35 +53,36 @@ Accessories: {
 		AthenasShield: {
 			Level1:
 				'''
-				10% increased healing from potions
-				Reduces potion cooldown by 5 seconds
-				+10 defense when below 100 health
+				Increases potion healing by 10%
+				Reduces the duration of Potion Sickness by 5 seconds
+				Increases defense by 10 when below 100 health
+
 				'''
 			Level2:
 				'''
-				15% increased healing from potions
-				Reduces potion cooldown by 5 seconds
-				+10 defense when below 150 health
+				Increases potion healing by 15%
+				Reduces the duration of Potion Sickness by 5 seconds
+				Increases defense by 10 when below 150 health
 				'''
 			Level3:
 				'''
-				15% increased healing from potions
-				Reduces potion cooldown by 8 seconds
-				+10 defense when below 150 health
+				Increases potion healing by 15%
+				Reduces the duration of Potion Sickness by 8 seconds
+				Increases defense by 10 when below 150 health
 				3% chance to reflect projectiles
 				'''
 			Level4:
 				'''
-				15% increased healing from potions
-				Reduces potion cooldown by 8 seconds
-				+18 defense when below 150 health
+				Increases potion healing by 15%
+				Reduces the duration of Potion Sickness by 8 seconds
+				Increases defense by 18 when below 150 health
 				8% chance to reflect projectiles
 				'''
 			Level5:
 				'''
-				15% increased healing from potions
-				Reduces potion cooldown by 10 seconds
-				+25 defense when below 150 health
+				Increases potion healing by 15%
+				Reduces the duration of Potion Sickness by 10 seconds
+				Increases defense by 25 when below 150 health
 				10% chance to reflect projectiles
 				15% increased damage reduction
 				'''
@@ -90,134 +91,134 @@ Accessories: {
 		HeartOfDesert: {
 			Level1:
 				'''
-				In the desert player gets:
-				+10% movement speed
-				Increased life regeneration
-				+8% increased damage
+				While in the Desert:
+				10% increased movement speed
+				Increases life regeneration
+				8% increased damage
 				'''
 			Level2:
 				'''
-				In the desert player gets:
-				+10% movement speed
-				Greatly increased life regeneration
-				+10% increased damage
-				+8 increased increased defense
-				Ignores the Sandstorm
+				While in the Desert:
+				10% increased movement speed
+				Greatly increases life regeneration
+				10% increased damage
+				Increases defense by 8
+				Grants immunity to the Sandstorm wind effect
 				'''
 			Level3:
 				'''
-				In the desert player gets:
-				+15% movement speed
-				Greatly increased life regeneration
-				+12% increased damage
-				+6% increased crit chance
-				+12 increased defense
-				Ignores the Sandstorm
+				While in the Desert:
+				15% increased movement speed
+				Greatly increases life regeneration
+				12% increased damage
+				6% increased critical strike chance
+				Increases defense by 12
+				Grants immunity to the Sandstorm wind effect
 				'''
 			Level4:
 				'''
-				In the desert player gets:
-				+15% movement speed
-				Greatly increased life regeneration
-				+15% increased damage
-				+8% increased crit chance
-				+15 increased defense
-				+5% increased damage endurance
-				Ignores the Sandstorm
+				While in the Desert:
+				15% increased movement speed
+				Greatly increases life regeneration
+				15% increased damage
+				8% increased critical strike chance
+				Increases defense by 15
+				5% increased damage reduction
+				Grants immunity to the Sandstorm wind effect
 				'''
 			Level5:
 				'''
-				In the desert player gets:
-				+20% movement speed
-				Significantly increased life regeneration
-				+18% increased damage
-				+10% increased crit chance
-				+20 increased defense
-				+10% increased damage endurance
-				Ignores the Sandstorm
+				While in the Desert:
+				20% increased movement speed
+				Significantly increases life regeneration
+				18% increased damage
+				10% increased critical strike chance
+				Increases defense by 20
+				10% increased damage reduction
+				Grants immunity to the Sandstorm wind effect
 				'''
 		}
 
 		RingOfOmnipotence: {
 			Level1:
 				'''
-				+8% increased damage
-				+5% increased damage reduction
+				8% increased damage
+				5% increased damage reduction
 				'''
 			Level2:
 				'''
-				+10% damage
-				+25 maximum life
-				+8% damage reduction
+				10% increased damage
+				Increases maximum life by 25
+				8% increased damage reduction
 				'''
 			Level3:
 				'''
-				+10% damage
-				+25 maximum life
-				+8% damage reduction
-				Low chance to dodge attacks
+				10% increased damage
+				Increases maximum life by 25
+				8% increased damage reduction
+				Has a chance to dodge attacks
 				'''
 			Level4:
 				'''
-				+10% damage
-				+40 maximum life
-				+10% damage reduction
-				Small chance to dodge attacks
-				Returns damage to enemies when dodging
+				10% increased damage
+				Increases maximum life by 40
+				10% increased damage reduction
+				Has a chance to dodge attacks
+				Strikes back at enemies upon a successful dodge
 				'''
 			Level5:
 				'''
-				+12% damage
-				+60 maximum life
-				+15% damage reduction
-				Small chance to dodge attacks
-				Returns triple damage to enemies when dodging
+				12% increased damage
+				Increases maximum life by 60
+				15% increased damage reduction
+				Has a chance to dodge attacks
+				Strikes back at enemies with triple damage upon a successful dodge
 				'''
 		}
 
 		HerosBoots: {
 			Level1:
 				'''
-				Allows walking on water and lava
-				Fast fall speed
+				Allows the ability to walk on water and lava
+				Increases falling speed
 				'''
 			Level2:
 				'''
-				Allows walking on water and lava
-				Increased movement speed
-				Increased jump height
+				Allows the ability to walk on water and lava
+				Increases movement speed
+				Increases jump height
 				Negates fall damage
 				"Heroes don't look down"
 				'''
 			Level3:
 				'''
-				Allows walking on water and lava
-				Increased movement speed
-				Increased jump height
+				Allows the ability to walk on water and lava
+				Increases movement speed
+				Increases jump height
 				Negates fall damage
-				30% chance to dodge an attack while dashing
+				Has a 30% chance to dodge attacks while dashing
 				"Heroes don't look down"
 				'''
 			Level4:
 				'''
 				Grants immunity to lava
-				Allows walking on water and lava
-				Significantly increased movement speed
-				Greatly increased jump height
+				Allows the ability to walk on water and lava
+				Significantly increases movement speed
+				Greatly increases jump height
 				Negates fall damage
-				50% chance to dodge an attack while dashing
-				Increased regen while running
+				Has a 50% chance to dodge attacks while dashing
+				Increases life regeneration while running
 				"Heroes don't look down"
 				'''
 			Level5:
 				'''
 				Grants immunity to lava
-				Allows walking on water and lava
-				Maximally increased movement speed
-				Incredible jump height
+				Allows the ability to walk on water and lava
+				Provides ultra-fast movement speed
+				Incredibly increases jump height
 				Negates fall damage
-				70% chance to dodge an attack while dashing
-				Good regen while running
+				Has a 70% chance to dodge attacks while dashing
+				Greatly increases life regeneration while running
 				"Heroes don't look down"
 				'''
 		}
@@ -247,9 +248,19 @@ Armors: {
 		You leave a trail of energy around your body
 		Taking damage grants additional 0.5s immunity
 		'''
+	CoreburnedSetBonus:
+		'''
+		Press {0} to petrify yourself for 10 seconds.
+		Become invulnerable, increases your melee damage by 10%.
+		'''
+	DreadSetBonus:
+		'''
+		Press {0} to make insane invulnerable dash.
+		Increases your damage resistance by 12%.
+		'''
 	FadingHellSetBonus:
 		'''
-		Press {0} with marked item to inflict fire on yourself
+		Press {0} with marked weapon to inflict fire on yourself
 		On fire, you gain significant stat boosts and unique effects based on fire type
 		However, you start taking continuous damage that can't be healed by Nurse
 		Your fire extinguishes in water
@@ -269,7 +280,7 @@ Weapons: {
 	BaseText: After 5 successful hits unleashes an enhanced strikes.
 	SadTooltips: I bequeath this mod as a legacy for you
 	Shift: Press Left shift to see more information
-	Aeris: Aeris, Aeris, Aeris, Aeris, Aeris, Aeris, Aeris and others
+	Aeris: Aeris, Cleo, Mumb, Unowen, Quan, Serork, Sky, Bimba, Gojisturba, Reksi, dan and nmrwski.
 	FireType_OnFire: On Fire
 	FireType_CursedInferno: Cursed Inferno
 	FireType_Frostburn: Frostburn

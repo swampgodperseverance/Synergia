@@ -1,10 +1,11 @@
-﻿using Bismuth.Content.NPCs;
-using MonoMod.RuntimeDetour;
-using Synergia.Content.Projectiles.Hostile.Bosses;
-using System;
-using System.Reflection;
+﻿using System;
 using System.Collections.Generic;
+using System.Reflection;
+using Bismuth.Content.NPCs;
 using Microsoft.Xna.Framework;
+using MonoMod.RuntimeDetour;
+using Synergia.Common.GlobalNPCs.AIs;
+using Synergia.Content.Projectiles.Hostile.Bosses;
 using Terraria;
 using Terraria.ModLoader;
 
@@ -42,7 +43,7 @@ namespace Synergia.Common.ModSystems.Hooks
         private void NewNecromancerAI(Orig_SetAI orig, EvilNecromancer npc)
         {
             orig(npc);
-
+            if (EvilNecromancerAI.Disabled) return;
             if (!npc.NPC.active)
                 return;
 

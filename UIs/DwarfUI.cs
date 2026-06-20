@@ -1,6 +1,7 @@
 ﻿using Avalon.Items.Armor.Hardmode;
 using Avalon.Items.Weapons.Magic.Hardmode.DevilsScythe;
 using Bismuth.Content.Items.Other;
+using NewHorizons.Content.Items.Armor.AshenArmor;
 using NewHorizons.Content.Items.Weapons.Magic;
 using NewHorizons.Content.Items.Weapons.Throwing;
 using ReLogic.Graphics;
@@ -8,6 +9,7 @@ using Synergia.Common.GlobalPlayer;
 using Synergia.Content.Items.Armor.Magic.FadingHell;
 using Synergia.Content.Items.Armor.Melee.Coreburned;
 using Synergia.Content.Items.Armor.Summon;
+using Synergia.Content.Items.Armor.Thrower.Dread;
 using Synergia.Content.Items.Misc;
 using Synergia.Content.Items.QuestItem;
 using Synergia.Content.Items.Tools;
@@ -61,6 +63,9 @@ public class DwarfUI : UIState {
         {ItemID.MoltenBreastplate, ItemType<CoreburnedBreastplate>()},
         {ItemID.MoltenHelmet, ItemType<CoreburnedHelmet>()},
         {ItemID.MoltenGreaves, ItemType<CoreburnedLeggings>()},
+        {ItemType<AshenBreastplate>(), ItemType<DreadArmor>()},
+        {ItemType<AshenShroud>(), ItemType<DreadHelmet>()},
+        {ItemType<AshenLeggins>(), ItemType<DreadLeggings>()},
     };
     readonly SaveItemPlayer saveItem = Main.LocalPlayer.GetModPlayer<SaveItemPlayer>();
     Texture2D anvil;

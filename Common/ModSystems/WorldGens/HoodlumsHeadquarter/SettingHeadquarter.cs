@@ -223,7 +223,8 @@ namespace Synergia.Common.ModSystems.WorldGens.HoodlumsHeadquarter {
         static void SwampChest(Item[] chestInventory, int chestIndex) {
             int[] items = [ItemType<BlastProtectionVest>(), ItemType<NecroBuckler>()];
             WorldHelper.LootInContainers(chestInventory, ref chestIndex, ItemType<UnchargedElessar>());
-            if (Main.chest[SynergiaWorld.SwampChestindex] != null) {
+            if (Main.chest[SynergiaWorld.SwampChestindex] != null)
+            {
                 if (Main.tile[Main.chest[SynergiaWorld.SwampChestindex].x, Main.chest[SynergiaWorld.SwampChestindex].y].TileType != TileType<SwampChest>()) { WorldHelper.RandomLootInCoutainer(chestInventory, ref chestIndex, 1, 1, items); }
                 else { Main.chest[SynergiaWorld.SwampChestindex].item[0].SetDefaults(Utils.SelectRandom(WorldGen.genRand, items)); }
             }

@@ -22,9 +22,9 @@ namespace Synergia.Content.NPCs
         private float targetScreenFade;
         private bool dying;
         private float deathTimer;
-        private float originalMusicVolume;
-        private bool musicSaved;
-        private float musicFactor = 1f;
+        //private float originalMusicVolume;
+        //private bool musicSaved;
+        //private float musicFactor = 1f;
         private float pulseIntensity = 1f;
         private float rayRotation;
         private float heartbeatPulse;
@@ -69,6 +69,7 @@ namespace Synergia.Content.NPCs
             NPC.lavaImmune = true;
             NPC.chaseable = false;
         }
+
         public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry)
         {
             bestiaryEntry.Info.AddRange(new IBestiaryInfoElement[]
@@ -77,6 +78,7 @@ namespace Synergia.Content.NPCs
                 new FlavorTextBestiaryInfoElement("A heartbeat is heard from the depths of this monolith.")
             });
         }
+
         public override void AI()
         {
             float lifeRatio = (float)NPC.life / NPC.lifeMax;
@@ -90,7 +92,7 @@ namespace Synergia.Content.NPCs
             {
                 if (screenFade > 0.3f && !dying)
                 {
-                    float volume = 0.25f * screenFade * (1f + (1f - lifeRatio) * 0.8f);
+                    float volume = 0.4f * screenFade * (1f + (1f - lifeRatio) * 0.8f);
                     float pitch = 0.5f + (1f - lifeRatio) * 0.3f;
                     SoundEngine.PlaySound(RSounds.Heartbeat with { Volume = volume, Pitch = pitch }, NPC.Center);
                     heartbeatSoundTimer = 0.6f / (0.8f + (1f - lifeRatio) * 1.2f);
@@ -164,20 +166,17 @@ namespace Synergia.Content.NPCs
                 deathTimer += 0.01f;
                 float progress = MathHelper.Clamp(deathTimer, 0f, 1f);
                 screenFade = MathHelper.Lerp(1f, 0f, progress * 1.5f);
-                if (progress >= 0.66f && !musicSaved)
-                {
-                    RestoreMusic();
-                }
+                //if (progress >= 0.66f && !musicSaved)
+                //{
+                //    RestoreMusic();
+                //}
                 if (progress >= 1f)
                 {
                     NPC.active = false;
                 }
             }
 
-            HandleMusic(distance);
-
-            float zoomFactor = MathHelper.Lerp(1f, 0.94f, screenFade * heartbeatPulse * 0.6f);
-            Main.GameZoomTarget = MathHelper.Lerp(Main.GameZoomTarget, zoomFactor, 0.04f);
+            //HandleMusic(distance);
 
             float lightIntensity = 2.2f * (1f + strongPulse * 0.5f) * (1f + screenFade * 0.3f) * (1f + shakeIntensity * 0.1f) * heartbeatPulse;
             Color lightColor = new Color(1.6f, 0.6f, 0.2f) * lightIntensity;
@@ -230,33 +229,33 @@ namespace Synergia.Content.NPCs
             }
         }
 
-        private void HandleMusic(float distance)
-        {
-            if (!musicSaved)
-            {
-                originalMusicVolume = Main.musicVolume;
-                musicSaved = true;
-            }
+        //private void HandleMusic(float distance)
+        //{
+        //    if (!musicSaved)
+        //    {
+        //        originalMusicVolume = Main.musicVolume;
+        //        musicSaved = true;
+        //    }
 
-            float targetMusicFactor = 1f - screenFade;
-            if (distance > 120f * 16f)
-                targetMusicFactor = 1f;
+        //    float targetMusicFactor = 1f - screenFade;
+        //    if (distance > 120f * 16f)
+        //        targetMusicFactor = 1f;
 
-            float musicLerpSpeed = dying ? 0.1f : 0.03f;
-            musicFactor = MathHelper.Lerp(musicFactor, targetMusicFactor, musicLerpSpeed);
+        //    float musicLerpSpeed = dying ? 0.1f : 0.03f;
+        //    musicFactor = MathHelper.Lerp(musicFactor, targetMusicFactor, musicLerpSpeed);
 
-            if (!dying)
-            {
-                Main.musicVolume = originalMusicVolume * musicFactor;
-            }
-        }
+        //    if (!dying)
+        //    {
+        //        Main.musicVolume = originalMusicVolume * musicFactor;
+        //    }
+        //}
 
-        private void RestoreMusic()
-        {
-            if (!musicSaved) return;
-            Main.musicVolume = originalMusicVolume;
-            musicSaved = false;
-        }
+        //private void RestoreMusic()
+        //{
+        //    if (!musicSaved) return;
+        //    Main.musicVolume = originalMusicVolume;
+        //    musicSaved = false;
+        //}
 
         public override bool PreDraw(SpriteBatch spriteBatch, Vector2 screenPos, Color drawColor)
         {

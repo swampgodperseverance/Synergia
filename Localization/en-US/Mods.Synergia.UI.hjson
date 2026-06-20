@@ -1,10 +1,10 @@
 DwarfUI: {
 	WeaponsSlotInfo: Insert weapon here
-	PriceSlotInfo: Insert  Magma Sinstone([i:ValhallaMod/SinstoneMagma])
+	PriceSlotInfo: Insert ([i:ValhallaMod/SinstoneMagma])
 	Info:
 		'''
-		Upgrade Underworld items on this 
-		anvil with Magma Sinstone
+		Upgrade Underworld items
+		with Magma Sinstone
 		'''
 	IsGood: Item is ready!
 	IsNotGood: Item is broken!
@@ -30,10 +30,10 @@ ShopUI: {
 }
 
 AchiveCount: Achivment {0}
-OrcishChestInfo: The magical power of the flower from the dark forest prevents the chest from being opened
+OrcishChestInfo: The magical druidic power from the backwoods prevents the chest from being opened
 
 SummonUI: {
 	Minion: Active minions {0} of {1}
-	Sentry: Active sentry {0} of {1}
-	Aura: Active aurs {0} of {1}
+	Sentry: Active sentries {0} of {1}
+	Aura: Active auras {0} of {1}
 }

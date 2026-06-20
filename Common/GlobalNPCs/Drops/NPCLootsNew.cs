@@ -26,6 +26,7 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using ValhallaMod.Items.Accessory.Active;
 using ValhallaMod.Items.Accessory.Shield;
+using ValhallaMod.Items.Armor;
 using ValhallaMod.Items.Garden;
 using ValhallaMod.Items.Material;
 using ValhallaMod.Items.Weapons.Magic;
@@ -57,6 +58,18 @@ namespace Synergia.Common.GlobalNPCs.Drops {
             if (npc.type == NPCID.BloodNautilus)
             {
                 npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<BloodyNecklace>(), 10));
+            }
+            if (npc.type == NPCID.SkeletonSniper)
+            {
+                npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<SniperHead>(), 10));
+            }
+            if (npc.type == NPCID.SkeletonSniper)
+            {
+                npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<SniperBody>(), 10));
+            }
+            if (npc.type == NPCID.SkeletonSniper)
+            {
+                npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<SniperLegs>(), 10));
             }
             if (npc.type == NPCID.IlluminantBat)
             {

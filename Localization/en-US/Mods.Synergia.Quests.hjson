@@ -23,7 +23,7 @@ Dwarf: {
 
 Hunter: {
 	QuestName: Whispering Reed
-	QuestDescription: '''In the damp stillness of the swamps grows a peculiar plant known as the Whispering Reed. Its thin stalks sway even when the air is unmoving, as if stirred by voices no one else can hear. Travelers often speak of faint murmurs echoing through the marsh at dusk. Secrets carried by the reeds themselves. Some believe they are remnants of lost souls, others say it is simply the swamplings lurking.'''
+	QuestDescription: In the damp stillness of the swamps grows a peculiar plant known as the Whispering Reed. Its thin stalks sway even when the air is unmoving, as if stirred by voices no one else can hear. Travelers often speak of faint murmurs echoing through the marsh at dusk. Secrets carried by the reeds themselves. Some believe they are remnants of lost souls, others say it is simply the swamplings lurking.
 	QuestStage: Collect Whispering Reed
 	QuestProgress0: Thanks for it, you are doing great things!
 	QuestProgress1: I heard stories about the swamps. They say something down there sings when the moon is high. Bring me a Whispering Reed, if you dare.
@@ -93,8 +93,8 @@ HellDwarf: {
 	QuestName: Trapped Fire
 	QuestDescription: Deep within the Underworld, even the fire feels like it's trying to escape from something. Bring a bottle of hot liquid to the one who watches the ruins.
 	QuestStage: Collect Bottled Lava
-	QuestProgress0: Thanks for the Bottled Lava. It’s warm, but it doesn't bring any real heat. 
-	QuestProgress1:  I can't even believe that I'm giving tasks to someone in such a terrible place though. Albeit i was sixteen years here. I really need the bottled lava.
+	QuestProgress0: Thanks for the Bottled Lava. It’s warm, but it doesn't bring any real heat.
+	QuestProgress1: I can't even believe that I'm giving tasks to someone in such a terrible place though. Albeit i was sixteen years here. I really need the bottled lava.
 	QuestProgress2: You can't get it? No problem. Failure is the only honest thing
 	QuestButton: Accept
 	QuestButtonGive: Give Bottled Lava
@@ -169,7 +169,7 @@ FarmerQuest_First: {
 
 LibrarianQuest_First: {
 	QuestName: Bones and books
-	QuestDescription: Give a Rusty Book to the Librarian, which can be crafted by using dungeon old and rusty materials. 
+	QuestDescription: Give a Rusty Book to the Librarian, which can be crafted by using dungeon old and rusty materials.
 	QuestStage: Collect Rusty Book
 	QuestProgress0: Thanks for the Rusty Book!
 	QuestProgress1: Next task, my son. Create a rusty book on the tome for heaven's sake, and bring it to me.
@@ -197,8 +197,8 @@ DwarfQuest_Second: {
 	QuestName: Helmet of the Forsaken
 	QuestDescription: Retrieve the second relic from the bottom of the undivided chest.
 	QuestStage: Collect the Dwarven Helmet
-	QuestProgress0: Thanks for the Dwarven Helmet, creation which bleeds with iron. 
-	QuestProgress1:  I've been trying to recreate something from that dwarf who abandoned us before everything became broken. I only have fragments of memories left.
+	QuestProgress0: Thanks for the Dwarven Helmet, creation which bleeds with iron.
+	QuestProgress1: I've been trying to recreate something from that dwarf who abandoned us before everything became broken. I only have fragments of memories left.
 	QuestProgress2: Hmm... Some secrets are meant to be buried forever, perhaps
 	QuestButton: Accept
 	QuestButtonGive: Give the Helmet
@@ -219,7 +219,7 @@ ArtistQuest_Second: {
 	QuestCompletedFalse: You don't have an Royal Ink
 }
 
-LibrarianQuest_Second:{
+LibrarianQuest_Second: {
 	QuestName: Bottomless Evil
 	QuestDescription: Give Bottomless Evil for Librarian
 	QuestStage: Collect Bottomless Evil

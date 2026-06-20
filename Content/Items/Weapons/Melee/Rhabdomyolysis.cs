@@ -1,6 +1,7 @@
 ﻿using System;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Synergia.Common.Rarities;
 using Synergia.Content.Projectiles.Other;
 using Terraria;
 using Terraria.DataStructures;
@@ -28,7 +29,7 @@ namespace Synergia.Content.Items.Weapons.Melee
             Item.damage = 45;
             Item.DamageType = DamageClass.MeleeNoSpeed;
             Item.ArmorPenetration = 10;
-            Item.rare = ItemRarityID.Lime;
+            Item.rare = ModContent.RarityType<CoreburnedRarity>();
             Item.value = Item.sellPrice(0, 2, 0, 0);
             Item.shoot = ModContent.ProjectileType<RhabdomyolysisProjectile>();
             Item.shootSpeed = 5f;

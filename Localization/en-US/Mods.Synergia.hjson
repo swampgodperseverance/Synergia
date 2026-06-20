@@ -1,5 +1,5 @@
 DamageClasses.ThrowingDamage.DisplayName: Throwing Damage
-GolemDefeat: Hellish creatures have grown stronger!
+GolemDefeat: Underworld have grown stronger!
 
 Items: {
 	OstaraHat.Tooltip: 11% Increased throwing damage and crit chance by 5%
@@ -7,28 +7,28 @@ Items: {
 	OstaraBoots.Tooltip: Jump height increased
 	WarlockHood.Tooltip:
 		'''
-		Increases your max aura radius by 15% and amount of auras by 1
-		Increases your max number of minions by 1
+		Increases your max. aura radius by 15% and amount of auras by 1
+		Increases your max. number of minions by 1
 		'''
 	WarlockRobe.Tooltip:
 		'''
-		Increases your max aura radius by 20% when linked on the player
-		Increases your max number of minions by 1
+		Increases your max. aura radius by 20% when linked on the player
+		Increases your max. number of minions by 1
 		'''
 	WarlockLeggings.Tooltip:
 		'''
-		Increases your max aura radius by 10% 
-		Increases your max number of minions by 1
+		Increases your max. aura radius by 10% 
+		Increases your max. number of minions by 1
 		'''
 	AncientWarlockHood.Tooltip:
 		'''
-		Increases your max aura radius by 20% when linked on the player
-		Increases your max number of minions by 1
+		Increases your max. aura radius by 15% and amount of auras by 1
+		Increases your max. number of minions by 1
 		'''
 	AncientWarlockRobe.Tooltip:
 		'''
-		+35% Aura radius when linked on the player
-		Increases your max number of minions by 1
+		Increases your max. aura radius by 20% when linked on the player
+		Increases your max. number of minions by 1
 		'''
 	AncientWarlockLeggings.Tooltip:
 		'''
@@ -42,12 +42,12 @@ Items: {
 		Increases ranged damage by 7%
 		'''
 	SentinelLeggings.Tooltip: Increases running speed by 12%
-	GreediestHead.Tooltip: 14% more damage resistance and 25% throwing damage
-	GreediestBody.Tooltip: 13% more damage resistance and +8 crit
-	GreediestLegs.Tooltip: +9% throwing speed
+	GreediestHead.Tooltip: Increases damage resistance by 13% and throwing damage by 20%
+	GreediestBody.Tooltip: Increases damage resistance by 14% and crit. chance by 8
+	GreediestLegs.Tooltip: Increases throwing speed by 9%
 	EvilHead.Tooltip:
 		'''
-		Increases your max numbers of minions by 4
+		Increases your max numbers of minions by 3
 		Increases minion damage by +20%
 		'''
 	SniperBody.Tooltip:
@@ -55,12 +55,8 @@ Items: {
 		Increases ranged crit chance and penetration by 20%
 		Increases ranged damage by +5% 
 		'''
-	SniperHead.Tooltip: 26% increased ranged damage and 20% increased critical strike chance
-	SniperLegs.Tooltip:
-		'''
-		Increases your ranged damage by 5%
-		+15% ranged crit chance
-		'''
+	SniperHead.Tooltip: Increases ranged damage by 20% and increases ranged crit. chance by 20%
+	SniperLegs.Tooltip: "Increases ranged crit. chance by 15% "
 	EarthsplitterChestpiece.Tooltip:
 		'''
 		16% More throwing damage and 15% throwing crit chance 
@@ -76,24 +72,24 @@ Items: {
 		+8% Throwing damage 
 		Jump height greatly increased
 		'''
-	FleshCap.Tooltip: +15% Aura radius and +10% summon damage
+	FleshCap.Tooltip:
+		'''
+		Increases your max. aura radius by 15% Aura radius 
+		Increases summon damage by 10% 
+		'''
 	FleshWrappings.Tooltip:
 		'''
-		Enemies get debuff 'Bleeding' inside aura. 
+		Inflicts 'Bleeding' for enemies inside the aura. 
 		Team members get buff 'Heartsick' inside aura.
-		+9 Minion knockback
+		Increases minion knockback by 9? Huh?
 		'''
 	FleshPants.Tooltip:
 		'''
-		+1 Aura slot
-		+15% Aura radius when linked on the player
+		Increases amount of auras by 1
+		Increases your max aura radius by 15% when linked on the player
 		+2 Minion slot
 		'''
-	ValhalliteHead.Tooltip:
-		'''
-		When full armor equipped, player can summon Valhallite Knight every 30 seconds
-		Press [Armor Set Keybind] to summon
-		'''
+	ValhalliteHead.Tooltip: ""
 	AeroforceGuardia.Tooltip:
 		'''
 		+25% Aura radius and +16% summon damage
@@ -101,25 +97,31 @@ Items: {
 		'''
 	AeroforceProtector.Tooltip:
 		'''
-		+5% Aura radius and +13% Aura radius when linked on the player 
-		+30% Flight time 
-		+10% Minion damage
+		Increases your max. aura radius by 13% when linked on the player 
+		Increases flight time by 30% 
+		Increases summon damage by 10%
 		'''
 	AeroforceLeggings.Tooltip:
 		'''
-		+13% Aura radius when linked on the player
-		+4% Minion damage
+		Increases your max. aura radius by 13% when linked on the player 
+		Increases summon damage by +4%
 		'''
-	LivingWoodCrown.Tooltip: +6% aura radius and +1 minion slot
+	LivingWoodCrown.Tooltip:
+		'''
+		Increases your max. aura radios by 6%
+		Increases your max. numbers of minions by 1
+		'''
 	NightMageHat.Tooltip:
 		'''
-		+18% Magic damage and 13% reduced mana cost
-		+10% Critical chance
+		Increases magic damage by +18% 
+		Reduces mana cost by 13% 
+		Increases magic crit. chance by 10%
 		'''
 	NightMageCape.Tooltip:
 		'''
-		+8% Magic damage and +9% magic attack speed
-		+10% Critical chance
+		Increases magic damage by 8%
+		Increases magic attack speed by 9%
+		Increases magic crit. chance by 10%
 		'''
 	NightMagePants.Tooltip: +8% Magic damage
 	BismuthumBreastplate.Tooltip: Damage is increased by 5%
@@ -169,7 +171,7 @@ Items: {
 	WatersBreastplate.Tooltip:
 		'''
 		More wetness - more damage and health regeneration
-		Increases magic critical strike chance by 10%
+		Increases magic critical strike chance by 15%
 		Underwater mana cost increased by 40%
 		10% increased damage resistance
 		10% increased movement speed
@@ -179,13 +181,14 @@ Items: {
 	WatersHelmet.Tooltip:
 		'''
 		More wetness - higher critical strike chance
-		Increases magic damage by 5%
+		Increases magic damage by 10%
 		Increases mana regeneration by 8
 		'''
 	WatersLeggings.Tooltip:
 		'''
 		More wetness - higher movement speed
-		Increases magic damage by 8%
+		Increases magic damage by 10%
+		Increases magic weapons attack speed by 8%
 		Increases mana regeneration by 10
 		'''
 	AriadnesTangle.Tooltip: Increased yoyo range
@@ -211,7 +214,7 @@ Items: {
 		DisplayName: Everwood Javelin
 		Tooltip:
 			'''
-			Each hit has a 20% chance to inflict the «{$Mods.Vanilla.Buffs.EverwoodJavelinDebuff.DisplayName}» debuff for 1.5 seconds
+			Each hit has a 20% chance to inflict the «{$Mods.Synergia.Buffs.EverwoodJavelinDebuff.DisplayName}» debuff for 1.5 seconds
 			The debuff stuns the enemy and deals 5 damage over time
 			It doesn’t stun bosses, but its duration is increased by 3 seconds and deals 5 more damage
 			'Contains a fragment of Everwood magic'
@@ -262,7 +265,7 @@ Items: {
 	}
 
 	OldTales: {
-		Tooltip: Tales of travelers dying in this world. Right click to open
+		Tooltip: Tales of travelers dying in this world.
 		DisplayName: Old Tales
 	}
 
@@ -275,7 +278,7 @@ Items: {
 		DisplayName: Cursed Throwing Emblem
 		Tooltip:
 			'''
-			15% increased throwing damage
+			Increases throwing damage by 15%
 			Decreases аll other damage by 40%
 			'''
 	}
@@ -368,7 +371,7 @@ Items: {
 		Tooltip:
 			'''
 			Roll the dice and regret it twice..
-			When you go into aura, grants a random buff or debuff
+			When you go into the aura, grants a random buff or debuff
 			5 buffs and 5 debuffs, will it bless you... or ruin you?
 			'''
 		DisplayName: Broken Dice
@@ -392,7 +395,7 @@ Items: {
 	EnchantedRing: {
 		Tooltip:
 			'''
-			Aura radius increased by 8%
+			Increases max. aura radius by 8%
 			Players buffs remains 3 seconds after leaving the aura
 			'''
 		DisplayName: Enchanted Ring
@@ -444,7 +447,7 @@ Items: {
 		Tooltip:
 			'''
 			Increases aura radius by 30% when linked to the player
-			Increases aura radius by 25%
+			Increases max. aura radius by 25%
 			Grants to auras Hexagon form
 			+1 aura slot
 			15 buffs and 15 debuffs, will it bless you... or completely destroy you?
@@ -455,7 +458,7 @@ Items: {
 		Tooltip:
 			'''
 			Divine retribution made manifest.
-			Each strike calls down furious lightning from the heavens
+			Each strike has chance to call down furious lightning from the heavens
 			Smiting the wicked with stormborn wrath.
 			'''
 		DisplayName: Blasphemous Heavens
@@ -464,7 +467,7 @@ Items: {
 	EarthCollapse: {
 		Tooltip:
 			'''
-			+25% Aura radius
+			Increases max. aura radius by 25%
 			Players buffs remains 8 seconds after leaving the aura 
 			'''
 		DisplayName: Earth Collapse
@@ -475,8 +478,8 @@ Items: {
 		Tooltip:
 			'''
 			A cursed relic that burns with infernal power
-			+20% all damage but -20% damage reduction
-			+3 life regeneration but -30 defense
+			Increases all damage by 20% but decreases damage reduction by 20%
+			Increases life regeneration greatly but decreases defense by 30
 			Every 30 seconds, your next attack becomes a 
 			guaranteed critical hit and deals double damage
 			'''
@@ -500,7 +503,7 @@ Items: {
 	Pyroclast: {
 		Tooltip:
 			'''
-			Shoots lava clots
+			Shoots lava arrows
 			When player holds a bow gets "On Fire!" Debuff
 			'''
 		DisplayName: Pyroclast
@@ -528,11 +531,11 @@ Items: {
 			Minion damage increases aura's range
 			Versatile aura that cycles between two modes:
 			Support mode - all Sinlord Weapons get stronger
-			Menace always shoots 4 projectiles instead of 2 or 3
-			Pyroclast always shooths 5 projectiles instead of 3
-			Impact is always charged
-			Cleavage deals 15% more damage while empowered
-			Attack mode - always crit damage for the enemies inside
+			Menace always shoots 4 projectiles instead of 2 or 3.
+			Pyroclast shoots fire balls.
+			Impact is always charged.
+			Cleavage deals 15% more damage while empowered.
+			Attack mode - always crit damage for the enemies inside.
 			Press [Selected Button] to switch aura modes.
 			'''
 		DisplayName: Hellgate Aura Scythe
@@ -542,7 +545,7 @@ Items: {
 		Tooltip:
 			'''
 			Each throw a lava thorn grows up to five
-			A hit of a fully spiked form summons meteorites
+			A hit of a fully spiked form deals more damage
 			'''
 		DisplayName: Impact
 	}
@@ -559,14 +562,14 @@ Items: {
 	JadeGlaive: {
 		Tooltip:
 			'''
-			Throw a spinning glaives that blow ups over time 
+			Throw a spinning glaives that blow up over time 
 			Right Click to turn them into sharp knives
 			'''
 		DisplayName: Jade Glaive
 	}
 
 	CaesiumHeavyAnvil: {
-		Tooltip: Lihzards made an altar on this anvil
+		Tooltip: Where the jungle creatures forged their wrath.
 		DisplayName: Caesium Heavy Anvil
 	}
 
@@ -588,6 +591,7 @@ Items: {
 	HellwormScale: {
 		Tooltip:
 			'''
+			Quest Item
 			Use this to summon something from underworld
 			Summons Sinlord Wyrm
 			'''
@@ -647,7 +651,8 @@ Items: {
 		DisplayName: Precious Skull
 		Tooltip:
 			'''
-			+10% throwing crit chance and +8% throwing damage
+			Increases throwing ctit. chance by 10%
+			Icreases throwing damage by 8%
 			After death player have +10% throwing speed for one minute
 			Above the player's head appear two gems:
 			When tourmaline phase - + regeneration buff
@@ -658,7 +663,7 @@ Items: {
 	StonedSkull: {
 		Tooltip:
 			'''
-			+5% throwing damage
+			Increases throwing damage by +5%
 			After death player have +10% throwing speed for one minute
 			'''
 		DisplayName: Stone Skull
@@ -690,11 +695,15 @@ Items: {
 
 	Seaborn: {
 		DisplayName: Tidebreaker
-		Tooltip: ""
+		Tooltip:
+			'''
+			Every fourth hit summons swords
+			{$Controls.RightClick} to unleash super attack.
+			'''
 	}
 
 	HeliosSoul: {
-		Tooltip: ""
+		Tooltip: Soul of the Helios itself
 		DisplayName: Helios Soul
 	}
 
@@ -719,8 +728,8 @@ Items: {
 	}
 
 	OrcishSwungo: {
-		Tooltip: ""
-		DisplayName: Orcish Swungo
+		Tooltip: Shoots piercing scythes in 4 directions
+		DisplayName: Swingaling
 	}
 
 	CursedMirror: {
@@ -763,12 +772,12 @@ Items: {
 	}
 
 	Starcaller: {
-		Tooltip: ""
+		Tooltip: Summons a star to fight for you
 		DisplayName: Starcaller
 	}
 
 	WhisperigReed: {
-		Tooltip: ""
+		Tooltip: It whispers you stories..
 		DisplayName: Whispering Reed
 	}
 
@@ -783,23 +792,23 @@ Items: {
 	}
 
 	ShardflingPotion: {
-		Tooltip: ""
+		Tooltip: Increases throwing damage by 12
 		DisplayName: Shardfling Potion
 	}
 
 	BronzeAcolyteLeggings: {
-		Tooltip: ""
-		DisplayName: Bronze Acolyte Leggings
+		Tooltip: 8% increased magic critical strike chance
+		DisplayName: Acolyte Leggings
 	}
 
 	BronzeAcolyteJacket: {
-		Tooltip: ""
-		DisplayName: Bronze Acolyte Jacket
+		Tooltip: Increases maximum mana by 40
+		DisplayName: Acolyte Jacket
 	}
 
 	BronzeAcolyteHat: {
-		Tooltip: ""
-		DisplayName: Bronze Acolyte Hat
+		Tooltip: 6% reduced mana usage
+		DisplayName: Acolyte Hat
 	}
 
 	FragmentSolar: {
@@ -833,12 +842,12 @@ Items: {
 	}
 
 	Triwhip: {
-		Tooltip: ""
+		Tooltip: Every second shot is triple
 		DisplayName: Triwhip
 	}
 
 	OssuaryStaff: {
-		Tooltip: ""
+		Tooltip: Summons a sharp skulls that stick to enemies
 		DisplayName: Ossuary Staff
 	}
 
@@ -857,7 +866,7 @@ Items: {
 	}
 
 	ThunderBody: {
-		DisplayName: Thunder Body
+		DisplayName: Thundernite Breastplate
 		Tooltip: ""
 	}
 
@@ -877,22 +886,22 @@ Items: {
 	}
 
 	ThunderChakram: {
-		Tooltip: ""
+		Tooltip: On death spawns flower-shaped crystals
 		DisplayName: Thunder Chakram
 	}
 
 	ThunderBow: {
-		Tooltip: ""
+		Tooltip: Shoots additional homing crystal
 		DisplayName: Thunder Bow
 	}
 
 	ThunderSigil: {
-		Tooltip: ""
+		Tooltip: It illuminates and shoots - very simple.
 		DisplayName: Thunder Sigil
 	}
 
 	PostMechWings: {
-		DisplayName: Post Mech Wings
+		DisplayName: Mechanical Spine
 		Tooltip: ""
 	}
 
@@ -902,17 +911,17 @@ Items: {
 	}
 
 	ElderSnowmanBannerItem: {
-		DisplayName: Elder Snowman Banner Item
+		DisplayName: Elder Snowman Banner
 		Tooltip: ""
 	}
 
 	SnowykazeBannerItem: {
 		Tooltip: ""
-		DisplayName: Snowykaze Banner Item
+		DisplayName: Snowykaze Banner
 	}
 
 	HellDog: {
-		DisplayName: Hell Dog
+		DisplayName: Skelegon Banner
 		Tooltip: ""
 	}
 
@@ -923,17 +932,30 @@ Items: {
 
 	Gutshelmet: {
 		DisplayName: Viscera Helmet
-		Tooltip: ""
+		Tooltip:
+			'''
+			Increases your max number of minions by 2
+			Increases your max number of sentries by 1
+			Nicely increases your life regeneration 
+			'''
 	}
 
 	Gutslegs: {
 		DisplayName: Viscera Leggings
-		Tooltip: ""
+		Tooltip:
+			'''
+			Increases your max number of minions by 2
+			Nicely increases your life regeneration 
+			'''
 	}
 
 	Gutsplate: {
 		DisplayName: Viscera Chestplate
-		Tooltip: ""
+		Tooltip:
+			'''
+			Increases your max number of sentries by 2
+			Greatly increases your life regeneration 
+			'''
 	}
 
 	ThunderniteHamaxe: {
@@ -942,8 +964,8 @@ Items: {
 	}
 
 	HellLuceat: {
-		DisplayName: Hell Luceat
-		Tooltip: ""
+		DisplayName: Qwareon
+		Tooltip: Allows you teleport in the every corner of the Inferno Frontier
 	}
 
 	CogBronze: {
@@ -974,8 +996,8 @@ Items: {
 		DisplayName: Fading Hell Chestplate
 		Tooltip:
 			'''
-			8% increased magic damage
-			10% critical strike chance
+			Increases magic damage by 8%
+			Increases critical strike chance by 10% 
 			'''
 	}
 
@@ -983,9 +1005,9 @@ Items: {
 		DisplayName: Fading Hell Hat
 		Tooltip:
 			'''
-			Increases maximum mana by 40 and 20% reduced mana cost
-			9% increased magic damage
-			9% critical strike chance
+			Increases maximum mana by 40 and reduces mana cost by 20% 
+			Increases magic damage by 9% 
+			Increases critical strike chance by 9%	
 			'''
 	}
 
@@ -993,8 +1015,8 @@ Items: {
 		DisplayName: Fading Hell Pants
 		Tooltip:
 			'''
-			6% increased magic damage
-			12% increased movement speed
+			Increases magic damage by 6%
+			Increases movement speed by 12%
 			'''
 	}
 
@@ -1009,28 +1031,28 @@ Items: {
 	}
 
 	RoyalInk: {
-		Tooltip: ""
+		Tooltip: Shines.
 		DisplayName: Royal Ink
 	}
 
 	Pandemonium: {
-		Tooltip: ""
+		Tooltip: What secrets does it hide?
 		DisplayName: Pandemonium
 	}
 
 	LothorSkull: {
-		Tooltip: ""
+		Tooltip: Insanely scary, inspires terror
 		DisplayName: Lothor Skull
 	}
 
 	BottomlessEvil: {
-		Tooltip: ""
+		Tooltip: There is no creature more terrible than man, for it is he who wrote this.
 		DisplayName: Bottomless Evil
 	}
 
 	Ghalihieri: {
 		Tooltip: Launches high velocity, flaming blade and a hot needle
-		DisplayName: Sodomist
+		DisplayName: Vice
 	}
 
 	TimeContinuum: {
@@ -1066,7 +1088,7 @@ Items: {
 		DisplayName: Malebolge
 		Tooltip:
 			'''
-			'There is no greater sorrow than to recall happiness in times of misery.' 
+			"There is no greater sorrow than to recall happiness in times of misery." 
 			Enormous blade, forged to cut down sinners in the craters of volcanoes.
 			Each hit creates explosion that deal damage. 
 			After successful combo summons meteors.
@@ -1076,7 +1098,7 @@ Items: {
 	Echelonis: {
 		Tooltip:
 			'''
-			"If I created an angel, why does it feel closer to Hell than to Heaven?"
+			"The inhuman i've turned into"
 			Summons a Prodigal Seraph to fight for you
 			'''
 		DisplayName: Echelonis
@@ -1094,7 +1116,12 @@ Items: {
 
 	Rhabdomyolysis: {
 		DisplayName: Rhabdomyolysis
-		Tooltip: ""
+		Tooltip:
+			'''
+			"From the remnants of flesh"
+			Summons a 3 knifes that always attacking you
+			The less hp you have - the more vampirism and damage you get
+			'''
 	}
 
 	Snotknife: {
@@ -1103,34 +1130,48 @@ Items: {
 	}
 
 	CoreburnedLeggings: {
-		Tooltip: ""
+		Tooltip:
+			'''
+			Increases player move speed by 20%
+			Increases damage resistance by 5%
+			'''
 		DisplayName: Coreburned Leggings
 	}
 
 	CoreburnedHelmet: {
-		Tooltip: ""
+		Tooltip:
+			'''
+			Increases melee damage by 15%
+			Increases damage resistance by 15%
+			Allows player walk along lava 
+			Immunity to all fire debuffs
+			'''
 		DisplayName: Coreburned Helmet
 	}
 
 	CoreburnedBreastplate: {
-		Tooltip: ""
+		Tooltip:
+			'''
+			Increases melee crit. chance by 15%
+			Increases damage resistance by 10%
+			'''
 		DisplayName: Coreburned Breastplate
 	}
 
 	Hades: {
-		Tooltip: The only one who can stand in my way is ME.
+		Tooltip: There is no shelter from the storm that sleeps inside this weapon.
 		DisplayName: Hades
 	}
 
 	Anaconda: {
-		Tooltip: ""
+		Tooltip: Shoots wavy Anacondas that can pierce enemies
 		DisplayName: Anaconda
 	}
 
 	TheMossWitchCrystal: {
 		Tooltip: ""
 		DisplayName: Moss Witch Amulet
-		Passive: Immunity to Swamp Water and Poisoned
+		Passive: Immunity to Swamp Water and «{$BuffName.Poisoned}»
 		Active: Clears the player from debuffs
 	}
 
@@ -1185,7 +1226,7 @@ Items: {
 
 	CruorRelicItem: {
 		Tooltip: ""
-		DisplayName: Cruor Relic Item
+		DisplayName: Cruor Relic
 	}
 
 	CruorTrophy: {
@@ -1194,13 +1235,54 @@ Items: {
 	}
 
 	MortalStones: {
-		Tooltip: ""
+		Tooltip:
+			'''
+			Increases damage penetration by 8
+			Increases melee damage by 10%
+			Immunity to knockback 
+			'''
 		DisplayName: Mortal Stones
 	}
 
 	Jeweler: {
-		Tooltip: ""
+		Tooltip:
+			'''
+			Increases magic and summon damage by 10%
+			Spawns mystical creature that increases damage of friendly projectiles, and decreases damage of hostile ones.
+			'''
 		DisplayName: Jeweler
+	}
+
+	DreadLeggings: {
+		Tooltip:
+			'''
+			Increases throwing attack spead by 12%
+			Increases movement speed by 10%
+			'''
+		DisplayName: Dread Leggings
+	}
+
+	DreadHelmet: {
+		Tooltip:
+			'''
+			Increases throwing crit. strike chance by 12%
+			Increases movement speed by 8%
+			'''
+		DisplayName: Dread Shroud
+	}
+
+	DreadArmor: {
+		Tooltip:
+			'''
+			Increases throwing damage by 15%
+			Increases movement speed by 15%
+			'''
+		DisplayName: Dread Breastplate
+	}
+
+	HotEgg: {
+		DisplayName: Hot Egg
+		Tooltip: Summons mini cutie sinlord
 	}
 }
 
@@ -1671,6 +1753,7 @@ Projectiles: {
 	OcramKnife.DisplayName: Ocram Knife
 	OcramSkull2.DisplayName: Ocram Skull2
 	OcramSkull1.DisplayName: Ocram Skull1
+	HotEggProj.DisplayName: Hot Egg Proj
 }
 
 Buffs: {
@@ -1726,11 +1809,11 @@ Buffs: {
 
 	RunicLegacy: {
 		DisplayName: Runic Legacy
-		Description: Mods.Synergia.Buffs.RunicLegacy.Description
+		Description: Summons a mini Runic Elemental which fight for you
 	}
 
 	BansheeCurse: {
-		Description: Mods.Synergia.Buffs.BansheeCurse.Description
+		Description: Decreases player endurance by 30%
 		DisplayName: Banshee Curse
 	}
 
@@ -1740,22 +1823,22 @@ Buffs: {
 	}
 
 	GloomBuff: {
-		Description: Mods.Synergia.Buffs.GloomBuff.Description
+		Description: Ignore this shit
 		DisplayName: Gloomed
 	}
 
 	GloomDebuff: {
 		DisplayName: Degloomed
-		Description: Mods.Synergia.Buffs.GloomDebuff.Description
+		Description: Ignore this shit
 	}
 
 	Starlord: {
-		Description: Mods.Synergia.Buffs.Starlord.Description
+		Description: Summons an attacking star
 		DisplayName: Starlord
 	}
 
 	ShardflingPotionBuff: {
-		Description: Mods.Synergia.Buffs.ShardflingPotionBuff.Description
+		Description: Your throwing damage is increased by 12%
 		DisplayName: Shardfling
 	}
 
@@ -1766,17 +1849,17 @@ Buffs: {
 
 	Bloodbound: {
 		DisplayName: Bloodbound
-		Description: Mods.Synergia.Buffs.Bloodbound.Description
+		Description: Bound to blood
 	}
 
 	SulphurVenom: {
 		DisplayName: Sulphur Venom
-		Description: Mods.Synergia.Buffs.SulphurVenom.Description
+		Description: So sulphuric that even skin feels bad
 	}
 
 	BloodBuff: {
 		DisplayName: Bloodthirsty
-		Description: Mods.Synergia.Buffs.BloodBuff.Description
+		Description: Donor
 	}
 }
 
@@ -1789,7 +1872,7 @@ SinlordSummon: Use Hellworm scale in the underworld
 
 Tiles: {
 	RiseOfTheOldGod.MapEntry: Rise Of The Old God
-	Reed3.MapEntry: Reed3
+	Reed3.MapEntry: Reed
 }
 
 Biomes: {
@@ -1804,8 +1887,8 @@ Biomes: {
 	}
 
 	UndergraundSwamp: {
-		DisplayName: Undergraund Swamp
-		TownNPCDialogueName: the Undergraund Swamp
+		DisplayName: Underground Swamp
+		TownNPCDialogueName: the Underground Swamp
 	}
 }
 
@@ -1818,7 +1901,7 @@ BaseLoc: {
 	}
 
 	AttackSpead: Increases {0} speed by {1}%
-	ComboTime: increases the combo action time {0}
-	DeactiveTime: increases the combo action time {0}
-	SynergiaThrowing: increases the combo action time {0} and increases the combo action time {1}
+	ComboTime: Increases the barrageveawer combo action time by {0} ticks
+	DeactiveTime: increases the barrageveawer combo deactivation time by{0} ticks
+	SynergiaThrowing: increases the barrageveawer combo action time by {0} ticks and increases the combo action time by {1}
 }

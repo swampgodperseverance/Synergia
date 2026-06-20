@@ -27,11 +27,29 @@ namespace Synergia.Common.GlobalNPCs.AI
 						return;
 					}
 					if(npc.ai[3] > 660f && npc.ai[3] < 810f) {
-						if(npc.ai[3] % 20 == 0) {
-							if(Main.netMode != 1) Projectile.NewProjectile(npc.GetSource_FromAI(), npc.Center + Vector2.Normalize(new Vector2(npc.direction, -0.4f)) * npc.width * 0.55f, Vector2.Normalize(new Vector2(npc.direction, -0.4f)) * 8f + npc.velocity, ModContent.ProjectileType<StonedBlood>(), 30, 2f, Main.myPlayer);
-							SoundEngine.PlaySound(SoundID.NPCHit8, npc.Center);
-						}
-						if(npc.frame.Y == 0) npc.frameCounter = 0.0;
+                        if (npc.ai[3] % 20 == 0)
+                        {
+                            if (Main.netMode != 1)
+                            {
+                                Vector2 baseDirection = Vector2.Normalize(new Vector2(npc.direction, -0.4f));
+
+                                // 7 degrees
+                                float randomSpread = Main.rand.NextFloat(-0.12f, 0.12f);
+                                Vector2 shotVelocity = (baseDirection * 8f).RotatedBy(randomSpread) + npc.velocity;
+
+                                Projectile.NewProjectile(
+                                    npc.GetSource_FromAI(),
+                                    npc.Center + baseDirection * npc.width * 0.55f,
+                                    shotVelocity, // randomed too
+                                    ModContent.ProjectileType<StonedBlood>(),
+                                    30,
+                                    2f,
+                                    Main.myPlayer
+                                );
+                            }
+                            SoundEngine.PlaySound(SoundID.NPCHit8, npc.Center);
+                        }
+                        if (npc.frame.Y == 0) npc.frameCounter = 0.0;
 					}
 					else if(npc.ai[3] < 655f && npc.frame.Y == npc.frame.Height) npc.frameCounter = 0.0;
 					npc.rotation = Vector2.Normalize(Vector2.Lerp(npc.rotation.ToRotationVector2(), Vector2.Normalize(new Vector2(Math.Sign(npc.velocity.X), -0.4f)) * npc.spriteDirection, npc.ai[3] > 810f ? 1f - (npc.ai[3] - 810f) / 30f : npc.ai[3] < 630f ? (npc.ai[3] - 600f) / 30f : 1f)).ToRotation();

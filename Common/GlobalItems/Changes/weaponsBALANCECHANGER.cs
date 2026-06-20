@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Avalon.Items.Weapons.Magic.Hardmode.AquaImpact;
 using Avalon.Items.Weapons.Magic.Hardmode.MagicGrenade;
 using Avalon.Items.Weapons.Magic.PreHardmode.ChaosTome;
 using Avalon.Items.Weapons.Magic.PreHardmode.Smogscreen;
@@ -29,9 +30,11 @@ using Synergia.Content.Projectiles.Reworks.Reworks2;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using ValhallaMod.Items.Weapons.Magic.Arcana;
 using ValhallaMod.Items.Weapons.Magic.Music;
 using ValhallaMod.Items.Weapons.Magic.Staffs;
 using ValhallaMod.Items.Weapons.Magic.Thrown;
+using ValhallaMod.Items.Weapons.Magic.Tomes;
 using ValhallaMod.Items.Weapons.Melee.ChannelMelee;
 using ValhallaMod.Items.Weapons.Melee.Glaives;
 using ValhallaMod.Items.Weapons.Melee.Knives;
@@ -525,6 +528,39 @@ namespace Synergia.Common.GlobalItems.Changes
                     item.useAnimation += 18;
                     item.useTime += 18;
                     item.mana += 13;
+                },
+                [ModContent.ItemType<JadeArcanum>()] = item =>
+                {
+                    item.reuseDelay -= 30;
+                    item.useAnimation -= 24;
+                },
+                [ModContent.ItemType<SpaceCowboy>()] = item =>
+                {
+                    item.damage += 30;
+                },
+                [ModContent.ItemType<DarkVolley>()] = item =>
+                {
+                    item.useAnimation += 10;
+                    item.useTime -= 15;
+                },
+                [ModContent.ItemType<MagicWand>()] = item =>
+                {
+                    item.useAnimation += 4;
+                    item.useTime += 4;
+                    item.damage -= 6;
+                },
+                [ModContent.ItemType<AquaImpact>()] = item =>
+                {
+                    item.useAnimation -= 10;
+                    item.useTime -= 10;
+                },
+                [ModContent.ItemType<LeafShield>()] = item =>
+                {
+                    item.damage += 15;
+                },
+                [ModContent.ItemType<ShellStaff>()] = item =>
+                {
+                    item.damage += 15;
                 },
             };
         }

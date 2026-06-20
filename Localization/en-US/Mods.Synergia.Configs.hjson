@@ -26,4 +26,47 @@ Config: {
 		NewRecipe: Includes new recipes
 		NewRecipeTooltip: Synergia uses a complex recipe system. The tPackBuilder mod also changes them, but they will be simpler. Therefore, use only this mod or uncheck the box and use tPackBuilder.
 	}
+
+	SynergiaConfig: {
+		NewRecipe: New Recipe
+		NewRecipeTooltip: ""
+		PapuanWizardHardAIEnabled: Papuan Wizard Hard A I Enabled
+		PapuanWizardHardAIEnabledTooltip: ""
+		KingSlimeAI: King Slime A I
+		KingSlimeAITooltip: ""
+		BrainOfCthulhuAI: Brain Of Cthulhu A I
+		BrainOfCthulhuAITooltip: ""
+		WallOfFleshAI: Wall Of Flesh A I
+		WallOfFleshAITooltip: ""
+		TwinsAI: Twins A I
+		TwinsAITooltip: ""
+		DestroyerAI: Destroyer A I
+		DestroyerAITooltip: ""
+		SkeletronPrimeAI: Skeletron Prime A I
+		SkeletronPrimeAITooltip: ""
+		PlanteraAI: Plantera A I
+		PlanteraAITooltip: ""
+		GolemAI: Golem A I
+		GolemAITooltip: ""
+		CultistAI: Cultist A I
+		CultistAITooltip: ""
+		OcramAI: Ocram A I
+		OcramAITooltip: ""
+		TurkorAI: Turkor A I
+		TurkorAITooltip: ""
+		ColdFatherAI: Cold Father A I
+		ColdFatherAITooltip: ""
+		JadeEmperorAI: Jade Emperor A I
+		JadeEmperorAITooltip: ""
+		NecromancerAI: Necromancer A I
+		NecromancerAITooltip: ""
+		MinotaurAI: Minotaur A I
+		MinotaurAITooltip: ""
+		LothorAI: Lothor A I
+		LothorAITooltip: ""
+		DesertBeakAI: Desert Beak A I
+		DesertBeakAITooltip: ""
+		ColossalCarnageAI: Colossal Carnage A I
+		ColossalCarnageAITooltip: ""
+	}
 }

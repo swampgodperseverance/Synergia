@@ -14,15 +14,15 @@ namespace Synergia.Content.Projectiles.Hostile.Bosses
         private const float RotationSpeed = 0.05f;
         private const float AttractionForce = 0.9f;
         private const float AttractionRadius = 1000f;
-        private const int LifeTime = 300; 
+        private const int LifeTime = 300;
 
         private float currentScale;
         private bool scalingUp = true;
 
         private bool rising = true;
         private float riseTimer = 0f;
-        private const float RiseDuration = 90f; 
-        private const float RiseHeight = 80f; 
+        private const float RiseDuration = 90f;
+        private const float RiseHeight = 80f;
 
         public override void SetDefaults()
         {
@@ -34,7 +34,7 @@ namespace Synergia.Content.Projectiles.Hostile.Bosses
             Projectile.tileCollide = false;
             Projectile.timeLeft = LifeTime;
             Projectile.penetrate = -1;
-            Projectile.alpha = 255; 
+            Projectile.alpha = 255;
             Projectile.scale = MinScale;
             currentScale = MinScale;
         }
@@ -42,17 +42,17 @@ namespace Synergia.Content.Projectiles.Hostile.Bosses
         public override void OnSpawn(Terraria.DataStructures.IEntitySource source)
         {
             Terraria.Audio.SoundEngine.PlaySound(
-                new Terraria.Audio.SoundStyle("Synergia/Assets/Sounds/SandSphere") 
-                { 
-                    Volume = 1.1f, 
-                    PitchVariance = 0.15f 
-                }, 
+                new Terraria.Audio.SoundStyle("Synergia/Assets/Sounds/SandSphere")
+                {
+                    Volume = 1.1f,
+                    PitchVariance = 0.15f
+                },
                 Projectile.Center
             );
 
             for (int i = 0; i < 40; i++)
             {
-                int dust = Dust.NewDust(Projectile.Center - new Vector2(10), 20, 20, DustID.Sandnado, 
+                int dust = Dust.NewDust(Projectile.Center - new Vector2(10), 20, 20, DustID.Sandnado,
                     Main.rand.NextFloat(-3, 3), Main.rand.NextFloat(-3, 3), 150, default, 1.4f);
                 Main.dust[dust].noGravity = true;
             }
@@ -66,7 +66,6 @@ namespace Synergia.Content.Projectiles.Hostile.Bosses
                 if (Projectile.alpha < 0) Projectile.alpha = 0;
             }
 
-
             if (Projectile.timeLeft < 60)
             {
                 Projectile.alpha += 4;
@@ -77,7 +76,7 @@ namespace Synergia.Content.Projectiles.Hostile.Bosses
             {
                 riseTimer++;
                 float progress = MathHelper.Clamp(riseTimer / RiseDuration, 0f, 1f);
-                Projectile.position.Y -= (RiseHeight / RiseDuration); 
+                Projectile.position.Y -= (RiseHeight / RiseDuration);
 
                 if (progress >= 1f)
                     rising = false;
@@ -129,7 +128,6 @@ namespace Synergia.Content.Projectiles.Hostile.Bosses
 
                     player.velocity += attraction;
 
-
                     float maxSpeed = 4f;
                     if (player.velocity.Length() > maxSpeed)
                         player.velocity = Vector2.Normalize(player.velocity) * maxSpeed;
@@ -172,6 +170,51 @@ namespace Synergia.Content.Projectiles.Hostile.Bosses
         public override Color? GetAlpha(Color lightColor)
         {
             return new Color(255, 255, 255, 255 - Projectile.alpha);
+        }
+
+        public override bool PreDraw(ref Color lightColor)
+        {
+            Texture2D texture = Terraria.GameContent.TextureAssets.Projectile[Projectile.type].Value;
+            Vector2 origin = texture.Size() / 2f;
+            Color color = GetAlpha(lightColor).Value;
+
+            float outlineSize = 3f;
+            Color outlineColor = new Color(194, 178, 128, color.A / 2);
+
+            for (int x = -1; x <= 1; x++)
+            {
+                for (int y = -1; y <= 1; y++)
+                {
+                    if (x == 0 && y == 0) continue;
+
+                    Vector2 offset = new Vector2(x, y) * outlineSize;
+                    Main.EntitySpriteDraw(
+                        texture,
+                        Projectile.Center - Main.screenPosition + offset,
+                        null,
+                        outlineColor,
+                        Projectile.rotation,
+                        origin,
+                        Projectile.scale,
+                        SpriteEffects.None,
+                        0
+                    );
+                }
+            }
+
+            Main.EntitySpriteDraw(
+                texture,
+                Projectile.Center - Main.screenPosition,
+                null,
+                color,
+                Projectile.rotation,
+                origin,
+                Projectile.scale,
+                SpriteEffects.None,
+                0
+            );
+
+            return false;
         }
     }
 }

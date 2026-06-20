@@ -6,8 +6,11 @@ using Avalon.Items.Material.TomeMats;
 using Avalon.Items.Potions.Buff;
 using Avalon.Items.Tomes.PreHardmode;
 using Avalon.Items.Tools.Hardmode;
+using Avalon.Items.Weapons.Magic.Hardmode.AquaImpact;
 using Avalon.Items.Weapons.Magic.Hardmode.CrystalUnity;
+using Avalon.Items.Weapons.Magic.Hardmode.EnergyRevolver;
 using Avalon.Items.Weapons.Magic.Hardmode.FreezeBolt;
+using Avalon.Items.Weapons.Magic.Hardmode.HallowedThorn;
 using Avalon.Items.Weapons.Magic.Hardmode.MagicGrenade;
 using Avalon.Items.Weapons.Magic.PreHardmode.GlassEye;
 using Avalon.Items.Weapons.Magic.Superhardmode;
@@ -32,6 +35,7 @@ using Bismuth.Content.Items.Placeable;
 using Consolaria.Content.Items.Materials;
 using Microsoft.Build.Tasks;
 using NewHorizons.Content.Items.Materials;
+using NewHorizons.Content.Items.Weapons.Magic;
 using NewHorizons.Content.Items.Weapons.Throwing;
 using Synergia.Content.Items.Misc;
 using Terraria;
@@ -50,6 +54,7 @@ namespace Synergia.Common.ModSystems.RecipeSystem.ChangesRecipe.AvalonsChanges {
         public override void DisableRecipe(Recipe recipe) {
             DisableRecipe(recipe, ItemType<FeroziumIceSword>());
             DisableRecipe(recipe, ItemType<MagicGrenade>());
+            DisableRecipe(recipe, ItemType<AquaImpact>());
             DisableRecipe(recipe, ItemType<Boompipe>());
             DisableRecipe(recipe, ItemType<CrystalUnity>());
             DisableRecipe(recipe, ItemType<CrystalTomahawk>());
@@ -68,6 +73,8 @@ namespace Synergia.Common.ModSystems.RecipeSystem.ChangesRecipe.AvalonsChanges {
             AddLotIngredient(recipe, ItemType<Longbone>(), (ModContent.ItemType<ElasticCord>(), 1));
             ForeachIngredient(recipe, ItemType<AeonsEternity>(), new Item(RoAItem("StarFusion"), 1));
             AddIngredient(recipe, ItemType<UrchinMace>(), 1, new Item(ItemType<FishTooth>(), 3));
+            AddIngredient(recipe, ItemType<EnergyRevolver>(), 0, new Item(ItemType<Scorcher>(), 1));
+            AddIngredient(recipe, ItemType<HallowedThorn>(), 1, new Item(ItemID.Ruby, 5));
             AddIngredient(recipe, ItemType<TrueAeonsEternity>(), 1, new Item(ItemID.SoulofSight, 10));
             AddIngredient(recipe, ItemType<TrueAeonsEternity>(), 2, new Item(ItemID.SoulofMight, 10));
             AddLotIngredient(recipe, ItemType<TrueAeonsEternity>(), (ItemID.SoulofFright, 10));
@@ -84,10 +91,13 @@ namespace Synergia.Common.ModSystems.RecipeSystem.ChangesRecipe.AvalonsChanges {
             CreateCrystalUnity();
             CreateCrystalTomahawk();
             CreateMagmafrostBolt();
+            CreateMagmafrostBolt1();
+            CreateMagmafrostBolt2();
             CreateReflectorStaff();
             CreateDarklance();
             CreateCranium();
             CreateeXC();
+            CreateeAI();
         }
         public override void RemoveIngredient(Recipe recipe) {
         }
@@ -154,6 +164,25 @@ namespace Synergia.Common.ModSystems.RecipeSystem.ChangesRecipe.AvalonsChanges {
             Recipe recipe = Recipe.Create(ItemType<MagmafrostBolt>());
             recipe.AddIngredient(ItemType<FreezeBolt>(), 1);
             recipe.AddIngredient(RoAItem("FireLighter"), 1);
+            recipe.AddIngredient(ItemType<TroxiniumBar>(), 10);
+            recipe.AddTile(TileID.MythrilAnvil);
+            recipe.Register();
+        }
+        static void CreateMagmafrostBolt2()
+        {
+            Recipe recipe = Recipe.Create(ItemType<MagmafrostBolt>());
+            recipe.AddIngredient(ItemType<FreezeBolt>(), 1);
+            recipe.AddIngredient(RoAItem("FireLighter"), 1);
+            recipe.AddIngredient(ItemID.TitaniumBar, 10);
+            recipe.AddTile(TileID.MythrilAnvil);
+            recipe.Register();
+        }
+        static void CreateMagmafrostBolt1()
+        {
+            Recipe recipe = Recipe.Create(ItemType<MagmafrostBolt>());
+            recipe.AddIngredient(ItemType<FreezeBolt>(), 1);
+            recipe.AddIngredient(RoAItem("FireLighter"), 1);
+            recipe.AddIngredient(ItemID.AdamantiteBar, 10);
             recipe.AddTile(TileID.MythrilAnvil);
             recipe.Register();
         }
@@ -188,6 +217,18 @@ namespace Synergia.Common.ModSystems.RecipeSystem.ChangesRecipe.AvalonsChanges {
         {
             Recipe recipe = Recipe.Create(ItemType<HallowedClaymore>());
             recipe.AddIngredient(ItemID.HallowedBar, 20);
+            recipe.AddTile(TileID.MythrilAnvil);
+            recipe.Register();
+        }
+        static void CreateeAI()
+        {
+            Recipe recipe = Recipe.Create(ItemType<AquaImpact>());
+            recipe.AddIngredient(ItemID.WaterBolt, 1);
+            recipe.AddIngredient(ItemType<TorrentShard>(), 5);
+            recipe.AddIngredient(ItemID.Seashell, 10);
+            recipe.AddIngredient(ItemID.SoulofMight, 5);
+            recipe.AddIngredient(ItemID.SoulofSight, 5);    
+            recipe.AddIngredient(ItemID.SoulofFright, 5);
             recipe.AddTile(TileID.MythrilAnvil);
             recipe.Register();
         }

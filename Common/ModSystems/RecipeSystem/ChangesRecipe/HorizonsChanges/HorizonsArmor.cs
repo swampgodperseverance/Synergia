@@ -81,6 +81,9 @@ namespace Synergia.Common.ModSystems.RecipeSystem.ChangesRecipe.HorizonsChanges
             CreateRottenHead();
             CreateRottenBody();
             CreateRottenLegs();
+            CreateNightHead();
+            CreateNightBody();
+            CreateNightLegs();
         }
         static void CreateWywernHead()
         {
@@ -188,6 +191,33 @@ namespace Synergia.Common.ModSystems.RecipeSystem.ChangesRecipe.HorizonsChanges
             recipe.AddIngredient(ItemID.ShadowScale, 8);
             recipe.AddIngredient(ItemType<CorruptShard>(), 6);
             recipe.AddTile(TileID.Anvils);
+            recipe.Register();
+        }
+        static void CreateNightHead()
+        {
+            Recipe recipe = Recipe.Create(ItemType<NightMageHat>());
+            recipe.AddIngredient(ItemType<LightMageHat>(), 1);
+            recipe.AddIngredient(ItemType<CorruptShard>(), 4);
+            recipe.AddIngredient(ItemType<CaesiumBar>(), 12);
+            recipe.AddTile(TileType<CaesiumHeavyAnvilTile>());
+            recipe.Register();
+        }
+        static void CreateNightBody()
+        {
+            Recipe recipe = Recipe.Create(ItemType<NightMageCape>());
+            recipe.AddIngredient(ItemType<LightMageRobe>(), 1);
+            recipe.AddIngredient(ItemType<CorruptShard>(), 8);
+            recipe.AddIngredient(ItemType<CaesiumBar>(), 18);
+            recipe.AddTile(TileType<CaesiumHeavyAnvilTile>());
+            recipe.Register();
+        }
+        static void CreateNightLegs()
+        {
+            Recipe recipe = Recipe.Create(ItemType<NightMagePants>());
+            recipe.AddIngredient(ItemType<LightMagePants>(), 1);
+            recipe.AddIngredient(ItemType<CorruptShard>(), 6);
+            recipe.AddIngredient(ItemType<CaesiumBar>(), 14);
+            recipe.AddTile(TileType<CaesiumHeavyAnvilTile>());
             recipe.Register();
         }
     }

@@ -21,7 +21,8 @@ namespace Synergia.Common.GlobalNPCs.AI
 		public override bool AppliesToEntity(NPC npc, bool lateInstantiation) => npc.ModNPC is Emperor;
 		private Emperor modNPC;
 		private float[] ai = new float[4];
-		public Vector2 HandPosLeft {
+        internal static bool Disabled = false;
+        public Vector2 HandPosLeft {
 			get {
 				try {
 					var e = typeof(Emperor);
@@ -150,7 +151,8 @@ namespace Synergia.Common.GlobalNPCs.AI
 		public override void SetDefaults(NPC npc) => modNPC = npc.ModNPC as Emperor;
 		public override void Unload() => modNPC = null;
 		public override bool PreAI(NPC npc) {
-			modNPC = npc.ModNPC as Emperor;
+            if (Disabled) return true;
+            modNPC = npc.ModNPC as Emperor;
 			if(npc.target < 0 || npc.target == 255 || Main.player[npc.target].dead || !Main.player[npc.target].active || Main.player[npc.target].Distance(npc.Center) > 3000f) {
 				npc.TargetClosest();
 				if(npc.target < 0 || npc.target == 255 || Main.player[npc.target].dead || !Main.player[npc.target].active || Main.player[npc.target].Distance(npc.Center) > 3000f) {

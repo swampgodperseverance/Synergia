@@ -1,5 +1,4 @@
-﻿using ParticleLibrary.Utilities;
-using Synergia.Content.Buffs.Debuff;
+﻿using Synergia.Content.Buffs.Debuff;
 using Synergia.Helpers;
 using Terraria;
 using Terraria.ID;
@@ -17,12 +16,39 @@ namespace Synergia.Common.GlobalPlayer {
             equipBronzeSet = false;
             thunderSet = false;
         }
-        public override void PostUpdateRunSpeeds() {
-            if (Player.velocity.Length() <= 2f) return;
-            if (thunderSet) {
-                ParticleHelper.CreateParticle(Player.Center.ToNumerics(), new Color(250, 250, 0, 0));
+        public override void PostUpdateRunSpeeds()
+        {
+            if (Player.velocity.Length() <= 2f)
+                return;
+
+            if (thunderSet)
+            {
+                if (Main.rand.NextBool(2))
+                {
+                    Dust dust = Dust.NewDustDirect(
+                        Player.position,
+                        Player.width,
+                        Player.height,
+                        DustID.GoldFlame, 
+                        0f,
+                        0f,
+                        150,
+                        default,
+                        1.2f
+                    );
+
+                    dust.noGravity = true;
+
+                    Vector2 vel = Player.velocity * -0.3f;
+                    vel += new Vector2(Main.rand.NextFloat(-0.5f, 0.5f), -0.2f);
+
+                    dust.velocity = vel;
+
+                    dust.fadeIn = 0.1f;
+                }
             }
         }
+        
         public override void OnHitNPCWithItem(Item item, NPC target, NPC.HitInfo hit, int damageDone) {
             if (thunderSet && item.DamageType == DamageClass.Melee) {
                 SpawnBurst(target.Center, DustID.GemTopaz);

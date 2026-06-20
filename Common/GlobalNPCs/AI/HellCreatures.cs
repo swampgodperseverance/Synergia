@@ -1,4 +1,4 @@
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;
 using Terraria.ID;
@@ -19,21 +19,44 @@ namespace Synergia.Common.GlobalNPCs.AI
         private bool charging;
         bool dashing;
 
-        public override void SendExtraAI(NPC npc, BitWriter bitWriter, BinaryWriter binaryWriter) {
-            if(Main.netMode == 0) return;
+        private bool isPostPlantera;
+        private int extraDamage = 0;
+
+        public override void SendExtraAI(NPC npc, BitWriter bitWriter, BinaryWriter binaryWriter)
+        {
+            if (Main.netMode == 0) return;
             bitWriter.WriteBit(charging);
             bitWriter.WriteBit(dashing);
             binaryWriter.Write(dashCooldown);
             binaryWriter.Write(chargeTimer);
+            bitWriter.WriteBit(isPostPlantera);
         }
-        public override void ReceiveExtraAI(NPC npc, BitReader bitReader, BinaryReader binaryReader) {
-            if(Main.netMode == 0) return;
+
+        public override void ReceiveExtraAI(NPC npc, BitReader bitReader, BinaryReader binaryReader)
+        {
+            if (Main.netMode == 0) return;
             charging = bitReader.ReadBit();
             dashing = bitReader.ReadBit();
             dashCooldown = binaryReader.ReadInt32();
             chargeTimer = binaryReader.ReadInt32();
+            isPostPlantera = bitReader.ReadBit();
         }
+
         public override bool AppliesToEntity(NPC npc, bool lateInstatiation) => npc.type == NPCID.BoneSerpentHead || npc.type == NPCID.BoneSerpentBody || npc.type == NPCID.BoneSerpentTail;
+
+        public override void SetDefaults(NPC npc)
+        {
+            if (npc.type != NPCID.BoneSerpentHead) return;
+
+            isPostPlantera = NPC.downedPlantBoss;
+
+            if (isPostPlantera)
+            {
+                npc.lifeMax += 5000;
+                npc.life = npc.lifeMax;
+                extraDamage = 25;
+            }
+        }
 
         public override void AI(NPC npc)
         {
@@ -65,16 +88,13 @@ namespace Synergia.Common.GlobalNPCs.AI
                 npc.velocity += direction * (chargeTimer / 40f);
                 npc.velocity *= 0.9f;
                 chargeTimer--;
-
                 Lighting.AddLight(npc.Center, 1.2f, 0.4f, 0.05f);
 
                 if (chargeTimer <= 0)
                 {
                     charging = false;
                     dashing = true;
-
                     npc.velocity = npc.oldVelocity = direction * 22f;
-
                     dashCooldown = 220;
                 }
             }
@@ -86,13 +106,7 @@ namespace Synergia.Common.GlobalNPCs.AI
 
                 if (Main.rand.NextBool(2))
                 {
-                    Dust d = Dust.NewDustDirect(
-                        npc.position,
-                        npc.width,
-                        npc.height,
-                        DustID.Torch
-                    );
-
+                    Dust d = Dust.NewDustDirect(npc.position, npc.width, npc.height, DustID.Torch);
                     d.noGravity = true;
                     d.velocity *= 0.3f;
                     d.scale = 1.5f;
@@ -102,6 +116,24 @@ namespace Synergia.Common.GlobalNPCs.AI
                     dashing = false;
             }
         }
+        public override void ModifyHitPlayer(NPC npc, Player target, ref Player.HurtModifiers modifiers)
+        {
+            if (isPostPlantera)
+            {
+                modifiers.FinalDamage += extraDamage;
+            }
+        }
+
+        public override void OnHitPlayer(NPC npc, Player target, Player.HurtInfo info)
+        {
+            if (!isPostPlantera || !dashing) return;
+
+            if (Main.rand.NextBool(3))
+            {
+                dashing = false;
+                dashCooldown = 30;
+            }
+        }
 
         public override void PostDraw(NPC npc, SpriteBatch spriteBatch, Vector2 screenPos, Color drawColor)
         {
@@ -109,17 +141,14 @@ namespace Synergia.Common.GlobalNPCs.AI
             {
                 Texture2D texture = Terraria.GameContent.TextureAssets.Npc[npc.type].Value;
                 Vector2 origin = texture.Size() / 2f;
-
                 Color lavaColor = Color.Lerp(Color.OrangeRed, Color.Yellow, 0.5f) with { A = 0 };
-
                 lavaColor *= MathHelper.Clamp(((npc.type == NPCID.BoneSerpentHead ? npc : Main.npc[npc.realLife]).velocity.Length() - 5f) / 5f, 0f, 1f);
-
                 for (int i = 0; i < 2; i++) spriteBatch.Draw(texture, npc.Center - Vector2.UnitY * 4 - screenPos, npc.frame, lavaColor, npc.rotation, origin, npc.scale, SpriteEffects.None, 0f);
             }
         }
     }
 
-    
+
     public class DemonTeleport : GlobalNPC
     {
         public override bool InstancePerEntity => true;

@@ -95,7 +95,7 @@ namespace Synergia.Common.GlobalItems.Set
 				if (item.type == valhalla.Find<ModItem>("GreediestHead").Type)
 				{
 					player.endurance += 0.13f;
-					player.GetDamage(DamageClass.Throwing) += 0.25f;
+					player.GetDamage(DamageClass.Throwing) += 0.20f;
 				}
 				if (item.type == valhalla.Find<ModItem>("GreediestBody").Type)
 				{
@@ -113,12 +113,10 @@ namespace Synergia.Common.GlobalItems.Set
 				}
 				if (item.type == valhalla.Find<ModItem>("SniperHead").Type)
 				{
-					player.GetDamage(DamageClass.Ranged) += 0.06f;
 					player.GetCritChance(DamageClass.Generic) += 0.06f;
 				}
 				if (item.type == valhalla.Find<ModItem>("SniperLegs").Type)
 				{
-					player.GetDamage(DamageClass.Ranged) += 0.05f;
 					player.GetDamage(DamageClass.Melee) -= 0.11f;
 				}
                 if (item.type == valhalla.Find<ModItem>("JadeLegs").Type)
@@ -291,17 +289,18 @@ namespace Synergia.Common.GlobalItems.Set
                 }
                 if (item.type == bismuth.Find<ModItem>("WatersHelmet").Type)
                 {
-                    player.GetDamage(DamageClass.Magic) += 0.05f;
+                    player.GetDamage(DamageClass.Magic) += 0.10f;
                     player.manaRegenBonus += 8;
                 }
                 if (item.type == bismuth.Find<ModItem>("WatersBreastplate").Type)
                 {
                     player.GetModPlayer<WaterPlayer>().waterAccessoryEquipped = true;
-                    player.GetCritChance(DamageClass.Magic) += 10f;
+                    player.GetCritChance(DamageClass.Magic) += 15f;
                 }
                 if (item.type == bismuth.Find<ModItem>("WatersLeggings").Type)
                 {
-                    player.GetDamage(DamageClass.Magic) += 0.08f;
+                    player.GetDamage(DamageClass.Magic) += 0.10f;
+                    player.GetAttackSpeed(DamageClass.Magic) += 0.08f;
                     player.manaRegenBonus += 10;
                 }
                 if (item.type == bismuth.Find<ModItem>("BronzeMask").Type)

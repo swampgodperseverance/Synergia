@@ -6,10 +6,12 @@ using Synergia.Content.Projectiles.Hostile;
 
 namespace Synergia.Content.GlobalNPCs.AI
 {
+        
     public class CarnageAI : GlobalNPC
     {
         public override bool InstancePerEntity => true;
 
+        internal static bool Disabled = false;
         private bool spawnedAt95 = false;
         private bool spawnedAt85 = false;
         private bool spawnedAt75 = false;
@@ -33,6 +35,7 @@ namespace Synergia.Content.GlobalNPCs.AI
 
         public override void AI(NPC npc)
         {
+            if (Disabled) return;
             float hpPercent = 100f * npc.life / npc.lifeMax;
 
             if (hpPercent <= 95 && !spawnedAt95)

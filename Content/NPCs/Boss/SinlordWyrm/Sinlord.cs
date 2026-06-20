@@ -1,4 +1,4 @@
-using Synergia.Content.Items.Misc;
+﻿using Synergia.Content.Items.Misc;
 using Synergia.Content.Items.Placeable;
 using Synergia.Content.Items.Weapons.Cogworm;
 using Synergia.Content.Projectiles.Boss.SinlordWyrm;
@@ -807,7 +807,8 @@ namespace Synergia.Content.NPCs.Boss.SinlordWyrm
 			for(int i = 0; i < NPC.localAI.Length; i++) NPC.localAI[i] = reader.ReadSingle();
 		}
         public override void ModifyNPCLoot(NPCLoot npcLoot) {
-            npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<CogwormTrophy>(), 10));
+            npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<CogwormTrophy>(), 10)); 
+			npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<HellwormScale>(), 2));
             npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<Sinstone>(), 1, 38, 82));
 			npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<SinstoneMagma>(), 1, 13, 34));
             npcLoot.Add(ItemDropRule.Common(ItemID.GreaterHealingPotion, 1, 10, 18));

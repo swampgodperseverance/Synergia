@@ -1,4 +1,5 @@
 ﻿using System;
+using Synergia.Common.Rarities;
 using Synergia.Helpers;
 using Terraria;
 using Terraria.Audio;
@@ -38,7 +39,7 @@ namespace Synergia.Content.Items.Weapons.Ranged
             Item.autoReuse = true;
             Item.channel = true;
 
-            Item.rare = ItemRarityID.Lime;
+            Item.rare = ModContent.RarityType<CoreburnedRarity>();
             Item.value = Item.sellPrice(0, 10, 0, 0);
 
             Item.useAmmo = AmmoID.Dart;

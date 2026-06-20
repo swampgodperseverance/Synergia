@@ -6,7 +6,8 @@ namespace Synergia.Common
     public static class TimerSystem
     {
         private static List<DelayedAction> actions = new List<DelayedAction>();
-
+        public static float LogicDeltaTime { get; private set; } = 1f / TARGETFPS;
+        public const int TARGETFPS = 60;//from roa
         public static void Update()
         {
             for (int i = actions.Count - 1; i >= 0; i--)

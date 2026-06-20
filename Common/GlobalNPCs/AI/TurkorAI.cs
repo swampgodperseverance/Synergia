@@ -8,10 +8,12 @@ namespace Synergia.Common.GlobalNPCs
 {
     public class TurkorFeatherAI : GlobalNPC
     {
+        internal static bool Disabled = false;
         public override bool AppliesToEntity(NPC npc, bool lateInstatiation) => npc.type == ModContent.NPCType<Consolaria.Content.NPCs.Bosses.Turkor.TurkortheUngrateful>();
 
         public override void AI(NPC npc)
         {
+            if (Disabled) return;
             Player target = Main.player[npc.target];
             npc.localAI[0] += 1f;
             if (npc.localAI[1] > 0)

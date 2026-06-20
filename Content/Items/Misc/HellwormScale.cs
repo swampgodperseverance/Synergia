@@ -20,10 +20,10 @@ namespace Synergia.Content.Items.Misc
 
         public override void SetDefaults()
         {
-            Item.width = 28;
+            Item.width = 28;    
             Item.height = 28;
             Item.maxStack = 20;
-            Item.rare = ModContent.RarityType<LavaGradientRarity>();
+            Item.rare = ItemRarityID.Quest;
             Item.useAnimation = 20;
             Item.useTime = 20;
             Item.useStyle = ItemUseStyleID.HoldUp;

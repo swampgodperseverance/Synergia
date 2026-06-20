@@ -40,7 +40,7 @@ namespace Synergia.Content.Items.Armor.Summon
         public override void UpdateArmorSet(Player player)
         {
             player.setBonus = LocUtil.ItemTooltip(LocUtil.ARM, "GutsSetBonus");
-            player.GetDamage(DamageClass.Summon) += 0.10f;
+            player.GetDamage(DamageClass.Summon) += 0.18f;
 
             var modPlayer = player.GetModPlayer<GutsArmorPlayer>();
             if (player.dead) return;

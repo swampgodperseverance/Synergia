@@ -10,7 +10,7 @@ namespace Synergia.Content.Items.Accessories
 {
     public class MortalStones : ModItem
     {
-        public const int ArmorPenetration = 10;
+        public const int ArmorPenetration = 8; //That was the worst thing that ive ever do lol
 
         public override void SetStaticDefaults()
         {
@@ -22,7 +22,7 @@ namespace Synergia.Content.Items.Accessories
             Item.width = 30;
             Item.height = 30;
             Item.accessory = true;
-            Item.rare = ItemRarityID.Red;
+            Item.rare = ItemRarityID.Purple;
             Item.value = Item.sellPrice(gold: 4);
         }
 

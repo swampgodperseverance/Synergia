@@ -1,7 +1,7 @@
 Dialog: {
-	FrostDwarf: Once upon a time, there were more of us in this village. A whole kind of dwarves, but after the snowman attack, we were doomed, one of us wanders around the world, the other is in the central city, I sit here and live life alone
+	FrostDwarf: Once upon a time, there were more of us in this village. A whole kind of dwarves, but after the snowmen attack, we were doomed, one of us wanders around the world, the other is in the central city, I sit here and live life alone
 	FrostDwarf2: I wonder how the {0} lives there, in warm, pleasant conditions
-	CityDwarf: Have you heard that there is a ruined village with a lonely dwarf in the ice biome? This was a long story
+	CityDwarf: Have you heard that there is a ruined village with a lonely dwarf in the Tundra? That was a long story
 	CityDwarf2: I wonder how the {0} lives there, in cold, unpleasant conditions
 }
 
@@ -10,7 +10,7 @@ Cogworm: {
 
 	BossChecklistIntegration: {
 		EntryName: Sinlord Wyrm
-		SpawnInfo: Broke the Hellheart Monolith in the Beast Cva
+		SpawnInfo: Broke the Hellheart Monolith in the Beast Cave
 	}
 }
 
@@ -73,12 +73,12 @@ HellDwarf: {
 		SinlordDialog: I cant lie, im afraid of you. You and I are kinf of similar, but you destroy those who destroyed others. Are you better than them?
 		FirstMeetDialog: I almost forgot what a human voice sounds like. This city died slowly ash by ash, soul by soul. Funny that I thought if I ever saw someone again, I’d feel relief. Turns out, it’s something closer to unease.
 		SerorkDialog: They tell in a one old druid tale... There's a place so dark that you can't see the end. Where stories lie and all hopes and dreams are forgotten. Where the lights betray him and he loses himself. Everyone deserves a peaceful death.
-		MolkDialog: Tell me please, are you a fucking idiot? Shiiiiiiiiiiit That's why I'm calling you. Fuuuuuuuuuuuuuuuuuck. FUUUUUCK. Donkeyfuckers.
+		MolkDialog: Tell me please, are you a fucking idiot? S
 	}
 
 	TownNPCMood: {
 		Content: I am content.
-		NoHome: I hate not having a home.
+		NoHome: I hate not having a home. aeris not have a fucking home sad shit
 		FarFromHome: I am too far from home.
 		LoveSpace: I love having so much space.
 		DislikeCrowded: I dislike how crowded I am.
@@ -93,27 +93,27 @@ HellDwarf: {
 ImperianCommander: {
 	Class: {
 		Name: {
-			Class0: Warior
-			Class1: Ranged
+			Class0: Warrior
+			Class1: Ranger
 			Class2: Mage
-			Class3: Summon
-			Class4: Throwing
+			Class3: Summoner
+			Class4: Ninja
 			Class5: Druid
 		}
 
 		Display: {
-			Class0: Warior has big arrmor
-			Class1: Ranged has big arrmor
-			Class2: Mage has big arrmor
-			Class3: Summon has big arrmor
-			Class4: Throwing has big arrmor
-			Class5: Druid has big arrmor
+			Class0: Warior has good armor, but often has to approach danger.
+			Class1: Ranger is mid. Fine damage, not bad armor but speed could be better.
+			Class2: Mage has good damage, but depends on mana.
+			Class3: Summoner has no need in aiming and can support team, but has weak defense.
+			Class4: Ninja has good speed and dodges, but needs to be accurate.
+			Class5: Druid has good buffs, can transforming, but has weak defense.
 		}
 	}
 
 	Say: {
-		PreEp: Hey, recruit. I suppose you already know you can get your weapons here, so  what’ll it be?
-		PostEp: good choice, but now go see what you can do
+		PreEp: Hey, recruit. I suppose you already know you can get your weapons here, so what’ll it be?
+		PostEp: gGood choice but now go see what you can do
 	}
 
 	Emblem: You need {0}
@@ -132,7 +132,7 @@ Sinlord: {
 
 	BossChecklistIntegration: {
 		EntryName: Sinlord Wyrm
-		SpawnInfo: After completing the final quest with the Dwarf in Hell
+		SpawnInfo: Disturb the Hellheart Monolith
 	}
 }
 
@@ -151,7 +151,7 @@ MossWitch: {
 
 	BossChecklistIntegration: {
 		EntryName: Moss Witch
-		SpawnInfo: Spawn in swamp struct
+		SpawnInfo: Spawns in swamp structure
 	}
 }
 
@@ -166,8 +166,8 @@ Cruor: {
 		EntryName: Cruor
 		SpawnInfo:
 			'''
-			Mobs in the dungeon may drop “Inspired Crystals” 
-			And when three of them gather around the player, they are summoned
+			Mobs in the dungeon may drop “Soulful Crystals” 
+			Collect three of them
 			'''
 	}
 }

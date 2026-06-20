@@ -12,7 +12,8 @@ namespace Synergia.Common.GlobalNPCs.AI
 		internal static bool Disabled = false;
 		public override bool AppliesToEntity(NPC npc, bool lateInstantiation) => npc.type == NPCID.CultistBoss;
 		public override void SetDefaults(NPC npc)  {
-			npc.lifeMax = (int)(npc.lifeMax * 1.25f);
+            if (Disabled) return;
+            npc.lifeMax = (int)(npc.lifeMax * 1.25f);
 			npc.damage = (int)(npc.damage * 1.1f);
 			npc.defDefense += 10;
 		}

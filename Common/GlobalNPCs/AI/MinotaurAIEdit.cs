@@ -7,11 +7,13 @@ namespace Synergia.Content.Compat
 {
     public class MinotaurAI : GlobalProjectile
     {
+        internal static bool Disabled = false;
         public override bool AppliesToEntity(Projectile projectile, bool lateInstatiation) => ModLoader.TryGetMod("Bismuth", out Mod bismuth) && projectile.type == bismuth.Find<ModProjectile>("MinosBlastCallP").Type;
         public override void OnSpawn(Projectile projectile, IEntitySource source)
         {
+            if (Disabled) return;
 
-                    Vector2 pos = projectile.Center;
+            Vector2 pos = projectile.Center;
                     Vector2 vel = projectile.velocity;
 
                     projectile.Kill();
