@@ -147,10 +147,10 @@ namespace Synergia.Core.PriceSystem
         {
             if (price == null) return "";
             string text = "";
-            if (price.Platinum > 0) { text = text + price.Platinum + " " + Lang.inter[18].Value + " "; }
-            if (price.Gold > 0) { text = text + price.Gold + " " + Lang.inter[17].Value + " "; }
-            if (price.Silver > 0) { text = text + price.Silver + " " + Lang.inter[16].Value + " "; }
-            if (price.Copper > 0) { text = text + price.Copper + " " + Lang.inter[15].Value + " "; }
+            if (price.Platinum > 0) { text = text + price.Platinum + " " + Lang.inter[15].Value + " "; }
+            if (price.Gold > 0) { text = text + price.Gold + " " + Lang.inter[16].Value + " "; }
+            if (price.Silver > 0) { text = text + price.Silver + " " + Lang.inter[17].Value + " "; }
+            if (price.Copper > 0) { text = text + price.Copper + " " + Lang.inter[18].Value + " "; }
             return text;
         }
 
@@ -274,8 +274,6 @@ namespace Synergia.Core.PriceSystem
             }
 
             float mult = DynamicPriceManager.Instance.GetMultiplier(item.type);
-            int originalBaseValue = DynamicPriceManager.Instance.GetOriginalItemValue(item.type);
-            int currentValue = (int)(originalBaseValue * mult);
             int discountPercent = (int)((1f - mult) * 100);
 
             if (mult >= 0.99f)
