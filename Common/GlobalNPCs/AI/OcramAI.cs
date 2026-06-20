@@ -7,6 +7,7 @@ using Microsoft.Xna.Framework;
 using System;
 using System.IO;
 using System.Reflection;
+using Synergia.Content.Projectiles.Boss.OcramBuff
 using Consolaria.Content.NPCs.Bosses.Ocram;
 
 namespace Synergia.Common.GlobalNPCs.AI
@@ -109,6 +110,7 @@ namespace Synergia.Common.GlobalNPCs.AI
 					}
 					npc.velocity += shootDir * 0.003f;
 					if(++npc.ai[2] > 90f) {
+						if(Main.netMode != 1) for(int i = 0; i < 4; i++) Projectile.NewProjectile(npc.GetSource_FromAI(), npc.Center, Main.rand.NextVector2Circular(4f, 4f), ModContent.ProjectileType<OcramBomb>(), 32, 1f, Main.myPlayer, npc.target + 1);
 						if(++npc.ai[3] > 3f) {
 							npc.ai[1]++;
 							npc.ai[3] = 0f;
@@ -122,8 +124,7 @@ namespace Synergia.Common.GlobalNPCs.AI
 				break;
 				case 3:
 					if(npc.ai[2] > 0f) {
-						//Ocram knife attack? Idk what the projectile for it is, will finish this later
-						//if(Main.netMode != 1 && npc.ai[2] % 20f == 0) Projectile.NewProjectile(npc.GetSource_FromAI(), npc.Center, Vector2.Normalize(shootDir), o.Mod.Find<ModProjectile>("OcramScythe").Type, 32, 1f, Main.myPlayer);
+						if(Main.netMode != 1 && npc.ai[2] % 20f == 0) Projectile.NewProjectile(npc.GetSource_FromAI(), npc.Center, Vector2.Zero, ModContent.ProjectileType<OcramKnife>(), 32, 1f, Main.myPlayer, npc.target + 1);
 						targetRot = npc.velocity.ToRotation() - MathHelper.PiOver2;
 						targetPos -= Vector2.Normalize(targetPos - npc.Center).RotatedBy(npc.ai[3]) * 320f;
 						npc.velocity += (targetPos - npc.Center) * 0.01f;
@@ -134,7 +135,7 @@ namespace Synergia.Common.GlobalNPCs.AI
 						npc.velocity += shootDir * 0.003f;
 					}
 					if(++npc.ai[2] > 240f) {
-						npc.ai[1] = 0f;
+						npc.ai[1]++;
 						npc.ai[2] = 0f;
 						npc.ai[3] = 0f;
 						npc.velocity *= 0.5f;
@@ -142,6 +143,29 @@ namespace Synergia.Common.GlobalNPCs.AI
 						trail = false;
 					}
 					npc.velocity *= 0.9f;
+				break;
+				case 4:
+					if(npc.ai[2] > 90f) {
+						npc.velocity += (targetPos - Vector2.UnitY * 420f - npc.Center) * 0.018f - Vector2.UnitY.RotatedBy(npc.rotation) * 0.1f;
+						turnSpeed = 0.05f;
+						if(npc.ai[2] % 12 == 0f && Main.netMode != 1) Projectile.NewProjectile(npc.GetSource_FromAI(), npc.Center - npc.rotation.ToRotationVector2() * npc.width / 3f * (npc.ai[2] % 24 == 0 ? -1 : 1), (npc.rotation + MathHelper.PiOver2 * 1.2f * (npc.ai[2] % 24 == 0 ? -1 : 1) + MathHelper.PiOver2).ToRotationVector2() * 2f, ModContent.ProjectileType<OcramSkull>(), 30, 4f, Main.myPlayer);
+					}
+					else {
+						if(npc.ai[2] == 90f) try {
+							o.GetType().GetMethod("AddGlow", BindingFlags.NonPublic | BindingFlags.Instance).Invoke(o, new object[] {20f, 0.95f, Color.BlueViolet});
+						}
+						catch {
+						}
+						npc.velocity += (targetPos - Vector2.UnitY * 320f - npc.Center) * 0.018f * npc.ai[2] / 90f;
+						turnSpeed *= npc.ai[2] / 45f;
+					}
+					if(++npc.ai[2] > 120f) {
+						npc.ai[1] = 0f;
+						npc.ai[2] = 0f;
+						npc.netUpdate = true;
+						npc.TargetClosest();
+					}
+					npc.velocity *= 0.92f;
 				break;
 			}
 			if(npc.ai[0] == 0f) switch(npc.ai[1]) {
