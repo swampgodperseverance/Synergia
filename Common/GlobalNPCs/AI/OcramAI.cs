@@ -7,6 +7,7 @@ using Microsoft.Xna.Framework;
 using System;
 using System.IO;
 using System.Reflection;
+using Synergia.Content.Projectiles.Bosses.OcramBuff;
 using Consolaria.Content.NPCs.Bosses.Ocram;
 
 namespace Synergia.Common.GlobalNPCs.AI
@@ -119,8 +120,7 @@ namespace Synergia.Common.GlobalNPCs.AI
 				break;
 				case 3:
 					if(npc.ai[2] > 0f) {
-						//Ocram knife attack? Idk what the projectile for it is, will finish this later
-						//if(Main.netMode != 1 && npc.ai[2] % 20f == 0) Projectile.NewProjectile(npc.GetSource_FromAI(), npc.Center, Vector2.Normalize(shootDir), o.Mod.Find<ModProjectile>("OcramScythe").Type, 32, 1f, Main.myPlayer);
+						if(Main.netMode != 1 && npc.ai[2] % 20f == 0) Projectile.NewProjectile(npc.GetSource_FromAI(), npc.Center, Vector2.Zero, ModContent.ProjectileType<OcramKnife>(), 32, 1f, Main.myPlayer, npc.target + 1);
 						targetRot = npc.velocity.ToRotation() - MathHelper.PiOver2;
 						targetPos -= Vector2.Normalize(targetPos - npc.Center).RotatedBy(npc.ai[3]) * 320f;
 						npc.velocity += (targetPos - npc.Center) * 0.01f;
