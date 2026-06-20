@@ -31,6 +31,7 @@ namespace Synergia.Reassures {
         public void Load(Mod mod) {
             MusicLoader.AddMusic(mod, "Assets/Sounds/PeacefulTownV2");
             MusicLoader.AddMusic(mod, "Assets/Sounds/InfernoFrontierSoundtrack");
+            MusicLoader.AddMusic(mod, "Assets/Sounds/Netherworld");
         }
         public void Unload() { }
     }
