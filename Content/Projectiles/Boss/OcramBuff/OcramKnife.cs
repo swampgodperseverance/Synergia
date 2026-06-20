@@ -51,7 +51,7 @@ namespace Synergia.Content.Projectiles.Boss.OcramBuff
 
         public override void OnSpawn(IEntitySource source)
         {
-            Player player = Main.player[Projectile.owner];
+            Player player = Main.player[(int)Projectile.ai[0] - 1];
             if (player != null && player.active)
             {
                 Vector2 offset = Main.rand.NextVector2Unit() * Main.rand.NextFloat(100f, 170f);
@@ -97,7 +97,7 @@ namespace Synergia.Content.Projectiles.Boss.OcramBuff
         public override void AI()
         {
             spawnTimer++;
-            Player player = Main.player[Projectile.owner];
+            Player player = Main.player[(int)Projectile.ai[0] - 1];
 
             if (player == null || !player.active)
             {
