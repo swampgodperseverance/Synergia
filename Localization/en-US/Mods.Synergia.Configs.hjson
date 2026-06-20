@@ -29,53 +29,53 @@ Config: {
 
 	SynergiaConfig: {
 		NewRecipe: New Recipes
-		NewRecipeTooltip: "Enables more than 600 recipe tweaks."
+		NewRecipeTooltip: Enables more than 600 recipe tweaks.
 		PapuanWizardHardAIEnabled: Papuan Wizard changed AI
-		PapuanWizardHardAIEnabledTooltip: "Enables Papuan Wizard tweaks."
+		PapuanWizardHardAIEnabledTooltip: Enables Papuan Wizard tweaks.
 		KingSlimeAI: Papuan King Slime AI
-		KingSlimeAITooltip: "Enables King Slime rework."
+		KingSlimeAITooltip: Enables King Slime rework.
 		BrainOfCthulhuAI: Brain of Cthulhu changed AI
-		BrainOfCthulhuAITooltip: "Enables Brain of Cthulhu tweaks."
+		BrainOfCthulhuAITooltip: Enables Brain of Cthulhu tweaks.
 		WallOfFleshAI: Wall of Flesh AI
-		WallOfFleshAITooltip: "Enables Wall of Flesh tweaks."
+		WallOfFleshAITooltip: Enables Wall of Flesh tweaks.
 		TwinsAI: Twins AI
-		TwinsAITooltip: "Enables Twins rework."
+		TwinsAITooltip: Enables Twins rework.
 		DestroyerAI: Destroyer AI
-		DestroyerAITooltip: "Enables Destroyer rework."
+		DestroyerAITooltip: Enables Destroyer rework.
 		SkeletronPrimeAI: Skeletron Prime AI
-		SkeletronPrimeAITooltip: "Enables Skeletron Prime tweaks."
+		SkeletronPrimeAITooltip: Enables Skeletron Prime tweaks.
 		PlanteraAI: Plantera AI
-		PlanteraAITooltip: "Enables Plantera tweaks."
+		PlanteraAITooltip: Enables Plantera tweaks.
 		GolemAI: Golem AI
-		GolemAITooltip: "Enables Golem tweaks."
+		GolemAITooltip: Enables Golem tweaks.
 		CultistAI: Cultist AI
-		CultistAITooltip: "Enables Cultist Lunatic rework."
+		CultistAITooltip: Enables Cultist Lunatic rework.
 		OcramAI: Ocram AI
-		OcramAITooltip: "Enables Ocram rework."
+		OcramAITooltip: Enables Ocram rework.
 		TurkorAI: Turkor AI
-		TurkorAITooltip: "Enables Turkor tweaks."
+		TurkorAITooltip: Enables Turkor tweaks.
 		ColdFatherAI: Cold Father AI
-		ColdFatherAITooltip: "Enables Cold Father tweaks."
+		ColdFatherAITooltip: Enables Cold Father tweaks.
 		JadeEmperorAI: Jade Emperor AI
-		JadeEmperorAITooltip: "Enables Jade Emperor rework."
+		JadeEmperorAITooltip: Enables Jade Emperor rework.
 		NecromancerAI: Necromancer AI
-		NecromancerAITooltip: "Enables Necromancer rework."
+		NecromancerAITooltip: Enables Necromancer rework.
 		MinotaurAI: Minotaur AI
-		MinotaurAITooltip: "Enables Minotaur tweaks."
+		MinotaurAITooltip: Enables Minotaur tweaks.
 		LothorAI: Lothor AI
-		LothorAITooltip: "Enables Lothor the Wild tweaks."
+		LothorAITooltip: Enables Lothor the Wild tweaks.
 		DesertBeakAI: Desert Beak AI
-		DesertBeakAITooltip: "Enables Desert Beak tweaks."
+		DesertBeakAITooltip: Enables Desert Beak tweaks.
 		ColossalCarnageAI: Colossal Carnage AI
-		ColossalCarnageAITooltip: "Enables Colossal Carnage tweaks."
+		ColossalCarnageAITooltip: Enables Colossal Carnage tweaks.
 		DynamicalPrices: Dynamical Prices
-		DynamicalPricesTooltip: "Enables dynamical prices in NPCs shops"
+		DynamicalPricesTooltip: Enables dynamical prices in NPCs shops
 		StaminaHooks: Stamina Hooks
-		StaminaHooksTooltip: "Enables all hooks depending on stamina"
+		StaminaHooksTooltip: Enables all hooks depending on stamina
 		HPScaling: Npc Hp Scaling
-		HPScalingTooltip: "Enables 100+ SetDefaults changes to NPCs"
+		HPScalingTooltip: Enables 100+ SetDefaults changes to NPCs
 		WeaponsScaling: Weapons Scaling
-		WeaponsScalingTooltip: "Enables 250+ Balance changes to the weapons"
+		WeaponsScalingTooltip: Enables 250+ Balance changes to the weapons
 	}
 }
 

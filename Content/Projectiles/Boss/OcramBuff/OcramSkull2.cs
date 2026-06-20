@@ -27,7 +27,7 @@ namespace Synergia.Content.Projectiles.Boss.OcramBuff {
             Projectile.height = 22;
             Projectile.friendly = false;
             Projectile.hostile = true;
-            Projectile.timeLeft = 3300;
+            Projectile.timeLeft = 600;
             Projectile.penetrate = 1;
             Projectile.tileCollide = false;
             Projectile.ignoreWater = true;

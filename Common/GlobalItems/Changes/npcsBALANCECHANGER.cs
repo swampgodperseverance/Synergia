@@ -280,9 +280,14 @@ namespace Synergia.Common.GlobalNPCs.Changes
                 },
                 [ModContent.NPCType<Ocram>()] = npc =>
                 {
-                    npc.lifeMax += 35000;
-                    npc.damage += 4;
+                    npc.lifeMax += 40000;
+                    npc.damage += 6;
                     npc.defense += 3;
+                },
+                [ModContent.NPCType<ServantofOcram>()] = npc =>
+                {
+                    npc.lifeMax += 400;
+                    npc.defense += 5;
                 },
                 [lothorType] = npc =>
                 {
