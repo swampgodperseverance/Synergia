@@ -3,7 +3,11 @@ using ReLogic.Content;
 using Synergia.Helpers;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using Terraria;
+using Terraria.GameContent;
+using Terraria.ID;
+using Terraria.UI.Chat;
 using Terraria.Utilities.Terraria.Utilities;
 
 namespace Synergia.Menu
@@ -32,9 +36,102 @@ namespace Synergia.Menu
                 Alpha = 1f;
             }
         }
+        public class InfernoBat
+        {
+            private const float GRAVITY_STRENGTH = 0.2f;
+            private const float FLY_STRENGTH = 4f;
+            private const int FLY_COOLDOWN = 45;
+            private const float SPEED_X = 3f;
+            private const int SPRITE_WIDTH = 52;
+            private const int SPRITE_HEIGHT = 48;
+            private const float TEXT_SCALE = 0.8f;
+
+            public Vector2 Position;
+            public int Direction;
+            public string DevName;
+            public string DevRole;
+            public bool IsDead = false;
+            public Color RoleColor;
+
+            private Vector2 velocity;
+            private int flyCooldown;
+
+            public InfernoBat(Vector2 position, int direction, string devName, string devRole, Color roleColor)
+            {
+                Position = position - new Vector2(SPRITE_WIDTH * Direction);
+                Direction = direction;
+                DevName = devName;
+                DevRole = devRole;
+                velocity = new Vector2(SPEED_X * direction, 0);
+                flyCooldown = FLY_COOLDOWN;
+                RoleColor = roleColor;
+            }
+
+            public void Update()
+            {
+                if (IsDead)
+                    return;
+
+                velocity.Y += GRAVITY_STRENGTH;
+                flyCooldown--;
+                if (Position.Y / Main.screenHeight > 0.5f)
+                    flyCooldown--;
+                if (flyCooldown <= 0)
+                {
+                    flyCooldown = FLY_COOLDOWN + Main.rand.Next(-15, 10);
+                    velocity.Y = -FLY_STRENGTH;
+                }
+                Position += velocity;
+                if ((Direction == 1 && Position.X >= Main.screenWidth + 50) || (Direction == -1 && Position.X <= -50))
+                    IsDead = true;
+            }
+
+            public void Draw(SpriteBatch spriteBatch)
+            {
+                Texture2D hellbat = TextureAssets.Npc[NPCID.Lavabat].Value;
+                int frameCounter = (int)(Main.GlobalTimeWrappedHourly * 12) % 4;
+                Rectangle frame = new Rectangle(0, SPRITE_HEIGHT * frameCounter, SPRITE_WIDTH, SPRITE_HEIGHT);
+                Vector2 origin = frame.Size() / 2f;
+                spriteBatch.Draw(
+                    hellbat,
+                    Position,
+                    frame,
+                    Color.White,
+                    0f,
+                    origin,
+                    1f,
+                    Direction == -1 ? SpriteEffects.None : SpriteEffects.FlipHorizontally,
+                    0f
+                );
+                Vector2 textScale = new Vector2(TEXT_SCALE);
+                Vector2 textSize = ChatManager.GetStringSize(FontAssets.MouseText.Value, DevName, textScale);
+                ChatManager.DrawColorCodedString(
+                    spriteBatch,
+                    FontAssets.MouseText.Value,
+                    DevName,
+                    Position + new Vector2(-6f, -32f),
+                    Color.White,
+                    0f,
+                    textSize / 2f,
+                    textScale
+                );
+                textSize = ChatManager.GetStringSize(FontAssets.MouseText.Value, DevRole, textScale);
+                ChatManager.DrawColorCodedString(
+                    spriteBatch,
+                    FontAssets.MouseText.Value,
+                    DevRole,
+                    Position + new Vector2(-6f, 32f),
+                    RoleColor,
+                    0f,
+                    textSize / 2f,
+                    textScale
+                );
+            }
+        }
 
         private static readonly List<InfernoCinder> cinders = new();
         private static readonly List<InfernoCinder> meltDusts = new();
+        private static readonly List<InfernoBat> bats = new();
         private static Asset<Texture2D> backgroundTexture;
         private static Asset<Texture2D> crystalTexture;
         private static Asset<Texture2D> rayTexture;
@@ -44,6 +141,40 @@ namespace Synergia.Menu
         private static Asset<Texture2D> logoGlowTexture;
         private static Asset<Texture2D> logoCrossTexture;
         private static float CurrentMusicVolume = 1f;
+
+        private static readonly List<string> devNames = new()
+        {
+            "Swampgod",
+            "Cleo",
+            "Aeris",
+            "Bimba",
+            "Quan",
+            "Unowen",
+            "Mumb",
+            "Gojisturba",
+            "Sky"
+        };
+        private static readonly List<string> devRoles = new()
+        {
+            "Team Leader, Coder",
+            "Artist",
+            "Coder",
+            "Coder",
+            "Artist",
+            "Coder",
+            "Musician",
+            "Musician",
+            "SFX Designer"
+        };
+        private static readonly Dictionary<string, Color> roleColors = new()
+        {
+            { "Team Leader, Coder", Color.Gold },
+            { "Artist", Color.DarkSeaGreen },
+            { "Coder", Color.IndianRed },
+            { "Musician", Color.MediumPurple },
+            { "SFX Designer", Color.Cyan },
+        };
+        private List<string> currentNames = new();
 
         private float raysTimer = 30f;
         private float vignettePulse = 0f;
@@ -76,6 +207,7 @@ namespace Synergia.Menu
             logoTexture = ModContent.Request<Texture2D>("Synergia/Menu/Logo");
             logoGlowTexture = ModContent.Request<Texture2D>("Synergia/Menu/Logo_Glow");
             logoCrossTexture = ModContent.Request<Texture2D>("Synergia/Menu/Logo_Cross");
+            SetCurrentDevNames();
             On_Main.UpdateAudio += Main_UpdateAudio;
         }
 
@@ -83,7 +215,14 @@ namespace Synergia.Menu
         {
             cinders.Clear();
             meltDusts.Clear();
+            bats.Clear();
+            currentNames.Clear();
             On_Main.UpdateAudio -= Main_UpdateAudio;
+        }
+
+        private void SetCurrentDevNames()
+        {
+            currentNames = new List<string>(devNames).OrderBy(x => Main.rand.Next()).ToList();
         }
 
         private static float SmoothApproach(float current, float target, float speed)
@@ -111,6 +250,7 @@ namespace Synergia.Menu
             DrawMeltDusts(spriteBatch, tex);
             DrawAnimatedLogo(spriteBatch, logoDrawCenter);
             DrawVignette(spriteBatch);
+            DrawBats(spriteBatch);
 
             drawColor = Color.White;
             Main.time = 5000;
@@ -124,6 +264,10 @@ namespace Synergia.Menu
                 CurrentMusicVolume = 1f - 0.6f * vignettePower;
             else
                 CurrentMusicVolume = 1f;
+
+            foreach (InfernoBat bat in bats)
+                bat.Update();
+            bats.RemoveAll(bat => bat.IsDead);
         }
         private void Main_UpdateAudio(On_Main.orig_UpdateAudio orig, Main self)
         {
@@ -196,6 +340,7 @@ namespace Synergia.Menu
                 isLogoClicked = true;
                 clickPulseTimer = 0f;
                 Main.mouseLeftRelease = false;
+                AddBat();
             }
 
             if (isLogoClicked)
@@ -342,6 +487,25 @@ namespace Synergia.Menu
             }
         }
 
+        private void AddBat()
+        {
+            int direction = Main.rand.Next(0, 2);
+            Vector2 position = new Vector2(Main.screenWidth * direction, Main.screenHeight * Main.rand.NextFloat(0.4f, 0.6f));
+            string devName = currentNames[0];
+            string devRole = devRoles[devNames.IndexOf(devName)];
+            Color roleColor = roleColors[devRole];
+            InfernoBat bat = new InfernoBat(position, direction * -2 + 1, devName, devRole, roleColor);
+            bats.Add(bat);
+
+            currentNames.RemoveAt(0);
+            if (currentNames.Count == 0)
+                SetCurrentDevNames();
+        }
+        private void DrawBats(SpriteBatch spriteBatch)
+        {
+            foreach (InfernoBat bat in bats)
+                bat.Draw(spriteBatch);
+        }
         private void DrawCinders(SpriteBatch spriteBatch, Texture2D tex)
         {
             for (int i = 0; i < 2; i++)
