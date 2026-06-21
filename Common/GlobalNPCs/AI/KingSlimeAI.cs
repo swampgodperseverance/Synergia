@@ -58,13 +58,20 @@ namespace Synergia.Common.GlobalNPCs.AI
 			npc.defense = 5;
 			if(npc.target < 0 || npc.target == 255 || Main.player[npc.target].dead || !Main.player[npc.target].active) {
 				npc.TargetClosest();
-				if((npc.target == 255 || Main.player[npc.target].dead || !Main.player[npc.target].active) && !npc.despawnEncouraged) npc.EncourageDespawn(30);
+				if((npc.target == 255 || Main.player[npc.target].dead || !Main.player[npc.target].active) && !npc.despawnEncouraged) {
+					npc.timeLeft = 10;
+					npc.despawnEncouraged = true;
+				}
 			}
 			Vector2 targetPos = Main.player[npc.target].Center;
 			Vector2 shootDir = Vector2.Normalize(targetPos - npc.Center);
 			if(npc.velocity.Length() > 1f) npc.direction = Math.Sign(npc.velocity.X);
 			else if(shootDir.X != 0) npc.direction = Math.Sign(shootDir.X);
 			npc.scale = MathHelper.Lerp(0.75f, 1.25f, (float)npc.life / (float)npc.lifeMax);
+			if(npc.timeLeft < 10) {
+				npc.scale *= npc.timeLeft * 0.1f;
+				return false;
+			}
 			bool shouldTeleport = Vector2.Distance(npc.Bottom, targetPos) > 640f || npc.ai[2] > 600f;
 			if(Math.Abs(npc.velocity.X) > 1f || shouldTeleport) npc.ai[3] = 0f;
 			else if(npc.ai[0] == 0f) npc.ai[3]++;
@@ -284,7 +291,7 @@ namespace Synergia.Common.GlobalNPCs.AI
 				break;
 			}
 			int slimeCount = 1;
-			if(npc.life > npc.lifeMax / 2 && npc.justHit && Main.rand.NextBool(slimeCount) && slimeCount < 8 && Main.netMode != 1) {
+			if(npc.life > npc.lifeMax / 2 && npc.justHit && Main.rand.NextBool(slimeCount) && slimeCount < (Main.getGoodWorld ? 8 : 3) && Main.netMode != 1) {
 				int s = NPC.NewNPC(npc.GetSource_FromAI(), (int)npc.position.X + Main.rand.Next(npc.width), (int)npc.position.Y + Main.rand.Next(npc.height), Main.getGoodWorld || (Main.rand.NextBool(slimeCount / 2 + 2) && Main.expertMode) ? 535 : 1);
 				Main.npc[s].velocity = (Main.rand.NextFloat(MathHelper.Pi) - MathHelper.PiOver2).ToRotationVector2();
 				if(Main.netMode == 2 && s < 200) NetMessage.SendData(23, -1, -1, null, s);
