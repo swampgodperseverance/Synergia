@@ -43,7 +43,11 @@ namespace Synergia.Common.GlobalNPCs.Changes
                 },
                 [NPCID.KingSlime] = npc =>
                 {
-                    npc.lifeMax += 200;
+                    npc.lifeMax += 0;
+                },
+                [NPCID.SlimeSpiked] = npc =>
+                {
+                    npc.lifeMax -= 30;
                 },
                 [NPCID.CultistBoss] = npc =>
                 {

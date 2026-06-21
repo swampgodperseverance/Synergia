@@ -17,7 +17,7 @@ namespace Synergia.Content.Items.Weapons.Throwing
             Item.height = 32;
             Item.useTime = 25;
             Item.useAnimation = 25;
-            Item.useStyle = ItemUseStyleID.Shoot;
+            Item.useStyle = ItemUseStyleID.Swing;
             Item.noUseGraphic = true;
             Item.noMelee = true;
             Item.knockBack = 6f;

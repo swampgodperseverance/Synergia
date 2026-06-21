@@ -361,5 +361,5 @@ Weapons: {
 		'''
 	WoodenBoomerangInfo: Shoots 2 boomerangs instead of 1.
 	TrimarangInfo: Shoots 2 high-velocity boomerangs instead of 1.
-	JadePickaxe: Can mine: Adamantite, Titanium, and Troxinium
+	JadePickaxe: Can mine Adamantite, Titanium, and Troxinium
 }
