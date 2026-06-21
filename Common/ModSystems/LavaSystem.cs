@@ -10,11 +10,8 @@ namespace Synergia.Common.ModSystems {
     {
         public override void PostUpdateWorld()
         {
-            foreach (Player player in Main.player)
-            {
-                if (!player.active || player.dead || !player.ZoneUnderworldHeight)
-                    continue;
-
+            foreach (Player player in Main.player) {
+                if (!player.active || player.dead || !player.ZoneUnderworldHeight) { continue; }
                 TrySpawn(player);
             }
         }

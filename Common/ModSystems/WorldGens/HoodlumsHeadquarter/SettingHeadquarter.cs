@@ -216,10 +216,6 @@ namespace Synergia.Common.ModSystems.WorldGens.HoodlumsHeadquarter {
             WorldGen.PlaceTile(HLOX - 36, HLTY - 3, TileID.WaterCandle, style: 0);
 
         }
-
-        public override void PostUpdateWorld() {
-            Main.LocalPlayer.GetModPlayer<BismuthPlayer>().IsBoSRead = true;
-        }
         static void SwampChest(Item[] chestInventory, int chestIndex) {
             int[] items = [ItemType<BlastProtectionVest>(), ItemType<NecroBuckler>()];
             WorldHelper.LootInContainers(chestInventory, ref chestIndex, ItemType<UnchargedElessar>());
