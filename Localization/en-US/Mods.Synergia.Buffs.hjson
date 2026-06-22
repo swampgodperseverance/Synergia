@@ -72,6 +72,6 @@ ProdigyBuff: {
 }
 
 HotEggBuff: {
-	DisplayName: Hot Egg Buff
+	DisplayName: Hot Egg 
 	Description: OOOf this egg really hot...
 }

@@ -595,6 +595,10 @@ namespace Synergia.Common.GlobalItems.Changes
                     item.useAnimation -= 36;
                     item.useTime -= 36;
                 },
+                [ModContent.ItemType<Naginata>()] = item =>
+                {
+                    item.damage -= 9;
+                },
 
             };
         }
