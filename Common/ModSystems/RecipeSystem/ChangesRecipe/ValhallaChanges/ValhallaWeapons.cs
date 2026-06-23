@@ -170,6 +170,7 @@ namespace Synergia.Common.ModSystems.RecipeSystem.ChangesRecipe.AvalonsChanges {
         {
             Recipe recipe = Recipe.Create(ItemType<OmegaDisc>());
             recipe.AddIngredient(ItemType<AluminiumBar>(), 10);
+            recipe.AddIngredient(ItemType<AncientScrap>(), 5);
             recipe.AddIngredient(ItemID.Bone, 10);
             recipe.AddTile(TileID.Anvils);
             recipe.Register();
