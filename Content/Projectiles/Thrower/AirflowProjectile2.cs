@@ -8,7 +8,7 @@ namespace Synergia.Content.Projectiles.Thrower
 {
 	public class AirflowProjectile2 : ModProjectile
 	{
-		private const float FeatherSpawnRate = 30 * 2;
+		private const float FeatherSpawnRate = 15 * 2;
 		private int featherTimer = 0;
         private Texture2D AfterimageTexture =>
     ModContent.Request<Texture2D>(

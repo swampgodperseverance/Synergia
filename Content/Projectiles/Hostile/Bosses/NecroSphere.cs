@@ -18,6 +18,7 @@ namespace Synergia.Content.Projectiles.Hostile.Bosses
             Projectile.hostile = true;
             Projectile.width = 32;
             Projectile.height = 32;
+            Projectile.damage = 20;
             Projectile.friendly = false;
             Projectile.aiStyle = -1;
             Projectile.timeLeft = 90;
@@ -114,12 +115,10 @@ namespace Synergia.Content.Projectiles.Hostile.Bosses
 
         public override void OnKill(int timeLeft)
         {
-            // --- Логика создания снаряда (только на сервере/в одиночной игре) ---
             if (Main.netMode != NetmodeID.MultiplayerClient)
             {
-                // Ищем ближайшего активного игрока
                 Player target = null;
-                float closestDistSqr = 2000f * 2000f; // дистанция поиска (2000 пикселей)
+                float closestDistSqr = 2000f * 2000f; 
                 foreach (Player player in Main.player)
                 {
                     if (player.active && !player.dead)
@@ -141,7 +140,7 @@ namespace Synergia.Content.Projectiles.Hostile.Bosses
                     Vector2 velocity = direction * speed;
 
                     Projectile.NewProjectile(Projectile.GetSource_Death(), Projectile.Center, velocity,
-                        ModContent.ProjectileType<NecroFire>(), Projectile.damage, 0f, Projectile.owner);
+                        ModContent.ProjectileType<NecroFire>(), 16, 0f, Projectile.owner);
                 }
             }
 

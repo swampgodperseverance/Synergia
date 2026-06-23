@@ -67,7 +67,6 @@ public class DwarfUI : UIState {
         {ItemType<AshenBreastplate>(), ItemType<DreadArmor>()},
         {ItemType<AshenShroud>(), ItemType<DreadHelmet>()},
         {ItemType<AshenLeggins>(), ItemType<DreadLeggings>()},
-        {ItemID.DemonScythe, ItemType<DevilsScythe>()},
         {ItemID.Flamelash, ItemType<Boomlash>()},
     };
     readonly SaveItemPlayer saveItem = Main.LocalPlayer.GetModPlayer<SaveItemPlayer>();

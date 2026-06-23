@@ -18,7 +18,7 @@ public sealed class ThunderHead : ModItem {
     }
     public override void UpdateEquip(Player player) {
         player.GetAttackSpeed(DamageClass.Melee) += 0.08f;
-        player.GetCritChance(DamageClass.Melee) += 17f;
+        player.GetCritChance(DamageClass.Melee) += 10f;
     }
     public override bool IsArmorSet(Item head, Item body, Item legs) => body.type == ItemType<ThunderBody>() && legs.type == ItemType<ThunderLegs>() && head.type == Type;
     public override void UpdateArmorSet(Player player) {
