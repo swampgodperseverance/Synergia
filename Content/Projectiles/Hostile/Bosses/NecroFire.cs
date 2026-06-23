@@ -32,6 +32,7 @@ namespace Synergia.Content.Projectiles.Hostile.Bosses
             Projectile.tileCollide = false;
             Projectile.ignoreWater = true;
             Projectile.scale = 1f;
+            Projectile.damage = 15;
         }
 
         public override void AI()

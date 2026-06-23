@@ -52,6 +52,7 @@ namespace Synergia.Common.ModSystems.RecipeSystem.ChangesRecipe {
             AddLotIngredient(recipe, ItemID.FlaskofVenom, (ModContent.ItemType<VenomShard>(), 1));
             AddLotIngredient(recipe, ItemType<VenomSpike>(), (ModContent.ItemType<VenomShard>(), 1));
             AddIngredient(recipe, ItemType<WhiteThread>(), 0, new Item(ItemID.Cobweb, 2));
+            AddIngredient(recipe, ModList.StarforgedClassic.Find<ModItem>("StarForgeItem").Type, 0, new Item(ItemID.MeteoriteBar, 10));
             AddIngredient(recipe, ItemType<SuspiciousLookingSkull>(), 0, new Item(ItemID.LunarTabletFragment, 5));
             AddLotIngredient(recipe, ItemID.Zenith, (ModContent.ItemType<SolarWind>(), 1));
             AddLotIngredient(recipe, ItemID.Zenith, (ModContent.ItemType<QuantumClaymore>(), 1));

@@ -597,7 +597,7 @@ namespace Synergia.Common.GlobalItems.Changes
                 },
                 [ModContent.ItemType<Naginata>()] = item =>
                 {
-                    item.damage -= 9;
+                    item.damage -= 14;
                 },
 
             };

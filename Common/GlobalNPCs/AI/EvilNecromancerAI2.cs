@@ -56,7 +56,7 @@ namespace Synergia.Common.ModSystems.Hooks
             attackTimers[id]++;
 
             Vector2 spawnPos = npc.NPC.Center;
-            int damage = 40;
+            int damage = 20;
             float knockBack = 2f;
             int owner = Main.myPlayer;
 

@@ -1,8 +1,9 @@
-﻿using Terraria.ModLoader;
-using Terraria;
+﻿using System;
 using Microsoft.Xna.Framework;
-using Terraria.ID;
+using Terraria;
 using Terraria.Audio;
+using Terraria.ID;
+using Terraria.ModLoader;
 
 namespace Synergia.Content.Projectiles.Hostile.Bosses
 {
@@ -27,8 +28,7 @@ namespace Synergia.Content.Projectiles.Hostile.Bosses
         {
             Player player = Main.player[Projectile.owner];
 
-            // 💀 Череп немного влево и над головой игрока
-            Projectile.Center = new Vector2(player.Center.X - 8f, player.Center.Y - 60f);
+            Projectile.Center = new Vector2(player.Center.X - 3f, player.Center.Y - 60f);
 
             Projectile.frameCounter++;
             if (Projectile.frameCounter % 6 == 0)
@@ -36,7 +36,6 @@ namespace Synergia.Content.Projectiles.Hostile.Bosses
 
             if (Projectile.frame >= 13)
             {
-                // 💥 При исчезновении спавним 5 ножей под черепом (на 400 пикселей ниже)
                 int count = 5;
                 float spacing = 40f;
                 Vector2 startPos = Projectile.Center + new Vector2(-(count - 1) * spacing / 2f, 750f);
@@ -44,14 +43,14 @@ namespace Synergia.Content.Projectiles.Hostile.Bosses
                 for (int i = 0; i < count; i++)
                 {
                     Vector2 spawnPos = startPos + new Vector2(i * spacing, 0f);
-                    Vector2 velocity = new Vector2(0f, -14f); // строго вверх
+                    Vector2 velocity = new Vector2(0f, -14f);
 
                     int knife = Projectile.NewProjectile(
                         Projectile.GetSource_FromThis(),
                         spawnPos,
                         velocity,
                         ModContent.ProjectileType<NecroKnife>(),
-                        40,
+                        20,
                         0f,
                         Projectile.owner
                     );
@@ -59,7 +58,6 @@ namespace Synergia.Content.Projectiles.Hostile.Bosses
                     Main.projectile[knife].ai[0] = 1;
                 }
 
-                // ✨ Эффект перед исчезновением
                 for (int d = 0; d < 25; d++)
                 {
                     int dust = Dust.NewDust(Projectile.Center, Projectile.width, Projectile.height, DustID.PurpleTorch,
@@ -72,8 +70,58 @@ namespace Synergia.Content.Projectiles.Hostile.Bosses
                 Projectile.Kill();
             }
 
-            // фиолетовое свечение вокруг черепа
             Lighting.AddLight(Projectile.Center, new Vector3(0.6f, 0.2f, 0.8f));
+        }
+
+        public override bool PreDraw(ref Color lightColor)
+        {
+            Texture2D texture = Terraria.GameContent.TextureAssets.Projectile[Projectile.type].Value;
+            Rectangle frame = texture.Frame(1, 13, 0, Projectile.frame);
+            Vector2 origin = frame.Size() / 2f;
+            Vector2 drawPos = Projectile.Center - Main.screenPosition;
+
+            Color outlineColor = new Color(80, 20, 120, 60);
+
+            for (int i = 3; i >= 1; i--)
+            {
+                Color layerColor = outlineColor * (0.4f / i);
+                for (int x = -i; x <= i; x++)
+                {
+                    for (int y = -i; y <= i; y++)
+                    {
+                        if (x == 0 && y == 0) continue;
+                        if (Math.Abs(x) == i || Math.Abs(y) == i)
+                        {
+                            Vector2 offset = new Vector2(x, y);
+                            Main.EntitySpriteDraw(
+                                texture,
+                                drawPos + offset,
+                                frame,
+                                layerColor,
+                                Projectile.rotation,
+                                origin,
+                                Projectile.scale,
+                                SpriteEffects.None,
+                                0
+                            );
+                        }
+                    }
+                }
+            }
+
+            Main.EntitySpriteDraw(
+                texture,
+                drawPos,
+                frame,
+                lightColor,
+                Projectile.rotation,
+                origin,
+                Projectile.scale,
+                SpriteEffects.None,
+                0
+            );
+
+            return false;
         }
     }
 }

@@ -56,7 +56,7 @@ Items: {
 		Increases ranged damage by +5% 
 		'''
 	SniperHead.Tooltip: Increases ranged damage by 20% and increases ranged crit. chance by 20%
-	SniperLegs.Tooltip: "Increases ranged crit. chance by 15% "
+	SniperLegs.Tooltip: Increases ranged crit. chance by 15%
 	EarthsplitterChestpiece.Tooltip:
 		'''
 		16% More throwing damage and 15% throwing crit chance 
@@ -278,7 +278,7 @@ Items: {
 		DisplayName: Cursed Throwing Emblem
 		Tooltip:
 			'''
-			Increases throwing damage by 15%
+			Increases throwing damage by 20%
 			Decreases аll other damage by 40%
 			'''
 	}
@@ -733,8 +733,8 @@ Items: {
 	}
 
 	CursedMirror: {
-		Passive: Mods.Synergia.Items.CursedMirror.Passive
-		Active: Mods.Synergia.Items.CursedMirror.Active
+		Passive: Has no passive effects.
+		Active: Launches Necro Swords under your coursor position.
 		DisplayName: Cursed Mirror
 		Tooltip: ""
 	}
@@ -847,7 +847,7 @@ Items: {
 	}
 
 	OssuaryStaff: {
-		Tooltip: Summons a sharp skulls that stick to enemies
+		Tooltip: Summons a sharp skulls that stick to the enemies
 		DisplayName: Ossuary Staff
 	}
 
@@ -867,17 +867,29 @@ Items: {
 
 	ThunderBody: {
 		DisplayName: Thundernite Breastplate
-		Tooltip: ""
+		Tooltip:
+			'''
+			20% increased melee damage
+			8% increased melee shoot speed
+			'''
 	}
 
 	ThunderHead: {
-		DisplayName: Thunder Head
-		Tooltip: ""
+		DisplayName: Thundernite Helmet
+		Tooltip:
+			'''
+			8% increased melee attack speed
+			10% increased melee crit chance 
+			'''
 	}
 
 	ThunderLegs: {
-		DisplayName: Thunder Legs
-		Tooltip: ""
+		DisplayName: Thundernite Leggings
+		Tooltip:
+			'''
+			8% increased melee attack speed
+			12% increased movement speed	 
+			'''
 	}
 
 	Thunderjab: {
@@ -902,7 +914,7 @@ Items: {
 
 	PostMechWings: {
 		DisplayName: Mechanical Spine
-		Tooltip: ""
+		Tooltip: Allows flight and slow fall
 	}
 
 	Flarion: {
@@ -1789,7 +1801,7 @@ Buffs: {
 
 	HellishAir: {
 		DisplayName: ""
-		Description: Underworld was cursed by powerful druidic magic...
+		Description: You feel the cursed air searing your lungs...
 	}
 
 	SynergiaStarving: {

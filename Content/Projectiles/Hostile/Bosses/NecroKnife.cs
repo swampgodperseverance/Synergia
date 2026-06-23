@@ -28,7 +28,7 @@ namespace Synergia.Content.Projectiles.Hostile.Bosses
 
         public override void SetDefaults()
         {
-            Projectile.damage = 64;
+            Projectile.damage = 10;
             Projectile.width = 22;
             Projectile.height = 48;
             Projectile.aiStyle = 0;
