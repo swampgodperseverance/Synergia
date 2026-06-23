@@ -146,7 +146,7 @@ namespace Synergia.Menu
         {
             "Swampgod",
             "Cleo",
-            "Aeris",
+            "SerNik",
             "Bimba",
             "Quan",
             "Unowen",
