@@ -78,27 +78,15 @@ namespace Synergia.Common.ModSystems.Hooks.ILs
 
         private void EditBossWeights(ILContext il)
         {
-            var c = new ILCursor(il);
+            ILCursor c = new(il);
 
-            if (!c.TryGotoNext(MoveType.Before, i => i.MatchLdstr("RhinoOrcBoss")))
-            {
-                return;
-            }
+            c.GotoNext(i => i.MatchLdcR4(4.5f));
+            c.Remove();
+            c.Emit(OpCodes.Ldc_R4, 5.5f);
 
-            int skips = 0;
-            float oldValue = 0f;
-
-            while (c.TryGotoNext(MoveType.Before, i => i.MatchLdcR4(out oldValue)))
-            {
-                skips++;
-                if (skips == 1)   
-                {
-                    c.Remove();
-                    c.Emit(OpCodes.Ldc_R4, 6.7f);
-                    break;
-                }
-            }
-
+            c.GotoNext(i => i.MatchLdcR4(5.5f));
+            c.Remove();
+            c.Emit(OpCodes.Ldc_R4, 6.7f);
         }
 
     }
