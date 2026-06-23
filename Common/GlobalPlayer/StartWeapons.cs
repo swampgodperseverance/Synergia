@@ -202,7 +202,12 @@ namespace Synergia.Common.GlobalPlayer {
                 Main.LocalPlayer.GetModPlayer<StartWeapons>().EndQuest = true;
                 Main.LocalPlayer.GetModPlayer<Quests>().EquipmentQuest = 11;
             }
-            void SpawItem() => Item.NewItem(Main.LocalPlayer.GetSource_FromThis(), Main.LocalPlayer.position, type, 1, false, Main.rand.Next(0, 10));
+            void SpawItem() {
+                Item item = new();
+                item.SetDefaults(type);
+                item.Prefix(-1);
+                Main.LocalPlayer.QuickSpawnItem(Main.LocalPlayer.GetSource_FromThis(), item);
+            }
         }
     }
 }

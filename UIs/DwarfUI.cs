@@ -59,7 +59,6 @@ public class DwarfUI : UIState {
         {ItemType<Luceat>(), ItemType<HellLuceat>()},
         {ItemType<SparkingShortsword>(), ItemType<Rhabdomyolysis>()},
         {ItemType<Cerberus>(), ItemType<Hades>()},
-        {ItemID.DemonScythe, ItemType <DevilsScythe>()},
         {ItemID.ImpStaff, ItemType<Echelonis>()},
         {ItemID.MoltenBreastplate, ItemType<CoreburnedBreastplate>()},
         {ItemID.MoltenHelmet, ItemType<CoreburnedHelmet>()},
