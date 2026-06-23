@@ -15,10 +15,6 @@ namespace Synergia.Common.ModSystems.Hooks.Ons {
         Hook levelUP;
         Hook draw;
 
-        Texture2D texture = null;
-        Vector2 vector2 = Vector2.Zero;
-        bool flag = false;
-
         delegate void orig_Quest_DrawBook(Quests quests, SpriteBatch sb);
         delegate void new_Quest_DrawBook(orig_Quest_DrawBook orig, Quests quests, SpriteBatch sb);
 
@@ -63,7 +59,7 @@ namespace Synergia.Common.ModSystems.Hooks.Ons {
             return;
         }
         void NewPostDraw(orig_ImperianConsul_PostDraw orig, ImperianConsul consul, SpriteBatch spriteBatch, Vector2 screenPos, Color drawColor) {
-
+            if (Main.LocalPlayer.GetModPlayer<Quests>().EquipmentQuest == 100) { orig(consul, spriteBatch, screenPos, drawColor); }
         }
 
         public override void Unload() {
