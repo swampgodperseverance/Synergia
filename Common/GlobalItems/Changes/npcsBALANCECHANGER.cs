@@ -234,7 +234,8 @@ namespace Synergia.Common.GlobalNPCs.Changes
                 },
                 [ModContent.NPCType<Necromant>()] = npc =>
                 {
-                    npc.defense += 6;
+                    npc.defense += 3;
+                    npc.lifeMax -= 300;
                 },
                 [ModContent.NPCType<EvilBabaYaga>()] = npc =>
                 {
