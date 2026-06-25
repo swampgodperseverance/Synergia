@@ -369,10 +369,11 @@ namespace Synergia.Common.ModSystems.WorldGens
             SynergiaGenVars.SnowVillageGen = true;
 
             return true;
-        }  
+        }
         static void GenerateBarrelLoot(Item[] ChestInventory, int BarrelIndex)
         {
-            WorldHelper.RandomLootInCoutainer(ChestInventory, ref BarrelIndex, 1, 1, ItemID.IceBlade, ItemID.IceBoomerang, ItemID.Snowball);
+            ChestInventory[BarrelIndex].SetDefaults(Utils.SelectRandom(WorldGen.genRand, ItemID.IceBlade, ItemID.IceBoomerang, ItemID.Snowball));
+            ChestInventory[BarrelIndex].stack = ChestInventory[BarrelIndex].type == ItemID.Snowball ? 150 : 1; BarrelIndex++;
             WorldHelper.RandomLootInCoutainer(ChestInventory, ref BarrelIndex, 1, 1, ItemID.BlizzardinaBottle, ItemID.FlurryBoots, ItemID.IceSkates);
             WorldHelper.LootInContainers(ChestInventory, ref BarrelIndex, ItemID.Fish, 1, 1);
             WorldHelper.RandomLootInCoutainer(ChestInventory, ref BarrelIndex, 3, 7, ItemID.Topaz, ItemID.Amethyst, ItemID.Sapphire, ItemID.Amber, ItemID.Emerald, ItemID.Ruby, ItemID.Diamond, ItemType<Avalon.Items.Material.Ores.Tourmaline>(), ItemType<Avalon.Items.Material.Ores.Zircon>());
