@@ -125,7 +125,7 @@ namespace Synergia.Common.GlobalNPCs.AI
 							SoundEngine.PlaySound(SoundID.Zombie66, npc.position);
 						}
 						else if(npc.ai[1] % 40 == 0 && npc.ai[1] >= 120f && npc.ai[1] <= 240f) {
-							if(Main.netMode != 1) foreach(NPC segment in Main.ActiveNPCs) if(segment.whoAmI != npc.whoAmI && segment.realLife == npc.whoAmI && segment.aiStyle == npc.aiStyle) Projectile.NewProjectile(segment.GetSource_FromAI(), segment.Center, segment.ai[2] == 1f ? Main.rand.NextVector2CircularEdge(12f, 12f) : Vector2.UnitX.RotatedBy(npc.rotation + Main.rand.NextFloat(-MathHelper.PiOver4, MathHelper.PiOver4) * 0.4f) * (Main.rand.NextBool() ? 1f : -1f), segment.ai[2] == 1f ? ModContent.ProjectileType<DestroyerMissile>() : ModContent.ProjectileType<PlasmaBeam>(), 40, 0f, Main.myPlayer, segment.ai[2] == 1f ? 60f : segment.whoAmI + 1);
+							if(Main.netMode != 1) foreach(NPC segment in Main.ActiveNPCs) if(segment.whoAmI != npc.whoAmI && segment.realLife == npc.whoAmI && segment.aiStyle == npc.aiStyle) Projectile.NewProjectile(segment.GetSource_FromAI(), segment.Center, segment.ai[2] == 1f ? Main.rand.NextVector2CircularEdge(12f, 12f) : Vector2.UnitX.RotatedBy(npc.rotation + Main.rand.NextFloat(-MathHelper.PiOver4, MathHelper.PiOver4) * 0.4f) * (Main.rand.NextBool() ? 1f : -1f), segment.ai[2] == 1f ? ModContent.ProjectileType<DestroyerMissile>() : ModContent.ProjectileType<PlasmaBeam>(), 28, 0f, Main.myPlayer, segment.ai[2] == 1f ? 60f : segment.whoAmI + 1);
 							SoundEngine.PlaySound(SoundID.Item15, targetPos);
 						}
 						else if((npc.ai[1] - 30f) % 40 == 0 && (npc.ai[1] - 30f) >= 120f && (npc.ai[1] - 30f) <= 240f) {
@@ -165,7 +165,12 @@ namespace Synergia.Common.GlobalNPCs.AI
 					npc.netUpdate = true;
 					body.netUpdate = true;
 				}
-				if(npc.ai[1] == 5f && npc.target > -1 && Main.netMode != 1) Projectile.NewProjectile(npc.GetSource_FromAI(), npc.Center + Vector2.Normalize(Main.player[npc.target].Center + Main.player[npc.target].velocity * 20f * (1f - npc.ai[2]) - npc.Center) * (24f - npc.ai[2] * 16f), Vector2.Normalize(Main.player[npc.target].Center + Main.player[npc.target].velocity * 20f * (1f - npc.ai[2]) - npc.Center) * (8f + npc.ai[2] * 4f), npc.ai[2] == 1f ? ModContent.ProjectileType<DestroyerMissile>() : ProjectileID.DeathLaser, 27, 0f, Main.myPlayer, 0f, Main.rand.Next(60, 120) * npc.ai[2]);
+				if(npc.ai[1] == 5f && npc.target > -1 && Main.netMode != 1) {
+					float predictive = (Main.player[npc.target].Center - npc.Center).Length() / 48f;
+					if(predictive > 20f) predictive = 20f;
+					Vector2 shootDir = Vector2.Normalize(Main.player[npc.target].Center + Main.player[npc.target].velocity * predictive * (1f - npc.ai[2]) - npc.Center);
+					Projectile.NewProjectile(npc.GetSource_FromAI(), npc.Center + shootDir * (24f - npc.ai[2] * 16f), shootDir * (8f + npc.ai[2] * 4f), npc.ai[2] == 1f ? ModContent.ProjectileType<DestroyerMissile>() : ProjectileID.DeathLaser, 22, 0f, Main.myPlayer, 0f, Main.rand.Next(60, 120) * npc.ai[2]);
+				}
 			}
 		};
 		public override void AI(NPC npc) {
