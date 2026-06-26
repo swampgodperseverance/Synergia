@@ -61,7 +61,7 @@ namespace Synergia.Common.GlobalNPCs.AI
 				if(npc.ai[0] == 0f) {
 					if(npc.localAI[3] > 0f) npc.localAI[3]--;
 					if(npc.ai[1] == 0f && npc.ai[3] > 50f) {
-						if(Main.netMode != 1) Projectile.NewProjectile(npc.GetSource_FromAI(), npc.Center - Vector2.UnitY * 4f + Vector2.UnitY.RotatedBy(npc.rotation) * npc.width * 0.6f, Vector2.UnitY.RotatedBy(npc.rotation) * 10f, ProjectileID.EyeLaser, 35, 0f, Main.myPlayer);
+						if(Main.netMode != 1) Projectile.NewProjectile(npc.GetSource_FromAI(), npc.Center - Vector2.UnitY * 4f + Vector2.UnitY.RotatedBy(npc.rotation) * npc.width * 0.6f, Vector2.UnitY.RotatedBy(npc.rotation) * 10f, ProjectileID.EyeLaser, 27, 0f, Main.myPlayer);
 						npc.ai[3] = 0f;
 						npc.localAI[3] = 10f;
 					}
@@ -205,7 +205,7 @@ namespace Synergia.Common.GlobalNPCs.AI
 							Projectile.NewProjectile(npc.GetSource_FromAI(), npc.Center - Vector2.UnitY * 4f, Vector2.Zero, ModContent.ProjectileType<SpazmatismPulse>(), 0, 0f, Main.myPlayer, 3f);
 							int target = npc.target == -1 || npc.target == 255 ? Player.FindClosest(npc.position, npc.width, npc.height) : npc.target;
 							Vector2 v = Main.player[target].Center + Main.rand.NextVector2Circular(320f, 320f);
-							Projectile.NewProjectile(npc.GetSource_FromAI(), npc.Center - Vector2.UnitY * 4f + random * npc.width * 0.6f, random * 12f, ModContent.ProjectileType<Sclerocket>(), 32, 0f, Main.myPlayer, v.X, v.Y, Main.masterMode ? target : -1f);
+							Projectile.NewProjectile(npc.GetSource_FromAI(), npc.Center - Vector2.UnitY * 4f + random * npc.width * 0.6f, random * 12f, ModContent.ProjectileType<Sclerocket>(), 27, 0f, Main.myPlayer, v.X, v.Y, Main.masterMode ? target : -1f);
 						}
 					}
 					else if(npc.ai[1] == 0f) {
@@ -220,7 +220,7 @@ namespace Synergia.Common.GlobalNPCs.AI
 						if(npc.aiStyle == 31) {
 							npc.velocity = (Main.expertMode ? (Main.player[npc.target].Center - npc.Center) * 0.016f : Vector2.Normalize(Main.player[npc.target].Center - npc.Center) * 6f) * MathHelper.Min(1f, npc.ai[2] * 0.1f);
 							npc.ai[2] += retPhase2 ? 2f : 1f;
-							if(npc.ai[2] > 5f && Main.netMode != 1) Projectile.NewProjectile(npc.GetSource_FromAI(), npc.Center + npc.velocity - Vector2.UnitY * 4f + Vector2.UnitY.RotatedBy(npc.rotation) * npc.width * 0.3f, Vector2.UnitY.RotatedBy(npc.rotation) * 2.2f + npc.velocity / 7f, ModContent.ProjectileType<EyeFire>(), 35, 1f, Main.myPlayer);
+							if(npc.ai[2] > 5f && Main.netMode != 1) Projectile.NewProjectile(npc.GetSource_FromAI(), npc.Center + npc.velocity - Vector2.UnitY * 4f + Vector2.UnitY.RotatedBy(npc.rotation) * npc.width * 0.3f, Vector2.UnitY.RotatedBy(npc.rotation) * 2.2f + npc.velocity / 7f, ModContent.ProjectileType<EyeFire>(), 31, 1f, Main.myPlayer);
 						}
 						npc.localAI[1] = 0f;
 					}
