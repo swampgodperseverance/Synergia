@@ -9,9 +9,19 @@ public enum WeaponType
     Sword,
     Spear,
     Yoyo,
-    Staff,
     Bow,
-    Gun
+    Gun,
+    Wand,
+    Tome,
+    Minion,
+    Sentry,
+    Whip,
+    Aura,
+    Dagger,
+    Javelin,
+    Boomerang,
+    Other,
+
 }
 
 public enum Progression
