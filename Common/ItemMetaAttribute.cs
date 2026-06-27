@@ -1,0 +1,47 @@
+﻿using System;
+
+namespace Synergia.Common;
+
+
+public enum WeaponType
+{
+    None,
+    Sword,
+    Spear,
+    Yoyo,
+    Staff,
+    Bow,
+    Gun
+}
+
+public enum Progression
+{
+    None,
+    PreHardmode,
+    Hardmode,
+    PostMoonLord
+}
+
+[AttributeUsage(AttributeTargets.Class, AllowMultiple = false, Inherited = true)]
+public class ItemMetaAttribute : Attribute
+{
+    public Progression Progression { get; set; } = Progression.None;
+    public WeaponType WeaponType { get; set; } = WeaponType.None;
+
+    // Конструктор приймає обов'язкові дані
+    public ItemMetaAttribute(params object[] modifiers)
+    {
+        foreach (object modifier in modifiers)
+        {
+            switch (modifier)
+            {
+                case Common.Progression progression:
+                    Progression = progression;
+                    break;
+                case Common.WeaponType weaponType:
+                    WeaponType = weaponType;
+                    break;
+            }
+        }
+    }
+}
