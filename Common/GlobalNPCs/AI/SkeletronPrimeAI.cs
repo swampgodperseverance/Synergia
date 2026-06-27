@@ -30,7 +30,7 @@ namespace Synergia.Common.GlobalNPCs.AI
 				if(npc.localAI[0] >= (npc.ai[2] == 1f ? 30f : 120f)) {
 					Vector2 shootDir = Vector2.UnitY.RotatedBy(npc.rotation);
 					Vector2 spawnPos = npc.Center + shootDir * npc.height;
-					if(Main.netMode != 1) Projectile.NewProjectile(npc.GetSource_FromAI(), spawnPos, shootDir * (npc.ai[2] == 1f ? 1f : 12f), npc.ai[2] == 1f ? ProjectileID.RocketSkeleton : ProjectileID.BombSkeletronPrime, 35, 1f, Main.myPlayer);
+					if(Main.netMode != 1) Projectile.NewProjectile(npc.GetSource_FromAI(), spawnPos, shootDir * (npc.ai[2] == 1f ? 1f : 12f), npc.ai[2] == 1f ? ProjectileID.RocketSkeleton : ProjectileID.BombSkeletronPrime, 27, 1f, Main.myPlayer);
 					npc.localAI[0] = 0f;
 					npc.localAI[1] = 6f;
 					npc.velocity -= shootDir * 4f;
@@ -50,7 +50,7 @@ namespace Synergia.Common.GlobalNPCs.AI
 			else if(cannon && laser) return;
 			if(!cannon) if(npc.frame.Y > 0 ? npc.localAI[2] % 2 != 0 : npc.localAI[2] % 2 == 0) if(++npc.localAI[2] > (Main.expertMode && npc.life < npc.lifeMax / 2 ? 24f : 9f)) {
 				if(npc.localAI[2] > 24f) FireSkulls(npc);
-				else if(Main.netMode != 1) Projectile.NewProjectile(npc.GetSource_FromAI(), npc.Center - new Vector2(0f, 16f * npc.scale) + new Vector2(0f, 28f * npc.scale).RotatedBy(npc.rotation), npc.velocity, ProjectileID.BombSkeletronPrime, 35, 1f, Main.myPlayer);
+				else if(Main.netMode != 1) Projectile.NewProjectile(npc.GetSource_FromAI(), npc.Center - new Vector2(0f, 16f * npc.scale) + new Vector2(0f, 28f * npc.scale).RotatedBy(npc.rotation), npc.velocity, ProjectileID.BombSkeletronPrime, 27, 1f, Main.myPlayer);
 				npc.localAI[2] = 0f;
 			}
 			if(!laser && ++npc.localAI[3] > 60f) {
@@ -106,7 +106,7 @@ namespace Synergia.Common.GlobalNPCs.AI
 			Vector2 baseDir = npc.DirectionTo(target.Center);
 			if(baseDir == Vector2.Zero) baseDir = new Vector2(0f, -1f);
 			float speed = 10f;
-			int damage = 30;
+			int damage = 26;
 			int knockback = 2;
 			int type = ModContent.ProjectileType<Content.Projectiles.Hostile.PrimeSkull>();
 			for(int i = -1; i <= 1; i++) Projectile.NewProjectile(npc.GetSource_FromAI(), npc.Center - new Vector2(0f, 16f * npc.scale) + new Vector2(0f, 28f * npc.scale).RotatedBy(npc.rotation), baseDir.RotatedBy(i * MathHelper.PiOver2) * speed, type, damage, knockback);
@@ -117,7 +117,7 @@ namespace Synergia.Common.GlobalNPCs.AI
 			Player target = Main.player[npc.target];
 			if(!target.active || target.dead) target = Main.player[Player.FindClosest(npc.Center, 1, 1)];
 			float speed = 8f;
-			int damage = 25;
+			int damage = 24;
 			int knockback = 2;
 			int type = ProjectileID.DeathLaser;
 			for(int i = -1; i <= 1; i += 2) Projectile.NewProjectile(npc.GetSource_FromAI(), npc.Center - new Vector2(0f, 16f * npc.scale) - new Vector2(i * 16f, 20f).RotatedBy(npc.rotation) * npc.scale + Vector2.Normalize(npc.Center - new Vector2(0f, 16f * npc.scale) - new Vector2(i * -16f, 20f).RotatedBy(npc.rotation) * npc.scale - target.Center) * -speed * 2f, Vector2.Normalize(npc.Center - new Vector2(0f, 16f * npc.scale) - new Vector2(i * -16f, 20f).RotatedBy(npc.rotation) * npc.scale - target.Center) * -speed, type, damage, knockback);

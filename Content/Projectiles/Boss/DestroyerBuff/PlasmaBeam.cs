@@ -11,7 +11,7 @@ namespace Synergia.Content.Projectiles.Boss.DestroyerBuff
 		public override string Texture => "Synergia/Assets/Textures/Ray";
 		public override void SetStaticDefaults() {
 			ProjectileID.Sets.DismountsPlayersOnHit[Type] = true;
-			ProjectileID.Sets.DrawScreenCheckFluff[Type] = 2400;
+			ProjectileID.Sets.DrawScreenCheckFluff[Type] = 4800;
 		}
 		public override void SetDefaults() {
 			if(ModLoader.TryGetMod("CalamityMod", out Mod calamity)) calamity.Call("SetDefenseDamageProjectile", Projectile, true);
@@ -22,7 +22,7 @@ namespace Synergia.Content.Projectiles.Boss.DestroyerBuff
 			Projectile.hostile = true;
 			Projectile.penetrate = -1;
 			Projectile.tileCollide = false;
-			Projectile.timeLeft = 40;
+			Projectile.timeLeft = 100;
 			Projectile.netImportant = true;
 		}
 		public override void AI() {
@@ -33,11 +33,11 @@ namespace Synergia.Content.Projectiles.Boss.DestroyerBuff
 		public override bool? Colliding(Rectangle projHitbox, Rectangle targetHitbox) {
 			if(Projectile.timeLeft > 10) return false;
 			float point = 0f;
-			return Collision.CheckAABBvLineCollision(targetHitbox.TopLeft(), targetHitbox.Size(), Projectile.Center, Projectile.Center + Vector2.UnitX.RotatedBy(Projectile.rotation) * 2400f, 8 * Projectile.scale, ref point);
+			return Collision.CheckAABBvLineCollision(targetHitbox.TopLeft(), targetHitbox.Size(), Projectile.Center, Projectile.Center + Vector2.UnitX.RotatedBy(Projectile.rotation) * ProjectileID.Sets.DrawScreenCheckFluff[Type], 8 * Projectile.scale, ref point);
 		}
 		public override bool PreDraw(ref Color lightColor) {
 			float fade = Projectile.localAI[0] / 5f * MathHelper.Min(Projectile.timeLeft, 5) / 5f;
-			if(Projectile.timeLeft > 10) fade = (float)System.Math.Sin(MathHelper.Pi * (Projectile.timeLeft - 10) / 30f);
+			if(Projectile.timeLeft > 10) fade = (float)System.Math.Sin(MathHelper.Pi * (Projectile.timeLeft - 10) / 90f);
 			Texture2D texture = (Texture2D)ModContent.Request<Texture2D>(Texture);
 			for(int i = 0; i < (Projectile.timeLeft < 10 ? 2 : 1); i++) {
 				lightColor = i > 0 ? Color.White : Color.Red;
@@ -46,8 +46,8 @@ namespace Synergia.Content.Projectiles.Boss.DestroyerBuff
 				if(i > 0) fade /= 2f;
 				texture = (Texture2D)ModContent.Request<Texture2D>(Texture);
 				Main.EntitySpriteDraw(texture, Projectile.Center - Main.screenPosition, new Rectangle(0, 0, texture.Width, texture.Height - 1), lightColor * fade * (i + 1), Projectile.rotation - MathHelper.PiOver2, new Vector2(texture.Width * 0.5f, texture.Height - 1), new Vector2(Projectile.scale, 0.25f) * fade * (2 - i), SpriteEffects.None, 0);
-				Main.EntitySpriteDraw(texture, Projectile.Center - Main.screenPosition, new Rectangle(0, texture.Height - 1, texture.Width, 1), lightColor * fade * (i + 1), Projectile.rotation - MathHelper.PiOver2, new Vector2(texture.Width * 0.5f, 0f), new Vector2(Projectile.scale * fade * (2 - i), 2400f), SpriteEffects.None, 0);
-				Main.EntitySpriteDraw(texture, Projectile.Center + Projectile.rotation.ToRotationVector2() * 2400f - Main.screenPosition, new Rectangle(0, 0, texture.Width, texture.Height - 1), lightColor * fade * (i + 1), Projectile.rotation + MathHelper.PiOver2, new Vector2(texture.Width * 0.5f, texture.Height - 1), new Vector2(Projectile.scale, 0.75f) * fade * (2 - i), SpriteEffects.None, 0);
+				Main.EntitySpriteDraw(texture, Projectile.Center - Main.screenPosition, new Rectangle(0, texture.Height - 1, texture.Width, 1), lightColor * fade * (i + 1), Projectile.rotation - MathHelper.PiOver2, new Vector2(texture.Width * 0.5f, 0f), new Vector2(Projectile.scale * fade * (2 - i), ProjectileID.Sets.DrawScreenCheckFluff[Type]), SpriteEffects.None, 0);
+				Main.EntitySpriteDraw(texture, Projectile.Center + Projectile.rotation.ToRotationVector2() * ProjectileID.Sets.DrawScreenCheckFluff[Type] - Main.screenPosition, new Rectangle(0, 0, texture.Width, texture.Height - 1), lightColor * fade * (i + 1), Projectile.rotation + MathHelper.PiOver2, new Vector2(texture.Width * 0.5f, texture.Height - 1), new Vector2(Projectile.scale, 0.75f) * fade * (2 - i), SpriteEffects.None, 0);
 			}
 			return false;
 		}

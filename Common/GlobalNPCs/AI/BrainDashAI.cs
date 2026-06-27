@@ -39,7 +39,7 @@ namespace Synergia.Common.GlobalNPCs.AI
 			if(Disabled) return true;
 			if(spawnBrainWaves && npc.ai[0] == -1) {
 				SoundEngine.PlaySound(SoundID.Item20 with { Pitch = -0.4f }, npc.Center);
-				if(Main.netMode != 1) for(int i = -(int)npc.localAI[2]; i <= (int)npc.localAI[2]; i++) Projectile.NewProjectile(npc.GetSource_FromAI(), npc.Center, Vector2.Normalize(Main.player[npc.target].Center - npc.Center).RotatedBy(i * MathHelper.PiOver4 * 0.8f) * 10f, ModContent.ProjectileType<BrainWaves>(), 25, 0f, Main.myPlayer);
+				if(Main.netMode != 1) for(int i = -(int)npc.localAI[2]; i <= (int)npc.localAI[2]; i++) Projectile.NewProjectile(npc.GetSource_FromAI(), npc.Center, Vector2.Normalize(Main.player[npc.target].Center - npc.Center).RotatedBy(i * MathHelper.PiOver4 * 0.8f) * 10f, ModContent.ProjectileType<BrainWaves>(), 17, 0f, Main.myPlayer);
 				spawnBrainWaves = false;
 			}
 			if(npc.localAI[2] > 0f) if(++dashCooldown > 300 && (npc.alpha == 255 || dashing)) {

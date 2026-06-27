@@ -42,7 +42,7 @@ namespace Synergia.Common.GlobalNPCs.AI
                                     npc.Center + baseDirection * npc.width * 0.55f,
                                     shotVelocity, // randomed too
                                     ModContent.ProjectileType<StonedBlood>(),
-                                    30,
+                                    23,
                                     2f,
                                     Main.myPlayer
                                 );
@@ -82,7 +82,7 @@ namespace Synergia.Common.GlobalNPCs.AI
 			else {
 				if(npc.ai[3] == 1f) SoundEngine.PlaySound(SoundID.Item4, npc.Center);
 				if(npc.ai[3] > 0f) if(++npc.ai[3] > (int)MathHelper.Lerp(12f, 8f, (float)npc.life / (float)npc.lifeMax) * 10) npc.ai[3] = 0f;
-				if(Main.netMode != 1 && npc.ai[3] > 40f && npc.ai[3] % 10f == 5f) Projectile.NewProjectile(npc.GetSource_FromAI(), npc.Center + new Vector2(npc.spriteDirection * npc.width * 0.55f, -6f).RotatedBy(npc.rotation) - Vector2.UnitY * 4f, npc.rotation.ToRotationVector2() * npc.spriteDirection * 12f, ProjectileID.EyeLaser, 30, 0f, Main.myPlayer);
+				if(Main.netMode != 1 && npc.ai[3] > 40f && npc.ai[3] % 10f == 5f) Projectile.NewProjectile(npc.GetSource_FromAI(), npc.Center + new Vector2(npc.spriteDirection * npc.width * 0.55f, -6f).RotatedBy(npc.rotation) - Vector2.UnitY * 4f, npc.rotation.ToRotationVector2() * npc.spriteDirection * 12f, ProjectileID.EyeLaser, 21, 0f, Main.myPlayer);
 				npc.localAI[1] = 0f;
 			}
 		}
