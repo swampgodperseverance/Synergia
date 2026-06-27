@@ -3,6 +3,7 @@ using Avalon.Dusts;
 using Avalon.Items.Material.Bars;
 using Avalon.Items.Weapons.Melee.PreHardmode.Snotsabre;
 using Microsoft.Xna.Framework;
+using Synergia.Common;
 using Terraria;
 using Terraria.Audio;
 using Terraria.DataStructures;
@@ -12,6 +13,7 @@ using ValhallaMod.Projectiles.AI;
 
 namespace Synergia.Content.Items.Weapons.Melee {
 
+    [ItemMeta(Progression.PreHardmode, WeaponType.Sword)]
     public class Snotknife : ModItem {
 
         public override void SetStaticDefaults()

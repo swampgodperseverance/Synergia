@@ -1,6 +1,7 @@
 ﻿using System;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Synergia.Common;
 using Synergia.Common.Rarities;
 using Synergia.Content.Projectiles.RangedProjectiles;
 using Terraria;
@@ -12,6 +13,7 @@ using Terraria.ModLoader;
 
 namespace Synergia.Content.Items.Weapons.Ranged
 {
+    [ItemMeta(Progression.Hardmode, WeaponType.Bow)]
     public class Enfer : ModItem
     {
         private static Texture2D glowTexture;

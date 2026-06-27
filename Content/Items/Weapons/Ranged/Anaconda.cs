@@ -3,6 +3,7 @@ using Avalon.Common;
 using Avalon.Common.Extensions;
 using Avalon.Common.Templates;
 using Microsoft.Xna.Framework;
+using Synergia.Common;
 using Synergia.Content.Items.Weapons.Melee;
 using Synergia.Content.Projectiles.RangedProjectiles;
 using Terraria;
@@ -13,6 +14,7 @@ using Terraria.ModLoader;
 
 namespace Synergia.Content.Items.Weapons.Ranged
 {
+    [ItemMeta(Progression.PreHardmode, WeaponType.Bow)]
 	public class Anaconda : ModItem
 	{
         public override void SetStaticDefaults()

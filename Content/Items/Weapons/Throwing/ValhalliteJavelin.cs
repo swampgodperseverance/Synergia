@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
+using Synergia.Common;
 using Synergia.Content.Projectiles.Friendly; 
 using Terraria;
 using Terraria.ID;
@@ -7,6 +8,7 @@ using ValhallaMod.Items.Material.Bar;
 
 namespace Synergia.Content.Items.Weapons.Throwing
 {
+    [ItemMeta(Progression.PreHardmode, WeaponType.Javelin)]
     public class ValhalliteJavelin : ModItem
     {
         public override void SetDefaults()

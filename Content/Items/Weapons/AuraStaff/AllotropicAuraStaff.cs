@@ -1,4 +1,5 @@
 using NewHorizons.Content.Items.Weapons.Throwing;
+using Synergia.Common;
 using Synergia.Content.Items.Misc;
 using Synergia.Content.Projectiles.Aura;
 using Terraria;
@@ -8,6 +9,7 @@ using static Terraria.ModLoader.ModContent;
 
 namespace Synergia.Content.Items.Weapons.AuraStaff
 {
+    [ItemMeta(Progression.Unobtainable, WeaponType.Aura)]
     [ExtendsFromMod("ValhallaMod")]
     public class AllotropicAuraStaff : ValhallaMod.Items.AI.ValhallaAuraItem
     {

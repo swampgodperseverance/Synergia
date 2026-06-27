@@ -2,6 +2,7 @@ using System;
 using System.Diagnostics.Metrics;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Synergia.Common;
 using Synergia.Common.Rarities;
 using Synergia.Content.Dusts;
 using Synergia.Content.Projectiles.Aura;
@@ -17,6 +18,7 @@ using Terraria.ModLoader;
 
 namespace Synergia.Content.Items.Weapons.Melee
 {
+    [ItemMeta(Progression.Hardmode, WeaponType.Sword)]
     public class Malebolge : ModItem
     {
         public int counter = 0;

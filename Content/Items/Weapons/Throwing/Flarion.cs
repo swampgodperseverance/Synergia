@@ -1,4 +1,5 @@
 using Microsoft.Xna.Framework;
+using Synergia.Common;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -8,6 +9,7 @@ using Synergia.Common.Rarities;
 
 namespace Synergia.Content.Items.Weapons.Throwing
 {
+	[ItemMeta(Progression.Hardmode, WeaponType.Boomerang)]
 	public class Flarion : ModItem
 	{
 		public override void SetDefaults()

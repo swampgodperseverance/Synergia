@@ -6,9 +6,12 @@ using Terraria.DataStructures;
 using System.Linq;
 using Synergia.Content.Projectiles.Friendly;
 using starforgedclassic.Content.Placeables.AzuriteBar;
+using Synergia.Common;
 
 namespace Synergia.Content.Items.Weapons.Throwing
 {
+	
+	[ItemMeta(Progression.PreHardmode, WeaponType.Other)]
 	public class Airflow : ModItem
 	{
 		public override void SetDefaults()

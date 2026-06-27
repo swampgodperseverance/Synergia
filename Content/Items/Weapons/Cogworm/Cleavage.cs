@@ -2,6 +2,7 @@
 using Synergia.Content.Buffs; 
 //consolaria
 using Microsoft.Xna.Framework;
+using Synergia.Common;
 using Terraria;
 using Terraria.Audio;
 using Terraria.ID;
@@ -10,6 +11,8 @@ using Synergia.Common.Rarities;
 
 namespace Synergia.Content.Items.Weapons.Cogworm
 {
+    
+    [ItemMeta(Progression.Hardmode, WeaponType.Spear)]
     public class Cleavage : ModItem
     {
         public override void SetStaticDefaults()

@@ -1,3 +1,4 @@
+using Synergia.Common;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -5,6 +6,7 @@ using Synergia.Content.Projectiles.Friendly;
 
 namespace Synergia.Content.Items.Weapons.Throwing
 {
+    [ItemMeta(Progression.PreHardmode, WeaponType.Other)]
     public class InfamousFlame : ModItem
     {
         public override void SetDefaults()

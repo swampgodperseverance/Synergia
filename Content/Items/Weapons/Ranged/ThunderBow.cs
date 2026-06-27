@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
+using Synergia.Common;
 using Synergia.Content.Projectiles.Friendly;
 using Terraria;
 using Terraria.Audio;
@@ -9,6 +10,7 @@ using ValhallaMod.Items.Material.Bar;
 
 namespace Synergia.Content.Items.Weapons.Ranged
 {
+    [ItemMeta(Progression.Hardmode, WeaponType.Bow)]
     public class ThunderBow : ModItem
     {
         public override void SetDefaults()

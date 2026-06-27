@@ -2,6 +2,7 @@ using Avalon.Items.Material.Bars;
 using Consolaria.Content.Items.Materials;
 using Microsoft.Xna.Framework;
 using NewHorizons.Content.Items.Weapons.Throwing;
+using Synergia.Common;
 using Synergia.Common.GlobalPlayer;
 using Synergia.Content.Items.Misc;
 using Synergia.Content.Projectiles.Friendly;
@@ -13,6 +14,7 @@ using ValhallaMod.Items.Material.Bar;
 
 namespace Synergia.Content.Items.Weapons.Throwing
 {
+	[ItemMeta(Progression.Hardmode, WeaponType.Javelin)]
 	public class OculithShard : ModItem
 	{
 		public override void SetDefaults()

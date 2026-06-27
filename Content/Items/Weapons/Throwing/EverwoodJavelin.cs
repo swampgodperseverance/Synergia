@@ -1,5 +1,6 @@
 using Avalon.Items.Material.Bars;
 using Microsoft.Xna.Framework;
+using Synergia.Common;
 using Synergia.Content.Projectiles.Friendly;
 using Terraria;
 using Terraria.ID;
@@ -7,6 +8,7 @@ using Terraria.ModLoader;
 
 namespace Synergia.Content.Items.Weapons.Throwing
 {
+	[ItemMeta(Progression.PreHardmode, WeaponType.Javelin)]
 	public class EverwoodJavelin : ModItem
 	{
 		public override void SetDefaults()

@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using Bismuth.Content.Items.Weapons.Ranged;
 using Microsoft.Xna.Framework;
+using Synergia.Common;
 using Synergia.Content.Items.Weapons.Ranged;
 using Synergia.Content.Projectiles.Friendly;
 using Terraria;
@@ -11,6 +12,7 @@ using Terraria.ID;
 
 namespace Synergia.Content.Items.Weapons.Melee
 {
+    [ItemMeta(Progression.PreHardmode, WeaponType.Yoyo)]
     public class StoneAge : ModItem
     {
         public override void SetStaticDefaults()

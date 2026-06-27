@@ -1,5 +1,6 @@
 using Avalon.Items.Material;
 using Avalon.Items.Material.Bars;
+using Synergia.Common;
 using Synergia.Content.Projectiles.Friendly;
 using Terraria;
 using Terraria.ID;
@@ -7,6 +8,7 @@ using Terraria.ModLoader;
 
 namespace Synergia.Content.Items.Weapons.Throwing
 {
+    [ItemMeta(Progression.Hardmode, WeaponType.Other)]
     public class NaturalSelection : ModItem
     {
         public override void SetDefaults()

@@ -1,10 +1,12 @@
-﻿using Terraria;
+﻿using Synergia.Common;
+using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Synergia.Content.Projectiles.Friendly;
 
 namespace Synergia.Content.Items.Weapons.Throwing
 {
+    [ItemMeta(Progression.Hardmode, WeaponType.Other)]
     public class GoldGlove : ModItem
     {
         public override void SetDefaults()

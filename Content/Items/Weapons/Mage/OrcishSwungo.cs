@@ -2,6 +2,7 @@
 using Bismuth.Content.Items.Weapons.Magical;
 using Microsoft.Xna.Framework;
 using NewHorizons.Content.Items.Weapons.Throwing;
+using Synergia.Common;
 using Synergia.Content.Items.Misc;
 using Synergia.Content.Projectiles.Friendly;
 using Terraria;
@@ -10,6 +11,7 @@ using Terraria.ModLoader;
 
 namespace Synergia.Content.Items.Weapons.Mage
 {
+    [ItemMeta(Progression.PreHardmode, WeaponType.Tome)]
     public class OrcishSwungo : ModItem
     {
         private int shootCooldown = 0;

@@ -29,7 +29,8 @@ public enum Progression
     None,
     PreHardmode,
     Hardmode,
-    PostMoonLord
+    PostMoonLord,
+    Unobtainable
 }
 
 [AttributeUsage(AttributeTargets.Class, AllowMultiple = false, Inherited = true)]

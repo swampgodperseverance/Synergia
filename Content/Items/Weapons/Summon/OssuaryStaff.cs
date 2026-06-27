@@ -2,12 +2,14 @@
 using Terraria;
 using Avalon.Items.Material.TomeMats;
 using Avalon.Items.Material.Ores;
+using Synergia.Common;
 using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace Synergia.Content.Items.Weapons.Summon
 {
+    [ItemMeta(Progression.PreHardmode, WeaponType.Minion)]
     public class OssuaryStaff : ModItem
     {
         public override void SetStaticDefaults()

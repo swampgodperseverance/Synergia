@@ -5,6 +5,7 @@ using Synergia.Helpers;
 using Humanizer;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Synergia.Common;
 using Terraria;
 using Terraria.Audio;
 using Terraria.DataStructures;
@@ -16,6 +17,7 @@ using Terraria.ModLoader;
 
 namespace Synergia.Content.Items.Weapons.Melee
 {
+    [ItemMeta(Progression.Hardmode, WeaponType.Sword)]
     public class Seaborn : ModItem
     {
 

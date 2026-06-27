@@ -7,6 +7,7 @@ using Avalon.Common.Templates;
 using Avalon.Particles;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Synergia.Common;
 using Synergia.Common.Rarities;
 using Synergia.Helpers;
 using Terraria;
@@ -21,6 +22,7 @@ using static Synergia.Content.Items.Weapons.Mage.ScorcherLaser;
 
 namespace Synergia.Content.Items.Weapons.Mage;
 
+[ItemMeta(Progression.Hardmode, WeaponType.Other)]
 public class ScorcherRequiem : ModItem
 {
     public override void SetDefaults()

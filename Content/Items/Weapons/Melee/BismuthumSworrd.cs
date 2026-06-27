@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using System;
+using Synergia.Common;
 using Terraria;
 using Terraria.DataStructures;
 using Terraria.ID;
@@ -20,6 +21,7 @@ namespace Synergia.Content.Items.Weapons.Melee
         }
     }
 
+    [ItemMeta(Progression.Hardmode, WeaponType.Sword)]
     public class BismuthumSword : ModItem
     {
         public override void SetStaticDefaults()

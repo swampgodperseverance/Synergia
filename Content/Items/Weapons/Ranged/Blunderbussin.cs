@@ -3,6 +3,7 @@ using Avalon.Common;
 using Avalon.Common.Extensions;
 using Avalon.Common.Templates;
 using Microsoft.Xna.Framework;
+using Synergia.Common;
 using Terraria;
 using Terraria.DataStructures;
 using Terraria.ID;
@@ -10,6 +11,7 @@ using Terraria.ModLoader;
 
 namespace Synergia.Content.Items.Weapons.Ranged
 {
+	[ItemMeta(Progression.Hardmode, WeaponType.Gun)]
 	public class Blunderbussin : ModItem
 	{
 		public override void SetDefaults()

@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
+using Synergia.Common;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -7,6 +8,7 @@ using static Terraria.ModLoader.ModContent;
 
 namespace Synergia.Content.Items.Weapons.Summon
 {
+	[ItemMeta(Progression.PreHardmode, WeaponType.Whip)]
 	public class AngryParasite : ModItem
 	{
 		public override void SetDefaults()

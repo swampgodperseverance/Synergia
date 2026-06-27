@@ -1,3 +1,4 @@
+using Synergia.Common;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -6,6 +7,7 @@ using static Terraria.ModLoader.ModContent;
 
 namespace Synergia.Content.Items.Weapons.AuraStaff
 {
+    [ItemMeta(Progression.PreHardmode, WeaponType.Aura)]
     [ExtendsFromMod("ValhallaMod")]
     public class VerdurousStaff : ValhallaMod.Items.AI.ValhallaAuraItem
 	{

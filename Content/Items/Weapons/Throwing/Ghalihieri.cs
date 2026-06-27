@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
+using Synergia.Common;
 using Synergia.Common.Rarities;
 using Synergia.Content.Projectiles.Thrower;
 using Terraria;
@@ -9,6 +10,7 @@ using Terraria.ModLoader;
 
 namespace Synergia.Content.Items.Weapons.Throwing
 {
+	[ItemMeta(Progression.Hardmode, WeaponType.Dagger)]
 	public class Ghalihieri : ModItem
 	{
 		public override void SetDefaults()

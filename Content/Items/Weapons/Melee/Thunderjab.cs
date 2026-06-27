@@ -1,4 +1,5 @@
-﻿using Terraria;
+﻿using Synergia.Common;
+using Terraria;
 using Terraria.DataStructures;
 using Terraria.ID;
 using ValhallaMod.Buffs.Cooldown;
@@ -7,6 +8,7 @@ using ValhallaMod.Items.Material.Bar;
 namespace Synergia.Content.Items.Weapons.Melee
 {
 	// Token: 0x0200034F RID: 847
+	[ItemMeta(Progression.Hardmode, WeaponType.Sword)]
 	public class Thunderjab : ModItem
 	{
 		// Token: 0x06000F5C RID: 3932 RVA: 0x00089768 File Offset: 0x00087968
