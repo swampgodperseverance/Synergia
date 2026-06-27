@@ -4,6 +4,7 @@ using Terraria.ID;
 using Synergia.Content.Projectiles.Friendly;
 using Microsoft.Xna.Framework;
 using Synergia.Common;
+using Synergia.Common.Wiki;
 
 namespace Synergia.Content.Items.Weapons.Throwing
 {

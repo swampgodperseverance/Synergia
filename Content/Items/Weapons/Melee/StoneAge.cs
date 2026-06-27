@@ -2,6 +2,7 @@
 using Bismuth.Content.Items.Weapons.Ranged;
 using Microsoft.Xna.Framework;
 using Synergia.Common;
+using Synergia.Common.Wiki;
 using Synergia.Content.Items.Weapons.Ranged;
 using Synergia.Content.Projectiles.Friendly;
 using Terraria;

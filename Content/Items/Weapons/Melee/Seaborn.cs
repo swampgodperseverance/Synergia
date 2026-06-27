@@ -6,6 +6,7 @@ using Humanizer;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Synergia.Common;
+using Synergia.Common.Wiki;
 using Terraria;
 using Terraria.Audio;
 using Terraria.DataStructures;

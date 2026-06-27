@@ -4,6 +4,7 @@ using Avalon.Items.Material.Bars;
 using Avalon.Items.Weapons.Melee.PreHardmode.Snotsabre;
 using Microsoft.Xna.Framework;
 using Synergia.Common;
+using Synergia.Common.Wiki;
 using Terraria;
 using Terraria.Audio;
 using Terraria.DataStructures;

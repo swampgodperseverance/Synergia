@@ -4,6 +4,7 @@ using Avalon.Items.Material.Shards;
 using Avalon.Items.Weapons.Ranged.PreHardmode.Blunderblight;
 using Microsoft.Xna.Framework;
 using Synergia.Common;
+using Synergia.Common.Wiki;
 using Synergia.Content.Projectiles.RangedProjectiles;
 using Terraria;
 using Terraria.Audio;

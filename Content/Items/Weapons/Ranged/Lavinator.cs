@@ -2,6 +2,7 @@
 using Avalon.Common.Templates;
 using Microsoft.Xna.Framework;
 using Synergia.Common;
+using Synergia.Common.Wiki;
 using Synergia.Content.Projectiles.RangedProjectiles;
 using Terraria;
 using Terraria.Audio;

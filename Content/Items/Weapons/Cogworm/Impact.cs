@@ -8,6 +8,7 @@ using Synergia.Content.Projectiles.Friendly;
 using Synergia.Common.Rarities;
 using System.Collections.Generic;
 using Synergia.Common;
+using Synergia.Common.Wiki;
 
 namespace Synergia.Content.Items.Weapons.Cogworm
 {

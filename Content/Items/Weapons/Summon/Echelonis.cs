@@ -6,6 +6,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Synergia.Common;
 using Synergia.Common.Rarities;
+using Synergia.Common.Wiki;
 using Terraria;
 using Terraria.DataStructures;
 using Terraria.GameContent;

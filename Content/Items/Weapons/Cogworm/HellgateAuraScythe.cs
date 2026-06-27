@@ -5,6 +5,7 @@ using Terraria.ModLoader;
 using Synergia.Content.Projectiles.Aura;
 using static Terraria.ModLoader.ModContent;
 using Synergia.Common.Rarities;
+using Synergia.Common.Wiki;
 
 namespace Synergia.Content.Items.Weapons.Cogworm
 {

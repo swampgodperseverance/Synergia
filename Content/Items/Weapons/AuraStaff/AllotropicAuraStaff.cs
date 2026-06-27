@@ -1,5 +1,6 @@
 using NewHorizons.Content.Items.Weapons.Throwing;
 using Synergia.Common;
+using Synergia.Common.Wiki;
 using Synergia.Content.Items.Misc;
 using Synergia.Content.Projectiles.Aura;
 using Terraria;

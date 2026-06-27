@@ -8,6 +8,7 @@ using Terraria.Audio;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Synergia.Common.Rarities;
+using Synergia.Common.Wiki;
 
 namespace Synergia.Content.Items.Weapons.Cogworm
 {

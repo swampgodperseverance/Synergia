@@ -1,5 +1,6 @@
 using Microsoft.Xna.Framework;
 using Synergia.Common;
+using Synergia.Common.Wiki;
 using Synergia.Content.Projectiles.Thrower;
 using Terraria;
 using Terraria.ID;

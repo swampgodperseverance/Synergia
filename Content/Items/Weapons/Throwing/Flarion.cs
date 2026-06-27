@@ -6,6 +6,7 @@ using Terraria.ModLoader;
 using Terraria.Audio;
 using Synergia.Content.Projectiles.Thrower;
 using Synergia.Common.Rarities;
+using Synergia.Common.Wiki;
 
 namespace Synergia.Content.Items.Weapons.Throwing
 {

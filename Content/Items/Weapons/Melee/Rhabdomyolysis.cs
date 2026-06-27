@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Synergia.Common;
 using Synergia.Common.Rarities;
+using Synergia.Common.Wiki;
 using Synergia.Content.Projectiles.Other;
 using Terraria;
 using Terraria.DataStructures;

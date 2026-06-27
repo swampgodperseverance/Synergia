@@ -5,6 +5,7 @@ using Avalon.Particles;
 using Microsoft.Xna.Framework;
 using Synergia.Common;
 using Synergia.Common.Rarities;
+using Synergia.Common.Wiki;
 using Synergia.Content.Projectiles.RangedProjectiles;
 using Terraria;
 using Terraria.Audio;

@@ -9,6 +9,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Synergia.Common;
 using Synergia.Common.Rarities;
+using Synergia.Common.Wiki;
 using Synergia.Helpers;
 using Terraria;
 using Terraria.Audio;

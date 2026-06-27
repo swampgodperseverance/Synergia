@@ -1,4 +1,5 @@
 ﻿using Synergia.Common;
+using Synergia.Common.Wiki;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;

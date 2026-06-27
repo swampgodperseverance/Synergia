@@ -3,6 +3,7 @@ using Avalon.Items.Material.Bars;
 using Avalon.Items.Material.Ores;
 using Synergia.Common;
 using Synergia.Common.GlobalPlayer;
+using Synergia.Common.Wiki;
 using Terraria;
 using Terraria.Audio;
 using Terraria.DataStructures;

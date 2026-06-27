@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Synergia.Common;
+namespace Synergia.Common.Wiki;
 
 
 public enum WeaponType
@@ -46,10 +46,10 @@ public class ItemMetaAttribute : Attribute
         {
             switch (modifier)
             {
-                case Common.Progression progression:
+                case Progression progression:
                     Progression = progression;
                     break;
-                case Common.WeaponType weaponType:
+                case WeaponType weaponType:
                     WeaponType = weaponType;
                     break;
             }

@@ -7,6 +7,7 @@ using Terraria.ModLoader;
 using Synergia.Content.Projectiles.Friendly;
 using Synergia.Content.Buffs;
 using Synergia.Common.Rarities;
+using Synergia.Common.Wiki;
 
 namespace Synergia.Content.Items.Weapons.Cogworm
 {

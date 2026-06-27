@@ -3,6 +3,7 @@ using Terraria;
 using Avalon.Items.Material.TomeMats;
 using Avalon.Items.Material.Ores;
 using Synergia.Common;
+using Synergia.Common.Wiki;
 using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;

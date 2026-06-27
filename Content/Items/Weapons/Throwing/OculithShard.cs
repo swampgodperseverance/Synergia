@@ -4,6 +4,7 @@ using Microsoft.Xna.Framework;
 using NewHorizons.Content.Items.Weapons.Throwing;
 using Synergia.Common;
 using Synergia.Common.GlobalPlayer;
+using Synergia.Common.Wiki;
 using Synergia.Content.Items.Misc;
 using Synergia.Content.Projectiles.Friendly;
 using Terraria;

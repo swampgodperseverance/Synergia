@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using System;
 using Synergia.Common;
+using Synergia.Common.Wiki;
 using Terraria;
 using Terraria.DataStructures;
 using Terraria.ID;

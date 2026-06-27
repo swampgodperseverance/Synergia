@@ -4,6 +4,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Synergia.Common;
 using Synergia.Common.Rarities;
+using Synergia.Common.Wiki;
 using Synergia.Content.Dusts;
 using Synergia.Content.Projectiles.Aura;
 using Synergia.Content.Projectiles.Other;

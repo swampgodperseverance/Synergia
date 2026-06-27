@@ -5,6 +5,7 @@ using Terraria.ModLoader;
 using Synergia.Content.Projectiles.Friendly;
 using Avalon.Items.Material.Shards;
 using Synergia.Common;
+using Synergia.Common.Wiki;
 using ValhallaMod.Items.Material;
 
 namespace Synergia.Content.Items.Weapons.Throwing

@@ -7,6 +7,7 @@ using System.Linq;
 using Synergia.Content.Projectiles.Friendly;
 using starforgedclassic.Content.Placeables.AzuriteBar;
 using Synergia.Common;
+using Synergia.Common.Wiki;
 
 namespace Synergia.Content.Items.Weapons.Throwing
 {

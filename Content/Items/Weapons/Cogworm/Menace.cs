@@ -9,6 +9,7 @@ using Synergia.Common.GlowMasks;
 using Synergia.Content.Buffs;
 using Synergia.Content.Projectiles.Friendly;
 using Synergia.Common.Rarities;
+using Synergia.Common.Wiki;
 
 namespace Synergia.Content.Items.Weapons.Cogworm;
 
