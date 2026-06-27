@@ -1,7 +1,9 @@
 ﻿using System;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Synergia.Common;
 using Synergia.Common.Rarities;
+using Synergia.Common.Wiki;
 using Synergia.Content.Projectiles.Other;
 using Terraria;
 using Terraria.DataStructures;
@@ -11,6 +13,7 @@ using ValhallaMod.Projectiles.AI;
 
 namespace Synergia.Content.Items.Weapons.Melee
 {
+    [ItemMeta(Progression.Hardmode, WeaponType.Sword)]
     public class Rhabdomyolysis : ModItem
     {
         public override void SetStaticDefaults()

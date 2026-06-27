@@ -1,7 +1,9 @@
 ﻿using System.Collections.Generic;
 using Avalon.Items.Material.Bars;
 using Avalon.Items.Material.Ores;
+using Synergia.Common;
 using Synergia.Common.GlobalPlayer;
+using Synergia.Common.Wiki;
 using Terraria;
 using Terraria.Audio;
 using Terraria.DataStructures;
@@ -15,6 +17,8 @@ using Synergia.Content.Items.Materials;
 
 
 namespace Synergia.Content.Items.Weapons.Summon {
+    
+    [ItemMeta(Progression.PreHardmode, WeaponType.Sentry)]
     public class TurretToolBronze : ModItem
     {
         // Token: 0x06000C35 RID: 3125 RVA: 0x0007B630 File Offset: 0x00079830

@@ -1,4 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
+using Synergia.Common;
+using Synergia.Common.Wiki;
 using Terraria;
 using Terraria.DataStructures;
 using Terraria.ID;
@@ -6,6 +8,7 @@ using Terraria.ModLoader;
 
 namespace Synergia.Content.Items.Weapons.Summon
 {
+    [ItemMeta(Progression.PreHardmode, WeaponType.Minion)]
     public class Starcaller : ModItem
     {
         public override void SetStaticDefaults()

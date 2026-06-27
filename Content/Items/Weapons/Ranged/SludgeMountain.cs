@@ -3,6 +3,8 @@ using Avalon.Common.Extensions;
 using Avalon.Items.Material.Shards;
 using Avalon.Items.Weapons.Ranged.PreHardmode.Blunderblight;
 using Microsoft.Xna.Framework;
+using Synergia.Common;
+using Synergia.Common.Wiki;
 using Synergia.Content.Projectiles.RangedProjectiles;
 using Terraria;
 using Terraria.Audio;
@@ -12,6 +14,7 @@ using Terraria.ModLoader;
 
 namespace Synergia.Content.Items.Weapons.Ranged
 {
+	[ItemMeta(Progression.Hardmode, WeaponType.Gun)]
     public class SludgeMountain : ModItem
     {
         public override void SetDefaults()

@@ -1,6 +1,8 @@
 using Avalon.Items.Material.Bars;
 using Avalon.Items.Material.Shards;
 using Microsoft.Xna.Framework;
+using Synergia.Common;
+using Synergia.Common.Wiki;
 using Synergia.Content.Projectiles.Friendly;
 using Terraria;
 using Terraria.ID;
@@ -9,6 +11,7 @@ using ValhallaMod.Items.Material;
 
 namespace Synergia.Content.Items.Weapons.Throwing
 {
+	[ItemMeta(Progression.Hardmode, WeaponType.Javelin)]
 	public class DurataniumJavelin : ModItem
 	{
 		public override void SetDefaults()

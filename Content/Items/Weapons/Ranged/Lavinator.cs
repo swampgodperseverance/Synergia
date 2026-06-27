@@ -1,6 +1,8 @@
 ﻿using Avalon.Common;
 using Avalon.Common.Templates;
 using Microsoft.Xna.Framework;
+using Synergia.Common;
+using Synergia.Common.Wiki;
 using Synergia.Content.Projectiles.RangedProjectiles;
 using Terraria;
 using Terraria.Audio;
@@ -11,6 +13,7 @@ using ValhallaMod.Items.Weapons.Ranged.Darts;
 
 namespace Synergia.Content.Items.Weapons.Ranged
 {
+    [ItemMeta(Progression.Hardmode, WeaponType.Other)]
     public class Lavinator : ModItem
     {
         public override void SetStaticDefaults()

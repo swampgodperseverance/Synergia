@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Synergia.Common;
 using Terraria;
 using Terraria.DataStructures;
 using Terraria.ID;
@@ -8,9 +9,11 @@ using Synergia.Common.GlowMasks;
 using Synergia.Content.Buffs;
 using Synergia.Content.Projectiles.Friendly;
 using Synergia.Common.Rarities;
+using Synergia.Common.Wiki;
 
 namespace Synergia.Content.Items.Weapons.Cogworm;
 
+[ItemMeta(Progression.Hardmode, WeaponType.Wand)]
 [AutoloadGlowMask]
 sealed class Menace : ModItem
 {

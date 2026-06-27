@@ -1,6 +1,8 @@
 ﻿using Avalon.Items.Accessories.Hardmode;
 using Bismuth.Content.Items.Weapons.Ranged;
 using Microsoft.Xna.Framework;
+using Synergia.Common;
+using Synergia.Common.Wiki;
 using Synergia.Content.Projectiles.RangedProjectiles;
 using Terraria;
 using Terraria.Audio;
@@ -11,6 +13,7 @@ using ValhallaMod.Items.Weapons.Ranged.Bows;
 
 namespace Synergia.Content.Items.Weapons.Ranged
 {
+    [ItemMeta(Progression.PreHardmode, WeaponType.Bow)]
     public class Tribow : ModItem
     {
         public override void SetStaticDefaults()
