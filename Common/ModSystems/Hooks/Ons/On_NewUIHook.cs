@@ -29,10 +29,12 @@ namespace Synergia.Common.ModSystems.Hooks.Ons {
         static readonly FieldInfo ModIconField = UIModItemType?.GetField("_modIcon", BindingFlags.Instance | BindingFlags.NonPublic);
 
         public override void Load() {
-            MethodInfo ExtraMountCavesGeneratorInfo = typeof(UIModItem).GetMethod(nameof(UIModItem.OnInitialize), BindingFlags.Public | BindingFlags.Instance);
-            iconAchieve = new Hook(ExtraMountCavesGeneratorInfo, (OnInitialize_Detour)AddNewIcon);
+            if (ModLoader.TryGetMod("Daybreak", out Mod _)) { return; }
 
-            MethodInfo target = typeof(UIModItem).GetMethod(nameof(UIModItem.Draw), BindingFlags.Public | BindingFlags.Instance);
+            MethodInfo target = typeof(UIModItem).GetMethod(nameof(UIModItem.OnInitialize), BindingFlags.Public | BindingFlags.Instance);
+            iconAchieve = new Hook(target, (OnInitialize_Detour)AddNewIcon);
+
+            target = typeof(UIModItem).GetMethod(nameof(UIModItem.Draw), BindingFlags.Public | BindingFlags.Instance);
             animationIcon = new Hook(target, (Draw_Detour)AddNewAnimationIcon);
         }
 
