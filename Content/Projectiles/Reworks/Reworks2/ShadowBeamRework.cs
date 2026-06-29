@@ -170,9 +170,7 @@ namespace Synergia.Content.Projectiles.Reworks.Reworks2
 
 
     }
-}
-namespace Synergia.Content.Projectiles.Reworks.Reworks2
-{
+
     public class ShadowBeamRework2 : ModProjectile
     {
         private const float FADE_IN_TIME = 24f;
