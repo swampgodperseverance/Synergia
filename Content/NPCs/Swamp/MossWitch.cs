@@ -16,6 +16,7 @@ using Terraria.ID;
 
 namespace Synergia.Content.NPCs.Swamp
 {
+    [AutoloadBossHead]
     public class MossWitch : ModNPC
     {
         public override void ModifyNPCLoot(NPCLoot npcLoot)

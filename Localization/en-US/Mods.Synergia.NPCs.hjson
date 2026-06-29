@@ -114,7 +114,7 @@ ImperianCommander: {
 
 	Say: {
 		PreEp: Hey, recruit. I suppose you already know you can get your weapons here, so what’ll it be?
-		PostEp: gGood choice but now go see what you can do
+		PostEp: Good choice but now go see what you can do
 	}
 
 	Emblem: You need {0}
