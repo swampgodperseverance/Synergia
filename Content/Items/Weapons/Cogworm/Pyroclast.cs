@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
+using Synergia.Common;
 using Terraria;
 using Terraria.DataStructures;
 using Terraria.ID;
@@ -6,9 +7,11 @@ using Terraria.ModLoader;
 using Synergia.Content.Projectiles.Friendly;
 using Synergia.Content.Buffs;
 using Synergia.Common.Rarities;
+using Synergia.Common.Wiki;
 
 namespace Synergia.Content.Items.Weapons.Cogworm
 {
+    [ItemMeta(Progression.Hardmode, WeaponType.Bow)]
     public class Pyroclast : ModItem
     {
         private bool hasSpawnedFireballs = false; 

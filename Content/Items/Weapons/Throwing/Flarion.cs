@@ -1,13 +1,16 @@
 using Microsoft.Xna.Framework;
+using Synergia.Common;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.Audio;
 using Synergia.Content.Projectiles.Thrower;
 using Synergia.Common.Rarities;
+using Synergia.Common.Wiki;
 
 namespace Synergia.Content.Items.Weapons.Throwing
 {
+	[ItemMeta(Progression.Hardmode, WeaponType.Boomerang)]
 	public class Flarion : ModItem
 	{
 		public override void SetDefaults()

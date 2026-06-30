@@ -1,4 +1,6 @@
 using Microsoft.Xna.Framework;
+using Synergia.Common;
+using Synergia.Common.Wiki;
 using Synergia.Content.Projectiles.Thrower;
 using Terraria;
 using Terraria.ID;
@@ -7,6 +9,7 @@ using ValhallaMod.Items.Material.Bar;
 
 namespace Synergia.Content.Items.Weapons.Throwing
 {
+    [ItemMeta(Progression.Hardmode, WeaponType.Boomerang)]
     public class ThunderChakram : ModItem
     {
         public override void SetDefaults()

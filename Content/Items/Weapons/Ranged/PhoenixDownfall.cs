@@ -3,7 +3,9 @@ using Avalon.Common.Extensions;
 using Avalon.Common.Templates;
 using Avalon.Particles;
 using Microsoft.Xna.Framework;
+using Synergia.Common;
 using Synergia.Common.Rarities;
+using Synergia.Common.Wiki;
 using Synergia.Content.Projectiles.RangedProjectiles;
 using Terraria;
 using Terraria.Audio;
@@ -12,6 +14,7 @@ using Terraria.ModLoader;
 
 namespace Synergia.Content.Items.Weapons.Ranged
 {
+    [ItemMeta(Progression.Hardmode, WeaponType.Gun)]
     public class PhoenixDownfall : ModItem
     {
         public override void SetStaticDefaults()

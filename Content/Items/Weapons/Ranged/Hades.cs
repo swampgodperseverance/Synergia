@@ -1,5 +1,7 @@
 ﻿using System;
+using Synergia.Common;
 using Synergia.Common.Rarities;
+using Synergia.Common.Wiki;
 using Synergia.Helpers;
 using Terraria;
 using Terraria.Audio;
@@ -11,6 +13,7 @@ using Terraria.ID;
 
 namespace Synergia.Content.Items.Weapons.Ranged
 {
+    [ItemMeta(Progression.Hardmode, WeaponType.Other)]
     public class Hades : ModItem
     {
         public override void SetStaticDefaults()

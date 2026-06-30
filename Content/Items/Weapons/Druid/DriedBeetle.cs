@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using RoA.Common.Crossmod;
+using Synergia.Common;
 using Terraria;
 using Terraria.Audio;
 using Terraria.ID;
@@ -7,6 +8,7 @@ using Terraria.ModLoader;
 
 namespace Synergia.Content.Items.Weapons.Druid;
 
+// [ItemMeta(Progression.Hardmode, WeaponType.Other)] // TODO: uncomment
 public class DriedBeetle : ModItem
 {
     public override void SetDefaults()

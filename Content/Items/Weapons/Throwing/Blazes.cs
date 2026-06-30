@@ -3,9 +3,12 @@ using Terraria.ModLoader;
 using Terraria.ID;
 using Synergia.Content.Projectiles.Friendly;
 using Microsoft.Xna.Framework;
+using Synergia.Common;
+using Synergia.Common.Wiki;
 
 namespace Synergia.Content.Items.Weapons.Throwing
 {
+    [ItemMeta(Progression.Hardmode, WeaponType.Other)]
     public class Blazes : ModItem
     {
         public override void SetStaticDefaults()

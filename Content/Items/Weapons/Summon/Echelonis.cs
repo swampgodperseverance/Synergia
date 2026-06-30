@@ -4,7 +4,9 @@ using Avalon.Items.Accessories.Info;
 using Bismuth.Content.Items.Accessories;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Synergia.Common;
 using Synergia.Common.Rarities;
+using Synergia.Common.Wiki;
 using Terraria;
 using Terraria.DataStructures;
 using Terraria.GameContent;
@@ -15,6 +17,7 @@ using ValhallaMod.Items.Accessory.Shield;
 
 namespace Synergia.Content.Items.Weapons.Summon
 {
+    [ItemMeta(Progression.Hardmode, WeaponType.Minion)]
     public class Echelonis : ModItem
     {
         private static readonly int[] PositiveAccessories = new int[]

@@ -1,4 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
+using Synergia.Common;
+using Synergia.Common.Wiki;
 using Terraria;
 using Terraria.DataStructures;
 using Terraria.ID;
@@ -7,6 +9,7 @@ using Synergia.Content.Projectiles.Summon;
 
 namespace Synergia.Content.Items.Weapons.Summon
 {
+    [ItemMeta(Progression.PreHardmode, WeaponType.Whip)]
     public class Triwhip : ModItem
     {
         public override void SetDefaults()

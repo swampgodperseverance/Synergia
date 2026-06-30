@@ -1,5 +1,7 @@
 using Avalon.Items.Material;
 using Avalon.Items.Material.Bars;
+using Synergia.Common;
+using Synergia.Common.Wiki;
 using Synergia.Content.Projectiles.Aura;
 using Terraria;
 using Terraria.ID;
@@ -8,6 +10,8 @@ using static Terraria.ModLoader.ModContent;
 
 namespace Synergia.Content.Items.Weapons.AuraStaff
 {
+	
+	[ItemMeta(Progression.Hardmode, WeaponType.Aura)]
 	[ExtendsFromMod("ValhallaMod")]
 	public class PathogenicAuraStaff : ValhallaMod.Items.AI.ValhallaAuraItem
 	{

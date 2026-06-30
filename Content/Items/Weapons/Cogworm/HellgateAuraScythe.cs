@@ -1,12 +1,15 @@
+using Synergia.Common;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Synergia.Content.Projectiles.Aura;
 using static Terraria.ModLoader.ModContent;
 using Synergia.Common.Rarities;
+using Synergia.Common.Wiki;
 
 namespace Synergia.Content.Items.Weapons.Cogworm
 {
+    [ItemMeta(Progression.Hardmode, WeaponType.Aura)]
     [ExtendsFromMod("ValhallaMod")]
     public class HellgateAuraScythe : ValhallaMod.Items.AI.ValhallaAuraItem
     {
