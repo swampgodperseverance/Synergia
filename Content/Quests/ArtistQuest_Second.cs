@@ -11,7 +11,7 @@ namespace Synergia.Content.Quests {
     internal class ArtistQuest_Second : BaseQuestLogic {
         public override int QuestNPC => NPCType<Artist>();
         public override bool IsEndQuest => Main.LocalPlayer.GetModPlayer<QuestBoolean>().ArtistQuest2;
-        public override string Key => "ArtistQuest";
+        public override string Key => "ArtistQuest_Second";
         public override string DisplayName => LocQuestKey("ArtistQuest_Second", "QuestName");
         public override string DisplayDescription => LocQuestKey("ArtistQuest_Second", "QuestDescription");
         public override string DisplayStage => LocQuestKey("ArtistQuest_Second", "QuestStage");

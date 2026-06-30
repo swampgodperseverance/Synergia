@@ -19,7 +19,7 @@ namespace Synergia.Content.Quests {
         public override bool ISManyEndings => false;
         public override QuestPhase Phase => QuestPhase.PreSkeletron;
         public override int CornerItem => ItemType<OldDwarvenHelmet>();
-        public override PostBossQuest PostBossRequirement => PostBossQuest.PostMechBosses;
+        public override PostBossQuest PostBossRequirement => PostBossQuest.PostDestroyer;
         public override string GetChat(NPC npc, Player player) => BaseGetChat(player, "DwarfQuest_Second", "QuestProgress0", "QuestProgress2", "QuestProgress1");
         public override string GetButtonText(Player player, ref bool Isfristclicked) => BaseGetButtonText(player, ref Isfristclicked, "DwarfQuest_Second", "QuestButton", "QuestButtonGive");
         public override bool IsCompleted(Player player) => BaseIsCompleted(player);

@@ -73,6 +73,7 @@ public partial class QuestSystem {
             MultiQuest(quest.DwarfQuest, quest.DwarfQuest1, NPCType<Dwarf>(), DWARF);
             OmegaQuest(quest.ArtistQuest, quest.ArtistQuest1, quest.ArtistQuest2, NPCType<Artist>(), ARTIST);
             OmegaQuest(quest.LibrarianQuest, quest.LibrarianQuest1, quest.LibrarianQuest2, NPCType<Librarian>(), LIBRARIAN);
+
             if (!quest.needResset) { OmegaQuest(quest.HellDwarfQuest, quest.HellDwarfQuest1, quest.HellDwarfQuest2, NPCType<HellDwarf>(), HELLDWARF); }
 
             if (quest.NinjaQuest) {
