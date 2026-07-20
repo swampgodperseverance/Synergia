@@ -17,7 +17,7 @@ public class Gutslegs : ModItem {
     }
     public override void UpdateEquip(Player player)
     {
-        player.maxMinions += 2;
+        player.maxMinions += 3;
         player.lifeRegen += 2;
     }
 }

@@ -92,7 +92,6 @@ namespace Synergia.Content.Projectiles.Friendly
                 {
                     Vector2 direction = Projectile.velocity.SafeNormalize(Vector2.UnitY);
 
-                    // Улучшенные частицы как во втором копье
                     int dustType = empowered 
                         ? DustID.LavaMoss 
                         : (Main.rand.NextBool(3) ? DustID.Torch : DustID.Lava);
@@ -119,7 +118,6 @@ namespace Synergia.Content.Projectiles.Friendly
                         }
                     }
                     
-                    // Эффект перегрева при комбо
                     if (comboCounter >= 3 && Main.rand.NextBool(5))
                     {
                         Dust.NewDustPerfect(
@@ -140,7 +138,6 @@ namespace Synergia.Content.Projectiles.Friendly
                 Projectile.Kill();
                 player.reuseDelay = 2;
                 
-                // Сброс комбо при медленной анимации
                 if (player.itemAnimationMax > 20)
                     comboCounter = 0;
             }
@@ -167,7 +164,6 @@ namespace Synergia.Content.Projectiles.Friendly
         {
             Player player = Main.player[Projectile.owner];
 
-            // Система комбо как во втором копье
             comboCounter++;
             if (comboCounter >= 3)
             {
@@ -175,7 +171,6 @@ namespace Synergia.Content.Projectiles.Friendly
                 SoundEngine.PlaySound(SoundID.Item45 with { Pitch = 0.5f }, Projectile.position);
             }
             
-            // Улучшенные эффекты попадания
             if (empowered)
             {
                 target.AddBuff(BuffID.OnFire3, 300);
@@ -215,7 +210,6 @@ namespace Synergia.Content.Projectiles.Friendly
 
             Lighting.AddLight(target.Center, empowered ? 1.8f : 1.4f, empowered ? 0.8f : 0.6f, empowered ? 0.2f : 0.1f);
 
-            // Оригинальная механика с SpinCleava
             if (Main.player[Projectile.owner] == Main.LocalPlayer) 
             {
                 int hitCounter = (int)(Main.GameUpdateCount % 10);
@@ -287,7 +281,6 @@ namespace Synergia.Content.Projectiles.Friendly
                 rotation += (float)Math.PI / 2f * Projectile.spriteDirection;
             }
 
-            // Улучшенный трейл как во втором копье
             Texture2D trail = (Texture2D)ModContent.Request<Texture2D>("Synergia/Assets/Textures/LightTrail_1").Value;
             Vector2 trailOrigin = new Vector2(trail.Width / 2, trail.Height / 2);
             glowRotation += 0.1f;
@@ -315,10 +308,8 @@ namespace Synergia.Content.Projectiles.Friendly
                     0f);
             }
 
-            // Основная текстура
             spriteBatch.Draw(texture, position, null, lightColor, rotation, drawOrigin, Projectile.scale, spriteEffects, 0f);
 
-            // Эффект свечения при усилении
             if (empowered)
             {
                 Color glowColor = new Color(255, 200, 50, 100);

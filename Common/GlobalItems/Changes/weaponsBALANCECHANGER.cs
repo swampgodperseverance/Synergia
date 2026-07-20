@@ -39,6 +39,7 @@ using ValhallaMod.Items.Weapons.Magic.Music;
 using ValhallaMod.Items.Weapons.Magic.Staffs;
 using ValhallaMod.Items.Weapons.Magic.Thrown;
 using ValhallaMod.Items.Weapons.Magic.Tomes;
+using ValhallaMod.Items.Weapons.Melee.Boomerangs;
 using ValhallaMod.Items.Weapons.Melee.ChannelMelee;
 using ValhallaMod.Items.Weapons.Melee.Glaives;
 using ValhallaMod.Items.Weapons.Melee.Knives;
@@ -68,7 +69,8 @@ namespace Synergia.Common.GlobalItems.Changes
         {
             int chemicalPrisonerType =
                 ModLoader.GetMod("RoA")?.Find<ModItem>("ChemicalPrisoner")?.Type ?? 0;
-
+            int solarangType =
+                ModLoader.GetMod("starforgedclassic")?.Find<ModItem>("Solarang")?.Type ?? 0;
             int ZapperType =
                 ModLoader.GetMod("RoA")?.Find<ModItem>("MercuriumZipper")?.Type ?? 0;
             int kamotype =
@@ -206,6 +208,11 @@ namespace Synergia.Common.GlobalItems.Changes
                     item.useTime += 6;
                     item.mana += 15;
                     item.damage -= 6;
+                },
+                [solarangType] = item =>
+                {
+                    item.useAnimation += 13;
+                    item.useTime += 13;
                 },
                 [RodShockType] = item =>
                 {
@@ -598,6 +605,14 @@ namespace Synergia.Common.GlobalItems.Changes
                 [ModContent.ItemType<Naginata>()] = item =>
                 {
                     item.damage -= 14;
+                },
+                [ModContent.ItemType<Pumpkinade>()] = item =>
+                {
+                    item.damage -= 22;
+                },
+                [ModContent.ItemType<OmegaDisc>()] = item =>
+                {
+                    item.damage -= 10;
                 },
 
             };

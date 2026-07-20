@@ -9,6 +9,11 @@ namespace Synergia.Common.ModConfigs
     {
         public override ConfigScope Mode => ConfigScope.ServerSide;
 
+        [LabelKey("$Mods.Synergia.Configs.Config.UnconsumableConfig.EnableUnconsumableSummons")]
+        [TooltipKey("$Mods.Synergia.Configs.Config.UnconsumableConfig.EnableUnconsumableSummonsTooltip")]
+        [ReloadRequired]
+        [DefaultValue(false)] 
+        public bool EnableUnconsumableSummons { get; set; }
 
         [LabelKey("$Mods.Synergia.Configs.Config.SynergiaConfig.NewRecipe")]
         [TooltipKey("$Mods.Synergia.Configs.Config.SynergiaConfig.NewRecipeTooltip")]

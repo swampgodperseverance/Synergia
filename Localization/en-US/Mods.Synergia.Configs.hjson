@@ -9,7 +9,7 @@ Config: {
 		ResetUI: Reset UI
 		HoverUITooltip: Allows you to modify position user interface elements.
 		HoverUI: Modify position UI
-		ActiveSummonUITooltip: If it bothers you, you can enable it by default value enabled.
+		ActiveSummonUITooltip: Enabled by default. You can disable this UI.
 		ActiveSummonUI: Active Summon UI
 		SummonUI: Summon UI
 		NewFont: New Font
@@ -76,6 +76,11 @@ Config: {
 		HPScalingTooltip: Enables 100+ SetDefaults changes to NPCs
 		WeaponsScaling: Weapons Scaling
 		WeaponsScalingTooltip: Enables 250+ Balance changes to the weapons
+	}
+
+	UnconsumableConfig: {
+		EnableUnconsumableSummons: Enable Unconsumable summons
+		EnableUnconsumableSummonsTooltip: Makes summon items unconsumable
 	}
 }
 

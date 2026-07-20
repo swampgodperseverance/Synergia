@@ -84,7 +84,7 @@ namespace Synergia.Common.ModSystems.RecipeSystem.ChangesRecipe.AvalonsChanges {
             AddLotIngredient(recipe, ItemType<ValhallaMod.Items.Weapons.Summon.Sentries.SnowPeashooterSentryStaff>(), (ModContent.ItemType<IceCrystal>(), 5 ));
             AddLotIngredient(recipe, ItemType<ValhallaMod.Items.Weapons.Summon.Sentries.SnowPeashooterSentryStaff>(), (ModContent.ItemType<FrostShard>(), 4));
             AddLotIngredient(recipe, ItemType<HellAuraStaff>(), (ModContent.ItemType<FireShard>(), 4));
-            AddLotIngredient(recipe, ItemType<VenomDart>(), (ModContent.ItemType<VenomShard>(), 1));
+            //AddLotIngredient(recipe, ItemType<VenomDart>(), (ModContent.ItemType<VenomShard>(), 1));
             AddLotIngredient(recipe, ItemType<ValhallaMod.Items.Weapons.Summon.Sentries.FirePeashooterSentryStaff>(), (ModContent.ItemType<FireShard>(), 4));
             ForeachIngredient(recipe, ItemType<FrostDaggers>(), new Item(ItemType<FrigidShard>(), 3));
             AddLotIngredient(recipe, ItemType<ChlorophyteShortsword>(), (ModContent.ItemType<VenomShard>(), 1));
@@ -148,6 +148,15 @@ namespace Synergia.Common.ModSystems.RecipeSystem.ChangesRecipe.AvalonsChanges {
             CreateOmegaDisc();
             CreateAzraels();
             CreateJadeNaginata();
+            CreateDamagedBook();
+        }
+        static void CreateDamagedBook()
+        {
+            Recipe recipe = Recipe.Create(ItemType<TatteredBook>());
+            recipe.AddIngredient(ItemID.Book, 1);
+            recipe.AddIngredient(ItemType<PeatPowder>(), 4);
+            recipe.AddTile(TileID.Bookcases);
+            recipe.Register();
         }
         static void CreateJadeNaginata()
         {

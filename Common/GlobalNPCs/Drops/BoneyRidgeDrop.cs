@@ -21,7 +21,7 @@ namespace Synergia.Common.GlobalNPCs.Drops
                 npcLoot.Add(ItemDropRule.ByCondition(
                     postPlanteraCondition,
                     ModContent.ItemType<BoneyRidge>(),
-                    20 
+                    10 
                 ));
             }
         }

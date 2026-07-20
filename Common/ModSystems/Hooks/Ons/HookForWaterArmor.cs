@@ -23,7 +23,7 @@ namespace Synergia.Common.ModSystems.Hooks.Ons
                 cooldownTimer = 600;
             }
             if (cooldownTimer == 600){
-                SoundEngine.PlaySound(RSounds.ArmorReady, player.position);
+
             }
 
             if (VanillaKeybinds.ArmorSetBonusActivation.JustPressed && cooldownTimer >= 600){

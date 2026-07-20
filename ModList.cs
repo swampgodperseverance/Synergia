@@ -1,4 +1,6 @@
-﻿namespace Synergia;
+﻿using Terraria.ModLoader;
+
+namespace Synergia;
 
 // Мы постоянно делали этот код.
 // Вместо создания новой переменой бери от сюда 
@@ -16,12 +18,17 @@ public static class ModList {
     public static Mod TRAEProjectLoaded { get; private set; }
     public static Mod PackBuilderLoaded { get; private set; }
 
+    public static Mod Fargo { get; private set; }
+
     public static void LoadMod() {
+        ModLoader.TryGetMod("Fargowiltas", out Mod FargoMod);
+        Fargo = FargoMod;
         Ava = ModLoader.GetMod("Avalon");
         Bis = ModLoader.GetMod("Bismuth");
         Cons = ModLoader.GetMod("Consolaria");
         Horizons = ModLoader.GetMod("NewHorizons");
         Roa = ModLoader.GetMod("RoA");
+
         StarforgedClassic = ModLoader.GetMod("starforgedclassic");
         Valhalla = ModLoader.GetMod("ValhallaMod");
         ModLoader.TryGetMod("TRAEProject", out Mod TRAEProject);

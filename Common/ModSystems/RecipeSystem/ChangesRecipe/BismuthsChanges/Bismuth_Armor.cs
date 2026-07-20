@@ -56,6 +56,7 @@ namespace Synergia.Common.ModSystems.RecipeSystem.ChangesRecipe.HorizonsChanges
             AddLotIngredient(recipe, ItemType<WatersLeggings>(), (ItemID.SoulofMight, 5));
             AddLotIngredient(recipe, ItemType<WatersLeggings>(), (ItemID.SoulofSight, 5));
             AddLotIngredient(recipe, ItemType<WatersLeggings>(), (ItemID.SoulofFright, 5));
+            AddLotIngredient(recipe, ItemType<ChlorophyteHeadgear>(), (ItemType<VenomShard>(), 1));
         }
         public override void PostRecipe()
         {

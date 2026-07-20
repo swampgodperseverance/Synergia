@@ -152,11 +152,11 @@ namespace Synergia.Common.ModSystems.RecipeSystem.ChangesRecipe.AvalonsChanges {
         }
         static void CreateCrystalTomahawk()
         {
-            Recipe recipe = Recipe.Create(ItemType<CrystalTomahawk>());
+            Recipe recipe = Recipe.Create(ItemType<CrystalTomahawk>(), 110);
             recipe.AddIngredient(ItemType<RustyAxe>(), 55);
             recipe.AddIngredient(ItemID.CrystalShard, 5);
             recipe.AddIngredient(ItemID.SoulofLight, 1);
-            recipe.AddTile(TileType<CaesiumHeavyAnvilTile>());
+            recipe.AddTile(TileID.MythrilAnvil);
             recipe.Register();
         }
         static void CreateMagmafrostBolt()

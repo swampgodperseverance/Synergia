@@ -1,8 +1,10 @@
 // Code by SerNik
+using Synergia.Helpers;
 using System.Collections.Generic;
 using System.IO;
 using Terraria;
 using Terraria.ModLoader.IO;
+using static Terraria.ModLoader.BackupIO;
 
 namespace Synergia.Common.ModSystems.WorldGens {
     public class SynergiaGenVars: ModSystem {
@@ -84,13 +86,17 @@ namespace Synergia.Common.ModSystems.WorldGens {
 
             SnowVillageGen = tag.GetBool("SnowVillageGen");
             HellVillageGen = tag.GetBool("HellVillageGen");
+
+            if (ModList.Fargo != null) {
+                Rectangle arena = new((Main.maxTilesX - 1493 + HellArenaPositionX - HellLakeX) * 16, (Main.maxTilesY - 162) * 16, (HellLakeX + 236) * 16, (HellLakeY - 119) * 16);
+                ModList.Fargo.Call("AddIndestructibleRectangle", arena);
+            }
         }
         public override void NetSend(BinaryWriter writer) {
             writer.Write(VillageTiles.Count);
             foreach (Vector2 v in VillageTiles) writer.WriteVector2(v);
             writer.Write(VillageWalles.Count);
             foreach (Vector2 v in VillageWalles) writer.WriteVector2(v);
-
 
             writer.Write(SnowVillagePositionX);
             writer.Write(SnowVillagePositionY);
@@ -104,7 +110,6 @@ namespace Synergia.Common.ModSystems.WorldGens {
             writer.Write(HLOY);
             writer.Write(HLTX);
             writer.Write(HLTY);
-
 
             writer.Write(SnowVillageGen);
             writer.Write(HellVillageGen);

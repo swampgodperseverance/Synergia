@@ -59,7 +59,7 @@ namespace Synergia.Content.NPCs.Underworld{
             NPC.height = 34;
             NPC.damage = 50;
             NPC.defense = 12;
-            NPC.lifeMax = 1380;
+            NPC.lifeMax = 480;
             NPC.value = 500f;
             NPC.aiStyle = -1;
             NPC.noGravity = true;

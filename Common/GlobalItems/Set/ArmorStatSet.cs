@@ -127,7 +127,7 @@ namespace Synergia.Common.GlobalItems.Set
                 if (item.type == valhalla.Find<ModItem>("JadeHead").Type)
                 {
                     player.blackBelt = true;
-                    item.defense -= 4;
+                  //  item.defense -= 4;
                 }
                 if (item.type == valhalla.Find<ModItem>("JadeMask").Type)
                 {
@@ -135,7 +135,7 @@ namespace Synergia.Common.GlobalItems.Set
                 }
                 if (item.type == valhalla.Find<ModItem>("JadeBody").Type)
                 {
-                    item.defense += 5;
+                   // item.defense += 5;
                 }
 
             }
@@ -342,7 +342,11 @@ namespace Synergia.Common.GlobalItems.Set
                     player.GetCritChance(DamageClass.Generic) += 11f;
                     player.eocDash = 1;
                 }
-
+                if (item.type == bismuth.Find<ModItem>("ChlorophyteHeadgear").Type)
+                {
+                    player.ThrownVelocity -= 0.19f;
+                    
+                }
             }
 		}
 
@@ -423,6 +427,8 @@ namespace Synergia.Common.GlobalItems.Set
 
             Add("Bismuth", "BronzeBreastplate", "Items.BronzeBreastplate.Tooltip");
 
+            Add("Bismuth", "ChlorophyteHeadgear", "Items.ChlorophyteHeadgear.Tooltip");
+
             Add("Bismuth", "OrcishHelmet", "Items.OrcishHelmet.Tooltip");
             Add("Bismuth", "OrcishBreastplate", "Items.OrcishBreastplate.Tooltip");
 
@@ -467,6 +473,7 @@ namespace Synergia.Common.GlobalItems.Set
 
         private static Mod bismuth = ModLoader.GetMod("Bismuth");
         private static Mod horizons = ModLoader.GetMod("NewHorizons");
+        private static Mod valhalla = ModLoader.GetMod("ValhallaMod");
         public override void SetDefaults(Item item)
         {
             if (item.type == bismuth.Find<ModItem>("WatersHelmet").Type)
@@ -565,6 +572,14 @@ namespace Synergia.Common.GlobalItems.Set
             if (item.type == horizons.Find<ModItem>("AshenShroud").Type)
             {
                 item.defense = 4;
+            }
+            if (item.type == valhalla.Find<ModItem>("JadeHead").Type)
+            {
+                item.defense = 12;
+            }
+            if (item.type == valhalla.Find<ModItem>("JadeBody").Type)
+            {
+                item.defense = 19;
             }
         }
     }

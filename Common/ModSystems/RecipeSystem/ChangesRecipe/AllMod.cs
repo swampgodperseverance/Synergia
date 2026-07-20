@@ -10,6 +10,8 @@ using Avalon.Items.Weapons.Melee.Hardmode.MasterSword;
 using Avalon.Items.Weapons.Melee.Hardmode.QuantumClaymore;
 using Avalon.Items.Weapons.Melee.Hardmode.TrueAeonsEternity;
 using Bismuth.Content.Items.Materials;
+using Bismuth.Content.Items.Other;
+using Bismuth.Content.Items.Placeable;
 using Bismuth.Content.Items.Weapons.Melee;
 using Consolaria.Content.Items.Materials;
 using Consolaria.Content.Items.Summons;
@@ -48,7 +50,6 @@ namespace Synergia.Common.ModSystems.RecipeSystem.ChangesRecipe {
         public override void Ingredient(Recipe recipe) {
             AddLotIngredient(recipe, ItemID.VenomBullet, (ModContent.ItemType<VenomShard>(), 1));
             AddLotIngredient(recipe, ItemID.VenomArrow, (ModContent.ItemType<VenomShard>(), 1));
-            AddLotIngredient(recipe, ItemID.VenomBullet, (ModContent.ItemType<VenomShard>(), 1));
             AddLotIngredient(recipe, ItemID.FlaskofVenom, (ModContent.ItemType<VenomShard>(), 1));
             AddLotIngredient(recipe, ItemType<VenomSpike>(), (ModContent.ItemType<VenomShard>(), 1));
             AddIngredient(recipe, ItemType<WhiteThread>(), 0, new Item(ItemID.Cobweb, 2));
@@ -81,6 +82,15 @@ namespace Synergia.Common.ModSystems.RecipeSystem.ChangesRecipe {
             CreatePumpkinMedallion();
             CreateEverJav();
             CreateShardflingPotion();
+            CreateDwarvenCoin();
+        }
+        static void CreateDwarvenCoin()
+        {
+            Recipe recipe = Recipe.Create(ModContent.ItemType<DwarvenCoin>());
+            recipe.AddIngredient(ItemID.GoldCoin, 50);
+            recipe.AddIngredient(ItemID.GoldBar, 10);
+            recipe.AddTile(TileID.Hellforge);
+            recipe.Register();
         }
         static void CreatePumpkinMedallion()
         {

@@ -37,7 +37,7 @@ namespace Synergia.Content.Projectiles.Friendly
             Projectile.height = 36;
             Projectile.friendly = true;
             Projectile.timeLeft = 180;
-            Projectile.penetrate = 5;
+            Projectile.penetrate = 3;
             Projectile.tileCollide = false;
             Projectile.DamageType = DamageClass.Melee;
             Projectile.extraUpdates = 2;

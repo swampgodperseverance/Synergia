@@ -29,7 +29,7 @@ namespace Synergia.Content.NPCs.Underworld
             NPC.height = 34;
             NPC.damage = 35;
             NPC.defense = 22;
-            NPC.lifeMax = 900;
+            NPC.lifeMax = 600;
             NPC.knockBackResist = 0.05f;
             NPC.value = Item.buyPrice(0, 0, 80, 0);
             NPC.aiStyle = NPCAIStyleID.Fighter;

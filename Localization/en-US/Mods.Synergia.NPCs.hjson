@@ -167,8 +167,8 @@ Cruor: {
 		EntryName: Cruor
 		SpawnInfo:
 			'''
-			Mobs in the dungeon may drop “Soulful Crystals” 
-			Collect three of them
+			Enemies in the dungeon after Plantera has been defeated may drop "Soulful Crystals".
+			       You need to collect three to spawn Cruor
 			'''
 	}
 }

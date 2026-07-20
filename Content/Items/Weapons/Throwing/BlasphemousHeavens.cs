@@ -12,12 +12,12 @@ namespace Synergia.Content.Items.Weapons.Throwing
     {
         public override void SetDefaults()
         {
-            Item.damage = 80;
+            Item.damage = 66;
             Item.DamageType = DamageClass.Throwing;
             Item.width = 24;
             Item.height = 25;
-            Item.useTime = 10;
-            Item.useAnimation = 10;
+            Item.useTime = 30;
+            Item.useAnimation = 30;
             Item.knockBack = 2;
             Item.value = Item.buyPrice(silver: 50);
             Item.shootSpeed = 14f;

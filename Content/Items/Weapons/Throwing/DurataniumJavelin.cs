@@ -38,7 +38,7 @@ namespace Synergia.Content.Items.Weapons.Throwing
         {
             CreateRecipe()
                 .AddIngredient(ModContent.ItemType<DurataniumBar>(), 10)
-                .AddTile(TileID.Anvils)
+		         .AddTile(TileID.MythrilAnvil)
                 .Register();
         }
     }

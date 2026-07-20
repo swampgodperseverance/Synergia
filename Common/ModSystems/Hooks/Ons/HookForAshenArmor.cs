@@ -30,7 +30,7 @@ namespace Synergia.Common.ModSystems.Hooks.Ons
             }
             if (cooldownTimer == 1800)
             {
-                SoundEngine.PlaySound(RSounds.ArmorReady, player.position);
+                
             }
 
             if (invisibilityTimer > 0)

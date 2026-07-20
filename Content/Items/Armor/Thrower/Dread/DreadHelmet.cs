@@ -28,7 +28,7 @@ namespace Synergia.Content.Items.Armor.Thrower.Dread
         }
         public override void UpdateEquip(Player player)
         {
-            player.GetCritChance(DamageClass.Throwing) += 0.12f;
+            player.GetCritChance(DamageClass.Throwing) += 0.18f;
             player.moveSpeed += 0.08f;
         }
         public override bool IsArmorSet(Item head, Item body, Item legs)

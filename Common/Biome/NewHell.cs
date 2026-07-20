@@ -1,20 +1,25 @@
 ﻿// Code by SerNik
+using System.IO;
 using Synergia.Common.GlobalPlayer;
 using Synergia.Common.ModSystems;
 using Synergia.Common.ModSystems.WorldGens;
 using Synergia.Content.Buffs;
 using Synergia.Helpers;
-using System.IO;
 using Terraria;
+using Terraria.ID;
 using Terraria.ModLoader.IO;
 
-namespace Synergia.Common.Biome {
-    public class NewHell : ModBiome {
-        public override bool IsBiomeActive(Player player) {
+namespace Synergia.Common.Biome
+{
+    public class NewHell : ModBiome
+    {
+        public override bool IsBiomeActive(Player player)
+        {
             int width = 237 + SynergiaGenVars.HellArenaPositionX - SynergiaGenVars.HellLakeX;
             bool fullHell = WorldHelper.CheckBiome(player, width, 119, SynergiaGenVars.HellLakeX - 236, SynergiaGenVars.HellLakeY - 119);
             BiomePlayer bPlayer = player.GetModPlayer<BiomePlayer>();
-            if (fullHell) {
+            if (fullHell)
+            {
                 bool arena = WorldHelper.CheckBiome(player, 199, 119, SynergiaGenVars.HellArenaPositionX - 199, SynergiaGenVars.HellArenaPositionY - 119);
                 bool village = WorldHelper.CheckBiome(player, 281, 119, SynergiaGenVars.HellVillageX - 280, SynergiaGenVars.HellVillageY - 119);
                 bool lake = WorldHelper.CheckBiome(player, 215, 119, SynergiaGenVars.HellLakeX - 236, SynergiaGenVars.HellLakeY - 119);
@@ -24,27 +29,47 @@ namespace Synergia.Common.Biome {
                 if (village && !SynergiaWorld.FirstEnterInHellVillage) { SynergiaWorld.FirstEnterInHellVillage = true; }
                 return fullHell;
             }
-            else {
+            else
+            {
                 bPlayer.arenaBiome = false;
                 bPlayer.villageBiome = false;
                 bPlayer.lakeBiome = false;
             }
             return false;
         }
-        public class LothorDeadSystem : ModSystem {
+        public class LothorDeadSystem : ModSystem
+        {
             public static bool LothorDead = false;
+            public override void NetSend(BinaryWriter writer)
+            {
+                writer.Write(LothorDead);
+            }
+
+            public override void NetReceive(BinaryReader reader)
+            {
+                LothorDead = reader.ReadBoolean();
+            }
             public override void OnWorldLoad() => LothorDead = false;
             public override void SaveWorldData(TagCompound tag) => tag["LothorDead"] = LothorDead;
             public override void LoadWorldData(TagCompound tag) => LothorDead = tag.GetBool("LothorDead");
             public override void ClearWorld() => LothorDead = false;
         }
-        public class LothorNPC : GlobalNPC {
-            public override void OnKill(NPC npc) {
+        public class LothorNPC : GlobalNPC
+        {
+     
+        public override void OnKill(NPC npc)
+            {
+                if (Main.netMode == NetmodeID.Server)
+                {
+                    NetMessage.SendData(MessageID.WorldData);
+                }
                 if (npc.type == ModList.Roa.Find<ModNPC>("Lothor").Type) { NPC.SetEventFlagCleared(ref LothorDeadSystem.LothorDead, -1); }
             }
         }
-        public class HellDebuff : ModPlayer {
-            public override void PostUpdate() {
+        public class HellDebuff : ModPlayer
+        {
+            public override void PostUpdate()
+            {
                 if (Player.ZoneUnderworldHeight && !LothorDeadSystem.LothorDead) { Player.AddBuff(BuffType<HellishAir>(), 2); }
             }
         }

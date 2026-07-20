@@ -31,7 +31,40 @@ namespace Synergia.Content.Projectiles.Reworks.AltUse
         public override Color? TrailColor => new Color(1f, 1f, 0.4f, 0f);
         public override Func<float, float> EasingFunc => rot => Easings.PowInOut(rot, 5f);
         public override int TrailLength => 8;
+        public override void PostAI()
+        {
+            // Базовая проверка: отражаем только если проект активен и контролируется игроком
+            if (Projectile.owner == Main.myPlayer)
+            {
+                // Проходим по всем снарядам в игре
+                foreach (Projectile target in Main.projectile)
+                {
+                    if (target.active && target.hostile && !target.friendly && target.Colliding(target.Hitbox, Projectile.Hitbox))
+                    {
+                        if (Main.rand.NextFloat() < 0.20f)
+                        {
+                            target.hostile = false;
+                            target.friendly = true;
+                            target.owner = Owner.whoAmI;
 
+                            target.velocity = -target.velocity;
+
+                            SoundEngine.PlaySound(SoundID.Item53, target.position);
+
+                            for (int i = 0; i < 5; i++)
+                            {
+                                Dust d = Dust.NewDustDirect(target.position, target.width, target.height, DustID.Enchanted_Gold, -target.velocity.X * 0.5f, -target.velocity.Y * 0.5f, 100, default, 1.2f);
+                                d.noGravity = true;
+                            }
+                        }
+                        else
+                        {
+                    
+                        }
+                    }
+                }
+            }
+        }
         public override void EmitDust(Vector2 handPosition, float swingRadius, float rotationProgress, float easedRotationProgress)
         {
             if (Projectile.localAI[2] != 1 && easedRotationProgress > 0.1f)

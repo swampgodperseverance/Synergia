@@ -11,12 +11,12 @@ namespace Synergia.Content.Items.Weapons.Throwing
     {
         public override void SetDefaults()
         {
-            Item.damage = 21;
+            Item.damage = 18;
             Item.DamageType = DamageClass.Throwing; 
             Item.width = 32;
             Item.height = 32;
-            Item.useTime = 25;
-            Item.useAnimation = 25;
+            Item.useTime = 30;
+            Item.useAnimation = 30;
             Item.useStyle = ItemUseStyleID.Swing;
             Item.noUseGraphic = true;
             Item.noMelee = true;

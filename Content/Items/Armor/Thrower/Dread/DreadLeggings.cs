@@ -19,7 +19,7 @@ namespace Synergia.Content.Items.Armor.Thrower.Dread
 			Item.defense = 6;
 		}
 		public override void UpdateEquip(Player player) {
-			player.GetAttackSpeed(DamageClass.Throwing) += 0.12f;
+			player.GetAttackSpeed(DamageClass.Throwing) += 0.15f;
 			player.moveSpeed += 0.1f;
         }
 		//public override bool IsArmorSet(Item head, Item body, Item legs) {
